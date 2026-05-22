@@ -43,7 +43,8 @@ jobs:
             ${{ env.IMAGE }}:${{ github.sha }}
 
       - name: Trigger Railway redeploy
-        run: npx railway redeploy --service zephora --yes
+        run: |
+          npm install -g @railway/cli
+          railway redeploy --service zephora --yes
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-          RAILWAY_SERVICE: zephora
