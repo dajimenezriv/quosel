@@ -50,7 +50,7 @@ jobs:
           workingDirectory: frontend
           command: >
             pages deploy dist
-            --project-name=google-map-leads
+            --project-name=zephora
             --branch=${{ github.head_ref || github.ref_name }}
 
       - name: Comment preview URL
