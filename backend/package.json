@@ -1,17 +1,32 @@
 {
-  "name": "zephora-backend",
+  "name": "quosel-backend",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "commonjs",
+  "main": "src/index.ts",
+  "type": "module",
+  "license": "UNLICENSED",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node --watch index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch src/index.ts",
+    "start": "node src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "openapi": "node scripts/generate-openapi.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "@hono/node-server": "^2.0.3",
+    "@hono/swagger-ui": "^0.6.1",
+    "@hono/zod-openapi": "^1.4.0",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.12.22",
+    "postgres": "^3.4.9",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@railway/cli": "^4.59.0"
+    "@railway/cli": "^4.59.0",
+    "@types/node": "^24.12.4",
+    "drizzle-kit": "^0.31.10",
+    "typescript": "^6.0.3"
   }
 }

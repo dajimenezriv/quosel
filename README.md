@@ -1,4 +1,4 @@
-# Google Maps Leads
+# Quosel
 
 ## Frontend
 
@@ -8,13 +8,13 @@
 npm run build
 npx wrangler login
 npx wrangler pages project list
-npx wrangler pages deploy dist --project-name=zephora
+npx wrangler pages deploy dist --project-name=quosel
 ```
 
 ## Backend
 
 ```bash
 docker login
-docker build -t dajimenezriv/zephora-backend:latest .
-docker push dajimenezriv/zephora-backend:latest
+docker build -t dajimenezriv/quosel-backend:latest .
+docker push dajimenezriv/quosel-backend:latest
 ```

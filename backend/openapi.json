@@ -1,0 +1,76 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Zephora API",
+    "version": "1.0.0",
+    "description": "Google Maps leads backend."
+  },
+  "components": {
+    "schemas": {
+      "Health": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "System"
+        ],
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/places": {
+      "get": {
+        "tags": [
+          "Places"
+        ],
+        "summary": "Extract info from a Google Maps place URL",
+        "description": "Pass a Google Maps place URL via the `url` query param. Scraping is not yet implemented — the endpoint currently returns 204.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "format": "uri",
+              "example": "https://www.google.com/maps/place/Joe's+Coffee/@40.7128,-74.0060,17z"
+            },
+            "required": true,
+            "name": "url",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No content (scraping not yet implemented)"
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}
