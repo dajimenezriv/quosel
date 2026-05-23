@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import reactLogo from "./assets/react.svg";
+import viteLogo from "./assets/vite.svg";
+import heroImg from "./assets/hero.png";
+import "./App.css";
+import { useAuth } from "./lib/auth";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { user, loading, login, logout } = useAuth();
 
   return (
     <>
@@ -17,17 +17,23 @@ function App() {
         </div>
         <div>
           <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
+          {loading ? (
+            <p>Loading…</p>
+          ) : user ? (
+            <>
+              <p>
+                Signed in as <strong>{user.email}</strong>
+              </p>
+              <button type="button" className="counter" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <button type="button" className="counter" onClick={login}>
+              Login with Google
+            </button>
+          )}
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
       </section>
 
       <div className="ticks"></div>
@@ -116,7 +122,7 @@ function App() {
       <div className="ticks"></div>
       <section id="spacer"></section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
