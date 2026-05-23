@@ -3,7 +3,9 @@ import { cors } from "hono/cors";
 import { healthRouter } from "./routes/health.ts";
 import { placesRouter } from "./routes/places.ts";
 import { authRouter } from "./routes/auth.ts";
+import { billingRouter } from "./routes/billing.ts";
 import { requireAuth } from "./middleware/auth.ts";
+import { requestLogger } from "./middleware/logger.ts";
 
 export const openApiDoc = {
   openapi: "3.1.0",
@@ -16,6 +18,8 @@ export const openApiDoc = {
 
 export const app = new OpenAPIHono();
 
+app.use("*", requestLogger);
+
 app.use(
   "*",
   cors({
@@ -26,6 +30,7 @@ app.use(
 
 app.route("/", healthRouter);
 app.route("/", authRouter);
+app.route("/", billingRouter);
 
 app.use("/places/*", requireAuth);
 app.route("/", placesRouter);

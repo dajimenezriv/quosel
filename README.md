@@ -20,7 +20,6 @@ docker push dajimenezriv/quosel-backend:latest
 ```
 
 ```bash
-npm install -D supabase
-npx supabase init
-npx supabase start
+# download stripe cli
+stripe listen --forward-to localhost:3000/webhooks/stripe
 ```

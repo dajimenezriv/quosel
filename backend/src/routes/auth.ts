@@ -118,5 +118,16 @@ authRouter.get("/auth/me", async (c) => {
   const id = getCookie(c, "session");
   if (!id) return c.json({ user: null });
   const row = await validateSession(id);
-  return c.json({ user: row?.user ?? null });
+  if (!row) return c.json({ user: null });
+  const { user } = row;
+  return c.json({
+    user: {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      picture: user.picture,
+      subscriptionStatus: user.subscriptionStatus,
+      currentPeriodEnd: user.currentPeriodEnd,
+    },
+  });
 });

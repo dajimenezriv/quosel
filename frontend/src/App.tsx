@@ -1,11 +1,51 @@
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
 import { useAuth } from "./lib/auth";
+import { startCheckout, openPortal, isSubscribed } from "./lib/billing";
+
+function useBillingReturn(onReturn: () => void) {
+  const [banner, setBanner] = useState<"success" | "cancel" | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const billing = params.get("billing");
+    if (billing === "success" || billing === "cancel") {
+      setBanner(billing);
+      window.history.replaceState({}, "", window.location.pathname);
+      if (billing === "success") onReturn();
+    }
+  }, [onReturn]);
+
+  return { banner, dismiss: () => setBanner(null) };
+}
 
 function App() {
-  const { user, loading, login, logout } = useAuth();
+  const { user, loading, login, logout, refresh } = useAuth();
+  const { banner, dismiss } = useBillingReturn(refresh);
+  const [billingLoading, setBillingLoading] = useState(false);
+
+  const handleSubscribe = async () => {
+    setBillingLoading(true);
+    try {
+      await startCheckout();
+    } catch (err) {
+      console.error(err);
+      setBillingLoading(false);
+    }
+  };
+
+  const handlePortal = async () => {
+    setBillingLoading(true);
+    try {
+      await openPortal();
+    } catch (err) {
+      console.error(err);
+      setBillingLoading(false);
+    }
+  };
 
   return (
     <>
@@ -17,6 +57,16 @@ function App() {
         </div>
         <div>
           <h1>Get started</h1>
+          {banner === "success" && (
+            <p style={{ color: "green" }}>
+              Subscription active. <button onClick={dismiss}>×</button>
+            </p>
+          )}
+          {banner === "cancel" && (
+            <p style={{ color: "orange" }}>
+              Checkout canceled. <button onClick={dismiss}>×</button>
+            </p>
+          )}
           {loading ? (
             <p>Loading…</p>
           ) : user ? (
@@ -24,6 +74,37 @@ function App() {
               <p>
                 Signed in as <strong>{user.email}</strong>
               </p>
+              {isSubscribed(user.subscriptionStatus) ? (
+                <>
+                  <p>
+                    Plan: <strong>{user.subscriptionStatus}</strong>
+                    {user.currentPeriodEnd && (
+                      <>
+                        {" "}
+                        · renews{" "}
+                        {new Date(user.currentPeriodEnd).toLocaleDateString()}
+                      </>
+                    )}
+                  </p>
+                  <button
+                    type="button"
+                    className="counter"
+                    onClick={handlePortal}
+                    disabled={billingLoading}
+                  >
+                    Manage subscription
+                  </button>
+                </>
+              ) : (
+                <button
+                  type="button"
+                  className="counter"
+                  onClick={handleSubscribe}
+                  disabled={billingLoading}
+                >
+                  Subscribe €5/mo · 7-day trial
+                </button>
+              )}
               <button type="button" className="counter" onClick={logout}>
                 Logout
               </button>

@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
+import type { SubscriptionStatus } from "./billing";
+
 export type User = {
   id: string;
   email: string;
   name: string | null;
   picture: string | null;
+  subscriptionStatus: SubscriptionStatus;
+  currentPeriodEnd: string | null;
 };
 
 export function loginWithGoogle() {
@@ -31,10 +35,10 @@ export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const refresh = () => fetchMe().then(setUser);
+
   useEffect(() => {
-    fetchMe()
-      .then(setUser)
-      .finally(() => setLoading(false));
+    refresh().finally(() => setLoading(false));
   }, []);
 
   return {
@@ -45,5 +49,6 @@ export function useAuth() {
       await logout();
       setUser(null);
     },
+    refresh,
   };
 }
