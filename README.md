@@ -18,3 +18,9 @@ docker login
 docker build -t dajimenezriv/quosel-backend:latest .
 docker push dajimenezriv/quosel-backend:latest
 ```
+
+```bash
+npm install -D supabase
+npx supabase init
+npx supabase start
+```

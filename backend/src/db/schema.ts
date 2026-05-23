@@ -10,18 +10,9 @@ import {
   index,
 } from "drizzle-orm/pg-core";
 
-/**
- * A place extracted from a Google Maps URL.
- *
- * Schema is the source of truth — `drizzle-kit generate` diffs this against
- * the latest snapshot in ./drizzle and emits a plain .sql migration you can
- * read and edit before applying.
- */
 export const places = pgTable(
   "places",
   {
-    // UUID v4 via Postgres `gen_random_uuid()`. Switch to v7 later if write
-    // throughput / index locality becomes a concern.
     id: uuid("id").primaryKey().defaultRandom(),
     sourceUrl: text("source_url").notNull(),
     placeId: text("place_id"),
