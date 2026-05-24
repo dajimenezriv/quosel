@@ -8,6 +8,7 @@
 npm run build
 npx wrangler login
 npx wrangler pages project list
+npx wrangler pages project create quosel --production-branch main
 npx wrangler pages deploy dist --project-name=quosel
 ```
 

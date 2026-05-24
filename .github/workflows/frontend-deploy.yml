@@ -13,7 +13,6 @@ concurrency:
 
 jobs:
   deploy:
-    if: false
     runs-on: ubuntu-latest
     timeout-minutes: 5
     defaults:
@@ -50,7 +49,7 @@ jobs:
           workingDirectory: frontend
           command: >
             pages deploy dist
-            --project-name=zephora
+            --project-name=quosel
             --branch=${{ github.head_ref || github.ref_name }}
 
       - name: Comment preview URL
