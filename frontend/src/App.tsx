@@ -60,7 +60,7 @@ function App() {
           <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
         <div>
-          <h1>Get started</h1>
+          <h1>Get started2</h1>
           {banner === "success" && (
             <p style={{ color: "green" }}>
               Subscription active. <button onClick={dismiss}>×</button>

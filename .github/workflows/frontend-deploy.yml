@@ -21,7 +21,6 @@ jobs:
 
     permissions:
       contents: read
-      pull-requests: write # needed to comment the preview URL on the PR
 
     steps:
       - uses: actions/checkout@v4
@@ -39,6 +38,7 @@ jobs:
         run: npm run build
         env:
           VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_POSTHOG_KEY: ${{ vars.VITE_POSTHOG_KEY }}
 
       - name: Deploy to Cloudflare Pages
         id: deploy
