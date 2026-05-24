@@ -47,14 +47,11 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: frontend
-          command: >
-            pages deploy dist
-            --project-name=quosel
-            --branch=${{ github.head_ref || github.ref_name }}
+          command: pages deploy dist --project-name=quosel --branch=${{ github.head_ref || github.ref_name }}
 
       - name: Comment preview URL
         if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const url = "${{ steps.deploy.outputs.deployment-url }}";
@@ -62,5 +59,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀 Preview deployed: ${url}`
+              body: url
             });

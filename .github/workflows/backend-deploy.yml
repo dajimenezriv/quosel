@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
     paths: ["backend/**"]
+  pull_request:
+    paths: ["backend/**"]
 
 concurrency:
   group: deploy-backend-${{ github.ref }}
@@ -16,9 +18,6 @@ jobs:
 
     permissions:
       contents: read
-
-    env:
-      IMAGE: dajimenezriv/quosel-backend
 
     steps:
       - uses: actions/checkout@v4
@@ -36,8 +35,8 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            ${{ env.IMAGE }}:latest
-            ${{ env.IMAGE }}:${{ github.sha }}
+            dajimenezriv/quosel-backend:latest
+            dajimenezriv/quosel-backend:${{ github.sha }}
 
       - name: Trigger Railway redeploy
         run: |

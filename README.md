@@ -14,11 +14,15 @@ npx wrangler pages deploy dist --project-name=quosel
 
 ## Backend
 
+### Docker
+
 ```bash
 docker login
 docker build -t dajimenezriv/quosel-backend:latest .
 docker push dajimenezriv/quosel-backend:latest
 ```
+
+### Stripe
 
 ```bash
 # download stripe cli
