@@ -1,3 +1,4 @@
+import posthog from "posthog-js";
 import { API_URL } from "./auth";
 
 async function postJson<T>(path: string): Promise<T> {
@@ -10,11 +11,13 @@ async function postJson<T>(path: string): Promise<T> {
 }
 
 export async function startCheckout() {
+  posthog.capture("subscribe_clicked");
   const { url } = await postJson<{ url: string }>("/billing/checkout");
   window.location.href = url;
 }
 
 export async function openPortal() {
+  posthog.capture("portal_opened");
   const { url } = await postJson<{ url: string }>("/billing/portal");
   window.location.href = url;
 }

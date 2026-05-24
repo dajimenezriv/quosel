@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import posthog from "posthog-js";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
@@ -15,6 +16,9 @@ function useBillingReturn(onReturn: () => void) {
     if (billing === "success" || billing === "cancel") {
       setBanner(billing);
       window.history.replaceState({}, "", window.location.pathname);
+      posthog.capture(
+        billing === "success" ? "checkout_completed" : "checkout_canceled",
+      );
       if (billing === "success") onReturn();
     }
   }, [onReturn]);

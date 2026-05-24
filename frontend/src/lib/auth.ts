@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import posthog from "posthog-js";
 
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
@@ -35,7 +36,17 @@ export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const refresh = () => fetchMe().then(setUser);
+  const refresh = () =>
+    fetchMe().then((u) => {
+      setUser(u);
+      if (u) {
+        posthog.identify(u.id, {
+          email: u.email,
+          name: u.name,
+          subscription_status: u.subscriptionStatus,
+        });
+      }
+    });
 
   useEffect(() => {
     refresh().finally(() => setLoading(false));
@@ -48,6 +59,7 @@ export function useAuth() {
     logout: async () => {
       await logout();
       setUser(null);
+      posthog.reset();
     },
     refresh,
   };
