@@ -15,10 +15,12 @@ export type User = {
 };
 
 export function loginWithGoogle() {
+  posthog.capture("login");
   window.location.href = `${API_URL}/auth/google`;
 }
 
 export async function logout() {
+  posthog.capture("logout");
   await fetch(`${API_URL}/auth/logout`, {
     method: "POST",
     credentials: "include",

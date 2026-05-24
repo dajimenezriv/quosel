@@ -12,7 +12,6 @@ export const openApiDoc = {
   info: {
     title: "Quosel API",
     version: "1.0.0",
-    description: "Google Maps leads backend.",
   },
 } as const;
 
