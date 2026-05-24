@@ -35,12 +35,12 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            dajimenezriv/quosel-backend:latest
             dajimenezriv/quosel-backend:${{ github.sha }}
+            dajimenezriv/quosel-backend:latest
 
       - name: Trigger Railway redeploy
         run: |
           npm install -g @railway/cli
-          railway redeploy --service quosel --yes
+          railway redeploy --service quosel-backend --yes
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
