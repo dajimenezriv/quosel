@@ -4,9 +4,8 @@ on:
   push:
     branches: [main]
     paths: ["backend/**"]
-  pull_request:
-    branches: [main]
-    paths: ["backend/**"]
+  # pull_request:
+  #   paths: ["backend/**"]
 
 concurrency:
   group: deploy-backend-${{ github.ref }}
@@ -19,9 +18,6 @@ jobs:
 
     permissions:
       contents: read
-
-    env:
-      IMAGE: dajimenezriv/zephora-backend
 
     steps:
       - uses: actions/checkout@v4
@@ -39,12 +35,12 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            ${{ env.IMAGE }}:latest
-            ${{ env.IMAGE }}:${{ github.sha }}
+            dajimenezriv/quosel-backend:${{ github.sha }}
+            dajimenezriv/quosel-backend:latest
 
       - name: Trigger Railway redeploy
         run: |
           npm install -g @railway/cli
-          railway redeploy --service zephora --yes
+          railway redeploy --service quosel-backend --yes
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}

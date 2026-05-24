@@ -1,4 +1,4 @@
-# Google Maps Leads
+# Quosel
 
 ## Frontend
 
@@ -8,13 +8,23 @@
 npm run build
 npx wrangler login
 npx wrangler pages project list
-npx wrangler pages deploy dist --project-name=zephora
+npx wrangler pages project create quosel --production-branch main
+npx wrangler pages deploy dist --project-name=quosel
 ```
 
 ## Backend
 
+### Docker
+
 ```bash
 docker login
-docker build -t dajimenezriv/zephora-backend:latest .
-docker push dajimenezriv/zephora-backend:latest
+docker build -t dajimenezriv/quosel-backend:latest .
+docker push dajimenezriv/quosel-backend:latest
+```
+
+### Stripe
+
+```bash
+# download stripe cli
+stripe listen --forward-to localhost:3000/webhooks/stripe
 ```
