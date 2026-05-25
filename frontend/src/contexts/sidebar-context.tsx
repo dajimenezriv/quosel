@@ -5,7 +5,7 @@ import * as React from "react";
 export interface SidebarConfig {
   variant: "sidebar" | "floating" | "inset";
   collapsible: "offcanvas" | "icon" | "none";
-  side: "left" | "right";
+  side: "left";
 }
 
 export interface SidebarContextValue {

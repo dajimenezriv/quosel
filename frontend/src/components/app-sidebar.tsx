@@ -4,8 +4,6 @@ import {
   LayoutDashboard,
   Settings,
   CreditCard,
-  LayoutTemplate,
-  Users,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Logo } from "@/components/logo";
@@ -45,54 +43,17 @@ const data = {
       ],
     },
     {
-      label: "Apps",
-      items: [
-        {
-          title: "Users",
-          url: "/users",
-          icon: Users,
-        },
-      ],
-    },
-    {
       label: "Pages",
       items: [
         {
-          title: "Landing",
-          url: "/landing",
-          target: "_blank",
-          icon: LayoutTemplate,
+          title: "Account Settings",
+          url: "/settings/account",
+          icon: Settings,
         },
         {
-          title: "Settings",
-          url: "#",
-          icon: Settings,
-          items: [
-            {
-              title: "User Settings",
-              url: "/settings/user",
-            },
-            {
-              title: "Account Settings",
-              url: "/settings/account",
-            },
-            {
-              title: "Plans & Billing",
-              url: "/settings/billing",
-            },
-            {
-              title: "Appearance",
-              url: "/settings/appearance",
-            },
-            {
-              title: "Notifications",
-              url: "/settings/notifications",
-            },
-            {
-              title: "Connections",
-              url: "/settings/connections",
-            },
-          ],
+          title: "Plans & Billing",
+          url: "/settings/billing",
+          icon: CreditCard,
         },
         {
           title: "Pricing",
