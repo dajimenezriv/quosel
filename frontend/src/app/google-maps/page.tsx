@@ -10,7 +10,7 @@ export default function Page() {
   const [url, setUrl] = React.useState("");
   const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<Element>) {
     e.preventDefault();
     // TODO: backend call with url
     navigate("/editor");
