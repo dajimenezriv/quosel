@@ -4,7 +4,6 @@ import * as React from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 
-import { useSidebarConfig } from "@/hooks/use-sidebar-config";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeCustomizer, ThemeCustomizerTrigger } from "../theme-customizer";
 
@@ -15,7 +14,6 @@ interface Props {
 
 export function BaseLayout({ children, title }: Props) {
   const [themeCustomizerOpen, setThemeCustomizerOpen] = React.useState(false);
-  const { config } = useSidebarConfig();
 
   return (
     <SidebarProvider
@@ -26,13 +24,8 @@ export function BaseLayout({ children, title }: Props) {
           "--header-height": "calc(var(--spacing) * 14)",
         } as React.CSSProperties
       }
-      className={config.collapsible === "none" ? "sidebar-none-mode" : ""}
     >
-      <AppSidebar
-        variant={config.variant}
-        collapsible={config.collapsible}
-        side={config.side}
-      />
+      <AppSidebar />
       <SidebarInset>
         <SiteHeader title={title} />
         <div className="flex flex-1 flex-col">

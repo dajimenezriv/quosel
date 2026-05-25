@@ -17,7 +17,7 @@ export default function Page() {
   }
 
   return (
-    <BaseLayout title="Google Maps" description="Enter a Google Maps URL">
+    <BaseLayout title="Google Maps">
       <div className="px-4 lg:px-6">
         <form onSubmit={handleSubmit} className="flex gap-2 max-w-xl">
           <Input

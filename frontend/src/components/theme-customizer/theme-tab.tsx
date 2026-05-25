@@ -7,40 +7,26 @@ import {
 } from "@/components/ui/select";
 import { useThemeManager } from "@/hooks/use-theme-manager";
 import { tweakcnThemes } from "@/config/theme-data";
-import type { ImportedTheme } from "@/types/theme-customizer";
 import "./circular-transition.css";
 
 interface ThemeTabProps {
-  selectedTheme: string;
-  setSelectedTheme: (theme: string) => void;
   selectedTweakcnTheme: string;
   setSelectedTweakcnTheme: (theme: string) => void;
-  selectedRadius: string;
-  setSelectedRadius: (radius: string) => void;
-  setImportedTheme: (theme: ImportedTheme | null) => void;
-  onImportClick: () => void;
 }
 
 export function ThemeTab({
-  setSelectedTheme,
   selectedTweakcnTheme,
   setSelectedTweakcnTheme,
-  setImportedTheme,
 }: ThemeTabProps) {
-  const { isDarkMode, setBrandColorsValues, applyTweakcnTheme } =
-    useThemeManager();
+  const { isDarkMode, applyTweakcnTheme } = useThemeManager();
 
   return (
     <div className="p-4 space-y-6">
-      {/* Tweakcn Theme Presets */}
       <div className="space-y-3">
         <Select
           value={selectedTweakcnTheme}
           onValueChange={(value) => {
             setSelectedTweakcnTheme(value);
-            setSelectedTheme(""); // Clear shadcn selection
-            setBrandColorsValues({}); // Clear brand colors state
-            setImportedTheme(null); // Clear imported theme
             const selectedPreset = tweakcnThemes.find(
               (t) => t.value === value,
             )?.preset;
