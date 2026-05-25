@@ -8,12 +8,12 @@ import { useSidebarConfig } from "@/hooks/use-sidebar-config";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeCustomizer, ThemeCustomizerTrigger } from "../theme-customizer";
 
-interface BaseLayoutProps {
+interface Props {
   children: React.ReactNode;
   title?: string;
 }
 
-export function BaseLayout({ children, title }: BaseLayoutProps) {
+export function BaseLayout({ children, title }: Props) {
   const [themeCustomizerOpen, setThemeCustomizerOpen] = React.useState(false);
   const { config } = useSidebarConfig();
 
@@ -28,34 +28,22 @@ export function BaseLayout({ children, title }: BaseLayoutProps) {
       }
       className={config.collapsible === "none" ? "sidebar-none-mode" : ""}
     >
-      <>
-        <AppSidebar
-          variant={config.variant}
-          collapsible={config.collapsible}
-          side={config.side}
-        />
-        <SidebarInset>
-          <SiteHeader />
-          <div className="flex flex-1 flex-col">
-            <div className="@container/main flex flex-1 flex-col gap-2">
-              <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-                {title && (
-                  <div className="px-4 lg:px-6">
-                    <div className="flex flex-col gap-2">
-                      <h1 className="text-2xl font-bold tracking-tight">
-                        {title}
-                      </h1>
-                    </div>
-                  </div>
-                )}
-                {children}
-              </div>
+      <AppSidebar
+        variant={config.variant}
+        collapsible={config.collapsible}
+        side={config.side}
+      />
+      <SidebarInset>
+        <SiteHeader title={title} />
+        <div className="flex flex-1 flex-col">
+          <div className="@container/main flex flex-1 flex-col gap-2">
+            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+              {children}
             </div>
           </div>
-        </SidebarInset>
-      </>
+        </div>
+      </SidebarInset>
 
-      {/* Theme Customizer */}
       <ThemeCustomizerTrigger onClick={() => setThemeCustomizerOpen(true)} />
       <ThemeCustomizer
         open={themeCustomizerOpen}

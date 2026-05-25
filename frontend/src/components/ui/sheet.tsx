@@ -10,7 +10,7 @@ export function Sheet({
   return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
-export function SheetPortal({
+function SheetPortal({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Portal>) {
   return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;

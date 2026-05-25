@@ -1,11 +1,5 @@
 import * as React from "react";
-import {
-  LayoutPanelLeft,
-  LayoutDashboard,
-  Settings,
-  CreditCard,
-  MapPin,
-} from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Logo } from "@/components/logo";
 
