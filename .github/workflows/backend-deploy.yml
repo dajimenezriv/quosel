@@ -8,19 +8,19 @@ on:
   #   paths: ["backend/**"]
 
 concurrency:
-  group: deploy-backend-${{ github.ref }}
+  group: backend-deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
 
     permissions:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v4

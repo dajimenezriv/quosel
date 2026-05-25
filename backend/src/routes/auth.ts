@@ -1,25 +1,17 @@
-import { Hono } from "hono";
-import { setCookie, getCookie, deleteCookie } from "hono/cookie";
-import {
-  generateState,
-  generateCodeVerifier,
-  decodeIdToken,
-  OAuth2RequestError,
-} from "arctic";
-import { eq } from "drizzle-orm";
-import { google } from "../auth/google.ts";
-import {
-  createSession,
-  deleteSession,
-  validateSession,
-} from "../auth/session.ts";
-import { db } from "../db/client.ts";
-import { users } from "../db/schema.ts";
+import { generateState, generateCodeVerifier, decodeIdToken, OAuth2RequestError } from 'arctic';
+import { eq } from 'drizzle-orm';
+import { Hono } from 'hono';
+import { setCookie, getCookie, deleteCookie } from 'hono/cookie';
+import { google } from '../auth/google.ts';
+import { createSession, deleteSession, validateSession } from '../auth/session.ts';
+import { db } from '../db/client.ts';
+import { users } from '../db/schema.ts';
+import { env } from '../env.ts';
 
 export const authRouter = new Hono();
 
-const isProd = process.env.NODE_ENV === "production";
-const frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:5173";
+const isProd = env.NODE_ENV === 'production';
+const frontendUrl = env.FRONTEND_URL;
 
 type GoogleIdTokenClaims = {
   sub: string;
@@ -28,94 +20,88 @@ type GoogleIdTokenClaims = {
   picture?: string;
 };
 
-authRouter.get("/auth/google", (c) => {
+authRouter.get('/auth/google', (c) => {
   const state = generateState();
   const codeVerifier = generateCodeVerifier();
-  const url = google.createAuthorizationURL(state, codeVerifier, [
-    "openid",
-    "email",
-    "profile",
-  ]);
+  const url = google.createAuthorizationURL(state, codeVerifier, ['openid', 'email', 'profile']);
 
   const cookieOpts = {
     httpOnly: true,
     secure: isProd,
-    sameSite: "Lax" as const,
+    sameSite: 'Lax' as const,
     maxAge: 60 * 10,
-    path: "/",
+    path: '/',
   };
-  setCookie(c, "google_state", state, cookieOpts);
-  setCookie(c, "google_verifier", codeVerifier, cookieOpts);
+  setCookie(c, 'google_state', state, cookieOpts);
+  setCookie(c, 'google_verifier', codeVerifier, cookieOpts);
 
   return c.redirect(url.toString());
 });
 
-authRouter.get("/auth/google/callback", async (c) => {
-  const code = c.req.query("code");
-  const state = c.req.query("state");
-  const storedState = getCookie(c, "google_state");
-  const verifier = getCookie(c, "google_verifier");
+authRouter.get('/auth/google/callback', async (c) => {
+  const code = c.req.query('code');
+  const state = c.req.query('state');
+  const storedState = getCookie(c, 'google_state');
+  const verifier = getCookie(c, 'google_verifier');
 
   if (!code || !state || !storedState || !verifier || state !== storedState) {
-    return c.text("Invalid OAuth callback", 400);
+    return c.text('Invalid OAuth callback', 400);
   }
 
-  deleteCookie(c, "google_state", { path: "/" });
-  deleteCookie(c, "google_verifier", { path: "/" });
+  deleteCookie(c, 'google_state', { path: '/' });
+  deleteCookie(c, 'google_verifier', { path: '/' });
 
   let claims: GoogleIdTokenClaims;
   try {
     const tokens = await google.validateAuthorizationCode(code, verifier);
     claims = decodeIdToken(tokens.idToken()) as GoogleIdTokenClaims;
-  } catch (err) {
-    if (err instanceof OAuth2RequestError) {
-      return c.text("OAuth error", 400);
+  } catch (error) {
+    if (error instanceof OAuth2RequestError) {
+      return c.text('OAuth error', 400);
     }
-    throw err;
+    throw error;
   }
 
-  const existing = await db
-    .select()
-    .from(users)
-    .where(eq(users.googleId, claims.sub));
+  const existing = await db.select().from(users).where(eq(users.googleId, claims.sub));
 
-  const user =
-    existing[0] ??
-    (
-      await db
-        .insert(users)
-        .values({
-          googleId: claims.sub,
-          email: claims.email,
-          name: claims.name,
-          picture: claims.picture,
-        })
-        .returning()
-    )[0];
+  let user = existing[0];
 
-  if (!user) return c.text("Failed to create user", 500);
+  if (!user) {
+    const tmp = await db
+      .insert(users)
+      .values({
+        googleId: claims.sub,
+        email: claims.email,
+        name: claims.name,
+        picture: claims.picture,
+      })
+      .returning();
+    user = tmp[0];
+  }
+
+  if (!user) return c.text('Failed to create user', 500);
 
   const session = await createSession(user.id);
-  setCookie(c, "session", session.id, {
+  setCookie(c, 'session', session.id, {
     httpOnly: true,
     secure: isProd,
-    sameSite: "Lax",
+    sameSite: 'Lax',
     expires: session.expiresAt,
-    path: "/",
+    path: '/',
   });
 
   return c.redirect(frontendUrl);
 });
 
-authRouter.post("/auth/logout", async (c) => {
-  const id = getCookie(c, "session");
+authRouter.post('/auth/logout', async (c) => {
+  const id = getCookie(c, 'session');
   if (id) await deleteSession(id);
-  deleteCookie(c, "session", { path: "/" });
+  deleteCookie(c, 'session', { path: '/' });
   return c.body(null, 204);
 });
 
-authRouter.get("/auth/me", async (c) => {
-  const id = getCookie(c, "session");
+authRouter.get('/auth/me', async (c) => {
+  const id = getCookie(c, 'session');
   if (!id) return c.json({ user: null });
   const row = await validateSession(id);
   if (!row) return c.json({ user: null });

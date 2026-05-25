@@ -5,7 +5,7 @@
 ### Cloudflare
 
 ```bash
-npm run build
+pnpm build
 npx wrangler login
 npx wrangler pages project list
 npx wrangler pages project create quosel-frontend --production-branch main
@@ -46,3 +46,8 @@ https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=Ab4
 NEW
 https://places.googleapis.com/v1/places/ChIJRWnYS1BHYA0RK5rHEosqXcQ?fields=photos&key=AIzaSyA9JQmyWyjY6nwpJAAPkiSsh-Z6p825qOU
 
+### Google Maps
+
+https://places.googleapis.com/v1/places/ChIJRWnYS1BHYA0RK5rHEosqXcQ?key=AIzaSyAIHXHraVL1labP42UdnRFolkRZiENDQiY&fields=*
+https://developers.google.com/maps/billing-and-pricing/pricing
+https://developers.google.com/maps/billing-and-pricing/sku-details
