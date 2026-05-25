@@ -1,11 +1,23 @@
-"use client"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { BaseLayout } from "@/components/layouts/base-layout"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { BaseLayout } from "@/components/layouts/base-layout";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -13,9 +25,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 const accountFormSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -25,9 +37,10 @@ const accountFormSchema = z.object({
   currentPassword: z.string().optional(),
   newPassword: z.string().optional(),
   confirmPassword: z.string().optional(),
-})
+  language: z.string(),
+});
 
-type AccountFormValues = z.infer<typeof accountFormSchema>
+type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 export default function AccountSettings() {
   const form = useForm<AccountFormValues>({
@@ -40,11 +53,12 @@ export default function AccountSettings() {
       currentPassword: "",
       newPassword: "",
       confirmPassword: "",
+      language: "en",
     },
-  })
+  });
 
   function onSubmit(data: AccountFormValues) {
-    console.log("Form submitted:", data)
+    console.log("Form submitted:", data);
     // Here you would typically save the data
   }
 
@@ -64,7 +78,8 @@ export default function AccountSettings() {
               <CardHeader>
                 <CardTitle>Personal Information</CardTitle>
                 <CardDescription>
-                  Update your personal information that will be displayed on your profile.
+                  Update your personal information that will be displayed on
+                  your profile.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -76,7 +91,10 @@ export default function AccountSettings() {
                       <FormItem>
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your first name" {...field} />
+                          <Input
+                            placeholder="Enter your first name"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -89,7 +107,10 @@ export default function AccountSettings() {
                       <FormItem>
                         <FormLabel>Last Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="Enter your last name" {...field} />
+                          <Input
+                            placeholder="Enter your last name"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -103,7 +124,11 @@ export default function AccountSettings() {
                     <FormItem>
                       <FormLabel>Email Address</FormLabel>
                       <FormControl>
-                        <Input type="email" placeholder="Enter your email" {...field} />
+                        <Input
+                          type="email"
+                          placeholder="Enter your email"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -122,52 +147,32 @@ export default function AccountSettings() {
                     </FormItem>
                   )}
                 />
-              </CardContent>
-            </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Change Password</CardTitle>
-                <CardDescription>
-                  Update your password to keep your account secure.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+                {/* Language */}
                 <FormField
                   control={form.control}
-                  name="currentPassword"
+                  name="language"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Current Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" placeholder="Enter current password" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="newPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>New Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" placeholder="Enter new password" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="confirmPassword"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Confirm New Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" placeholder="Confirm new password" {...field} />
-                      </FormControl>
+                      <FormLabel>Language</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Language" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="english">English</SelectItem>
+                          <SelectItem value="spanish">Spanish</SelectItem>
+                          <SelectItem value="french">French</SelectItem>
+                          <SelectItem value="german">German</SelectItem>
+                          <SelectItem value="italian">Italian</SelectItem>
+                          <SelectItem value="portuguese">Portuguese</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -191,7 +196,11 @@ export default function AccountSettings() {
                       Permanently delete your account and all associated data.
                     </p>
                   </div>
-                  <Button variant="destructive" type="button" className="cursor-pointer">
+                  <Button
+                    variant="destructive"
+                    type="button"
+                    className="cursor-pointer"
+                  >
                     Delete Account
                   </Button>
                 </div>
@@ -199,12 +208,16 @@ export default function AccountSettings() {
             </Card>
 
             <div className="flex space-x-2">
-              <Button type="submit" className="cursor-pointer">Save Changes</Button>
-              <Button variant="outline" type="reset" className="cursor-pointer">Cancel</Button>
+              <Button type="submit" className="cursor-pointer">
+                Save Changes
+              </Button>
+              <Button variant="outline" type="reset" className="cursor-pointer">
+                Cancel
+              </Button>
             </div>
           </form>
         </Form>
       </div>
     </BaseLayout>
-  )
+  );
 }

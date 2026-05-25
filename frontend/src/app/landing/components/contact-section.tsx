@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -15,8 +15,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Mail, MessageCircle, Github, BookOpen } from 'lucide-react'
+} from "@/components/ui/form";
+import { Mail, MessageCircle, BookOpen } from "lucide-react";
 
 const contactFormSchema = z.object({
   firstName: z.string().min(2, {
@@ -34,7 +34,7 @@ const contactFormSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
-})
+});
 
 export function ContactSection() {
   const form = useForm<z.infer<typeof contactFormSchema>>({
@@ -46,25 +46,28 @@ export function ContactSection() {
       subject: "",
       message: "",
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof contactFormSchema>) {
     // Here you would typically send the form data to your backend
-    console.log(values)
+    console.log(values);
     // You could also show a success message or redirect
-    form.reset()
+    form.reset();
   }
 
   return (
     <section id="contact" className="py-24 sm:py-32">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <Badge variant="outline" className="mb-4">Get In Touch</Badge>
+          <Badge variant="outline" className="mb-4">
+            Get In Touch
+          </Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
             Need help or have questions?
           </h2>
           <p className="text-lg text-muted-foreground">
-            Our team is here to help you get the most out of ShadcnStore. Choose the best way to reach out to us.
+            Our team is here to help you get the most out of ShadcnStore. Choose
+            the best way to reach out to us.
           </p>
         </div>
 
@@ -80,10 +83,20 @@ export function ContactSection() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-3">
-                  Join our active community for quick help and discussions with other developers.
+                  Join our active community for quick help and discussions with
+                  other developers.
                 </p>
-                <Button variant="outline" size="sm" className="cursor-pointer" asChild>
-                  <a href="https://discord.com/invite/XEQhPc9a6p" target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="cursor-pointer"
+                  asChild
+                >
+                  <a
+                    href="https://discord.com/invite/XEQhPc9a6p"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Join Discord
                   </a>
                 </Button>
@@ -93,16 +106,26 @@ export function ContactSection() {
             <Card className="hover:shadow-md transition-shadow cursor-pointer">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <Github className="h-5 w-5 text-primary" />
+                  {/* <Github className="h-5 w-5 text-primary" /> */}
                   GitHub Issues
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-3">
-                  Report bugs, request features, or contribute to our open source repository.
+                  Report bugs, request features, or contribute to our open
+                  source repository.
                 </p>
-                <Button variant="outline" size="sm" className="cursor-pointer" asChild>
-                  <a href="https://github.com/silicondeck/shadcn-dashboard-landing-template/issues" target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="cursor-pointer"
+                  asChild
+                >
+                  <a
+                    href="https://github.com/silicondeck/shadcn-dashboard-landing-template/issues"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     View on GitHub
                   </a>
                 </Button>
@@ -118,12 +141,16 @@ export function ContactSection() {
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground mb-3">
-                  Browse our comprehensive guides, tutorials, and component documentation.
+                  Browse our comprehensive guides, tutorials, and component
+                  documentation.
                 </p>
-                <Button variant="outline" size="sm" className="cursor-pointer" asChild>
-                  <a href="#">
-                    View Docs
-                  </a>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="cursor-pointer"
+                  asChild
+                >
+                  <a href="#">View Docs</a>
                 </Button>
               </CardContent>
             </Card>
@@ -140,7 +167,10 @@ export function ContactSection() {
               </CardHeader>
               <CardContent>
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
                     <div className="grid gap-4 sm:grid-cols-2">
                       <FormField
                         control={form.control}
@@ -176,7 +206,11 @@ export function ContactSection() {
                         <FormItem>
                           <FormLabel>Email</FormLabel>
                           <FormControl>
-                            <Input type="email" placeholder="john@example.com" {...field} />
+                            <Input
+                              type="email"
+                              placeholder="john@example.com"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -189,7 +223,10 @@ export function ContactSection() {
                         <FormItem>
                           <FormLabel>Subject</FormLabel>
                           <FormControl>
-                            <Input placeholder="Component request, bug report, general inquiry..." {...field} />
+                            <Input
+                              placeholder="Component request, bug report, general inquiry..."
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -224,5 +261,5 @@ export function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
