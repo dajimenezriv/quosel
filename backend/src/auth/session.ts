@@ -1,12 +1,12 @@
-import { randomBytes } from "node:crypto";
-import { and, eq, gt } from "drizzle-orm";
-import { db } from "../db/client.ts";
-import { sessions, users } from "../db/schema.ts";
+import { and, eq, gt } from 'drizzle-orm';
+import { randomBytes } from 'node:crypto';
+import { db } from '../db/client.ts';
+import { sessions, users } from '../db/schema.ts';
 
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30;
 
 export async function createSession(userId: string) {
-  const id = randomBytes(20).toString("hex");
+  const id = randomBytes(20).toString('hex');
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS);
   await db.insert(sessions).values({ id, userId, expiresAt });
   return { id, expiresAt };

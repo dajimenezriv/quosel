@@ -1,4 +1,4 @@
-import { env } from "../env.ts";
+import { env } from '../env.ts';
 
 export type PlaceInfo = {
   displayName: string;
@@ -11,18 +11,17 @@ export class PlacesError extends Error {
 
   constructor(status: PlacesErrorStatus, message: string) {
     super(message);
-    this.name = "PlacesError";
+    this.name = 'PlacesError';
     this.status = status;
   }
 }
 
-const FIELD_MASK = "id,displayName";
+const FIELD_MASK = 'id,displayName';
 
 async function resolveUrl(url: string): Promise<string> {
-  const isShort =
-    url.includes("maps.app.goo.gl") || url.includes("goo.gl/maps");
+  const isShort = url.includes('maps.app.goo.gl') || url.includes('goo.gl/maps');
   if (!isShort) return url;
-  const res = await fetch(url, { method: "GET", redirect: "follow" });
+  const res = await fetch(url, { method: 'GET', redirect: 'follow' });
   return res.url;
 }
 
@@ -39,7 +38,7 @@ function extractNameAndCoords(url: string): {
   const out: { name?: string; lat?: number; lng?: number } = {};
   const nameMatch = url.match(/\/place\/([^/@]+)/);
   if (nameMatch?.[1]) {
-    out.name = decodeURIComponent(nameMatch[1]).replace(/\+/g, " ");
+    out.name = decodeURIComponent(nameMatch[1]).replaceAll('+', ' ');
   }
   const coordMatch = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
   if (coordMatch?.[1] && coordMatch[2]) {
@@ -51,11 +50,7 @@ function extractNameAndCoords(url: string): {
 
 type SearchTextResponse = { places?: Array<{ id: string }> };
 
-async function findPlaceId(
-  apiKey: string,
-  query: string,
-  bias?: { lat: number; lng: number },
-): Promise<string | null> {
+async function findPlaceId(apiKey: string, query: string, bias?: { lat: number; lng: number }): Promise<string | null> {
   const body: Record<string, unknown> = { textQuery: query };
   if (bias) {
     body.locationBias = {
@@ -65,18 +60,15 @@ async function findPlaceId(
       },
     };
   }
-  const res = await fetch(
-    "https://places.googleapis.com/v1/places:searchText",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Goog-Api-Key": apiKey,
-        "X-Goog-FieldMask": "places.id",
-      },
-      body: JSON.stringify(body),
+  const res = await fetch('https://places.googleapis.com/v1/places:searchText', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Goog-Api-Key': apiKey,
+      'X-Goog-FieldMask': 'places.id',
     },
-  );
+    body: JSON.stringify(body),
+  });
   if (!res.ok) {
     throw new PlacesError(500, `searchText ${res.status}: ${await res.text()}`);
   }
@@ -89,24 +81,15 @@ type PlaceDetailsResponse = {
   displayName?: { text?: string };
 };
 
-async function fetchPlaceDetails(
-  apiKey: string,
-  placeId: string,
-): Promise<PlaceDetailsResponse> {
-  const res = await fetch(
-    `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
-    {
-      headers: {
-        "X-Goog-Api-Key": apiKey,
-        "X-Goog-FieldMask": FIELD_MASK,
-      },
+async function fetchPlaceDetails(apiKey: string, placeId: string): Promise<PlaceDetailsResponse> {
+  const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`, {
+    headers: {
+      'X-Goog-Api-Key': apiKey,
+      'X-Goog-FieldMask': FIELD_MASK,
     },
-  );
+  });
   if (!res.ok) {
-    throw new PlacesError(
-      500,
-      `placeDetails ${res.status}: ${await res.text()}`,
-    );
+    throw new PlacesError(500, `placeDetails ${res.status}: ${await res.text()}`);
   }
   return (await res.json()) as PlaceDetailsResponse;
 }
@@ -120,18 +103,17 @@ export async function extractPlaceFromUrl(url: string): Promise<PlaceInfo> {
   if (!placeId) {
     const { name, lat, lng } = extractNameAndCoords(resolved);
     if (!name) {
-      throw new PlacesError(400, "Could not extract place_id or name from URL");
+      throw new PlacesError(400, 'Could not extract place_id or name from URL');
     }
-    const bias =
-      lat !== undefined && lng !== undefined ? { lat, lng } : undefined;
+    const bias = lat !== undefined && lng !== undefined ? { lat, lng } : undefined;
     placeId = await findPlaceId(apiKey, name, bias);
   }
 
-  if (!placeId) throw new PlacesError(404, "Place not found");
+  if (!placeId) throw new PlacesError(404, 'Place not found');
 
   const d = await fetchPlaceDetails(apiKey, placeId);
 
   return {
-    displayName: d.displayName?.text ?? "",
+    displayName: d.displayName?.text ?? '',
   };
 }
