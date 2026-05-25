@@ -6,7 +6,6 @@ import { PanelLeftIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -320,20 +319,6 @@ export function SidebarFooter({
         "*:data-[slot=card]:group-data-[collapsible=icon]:hidden",
         className,
       )}
-      {...props}
-    />
-  );
-}
-
-export function SidebarSeparator({
-  className,
-  ...props
-}: React.ComponentProps<typeof Separator>) {
-  return (
-    <Separator
-      data-slot="sidebar-separator"
-      data-sidebar="separator"
-      className={cn("bg-sidebar-border mx-2 w-auto", className)}
       {...props}
     />
   );

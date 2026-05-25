@@ -1,38 +1,4 @@
-import type {
-  SidebarVariant,
-  SidebarCollapsibleOption,
-  SidebarSideOption,
-  RadiusOption,
-  BrandColor,
-} from "@/types/theme-customizer";
-
-// Sidebar variant options
-export const sidebarVariants: SidebarVariant[] = [
-  { name: "Default", value: "sidebar", description: "Standard sidebar layout" },
-  {
-    name: "Floating",
-    value: "floating",
-    description: "Floating sidebar with border",
-  },
-  {
-    name: "Inset",
-    value: "inset",
-    description: "Inset sidebar with rounded corners",
-  },
-];
-
-// Sidebar collapsible options
-export const sidebarCollapsibleOptions: SidebarCollapsibleOption[] = [
-  { name: "Off Canvas", value: "offcanvas", description: "Slides out of view" },
-  { name: "Icon", value: "icon", description: "Collapses to icon only" },
-  { name: "None", value: "none", description: "Always visible" },
-];
-
-// Sidebar side options
-export const sidebarSideOptions: SidebarSideOption[] = [
-  { name: "Left", value: "left" },
-  { name: "Right", value: "right" },
-];
+import type { BrandColor } from "@/types/theme-customizer";
 
 // Define brand colors for custom color inputs
 export const baseColors: BrandColor[] = [
