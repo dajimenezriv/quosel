@@ -1,4 +1,4 @@
-export type ThemeStyleProps = {
+type ThemeStyleProps = {
   background: string;
   foreground: string;
   card: string;
@@ -45,7 +45,7 @@ export type ThemeStyleProps = {
   spacing?: string;
 };
 
-export type ThemeStyles = {
+type ThemeStyles = {
   light: Partial<ThemeStyleProps>;
   dark: Partial<ThemeStyleProps>;
 };
