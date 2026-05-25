@@ -26,7 +26,7 @@ async function resolveUrl(url: string): Promise<string> {
 }
 
 function extractPlaceId(url: string): string | null {
-  const m = url.match(/[?&]place_id=([^&]+)/);
+  const m = new RegExp(/[?&]place_id=([^&]+)/).exec(url);
   return m?.[1] ? decodeURIComponent(m[1]) : null;
 }
 
@@ -36,11 +36,11 @@ function extractNameAndCoords(url: string): {
   lng?: number;
 } {
   const out: { name?: string; lat?: number; lng?: number } = {};
-  const nameMatch = url.match(/\/place\/([^/@]+)/);
+  const nameMatch = new RegExp(/\/place\/([^/@]+)/).exec(url);
   if (nameMatch?.[1]) {
     out.name = decodeURIComponent(nameMatch[1]).replaceAll('+', ' ');
   }
-  const coordMatch = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+  const coordMatch = new RegExp(/@(-?\d+\.\d+),(-?\d+\.\d+)/).exec(url);
   if (coordMatch?.[1] && coordMatch[2]) {
     out.lat = Number(coordMatch[1]);
     out.lng = Number(coordMatch[2]);

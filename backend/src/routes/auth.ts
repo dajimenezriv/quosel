@@ -64,19 +64,20 @@ authRouter.get('/auth/google/callback', async (c) => {
 
   const existing = await db.select().from(users).where(eq(users.googleId, claims.sub));
 
-  const user =
-    existing[0] ??
-    (
-      await db
-        .insert(users)
-        .values({
-          googleId: claims.sub,
-          email: claims.email,
-          name: claims.name,
-          picture: claims.picture,
-        })
-        .returning()
-    )[0];
+  let user = existing[0];
+
+  if (!user) {
+    const tmp = await db
+      .insert(users)
+      .values({
+        googleId: claims.sub,
+        email: claims.email,
+        name: claims.name,
+        picture: claims.picture,
+      })
+      .returning();
+    user = tmp[0];
+  }
 
   if (!user) return c.text('Failed to create user', 500);
 

@@ -56,8 +56,7 @@ placesRouter.openapi(extractPlace, async (c) => {
     if (error instanceof PlacesError) {
       return c.json({ error: error.message }, error.status);
     }
-    const msg = error instanceof Error ? error.message : String(error);
-    logger.error(`[places] error: ${msg}`, { err: error });
-    return c.json({ error: msg }, 500);
+    logger.error('Cannot extract place', { error });
+    return c.json({ error: 'Cannot extract place' }, 500);
   }
 });

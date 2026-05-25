@@ -56,6 +56,8 @@ export default [
       // cannot generate numbers that are not really random
       'sonarjs/pseudo-random': 'error',
       'unicorn/filename-case': ['error', { case: 'kebabCase' }],
+      // must use undefined instead of null
+      'unicorn/no-null': 'off',
       // imports should be node:fs/pomises
       'unicorn/prefer-node-protocol': 'error',
       // cannot msg we must write message
