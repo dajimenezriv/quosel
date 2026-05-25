@@ -8,8 +8,10 @@
 npm run build
 npx wrangler login
 npx wrangler pages project list
-npx wrangler pages project create quosel --production-branch main
-npx wrangler pages deploy dist --project-name=quosel
+npx wrangler pages project create quosel-frontend --production-branch main
+npx wrangler pages project create quosel-landing --production-branch main
+npx wrangler pages deploy dist --project-name=quosel-frontend --branch=main
+npx wrangler pages deploy dist --project-name=quosel-landing --branch=main
 ```
 
 ## Backend
