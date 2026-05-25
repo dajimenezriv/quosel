@@ -3,9 +3,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarConfigProvider } from "@/contexts/sidebar-context";
 import { AppRouter } from "@/components/router/app-router";
 
-// Get basename from environment (for deployment) or use empty string for development
-const basename = import.meta.env.VITE_BASENAME || "";
-
 export function App() {
   return (
     <div
@@ -14,7 +11,7 @@ export function App() {
     >
       <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
         <SidebarConfigProvider>
-          <Router basename={basename}>
+          <Router>
             <AppRouter />
           </Router>
         </SidebarConfigProvider>

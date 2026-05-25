@@ -1,5 +1,3 @@
-"use client";
-
 import { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { routes, type RouteConfig } from "@/config/routes";

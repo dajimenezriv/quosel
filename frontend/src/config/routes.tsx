@@ -18,11 +18,9 @@ export interface RouteConfig {
 }
 
 export const routes: RouteConfig[] = [
-  // Default route - redirect to dashboard
-  // Use relative path "dashboard" instead of "/dashboard" for basename compatibility
   {
     path: "/",
-    element: <Navigate to="dashboard" replace />,
+    element: <Navigate to="google-maps" replace />,
   },
 
   {

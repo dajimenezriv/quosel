@@ -29,38 +29,8 @@ const data = {
   },
   navGroups: [
     {
-      label: "Dashboards",
-      items: [
-        {
-          title: "Dashboard 1",
-          url: "/dashboard",
-          icon: LayoutDashboard,
-        },
-        {
-          title: "Dashboard 2",
-          url: "/dashboard-2",
-          icon: LayoutPanelLeft,
-        },
-      ],
-    },
-    {
       label: "Pages",
       items: [
-        {
-          title: "Account Settings",
-          url: "/settings/account",
-          icon: Settings,
-        },
-        {
-          title: "Plans & Billing",
-          url: "/settings/billing",
-          icon: CreditCard,
-        },
-        {
-          title: "Pricing",
-          url: "/pricing",
-          icon: CreditCard,
-        },
         {
           title: "Google Maps",
           url: "/google-maps",
