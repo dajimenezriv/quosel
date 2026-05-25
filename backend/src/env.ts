@@ -2,8 +2,6 @@ import 'dotenv/config';
 import { z } from 'zod';
 import { logger } from './core/logger.ts';
 
-console.log(process.env);
-
 const EnvSchema = z.object({
   DATABASE_URL: z.string().min(1),
   FRONTEND_URL: z.url().default('http://localhost:5173'),
