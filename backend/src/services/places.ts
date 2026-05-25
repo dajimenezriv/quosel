@@ -95,7 +95,7 @@ async function fetchPlaceDetails(apiKey: string, placeId: string): Promise<Place
 }
 
 export async function extractPlaceFromUrl(url: string): Promise<PlaceInfo> {
-  const apiKey = env.GOOGLE_MAPS_DEMO_API_KEY;
+  const apiKey = env.GOOGLE_PLACES_API_KEY;
 
   const resolved = await resolveUrl(url);
   let placeId = extractPlaceId(resolved);
