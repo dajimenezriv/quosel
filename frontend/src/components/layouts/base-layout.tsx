@@ -13,10 +13,9 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 interface BaseLayoutProps {
   children: React.ReactNode;
   title?: string;
-  description?: string;
 }
 
-export function BaseLayout({ children, title, description }: BaseLayoutProps) {
+export function BaseLayout({ children, title }: BaseLayoutProps) {
   const [themeCustomizerOpen, setThemeCustomizerOpen] = React.useState(false);
   const { config } = useSidebarConfig();
 
@@ -48,9 +47,6 @@ export function BaseLayout({ children, title, description }: BaseLayoutProps) {
                       <h1 className="text-2xl font-bold tracking-tight">
                         {title}
                       </h1>
-                      {description && (
-                        <p className="text-muted-foreground">{description}</p>
-                      )}
                     </div>
                   </div>
                 )}

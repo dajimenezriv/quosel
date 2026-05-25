@@ -1,0 +1,4 @@
+{
+  "ignore": ["**/*.test.{ts,tsx}"],
+  "project": ["src/**/*.{ts,tsx}"]
+}

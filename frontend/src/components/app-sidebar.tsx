@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   Settings,
   CreditCard,
+  MapPin,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Logo } from "@/components/logo";
@@ -59,6 +60,11 @@ const data = {
           title: "Pricing",
           url: "/pricing",
           icon: CreditCard,
+        },
+        {
+          title: "Google Maps",
+          url: "/google-maps",
+          icon: MapPin,
         },
       ],
     },

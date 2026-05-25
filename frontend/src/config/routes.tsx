@@ -1,22 +1,15 @@
-import { lazy } from "react";
 import { Navigate } from "react-router-dom";
 
 // Lazy load components for better performance
-const Landing = lazy(() => import("@/app/landing/page"));
-const Dashboard = lazy(() => import("@/app/dashboard/page"));
-const Dashboard2 = lazy(() => import("@/app/dashboard-2/page"));
-const Pricing = lazy(() => import("@/app/pricing/page"));
+import GoogleMaps from "@/app/google-maps/page";
+import Editor from "@/app/editor/page";
 
 // Auth pages
-const SignIn3 = lazy(() => import("@/app/auth/sign-in-3/page"));
+import SignIn from "@/app/auth/sign-in/page";
 
 // Settings pages
-const AccountSettings = lazy(() => import("@/app/settings/account/page"));
-const BillingSettings = lazy(() => import("@/app/settings/billing/page"));
-const AppearanceSettings = lazy(() => import("@/app/settings/appearance/page"));
-const NotificationSettings = lazy(
-  () => import("@/app/settings/notifications/page"),
-);
+import AccountSettings from "@/app/settings/account/page";
+import BillingSettings from "@/app/settings/billing/page";
 
 export interface RouteConfig {
   path: string;
@@ -32,32 +25,19 @@ export const routes: RouteConfig[] = [
     element: <Navigate to="dashboard" replace />,
   },
 
-  // Landing Page
   {
-    path: "/landing",
-    element: <Landing />,
-  },
-
-  // Dashboard Routes
-  {
-    path: "/dashboard",
-    element: <Dashboard />,
+    path: "/google-maps",
+    element: <GoogleMaps />,
   },
   {
-    path: "/dashboard-2",
-    element: <Dashboard2 />,
-  },
-
-  // Content Pages
-  {
-    path: "/pricing",
-    element: <Pricing />,
+    path: "/editor",
+    element: <Editor />,
   },
 
   // Authentication Routes
   {
-    path: "/auth/sign-in-3",
-    element: <SignIn3 />,
+    path: "/sign-in",
+    element: <SignIn />,
   },
 
   // Settings Routes
@@ -68,13 +48,5 @@ export const routes: RouteConfig[] = [
   {
     path: "/settings/billing",
     element: <BillingSettings />,
-  },
-  {
-    path: "/settings/appearance",
-    element: <AppearanceSettings />,
-  },
-  {
-    path: "/settings/notifications",
-    element: <NotificationSettings />,
   },
 ];
