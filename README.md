@@ -5,7 +5,7 @@
 ### Cloudflare
 
 ```bash
-npm run build
+pnpm build
 npx wrangler login
 npx wrangler pages project list
 npx wrangler pages project create quosel-frontend --production-branch main

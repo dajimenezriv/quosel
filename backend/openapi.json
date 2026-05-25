@@ -2,8 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Quosel API",
-    "version": "1.0.0",
-    "description": "Google Maps leads backend."
+    "version": "1.0.0"
   },
   "components": {
     "schemas": {
@@ -12,10 +11,36 @@
         "properties": {
           "status": {
             "type": "string",
-            "enum": ["ok"]
+            "enum": [
+              "ok"
+            ]
           }
         },
-        "required": ["status"]
+        "required": [
+          "status"
+        ]
+      },
+      "Place": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "displayName"
+        ]
+      },
+      "PlacesError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ]
       }
     },
     "parameters": {}
@@ -23,7 +48,9 @@
   "paths": {
     "/health": {
       "get": {
-        "tags": ["System"],
+        "tags": [
+          "System"
+        ],
         "summary": "Health check",
         "responses": {
           "200": {
@@ -41,15 +68,17 @@
     },
     "/places": {
       "get": {
-        "tags": ["Places"],
-        "summary": "Extract info from a Google Maps place URL",
-        "description": "Pass a Google Maps place URL via the `url` query param. Scraping is not yet implemented — the endpoint currently returns 204.",
+        "tags": [
+          "Places"
+        ],
+        "summary": "Extract business info from a Google Maps URL",
+        "description": "Accepts a Google Maps share link or full place URL. Resolves the URL, finds the place via Google Places API (New), and returns rich business data.",
         "parameters": [
           {
             "schema": {
               "type": "string",
               "format": "uri",
-              "example": "https://www.google.com/maps/place/Joe's+Coffee/@40.7128,-74.0060,17z"
+              "example": "https://maps.app.goo.gl/abc123"
             },
             "required": true,
             "name": "url",
@@ -57,8 +86,45 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No content (scraping not yet implemented)"
+          "200": {
+            "description": "Place details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Place"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Could not parse URL",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Place not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Upstream API error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlacesError"
+                }
+              }
+            }
           }
         }
       }
