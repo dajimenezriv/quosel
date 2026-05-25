@@ -9,6 +9,7 @@
     "start": "node src/index.ts",
     "typecheck": "tsc --noEmit",
     "openapi": "node scripts/generate-openapi.ts",
+    "places:cli": "node scripts/places-cli.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"

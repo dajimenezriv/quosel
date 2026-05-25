@@ -10,10 +10,11 @@ import {
   TRIAL_DAYS,
 } from "../billing/stripe.ts";
 import { requireAuth, type AuthVariables } from "../middleware/auth.ts";
+import { env } from "../env.ts";
 
 export const billingRouter = new Hono<{ Variables: AuthVariables }>();
 
-const frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:5173";
+const frontendUrl = env.FRONTEND_URL;
 
 async function getOrCreateCustomer(userId: string) {
   const [user] = await db.select().from(users).where(eq(users.id, userId));
@@ -50,8 +51,6 @@ async function getOrCreateCustomer(userId: string) {
 }
 
 billingRouter.post("/billing/checkout", requireAuth, async (c) => {
-  if (!STRIPE_PRICE_ID) return c.json({ error: "price not configured" }, 500);
-
   const userId = c.get("userId");
   const customerId = await getOrCreateCustomer(userId);
 
@@ -100,9 +99,6 @@ async function syncSubscription(sub: Stripe.Subscription) {
 }
 
 billingRouter.post("/webhooks/stripe", async (c) => {
-  if (!STRIPE_WEBHOOK_SECRET)
-    return c.json({ error: "webhook secret missing" }, 500);
-
   const sig = c.req.header("stripe-signature");
   if (!sig) return c.json({ error: "no signature" }, 400);
 

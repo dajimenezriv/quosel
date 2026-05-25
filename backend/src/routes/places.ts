@@ -1,31 +1,62 @@
 import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
+import { extractPlaceFromUrl, PlacesError } from "../services/places.ts";
 
 export const placesRouter = new OpenAPIHono();
+
+const PlaceSchema = z
+  .object({
+    displayName: z.string(),
+  })
+  .openapi("Place");
+
+const ErrorSchema = z.object({ error: z.string() }).openapi("PlacesError");
 
 const extractPlace = createRoute({
   method: "get",
   path: "/places",
   tags: ["Places"],
-  summary: "Extract info from a Google Maps place URL",
+  summary: "Extract business info from a Google Maps URL",
   description:
-    "Pass a Google Maps place URL via the `url` query param. " +
-    "Scraping is not yet implemented — the endpoint currently returns 204.",
+    "Accepts a Google Maps share link or full place URL. Resolves the URL, " +
+    "finds the place via Google Places API (New), and returns rich business data.",
   request: {
     query: z.object({
       url: z.url().openapi({
-        example:
-          "https://www.google.com/maps/place/Joe's+Coffee/@40.7128,-74.0060,17z",
+        example: "https://maps.app.goo.gl/abc123",
       }),
     }),
   },
   responses: {
-    204: { description: "No content (scraping not yet implemented)" },
+    200: {
+      content: { "application/json": { schema: PlaceSchema } },
+      description: "Place details",
+    },
+    400: {
+      content: { "application/json": { schema: ErrorSchema } },
+      description: "Could not parse URL",
+    },
+    404: {
+      content: { "application/json": { schema: ErrorSchema } },
+      description: "Place not found",
+    },
+    500: {
+      content: { "application/json": { schema: ErrorSchema } },
+      description: "Upstream API error",
+    },
   },
 });
 
-placesRouter.openapi(extractPlace, (c) => {
+placesRouter.openapi(extractPlace, async (c) => {
   const { url } = c.req.valid("query");
-  // TODO: scrape `url` and return extracted place info.
-  console.log(`[places] extract requested: ${url}`);
-  return c.body(null, 204);
+  try {
+    const result = await extractPlaceFromUrl(url);
+    return c.json(PlaceSchema.parse(result), 200);
+  } catch (err) {
+    if (err instanceof PlacesError) {
+      return c.json({ error: err.message }, err.status);
+    }
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[places] error:", msg);
+    return c.json({ error: msg }, 500);
+  }
 });

@@ -15,11 +15,12 @@ import {
 } from "../auth/session.ts";
 import { db } from "../db/client.ts";
 import { users } from "../db/schema.ts";
+import { env } from "../env.ts";
 
 export const authRouter = new Hono();
 
-const isProd = process.env.NODE_ENV === "production";
-const frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:5173";
+const isProd = env.NODE_ENV === "production";
+const frontendUrl = env.FRONTEND_URL;
 
 type GoogleIdTokenClaims = {
   sub: string;

@@ -1,5 +1,6 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { cors } from "hono/cors";
+import { env } from "./env.ts";
 import { healthRouter } from "./routes/health.ts";
 import { placesRouter } from "./routes/places.ts";
 import { authRouter } from "./routes/auth.ts";
@@ -22,7 +23,7 @@ app.use("*", requestLogger);
 app.use(
   "*",
   cors({
-    origin: process.env.FRONTEND_URL ?? "http://localhost:5173",
+    origin: env.FRONTEND_URL,
     credentials: true,
   }),
 );
