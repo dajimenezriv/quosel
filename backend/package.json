@@ -27,7 +27,7 @@
     "========== Testing ==========": "",
     "test": "vitest",
     "========== Other ==========": "",
-    "openapi": "node scripts/generate-openapi.ts"
+    "openapi": "node scripts/generate-openapi.ts && openapi-typescript openapi.json -o ../frontend/src/api/schema.ts"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.4",
@@ -41,6 +41,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@hono/swagger-ui": "^0.6.1",
     "@railway/cli": "^4.62.0",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/node": "^24.12.4",
@@ -54,6 +55,7 @@
     "eslint-plugin-unicorn": "^64.0.0",
     "knip": "^6.14.2",
     "npm-check-updates": "^22.2.1",
+    "openapi-typescript": "^7.13.0",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.7"

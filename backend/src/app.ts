@@ -1,10 +1,12 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { cors } from 'hono/cors';
-import { placesRouter } from './api/google-places/router.ts';
+import { ApiError, ErrorSchema } from './api/errors.ts';
 import { healthRouter } from './api/health/router.ts';
+import { placesRouter } from './api/places/router.ts';
 import { env } from './core/env.ts';
+import { logger } from './core/logger.ts';
+import { jsonResponse } from './core/response.ts';
 import { requireAuth } from './middleware/auth.ts';
-import { errorHandler } from './middleware/error.ts';
 import { requestLogger } from './middleware/logger.ts';
 import { authRouter } from './routes/auth.ts';
 import { billingRouter } from './routes/billing.ts';
@@ -20,7 +22,15 @@ export const openApiDoc = {
 export const app = new OpenAPIHono();
 
 app.use('*', requestLogger);
-app.use('*', errorHandler);
+
+app.onError((error, c) => {
+  if (error instanceof ApiError) {
+    return jsonResponse(c, ErrorSchema, { error: error.message }, error.status);
+  }
+
+  logger.error('Unhandled error', { error });
+  return jsonResponse(c, ErrorSchema, { error: 'Internal Server Error' }, 500);
+});
 
 app.use(
   '*',
@@ -35,4 +45,10 @@ app.route('/', authRouter);
 app.route('/', billingRouter);
 
 app.use('/places/*', requireAuth);
-app.route('/', placesRouter);
+app.route('/places', placesRouter);
+
+if (env.NODE_ENV === 'development') {
+  const { swaggerUI } = await import('@hono/swagger-ui');
+  app.doc('/openapi.json', openApiDoc);
+  app.get('/docs', swaggerUI({ url: '/openapi.json' }));
+}

@@ -3,8 +3,8 @@ import { Hono } from 'hono';
 import type Stripe from 'stripe';
 import { stripe, STRIPE_PRICE_ID, STRIPE_WEBHOOK_SECRET, TRIAL_DAYS } from '../billing/stripe.ts';
 import { env } from '../core/env.ts';
-import { db } from '../db/client.ts';
-import { users } from '../db/schema.ts';
+import { db } from '../infra/postgres/client.ts';
+import { users } from '../infra/postgres/schema.ts';
 import { requireAuth, type AuthVariables } from '../middleware/auth.ts';
 
 export const billingRouter = new Hono<{ Variables: AuthVariables }>();
@@ -36,8 +36,8 @@ async function getOrCreateCustomer(userId: string) {
     .set({
       stripeCustomerId: customer.id,
       stripeSubscriptionId: null,
-      subscriptionStatus: null,
-      subscriptionPriceId: null,
+      subscriptionStatus: '',
+      subscriptionPriceId: '',
       currentPeriodEnd: null,
     })
     .where(eq(users.id, user.id));
@@ -86,7 +86,7 @@ async function syncSubscription(sub: Stripe.Subscription) {
     .set({
       stripeSubscriptionId: sub.id,
       subscriptionStatus: sub.status,
-      subscriptionPriceId: item?.price.id ?? null,
+      subscriptionPriceId: item?.price.id ?? '',
       currentPeriodEnd: periodEnd ? new Date(periodEnd * 1000) : null,
     })
     .where(eq(users.stripeCustomerId, customerId));

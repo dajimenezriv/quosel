@@ -1,5 +1,5 @@
+import { z } from '@hono/zod-openapi';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
-import z from 'zod';
 
 export class ApiError extends Error {
   status: ContentfulStatusCode;
