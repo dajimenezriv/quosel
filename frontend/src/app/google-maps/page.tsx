@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAddGooglePlace } from '@/api/places/add-google-place';
+import { useAddGooglePlace } from '@/api/places/use-add-google-place';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

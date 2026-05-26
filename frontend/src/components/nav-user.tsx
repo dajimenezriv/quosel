@@ -1,7 +1,7 @@
 'use client';
 
 import { CreditCard, EllipsisVertical, LogOut, CircleUser } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '@/components/logo';
 import {
   DropdownMenu,
@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { useAuth } from '@/old/auth';
 
 export function NavUser({
   user,
@@ -23,6 +24,14 @@ export function NavUser({
     avatar: string;
   };
 }) {
+  const { user: user2, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/sign-in', { replace: true });
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -30,11 +39,11 @@ export function NavUser({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton size="lg" className="cursor-pointer">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg">
-                <Logo size={28} />
+                {user2?.picture ? <img src={user2.picture} width={28} height={28} alt="Logo" className="rounded" /> : <Logo size={28} />}
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{user.name}</span>
-                <span className="text-muted-foreground truncate text-xs">{user.email}</span>
+                <span className="truncate font-medium">{user2?.name}</span>
+                <span className="text-muted-foreground truncate text-xs">{user2?.email}</span>
               </div>
               <EllipsisVertical className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -71,11 +80,9 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem asChild className="cursor-pointer">
-              <Link to="/sign-in">
-                <LogOut />
-                Log out
-              </Link>
+            <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+              <LogOut />
+              Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

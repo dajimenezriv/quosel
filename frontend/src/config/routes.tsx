@@ -7,6 +7,7 @@ import GoogleMaps from '@/app/google-maps/page';
 // Settings pages
 import AccountSettings from '@/app/settings/account/page';
 import BillingSettings from '@/app/settings/billing/page';
+import { RequireAuth, RequireGuest } from '@/components/router/guards';
 
 export interface RouteConfig {
   path: string;
@@ -22,26 +23,46 @@ export const routes: RouteConfig[] = [
 
   {
     path: '/google-maps',
-    element: <GoogleMaps />,
+    element: (
+      <RequireAuth>
+        <GoogleMaps />
+      </RequireAuth>
+    ),
   },
   {
     path: '/editor',
-    element: <Editor />,
+    element: (
+      <RequireAuth>
+        <Editor />
+      </RequireAuth>
+    ),
   },
 
   // Authentication Routes
   {
     path: '/sign-in',
-    element: <SignIn />,
+    element: (
+      <RequireGuest>
+        <SignIn />
+      </RequireGuest>
+    ),
   },
 
   // Settings Routes
   {
     path: '/settings/account',
-    element: <AccountSettings />,
+    element: (
+      <RequireAuth>
+        <AccountSettings />
+      </RequireAuth>
+    ),
   },
   {
     path: '/settings/billing',
-    element: <BillingSettings />,
+    element: (
+      <RequireAuth>
+        <BillingSettings />
+      </RequireAuth>
+    ),
   },
 ];
