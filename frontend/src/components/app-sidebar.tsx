@@ -15,7 +15,7 @@ import {
 
 const data = {
   user: {
-    name: 'ShadcnStore',
+    name: 'Quosel',
     email: 'store@example.com',
     avatar: '',
   },
@@ -40,14 +40,11 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link to="/dashboard">
-                <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Logo size={24} className="text-current" />
+              <Link to="/">
+                <div className="text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <Logo size={32} />
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">ShadcnStore</span>
-                  <span className="truncate text-xs">Admin Dashboard</span>
-                </div>
+                <span className="truncate font-medium">Quosel</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
