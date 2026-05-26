@@ -3,10 +3,10 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App.tsx';
 import './index.css';
+import { env } from './core/env.ts';
 
-const posthogKey = import.meta.env.VITE_POSTHOG_KEY;
-if (posthogKey) {
-  posthog.init(posthogKey, {
+if (env.VITE_POSTHOG_KEY) {
+  posthog.init(env.VITE_POSTHOG_KEY, {
     api_host: 'https://eu.i.posthog.com',
     defaults: '2026-01-30',
     person_profiles: 'identified_only',
