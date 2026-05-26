@@ -4,9 +4,9 @@ import { Hono } from 'hono';
 import { setCookie, getCookie, deleteCookie } from 'hono/cookie';
 import { google } from '../auth/google.ts';
 import { createSession, deleteSession, validateSession } from '../auth/session.ts';
+import { env } from '../core/env.ts';
 import { db } from '../db/client.ts';
 import { users } from '../db/schema.ts';
-import { env } from '../env.ts';
 
 export const authRouter = new Hono();
 

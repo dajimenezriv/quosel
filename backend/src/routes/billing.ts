@@ -2,9 +2,9 @@ import { eq } from 'drizzle-orm';
 import { Hono } from 'hono';
 import type Stripe from 'stripe';
 import { stripe, STRIPE_PRICE_ID, STRIPE_WEBHOOK_SECRET, TRIAL_DAYS } from '../billing/stripe.ts';
+import { env } from '../core/env.ts';
 import { db } from '../db/client.ts';
 import { users } from '../db/schema.ts';
-import { env } from '../env.ts';
 import { requireAuth, type AuthVariables } from '../middleware/auth.ts';
 
 export const billingRouter = new Hono<{ Variables: AuthVariables }>();

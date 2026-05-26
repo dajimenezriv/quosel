@@ -7,8 +7,6 @@ const HealthSchema = z.object({ status: z.literal('ok') }).openapi('Health');
 const healthRoute = createRoute({
   method: 'get',
   path: '/health',
-  tags: ['System'],
-  summary: 'Health check',
   responses: {
     200: {
       content: { 'application/json': { schema: HealthSchema } },
