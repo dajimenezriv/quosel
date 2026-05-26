@@ -1,39 +1,19 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { BaseLayout } from "@/components/layouts/base-layout";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { BaseLayout } from '@/components/layouts/base-layout';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
 
 const accountFormSchema = z.object({
-  firstName: z.string().min(1, "First name is required"),
-  lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
-  username: z.string().min(3, "Username must be at least 3 characters"),
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
+  email: z.string().email('Invalid email address'),
+  username: z.string().min(3, 'Username must be at least 3 characters'),
   currentPassword: z.string().optional(),
   newPassword: z.string().optional(),
   confirmPassword: z.string().optional(),
@@ -46,19 +26,19 @@ export default function AccountSettings() {
   const form = useForm<AccountFormValues>({
     resolver: zodResolver(accountFormSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
-      email: "",
-      username: "",
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-      language: "en",
+      firstName: '',
+      lastName: '',
+      email: '',
+      username: '',
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+      language: 'en',
     },
   });
 
   function onSubmit(data: AccountFormValues) {
-    console.log("Form submitted:", data);
+    console.log('Form submitted:', data);
     // Here you would typically save the data
   }
 
@@ -67,9 +47,7 @@ export default function AccountSettings() {
       <div className="space-y-6 px-4 lg:px-6">
         <div>
           <h1 className="text-3xl font-bold">Account Settings</h1>
-          <p className="text-muted-foreground">
-            Manage your account settings and preferences.
-          </p>
+          <p className="text-muted-foreground">Manage your account settings and preferences.</p>
         </div>
 
         <Form {...form}>
@@ -77,10 +55,7 @@ export default function AccountSettings() {
             <Card>
               <CardHeader>
                 <CardTitle>Personal Information</CardTitle>
-                <CardDescription>
-                  Update your personal information that will be displayed on
-                  your profile.
-                </CardDescription>
+                <CardDescription>Update your personal information that will be displayed on your profile.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -91,10 +66,7 @@ export default function AccountSettings() {
                       <FormItem>
                         <FormLabel>First Name</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Enter your first name"
-                            {...field}
-                          />
+                          <Input placeholder="Enter your first name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -107,10 +79,7 @@ export default function AccountSettings() {
                       <FormItem>
                         <FormLabel>Last Name</FormLabel>
                         <FormControl>
-                          <Input
-                            placeholder="Enter your last name"
-                            {...field}
-                          />
+                          <Input placeholder="Enter your last name" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -124,11 +93,7 @@ export default function AccountSettings() {
                     <FormItem>
                       <FormLabel>Email Address</FormLabel>
                       <FormControl>
-                        <Input
-                          type="email"
-                          placeholder="Enter your email"
-                          {...field}
-                        />
+                        <Input type="email" placeholder="Enter your email" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -155,10 +120,7 @@ export default function AccountSettings() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Language</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="w-full">
                             <SelectValue placeholder="Select Language" />
@@ -183,24 +145,16 @@ export default function AccountSettings() {
             <Card>
               <CardHeader>
                 <CardTitle>Danger Zone</CardTitle>
-                <CardDescription>
-                  Irreversible and destructive actions.
-                </CardDescription>
+                <CardDescription>Irreversible and destructive actions.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Separator />
-                <div className="flex flex-wrap gap-2 items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
                     <h4 className="font-semibold">Delete Account</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Permanently delete your account and all associated data.
-                    </p>
+                    <p className="text-muted-foreground text-sm">Permanently delete your account and all associated data.</p>
                   </div>
-                  <Button
-                    variant="destructive"
-                    type="button"
-                    className="cursor-pointer"
-                  >
+                  <Button variant="destructive" type="button" className="cursor-pointer">
                     Delete Account
                   </Button>
                 </div>

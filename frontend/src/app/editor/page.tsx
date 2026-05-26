@@ -1,18 +1,12 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { BaseLayout } from "@/components/layouts/base-layout";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { BarbershopTemplate } from "./templates/barbershop";
+import * as React from 'react';
+import { BaseLayout } from '@/components/layouts/base-layout';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { BarbershopTemplate } from './templates/barbershop';
 
 export default function Page() {
-  const [template, setTemplate] = React.useState("barbershop");
+  const [template, setTemplate] = React.useState('barbershop');
 
   return (
     <BaseLayout title="Editor">
@@ -25,7 +19,7 @@ export default function Page() {
             <SelectItem value="barbershop">Barbershop</SelectItem>
           </SelectContent>
         </Select>
-        {template === "barbershop" && <BarbershopTemplate />}
+        {template === 'barbershop' && <BarbershopTemplate />}
       </div>
     </BaseLayout>
   );

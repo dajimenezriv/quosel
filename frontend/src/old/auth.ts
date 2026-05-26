@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import posthog from "posthog-js";
+import posthog from 'posthog-js';
+import { useEffect, useState } from 'react';
+import type { SubscriptionStatus } from './billing';
 
-export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
-
-import type { SubscriptionStatus } from "./billing";
+export const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
 export type User = {
   id: string;
@@ -15,20 +14,20 @@ export type User = {
 };
 
 export function loginWithGoogle() {
-  posthog.capture("login");
+  posthog.capture('login');
   window.location.href = `${API_URL}/auth/google`;
 }
 
 export async function logout() {
-  posthog.capture("logout");
+  posthog.capture('logout');
   await fetch(`${API_URL}/auth/logout`, {
-    method: "POST",
-    credentials: "include",
+    method: 'POST',
+    credentials: 'include',
   });
 }
 
 export async function fetchMe(): Promise<User | null> {
-  const res = await fetch(`${API_URL}/auth/me`, { credentials: "include" });
+  const res = await fetch(`${API_URL}/auth/me`, { credentials: 'include' });
   if (!res.ok) return null;
   const data = (await res.json()) as { user: User | null };
   return data.user;

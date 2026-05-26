@@ -1,15 +1,12 @@
-import { Navigate } from "react-router-dom";
-
-// Lazy load components for better performance
-import GoogleMaps from "@/app/google-maps/page";
-import Editor from "@/app/editor/page";
-
+import { Navigate } from 'react-router-dom';
 // Auth pages
-import SignIn from "@/app/auth/sign-in/page";
-
+import SignIn from '@/app/auth/sign-in/page';
+import Editor from '@/app/editor/page';
+// Lazy load components for better performance
+import GoogleMaps from '@/app/google-maps/page';
 // Settings pages
-import AccountSettings from "@/app/settings/account/page";
-import BillingSettings from "@/app/settings/billing/page";
+import AccountSettings from '@/app/settings/account/page';
+import BillingSettings from '@/app/settings/billing/page';
 
 export interface RouteConfig {
   path: string;
@@ -19,32 +16,32 @@ export interface RouteConfig {
 
 export const routes: RouteConfig[] = [
   {
-    path: "/",
+    path: '/',
     element: <Navigate to="google-maps" replace />,
   },
 
   {
-    path: "/google-maps",
+    path: '/google-maps',
     element: <GoogleMaps />,
   },
   {
-    path: "/editor",
+    path: '/editor',
     element: <Editor />,
   },
 
   // Authentication Routes
   {
-    path: "/sign-in",
+    path: '/sign-in',
     element: <SignIn />,
   },
 
   // Settings Routes
   {
-    path: "/settings/account",
+    path: '/settings/account',
     element: <AccountSettings />,
   },
   {
-    path: "/settings/billing",
+    path: '/settings/billing',
     element: <BillingSettings />,
   },
 ];
