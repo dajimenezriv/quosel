@@ -1,4 +1,5 @@
 import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
+import { jsonResponse } from '../../core/response.ts';
 
 export const healthRouter = new OpenAPIHono();
 
@@ -16,6 +17,5 @@ const healthRoute = createRoute({
 });
 
 healthRouter.openapi(healthRoute, (c) => {
-  // .parse() = runtime guarantee the response matches the schema in the spec.
-  return c.json(HealthSchema.parse({ status: 'ok' }), 200);
+  return jsonResponse(c, HealthSchema, { status: 'ok' }, 200);
 });

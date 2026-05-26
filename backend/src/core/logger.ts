@@ -16,9 +16,6 @@ function format(data: LogData) {
 }
 
 export const logger = {
-  debug(msg: string, data?: LogData) {
-    console.debug(format({ level: 'debug', msg, ...data }));
-  },
   info(msg: string, data?: LogData) {
     console.info(format({ level: 'info', msg, ...data }));
   },

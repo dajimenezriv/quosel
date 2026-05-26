@@ -8,7 +8,7 @@ export const requestLogger = createMiddleware(async (c, next) => {
   const { method } = c.req;
   const path = c.req.path;
 
-  logger.debug(`→ ${method} ${path}`, { method, path });
+  logger.info(`→ ${method} ${path}`, { method, path });
 
   await next();
 

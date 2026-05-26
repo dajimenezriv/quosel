@@ -16,7 +16,7 @@
     "lint:inspect": "eslint --inspect-config",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "find-deadcode": "knip",
+    "knip": "knip",
     "========== Database ==========": "",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
