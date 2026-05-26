@@ -1,10 +1,8 @@
-import * as React from "react";
-import { MapPin } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Logo } from "@/components/logo";
-
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Logo } from '@/components/logo';
+import { NavMain } from '@/components/nav-main';
+import { NavUser } from '@/components/nav-user';
 import {
   Sidebar,
   SidebarContent,
@@ -13,21 +11,21 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 
 const data = {
   user: {
-    name: "ShadcnStore",
-    email: "store@example.com",
-    avatar: "",
+    name: 'ShadcnStore',
+    email: 'store@example.com',
+    avatar: '',
   },
   navGroups: [
     {
-      label: "Pages",
+      label: 'Pages',
       items: [
         {
-          title: "Google Maps",
-          url: "/google-maps",
+          title: 'Google Maps',
+          url: '/google-maps',
           icon: MapPin,
         },
       ],
@@ -43,7 +41,7 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/dashboard">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                   <Logo size={24} className="text-current" />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
