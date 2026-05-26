@@ -1,4 +1,4 @@
-name: Backend checks
+name: Frontend checks
 
 on:
   workflow_dispatch:
