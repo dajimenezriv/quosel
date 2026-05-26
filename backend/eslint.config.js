@@ -26,13 +26,12 @@ export default [
       'array-callback-return': 'error',
       'max-len': ['error', { code: 140, ignoreStrings: true, ignoreTemplateLiterals: true }],
       'no-async-promise-executor': 'error',
+      'no-console': 'error',
       'no-extra-boolean-cast': 'error',
       'no-throw-literal': 'error',
-      'no-use-before-define': ['error', { functions: false }],
       'object-shorthand': 'error',
       'require-await': 'error',
       'sonarjs/different-types-comparison': 'error',
-      'sonarjs/no-clear-text-protocols': 'off',
       'sonarjs/no-ignored-exceptions': 'error',
       'sonarjs/no-nested-conditional': 'error',
       'sonarjs/no-nested-functions': 'error',
@@ -43,6 +42,8 @@ export default [
   },
   {
     files: ['**/*.test.ts'],
-    rules: {},
+    rules: {
+      'sonarjs/no-clear-text-protocols': 'off',
+    },
   },
 ];

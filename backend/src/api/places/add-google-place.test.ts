@@ -1,4 +1,28 @@
-export const barberoBenimacletMock = {
+import { Places } from '../../infra/postgres/places.ts';
+import { addGooglePlace } from './add-google-place.ts';
+
+describe('add-google-place', () => {
+  const fetchMock = vi.spyOn(globalThis, 'fetch');
+  const addGooglePlaceMock = vi.spyOn(Places, 'addGooglePlace');
+
+  beforeEach(() => {
+    addGooglePlaceMock.mockResolvedValue('placeId');
+  });
+
+  it('should parse the places detail response', async () => {
+    // Given
+    fetchMock.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(mock),
+    } as Response);
+    // When
+    const res = await addGooglePlace('ChIJRWnYS1BHYA0RK5rHEosqXcQ');
+    // Then
+    expect(res).toStrictEqual({ placeId: 'placeId' });
+  });
+});
+
+const mock = {
   name: 'places/ChIJRWnYS1BHYA0RK5rHEosqXcQ',
   id: 'ChIJRWnYS1BHYA0RK5rHEosqXcQ',
   types: ['barber_shop', 'hair_care', 'service', 'health', 'point_of_interest', 'establishment'],

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { inspect } from 'node:util';
 
 type LogData = {

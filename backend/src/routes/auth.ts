@@ -5,8 +5,8 @@ import { setCookie, getCookie, deleteCookie } from 'hono/cookie';
 import { google } from '../auth/google.ts';
 import { createSession, deleteSession, validateSession } from '../auth/session.ts';
 import { env } from '../core/env.ts';
-import { db } from '../db/client.ts';
-import { users } from '../db/schema.ts';
+import { db } from '../infra/postgres/client.ts';
+import { users } from '../infra/postgres/schema.ts';
 
 export const authRouter = new Hono();
 
@@ -72,8 +72,10 @@ authRouter.get('/auth/google/callback', async (c) => {
       .values({
         googleId: claims.sub,
         email: claims.email,
-        name: claims.name,
-        picture: claims.picture,
+        name: claims.name ?? '',
+        picture: claims.picture ?? '',
+        subscriptionStatus: '',
+        subscriptionPriceId: '',
       })
       .returning();
     user = tmp[0];

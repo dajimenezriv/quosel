@@ -1,7 +1,7 @@
 import { and, eq, gt } from 'drizzle-orm';
 import { randomBytes } from 'node:crypto';
-import { db } from '../db/client.ts';
-import { sessions, users } from '../db/schema.ts';
+import { db } from '../infra/postgres/client.ts';
+import { sessions, users } from '../infra/postgres/schema.ts';
 
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30;
 

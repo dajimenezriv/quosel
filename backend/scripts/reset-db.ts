@@ -1,5 +1,6 @@
 import postgres from 'postgres';
 import { env } from '../src/core/env.ts';
+import { logger } from '../src/core/logger.ts';
 
 const { hostname } = new URL(env.DATABASE_URL);
 const localHosts = new Set(['localhost', '127.0.0.1', '::1']);
@@ -17,4 +18,4 @@ await sql.unsafe(`
 `);
 await sql.end();
 
-console.log(`Reset schema on ${hostname}`);
+logger.info('Reset schema', { hostname });

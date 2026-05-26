@@ -5,5 +5,3 @@ const doc = app.getOpenAPI31Document(openApiDoc);
 
 const outPath = new URL('../openapi.json', import.meta.url);
 writeFileSync(outPath, JSON.stringify(doc, undefined, 2) + '\n');
-
-console.log(`Wrote ${outPath.pathname}`);
