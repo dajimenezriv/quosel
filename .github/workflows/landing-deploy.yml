@@ -1,6 +1,7 @@
 name: Deploy landing
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths: ["landing/**"]

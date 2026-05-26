@@ -1,12 +1,13 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { cors } from 'hono/cors';
-import { env } from './env.ts';
+import { placesRouter } from './api/google-places/router.ts';
+import { healthRouter } from './api/health/router.ts';
+import { env } from './core/env.ts';
 import { requireAuth } from './middleware/auth.ts';
+import { errorHandler } from './middleware/error.ts';
 import { requestLogger } from './middleware/logger.ts';
 import { authRouter } from './routes/auth.ts';
 import { billingRouter } from './routes/billing.ts';
-import { healthRouter } from './routes/health.ts';
-import { placesRouter } from './routes/places.ts';
 
 export const openApiDoc = {
   openapi: '3.1.0',
@@ -19,6 +20,7 @@ export const openApiDoc = {
 export const app = new OpenAPIHono();
 
 app.use('*', requestLogger);
+app.use('*', errorHandler);
 
 app.use(
   '*',

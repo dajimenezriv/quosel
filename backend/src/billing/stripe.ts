@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import { env } from '../env.ts';
+import { env } from '../core/env.ts';
 
 export const stripe = new Stripe(env.STRIPE_SECRET_KEY);
 

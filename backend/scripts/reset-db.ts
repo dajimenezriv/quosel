@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import { env } from '../src/env.ts';
+import { env } from '../src/core/env.ts';
 
 const { hostname } = new URL(env.DATABASE_URL);
 const localHosts = new Set(['localhost', '127.0.0.1', '::1']);
