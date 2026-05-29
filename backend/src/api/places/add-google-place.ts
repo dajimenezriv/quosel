@@ -21,8 +21,6 @@ import { ApiError } from '../errors.ts';
  */
 
 export async function addGooglePlace(googlePlaceId: string) {
-  throw new ApiError(500, 'Hey');
-
   const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(googlePlaceId)}`, {
     headers: {
       'X-Goog-Api-Key': env.GOOGLE_PLACES_API_KEY,
