@@ -1,0 +1,38 @@
+{
+  "[env]": {
+    "editor.defaultFormatter": "IronGeek.vscode-env"
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
+  "[sql]": {
+    "editor.defaultFormatter": "lea21st.vscode-sql-formatter",
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "css.customData": [".vscode/tailwind.json"],
+  "editor.codeLens": true,
+  "editor.formatOnSave": true,
+  "editor.guides.indentation": false,
+  "editor.insertSpaces": true,
+  "editor.linkedEditing": true,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "explorer.compactFolders": false,
+  "explorer.sortOrder": "filesFirst",
+  "files.eol": "\n",
+  "files.exclude": {
+    "**/.git": true,
+    "**/node_modules": true
+  },
+  "git.ignoreLimitWarning": true,
+  "js/ts.referencesCodeLens.enabled": true,
+  "search.exclude": {
+    "**/*.svg": true,
+    "**/dist": true,
+    "**/package-lock.json": true
+  },
+  "workbench.editor.enablePreview": true
+}
