@@ -1,8 +1,8 @@
+import googleMaps from '@/assets/google_maps.jpeg';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useAuth } from '@/old/auth';
-import googleMaps from '@/assets/google_maps.jpeg';
 
 export default function LoginPage() {
   const { login } = useAuth();

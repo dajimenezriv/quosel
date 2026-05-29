@@ -2,8 +2,8 @@ import posthog from 'posthog-js';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App.tsx';
-import './index.css';
 import { env } from './core/env.ts';
+import './index.css';
 
 if (env.VITE_POSTHOG_KEY) {
   posthog.init(env.VITE_POSTHOG_KEY, {
