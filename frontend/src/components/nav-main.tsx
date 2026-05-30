@@ -3,18 +3,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { Collapsible } from '@/components/ui/collapsible';
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 
-export function NavMain({
-  label,
-  items,
-}: {
+export interface NavItem {
+  title: string;
+  url: string;
+  icon: LucideIcon;
+}
+
+interface Props {
   label: string;
-  items: {
-    title: string;
-    url: string;
-    icon?: LucideIcon;
-    isActive?: boolean;
-  }[];
-}) {
+  items: NavItem[];
+}
+
+export function NavMain({ label, items }: Props) {
   const location = useLocation();
 
   return (

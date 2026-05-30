@@ -1,7 +1,7 @@
 import { MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Logo } from '@/components/logo';
-import { NavMain } from '@/components/nav-main';
+import { NavMain, type NavItem } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
   Sidebar,
@@ -13,20 +13,23 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 
-const data = {
-  navGroups: [
-    {
-      label: 'Pages',
-      items: [
-        {
-          title: 'Google Maps',
-          url: '/google-maps',
-          icon: MapPin,
-        },
-      ],
-    },
-  ],
-};
+interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
+
+const navGroups: NavGroup[] = [
+  {
+    label: 'Pages',
+    items: [
+      {
+        title: 'Google Maps',
+        url: '/google-maps',
+        icon: MapPin,
+      },
+    ],
+  },
+];
 
 export function AppSidebar() {
   return (
@@ -46,7 +49,7 @@ export function AppSidebar() {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {data.navGroups.map((group) => (
+        {navGroups.map((group) => (
           <NavMain key={group.label} label={group.label} items={group.items} />
         ))}
       </SidebarContent>

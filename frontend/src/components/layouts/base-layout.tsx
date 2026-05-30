@@ -2,11 +2,10 @@ import * as React from 'react';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { ThemeCustomizer } from '../theme-customizer';
 
 interface Props {
   children: React.ReactNode;
-  title?: string;
+  title: string;
 }
 
 export function BaseLayout({ children, title }: Props) {
@@ -28,8 +27,6 @@ export function BaseLayout({ children, title }: Props) {
           </div>
         </div>
       </SidebarInset>
-
-      <ThemeCustomizer />
     </SidebarProvider>
   );
 }

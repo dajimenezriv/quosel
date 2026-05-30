@@ -1,13 +1,7 @@
 import { useRef, useCallback } from 'react';
-import { useThemeStore } from '@/core/use-theme-store';
+import { useThemeStore } from '@/core/theme/use-theme-store';
 
-interface CircularTransitionHook {
-  startTransition: (coords: { x: number; y: number }, callback: () => void) => void;
-  toggleTheme: (event: React.MouseEvent) => void;
-  isTransitioning: () => boolean;
-}
-
-export function useCircularTransition(): CircularTransitionHook {
+export function useCircularTransition() {
   const { theme, setTheme } = useThemeStore();
   const isTransitioningRef = useRef(false);
 
@@ -59,13 +53,7 @@ export function useCircularTransition(): CircularTransitionHook {
     [theme, setTheme, startTransition],
   );
 
-  const isTransitioning = useCallback(() => {
-    return isTransitioningRef.current;
-  }, []);
-
   return {
-    startTransition,
     toggleTheme,
-    isTransitioning,
   };
 }
