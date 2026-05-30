@@ -1,5 +1,3 @@
-'use client';
-
 import * as React from 'react';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';

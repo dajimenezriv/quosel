@@ -1,5 +1,3 @@
-'use client';
-
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { PricingPlans } from '@/components/pricing-plans';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';

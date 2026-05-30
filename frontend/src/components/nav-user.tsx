@@ -1,5 +1,3 @@
-'use client';
-
 import { CreditCard, EllipsisVertical, LogOut, CircleUser } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '@/components/logo';

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { useTheme } from '@/hooks/use-theme';
 import type { ThemePreset } from '@/types/theme-customizer';
