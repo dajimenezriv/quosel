@@ -1,15 +1,9 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { themeProps } from '@/core/theme/theme-props';
 import { useThemeStore } from '@/core/theme/use-theme-store';
 
 export function useTheme() {
-  const { theme } = useThemeStore();
-
-  const isDarkMode = useMemo(() => {
-    if (theme === 'dark') return true;
-    if (theme === 'light') return false;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }, [theme]);
+  const { isDarkMode } = useThemeStore();
 
   useEffect(() => {
     const styles = isDarkMode ? themeProps.dark : themeProps.light;

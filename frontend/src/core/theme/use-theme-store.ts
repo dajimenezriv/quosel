@@ -1,21 +1,19 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type Theme = 'light' | 'dark' | 'system';
-
 interface ThemeStore {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+  isDarkMode: boolean;
+  setIsDarkMode: (isDarkMode: boolean) => void;
 }
 
 export const useThemeStore = create<ThemeStore>()(
   persist(
     (set) => ({
-      theme: 'system',
-      setTheme: (theme) => set({ theme }),
+      isDarkMode: true,
+      setIsDarkMode: (isDarkMode) => set({ isDarkMode }),
     }),
     {
-      name: 'theme',
+      name: 'isDarkMode',
     },
   ),
 );

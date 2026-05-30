@@ -2,7 +2,7 @@ import { useRef, useCallback } from 'react';
 import { useThemeStore } from '@/core/theme/use-theme-store';
 
 export function useCircularTransition() {
-  const { theme, setTheme } = useThemeStore();
+  const { isDarkMode, setIsDarkMode } = useThemeStore();
   const isTransitioningRef = useRef(false);
 
   const startTransition = useCallback((coords: { x: number; y: number }, callback: () => void) => {
@@ -47,10 +47,10 @@ export function useCircularTransition() {
       };
 
       startTransition(coords, () => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
+        setIsDarkMode(isDarkMode ? false : true);
       });
     },
-    [theme, setTheme, startTransition],
+    [isDarkMode, setIsDarkMode, startTransition],
   );
 
   return {

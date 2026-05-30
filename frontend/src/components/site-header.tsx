@@ -3,7 +3,7 @@ import { Separator } from '@/components/ui/separator';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 
 interface Props {
-  title: string | undefined;
+  title: string;
 }
 
 export function SiteHeader({ title }: Props) {
@@ -12,13 +12,11 @@ export function SiteHeader({ title }: Props) {
       <div className="flex w-full items-center gap-1 px-4 py-3 lg:gap-2 lg:px-6">
         <SidebarTrigger className="-ml-1" />
         <Separator orientation="vertical" className="mx-2 data-[orientation=vertical]:h-4" />
-        {title && (
-          <div className="px-4 lg:px-6">
-            <div className="flex flex-col gap-2">
-              <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
-            </div>
+        <div className="px-4 lg:px-6">
+          <div className="flex flex-col gap-2">
+            <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
           </div>
-        )}
+        </div>
         <div className="ml-auto flex items-center gap-2">
           <ModeToggle />
         </div>

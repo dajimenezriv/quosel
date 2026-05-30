@@ -1,17 +1,13 @@
 import { Navigate } from 'react-router-dom';
-// Settings pages
 import AccountSettings from '@/app/account/page';
-// Auth pages
 import SignIn from '@/app/auth/sign-in/page';
 import Editor from '@/app/editor/page';
-// Lazy load components for better performance
 import GoogleMaps from '@/app/google-maps/page';
 import { RequireAuth, RequireGuest } from '@/components/router/guards';
 
 export interface RouteConfig {
   path: string;
   element: React.ReactNode;
-  children?: RouteConfig[];
 }
 
 export const routes: RouteConfig[] = [
@@ -19,7 +15,14 @@ export const routes: RouteConfig[] = [
     path: '/',
     element: <Navigate to="google-maps" replace />,
   },
-
+  {
+    path: '/sign-in',
+    element: (
+      <RequireGuest>
+        <SignIn />
+      </RequireGuest>
+    ),
+  },
   {
     path: '/google-maps',
     element: (
@@ -36,18 +39,6 @@ export const routes: RouteConfig[] = [
       </RequireAuth>
     ),
   },
-
-  // Authentication Routes
-  {
-    path: '/sign-in',
-    element: (
-      <RequireGuest>
-        <SignIn />
-      </RequireGuest>
-    ),
-  },
-
-  // Settings Routes
   {
     path: '/account',
     element: (
