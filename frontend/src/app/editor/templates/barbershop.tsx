@@ -64,7 +64,7 @@ export function BarbershopTemplate() {
 
       {/* Hero */}
       <section className="relative bg-zinc-900 px-8 py-24 text-center text-zinc-100">
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 opacity-90" />
+        <div className="absolute inset-0 bg-linear-to-br from-zinc-900 via-zinc-800 to-zinc-900 opacity-90" />
         <div className="relative mx-auto max-w-3xl">
           <p className="mb-4 text-sm tracking-[0.3em] text-amber-400 uppercase">Est. 1987</p>
           <h1 className="mb-6 text-5xl font-bold tracking-tight md:text-6xl">Classic Cuts. Modern Style.</h1>

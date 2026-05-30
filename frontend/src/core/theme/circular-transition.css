@@ -4,19 +4,27 @@
   mix-blend-mode: normal;
 }
 
-::view-transition-old(root) { z-index: 0; }
+::view-transition-old(root) {
+  z-index: 0;
+}
 ::view-transition-new(root) {
   z-index: 1;
   animation: reveal 0.4s ease-in-out forwards;
 }
 
 @keyframes reveal {
-  from { clip-path: circle(0% at var(--x, 50%) var(--y, 50%)); }
-  to   { clip-path: circle(150% at var(--x, 50%) var(--y, 50%)); }
+  from {
+    clip-path: circle(0% at var(--x, 50%) var(--y, 50%));
+  }
+  to {
+    clip-path: circle(150% at var(--x, 50%) var(--y, 50%));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  ::view-transition-new(root) { animation: none; }
+  ::view-transition-new(root) {
+    animation: none;
+  }
 }
 
 .mode-toggle-button:focus-visible {

@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useAuth } from '@/old/auth';
 
-export default function LoginPage() {
+export default function Page() {
   const { login } = useAuth();
 
   return (

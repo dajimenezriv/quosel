@@ -24,7 +24,7 @@ const navGroups: NavGroup[] = [
     items: [
       {
         title: 'Google Maps',
-        url: '/google-maps',
+        url: '/',
         icon: MapPin,
       },
     ],

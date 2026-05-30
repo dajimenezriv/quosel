@@ -6,7 +6,7 @@ import { CurrentPlanCard } from './components/current-plan-card';
 import billingHistoryData from './data/billing-history.json';
 import currentPlanData from './data/current-plan.json';
 
-export default function AccountSettings() {
+export default function Page() {
   const handlePlanSelect = (planId: string) => {
     console.log('Plan selected:', planId);
     // Handle plan selection logic here
