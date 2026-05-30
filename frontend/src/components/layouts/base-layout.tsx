@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import { ThemeCustomizer, ThemeCustomizerTrigger } from '../theme-customizer';
+import { ThemeCustomizer } from '../theme-customizer';
 
 interface Props {
   children: React.ReactNode;
@@ -10,8 +10,6 @@ interface Props {
 }
 
 export function BaseLayout({ children, title }: Props) {
-  const [themeCustomizerOpen, setThemeCustomizerOpen] = React.useState(false);
-
   return (
     <SidebarProvider
       style={
@@ -31,8 +29,7 @@ export function BaseLayout({ children, title }: Props) {
         </div>
       </SidebarInset>
 
-      <ThemeCustomizerTrigger onClick={() => setThemeCustomizerOpen(true)} />
-      <ThemeCustomizer open={themeCustomizerOpen} onOpenChange={setThemeCustomizerOpen} />
+      <ThemeCustomizer />
     </SidebarProvider>
   );
 }

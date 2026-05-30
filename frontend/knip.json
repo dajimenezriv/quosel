@@ -1,4 +1,4 @@
 {
-  "ignore": ["**/*.test.{ts,tsx}"],
+  "ignore": ["**/*.test.{ts,tsx}", "src/api/schema.ts"],
   "project": ["src/**/*.{ts,tsx}"]
 }

@@ -1,176 +1,36 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { BaseLayout } from '@/components/layouts/base-layout';
-import { Button } from '@/components/ui/button';
+import { PricingPlans } from '@/components/pricing-plans';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
-
-const accountFormSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
-  email: z.string().email('Invalid email address'),
-  username: z.string().min(3, 'Username must be at least 3 characters'),
-  currentPassword: z.string().optional(),
-  newPassword: z.string().optional(),
-  confirmPassword: z.string().optional(),
-  language: z.string(),
-});
-
-type AccountFormValues = z.infer<typeof accountFormSchema>;
+import { BillingHistoryCard } from './components/billing-history-card';
+import { CurrentPlanCard } from './components/current-plan-card';
+import billingHistoryData from './data/billing-history.json';
+import currentPlanData from './data/current-plan.json';
 
 export default function AccountSettings() {
-  const form = useForm<AccountFormValues>({
-    resolver: zodResolver(accountFormSchema),
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      username: '',
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: '',
-      language: 'en',
-    },
-  });
-
-  function onSubmit(data: AccountFormValues) {
-    console.log('Form submitted:', data);
-    // Here you would typically save the data
-  }
+  const handlePlanSelect = (planId: string) => {
+    console.log('Plan selected:', planId);
+    // Handle plan selection logic here
+  };
 
   return (
-    <BaseLayout>
+    <BaseLayout title="Account Settings">
       <div className="space-y-6 px-4 lg:px-6">
-        <div>
-          <h1 className="text-3xl font-bold">Account Settings</h1>
-          <p className="text-muted-foreground">Manage your account settings and preferences.</p>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <CurrentPlanCard plan={currentPlanData} />
+          <BillingHistoryCard history={billingHistoryData} />
         </div>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Personal Information</CardTitle>
-                <CardDescription>Update your personal information that will be displayed on your profile.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>First Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your first name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Last Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Enter your last name" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email Address</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="Enter your email" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="username"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Username</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Enter your username" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* Language */}
-                <FormField
-                  control={form.control}
-                  name="language"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Language</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Language" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="english">English</SelectItem>
-                          <SelectItem value="spanish">Spanish</SelectItem>
-                          <SelectItem value="french">French</SelectItem>
-                          <SelectItem value="german">German</SelectItem>
-                          <SelectItem value="italian">Italian</SelectItem>
-                          <SelectItem value="portuguese">Portuguese</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle>Danger Zone</CardTitle>
-                <CardDescription>Irreversible and destructive actions.</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <Separator />
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div>
-                    <h4 className="font-semibold">Delete Account</h4>
-                    <p className="text-muted-foreground text-sm">Permanently delete your account and all associated data.</p>
-                  </div>
-                  <Button variant="destructive" type="button" className="cursor-pointer">
-                    Delete Account
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="flex space-x-2">
-              <Button type="submit" className="cursor-pointer">
-                Save Changes
-              </Button>
-              <Button variant="outline" type="reset" className="cursor-pointer">
-                Cancel
-              </Button>
-            </div>
-          </form>
-        </Form>
+        <div className="grid gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Available Plans</CardTitle>
+              <CardDescription>Choose a plan that works best for you.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <PricingPlans mode="billing" currentPlanId="professional" onPlanSelect={handlePlanSelect} />
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </BaseLayout>
   );

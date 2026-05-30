@@ -6,7 +6,6 @@ import Editor from '@/app/editor/page';
 import GoogleMaps from '@/app/google-maps/page';
 // Settings pages
 import AccountSettings from '@/app/settings/account/page';
-import BillingSettings from '@/app/settings/billing/page';
 import { RequireAuth, RequireGuest } from '@/components/router/guards';
 
 export interface RouteConfig {
@@ -54,14 +53,6 @@ export const routes: RouteConfig[] = [
     element: (
       <RequireAuth>
         <AccountSettings />
-      </RequireAuth>
-    ),
-  },
-  {
-    path: '/settings/billing',
-    element: (
-      <RequireAuth>
-        <BillingSettings />
       </RequireAuth>
     ),
   },

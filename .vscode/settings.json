@@ -2,9 +2,6 @@
   "[env]": {
     "editor.defaultFormatter": "IronGeek.vscode-env"
   },
-  "[markdown]": {
-    "editor.formatOnSave": true
-  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },

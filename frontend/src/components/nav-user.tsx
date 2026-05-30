@@ -1,4 +1,4 @@
-import { CreditCard, EllipsisVertical, LogOut, CircleUser } from 'lucide-react';
+import { EllipsisVertical, LogOut, CircleUser } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '@/components/logo';
 import {
@@ -68,12 +68,6 @@ export function NavUser({
                 <Link to="/settings/account">
                   <CircleUser />
                   Account
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild className="cursor-pointer">
-                <Link to="/settings/billing">
-                  <CreditCard />
-                  Billing
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>

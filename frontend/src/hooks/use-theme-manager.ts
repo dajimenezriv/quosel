@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTheme } from '@/hooks/use-theme';
-import type { ThemePreset } from '@/types/theme-customizer';
+import { styles } from '@/utils/tweakcn-theme-presets';
 
 export function useThemeManager() {
-  const { theme, setTheme } = useTheme();
-  const [brandColorsValues, setBrandColorsValues] = React.useState<Record<string, string>>({});
+  const { theme } = useTheme();
 
   // Simple, reliable theme detection - just follow the theme provider
   const isDarkMode = React.useMemo(() => {
@@ -106,32 +105,14 @@ export function useThemeManager() {
     }
   }, []);
 
-  const applyTweakcnTheme = React.useCallback(
-    (themePreset: ThemePreset, darkMode: boolean) => {
-      // Reset and apply theme variables
-      resetTheme();
-      const styles = darkMode ? themePreset.styles.dark : themePreset.styles.light;
-      const root = document.documentElement;
+  useEffect(() => {
+    // Reset and apply theme variables
+    // resetTheme();
+    const styles2 = isDarkMode ? styles.dark : styles.light;
+    const root = document.documentElement;
 
-      Object.entries(styles).forEach(([key, value]) => {
-        root.style.setProperty(`--${key}`, value);
-      });
-    },
-    [resetTheme],
-  );
-
-  const handleColorChange = (cssVar: string, value: string) => {
-    document.documentElement.style.setProperty(cssVar, value);
-  };
-
-  return {
-    theme,
-    setTheme,
-    isDarkMode,
-    brandColorsValues,
-    setBrandColorsValues,
-    resetTheme,
-    applyTweakcnTheme,
-    handleColorChange,
-  };
+    Object.entries(styles2).forEach(([key, value]) => {
+      root.style.setProperty(`--${key}`, value);
+    });
+  }, [resetTheme, isDarkMode]);
 }

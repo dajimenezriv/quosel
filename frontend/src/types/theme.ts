@@ -45,14 +45,7 @@ type ThemeStyleProps = {
   spacing?: string;
 };
 
-type ThemeStyles = {
+export type ThemeStyles = {
   light: Partial<ThemeStyleProps>;
   dark: Partial<ThemeStyleProps>;
-};
-
-export type ThemePreset = {
-  source?: 'SAVED' | 'BUILT_IN';
-  createdAt?: string;
-  label?: string;
-  styles: ThemeStyles;
 };
