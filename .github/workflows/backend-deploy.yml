@@ -23,14 +23,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v4
+      - uses: docker/login-action@v4
         with:
           username: dajimenezriv
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push image
-        uses: docker/build-push-action@v7
+      - uses: docker/build-push-action@v7
         with:
           context: ./backend
           file: ./backend/Dockerfile
