@@ -104,9 +104,9 @@ export function PricingPlans({ plans = defaultPlans, mode = 'pricing', currentPl
           })}
           aria-labelledby={`${tier.id}-title`}>
           {tier.popular && (
-            <div className="absolute start-0 -top-3 w-full">
+            <div className="absolute inset-s-0 -top-3 w-full">
               <Badge className="mx-auto flex w-fit gap-1.5 rounded-full font-medium">
-                <Sparkles className="!size-4" />
+                <Sparkles className="size-4!" />
                 {mode === 'pricing' && <span>Most Popular</span>}
                 {currentPlanId === tier.id && mode === 'billing' && <span>Current Plan</span>}
               </Badge>

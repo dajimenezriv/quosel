@@ -1,11 +1,11 @@
-import { useRef, useCallback } from 'react';
+import { useRef } from 'react';
 import { useThemeStore } from '@/core/theme/use-theme-store';
 
 export function useCircularTransition() {
   const { isDarkMode, setIsDarkMode } = useThemeStore();
   const isTransitioningRef = useRef(false);
 
-  const startTransition = useCallback((coords: { x: number; y: number }, callback: () => void) => {
+  function startTransition(coords: { x: number; y: number }, callback: () => void) {
     if (isTransitioningRef.current) return;
 
     isTransitioningRef.current = true;
@@ -18,40 +18,29 @@ export function useCircularTransition() {
     document.documentElement.style.setProperty('--x', `${x}%`);
     document.documentElement.style.setProperty('--y', `${y}%`);
 
-    // Check if View Transitions API is supported
     if ('startViewTransition' in document) {
-      const transition = (
-        document as Document & { startViewTransition: (callback: () => void) => { finished: Promise<void> } }
-      ).startViewTransition(() => {
-        callback();
-      });
-
-      transition.finished.finally(() => {
-        isTransitioningRef.current = false;
-      });
+      document
+        .startViewTransition(() => callback())
+        .finished.finally(() => {
+          isTransitioningRef.current = false;
+        });
     } else {
-      // Fallback for browsers without View Transitions API
       callback();
-      setTimeout(() => {
-        isTransitioningRef.current = false;
-      }, 400);
+      isTransitioningRef.current = false;
     }
-  }, []);
+  }
 
-  const toggleTheme = useCallback(
-    (event: React.MouseEvent) => {
-      // Get precise click coordinates - use clientX/clientY directly like tweakcn
-      const coords = {
-        x: event.clientX,
-        y: event.clientY,
-      };
+  function toggleTheme(event: React.MouseEvent) {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const coords = {
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    };
 
-      startTransition(coords, () => {
-        setIsDarkMode(isDarkMode ? false : true);
-      });
-    },
-    [isDarkMode, setIsDarkMode, startTransition],
-  );
+    startTransition(coords, () => {
+      setIsDarkMode(isDarkMode ? false : true);
+    });
+  }
 
   return {
     toggleTheme,
