@@ -14,11 +14,6 @@ import {
 } from '@/components/ui/sidebar';
 
 const data = {
-  user: {
-    name: 'Quosel',
-    email: 'store@example.com',
-    avatar: '',
-  },
   navGroups: [
     {
       label: 'Pages',
@@ -56,7 +51,7 @@ export function AppSidebar() {
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );

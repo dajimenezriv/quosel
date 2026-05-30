@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { useTheme } from '@/hooks/use-theme';
+import { useThemeStore } from '@/core/use-theme-store';
 import { styles } from '@/utils/tweakcn-theme-presets';
 
 export function useThemeManager() {
-  const { theme } = useTheme();
+  const { theme } = useThemeStore();
 
   // Simple, reliable theme detection - just follow the theme provider
   const isDarkMode = React.useMemo(() => {

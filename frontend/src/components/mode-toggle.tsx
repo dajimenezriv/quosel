@@ -1,16 +1,16 @@
 import { Moon, Sun } from 'lucide-react';
 import * as React from 'react';
 import { Button } from '@/components/ui/button';
+import { useThemeStore } from '@/core/use-theme-store';
 import { useCircularTransition } from '@/hooks/use-circular-transition';
-import { useTheme } from '@/hooks/use-theme';
 import './theme-customizer/circular-transition.css';
 
-interface ModeToggleProps {
+interface Props {
   variant?: 'outline' | 'ghost' | 'default';
 }
 
-export function ModeToggle({ variant = 'outline' }: ModeToggleProps) {
-  const { theme } = useTheme();
+export function ModeToggle({ variant = 'outline' }: Props) {
+  const { theme } = useThemeStore();
   const { toggleTheme } = useCircularTransition();
 
   // Simple, reliable dark mode detection with re-sync

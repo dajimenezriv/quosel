@@ -1,11 +1,11 @@
 import { Navigate } from 'react-router-dom';
+// Settings pages
+import AccountSettings from '@/app/account/page';
 // Auth pages
 import SignIn from '@/app/auth/sign-in/page';
 import Editor from '@/app/editor/page';
 // Lazy load components for better performance
 import GoogleMaps from '@/app/google-maps/page';
-// Settings pages
-import AccountSettings from '@/app/settings/account/page';
 import { RequireAuth, RequireGuest } from '@/components/router/guards';
 
 export interface RouteConfig {
@@ -49,7 +49,7 @@ export const routes: RouteConfig[] = [
 
   // Settings Routes
   {
-    path: '/settings/account',
+    path: '/account',
     element: (
       <RequireAuth>
         <AccountSettings />

@@ -1,5 +1,5 @@
 import { useRef, useCallback } from 'react';
-import { useTheme } from '@/hooks/use-theme';
+import { useThemeStore } from '@/core/use-theme-store';
 
 interface CircularTransitionHook {
   startTransition: (coords: { x: number; y: number }, callback: () => void) => void;
@@ -8,7 +8,7 @@ interface CircularTransitionHook {
 }
 
 export function useCircularTransition(): CircularTransitionHook {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useThemeStore();
   const isTransitioningRef = useRef(false);
 
   const startTransition = useCallback((coords: { x: number; y: number }, callback: () => void) => {
