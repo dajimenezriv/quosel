@@ -1,9 +1,9 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import Account from '@/app/account/page';
-import Editor from '@/app/editor/page';
-import GoogleMaps from '@/app/google-maps/page';
-import Login from '@/app/login/page';
-import ProtectedLayout from '@/app/protected-layout';
+import Account from '@/pages/account/page';
+import Editor from '@/pages/editor/page';
+import GoogleMaps from '@/pages/google-maps/page';
+import Login from '@/pages/login/page';
+import ProtectedLayout from '@/pages/protected-layout';
 
 export const router = createBrowserRouter([
   { path: '/login', element: <Login /> },
