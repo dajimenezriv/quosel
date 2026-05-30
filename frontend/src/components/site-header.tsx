@@ -1,4 +1,4 @@
-import { ModeToggle } from '@/components/mode-toggle';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { Separator } from '@/components/ui/separator';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 
@@ -18,7 +18,7 @@ export function SiteHeader({ title }: Props) {
           </div>
         </div>
         <div className="ml-auto flex items-center gap-2">
-          <ModeToggle />
+          <ThemeToggle />
         </div>
       </div>
     </header>
