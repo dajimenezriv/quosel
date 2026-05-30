@@ -11,7 +11,7 @@ export function ModeToggle() {
   const Icon = isDarkMode ? Sun : Moon;
 
   return (
-    <Button variant="outline" size="icon" onClick={toggleTheme} className="mode-toggle-button relative cursor-pointer overflow-hidden">
+    <Button variant="outline" size="icon" onClick={toggleTheme} className="mode-toggle-button cursor-pointer">
       <Icon className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-transform duration-300" />
     </Button>
   );
