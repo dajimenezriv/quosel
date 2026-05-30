@@ -23,12 +23,12 @@
       "Place": {
         "type": "object",
         "properties": {
-          "displayName": {
+          "placeId": {
             "type": "string"
           }
         },
         "required": [
-          "displayName"
+          "placeId"
         ]
       },
       "PlacesError": {
@@ -71,7 +71,7 @@
               "example": "ChIJRWnYS1BHYA0RK5rHEosqXcQ"
             },
             "required": true,
-            "name": "placeId",
+            "name": "googlePlaceId",
             "in": "query"
           }
         ],

@@ -1,10 +1,8 @@
-import * as React from "react";
-import { MapPin } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Logo } from "@/components/logo";
-
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
+import { MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Logo } from '@/components/logo';
+import { NavMain, type NavItem } from '@/components/nav-main';
+import { NavUser } from '@/components/nav-user';
 import {
   Sidebar,
   SidebarContent,
@@ -13,27 +11,25 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
+} from '@/components/ui/sidebar';
 
-const data = {
-  user: {
-    name: "ShadcnStore",
-    email: "store@example.com",
-    avatar: "",
+interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
+
+const navGroups: NavGroup[] = [
+  {
+    label: 'Pages',
+    items: [
+      {
+        title: 'Google Maps',
+        url: '/',
+        icon: MapPin,
+      },
+    ],
   },
-  navGroups: [
-    {
-      label: "Pages",
-      items: [
-        {
-          title: "Google Maps",
-          url: "/google-maps",
-          icon: MapPin,
-        },
-      ],
-    },
-  ],
-};
+];
 
 export function AppSidebar() {
   return (
@@ -42,26 +38,23 @@ export function AppSidebar() {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link to="/dashboard">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                  <Logo size={24} className="text-current" />
+              <Link to="/">
+                <div className="text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <Logo size={32} />
                 </div>
-                <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">ShadcnStore</span>
-                  <span className="truncate text-xs">Admin Dashboard</span>
-                </div>
+                <span className="truncate font-medium">Quosel</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        {data.navGroups.map((group) => (
+        {navGroups.map((group) => (
           <NavMain key={group.label} label={group.label} items={group.items} />
         ))}
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );
