@@ -23,36 +23,42 @@ const tabs = [
 
 <Layout>
   <!-- Navbar -->
-  <header class="sticky top-0 z-50 border-b border-stone-200/60 bg-[#faf7f2]/80 backdrop-blur-sm">
+  <header class="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2">
-        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-[#c44a2b] text-sm font-bold text-white">
+        <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-sm font-bold text-primary-foreground">
           Q
         </div>
-        <span class="text-base font-semibold tracking-tight text-stone-900">Quosel</span>
+        <span class="text-base font-semibold tracking-tight text-card-foreground">Quosel</span>
       </a>
 
       <!-- Nav links -->
-      <div class="hidden items-center gap-7 text-sm text-stone-600 md:flex">
+      <div class="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
         {navLinks.map(({ label, href }) => (
-          <a href={href} class="hover:text-stone-900 transition-colors">{label}</a>
+          <a href={href} class="hover:text-foreground transition-colors">{label}</a>
         ))}
       </div>
 
       <!-- Actions -->
       <div class="flex items-center gap-3">
         <button
+          id="theme-toggle"
           aria-label="Toggle dark mode"
-          class="flex h-9 w-9 items-center justify-center rounded-lg border border-stone-300 bg-white text-stone-600 hover:bg-stone-50 transition-colors"
+          class="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground hover:bg-muted transition-colors"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Moon: shown in light mode -->
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <!-- Sun: shown in dark mode -->
+          <svg id="icon-sun" class="hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
           </svg>
         </button>
         <a
           href={appUrl}
-          class="rounded-lg border border-stone-300 bg-white px-4 py-2 text-sm font-medium text-stone-800 hover:bg-stone-50 transition-colors"
+          class="rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground hover:bg-muted transition-colors"
         >
           Sign up
         </a>
@@ -60,24 +66,24 @@ const tabs = [
     </nav>
   </header>
 
-  <main class="bg-[#faf7f2]">
+  <main class="bg-background">
     <!-- Hero -->
     <section class="mx-auto max-w-4xl px-6 pb-0 pt-20 text-center">
       <!-- Badge -->
-      <div class="mb-8 inline-flex items-center gap-2 rounded-full bg-stone-200/70 px-4 py-1.5 text-sm">
-        <span class="flex items-center gap-1 rounded-full bg-[#c44a2b] px-2 py-0.5 text-xs font-semibold text-white">
+      <div class="mb-8 inline-flex items-center gap-2 rounded-full bg-muted px-4 py-1.5 text-sm">
+        <span class="flex items-center gap-1 rounded-full bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
           🔥 New
         </span>
-        <span class="text-stone-600">Introducing AI-powered pages</span>
+        <span class="text-secondary-foreground">Introducing AI-powered pages</span>
       </div>
 
       <!-- Heading -->
-      <h1 class="mx-auto max-w-3xl text-5xl font-bold leading-tight tracking-tight text-stone-900 sm:text-6xl">
+      <h1 class="mx-auto max-w-3xl text-5xl font-bold leading-tight tracking-tight text-card-foreground sm:text-6xl">
         Turn any Google Maps link into a ready-to-ship landing page.
       </h1>
 
       <!-- Subtext -->
-      <p class="mx-auto mt-6 max-w-2xl text-base text-stone-500 sm:text-lg">
+      <p class="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
         Paste a URL, get a polished site with photos, reviews, and contact info — auto-imported and ready to deliver the same day.
       </p>
 
@@ -85,7 +91,7 @@ const tabs = [
       <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a
           href={appUrl}
-          class="inline-flex items-center gap-2 rounded-lg bg-[#c44a2b] px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-[#b03d23] transition-colors"
+          class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M7 17L17 7M17 7H7M17 7v10"/>
@@ -94,7 +100,7 @@ const tabs = [
         </a>
         <a
           href="#pricing"
-          class="inline-flex items-center gap-2 rounded-lg border border-stone-300 bg-white px-6 py-3 text-base font-semibold text-stone-700 shadow-sm hover:bg-stone-50 transition-colors"
+          class="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 text-base font-semibold text-foreground shadow-sm hover:bg-muted transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="12" y1="1" x2="12" y2="23"/>
@@ -109,42 +115,42 @@ const tabs = [
         <!-- Users -->
         <div class="flex items-center gap-3">
           <div class="flex -space-x-2">
-            {['#c44a2b','#2b7ac4','#2bc47a','#c4b12b'].map((color, i) => (
+            {['#c96442','#2b7ac4','#2bc47a','#c4b12b'].map((color, i) => (
               <div
-                class="h-8 w-8 rounded-full border-2 border-[#faf7f2] flex items-center justify-center text-xs font-bold text-white"
+                class="h-8 w-8 rounded-full border-2 border-background flex items-center justify-center text-xs font-bold text-white"
                 style={`background-color: ${color}; z-index: ${4 - i}`}
               >
                 {String.fromCharCode(65 + i)}
               </div>
             ))}
           </div>
-          <span class="text-sm font-medium text-stone-700">12K+ Users</span>
+          <span class="text-sm font-medium text-foreground">12K+ Users</span>
         </div>
 
-        <div class="hidden h-4 w-px bg-stone-300 sm:block"></div>
+        <div class="hidden h-4 w-px bg-border sm:block"></div>
 
         <!-- Ratings -->
         <div class="flex items-center gap-2">
           <div class="flex text-[#f59e0b]">
             {'★★★★'.split('').map(() => <span>★</span>)}
-            <span class="text-stone-300">★</span>
+            <span class="text-muted-foreground">★</span>
           </div>
-          <span class="text-sm font-medium text-stone-700">4.5 Ratings</span>
+          <span class="text-sm font-medium text-foreground">4.5 Ratings</span>
         </div>
       </div>
     </section>
 
     <!-- Feature tabs -->
-    <div class="mt-16 border-t border-stone-200/80">
+    <div class="mt-16 border-t border-border">
       <div class="mx-auto max-w-6xl overflow-x-auto">
-        <div class="flex min-w-max divide-x divide-stone-200/80">
+        <div class="flex min-w-max divide-x divide-border">
           {tabs.map(({ label, icon }, i) => (
             <button
               class={[
                 'flex items-center gap-2 px-8 py-5 text-sm font-medium transition-colors whitespace-nowrap',
                 i === 0
-                  ? 'border-b-2 border-[#c44a2b] bg-white text-stone-900'
-                  : 'bg-[#faf7f2] text-stone-500 hover:bg-white hover:text-stone-800'
+                  ? 'border-b-2 border-primary bg-card text-card-foreground'
+                  : 'bg-background text-muted-foreground hover:bg-card hover:text-foreground'
               ].join(' ')}
             >
               <span>{icon}</span>
@@ -156,13 +162,13 @@ const tabs = [
     </div>
 
     <!-- Workflow diagram (tab 1 content) -->
-    <div class="overflow-x-auto border-b border-stone-200/80">
-      <div class="relative bg-[#faf7f2]" style="min-width: 1100px; height: 460px;">
+    <div class="overflow-x-auto border-b border-border">
+      <div class="relative bg-background" style="min-width: 1100px; height: 460px;">
 
         <!-- Dot grid -->
         <div
           class="absolute inset-0"
-          style="background-image: radial-gradient(circle, #c8bfb4 1.2px, transparent 1.2px); background-size: 28px 28px;"
+          style="background-image: radial-gradient(circle, var(--diagram-dot) 1.2px, transparent 1.2px); background-size: 28px 28px;"
         ></div>
 
         <!-- SVG arrows -->
@@ -174,83 +180,81 @@ const tabs = [
         >
           <defs>
             <marker id="arr" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
-              <path d="M0,1 L0,6 L5,3.5 z" fill="#b8b0a4" />
+              <path d="M0,1 L0,6 L5,3.5 z" style="fill: var(--diagram-arrow)" />
             </marker>
           </defs>
-          <!-- Input → Action -->
-          <path d="M 290,155 C 360,155 420,225 420,248" stroke="#c0b8ae" stroke-width="1.5" fill="none" marker-end="url(#arr)" />
-          <!-- Action → Output -->
-          <path d="M 700,255 C 760,255 810,205 810,160" stroke="#c0b8ae" stroke-width="1.5" fill="none" marker-end="url(#arr)" />
+          <path d="M 290,155 C 360,155 420,225 420,248" style="stroke: var(--diagram-arrow)" stroke-width="1.5" fill="none" marker-end="url(#arr)" />
+          <path d="M 700,255 C 760,255 810,205 810,160" style="stroke: var(--diagram-arrow)" stroke-width="1.5" fill="none" marker-end="url(#arr)" />
         </svg>
 
         <!-- Input card -->
-        <div class="absolute rounded-xl border border-stone-200 bg-white shadow-sm overflow-hidden" style="left:30px;top:30px;width:260px;">
+        <div class="absolute rounded-xl border border-border bg-card shadow-sm overflow-hidden" style="left:30px;top:30px;width:260px;">
           <div class="px-3 pt-3">
-            <span class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-600">
+            <span class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-950 dark:text-blue-300">
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
               Input
             </span>
           </div>
           <div class="flex items-start justify-between px-3 pt-2 pb-1">
             <div>
-              <div class="flex items-center gap-1.5 text-sm font-semibold text-stone-800">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-400"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <div class="flex items-center gap-1.5 text-sm font-semibold text-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                 Google Maps URL
               </div>
-              <p class="mt-0.5 text-xs leading-relaxed text-stone-400">Paste any business link to auto-import all data.</p>
+              <p class="mt-0.5 text-xs leading-relaxed text-muted-foreground">Paste any business link to auto-import all data.</p>
             </div>
-            <span class="text-stone-300 text-base leading-none mt-0.5">⋮</span>
+            <span class="text-muted-foreground text-base leading-none mt-0.5">⋮</span>
           </div>
-          <div class="border-t border-stone-100 bg-stone-50/70 px-3 py-3">
+          <div class="border-t border-border bg-muted px-3 py-3">
             <p class="mb-2 text-xs font-medium text-amber-500">Fetching data...</p>
-            <div class="mb-3 h-1.5 w-full overflow-hidden rounded-full bg-stone-200">
+            <div class="mb-3 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
               <div class="h-full rounded-full bg-amber-400" style="width:62%;"></div>
             </div>
             <div class="space-y-1.5">
-              <div class="flex items-center gap-2 text-xs text-stone-600">
-                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-green-100 text-[9px] font-bold text-green-600">G</span>
+              <div class="flex items-center gap-2 text-xs text-secondary-foreground">
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-green-100 text-[9px] font-bold text-green-600 dark:bg-green-950 dark:text-green-300">G</span>
                 Business details
               </div>
-              <div class="flex items-center gap-2 text-xs text-stone-600">
-                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-amber-100 text-[9px] text-amber-500">★</span>
+              <div class="flex items-center gap-2 text-xs text-secondary-foreground">
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-amber-100 text-[9px] text-amber-500 dark:bg-amber-950 dark:text-amber-300">★</span>
                 Reviews &amp; ratings
               </div>
-              <div class="flex items-center gap-2 text-xs text-stone-600">
-                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-blue-100 text-[9px] text-blue-500">▣</span>
+              <div class="flex items-center gap-2 text-xs text-secondary-foreground">
+                <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-blue-100 text-[9px] text-blue-500 dark:bg-blue-950 dark:text-blue-300">▣</span>
                 Place photos
               </div>
             </div>
           </div>
-          <div class="flex items-center gap-1 border-t border-stone-100 px-3 py-2 text-xs text-stone-400">
+          <div class="flex items-center gap-1 border-t border-border px-3 py-2 text-xs text-muted-foreground">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             0.0 sec
           </div>
         </div>
 
         <!-- Action card -->
-        <div class="absolute rounded-xl border border-stone-200 bg-white shadow-sm overflow-hidden" style="left:420px;top:185px;width:280px;">
+        <div class="absolute rounded-xl border border-border bg-card shadow-sm overflow-hidden" style="left:420px;top:185px;width:280px;">
           <div class="px-3 pt-3">
-            <span class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-600">
+            <span class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-600 dark:bg-orange-950 dark:text-orange-300">
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
               Action
             </span>
           </div>
           <div class="flex items-start justify-between px-3 pt-2 pb-5">
             <div>
-              <div class="flex items-center gap-1.5 text-sm font-semibold text-stone-800">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-400"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/><polyline points="19 5 12 12 5 5"/></svg>
+              <div class="flex items-center gap-1.5 text-sm font-semibold text-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/><polyline points="19 5 12 12 5 5"/></svg>
                 Page Generation
               </div>
-              <p class="mt-0.5 text-xs leading-relaxed text-stone-400">AI builds a complete, mobile-ready page from the imported business data.</p>
+              <p class="mt-0.5 text-xs leading-relaxed text-muted-foreground">AI builds a complete, mobile-ready page from the imported business data.</p>
             </div>
-            <span class="text-stone-300 text-base leading-none mt-0.5">⋮</span>
+            <span class="text-muted-foreground text-base leading-none mt-0.5">⋮</span>
           </div>
-          <div class="flex items-center justify-between border-t border-stone-100 px-3 py-2">
-            <span class="flex items-center gap-1 text-xs text-stone-400">
+          <div class="flex items-center justify-between border-t border-border px-3 py-2">
+            <span class="flex items-center gap-1 text-xs text-muted-foreground">
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               1.2 sec
             </span>
-            <span class="inline-flex items-center gap-1 rounded-full border border-[#c44a2b]/50 px-2.5 py-0.5 text-xs font-medium text-[#c44a2b]">
+            <span class="inline-flex items-center gap-1 rounded-full border border-primary/50 px-2.5 py-0.5 text-xs font-medium text-primary">
               <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
               Quosel AI
             </span>
@@ -258,32 +262,32 @@ const tabs = [
         </div>
 
         <!-- Output card -->
-        <div class="absolute rounded-xl border border-stone-200 bg-white shadow-sm overflow-hidden" style="left:810px;top:30px;width:260px;">
+        <div class="absolute rounded-xl border border-border bg-card shadow-sm overflow-hidden" style="left:810px;top:30px;width:260px;">
           <div class="px-3 pt-3">
-            <span class="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-600">
+            <span class="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-600 dark:bg-green-950 dark:text-green-300">
               <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
               Output
             </span>
           </div>
           <div class="flex items-start justify-between px-3 pt-2 pb-1">
             <div>
-              <div class="flex items-center gap-1.5 text-sm font-semibold text-stone-800">
-                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-stone-400"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <div class="flex items-center gap-1.5 text-sm font-semibold text-foreground">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted-foreground"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                 Landing Page
               </div>
-              <p class="mt-0.5 text-xs leading-relaxed text-stone-400">Your polished page is ready to review and deliver.</p>
+              <p class="mt-0.5 text-xs leading-relaxed text-muted-foreground">Your polished page is ready to review and deliver.</p>
             </div>
-            <span class="text-stone-300 text-base leading-none mt-0.5">⋮</span>
+            <span class="text-muted-foreground text-base leading-none mt-0.5">⋮</span>
           </div>
-          <div class="border-t border-stone-100 bg-stone-50/70 px-3 py-3">
-            <p class="mb-1.5 text-xs font-semibold text-stone-500">Preview</p>
-            <p class="text-xs leading-relaxed text-stone-400">Business photos, reviews, hours, map, and contact form are all beautifully laid out.</p>
-            <div class="mt-3 flex items-center gap-2 text-xs text-stone-600">
-              <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-stone-200 text-[9px] text-stone-500">▤</span>
+          <div class="border-t border-border bg-muted px-3 py-3">
+            <p class="mb-1.5 text-xs font-semibold text-muted-foreground">Preview</p>
+            <p class="text-xs leading-relaxed text-muted-foreground">Business photos, reviews, hours, map, and contact form are all beautifully laid out.</p>
+            <div class="mt-3 flex items-center gap-2 text-xs text-secondary-foreground">
+              <span class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-secondary text-[9px] text-muted-foreground">▤</span>
               page.html exported
             </div>
           </div>
-          <div class="flex items-center gap-1 border-t border-stone-100 px-3 py-2 text-xs text-stone-400">
+          <div class="flex items-center gap-1 border-t border-border px-3 py-2 text-xs text-muted-foreground">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             0.0 sec
           </div>
@@ -293,58 +297,58 @@ const tabs = [
     </div>
 
     <!-- Use Cases -->
-    <section id="use-cases" class="bg-[#faf7f2]">
+    <section id="use-cases" class="bg-background">
 
       <!-- Label -->
       <div class="py-10 text-center">
-        <p class="text-xs font-semibold uppercase tracking-widest text-stone-400">Use Cases</p>
-        <p class="mt-1 text-sm text-stone-400">Practical ways Quosel delivers value to your business.</p>
+        <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Use Cases</p>
+        <p class="mt-1 text-sm text-muted-foreground">Practical ways Quosel delivers value to your business.</p>
       </div>
 
       <!-- Bordered content box -->
       <div class="mx-auto max-w-5xl">
-        <div class="border-x border-t border-stone-200">
+        <div class="border-x border-t border-border">
 
           <!-- Split -->
           <div class="grid grid-cols-1 sm:grid-cols-2">
 
             <!-- LEFT: tab panels -->
-            <div class="border-b border-stone-200 sm:border-b-0 sm:border-r">
+            <div class="border-b border-border sm:border-b-0 sm:border-r">
 
               <div id="uc-freelancer" class="uc-panel p-10 sm:p-12">
-                <h2 class="text-3xl font-bold leading-tight tracking-tight text-stone-900 sm:text-4xl">
-                  See how we help <span class="text-stone-400">freelancers</span> land clients, <span class="text-stone-400">every</span> week.
+                <h2 class="text-3xl font-bold leading-tight tracking-tight text-card-foreground sm:text-4xl">
+                  See how we help <span class="text-muted-foreground">freelancers</span> land clients, <span class="text-muted-foreground">every</span> week.
                 </h2>
-                <p class="mt-6 text-sm leading-relaxed text-stone-500">
+                <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
                   Quosel turns any Google Maps link into a pitch-ready landing page. Show prospects exactly what their site could look like — before writing a single line of code. Close deals faster with real deliverables.
                 </p>
-                <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[#c44a2b] hover:underline">
+                <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                   Learn more
                   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                 </a>
               </div>
 
               <div id="uc-agency" class="uc-panel hidden p-10 sm:p-12">
-                <h2 class="text-3xl font-bold leading-tight tracking-tight text-stone-900 sm:text-4xl">
-                  See how <span class="text-stone-400">agencies</span> deliver sites for <span class="text-stone-400">every</span> client, faster.
+                <h2 class="text-3xl font-bold leading-tight tracking-tight text-card-foreground sm:text-4xl">
+                  See how <span class="text-muted-foreground">agencies</span> deliver sites for <span class="text-muted-foreground">every</span> client, faster.
                 </h2>
-                <p class="mt-6 text-sm leading-relaxed text-stone-500">
+                <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
                   Agencies use Quosel to cut production time from days to hours. Auto-import client data, apply your template, and ship — without the back-and-forth on assets and manual data gathering.
                 </p>
-                <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[#c44a2b] hover:underline">
+                <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                   Learn more
                   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                 </a>
               </div>
 
               <div id="uc-studio" class="uc-panel hidden p-10 sm:p-12">
-                <h2 class="text-3xl font-bold leading-tight tracking-tight text-stone-900 sm:text-4xl">
-                  See how studios <span class="text-stone-400">scale</span> output without adding <span class="text-stone-400">headcount</span>.
+                <h2 class="text-3xl font-bold leading-tight tracking-tight text-card-foreground sm:text-4xl">
+                  See how studios <span class="text-muted-foreground">scale</span> output without adding <span class="text-muted-foreground">headcount</span>.
                 </h2>
-                <p class="mt-6 text-sm leading-relaxed text-stone-500">
+                <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
                   Web studios use Quosel to handle the heavy lifting — import, layout, mobile optimization — so their team stays focused on craft and the work that actually needs their expertise.
                 </p>
-                <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[#c44a2b] hover:underline">
+                <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
                   Learn more
                   <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
                 </a>
@@ -353,49 +357,47 @@ const tabs = [
             </div>
 
             <!-- RIGHT: visual + quote -->
-            <div class="relative min-h-80 overflow-hidden bg-linear-to-br from-stone-300 via-stone-200 to-amber-100">
-              <!-- Decorative circles -->
+            <div class="relative min-h-80 overflow-hidden bg-linear-to-br from-stone-300 via-stone-200 to-amber-100 dark:from-stone-800 dark:via-stone-700 dark:to-stone-900">
               <div class="absolute -right-12 -top-12 h-56 w-56 rounded-full bg-white/20"></div>
-              <div class="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-white/15"></div>
+              <div class="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-white/10"></div>
               <div class="absolute right-1/3 top-1/3 h-28 w-28 rounded-full bg-white/10"></div>
 
-              <!-- Floating quote cards -->
-              <div id="quote-freelancer" class="uc-quote absolute bottom-6 right-6 max-w-65 rounded-xl bg-white p-5 shadow-lg">
-                <p class="text-sm leading-relaxed text-stone-700">"I show a real page during the first call. My close rate doubled in the first month."</p>
-                <p class="mt-3 text-xs text-stone-400">— Lucas M., Freelance web designer</p>
+              <div id="quote-freelancer" class="uc-quote absolute bottom-6 right-6 max-w-65 rounded-xl bg-card p-5 shadow-lg">
+                <p class="text-sm leading-relaxed text-foreground">"I show a real page during the first call. My close rate doubled in the first month."</p>
+                <p class="mt-3 text-xs text-muted-foreground">— Lucas M., Freelance web designer</p>
               </div>
-              <div id="quote-agency" class="uc-quote hidden absolute bottom-6 right-6 max-w-65 rounded-xl bg-white p-5 shadow-lg">
-                <p class="text-sm leading-relaxed text-stone-700">"We went from 5-day turnarounds to same-day delivery. Clients absolutely love it."</p>
-                <p class="mt-3 text-xs text-stone-400">— Sarah K., Agency owner</p>
+              <div id="quote-agency" class="uc-quote hidden absolute bottom-6 right-6 max-w-65 rounded-xl bg-card p-5 shadow-lg">
+                <p class="text-sm leading-relaxed text-foreground">"We went from 5-day turnarounds to same-day delivery. Clients absolutely love it."</p>
+                <p class="mt-3 text-xs text-muted-foreground">— Sarah K., Agency owner</p>
               </div>
-              <div id="quote-studio" class="uc-quote hidden absolute bottom-6 right-6 max-w-65 rounded-xl bg-white p-5 shadow-lg">
-                <p class="text-sm leading-relaxed text-stone-700">"Quosel handles the boilerplate so our team can focus on the parts that actually need our skill."</p>
-                <p class="mt-3 text-xs text-stone-400">— Dan R., Studio director</p>
+              <div id="quote-studio" class="uc-quote hidden absolute bottom-6 right-6 max-w-65 rounded-xl bg-card p-5 shadow-lg">
+                <p class="text-sm leading-relaxed text-foreground">"Quosel handles the boilerplate so our team can focus on the parts that actually need our skill."</p>
+                <p class="mt-3 text-xs text-muted-foreground">— Dan R., Studio director</p>
               </div>
             </div>
 
           </div>
 
           <!-- Tab bar -->
-          <div class="border-t border-stone-200">
-            <div class="flex divide-x divide-stone-200">
+          <div class="border-t border-border">
+            <div class="flex divide-x divide-border">
 
-              <button class="uc-tab uc-tab-active flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-stone-800 bg-white/60 transition-colors" data-target="freelancer">
-                <span class="uc-icon shrink-0 text-[#c44a2b]">
+              <button class="uc-tab uc-tab-active flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-foreground bg-card/60 transition-colors" data-target="freelancer">
+                <span class="uc-icon shrink-0 text-primary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </span>
                 Freelancer
               </button>
 
-              <button class="uc-tab flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-stone-500 transition-colors hover:bg-white/40" data-target="agency">
-                <span class="uc-icon shrink-0 text-stone-400">
+              <button class="uc-tab flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-muted-foreground transition-colors hover:bg-card/40" data-target="agency">
+                <span class="uc-icon shrink-0 text-muted-foreground">
                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
                 </span>
                 Agency
               </button>
 
-              <button class="uc-tab flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-stone-500 transition-colors hover:bg-white/40" data-target="studio">
-                <span class="uc-icon shrink-0 text-stone-400">
+              <button class="uc-tab flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-muted-foreground transition-colors hover:bg-card/40" data-target="studio">
+                <span class="uc-icon shrink-0 text-muted-foreground">
                   <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
                 </span>
                 Web Studio
@@ -417,15 +419,15 @@ const tabs = [
             const target = (tab as HTMLElement).dataset.target!;
 
             ucTabs.forEach(t => {
-              t.classList.remove('uc-tab-active', 'bg-white/60', 'text-stone-800');
-              t.classList.add('text-stone-500');
+              t.classList.remove('uc-tab-active', 'bg-card/60', 'text-foreground');
+              t.classList.add('text-muted-foreground');
               const icon = t.querySelector<HTMLElement>('.uc-icon');
-              if (icon) { icon.style.color = ''; icon.classList.remove('text-[#c44a2b]'); icon.classList.add('text-stone-400'); }
+              if (icon) { icon.style.color = ''; icon.classList.remove('text-primary'); icon.classList.add('text-muted-foreground'); }
             });
-            tab.classList.add('uc-tab-active', 'bg-white/60', 'text-stone-800');
-            tab.classList.remove('text-stone-500');
+            tab.classList.add('uc-tab-active', 'bg-card/60', 'text-foreground');
+            tab.classList.remove('text-muted-foreground');
             const activeIcon = tab.querySelector<HTMLElement>('.uc-icon');
-            if (activeIcon) { activeIcon.style.color = '#c44a2b'; activeIcon.classList.remove('text-stone-400'); }
+            if (activeIcon) { activeIcon.style.color = 'var(--primary)'; activeIcon.classList.remove('text-muted-foreground'); }
 
             ucPanels.forEach(p => p.classList.add('hidden'));
             document.getElementById(`uc-${target}`)?.classList.remove('hidden');
@@ -441,8 +443,8 @@ const tabs = [
     <!-- How it works -->
     <section id="how" class="mx-auto max-w-6xl px-6 py-24">
       <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">From URL to live site in 3 steps</h2>
-        <p class="mt-4 text-stone-500">Skip the kickoff calls, asset gathering, and weeks of revisions.</p>
+        <h2 class="text-3xl font-bold tracking-tight text-card-foreground sm:text-4xl">From URL to live site in 3 steps</h2>
+        <p class="mt-4 text-muted-foreground">Skip the kickoff calls, asset gathering, and weeks of revisions.</p>
       </div>
 
       <div class="mt-16 grid gap-6 sm:grid-cols-3">
@@ -451,79 +453,79 @@ const tabs = [
           { n: 2, title: 'We generate the page', body: 'Hero, gallery, reviews, map, contact form — laid out, styled, and mobile-ready in seconds.' },
           { n: 3, title: 'Deliver to your client', body: 'Tweak copy and colors, publish to your domain, invoice the client. Done.' },
         ].map(({ n, title, body }) => (
-          <div class="rounded-2xl border border-stone-200 bg-white p-7 shadow-sm">
-            <div class="mb-5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#c44a2b] text-sm font-bold text-white">
+          <div class="rounded-2xl border border-border bg-card p-7 shadow-sm">
+            <div class="mb-5 inline-flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
               {n}
             </div>
-            <h3 class="text-base font-semibold text-stone-900">{title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-stone-500">{body}</p>
+            <h3 class="text-base font-semibold text-foreground">{title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
           </div>
         ))}
       </div>
     </section>
 
     <!-- Pricing -->
-    <section id="pricing" class="bg-[#faf7f2] py-16">
+    <section id="pricing" class="bg-background py-16">
       <div class="mx-auto max-w-5xl px-6">
 
         <!-- Label above box -->
         <div class="mb-8 text-center">
-          <p class="text-xs font-semibold uppercase tracking-widest text-stone-400">Pricing</p>
-          <p class="mt-1 text-sm text-stone-400">Flexible plans tailored to scale with your clients.</p>
+          <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Pricing</p>
+          <p class="mt-1 text-sm text-muted-foreground">Flexible plans tailored to scale with your clients.</p>
         </div>
 
         <!-- Main bordered box -->
-        <div class="overflow-hidden rounded-2xl border border-stone-200 bg-white">
+        <div class="overflow-hidden rounded-2xl border border-border bg-card">
 
           <!-- Heading + toggle -->
           <div class="px-10 py-12 text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+            <h2 class="text-3xl font-bold tracking-tight text-card-foreground sm:text-4xl">
               Plans that Scale with Your Pages
             </h2>
-            <p class="mx-auto mt-3 max-w-xl text-sm text-stone-400">
+            <p class="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
               Find the perfect balance of features and scalability for your workflow,<br class="hidden sm:block" />
               designed to help you work smarter and grow effortlessly.
             </p>
 
             <!-- Monthly / Yearly toggle -->
-            <div class="mt-7 inline-flex items-center rounded-full border border-stone-300 bg-stone-100/60 p-1">
+            <div class="mt-7 inline-flex items-center rounded-full border border-border bg-muted p-1">
               <button
                 id="btn-monthly"
-                class="rounded-full bg-white px-5 py-1.5 text-sm font-medium text-stone-900 shadow-sm transition-all"
+                class="rounded-full bg-card px-5 py-1.5 text-sm font-medium text-card-foreground shadow-sm transition-all"
               >
                 Monthly
               </button>
               <button
                 id="btn-yearly"
-                class="flex items-center gap-2 rounded-full px-5 py-1.5 text-sm font-medium text-stone-500 transition-all"
+                class="flex items-center gap-2 rounded-full px-5 py-1.5 text-sm font-medium text-muted-foreground transition-all"
               >
                 Yearly
-                <span class="rounded-full bg-stone-900 px-2 py-0.5 text-xs text-white">Save 35%</span>
+                <span class="rounded-full bg-foreground px-2 py-0.5 text-xs text-background">Save 35%</span>
               </button>
             </div>
           </div>
 
           <!-- Three plan columns -->
-          <div class="grid grid-cols-1 divide-y divide-stone-200 border-t border-stone-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div class="grid grid-cols-1 divide-y divide-border border-t border-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
 
             <!-- Starter -->
             <div class="flex flex-col">
-              <div class="border-b border-stone-200 p-8">
-                <h3 class="text-xl font-bold text-stone-900">Starter</h3>
-                <p class="mt-1 text-sm text-stone-400">For freelancers trying out Quosel</p>
+              <div class="border-b border-border p-8">
+                <h3 class="text-xl font-bold text-card-foreground">Starter</h3>
+                <p class="mt-1 text-sm text-muted-foreground">For freelancers trying out Quosel</p>
                 <div class="mt-5 flex items-start gap-0.5">
-                  <span class="mt-2 text-sm font-medium text-stone-600">€</span>
-                  <span class="text-5xl font-bold tracking-tight text-stone-900">0</span>
-                  <span class="mt-3 text-sm text-stone-400">/month</span>
+                  <span class="mt-2 text-sm font-medium text-secondary-foreground">€</span>
+                  <span class="text-5xl font-bold tracking-tight text-card-foreground">0</span>
+                  <span class="mt-3 text-sm text-muted-foreground">/month</span>
                 </div>
                 <a
                   href={appUrl}
-                  class="mt-6 block w-full rounded-lg border border-stone-300 bg-stone-100 px-4 py-2.5 text-center text-sm font-medium text-stone-700 transition-colors hover:bg-stone-200"
+                  class="mt-6 block w-full rounded-lg border border-border bg-secondary px-4 py-2.5 text-center text-sm font-medium text-secondary-foreground transition-colors hover:bg-muted"
                 >
                   Get started free
                 </a>
               </div>
-              <ul class="flex-1 space-y-4 p-8 text-sm text-stone-600">
+              <ul class="flex-1 space-y-4 p-8 text-sm text-secondary-foreground">
                 {[
                   '3 landing pages',
                   'Google Maps auto-import',
@@ -533,36 +535,36 @@ const tabs = [
                   'Quosel-hosted domain',
                 ].map(f => (
                   <li class="flex items-start gap-3">
-                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c44a2b]"></span>
+                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
                     {f}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <!-- Pro (highlighted) -->
+            <!-- Pro -->
             <div class="flex flex-col">
-              <div class="border-b border-stone-200 p-8">
-                <h3 class="text-xl font-bold text-stone-900">Pro</h3>
-                <p class="mt-1 text-sm text-stone-400">For freelancers delivering client sites</p>
+              <div class="border-b border-border p-8">
+                <h3 class="text-xl font-bold text-card-foreground">Pro</h3>
+                <p class="mt-1 text-sm text-muted-foreground">For freelancers delivering client sites</p>
                 <div data-price="monthly" class="mt-5 flex items-start gap-0.5">
-                  <span class="mt-2 text-sm font-medium text-stone-600">€</span>
-                  <span class="text-5xl font-bold tracking-tight text-stone-900">5</span>
-                  <span class="mt-3 text-sm text-stone-400">/month</span>
+                  <span class="mt-2 text-sm font-medium text-secondary-foreground">€</span>
+                  <span class="text-5xl font-bold tracking-tight text-card-foreground">5</span>
+                  <span class="mt-3 text-sm text-muted-foreground">/month</span>
                 </div>
                 <div data-price="yearly" class="mt-5 hidden flex items-start gap-0.5">
-                  <span class="mt-2 text-sm font-medium text-stone-600">€</span>
-                  <span class="text-5xl font-bold tracking-tight text-stone-900">3</span>
-                  <span class="mt-3 text-sm text-stone-400">/month</span>
+                  <span class="mt-2 text-sm font-medium text-secondary-foreground">€</span>
+                  <span class="text-5xl font-bold tracking-tight text-card-foreground">3</span>
+                  <span class="mt-3 text-sm text-muted-foreground">/month</span>
                 </div>
                 <a
                   href={appUrl}
-                  class="mt-6 block w-full rounded-lg bg-[#c44a2b] px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-[#b03d23]"
+                  class="mt-6 block w-full rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
                 >
                   Purchase plan
                 </a>
               </div>
-              <ul class="flex-1 space-y-4 p-8 text-sm text-stone-600">
+              <ul class="flex-1 space-y-4 p-8 text-sm text-secondary-foreground">
                 {[
                   'Unlimited landing pages',
                   'Google Maps auto-import',
@@ -573,7 +575,7 @@ const tabs = [
                   'Export HTML',
                 ].map(f => (
                   <li class="flex items-start gap-3">
-                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c44a2b]"></span>
+                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
                     {f}
                   </li>
                 ))}
@@ -582,27 +584,27 @@ const tabs = [
 
             <!-- Agency -->
             <div class="flex flex-col">
-              <div class="border-b border-stone-200 p-8">
-                <h3 class="text-xl font-bold text-stone-900">Agency</h3>
-                <p class="mt-1 text-sm text-stone-400">For agencies needing scale &amp; white-label</p>
+              <div class="border-b border-border p-8">
+                <h3 class="text-xl font-bold text-card-foreground">Agency</h3>
+                <p class="mt-1 text-sm text-muted-foreground">For agencies needing scale &amp; white-label</p>
                 <div data-price="monthly" class="mt-5 flex items-start gap-0.5">
-                  <span class="mt-2 text-sm font-medium text-stone-600">€</span>
-                  <span class="text-5xl font-bold tracking-tight text-stone-900">15</span>
-                  <span class="mt-3 text-sm text-stone-400">/month</span>
+                  <span class="mt-2 text-sm font-medium text-secondary-foreground">€</span>
+                  <span class="text-5xl font-bold tracking-tight text-card-foreground">15</span>
+                  <span class="mt-3 text-sm text-muted-foreground">/month</span>
                 </div>
                 <div data-price="yearly" class="mt-5 hidden flex items-start gap-0.5">
-                  <span class="mt-2 text-sm font-medium text-stone-600">€</span>
-                  <span class="text-5xl font-bold tracking-tight text-stone-900">10</span>
-                  <span class="mt-3 text-sm text-stone-400">/month</span>
+                  <span class="mt-2 text-sm font-medium text-secondary-foreground">€</span>
+                  <span class="text-5xl font-bold tracking-tight text-card-foreground">10</span>
+                  <span class="mt-3 text-sm text-muted-foreground">/month</span>
                 </div>
                 <a
                   href={appUrl}
-                  class="mt-6 block w-full rounded-lg border border-stone-300 bg-stone-100 px-4 py-2.5 text-center text-sm font-medium text-stone-700 transition-colors hover:bg-stone-200"
+                  class="mt-6 block w-full rounded-lg border border-border bg-secondary px-4 py-2.5 text-center text-sm font-medium text-secondary-foreground transition-colors hover:bg-muted"
                 >
                   Purchase plan
                 </a>
               </div>
-              <ul class="flex-1 space-y-4 p-8 text-sm text-stone-600">
+              <ul class="flex-1 space-y-4 p-8 text-sm text-secondary-foreground">
                 {[
                   'Unlimited landing pages',
                   'Everything in Pro',
@@ -613,7 +615,7 @@ const tabs = [
                   'Advanced security & compliance',
                 ].map(f => (
                   <li class="flex items-start gap-3">
-                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#c44a2b]"></span>
+                    <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"></span>
                     {f}
                   </li>
                 ))}
@@ -631,10 +633,10 @@ const tabs = [
         const yearlyEls = document.querySelectorAll<HTMLElement>('[data-price="yearly"]');
 
         function activate(active: HTMLElement, inactive: HTMLElement) {
-          active.classList.add('bg-white', 'text-stone-900', 'shadow-sm');
-          active.classList.remove('text-stone-500');
-          inactive.classList.remove('bg-white', 'text-stone-900', 'shadow-sm');
-          inactive.classList.add('text-stone-500');
+          active.classList.add('bg-card', 'text-card-foreground', 'shadow-sm');
+          active.classList.remove('text-muted-foreground');
+          inactive.classList.remove('bg-card', 'text-card-foreground', 'shadow-sm');
+          inactive.classList.add('text-muted-foreground');
         }
 
         btnMonthly.addEventListener('click', () => {
@@ -652,43 +654,28 @@ const tabs = [
     </section>
 
     <!-- FAQ -->
-    <section class="border-t border-stone-200/80 bg-[#faf7f2] py-16">
+    <section class="border-t border-border bg-background py-16">
       <div class="mx-auto max-w-5xl px-6">
         <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-16">
 
           <!-- Product & Features -->
           <div>
-            <h3 class="text-sm font-semibold text-[#c44a2b]">Product &amp; Features</h3>
-            <div class="mt-5 divide-y divide-stone-200">
+            <h3 class="text-sm font-semibold text-primary">Product &amp; Features</h3>
+            <div class="mt-5 divide-y divide-border">
               {[
-                {
-                  q: 'What exactly is Quosel?',
-                  a: 'Quosel converts any Google Maps business link into a polished, ready-to-deliver landing page. It auto-imports photos, reviews, hours, and contact info — no manual data entry.',
-                },
-                {
-                  q: 'Do I need to install any software?',
-                  a: 'No installation needed. Quosel is fully web-based — paste a URL in your browser and your page is ready within seconds.',
-                },
-                {
-                  q: 'How does the Google Maps import work?',
-                  a: 'We use the Google Places API to pull all available business data and structure it into a beautiful page automatically.',
-                },
-                {
-                  q: 'Can I customize the generated pages?',
-                  a: 'Yes. After generation you can edit copy, swap photos, adjust colors, and rearrange sections using our simple editor.',
-                },
-                {
-                  q: 'What file formats can I export?',
-                  a: 'Clean HTML/CSS for any host, or publish to a Quosel URL. Custom domains are available on Pro and Agency plans.',
-                },
+                { q: 'What exactly is Quosel?', a: 'Quosel converts any Google Maps business link into a polished, ready-to-deliver landing page. It auto-imports photos, reviews, hours, and contact info — no manual data entry.' },
+                { q: 'Do I need to install any software?', a: 'No installation needed. Quosel is fully web-based — paste a URL in your browser and your page is ready within seconds.' },
+                { q: 'How does the Google Maps import work?', a: 'We use the Google Places API to pull all available business data and structure it into a beautiful page automatically.' },
+                { q: 'Can I customize the generated pages?', a: 'Yes. After generation you can edit copy, swap photos, adjust colors, and rearrange sections using our simple editor.' },
+                { q: 'What file formats can I export?', a: 'Clean HTML/CSS for any host, or publish to a Quosel URL. Custom domains are available on Pro and Agency plans.' },
               ].map(({ q, a }, i) => (
                 <div class="faq-item py-4">
                   <button class="faq-btn flex w-full items-start justify-between gap-4 text-left">
-                    <span class="text-sm font-medium text-stone-800">{i + 1}. {q}</span>
-                    <span class="faq-icon mt-0.5 shrink-0 text-base leading-none text-stone-400">+</span>
+                    <span class="text-sm font-medium text-foreground">{i + 1}. {q}</span>
+                    <span class="faq-icon mt-0.5 shrink-0 text-base leading-none text-muted-foreground">+</span>
                   </button>
                   <div class="faq-answer hidden pt-3">
-                    <p class="text-sm leading-relaxed text-stone-400">{a}</p>
+                    <p class="text-sm leading-relaxed text-muted-foreground">{a}</p>
                   </div>
                 </div>
               ))}
@@ -697,37 +684,22 @@ const tabs = [
 
           <!-- Plans & Usage -->
           <div>
-            <h3 class="text-sm font-semibold text-[#c44a2b]">Plans &amp; Usage</h3>
-            <div class="mt-5 divide-y divide-stone-200">
+            <h3 class="text-sm font-semibold text-primary">Plans &amp; Usage</h3>
+            <div class="mt-5 divide-y divide-border">
               {[
-                {
-                  q: 'Can I switch plans anytime?',
-                  a: 'Yes — upgrade or downgrade instantly. Changes take effect immediately and we prorate any billing difference.',
-                },
-                {
-                  q: 'Do you offer a free trial?',
-                  a: 'Your first 3 landing pages are completely free, no credit card required. Try the full import and generation flow before committing.',
-                },
-                {
-                  q: 'What happens if I reach my page limit?',
-                  a: 'On the Starter plan, once you\'ve used your 3 free pages you\'ll need to upgrade to Pro for unlimited pages. We notify you before you hit the limit.',
-                },
-                {
-                  q: 'Can multiple team members use one account?',
-                  a: 'Pro includes 5 workspaces and Agency includes unlimited workspaces. Each workspace can hold its own client projects and pages.',
-                },
-                {
-                  q: 'How is my data kept secure?',
-                  a: 'All data is encrypted in transit (TLS) and at rest. We only store what\'s needed to generate your page. See our privacy policy for full details.',
-                },
+                { q: 'Can I switch plans anytime?', a: 'Yes — upgrade or downgrade instantly. Changes take effect immediately and we prorate any billing difference.' },
+                { q: 'Do you offer a free trial?', a: 'Your first 3 landing pages are completely free, no credit card required. Try the full import and generation flow before committing.' },
+                { q: 'What happens if I reach my page limit?', a: "On the Starter plan, once you've used your 3 free pages you'll need to upgrade to Pro for unlimited pages. We notify you before you hit the limit." },
+                { q: 'Can multiple team members use one account?', a: 'Pro includes 5 workspaces and Agency includes unlimited workspaces. Each workspace can hold its own client projects and pages.' },
+                { q: 'How is my data kept secure?', a: "All data is encrypted in transit (TLS) and at rest. We only store what's needed to generate your page. See our privacy policy for full details." },
               ].map(({ q, a }, i) => (
                 <div class="faq-item py-4">
                   <button class="faq-btn flex w-full items-start justify-between gap-4 text-left">
-                    <span class="text-sm font-medium text-stone-800">{i + 1}. {q}</span>
-                    <span class="faq-icon mt-0.5 shrink-0 text-base leading-none text-stone-400">+</span>
+                    <span class="text-sm font-medium text-foreground">{i + 1}. {q}</span>
+                    <span class="faq-icon mt-0.5 shrink-0 text-base leading-none text-muted-foreground">+</span>
                   </button>
                   <div class="faq-answer hidden pt-3">
-                    <p class="text-sm leading-relaxed text-stone-400">{a}</p>
+                    <p class="text-sm leading-relaxed text-muted-foreground">{a}</p>
                   </div>
                 </div>
               ))}
@@ -752,17 +724,17 @@ const tabs = [
     </section>
 
     <!-- Closing CTA -->
-    <section class="bg-[#faf7f2] mx-auto max-w-4xl px-6 py-24 text-center">
-      <h2 class="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl">
+    <section class="bg-background mx-auto max-w-4xl px-6 py-24 text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-card-foreground sm:text-4xl">
         Ship the next client site this afternoon.
       </h2>
-      <p class="mx-auto mt-4 max-w-xl text-stone-500">
+      <p class="mx-auto mt-4 max-w-xl text-muted-foreground">
         Paste a URL, deliver a polished site, get paid. First 3 URLs free, €5/month after.
       </p>
       <div class="mt-8 flex justify-center">
         <a
           href={appUrl}
-          class="inline-flex items-center gap-2 rounded-lg bg-[#c44a2b] px-6 py-3 text-base font-semibold text-white hover:bg-[#b03d23] transition-colors"
+          class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M7 17L17 7M17 7H7M17 7v10"/>
@@ -774,14 +746,35 @@ const tabs = [
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-stone-200 bg-white">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-8 text-sm text-stone-400 sm:flex-row">
+  <footer class="border-t border-border bg-card">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-8 text-sm text-muted-foreground sm:flex-row">
       <span>© {new Date().getFullYear()} Quosel</span>
       <div class="flex gap-6">
-        <a href="#" class="hover:text-stone-700 transition-colors">Terms</a>
-        <a href="#" class="hover:text-stone-700 transition-colors">Privacy</a>
-        <a href="mailto:hello@quosel.com" class="hover:text-stone-700 transition-colors">Contact</a>
+        <a href="#" class="hover:text-foreground transition-colors">Terms</a>
+        <a href="#" class="hover:text-foreground transition-colors">Privacy</a>
+        <a href="mailto:hello@quosel.com" class="hover:text-foreground transition-colors">Contact</a>
       </div>
     </div>
   </footer>
+
+  <!-- Theme toggle script -->
+  <script>
+    const toggle = document.getElementById('theme-toggle')!;
+    const moon = document.getElementById('icon-moon')!;
+    const sun = document.getElementById('icon-sun')!;
+
+    // Sync icon with current state
+    function syncIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      moon.classList.toggle('hidden', isDark);
+      sun.classList.toggle('hidden', !isDark);
+    }
+    syncIcon();
+
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      syncIcon();
+    });
+  </script>
 </Layout>
