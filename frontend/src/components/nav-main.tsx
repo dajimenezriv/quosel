@@ -24,7 +24,7 @@ export function NavMain({ label, items }: Props) {
         {items.map((item) => (
           <Collapsible key={item.title} asChild className="group/collapsible">
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip={item.title} className="cursor-pointer" isActive={location.pathname === item.url}>
+              <SidebarMenuButton asChild className="cursor-pointer" isActive={location.pathname === item.url}>
                 <Link to={item.url}>
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
