@@ -1,46 +1,29 @@
-import { call, calls } from '@/tests/utils.ts';
 import { generateCodeVerifier, generateState } from 'arctic';
-import type { Context } from 'hono';
-import { setCookie } from 'hono/cookie';
-import { mock } from 'vitest-mock-extended';
 import { google } from '../../auth/google.ts';
-import { googleLogin } from './google-login.ts';
+import { authRouter } from './router.ts';
 
 vi.mock(import('@/auth/google.ts'));
 vi.mock(import('@/core/env.ts'));
-vi.mock(import('hono/cookie'));
 vi.mock(import('arctic'));
 
 describe('google-login', () => {
-  const generateStateMock = vi.mocked(generateState);
-  const generateCodeVerifierMock = vi.mocked(generateCodeVerifier);
   const createAuthorizationURLMock = vi.mocked(google.createAuthorizationURL);
 
-  const c = mock<Context>();
-
   beforeEach(() => {
-    generateStateMock.mockReturnValue('mockState');
-    generateCodeVerifierMock.mockReturnValue('mockVerifier');
+    vi.mocked(generateState).mockReturnValue('mockState');
+    vi.mocked(generateCodeVerifier).mockReturnValue('mockVerifier');
     createAuthorizationURLMock.mockReturnValue(new URL('https://accounts.google.com/o/oauth2/auth'));
   });
 
-  const cookieOpts = {
-    httpOnly: true,
-    secure: false,
-    sameSite: 'Lax' as const,
-    maxAge: 600,
-    path: '/',
-  };
-
-  it('should work', () => {
+  it('should work', async () => {
     // When
-    googleLogin(c);
-    // Then
-    calls(setCookie).toStrictEqual([
-      [c, 'google_state', 'mockState', cookieOpts],
-      [c, 'google_verifier', 'mockVerifier', cookieOpts],
+    const res = await authRouter.request('/auth/google');
+    // THen
+    expect(res.status).toBe(302);
+    expect(res.headers.get('Location')).toBe('https://accounts.google.com/o/oauth2/auth');
+    expect(res.headers.getSetCookie()).toStrictEqual([
+      'google_state=mockState; Max-Age=600; Path=/; HttpOnly; SameSite=Lax',
+      'google_verifier=mockVerifier; Max-Age=600; Path=/; HttpOnly; SameSite=Lax',
     ]);
-    call(createAuthorizationURLMock).toStrictEqual(['mockState', 'mockVerifier', ['openid', 'email', 'profile']]);
-    call(c.redirect).toStrictEqual('https://accounts.google.com/o/oauth2/auth');
   });
 });
