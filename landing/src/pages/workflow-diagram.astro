@@ -1,34 +1,8 @@
-<div class="w-full">
-  <div class="bg-background relative" style="min-width: 1100px; height: 460px;">
-    <!-- Dot grid -->
-    <div
-      class="absolute inset-0"
-      style="background-image: radial-gradient(circle, var(--diagram-dot) 1.2px, transparent 1.2px); background-size: 28px 28px;">
-    </div>
-
-    <!-- SVG arrows -->
-    <svg class="pointer-events-none absolute inset-0" width="1100" height="460" viewBox="0 0 1100 460" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <marker id="arr" markerWidth="7" markerHeight="7" refX="5.5" refY="3.5" orient="auto">
-          <path d="M0,1 L0,6 L5,3.5 z" style="fill: var(--diagram-arrow)"></path>
-        </marker>
-      </defs>
-      <path
-        d="M 290,155 C 360,155 420,225 420,248"
-        style="stroke: var(--diagram-arrow)"
-        stroke-width="1.5"
-        fill="none"
-        marker-end="url(#arr)"></path>
-      <path
-        d="M 700,255 C 760,255 810,205 810,160"
-        style="stroke: var(--diagram-arrow)"
-        stroke-width="1.5"
-        fill="none"
-        marker-end="url(#arr)"></path>
-    </svg>
+<div class="flex w-full justify-center py-8" style="background-image: radial-gradient(circle, var(--diagram-dot) 1.2px, transparent 1.2px); background-size: 28px 28px;">
+  <div class="flex flex-col items-center md:flex-row md:items-center">
 
     <!-- Input card -->
-    <div class="border-border bg-card absolute overflow-hidden rounded-xl border shadow-sm" style="left:30px;top:30px;width:260px;">
+    <div class="border-border bg-card w-64 overflow-hidden rounded-xl border shadow-sm">
       <div class="px-3 pt-3">
         <span
           class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-950 dark:text-blue-300">
@@ -113,8 +87,22 @@
       </div>
     </div>
 
+    <!-- Connector 1 -->
+    <div class="flex flex-col items-center my-1 md:hidden">
+      <svg width="16" height="40" viewBox="0 0 16 40" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8" y1="0" x2="8" y2="32" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M4,32 L8,40 L12,32 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+    <div class="hidden md:flex items-center mx-2">
+      <svg width="40" height="16" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="32" y2="8" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M32,4 L40,8 L32,12 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+
     <!-- Action card -->
-    <div class="border-border bg-card absolute overflow-hidden rounded-xl border shadow-sm" style="left:420px;top:185px;width:280px;">
+    <div class="border-border bg-card w-72 overflow-hidden rounded-xl border shadow-sm">
       <div class="px-3 pt-3">
         <span
           class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-600 dark:bg-orange-950 dark:text-orange-300">
@@ -192,8 +180,22 @@
       </div>
     </div>
 
+    <!-- Connector 2 -->
+    <div class="flex flex-col items-center my-1 md:hidden">
+      <svg width="16" height="40" viewBox="0 0 16 40" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8" y1="0" x2="8" y2="32" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M4,32 L8,40 L12,32 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+    <div class="hidden md:flex items-center mx-2">
+      <svg width="40" height="16" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="32" y2="8" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M32,4 L40,8 L32,12 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+
     <!-- Output card -->
-    <div class="border-border bg-card absolute overflow-hidden rounded-xl border shadow-sm" style="left:810px;top:30px;width:260px;">
+    <div class="border-border bg-card w-64 overflow-hidden rounded-xl border shadow-sm">
       <div class="px-3 pt-3">
         <span
           class="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-600 dark:bg-green-950 dark:text-green-300">
@@ -258,5 +260,6 @@
         0.0 sec
       </div>
     </div>
+
   </div>
 </div>
