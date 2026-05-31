@@ -1,3 +1,4 @@
+import { call } from '@/tests/utils.ts';
 import { generateCodeVerifier, generateState } from 'arctic';
 import { google } from '../../auth/google.ts';
 import { authRouter } from './router.ts';
@@ -7,15 +8,13 @@ vi.mock(import('@/core/env.ts'));
 vi.mock(import('arctic'));
 
 describe('google-login', () => {
-  const createAuthorizationURLMock = vi.mocked(google.createAuthorizationURL);
-
   beforeEach(() => {
     vi.mocked(generateState).mockReturnValue('mockState');
     vi.mocked(generateCodeVerifier).mockReturnValue('mockVerifier');
-    createAuthorizationURLMock.mockReturnValue(new URL('https://accounts.google.com/o/oauth2/auth'));
+    vi.mocked(google.createAuthorizationURL).mockReturnValue(new URL('https://accounts.google.com/o/oauth2/auth'));
   });
 
-  it('should work', async () => {
+  it('should set cookies and redirect', async () => {
     // When
     const res = await authRouter.request('/auth/google');
     // THen
@@ -25,5 +24,6 @@ describe('google-login', () => {
       'google_state=mockState; Max-Age=600; Path=/; HttpOnly; SameSite=Lax',
       'google_verifier=mockVerifier; Max-Age=600; Path=/; HttpOnly; SameSite=Lax',
     ]);
+    call(google.createAuthorizationURL).toStrictEqual(['mockState', 'mockVerifier', ['openid', 'email', 'profile']]);
   });
 });
