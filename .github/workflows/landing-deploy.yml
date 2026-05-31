@@ -8,7 +8,7 @@ on:
   pull_request:
 
 concurrency:
-  group: deploy-landing-${{ github.ref }}
+  group: landing-deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

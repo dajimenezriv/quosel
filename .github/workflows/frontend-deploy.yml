@@ -8,7 +8,7 @@ on:
   pull_request:
 
 concurrency:
-  group: deploy-frontend-${{ github.ref }}
+  group: frontend-deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
