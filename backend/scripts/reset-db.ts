@@ -16,6 +16,7 @@ await sql.unsafe(`
   DROP SCHEMA IF EXISTS drizzle CASCADE;
   CREATE SCHEMA public;
 `);
+
 await sql.end();
 
 logger.info('Reset schema', { hostname });
