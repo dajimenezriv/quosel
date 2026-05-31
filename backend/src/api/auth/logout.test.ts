@@ -1,41 +1,29 @@
 import { Sessions } from '@/infra/postgres/sessions.ts';
-import { call } from '@/tests/utils.ts';
-import type { Context } from 'hono';
-import { deleteCookie, getCookie } from 'hono/cookie';
-import { mock } from 'vitest-mock-extended';
-import { logout } from './logout.ts';
+import { call, calls } from '@/tests/utils.ts';
+import { authRouter } from './router.ts';
 
 vi.mock(import('@/infra/postgres/sessions.ts'));
-vi.mock(import('hono/cookie'));
 
 describe('logout', () => {
-  const getCookieMock = vi.mocked(getCookie);
-
-  const c = mock<Context>();
-
   it('should work', async () => {
     // When
-    await logout(c);
+    const res = await authRouter.request('/auth/logout', { method: 'POST' });
     // Then
-    call(getCookie).toStrictEqual([c, 'session']);
-    call(deleteCookie).toStrictEqual([c, 'session', { path: '/' }]);
-    call(c.body).toStrictEqual([null, 204]);
+    expect(res.status).toBe(204);
+    expect(res.headers.getSetCookie()).toStrictEqual(['session=; Max-Age=0; Path=/']);
   });
 
   it('should delete session in db if cookie is set', async () => {
-    // Given
-    getCookieMock.mockReturnValue('sessionId');
     // When
-    await logout(c);
+    await authRouter.request('/auth/logout', { method: 'POST', headers: { Cookie: 'session=sessionId' } });
     // Then
-    call(Sessions.deleteById).toStrictEqual('sessionId');
+    call(Sessions.deleteById).toBe('sessionId');
   });
 
   it('should not delete session in db if cookie is not set', async () => {
     // When
-    await logout(c);
+    await authRouter.request('/auth/logout', { method: 'POST' });
     // Then
-    call(deleteCookie).toStrictEqual([c, 'session', { path: '/' }]);
-    call(c.body).toStrictEqual([null, 204]);
+    calls(Sessions.deleteById).toHaveLength(0);
   });
 });
