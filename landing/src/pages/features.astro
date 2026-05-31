@@ -1,0 +1,37 @@
+---
+import WorkflowDiagram from './workflow-diagram.astro';
+
+const tabs = [
+  { label: 'URL Import', icon: '↗' },
+  //  { label: "Business Info", icon: "🏢" },
+  //  { label: "Auto Layout", icon: "⊞" },
+  //  { label: "Review Import", icon: "★" },
+  //  { label: "Mobile Ready", icon: "📱" },
+  //  { label: "White Label", icon: "🏷" },
+];
+---
+
+<section id="features">
+  <div class="border-border mt-16 border-t">
+    <div class="mx-auto max-w-6xl overflow-x-auto">
+      <div class="divide-border flex min-w-max divide-x">
+        {
+          tabs.map(({ label, icon }, i) => (
+            <button
+              class={[
+                'flex items-center gap-2 px-8 py-5 text-sm font-medium whitespace-nowrap transition-colors',
+                i === 0
+                  ? 'border-primary bg-card text-card-foreground border-b-2'
+                  : 'bg-background text-muted-foreground hover:bg-card hover:text-foreground',
+              ].join(' ')}>
+              <span>{icon}</span>
+              {label}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <WorkflowDiagram />
+</section>

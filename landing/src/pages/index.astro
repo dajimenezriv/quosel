@@ -4,34 +4,25 @@ import Sun from '../assets/sun.svg';
 import Layout from '../layouts/Layout.astro';
 import ClosingCTA from './closing-cta.astro';
 import FAQ from './faq.astro';
+import Features from './features.astro';
 import Hero from './hero.astro';
 import Pricing from './princing.astro';
 import UseCases from './use-cases.astro';
-import WorkflowDiagram from './workflow-diagram.astro';
 
 const appUrl = 'https://app.quosel.com';
 
 const navLinks = [
   { label: 'Features', href: '#features' },
-  { label: 'How it works', href: '#how' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Use cases', href: '#use-cases' },
+  // { label: 'Testimonials', href: '#testimonials' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Pricing', href: '#pricing' },
-  { label: 'Blog', href: '#blog' },
-];
-
-const tabs = [
-  { label: 'URL Import', icon: '↗' },
-  //  { label: "Business Info", icon: "🏢" },
-  //  { label: "Auto Layout", icon: "⊞" },
-  //  { label: "Review Import", icon: "★" },
-  //  { label: "Mobile Ready", icon: "📱" },
-  //  { label: "White Label", icon: "🏷" },
 ];
 ---
 
 <Layout>
   <!-- Navbar -->
-  <header class="border-border bg-background/80 sticky top-0 z-50 border-b backdrop-blur-sm">
+  <header class="bg-background/80 border-border sticky top-0 z-50 border-b backdrop-blur-sm">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-2">
@@ -70,35 +61,12 @@ const tabs = [
     </nav>
   </header>
 
-  <main class="bg-background">
+  <main>
     <Hero />
-
-    <!-- Feature tabs -->
-    <div class="border-border mt-16 border-t">
-      <div class="mx-auto max-w-6xl overflow-x-auto">
-        <div class="divide-border flex min-w-max divide-x">
-          {
-            tabs.map(({ label, icon }, i) => (
-              <button
-                class={[
-                  'flex items-center gap-2 px-8 py-5 text-sm font-medium whitespace-nowrap transition-colors',
-                  i === 0
-                    ? 'border-primary bg-card text-card-foreground border-b-2'
-                    : 'bg-background text-muted-foreground hover:bg-card hover:text-foreground',
-                ].join(' ')}>
-                <span>{icon}</span>
-                {label}
-              </button>
-            ))
-          }
-        </div>
-      </div>
-    </div>
-
-    <WorkflowDiagram />
+    <Features />
     <UseCases />
-    <Pricing />
     <FAQ />
+    <Pricing />
     <ClosingCTA />
   </main>
 
