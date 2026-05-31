@@ -2,7 +2,7 @@ import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
 import '../App.css';
 import { useAuth } from './auth';
-import { startCheckout, openPortal, isSubscribed } from './billing';
+import { isSubscribed, openPortal, startCheckout } from './billing';
 
 function useBillingReturn(onReturn: () => void) {
   const [banner, setBanner] = useState<'success' | 'cancel' | null>(null);

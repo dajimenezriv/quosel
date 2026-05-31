@@ -1,7 +1,7 @@
-import { type LucideIcon } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
 import { Collapsible } from '@/components/ui/collapsible';
 import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { type LucideIcon } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export interface NavItem {
   title: string;

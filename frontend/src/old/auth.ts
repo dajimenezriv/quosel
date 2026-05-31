@@ -1,6 +1,6 @@
+import { env } from '@/core/env';
 import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
-import { env } from '@/core/env';
 import type { SubscriptionStatus } from './billing';
 
 export const API_URL = env.VITE_API_URL;

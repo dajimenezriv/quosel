@@ -1,5 +1,3 @@
-import { EllipsisVertical, LogOut, CircleUser } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
 import { Logo } from '@/components/logo';
 import {
   DropdownMenu,
@@ -11,6 +9,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { useAuth } from '@/old/auth';
+import { CircleUser, EllipsisVertical, LogOut } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export function NavUser() {
   const { user: user2, logout } = useAuth();

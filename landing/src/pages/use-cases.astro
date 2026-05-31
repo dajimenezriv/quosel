@@ -5,28 +5,28 @@ const appUrl = 'https://app.quosel.com';
 <section id="use-cases" class="bg-background">
   <!-- Label -->
   <div class="py-10 text-center">
-    <p class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Use Cases</p>
-    <p class="mt-1 text-sm text-muted-foreground">Practical ways Quosel delivers value to your business.</p>
+    <p class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">Use Cases</p>
+    <p class="text-muted-foreground mt-1 text-sm">Practical ways Quosel delivers value to your business.</p>
   </div>
 
   <!-- Bordered content box -->
   <div class="mx-auto max-w-5xl">
-    <div class="border-x border-t border-border">
+    <div class="border-border border-x border-t">
       <!-- Split -->
       <div class="grid grid-cols-1 sm:grid-cols-2">
         <!-- LEFT: tab panels -->
-        <div class="border-b border-border sm:border-b-0 sm:border-r">
+        <div class="border-border border-b sm:border-r sm:border-b-0">
           <div id="uc-freelancer" class="uc-panel p-10 sm:p-12">
-            <h2 class="text-3xl font-bold leading-tight tracking-tight text-card-foreground sm:text-4xl">
+            <h2 class="text-card-foreground text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
               See how we help <span class="text-muted-foreground">freelancers</span> land clients, <span class="text-muted-foreground"
                 >every</span
               > week.
             </h2>
-            <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+            <p class="text-muted-foreground mt-6 text-sm leading-relaxed">
               Quosel turns any Google Maps link into a pitch-ready landing page. Show prospects exactly what their site could look like —
               before writing a single line of code. Close deals faster with real deliverables.
             </p>
-            <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+            <a href={appUrl} class="text-primary mt-6 inline-flex items-center gap-1 text-sm font-medium hover:underline">
               Learn more
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -43,15 +43,15 @@ const appUrl = 'https://app.quosel.com';
           </div>
 
           <div id="uc-agency" class="uc-panel hidden p-10 sm:p-12">
-            <h2 class="text-3xl font-bold leading-tight tracking-tight text-card-foreground sm:text-4xl">
+            <h2 class="text-card-foreground text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
               See how <span class="text-muted-foreground">agencies</span> deliver sites for <span class="text-muted-foreground">every</span> client,
               faster.
             </h2>
-            <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+            <p class="text-muted-foreground mt-6 text-sm leading-relaxed">
               Agencies use Quosel to cut production time from days to hours. Auto-import client data, apply your template, and ship —
               without the back-and-forth on assets and manual data gathering.
             </p>
-            <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+            <a href={appUrl} class="text-primary mt-6 inline-flex items-center gap-1 text-sm font-medium hover:underline">
               Learn more
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -68,16 +68,16 @@ const appUrl = 'https://app.quosel.com';
           </div>
 
           <div id="uc-studio" class="uc-panel hidden p-10 sm:p-12">
-            <h2 class="text-3xl font-bold leading-tight tracking-tight text-card-foreground sm:text-4xl">
+            <h2 class="text-card-foreground text-3xl leading-tight font-bold tracking-tight sm:text-4xl">
               See how studios <span class="text-muted-foreground">scale</span> output without adding <span class="text-muted-foreground"
                 >headcount</span
               >.
             </h2>
-            <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+            <p class="text-muted-foreground mt-6 text-sm leading-relaxed">
               Web studios use Quosel to handle the heavy lifting — import, layout, mobile optimization — so their team stays focused on
               craft and the work that actually needs their expertise.
             </p>
-            <a href={appUrl} class="mt-6 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline">
+            <a href={appUrl} class="text-primary mt-6 inline-flex items-center gap-1 text-sm font-medium hover:underline">
               Learn more
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -97,38 +97,38 @@ const appUrl = 'https://app.quosel.com';
         <!-- RIGHT: visual + quote -->
         <div
           class="relative min-h-80 overflow-hidden bg-linear-to-br from-stone-300 via-stone-200 to-amber-100 dark:from-stone-800 dark:via-stone-700 dark:to-stone-900">
-          <div class="absolute -right-12 -top-12 h-56 w-56 rounded-full bg-white/20"></div>
+          <div class="absolute -top-12 -right-12 h-56 w-56 rounded-full bg-white/20"></div>
           <div class="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-white/10"></div>
-          <div class="absolute right-1/3 top-1/3 h-28 w-28 rounded-full bg-white/10"></div>
+          <div class="absolute top-1/3 right-1/3 h-28 w-28 rounded-full bg-white/10"></div>
 
-          <div id="quote-freelancer" class="uc-quote absolute bottom-6 right-6 max-w-65 rounded-xl bg-card p-5 shadow-lg">
-            <p class="text-sm leading-relaxed text-foreground">
+          <div id="quote-freelancer" class="uc-quote bg-card absolute right-6 bottom-6 max-w-65 rounded-xl p-5 shadow-lg">
+            <p class="text-foreground text-sm leading-relaxed">
               "I show a real page during the first call. My close rate doubled in the first month."
             </p>
-            <p class="mt-3 text-xs text-muted-foreground">— Lucas M., Freelance web designer</p>
+            <p class="text-muted-foreground mt-3 text-xs">— Lucas M., Freelance web designer</p>
           </div>
-          <div id="quote-agency" class="uc-quote hidden absolute bottom-6 right-6 max-w-65 rounded-xl bg-card p-5 shadow-lg">
-            <p class="text-sm leading-relaxed text-foreground">
+          <div id="quote-agency" class="uc-quote bg-card absolute right-6 bottom-6 hidden max-w-65 rounded-xl p-5 shadow-lg">
+            <p class="text-foreground text-sm leading-relaxed">
               "We went from 5-day turnarounds to same-day delivery. Clients absolutely love it."
             </p>
-            <p class="mt-3 text-xs text-muted-foreground">— Sarah K., Agency owner</p>
+            <p class="text-muted-foreground mt-3 text-xs">— Sarah K., Agency owner</p>
           </div>
-          <div id="quote-studio" class="uc-quote hidden absolute bottom-6 right-6 max-w-65 rounded-xl bg-card p-5 shadow-lg">
-            <p class="text-sm leading-relaxed text-foreground">
+          <div id="quote-studio" class="uc-quote bg-card absolute right-6 bottom-6 hidden max-w-65 rounded-xl p-5 shadow-lg">
+            <p class="text-foreground text-sm leading-relaxed">
               "Quosel handles the boilerplate so our team can focus on the parts that actually need our skill."
             </p>
-            <p class="mt-3 text-xs text-muted-foreground">— Dan R., Studio director</p>
+            <p class="text-muted-foreground mt-3 text-xs">— Dan R., Studio director</p>
           </div>
         </div>
       </div>
 
       <!-- Tab bar -->
-      <div class="border-t border-border">
-        <div class="flex divide-x divide-border">
+      <div class="border-border border-t">
+        <div class="divide-border flex divide-x">
           <button
-            class="uc-tab uc-tab-active flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-foreground bg-card/60 transition-colors"
+            class="uc-tab uc-tab-active text-foreground bg-card/60 flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium transition-colors"
             data-target="freelancer">
-            <span class="uc-icon shrink-0 text-primary">
+            <span class="uc-icon text-primary shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -146,9 +146,9 @@ const appUrl = 'https://app.quosel.com';
           </button>
 
           <button
-            class="uc-tab flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-muted-foreground transition-colors hover:bg-card/40"
+            class="uc-tab text-muted-foreground hover:bg-card/40 flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium transition-colors"
             data-target="agency">
-            <span class="uc-icon shrink-0 text-muted-foreground">
+            <span class="uc-icon text-muted-foreground shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"
@@ -166,9 +166,9 @@ const appUrl = 'https://app.quosel.com';
           </button>
 
           <button
-            class="uc-tab flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium text-muted-foreground transition-colors hover:bg-card/40"
+            class="uc-tab text-muted-foreground hover:bg-card/40 flex flex-1 items-center justify-center gap-2.5 px-6 py-5 text-sm font-medium transition-colors"
             data-target="studio">
-            <span class="uc-icon shrink-0 text-muted-foreground">
+            <span class="uc-icon text-muted-foreground shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="15"

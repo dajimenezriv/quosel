@@ -1,5 +1,3 @@
-import { MapPin } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { Logo } from '@/components/logo';
 import { NavMain, type NavItem } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -12,6 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface NavGroup {
   label: string;
