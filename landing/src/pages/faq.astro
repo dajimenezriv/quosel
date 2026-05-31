@@ -1,0 +1,116 @@
+<section class="border-t border-border bg-background py-16">
+      <div class="mx-auto max-w-5xl px-6">
+        <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-16">
+          <!-- Product & Features -->
+          <div>
+            <h3 class="text-sm font-semibold text-primary">
+              Product &amp; Features
+            </h3>
+            <div class="mt-5 divide-y divide-border">
+              {
+                [
+                  {
+                    q: "What exactly is Quosel?",
+                    a: "Quosel converts any Google Maps business link into a polished, ready-to-deliver landing page. It auto-imports photos, reviews, hours, and contact info — no manual data entry.",
+                  },
+                  {
+                    q: "Do I need to install any software?",
+                    a: "No installation needed. Quosel is fully web-based — paste a URL in your browser and your page is ready within seconds.",
+                  },
+                  {
+                    q: "How does the Google Maps import work?",
+                    a: "We use the Google Places API to pull all available business data and structure it into a beautiful page automatically.",
+                  },
+                  {
+                    q: "Can I customize the generated pages?",
+                    a: "Yes. After generation you can edit copy, swap photos, adjust colors, and rearrange sections using our simple editor.",
+                  },
+                  {
+                    q: "What file formats can I export?",
+                    a: "Clean HTML/CSS for any host, or publish to a Quosel URL. Custom domains are available on Pro and Agency plans.",
+                  },
+                ].map(({ q, a }, i) => (
+                  <div class="faq-item py-4">
+                    <button class="faq-btn flex w-full items-start justify-between gap-4 text-left">
+                      <span class="text-sm font-medium text-foreground">
+                        {i + 1}. {q}
+                      </span>
+                      <span class="faq-icon mt-0.5 shrink-0 text-base leading-none text-muted-foreground">
+                        +
+                      </span>
+                    </button>
+                    <div class="faq-answer hidden pt-3">
+                      <p class="text-sm leading-relaxed text-muted-foreground">
+                        {a}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Plans & Usage -->
+          <div>
+            <h3 class="text-sm font-semibold text-primary">
+              Plans &amp; Usage
+            </h3>
+            <div class="mt-5 divide-y divide-border">
+              {
+                [
+                  {
+                    q: "Can I switch plans anytime?",
+                    a: "Yes — upgrade or downgrade instantly. Changes take effect immediately and we prorate any billing difference.",
+                  },
+                  {
+                    q: "Do you offer a free trial?",
+                    a: "Your first 3 landing pages are completely free, no credit card required. Try the full import and generation flow before committing.",
+                  },
+                  {
+                    q: "What happens if I reach my page limit?",
+                    a: "On the Starter plan, once you've used your 3 free pages you'll need to upgrade to Pro for unlimited pages. We notify you before you hit the limit.",
+                  },
+                  {
+                    q: "Can multiple team members use one account?",
+                    a: "Pro includes 5 workspaces and Agency includes unlimited workspaces. Each workspace can hold its own client projects and pages.",
+                  },
+                  {
+                    q: "How is my data kept secure?",
+                    a: "All data is encrypted in transit (TLS) and at rest. We only store what's needed to generate your page. See our privacy policy for full details.",
+                  },
+                ].map(({ q, a }, i) => (
+                  <div class="faq-item py-4">
+                    <button class="faq-btn flex w-full items-start justify-between gap-4 text-left">
+                      <span class="text-sm font-medium text-foreground">
+                        {i + 1}. {q}
+                      </span>
+                      <span class="faq-icon mt-0.5 shrink-0 text-base leading-none text-muted-foreground">
+                        +
+                      </span>
+                    </button>
+                    <div class="faq-answer hidden pt-3">
+                      <p class="text-sm leading-relaxed text-muted-foreground">
+                        {a}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.querySelectorAll<HTMLElement>(".faq-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const item = btn.closest<HTMLElement>(".faq-item")!;
+            const answer = item.querySelector<HTMLElement>(".faq-answer")!;
+            const icon = btn.querySelector<HTMLElement>(".faq-icon")!;
+            const isOpen = !answer.classList.contains("hidden");
+            answer.classList.toggle("hidden", isOpen);
+            icon.textContent = isOpen ? "+" : "−";
+          });
+        });
+      </script>
+    </section>
