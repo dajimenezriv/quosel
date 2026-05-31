@@ -1,5 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { cors } from 'hono/cors';
+import { authRouter } from './api/auth/router.ts';
 import { ApiError, ErrorSchema } from './api/errors.ts';
 import { healthRouter } from './api/health/router.ts';
 import { placesRouter } from './api/places/router.ts';
@@ -8,7 +9,6 @@ import { logger } from './core/logger.ts';
 import { jsonResponse } from './core/response.ts';
 import { requireAuth } from './middleware/auth.ts';
 import { requestLogger } from './middleware/logger.ts';
-import { authRouter } from './routes/auth.ts';
 import { billingRouter } from './routes/billing.ts';
 
 export const openApiDoc = {

@@ -1,7 +1,7 @@
 import { google } from '@/auth/google.ts';
 import { Sessions } from '@/infra/postgres/sessions.ts';
 import { Users } from '@/infra/postgres/users.ts';
-import { call, calls, deepMocked } from '@/tests/utils.ts';
+import { call, calls, deepMocked } from '@/tests/utils.helper.test.ts';
 import { decodeIdToken, OAuth2RequestError } from 'arctic';
 import { authRouter } from './router.ts';
 

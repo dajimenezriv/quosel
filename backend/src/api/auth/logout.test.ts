@@ -1,5 +1,5 @@
 import { Sessions } from '@/infra/postgres/sessions.ts';
-import { call, calls } from '@/tests/utils.ts';
+import { call, calls } from '@/tests/utils.helper.test.ts';
 import { authRouter } from './router.ts';
 
 vi.mock(import('@/infra/postgres/sessions.ts'));

@@ -1,4 +1,4 @@
-import { call } from '@/tests/utils.ts';
+import { call } from '@/tests/utils.helper.test.ts';
 import { generateCodeVerifier, generateState } from 'arctic';
 import { google } from '../../auth/google.ts';
 import { authRouter } from './router.ts';
