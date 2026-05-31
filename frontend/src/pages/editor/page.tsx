@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import * as React from 'react';
 import { BarbershopTemplate } from './templates/barbershop';
 
 export default function Page() {

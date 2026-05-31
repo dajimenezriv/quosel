@@ -1,7 +1,7 @@
-import { Scissors, Clock, MapPin, Phone, Mail, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { Clock, Mail, MapPin, Phone, Scissors, Star } from 'lucide-react';
 
 const services = [
   { name: 'Classic Haircut', price: '$25', duration: '30 min' },

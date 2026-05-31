@@ -1,10 +1,10 @@
+import { Button } from '@/components/ui/button';
+import { useSidebarStore } from '@/core/sidebar/use-sidebar-store';
+import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { PanelLeftIcon } from 'lucide-react';
 import * as React from 'react';
-import { Button } from '@/components/ui/button';
-import { useSidebarStore } from '@/core/sidebar/use-sidebar-store';
-import { cn } from '@/lib/utils';
 
 const SIDEBAR_WIDTH = '16rem';
 const SIDEBAR_WIDTH_ICON = '3rem';

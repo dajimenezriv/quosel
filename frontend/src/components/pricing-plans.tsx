@@ -1,8 +1,8 @@
-import { Sparkles, Check } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { Check, Sparkles } from 'lucide-react';
 
 export interface PricingPlan {
   id: string;

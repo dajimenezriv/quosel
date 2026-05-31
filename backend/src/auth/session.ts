@@ -1,5 +1,5 @@
-import { and, eq, gt } from 'drizzle-orm';
 import { randomBytes } from 'node:crypto';
+import { and, eq, gt } from 'drizzle-orm';
 import { db } from '../infra/postgres/client.ts';
 import { sessions, users } from '../infra/postgres/schema.ts';
 

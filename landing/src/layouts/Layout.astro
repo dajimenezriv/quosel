@@ -4,18 +4,26 @@ import '../styles/global.css';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Quosel — Instant landing pages from a Google Maps link</title>
-		<meta
-			name="description"
-			content="Paste a Google Maps URL, get a polished landing page for that business in minutes. Built for freelancers and agencies."
-		/>
-	</head>
-	<body class="bg-white text-slate-900 antialiased">
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Quosel — Instant landing pages from a Google Maps link</title>
+    <meta
+      name="description"
+      content="Paste a Google Maps URL, get a polished landing page for that business in minutes. Built for freelancers and agencies."
+    />
+    <script is:inline>
+      // Prevent flash of wrong theme — must run before body renders
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (!stored && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-background text-foreground flex flex-col items-center antialiased">
+    <slot />
+  </body>
 </html>

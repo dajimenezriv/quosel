@@ -1,0 +1,265 @@
+<div class="flex w-full justify-center py-8" style="background-image: radial-gradient(circle, var(--diagram-dot) 1.2px, transparent 1.2px); background-size: 28px 28px;">
+  <div class="flex flex-col items-center md:flex-row md:items-center">
+
+    <!-- Input card -->
+    <div class="border-border bg-card w-64 overflow-hidden rounded-xl border shadow-sm">
+      <div class="px-3 pt-3">
+        <span
+          class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:bg-blue-950 dark:text-blue-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg
+          >
+          Input
+        </span>
+      </div>
+      <div class="flex items-start justify-between px-3 pt-2 pb-1">
+        <div>
+          <div class="text-foreground flex items-center gap-1.5 text-sm font-semibold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-muted-foreground"
+              ><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"
+              ></polyline></svg
+            >
+            Google Maps URL
+          </div>
+          <p class="text-muted-foreground mt-0.5 text-xs leading-relaxed">Paste any business link to auto-import all data.</p>
+        </div>
+      </div>
+      <div class="border-border bg-muted border-t px-3 py-3">
+        <p class="mb-2 text-xs font-medium text-amber-500">Fetching data...</p>
+        <div class="bg-secondary mb-3 h-1.5 w-full overflow-hidden rounded-full">
+          <div class="h-full rounded-full bg-amber-400" style="width:62%;"></div>
+        </div>
+        <div class="space-y-1.5">
+          <div class="text-secondary-foreground flex items-center gap-2 text-xs">
+            <span
+              class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-green-100 text-[9px] font-bold text-green-600 dark:bg-green-950 dark:text-green-300"
+              >G</span
+            >
+            Business details
+          </div>
+          <div class="text-secondary-foreground flex items-center gap-2 text-xs">
+            <span
+              class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-amber-100 text-[9px] text-amber-500 dark:bg-amber-950 dark:text-amber-300"
+              >★</span
+            >
+            Reviews &amp; ratings
+          </div>
+          <div class="text-secondary-foreground flex items-center gap-2 text-xs">
+            <span
+              class="flex h-4 w-4 shrink-0 items-center justify-center rounded-sm bg-blue-100 text-[9px] text-blue-500 dark:bg-blue-950 dark:text-blue-300"
+              >▣</span
+            >
+            Place photos
+          </div>
+        </div>
+      </div>
+      <div class="border-border text-muted-foreground flex items-center gap-1 border-t px-3 py-2 text-xs">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg
+        >
+        0.0 sec
+      </div>
+    </div>
+
+    <!-- Connector 1 -->
+    <div class="flex flex-col items-center my-1 md:hidden">
+      <svg width="16" height="40" viewBox="0 0 16 40" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8" y1="0" x2="8" y2="32" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M4,32 L8,40 L12,32 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+    <div class="hidden md:flex items-center mx-2">
+      <svg width="40" height="16" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="32" y2="8" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M32,4 L40,8 L32,12 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+
+    <!-- Action card -->
+    <div class="border-border bg-card w-72 overflow-hidden rounded-xl border shadow-sm">
+      <div class="px-3 pt-3">
+        <span
+          class="inline-flex items-center gap-1 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-600 dark:bg-orange-950 dark:text-orange-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path
+              d="M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg
+          >
+          Action
+        </span>
+      </div>
+      <div class="flex items-start justify-between px-3 pt-2 pb-5">
+        <div>
+          <div class="text-foreground flex items-center gap-1.5 text-sm font-semibold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-muted-foreground"
+              ><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline><polyline points="19 5 12 12 5 5"
+              ></polyline></svg
+            >
+            Page Generation
+          </div>
+          <p class="text-muted-foreground mt-0.5 text-xs leading-relaxed">
+            AI builds a complete, mobile-ready page from the imported business data.
+          </p>
+        </div>
+      </div>
+      <div class="border-border flex items-center justify-between border-t px-3 py-2">
+        <span class="text-muted-foreground flex items-center gap-1 text-xs">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg
+          >
+          1.2 sec
+        </span>
+        <span class="border-primary/50 text-primary inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="9"
+            height="9"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path><path
+              d="M4.93 4.93a10 10 0 0 0 0 14.14"></path></svg
+          >
+          Quosel AI
+        </span>
+      </div>
+    </div>
+
+    <!-- Connector 2 -->
+    <div class="flex flex-col items-center my-1 md:hidden">
+      <svg width="16" height="40" viewBox="0 0 16 40" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8" y1="0" x2="8" y2="32" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M4,32 L8,40 L12,32 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+    <div class="hidden md:flex items-center mx-2">
+      <svg width="40" height="16" viewBox="0 0 40 16" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="8" x2="32" y2="8" style="stroke: var(--diagram-arrow)" stroke-width="1.5"/>
+        <path d="M32,4 L40,8 L32,12 Z" style="fill: var(--diagram-arrow)"/>
+      </svg>
+    </div>
+
+    <!-- Output card -->
+    <div class="border-border bg-card w-64 overflow-hidden rounded-xl border shadow-sm">
+      <div class="px-3 pt-3">
+        <span
+          class="inline-flex items-center gap-1 rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-600 dark:bg-green-950 dark:text-green-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg
+          >
+          Output
+        </span>
+      </div>
+      <div class="flex items-start justify-between px-3 pt-2 pb-1">
+        <div>
+          <div class="text-foreground flex items-center gap-1.5 text-sm font-semibold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-muted-foreground"
+              ><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"
+              ></polyline></svg
+            >
+            Landing Page
+          </div>
+          <p class="text-muted-foreground mt-0.5 text-xs leading-relaxed">Your polished page is ready to review and deliver.</p>
+        </div>
+      </div>
+      <div class="border-border bg-muted border-t px-3 py-3">
+        <p class="text-muted-foreground mb-1.5 text-xs font-semibold">Preview</p>
+        <p class="text-muted-foreground text-xs leading-relaxed">
+          Business photos, reviews, hours, map, and contact form are all beautifully laid out.
+        </p>
+        <div class="text-secondary-foreground mt-3 flex items-center gap-2 text-xs">
+          <span class="bg-secondary text-muted-foreground flex h-4 w-4 shrink-0 items-center justify-center rounded-sm text-[9px]">▤</span>
+          page.html exported
+        </div>
+      </div>
+      <div class="border-border text-muted-foreground flex items-center gap-1 border-t px-3 py-2 text-xs">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="10"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg
+        >
+        0.0 sec
+      </div>
+    </div>
+
+  </div>
+</div>

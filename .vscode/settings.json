@@ -2,9 +2,6 @@
   "[env]": {
     "editor.defaultFormatter": "IronGeek.vscode-env"
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "css.customData": [".vscode/tailwind.json"],
   "editor.formatOnSave": true,
   "editor.guides.indentation": false,

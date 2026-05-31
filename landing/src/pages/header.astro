@@ -1,0 +1,48 @@
+---
+import Moon from '../assets/moon.svg';
+import Sun from '../assets/sun.svg';
+
+const appUrl = 'https://app.quosel.com';
+
+const navLinks = [
+  { label: 'Features', href: '#features' },
+  { label: 'Use cases', href: '#use-cases' },
+  // { label: 'Testimonials', href: '#testimonials' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Pricing', href: '#pricing' },
+];
+---
+
+<header class="bg-background/80 border-border sticky top-0 z-50 w-full border-b backdrop-blur-sm">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2">
+      <div class="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold">Q</div>
+      <span class="text-card-foreground text-base font-semibold tracking-tight">Quosel</span>
+    </a>
+
+    <div class="text-muted-foreground hidden items-center gap-7 text-sm md:flex">
+      {
+        navLinks.map(({ label, href }) => (
+          <a href={href} class="hover:text-foreground transition-colors">
+            {label}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button
+        id="theme-toggle"
+        class="border-border bg-card text-muted-foreground hover:bg-muted flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border transition-colors">
+        <Moon />
+        <Sun />
+      </button>
+      <a
+        href={appUrl}
+        class="border-border bg-card text-foreground hover:bg-muted rounded-lg border px-4 py-2 text-sm font-medium transition-colors">
+        Sign up
+      </a>
+    </div>
+  </nav>
+</header>

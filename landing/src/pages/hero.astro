@@ -1,0 +1,60 @@
+---
+const appUrl = 'https://app.quosel.com';
+---
+
+<section class="mx-auto max-w-4xl px-6 py-20 text-center">
+  <!-- Badge -->
+  <div class="bg-muted mb-8 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm">
+    <span class="bg-primary text-primary-foreground flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold"> 🔥 New </span>
+    <span class="text-secondary-foreground">Introducing AI-powered pages</span>
+  </div>
+
+  <!-- Heading -->
+  <h1 class="text-card-foreground mx-auto max-w-3xl text-5xl leading-tight font-bold tracking-tight sm:text-6xl">
+    Turn any Google Maps link into a ready-to-ship landing page
+  </h1>
+
+  <!-- Subtext -->
+  <p class="text-muted-foreground mx-auto mt-6 max-w-2xl text-base sm:text-lg">
+    Paste a URL, get a polished site with photos, reviews, and contact info — auto-imported and ready to deliver the same day.
+  </p>
+
+  <!-- CTAs -->
+  <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+    <a
+      href={appUrl}
+      class="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-base font-semibold shadow-sm transition-colors">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M7 17L17 7M17 7H7M17 7v10"></path>
+      </svg>
+      Get Started
+    </a>
+    <a
+      href="#pricing"
+      class="border-border bg-card text-foreground hover:bg-muted inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-base font-semibold shadow-sm transition-colors">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="12" y1="1" x2="12" y2="23"></line>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+      </svg>
+      View Pricing
+    </a>
+  </div>
+</section>

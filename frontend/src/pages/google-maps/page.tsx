@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAddGooglePlace } from '@/api/places/use-add-google-place';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Page() {
   const { mutate: addGooglePlace, isPending } = useAddGooglePlace();
