@@ -1,18 +1,15 @@
 ---
+import SectionLabel from '../components/section-label.astro';
+
 const appUrl = 'https://app.quosel.com';
 ---
 
 <!-- Pricing -->
-<section id="pricing" class="bg-background py-16">
-  <div class="mx-auto max-w-5xl px-6">
-    <!-- Label above box -->
-    <div class="mb-8 text-center">
-      <p class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">Pricing</p>
-      <p class="text-muted-foreground mt-1 text-sm">Flexible plans tailored to scale with your clients.</p>
-    </div>
+<section id="pricing" class="w-full">
+    <SectionLabel title="Pricing" description="Flexible plans tailored to scale with your clients." />
 
     <!-- Main bordered box -->
-    <div class="border-border bg-card overflow-hidden rounded-2xl border">
+    <div class="bg-card">
       <!-- Heading + toggle -->
       <div class="px-10 py-12 text-center">
         <h2 class="text-card-foreground text-3xl font-bold tracking-tight sm:text-4xl">Plans that Scale with Your Pages</h2>
@@ -157,7 +154,6 @@ const appUrl = 'https://app.quosel.com';
         </div>
       </div>
     </div>
-  </div>
 
   <script>
     const btnMonthly = document.getElementById('btn-monthly')!;
