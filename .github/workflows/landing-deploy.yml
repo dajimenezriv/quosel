@@ -5,11 +5,10 @@ on:
   push:
     branches: [main]
     paths: ["landing/**"]
-  # pull_request:
-  #   paths: ["landing/**"]
+  pull_request:
 
 concurrency:
-  group: deploy-landing-${{ github.ref }}
+  group: landing-deploy-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -36,7 +35,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: landing/pnpm-lock.yaml
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
       - run: pnpm build
 
       - name: Deploy to Cloudflare Pages
