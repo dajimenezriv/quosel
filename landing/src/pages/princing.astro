@@ -6,154 +6,111 @@ const appUrl = 'https://app.quosel.com';
 
 <!-- Pricing -->
 <section id="pricing" class="w-full">
-    <SectionLabel title="Pricing" description="Flexible plans tailored to scale with your clients." />
+  <SectionLabel title="Pricing" description="Flexible plans tailored to scale with your clients." />
 
-    <!-- Main bordered box -->
-    <div class="bg-card">
-      <!-- Heading + toggle -->
-      <div class="px-10 py-12 text-center">
-        <h2 class="text-card-foreground text-3xl font-bold tracking-tight sm:text-4xl">Plans that Scale with Your Pages</h2>
-        <p class="text-muted-foreground mx-auto mt-3 max-w-xl text-sm">
-          Find the perfect balance of features and scalability for your workflow,<br class="hidden sm:block" />
-          designed to help you work smarter and grow effortlessly.
-        </p>
+  <!-- Main bordered box -->
+  <div class="bg-card">
+    <!-- Heading + toggle -->
+    <div class="px-10 py-12 text-center">
+      <h2 class="text-card-foreground text-3xl font-bold tracking-tight sm:text-4xl">Plans that Scale with Your Pages</h2>
+      <p class="text-muted-foreground mx-auto mt-3 max-w-xl text-sm">
+        Find the perfect balance of features and scalability for your workflow,<br class="hidden sm:block" />
+        designed to help you work smarter and grow effortlessly.
+      </p>
 
-        <!-- Monthly / Yearly toggle -->
-        <div class="border-border bg-muted mt-7 inline-flex items-center rounded-full border p-1">
-          <button
-            id="btn-monthly"
-            class="bg-card text-card-foreground rounded-full px-5 py-1.5 text-sm font-medium shadow-sm transition-all">
-            Monthly
-          </button>
-          <button
-            id="btn-yearly"
-            class="text-muted-foreground flex items-center gap-2 rounded-full px-5 py-1.5 text-sm font-medium transition-all">
-            Yearly
-            <span class="bg-foreground text-background rounded-full px-2 py-0.5 text-xs">Save 35%</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Three plan columns -->
-      <div class="divide-border border-border grid grid-cols-1 divide-y border-t sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-        <!-- Starter -->
-        <div class="flex flex-col">
-          <div class="border-border border-b p-8">
-            <h3 class="text-card-foreground text-xl font-bold">Starter</h3>
-            <p class="text-muted-foreground mt-1 text-sm">For freelancers trying out Quosel</p>
-            <div class="mt-5 flex items-start gap-0.5">
-              <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
-              <span class="text-card-foreground text-5xl font-bold tracking-tight">0</span>
-              <span class="text-muted-foreground mt-3 text-sm">/month</span>
-            </div>
-            <a
-              href={appUrl}
-              class="border-border bg-secondary text-secondary-foreground hover:bg-muted mt-6 block w-full rounded-lg border px-4 py-2.5 text-center text-sm font-medium transition-colors">
-              Get started free
-            </a>
-          </div>
-          <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
-            {
-              [
-                '3 landing pages',
-                'Google Maps auto-import',
-                'Standard templates',
-                'Community support',
-                '1 workspace',
-                'Quosel-hosted domain',
-              ].map((f) => (
-                <li class="flex items-start gap-3">
-                  <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
-                  {f}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <!-- Pro -->
-        <div class="flex flex-col">
-          <div class="border-border border-b p-8">
-            <h3 class="text-card-foreground text-xl font-bold">Pro</h3>
-            <p class="text-muted-foreground mt-1 text-sm">For freelancers delivering client sites</p>
-            <div data-price="monthly" class="mt-5 flex items-start gap-0.5">
-              <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
-              <span class="text-card-foreground text-5xl font-bold tracking-tight">5</span>
-              <span class="text-muted-foreground mt-3 text-sm">/month</span>
-            </div>
-            <div data-price="yearly" class="mt-5 flex hidden items-start gap-0.5">
-              <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
-              <span class="text-card-foreground text-5xl font-bold tracking-tight">3</span>
-              <span class="text-muted-foreground mt-3 text-sm">/month</span>
-            </div>
-            <a
-              href={appUrl}
-              class="bg-primary text-primary-foreground hover:bg-primary/90 mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-sm font-semibold transition-colors">
-              Purchase plan
-            </a>
-          </div>
-          <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
-            {
-              [
-                'Unlimited landing pages',
-                'Google Maps auto-import',
-                'All templates + AI copy',
-                'Priority email support',
-                '5 client workspaces',
-                'Custom domain',
-                'Export HTML',
-              ].map((f) => (
-                <li class="flex items-start gap-3">
-                  <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
-                  {f}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <!-- Agency -->
-        <div class="flex flex-col">
-          <div class="border-border border-b p-8">
-            <h3 class="text-card-foreground text-xl font-bold">Agency</h3>
-            <p class="text-muted-foreground mt-1 text-sm">For agencies needing scale &amp; white-label</p>
-            <div data-price="monthly" class="mt-5 flex items-start gap-0.5">
-              <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
-              <span class="text-card-foreground text-5xl font-bold tracking-tight">15</span>
-              <span class="text-muted-foreground mt-3 text-sm">/month</span>
-            </div>
-            <div data-price="yearly" class="mt-5 flex hidden items-start gap-0.5">
-              <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
-              <span class="text-card-foreground text-5xl font-bold tracking-tight">10</span>
-              <span class="text-muted-foreground mt-3 text-sm">/month</span>
-            </div>
-            <a
-              href={appUrl}
-              class="border-border bg-secondary text-secondary-foreground hover:bg-muted mt-6 block w-full rounded-lg border px-4 py-2.5 text-center text-sm font-medium transition-colors">
-              Purchase plan
-            </a>
-          </div>
-          <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
-            {
-              [
-                'Unlimited landing pages',
-                'Everything in Pro',
-                'White-label branding',
-                'Dedicated success manager',
-                'Unlimited client workspaces',
-                'Advanced analytics',
-                'Advanced security & compliance',
-              ].map((f) => (
-                <li class="flex items-start gap-3">
-                  <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
-                  {f}
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+      <!-- Monthly / Yearly toggle -->
+      <div class="border-border bg-muted mt-7 inline-flex items-center rounded-full border p-1">
+        <button id="btn-monthly" class="bg-card text-card-foreground rounded-full px-5 py-1.5 text-sm font-medium shadow-sm transition-all">
+          Monthly
+        </button>
+        <button
+          id="btn-yearly"
+          class="text-muted-foreground flex items-center gap-2 rounded-full px-5 py-1.5 text-sm font-medium transition-all">
+          Yearly
+          <span class="bg-foreground text-background rounded-full px-2 py-0.5 text-xs">Save 35%</span>
+        </button>
       </div>
     </div>
+
+    <!-- Three plan columns -->
+    <div class="divide-border border-border grid grid-cols-1 divide-y border-t sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+      <!-- Starter -->
+      <div class="flex flex-col">
+        <div class="border-border border-b p-8">
+          <h3 class="text-card-foreground text-xl font-bold">Starter</h3>
+          <p class="text-muted-foreground mt-1 text-sm">For freelancers trying out Quosel</p>
+          <div class="mt-5 flex items-start gap-0.5">
+            <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
+            <span class="text-card-foreground text-5xl font-bold tracking-tight">0</span>
+            <span class="text-muted-foreground mt-3 text-sm">/month</span>
+          </div>
+          <a
+            href={appUrl}
+            class="border-border bg-secondary text-secondary-foreground hover:bg-muted mt-6 block w-full rounded-lg border px-4 py-2.5 text-center text-sm font-medium transition-colors">
+            Get started free
+          </a>
+        </div>
+        <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
+          {
+            [
+              '3 landing pages',
+              'Google Maps auto-import',
+              'Standard templates',
+              'Community support',
+              '1 workspace',
+              'Quosel-hosted domain',
+            ].map((f) => (
+              <li class="flex items-start gap-3">
+                <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
+                {f}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Pro -->
+      <div class="flex flex-col">
+        <div class="border-border border-b p-8">
+          <h3 class="text-card-foreground text-xl font-bold">Pro</h3>
+          <p class="text-muted-foreground mt-1 text-sm">For freelancers delivering client sites</p>
+          <div data-price="monthly" class="mt-5 flex items-start gap-0.5">
+            <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
+            <span class="text-card-foreground text-5xl font-bold tracking-tight">5</span>
+            <span class="text-muted-foreground mt-3 text-sm">/month</span>
+          </div>
+          <div data-price="yearly" class="mt-5 flex hidden items-start gap-0.5">
+            <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
+            <span class="text-card-foreground text-5xl font-bold tracking-tight">3</span>
+            <span class="text-muted-foreground mt-3 text-sm">/month</span>
+          </div>
+          <a
+            href={appUrl}
+            class="bg-primary text-primary-foreground hover:bg-primary/90 mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-sm font-semibold transition-colors">
+            Purchase plan
+          </a>
+        </div>
+        <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
+          {
+            [
+              'Unlimited landing pages',
+              'Google Maps auto-import',
+              'All templates + AI copy',
+              'Priority email support',
+              '5 client workspaces',
+              'Custom domain',
+              'Export HTML',
+            ].map((f) => (
+              <li class="flex items-start gap-3">
+                <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
+                {f}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <script>
     const btnMonthly = document.getElementById('btn-monthly')!;
