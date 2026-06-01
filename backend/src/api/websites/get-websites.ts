@@ -1,6 +1,6 @@
 import { jsonResponse } from '@/core/api/json-response.ts';
+import type { AuthVariables } from '@/core/api/middleware/auth.ts';
 import { Websites } from '@/infra/postgres/websites.ts';
-import type { AuthVariables } from '@/middleware/auth.ts';
 import { createRoute, type RouteHandler } from '@hono/zod-openapi';
 import z from 'zod';
 

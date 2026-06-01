@@ -1,9 +1,9 @@
 import { serve } from '@hono/node-server';
 import { app } from './app.ts';
+import { requireAuth } from './core/api/middleware/auth.ts';
+import { requestLogger } from './core/api/middleware/logger.ts';
 import { env } from './core/env.ts';
 import { logger } from './core/logger.ts';
-import { requireAuth } from './middleware/auth.ts';
-import { requestLogger } from './middleware/logger.ts';
 
 app.use('*', requestLogger);
 

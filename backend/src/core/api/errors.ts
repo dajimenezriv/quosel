@@ -12,4 +12,4 @@ export class ApiError extends Error {
   }
 }
 
-export const ErrorSchema = z.object({ error: z.string() }).openapi('PlacesError');
+export const ErrorSchema = z.object({ error: z.string() }).openapi('Error');
