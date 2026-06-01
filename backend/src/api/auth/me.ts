@@ -1,8 +1,7 @@
 import { Sessions } from '@/infra/postgres/sessions.ts';
-import { createRoute, z } from '@hono/zod-openapi';
-import type { Context } from 'hono';
+import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { getCookie } from 'hono/cookie';
-import { jsonResponse } from '../../core/response.ts';
+import { jsonResponse } from '../../core/api/json-response.ts';
 
 const UserSchema = z
   .object({
@@ -28,7 +27,7 @@ export const meRoute = createRoute({
   },
 });
 
-export async function me(c: Context) {
+export const me: RouteHandler<typeof meRoute> = async (c) => {
   const sessionId = getCookie(c, 'session');
   if (!sessionId) return jsonResponse(c, MeResponseSchema, { user: null }, 200);
 
@@ -51,4 +50,4 @@ export async function me(c: Context) {
     },
     200,
   );
-}
+};

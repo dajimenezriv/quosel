@@ -1,7 +1,9 @@
+import { jsonResponse } from '@/core/api/json-response.ts';
+import { env } from '@/core/env.ts';
+import { Places, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/places.ts';
+import { createRoute, type RouteHandler } from '@hono/zod-openapi';
 import z from 'zod';
-import { env } from '../../core/env.ts';
-import { Places, type PlaceInsert, type ReviewInsert } from '../../infra/postgres/places.ts';
-import { ApiError } from '../errors.ts';
+import { ApiError, ErrorSchema } from '../errors.ts';
 
 /**
  * Place IDs uniquely identify a place in the Google Places database and on Google Maps. Examples:
@@ -20,7 +22,33 @@ import { ApiError } from '../errors.ts';
  * Sources: https://developers.google.com/maps/documentation/places/web-service/place-id
  */
 
-export async function addGooglePlace(googlePlaceId: string) {
+const PlaceSchema = z.object({ placeId: z.string() }).openapi('Place');
+
+export const addGooglePlaceRoute = createRoute({
+  method: 'post',
+  path: '/add-google-place',
+  request: {
+    query: z.object({
+      googlePlaceId: z.string().openapi({
+        example: 'ChIJRWnYS1BHYA0RK5rHEosqXcQ',
+      }),
+    }),
+  },
+  responses: {
+    200: {
+      content: { 'application/json': { schema: PlaceSchema } },
+      description: 'Place details',
+    },
+    500: {
+      content: { 'application/json': { schema: ErrorSchema } },
+      description: 'Error',
+    },
+  },
+});
+
+export const addGooglePlace: RouteHandler<typeof addGooglePlaceRoute> = async (c) => {
+  const { googlePlaceId } = c.req.valid('query');
+
   const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(googlePlaceId)}`, {
     headers: {
       'X-Goog-Api-Key': env.GOOGLE_PLACES_API_KEY,
@@ -66,10 +94,8 @@ export async function addGooglePlace(googlePlaceId: string) {
 
   const placeId = await Places.addGooglePlace(place, reviews);
 
-  return {
-    placeId,
-  };
-}
+  return jsonResponse(c, PlaceSchema, { placeId }, 200);
+};
 
 const schema = z.object({
   id: z.string(),

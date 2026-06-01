@@ -1,6 +1,5 @@
 import { Sessions } from '@/infra/postgres/sessions.ts';
-import { createRoute } from '@hono/zod-openapi';
-import type { Context } from 'hono';
+import { createRoute, type RouteHandler } from '@hono/zod-openapi';
 import { deleteCookie, getCookie } from 'hono/cookie';
 
 export const logoutRoute = createRoute({
@@ -13,9 +12,9 @@ export const logoutRoute = createRoute({
   },
 });
 
-export async function logout(c: Context) {
+export const logout: RouteHandler<typeof logoutRoute> = async (c) => {
   const sessionId = getCookie(c, 'session');
   if (sessionId) await Sessions.deleteById(sessionId);
   deleteCookie(c, 'session', { path: '/' });
   return c.body(null, 204);
-}
+};

@@ -1,7 +1,27 @@
 import { serve } from '@hono/node-server';
+import { cors } from 'hono/cors';
 import { app } from './app.ts';
 import { env } from './core/env.ts';
 import { logger } from './core/logger.ts';
+import { requireAuth } from './middleware/auth.ts';
+import { requestLogger } from './middleware/logger.ts';
+
+app.use('*', requestLogger);
+
+app.use(
+  '*',
+  cors({
+    origin: env.FRONTEND_URL,
+    credentials: true,
+  }),
+);
+
+app.use('/places/*', requireAuth);
+
+if (env.NODE_ENV === 'development') {
+  const { swaggerUI } = await import('@hono/swagger-ui');
+  app.get('/docs', swaggerUI({ url: '/openapi.json' }));
+}
 
 serve({ fetch: app.fetch, port: env.PORT }, (info) => {
   logger.info('Server listening', { address: info.address, port: info.port });

@@ -1,24 +1,49 @@
+import { app } from '@/app.ts';
+import { expectError, expectRes } from '@/tests/utils.helper.test.ts';
 import { Places } from '../../infra/postgres/places.ts';
-import { addGooglePlace } from './add-google-place.ts';
+
+vi.mock(import('@/core/env.ts'));
+vi.mock(import('@/infra/postgres/places.ts'));
+
+const VALID_URL = '/places/add-google-place?googlePlaceId=ChIJRWnYS1BHYA0RK5rHEosqXcQ';
 
 describe('add-google-place', () => {
   const fetchMock = vi.spyOn(globalThis, 'fetch');
-  const addGooglePlaceMock = vi.spyOn(Places, 'addGooglePlace');
 
   beforeEach(() => {
-    addGooglePlaceMock.mockResolvedValue('placeId');
+    vi.mocked(Places.addGooglePlace).mockResolvedValue('placeId');
   });
 
-  it('should parse the places detail response', async () => {
+  it('should return 400 if googlePlaceId is missing', async () => {
+    // When
+    const res = await app.request('/places/add-google-place', { method: 'POST' });
+    // Then
+    await expectError(res, 400, 'Validation error: Invalid input: expected string, received undefined at "googlePlaceId"');
+  });
+
+  it('should return 500 if Google API returns an error', async () => {
+    // Given
+    fetchMock.mockResolvedValue({
+      ok: false,
+      status: 503,
+      text: () => Promise.resolve('Service Unavailable'),
+    } as Response);
+    // When
+    const res = await app.request(VALID_URL, { method: 'POST' });
+    // Then
+    await expectError(res, 500, 'Cannot obtain place details from Google Maps');
+  });
+
+  it('should return 200 and the place id on success', async () => {
     // Given
     fetchMock.mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mock),
     } as Response);
     // When
-    const res = await addGooglePlace('ChIJRWnYS1BHYA0RK5rHEosqXcQ');
+    const res = await app.request(VALID_URL, { method: 'POST' });
     // Then
-    expect(res).toStrictEqual({ placeId: 'placeId' });
+    await expectRes(res, 200, { placeId: 'placeId' });
   });
 });
 
