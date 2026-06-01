@@ -22,7 +22,7 @@ export function call(object: any) {
   return expect(calls[0]);
 }
 
-export async function expectRes(res: Response, code: number, json: object) {
+export async function expectJson(res: Response, code: number, json: object) {
   expect(res.status).toBe(code);
   expect(await res.json()).toStrictEqual(json);
 }

@@ -18,7 +18,7 @@ const MeResponseSchema = z.object({ user: UserSchema.nullable() }).openapi('MeRe
 
 export const meRoute = createRoute({
   method: 'get',
-  path: '/auth/me',
+  path: '/me',
   responses: {
     200: {
       content: { 'application/json': { schema: MeResponseSchema } },

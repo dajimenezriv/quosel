@@ -6,7 +6,7 @@ import { me, meRoute } from './me.ts';
 
 export const authRouter = createRouter();
 
-authRouter.get('/auth/google', googleLogin);
-authRouter.get('/auth/google/callback', googleCallback);
+authRouter.get('/google', googleLogin);
+authRouter.get('/google/callback', googleCallback);
 authRouter.openapi(meRoute, me);
 authRouter.openapi(logoutRoute, logout);

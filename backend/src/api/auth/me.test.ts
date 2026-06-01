@@ -1,6 +1,6 @@
+import { app } from '@/app.ts';
 import { Sessions } from '@/infra/postgres/sessions.ts';
-import { deepMocked } from '@/tests/utils.helper.test.ts';
-import { authRouter } from './router.ts';
+import { deepMocked, expectJson } from '@/tests/utils.helper.test.ts';
 
 vi.mock(import('@/infra/postgres/sessions.ts'));
 
@@ -9,20 +9,18 @@ describe('me', () => {
 
   it('should return null if no session cookie', async () => {
     // When
-    const res = await authRouter.request('/auth/me');
+    const res = await app.request('/auth/me');
     // Then
-    expect(res.status).toBe(200);
-    expect(await res.json()).toStrictEqual({ user: null });
+    await expectJson(res, 200, { user: null });
   });
 
   it('should return null if session not found in db', async () => {
     // Given
     getSessionByIdMock.mockResolvedValue(undefined);
     // When
-    const res = await authRouter.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
+    const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
-    expect(res.status).toBe(200);
-    expect(await res.json()).toStrictEqual({ user: null });
+    await expectJson(res, 200, { user: null });
   });
 
   it('should return user if session is valid', async () => {
@@ -37,10 +35,9 @@ describe('me', () => {
     };
     getSessionByIdMock.mockResolvedValue({ user });
     // When
-    const res = await authRouter.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
+    const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
-    expect(res.status).toBe(200);
-    expect(await res.json()).toStrictEqual({
+    await expectJson(res, 200, {
       user: {
         ...user,
         currentPeriodEnd: '2026-06-01T00:00:00.000Z',
@@ -60,9 +57,8 @@ describe('me', () => {
     };
     getSessionByIdMock.mockResolvedValue({ user });
     // When
-    const res = await authRouter.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
+    const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
-    expect(res.status).toBe(200);
-    expect(await res.json()).toStrictEqual({ user });
+    await expectJson(res, 200, { user });
   });
 });

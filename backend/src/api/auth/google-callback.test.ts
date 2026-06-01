@@ -1,9 +1,9 @@
+import { app } from '@/app.ts';
 import { google } from '@/auth/google.ts';
 import { Sessions } from '@/infra/postgres/sessions.ts';
 import { Users } from '@/infra/postgres/users.ts';
-import { call, calls, deepMocked } from '@/tests/utils.helper.test.ts';
+import { call, calls, deepMocked, expectError } from '@/tests/utils.helper.test.ts';
 import { decodeIdToken, OAuth2RequestError } from 'arctic';
-import { authRouter } from './router.ts';
 
 vi.mock(import('@/auth/google.ts'));
 vi.mock(import('@/infra/postgres/users.ts'));
@@ -33,78 +33,72 @@ describe('google-callback', () => {
 
   it('should return 400 if code is missing', async () => {
     // When
-    const res = await authRouter.request('/auth/google/callback?state=mockState', {
+    const res = await app.request('/auth/google/callback?state=mockState', {
       headers: { Cookie: VALID_COOKIES },
     });
     // Then
-    expect(res.status).toBe(400);
-    expect(await res.text()).toBe('Invalid OAuth callback');
+    await expectError(res, 400, 'Invalid OAuth callback');
   });
 
   it('should return 400 if state is missing', async () => {
     // When
-    const res = await authRouter.request('/auth/google/callback?code=mockCode', {
+    const res = await app.request('/auth/google/callback?code=mockCode', {
       headers: { Cookie: VALID_COOKIES },
     });
     // Then
-    expect(res.status).toBe(400);
-    expect(await res.text()).toBe('Invalid OAuth callback');
+    await expectError(res, 400, 'Invalid OAuth callback');
   });
 
   it('should return 400 if state cookie is missing', async () => {
     // When
-    const res = await authRouter.request(VALID_QUERY, {
+    const res = await app.request(VALID_QUERY, {
       headers: { Cookie: 'google_verifier=mockVerifier' },
     });
     // Then
-    expect(res.status).toBe(400);
-    expect(await res.text()).toBe('Invalid OAuth callback');
+    await expectError(res, 400, 'Invalid OAuth callback');
   });
 
   it('should return 400 if verifier cookie is missing', async () => {
     // When
-    const res = await authRouter.request(VALID_QUERY, {
+    const res = await app.request(VALID_QUERY, {
       headers: { Cookie: 'google_state=mockState' },
     });
     // Then
-    expect(res.status).toBe(400);
-    expect(await res.text()).toBe('Invalid OAuth callback');
+    await expectError(res, 400, 'Invalid OAuth callback');
   });
 
   it('should return 400 if state does not match stored state', async () => {
     // When
-    const res = await authRouter.request('/auth/google/callback?code=mockCode&state=wrongState', {
+    const res = await app.request('/auth/google/callback?code=mockCode&state=wrongState', {
       headers: { Cookie: VALID_COOKIES },
     });
     // Then
-    expect(res.status).toBe(400);
-    expect(await res.text()).toBe('Invalid OAuth callback');
+    await expectError(res, 400, 'Invalid OAuth callback');
   });
 
   it('should return 400 on OAuth2RequestError', async () => {
     // Given
     validateAuthorizationCodeMock.mockRejectedValue(new OAuth2RequestError('bad_request', null, null, null));
     // When
-    const res = await authRouter.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
+    const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
-    expect(res.status).toBe(400);
-    expect(await res.text()).toBe('OAuth error');
+    await expectError(res, 400, 'OAuth error');
   });
 
   it('should return 500 for unknown errors', async () => {
     // Given
     validateAuthorizationCodeMock.mockRejectedValue(new Error('unexpected'));
     // When
-    const res = await authRouter.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
+    const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
-    expect(res.status).toBe(500);
+    await expectError(res, 500, 'Internal Server Error');
   });
 
   it('should return user if exists', async () => {
     // Given
     getUserByGoogleIdMock.mockResolvedValue({ id: 'mockExistsId' });
     // When
-    const res = await authRouter.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
+    const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
     calls(Users.createUser).toHaveLength(0);
@@ -115,7 +109,7 @@ describe('google-callback', () => {
     getUserByGoogleIdMock.mockResolvedValue(undefined);
     createUserMock.mockResolvedValue({ id: 'mockCreateId' });
     // When
-    const res = await authRouter.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
+    const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
     call(Users.createUser).toStrictEqual({ ...mockClaims, googleId: 'googleSub' });
@@ -126,17 +120,16 @@ describe('google-callback', () => {
     getUserByGoogleIdMock.mockResolvedValue(undefined);
     createUserMock.mockResolvedValue(undefined);
     // When
-    const res = await authRouter.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
+    const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
-    expect(res.status).toBe(500);
-    expect(await res.text()).toBe('Failed to create user');
+    await expectError(res, 500, 'Failed to create a user');
   });
 
   it('should set session cookie and redirect on success', async () => {
     // Given
     getUserByGoogleIdMock.mockResolvedValue({ id: 'mockExistsId' });
     // When
-    const res = await authRouter.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
+    const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
     call(Sessions.create).toMatchObject({ userId: 'mockExistsId' });

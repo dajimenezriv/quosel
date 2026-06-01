@@ -1,7 +1,7 @@
+import { app } from '@/app.ts';
 import { call } from '@/tests/utils.helper.test.ts';
 import { generateCodeVerifier, generateState } from 'arctic';
 import { google } from '../../auth/google.ts';
-import { authRouter } from './router.ts';
 
 vi.mock(import('@/auth/google.ts'));
 vi.mock(import('@/core/env.ts'));
@@ -16,7 +16,7 @@ describe('google-login', () => {
 
   it('should set cookies and redirect', async () => {
     // When
-    const res = await authRouter.request('/auth/google');
+    const res = await app.request('/auth/google');
     // THen
     expect(res.status).toBe(302);
     expect(res.headers.get('Location')).toBe('https://accounts.google.com/o/oauth2/auth');

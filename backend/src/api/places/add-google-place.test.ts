@@ -1,5 +1,5 @@
 import { app } from '@/app.ts';
-import { expectError, expectRes } from '@/tests/utils.helper.test.ts';
+import { expectError, expectJson } from '@/tests/utils.helper.test.ts';
 import { Places } from '../../infra/postgres/places.ts';
 
 vi.mock(import('@/core/env.ts'));
@@ -43,7 +43,7 @@ describe('add-google-place', () => {
     // When
     const res = await app.request(VALID_URL, { method: 'POST' });
     // Then
-    await expectRes(res, 200, { placeId: 'placeId' });
+    await expectJson(res, 200, { placeId: 'placeId' });
   });
 });
 

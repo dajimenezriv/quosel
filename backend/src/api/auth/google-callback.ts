@@ -6,6 +6,7 @@ import { deleteCookie, getCookie, setCookie } from 'hono/cookie';
 import { google } from '../../auth/google.ts';
 import { env } from '../../core/env.ts';
 import { Users } from '../../infra/postgres/users.ts';
+import { ApiError } from '../errors.ts';
 
 const isProd = env.NODE_ENV === 'production';
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30;
@@ -24,7 +25,7 @@ export async function googleCallback(c: Context) {
   const verifier = getCookie(c, 'google_verifier');
 
   if (!code || !state || !storedState || !verifier || state !== storedState) {
-    return c.text('Invalid OAuth callback', 400);
+    throw new ApiError(400, 'Invalid OAuth callback');
   }
 
   deleteCookie(c, 'google_state', { path: '/' });
@@ -35,7 +36,7 @@ export async function googleCallback(c: Context) {
     const tokens = await google.validateAuthorizationCode(code, verifier);
     claims = decodeIdToken(tokens.idToken()) as GoogleIdTokenClaims;
   } catch (error) {
-    if (error instanceof OAuth2RequestError) return c.text('OAuth error', 400);
+    if (error instanceof OAuth2RequestError) throw new ApiError(400, 'OAuth error');
     throw error;
   }
 
@@ -44,7 +45,7 @@ export async function googleCallback(c: Context) {
 
   if (!user) user = await Users.createUser({ ...claims, googleId });
 
-  if (!user) return c.text('Failed to create user', 500);
+  if (!user) throw new ApiError(500, 'Failed to create a user');
 
   const userId = user.id;
   const sessionId = randomBytes(20).toString('hex');

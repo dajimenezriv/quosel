@@ -4,7 +4,7 @@ import { deleteCookie, getCookie } from 'hono/cookie';
 
 export const logoutRoute = createRoute({
   method: 'post',
-  path: '/auth/logout',
+  path: '/logout',
   responses: {
     204: {
       description: 'Logged out',

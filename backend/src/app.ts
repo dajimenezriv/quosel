@@ -19,6 +19,6 @@ app.onError((error, c) => {
 });
 
 app.route('/', healthRouter);
-app.route('/', authRouter);
+app.route('/auth', authRouter);
 app.route('/', billingRouter);
 app.route('/places', placesRouter);
