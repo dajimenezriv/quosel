@@ -1,5 +1,4 @@
 import { serve } from '@hono/node-server';
-import { cors } from 'hono/cors';
 import { app } from './app.ts';
 import { env } from './core/env.ts';
 import { logger } from './core/logger.ts';
@@ -7,14 +6,6 @@ import { requireAuth } from './middleware/auth.ts';
 import { requestLogger } from './middleware/logger.ts';
 
 app.use('*', requestLogger);
-
-app.use(
-  '*',
-  cors({
-    origin: env.FRONTEND_URL,
-    credentials: true,
-  }),
-);
 
 app.use('/places/*', requireAuth);
 

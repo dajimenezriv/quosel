@@ -9,9 +9,14 @@ const VALID_URL = '/places/add-google-place?googlePlaceId=ChIJRWnYS1BHYA0RK5rHEo
 
 describe('add-google-place', () => {
   const fetchMock = vi.spyOn(globalThis, 'fetch');
+  const addGooglePlaceMock = vi.mocked(Places.addGooglePlace);
 
   beforeEach(() => {
-    vi.mocked(Places.addGooglePlace).mockResolvedValue('placeId');
+    fetchMock.mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve(mock),
+    } as Response);
+    addGooglePlaceMock.mockResolvedValue('placeId');
   });
 
   it('should return 400 if googlePlaceId is missing', async () => {
@@ -34,12 +39,16 @@ describe('add-google-place', () => {
     await expectError(res, 500, 'Cannot obtain place details from Google Maps');
   });
 
-  it('should return 200 and the place id on success', async () => {
+  it('should return 500 if cannot create place in db', async () => {
     // Given
-    fetchMock.mockResolvedValue({
-      ok: true,
-      json: () => Promise.resolve(mock),
-    } as Response);
+    addGooglePlaceMock.mockResolvedValue(undefined);
+    // When
+    const res = await app.request(VALID_URL, { method: 'POST' });
+    // Then
+    await expectError(res, 500, 'Failed to create place');
+  });
+
+  it('should return 200 and the place id on success', async () => {
     // When
     const res = await app.request(VALID_URL, { method: 'POST' });
     // Then

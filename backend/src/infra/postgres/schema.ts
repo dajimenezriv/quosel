@@ -24,7 +24,10 @@ export const sessions = pgTable('sessions', {
 
 export const places = pgTable('places', {
   id: uuid('id').primaryKey().defaultRandom(),
-  googlePlaceId: text('google_place_id').notNull().unique(),
+  userId: uuid('user_id')
+    .references(() => users.id, { onDelete: 'cascade' })
+    .notNull(),
+  googlePlaceId: text('google_place_id').notNull(),
   displayNameText: text('display_name_text').notNull(),
   displayNameLanguageCode: text('display_name_language_code').notNull(),
   nationalPhoneNumber: text('national_phone_number').notNull(),

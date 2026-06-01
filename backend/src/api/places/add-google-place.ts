@@ -2,6 +2,7 @@ import { ApiError, ErrorSchema } from '@/core/api/errors.ts';
 import { jsonResponse } from '@/core/api/json-response.ts';
 import { env } from '@/core/env.ts';
 import { Places, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/places.ts';
+import type { AuthVariables } from '@/middleware/auth.ts';
 import { createRoute, type RouteHandler } from '@hono/zod-openapi';
 import z from 'zod';
 
@@ -46,8 +47,9 @@ export const addGooglePlaceRoute = createRoute({
   },
 });
 
-export const addGooglePlace: RouteHandler<typeof addGooglePlaceRoute> = async (c) => {
+export const addGooglePlace: RouteHandler<typeof addGooglePlaceRoute, { Variables: AuthVariables }> = async (c) => {
   const { googlePlaceId } = c.req.valid('query');
+  const userId = c.get('userId');
 
   const res = await fetch(`https://places.googleapis.com/v1/places/${encodeURIComponent(googlePlaceId)}`, {
     headers: {
@@ -65,6 +67,7 @@ export const addGooglePlace: RouteHandler<typeof addGooglePlaceRoute> = async (c
 
   const place: PlaceInsert = {
     googlePlaceId,
+    userId,
     displayNameText: parsedData.displayName.text,
     displayNameLanguageCode: parsedData.displayName.languageCode,
     nationalPhoneNumber: parsedData.nationalPhoneNumber,
@@ -93,6 +96,8 @@ export const addGooglePlace: RouteHandler<typeof addGooglePlaceRoute> = async (c
   }));
 
   const placeId = await Places.addGooglePlace(place, reviews);
+
+  if (!placeId) throw new ApiError(500, 'Failed to create place');
 
   return jsonResponse(c, PlaceSchema, { placeId }, 200);
 };

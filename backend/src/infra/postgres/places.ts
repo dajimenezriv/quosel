@@ -9,7 +9,7 @@ export class Places {
   static async addGooglePlace(place: PlaceInsert, placeReviews: ReviewInsert[]) {
     return await db.transaction(async (tx) => {
       const [inserted] = await tx.insert(places).values(place).returning();
-      if (!inserted) throw new Error('Failed to insert place');
+      if (!inserted) return;
 
       if (placeReviews.length > 0) {
         await tx.insert(reviews).values(
