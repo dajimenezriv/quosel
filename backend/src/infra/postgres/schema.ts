@@ -1,4 +1,4 @@
-import { doublePrecision, index, integer, jsonb, numeric, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { bigint, doublePrecision, index, integer, jsonb, numeric, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
   id: uuid('id').primaryKey().defaultRandom(),
@@ -45,6 +45,38 @@ export const places = pgTable('places', {
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
 });
+
+export const websites = pgTable('websites', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  placeId: uuid('place_id')
+    .notNull()
+    .references(() => places.id, { onDelete: 'cascade' }),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
+  domain: text('domain').notNull().unique(),
+  template: text('template').notNull().default('default'),
+  texts: text('texts').array().notNull().default([]),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const websiteImages = pgTable(
+  'website_images',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    websiteId: uuid('website_id')
+      .notNull()
+      .references(() => websites.id, { onDelete: 'cascade' }),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    url: text('url').notNull(),
+    sizeBytes: bigint('size_bytes', { mode: 'number' }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [index('website_images_website_id_idx').on(t.websiteId)],
+);
 
 export const reviews = pgTable(
   'reviews',

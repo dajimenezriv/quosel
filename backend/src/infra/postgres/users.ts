@@ -1,7 +1,8 @@
+import { slugify } from '@/core/utils.ts';
 import { eq, type InferInsertModel } from 'drizzle-orm';
 import { db } from './client.ts';
 import type { PlaceInsert, ReviewInsert } from './places.ts';
-import { places, reviews, users } from './schema.ts';
+import { places, reviews, users, websites } from './schema.ts';
 
 const EXAMPLE_PLACE: Omit<PlaceInsert, 'userId'> = {
   googlePlaceId: 'example_place_id',
@@ -71,6 +72,9 @@ export class Users {
       if (!newPlace) return;
 
       await tx.insert(reviews).values(EXAMPLE_REVIEWS.map((r) => ({ ...r, placeId: newPlace.id })));
+
+      const domain = `${slugify(EXAMPLE_PLACE.displayNameText)}-${newPlace.id.slice(0, 8)}`;
+      await tx.insert(websites).values({ placeId: newPlace.id, userId: newUser.id, domain });
 
       return newUser;
     });
