@@ -10,5 +10,11 @@ export default defineConfig({
     include: ['src/**/*.test.ts'],
     testTimeout: 5000,
     watch: true,
+    coverage: {
+      reportOnFailure: true,
+      provider: 'v8',
+      include: ['src/**/*.ts'],
+      exclude: ['src/**/*.test.ts', 'src/index.ts'],
+    },
   },
 });

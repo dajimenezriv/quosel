@@ -1,4 +1,4 @@
-import { ErrorSchema } from '@/api/errors.ts';
+import { ErrorSchema } from '@/core/api/errors.ts';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { fromError } from 'zod-validation-error';
 import { jsonResponse } from './json-response.ts';

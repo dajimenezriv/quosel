@@ -26,6 +26,7 @@
     "db:reset": "node scripts/reset-db.ts",
     "========== Testing ==========": "",
     "test": "vitest",
+    "test:coverage": "vitest run --coverage",
     "========== Other ==========": "",
     "openapi": "node scripts/generate-openapi.ts && openapi-typescript openapi.json -o ../frontend/src/api/schema.ts"
   },
@@ -48,6 +49,7 @@
     "@types/node": "^24.12.4",
     "@typescript-eslint/eslint-plugin": "^8.59.4",
     "@typescript-eslint/parser": "^8.60.0",
+    "@vitest/coverage-v8": "^4.1.7",
     "drizzle-kit": "^0.31.10",
     "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",

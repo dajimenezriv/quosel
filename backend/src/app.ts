@@ -1,8 +1,8 @@
 import { authRouter } from './api/auth/router.ts';
-import { ApiError, ErrorSchema } from './api/errors.ts';
 import { healthRouter } from './api/health/router.ts';
 import { placesRouter } from './api/places/router.ts';
 import { createRouter } from './core/api/create-router.ts';
+import { ApiError, ErrorSchema } from './core/api/errors.ts';
 import { jsonResponse } from './core/api/json-response.ts';
 import { logger } from './core/logger.ts';
 import { billingRouter } from './routes/billing.ts';
