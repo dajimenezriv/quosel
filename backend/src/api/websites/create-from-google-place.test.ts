@@ -1,27 +1,27 @@
 import { app } from '@/app.ts';
+import { Websites } from '@/infra/postgres/websites.ts';
 import { expectError, expectJson } from '@/tests/utils.helper.test.ts';
-import { Places } from '../../infra/postgres/places.ts';
 
 vi.mock(import('@/core/env.ts'));
-vi.mock(import('@/infra/postgres/places.ts'));
+vi.mock(import('@/infra/postgres/websites.ts'));
 
-const VALID_URL = '/places/add-google-place?googlePlaceId=ChIJRWnYS1BHYA0RK5rHEosqXcQ';
+const VALID_URL = '/websites/create-from-google-place?googlePlaceId=ChIJRWnYS1BHYA0RK5rHEosqXcQ';
 
-describe('add-google-place', () => {
+describe('create-from-google-place', () => {
   const fetchMock = vi.spyOn(globalThis, 'fetch');
-  const addGooglePlaceMock = vi.mocked(Places.addGooglePlace);
+  const createWebsiteMock = vi.mocked(Websites.create);
 
   beforeEach(() => {
     fetchMock.mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mock),
     } as Response);
-    addGooglePlaceMock.mockResolvedValue('placeId');
+    createWebsiteMock.mockResolvedValue('websiteId');
   });
 
   it('should return 400 if googlePlaceId is missing', async () => {
     // When
-    const res = await app.request('/places/add-google-place', { method: 'POST' });
+    const res = await app.request('/websites/create-from-google-place', { method: 'POST' });
     // Then
     await expectError(res, 400, 'Validation error: Invalid input: expected string, received undefined at "googlePlaceId"');
   });
@@ -41,7 +41,7 @@ describe('add-google-place', () => {
 
   it('should return 500 if cannot create place in db', async () => {
     // Given
-    addGooglePlaceMock.mockResolvedValue(undefined);
+    createWebsiteMock.mockResolvedValue(undefined);
     // When
     const res = await app.request(VALID_URL, { method: 'POST' });
     // Then
@@ -52,7 +52,7 @@ describe('add-google-place', () => {
     // When
     const res = await app.request(VALID_URL, { method: 'POST' });
     // Then
-    await expectJson(res, 200, { placeId: 'placeId' });
+    await expectJson(res, 200, { websiteId: 'websiteId' });
   });
 });
 

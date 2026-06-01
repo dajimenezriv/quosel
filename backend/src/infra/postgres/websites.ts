@@ -1,10 +1,14 @@
 import type { UserId } from '@/core/types.ts';
-import { and, eq } from 'drizzle-orm';
+import { slugify } from '@/core/utils.ts';
+import { and, eq, type InferInsertModel } from 'drizzle-orm';
 import { db } from './client.ts';
 import { places, reviews, websiteImages, websites } from './schema.ts';
 
+export type PlaceInsert = InferInsertModel<typeof places>;
+export type ReviewInsert = Omit<InferInsertModel<typeof reviews>, 'placeId'>;
+
 export class Websites {
-  static async getByUserId(userId: UserId) {
+  static async getAllByUserId(userId: UserId) {
     return await db
       .select({
         id: websites.id,
@@ -71,5 +75,28 @@ export class Websites {
       place: { ...row.place, reviews: placeReviews },
       images,
     };
+  }
+
+  static async create(place: PlaceInsert, placeReviews: ReviewInsert[]) {
+    return await db.transaction(async (tx) => {
+      const [inserted] = await tx.insert(places).values(place).returning();
+      if (!inserted) return;
+
+      if (placeReviews.length > 0) {
+        await tx.insert(reviews).values(
+          placeReviews.map((r) => ({
+            ...r,
+            placeId: inserted.id,
+          })),
+        );
+      }
+
+      const domain = `${slugify(place.displayNameText)}-${inserted.id.slice(0, 8)}`;
+
+      const [website] = await tx.insert(websites).values({ placeId: inserted.id, userId: place.userId, domain }).returning();
+      if (!website) return;
+
+      return website.id;
+    });
   }
 }

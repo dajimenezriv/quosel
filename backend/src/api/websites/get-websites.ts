@@ -52,6 +52,6 @@ export const getWebsitesRoute = createRoute({
 
 export const getWebsites: RouteHandler<typeof getWebsitesRoute, { Variables: AuthVariables }> = async (c) => {
   const userId = c.get('userId');
-  const websites = await Websites.getByUserId(userId);
+  const websites = await Websites.getAllByUserId(userId);
   return jsonResponse(c, WebsitesResponseSchema, { websites }, 200);
 };

@@ -1,7 +1,7 @@
 import { ApiError, ErrorSchema } from '@/core/api/errors.ts';
 import { jsonResponse } from '@/core/api/json-response.ts';
 import { env } from '@/core/env.ts';
-import { Places, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/places.ts';
+import { Websites, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/websites.ts';
 import type { AuthVariables } from '@/middleware/auth.ts';
 import { createRoute, type RouteHandler } from '@hono/zod-openapi';
 import z from 'zod';
@@ -23,11 +23,11 @@ import z from 'zod';
  * Sources: https://developers.google.com/maps/documentation/places/web-service/place-id
  */
 
-const PlaceSchema = z.object({ placeId: z.string() }).openapi('Place');
+const WebsiteSchema = z.object({ websiteId: z.string() }).openapi('Website');
 
-export const addGooglePlaceRoute = createRoute({
+export const createFromGooglePlaceRoute = createRoute({
   method: 'post',
-  path: '/add-google-place',
+  path: '/create-from-google-place',
   request: {
     query: z.object({
       googlePlaceId: z.string().openapi({
@@ -37,7 +37,7 @@ export const addGooglePlaceRoute = createRoute({
   },
   responses: {
     200: {
-      content: { 'application/json': { schema: PlaceSchema } },
+      content: { 'application/json': { schema: WebsiteSchema } },
       description: 'Place details',
     },
     500: {
@@ -47,7 +47,7 @@ export const addGooglePlaceRoute = createRoute({
   },
 });
 
-export const addGooglePlace: RouteHandler<typeof addGooglePlaceRoute, { Variables: AuthVariables }> = async (c) => {
+export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRoute, { Variables: AuthVariables }> = async (c) => {
   const { googlePlaceId } = c.req.valid('query');
   const userId = c.get('userId');
 
@@ -95,11 +95,11 @@ export const addGooglePlace: RouteHandler<typeof addGooglePlaceRoute, { Variable
     googleMapsUri: r.googleMapsUri,
   }));
 
-  const placeId = await Places.addGooglePlace(place, reviews);
+  const websiteId = await Websites.create(place, reviews);
 
-  if (!placeId) throw new ApiError(500, 'Failed to create place');
+  if (!websiteId) throw new ApiError(500, 'Failed to create place');
 
-  return jsonResponse(c, PlaceSchema, { placeId }, 200);
+  return jsonResponse(c, WebsiteSchema, { websiteId }, 200);
 };
 
 const schema = z.object({

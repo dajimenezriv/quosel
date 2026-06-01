@@ -1,7 +1,6 @@
 import { cors } from 'hono/cors';
 import { authRouter } from './api/auth/router.ts';
 import { healthRouter } from './api/health/router.ts';
-import { placesRouter } from './api/places/router.ts';
 import { websitesRouter } from './api/websites/router.ts';
 import { createRouter } from './core/api/create-router.ts';
 import { ApiError, ErrorSchema } from './core/api/errors.ts';
@@ -32,5 +31,4 @@ app.onError((error, c) => {
 app.route('/', healthRouter);
 app.route('/auth', authRouter);
 app.route('/', billingRouter);
-app.route('/places', placesRouter);
 app.route('/websites', websitesRouter);

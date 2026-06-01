@@ -5,11 +5,11 @@ import { expectJson } from '@/tests/utils.helper.test.ts';
 vi.mock(import('@/infra/postgres/websites.ts'));
 
 describe('get-websites', () => {
-  const getByUserIdMock = vi.mocked(Websites.getByUserId);
+  const getAllByUserIdMock = vi.mocked(Websites.getAllByUserId);
 
   it('should return 200 with an empty array when user has no websites', async () => {
     // Given
-    getByUserIdMock.mockResolvedValue([]);
+    getAllByUserIdMock.mockResolvedValue([]);
     // When
     const res = await app.request('/websites/get-websites');
     // Then
@@ -49,7 +49,7 @@ describe('get-websites', () => {
       updatedAt: new Date('2024-01-01T00:00:00.000Z'),
       place,
     };
-    getByUserIdMock.mockResolvedValue([website]);
+    getAllByUserIdMock.mockResolvedValue([website]);
     // When
     const res = await app.request('/websites/get-websites');
     // Then
