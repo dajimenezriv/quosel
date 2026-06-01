@@ -39,7 +39,156 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/places/add-google-place": {
+    "/auth/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Current user */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["MeResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Logged out */
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/websites/get-websites": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description List of websites for the authenticated user */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["WebsitesResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/websites/get-website/:websiteId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    websiteId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description Full website details */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["WebsiteResponse"];
+                    };
+                };
+                /** @description Website not found */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/websites/create-from-google-place": {
         parameters: {
             query?: never;
             header?: never;
@@ -65,7 +214,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["Place"];
+                        "application/json": components["schemas"]["Website"];
                     };
                 };
                 /** @description Error */
@@ -74,7 +223,7 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["PlacesError"];
+                        "application/json": components["schemas"]["Error"];
                     };
                 };
             };
@@ -93,11 +242,114 @@ export interface components {
             /** @enum {string} */
             status: "ok";
         };
-        Place: {
-            placeId: string;
+        MeResponse: {
+            user: components["schemas"]["User"];
         };
-        PlacesError: {
+        User: {
+            id: string;
+            email: string;
+            name: string | null;
+            picture: string | null;
+            subscriptionStatus: string | null;
+            /** Format: date-time */
+            currentPeriodEnd: string | null;
+        } | null;
+        WebsitesResponse: {
+            websites: {
+                id: string;
+                userId: string;
+                domain: string;
+                template: string;
+                texts: string[];
+                /** Format: date-time */
+                createdAt: string;
+                /** Format: date-time */
+                updatedAt: string;
+                place: {
+                    id: string;
+                    userId: string;
+                    googlePlaceId: string;
+                    displayNameText: string;
+                    displayNameLanguageCode: string;
+                    nationalPhoneNumber: string;
+                    internationalPhoneNumber: string;
+                    formattedAddress: string;
+                    shortFormattedAddress: string;
+                    latitude: number;
+                    longitude: number;
+                    rating: string | null;
+                    userRatingCount: number | null;
+                    googleMapsPlaceUri: string;
+                    googleMapsReviewsUri: string;
+                    googleMapsPhotosUri: string;
+                    raw?: unknown;
+                    /** Format: date-time */
+                    createdAt: string;
+                    /** Format: date-time */
+                    updatedAt: string;
+                };
+            }[];
+        };
+        WebsiteResponse: {
+            id: string;
+            userId: string;
+            domain: string;
+            template: string;
+            texts: string[];
+            /** Format: date-time */
+            createdAt: string;
+            /** Format: date-time */
+            updatedAt: string;
+            place: {
+                id: string;
+                userId: string;
+                googlePlaceId: string;
+                displayNameText: string;
+                displayNameLanguageCode: string;
+                nationalPhoneNumber: string;
+                internationalPhoneNumber: string;
+                formattedAddress: string;
+                shortFormattedAddress: string;
+                latitude: number;
+                longitude: number;
+                rating: string | null;
+                userRatingCount: number | null;
+                googleMapsPlaceUri: string;
+                googleMapsReviewsUri: string;
+                googleMapsPhotosUri: string;
+                raw?: unknown;
+                /** Format: date-time */
+                createdAt: string;
+                /** Format: date-time */
+                updatedAt: string;
+                reviews: {
+                    id: string;
+                    googleReviewName: string;
+                    rating: string;
+                    originalText: string;
+                    originalTextLanguageCode: string;
+                    authorDisplayName: string;
+                    authorPhotoUri: string;
+                    /** Format: date-time */
+                    publishTime: string;
+                    googleMapsUri: string;
+                    /** Format: date-time */
+                    createdAt: string;
+                }[];
+            };
+            images: {
+                id: string;
+                url: string;
+                sizeBytes: number;
+                /** Format: date-time */
+                createdAt: string;
+            }[];
+        };
+        Error: {
             error: string;
+        };
+        Website: {
+            websiteId: string;
         };
     };
     responses: never;

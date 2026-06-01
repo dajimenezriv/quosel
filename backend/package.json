@@ -28,7 +28,7 @@
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "========== Other ==========": "",
-    "openapi": "node scripts/generate-openapi.ts && openapi-typescript openapi.json -o ../frontend/src/api/schema.ts"
+    "openapi": "tsx scripts/generate-openapi.ts && openapi-typescript openapi.json -o ../frontend/src/api/schema.ts"
   },
   "dependencies": {
     "@hono/node-server": "^2.0.4",
