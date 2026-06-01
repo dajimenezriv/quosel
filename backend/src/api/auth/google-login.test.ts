@@ -1,9 +1,9 @@
 import { app } from '@/app.ts';
 import { call } from '@/tests/utils.helper.test.ts';
 import { generateCodeVerifier, generateState } from 'arctic';
-import { google } from '../../auth/google.ts';
+import { google } from './utils.ts';
 
-vi.mock(import('@/auth/google.ts'));
+vi.mock(import('@/api/auth/utils.ts'));
 vi.mock(import('@/core/env.ts'));
 vi.mock(import('arctic'));
 

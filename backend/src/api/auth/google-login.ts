@@ -1,4 +1,4 @@
-import { google } from '@/auth/google.ts';
+import { google } from '@/api/auth/utils.ts';
 import { env } from '@/core/env.ts';
 import { generateCodeVerifier, generateState } from 'arctic';
 import type { Context } from 'hono';

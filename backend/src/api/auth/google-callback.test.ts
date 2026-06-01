@@ -1,11 +1,11 @@
+import { google } from '@/api/auth/utils.ts';
 import { app } from '@/app.ts';
-import { google } from '@/auth/google.ts';
 import { Sessions } from '@/infra/postgres/sessions.ts';
 import { Users } from '@/infra/postgres/users.ts';
 import { call, calls, deepMocked, expectError } from '@/tests/utils.helper.test.ts';
 import { decodeIdToken, OAuth2RequestError } from 'arctic';
 
-vi.mock(import('@/auth/google.ts'));
+vi.mock(import('@/api/auth/utils.ts'));
 vi.mock(import('@/infra/postgres/users.ts'));
 vi.mock(import('@/infra/postgres/sessions.ts'));
 vi.mock(import('@/core/env.ts'));
