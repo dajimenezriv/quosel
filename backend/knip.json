@@ -1,4 +1,4 @@
 {
   "ignoreDependencies": ["@railway/cli"],
-  "project": ["src/**/*.ts"]
+  "project": ["src/**/*.ts", "tests/**/*.ts"]
 }
