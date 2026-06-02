@@ -1,13 +1,10 @@
 import { serve } from '@hono/node-server';
 import { app } from './app.ts';
-import { requireAuth } from './core/api/middleware/auth.ts';
 import { requestLogger } from './core/api/middleware/logger.ts';
 import { env } from './core/env.ts';
 import { logger } from './core/logger.ts';
 
 app.use('*', requestLogger);
-
-app.use('/websites/*', requireAuth);
 
 if (env.NODE_ENV === 'development') {
   const { swaggerUI } = await import('@hono/swagger-ui');
