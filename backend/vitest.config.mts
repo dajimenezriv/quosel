@@ -8,6 +8,7 @@ export default defineConfig({
     clearMocks: true,
     globals: true,
     include: ['src/**/*.test.ts'],
+    setupFiles: ['tests/setup.helper.test.ts'],
     testTimeout: 5000,
     watch: true,
     coverage: {
