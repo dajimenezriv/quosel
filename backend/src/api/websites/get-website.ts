@@ -48,19 +48,17 @@ const PlaceSchema = z.object({
   reviews: z.array(ReviewSchema),
 });
 
-const WebsiteResponseSchema = z
-  .object({
-    id: z.string(),
-    userId: z.string(),
-    domain: z.string(),
-    template: z.string(),
-    texts: z.array(z.string()),
-    createdAt: z.date(),
-    updatedAt: z.date(),
-    place: PlaceSchema,
-    images: z.array(ImageSchema),
-  })
-  .openapi('WebsiteResponse');
+const ResponseSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  domain: z.string(),
+  template: z.string(),
+  texts: z.array(z.string()),
+  createdAt: z.date(),
+  updatedAt: z.date(),
+  place: PlaceSchema,
+  images: z.array(ImageSchema),
+});
 
 export const getWebsiteRoute = createRoute({
   method: 'get',
@@ -70,7 +68,7 @@ export const getWebsiteRoute = createRoute({
   },
   responses: {
     200: {
-      content: { 'application/json': { schema: WebsiteResponseSchema } },
+      content: { 'application/json': { schema: ResponseSchema } },
       description: 'Full website details',
     },
     404: {
@@ -87,5 +85,5 @@ export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthV
   const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  return jsonResponse(c, WebsiteResponseSchema, website, 200);
+  return jsonResponse(c, ResponseSchema, website, 200);
 };

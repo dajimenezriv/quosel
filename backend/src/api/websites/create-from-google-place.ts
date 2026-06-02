@@ -23,7 +23,7 @@ import z from 'zod';
  * Sources: https://developers.google.com/maps/documentation/places/web-service/place-id
  */
 
-const WebsiteSchema = z.object({ websiteId: z.string() }).openapi('Website');
+const ResponseSchema = z.object({ websiteId: z.string() });
 
 export const createFromGooglePlaceRoute = createRoute({
   method: 'post',
@@ -37,8 +37,8 @@ export const createFromGooglePlaceRoute = createRoute({
   },
   responses: {
     200: {
-      content: { 'application/json': { schema: WebsiteSchema } },
-      description: 'Place details',
+      content: { 'application/json': { schema: ResponseSchema } },
+      description: 'Website id',
     },
     500: {
       content: { 'application/json': { schema: ErrorSchema } },
@@ -99,7 +99,7 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
 
   if (!websiteId) throw new ApiError(500, 'Failed to create place');
 
-  return jsonResponse(c, WebsiteSchema, { websiteId }, 200);
+  return jsonResponse(c, ResponseSchema, { websiteId }, 200);
 };
 
 const schema = z.object({

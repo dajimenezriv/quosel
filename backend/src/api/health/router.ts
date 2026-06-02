@@ -4,19 +4,19 @@ import { jsonResponse } from '../../core/api/json-response.ts';
 
 export const healthRouter = createRouter();
 
-const HealthSchema = z.object({ status: z.literal('ok') }).openapi('Health');
+const ResponseSchema = z.object({ status: z.literal('ok') });
 
 const healthRoute = createRoute({
   method: 'get',
   path: '/health',
   responses: {
     200: {
-      content: { 'application/json': { schema: HealthSchema } },
+      content: { 'application/json': { schema: ResponseSchema } },
       description: 'Service is healthy',
     },
   },
 });
 
 healthRouter.openapi(healthRoute, (c) => {
-  return jsonResponse(c, HealthSchema, { status: 'ok' }, 200);
+  return jsonResponse(c, ResponseSchema, { status: 'ok' }, 200);
 });

@@ -37,14 +37,14 @@ const WebsiteSchema = z.object({
   place: PlaceSchema,
 });
 
-const WebsitesResponseSchema = z.object({ websites: z.array(WebsiteSchema) }).openapi('WebsitesResponse');
+const ResponseSchema = z.object({ websites: z.array(WebsiteSchema) });
 
 export const getWebsitesRoute = createRoute({
   method: 'get',
   path: '/get-websites',
   responses: {
     200: {
-      content: { 'application/json': { schema: WebsitesResponseSchema } },
+      content: { 'application/json': { schema: ResponseSchema } },
       description: 'List of websites for the authenticated user',
     },
   },
@@ -53,5 +53,5 @@ export const getWebsitesRoute = createRoute({
 export const getWebsites: RouteHandler<typeof getWebsitesRoute, { Variables: AuthVariables }> = async (c) => {
   const userId = c.get('userId');
   const websites = await Websites.getAllByUserId(userId);
-  return jsonResponse(c, WebsitesResponseSchema, { websites }, 200);
+  return jsonResponse(c, ResponseSchema, { websites }, 200);
 };

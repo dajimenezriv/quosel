@@ -3,25 +3,23 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { getCookie } from 'hono/cookie';
 import { jsonResponse } from '../../core/api/json-response.ts';
 
-const UserSchema = z
-  .object({
-    id: z.string(),
-    email: z.string(),
-    name: z.string().nullable(),
-    picture: z.string().nullable(),
-    subscriptionStatus: z.string().nullable(),
-    currentPeriodEnd: z.iso.datetime().nullable(),
-  })
-  .openapi('User');
+const UserSchema = z.object({
+  id: z.string(),
+  email: z.string(),
+  name: z.string().nullable(),
+  picture: z.string().nullable(),
+  subscriptionStatus: z.string().nullable(),
+  currentPeriodEnd: z.iso.datetime().nullable(),
+});
 
-const MeResponseSchema = z.object({ user: UserSchema.nullable() }).openapi('MeResponse');
+const ResponseSchema = z.object({ user: UserSchema.nullable() });
 
 export const meRoute = createRoute({
   method: 'get',
   path: '/me',
   responses: {
     200: {
-      content: { 'application/json': { schema: MeResponseSchema } },
+      content: { 'application/json': { schema: ResponseSchema } },
       description: 'Current user',
     },
   },
@@ -29,15 +27,15 @@ export const meRoute = createRoute({
 
 export const me: RouteHandler<typeof meRoute> = async (c) => {
   const sessionId = getCookie(c, 'session');
-  if (!sessionId) return jsonResponse(c, MeResponseSchema, { user: null }, 200);
+  if (!sessionId) return jsonResponse(c, ResponseSchema, { user: null }, 200);
 
   const row = await Sessions.getById(sessionId);
-  if (!row) return jsonResponse(c, MeResponseSchema, { user: null }, 200);
+  if (!row) return jsonResponse(c, ResponseSchema, { user: null }, 200);
 
   const { user } = row;
   return jsonResponse(
     c,
-    MeResponseSchema,
+    ResponseSchema,
     {
       user: {
         id: user.id,

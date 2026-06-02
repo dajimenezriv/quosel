@@ -26,7 +26,10 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["Health"];
+                        "application/json": {
+                            /** @enum {string} */
+                            status: "ok";
+                        };
                     };
                 };
             };
@@ -61,7 +64,17 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["MeResponse"];
+                        "application/json": {
+                            user: {
+                                id: string;
+                                email: string;
+                                name: string | null;
+                                picture: string | null;
+                                subscriptionStatus: string | null;
+                                /** Format: date-time */
+                                currentPeriodEnd: string | null;
+                            } | null;
+                        };
                     };
                 };
             };
@@ -129,7 +142,42 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["WebsitesResponse"];
+                        "application/json": {
+                            websites: {
+                                id: string;
+                                userId: string;
+                                domain: string;
+                                template: string;
+                                texts: string[];
+                                /** Format: date-time */
+                                createdAt: string;
+                                /** Format: date-time */
+                                updatedAt: string;
+                                place: {
+                                    id: string;
+                                    userId: string;
+                                    googlePlaceId: string;
+                                    displayNameText: string;
+                                    displayNameLanguageCode: string;
+                                    nationalPhoneNumber: string;
+                                    internationalPhoneNumber: string;
+                                    formattedAddress: string;
+                                    shortFormattedAddress: string;
+                                    latitude: number;
+                                    longitude: number;
+                                    rating: string | null;
+                                    userRatingCount: number | null;
+                                    googleMapsPlaceUri: string;
+                                    googleMapsReviewsUri: string;
+                                    googleMapsPhotosUri: string;
+                                    raw?: unknown;
+                                    /** Format: date-time */
+                                    createdAt: string;
+                                    /** Format: date-time */
+                                    updatedAt: string;
+                                };
+                            }[];
+                        };
                     };
                 };
             };
@@ -166,7 +214,61 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["WebsiteResponse"];
+                        "application/json": {
+                            id: string;
+                            userId: string;
+                            domain: string;
+                            template: string;
+                            texts: string[];
+                            /** Format: date-time */
+                            createdAt: string;
+                            /** Format: date-time */
+                            updatedAt: string;
+                            place: {
+                                id: string;
+                                userId: string;
+                                googlePlaceId: string;
+                                displayNameText: string;
+                                displayNameLanguageCode: string;
+                                nationalPhoneNumber: string;
+                                internationalPhoneNumber: string;
+                                formattedAddress: string;
+                                shortFormattedAddress: string;
+                                latitude: number;
+                                longitude: number;
+                                rating: string | null;
+                                userRatingCount: number | null;
+                                googleMapsPlaceUri: string;
+                                googleMapsReviewsUri: string;
+                                googleMapsPhotosUri: string;
+                                raw?: unknown;
+                                /** Format: date-time */
+                                createdAt: string;
+                                /** Format: date-time */
+                                updatedAt: string;
+                                reviews: {
+                                    id: string;
+                                    googleReviewName: string;
+                                    rating: string;
+                                    originalText: string;
+                                    originalTextLanguageCode: string;
+                                    authorDisplayName: string;
+                                    authorPhotoUri: string;
+                                    /** Format: date-time */
+                                    publishTime: string;
+                                    googleMapsUri: string;
+                                    /** Format: date-time */
+                                    createdAt: string;
+                                }[];
+                            };
+                            images: {
+                                id: string;
+                                url: string;
+                                sizeBytes: number;
+                                /** Format: date-time */
+                                createdAt: string;
+                            }[];
+                        };
                     };
                 };
                 /** @description Website not found */
@@ -208,13 +310,15 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Place details */
+                /** @description Website id */
                 200: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
-                        "application/json": components["schemas"]["Website"];
+                        "application/json": {
+                            websiteId: string;
+                        };
                     };
                 };
                 /** @description Error */
@@ -238,118 +342,8 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        Health: {
-            /** @enum {string} */
-            status: "ok";
-        };
-        MeResponse: {
-            user: components["schemas"]["User"];
-        };
-        User: {
-            id: string;
-            email: string;
-            name: string | null;
-            picture: string | null;
-            subscriptionStatus: string | null;
-            /** Format: date-time */
-            currentPeriodEnd: string | null;
-        } | null;
-        WebsitesResponse: {
-            websites: {
-                id: string;
-                userId: string;
-                domain: string;
-                template: string;
-                texts: string[];
-                /** Format: date-time */
-                createdAt: string;
-                /** Format: date-time */
-                updatedAt: string;
-                place: {
-                    id: string;
-                    userId: string;
-                    googlePlaceId: string;
-                    displayNameText: string;
-                    displayNameLanguageCode: string;
-                    nationalPhoneNumber: string;
-                    internationalPhoneNumber: string;
-                    formattedAddress: string;
-                    shortFormattedAddress: string;
-                    latitude: number;
-                    longitude: number;
-                    rating: string | null;
-                    userRatingCount: number | null;
-                    googleMapsPlaceUri: string;
-                    googleMapsReviewsUri: string;
-                    googleMapsPhotosUri: string;
-                    raw?: unknown;
-                    /** Format: date-time */
-                    createdAt: string;
-                    /** Format: date-time */
-                    updatedAt: string;
-                };
-            }[];
-        };
-        WebsiteResponse: {
-            id: string;
-            userId: string;
-            domain: string;
-            template: string;
-            texts: string[];
-            /** Format: date-time */
-            createdAt: string;
-            /** Format: date-time */
-            updatedAt: string;
-            place: {
-                id: string;
-                userId: string;
-                googlePlaceId: string;
-                displayNameText: string;
-                displayNameLanguageCode: string;
-                nationalPhoneNumber: string;
-                internationalPhoneNumber: string;
-                formattedAddress: string;
-                shortFormattedAddress: string;
-                latitude: number;
-                longitude: number;
-                rating: string | null;
-                userRatingCount: number | null;
-                googleMapsPlaceUri: string;
-                googleMapsReviewsUri: string;
-                googleMapsPhotosUri: string;
-                raw?: unknown;
-                /** Format: date-time */
-                createdAt: string;
-                /** Format: date-time */
-                updatedAt: string;
-                reviews: {
-                    id: string;
-                    googleReviewName: string;
-                    rating: string;
-                    originalText: string;
-                    originalTextLanguageCode: string;
-                    authorDisplayName: string;
-                    authorPhotoUri: string;
-                    /** Format: date-time */
-                    publishTime: string;
-                    googleMapsUri: string;
-                    /** Format: date-time */
-                    createdAt: string;
-                }[];
-            };
-            images: {
-                id: string;
-                url: string;
-                sizeBytes: number;
-                /** Format: date-time */
-                createdAt: string;
-            }[];
-        };
         Error: {
             error: string;
-        };
-        Website: {
-            websiteId: string;
         };
     };
     responses: never;
