@@ -41,10 +41,10 @@ export async function googleCallback(c: Context) {
   }
 
   const googleId = claims.sub;
-  let user = await Users.getUserByGoogleId(googleId);
+  let user = await Users.getByGoogleId(googleId);
 
   if (!user) {
-    user = await Users.createUser({
+    user = await Users.create({
       googleId,
       email: claims.email,
       name: claims.name ?? '',

@@ -3,8 +3,6 @@ import postgres from 'postgres';
 import { env } from '../../core/env';
 import * as schema from './schema';
 
-// `prepare: false` is required when connecting through Supabase's
-// transaction-mode pooler (port 6543). Safe to keep for direct connections too.
-const queryClient = postgres(env.DATABASE_URL, { prepare: false });
+const queryClient = postgres(env.DATABASE_URL);
 
 export const db = drizzle(queryClient, { schema });

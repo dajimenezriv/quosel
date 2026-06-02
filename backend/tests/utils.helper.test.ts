@@ -1,9 +1,15 @@
+import { logger } from '@/core/logger';
 import { Sessions } from '@/infra/postgres/sessions';
 import type { DeepPartial } from 'ts-essentials';
 import type { MockedFunction } from 'vitest';
 
 export const GET_AUTH_REQUEST = { headers: { Cookie: 'session=sessionId' } };
 export const POST_AUTH_REQUEST = { method: 'POST', headers: { Cookie: 'session=sessionId' } };
+
+export const loggerFn = vi.fn();
+export const loggerMock = vi.mocked(logger);
+loggerMock.info.mockImplementation(loggerFn);
+loggerMock.error.mockImplementation(loggerFn);
 
 export function deepMocked<T extends (...args: any[]) => unknown>(fn: T) {
   return vi.mocked(fn) as MockedFunction<(...args: Parameters<T>) => DeepPartial<ReturnType<T>>>;

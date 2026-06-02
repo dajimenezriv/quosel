@@ -44,6 +44,7 @@ export default [
     files: ['**/*.test.ts'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
       'sonarjs/assertions-in-tests': 'off',
       'sonarjs/no-clear-text-protocols': 'off',
       'sonarjs/no-empty-test-file': 'off',

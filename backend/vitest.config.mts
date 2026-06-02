@@ -12,6 +12,7 @@ export default defineConfig({
     clearMocks: true,
     env: testEnv,
     globals: true,
+    globalSetup: ['tests/global-setup.helper.test.ts'],
     include: ['src/**/*.test.ts'],
     setupFiles: ['tests/setup.helper.test.ts'],
     testTimeout: 5000,

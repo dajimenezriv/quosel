@@ -9,7 +9,7 @@ if (!localHosts.has(hostname)) {
   throw new Error(`Refusing to reset non-local database (host: ${hostname})`);
 }
 
-const sql = postgres(env.DATABASE_URL, { prepare: false });
+const sql = postgres(env.DATABASE_URL);
 
 await sql.unsafe(`
   DROP SCHEMA IF EXISTS public CASCADE;

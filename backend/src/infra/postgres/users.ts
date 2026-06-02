@@ -20,12 +20,12 @@ const EXAMPLE_PLACE: Omit<PlaceInsert, 'userId'> = {
 };
 
 export class Users {
-  static async getUserByGoogleId(googleId: string) {
+  static async getByGoogleId(googleId: string) {
     const [res] = await db.select().from(users).where(eq(users.googleId, googleId));
     return res;
   }
 
-  static async createUser(user: InferInsertModel<typeof users>) {
+  static async create(user: InferInsertModel<typeof users>) {
     return await db.transaction(async (tx) => {
       const [newUser] = await tx.insert(users).values(user).returning();
       if (!newUser) return;

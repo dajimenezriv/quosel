@@ -16,8 +16,8 @@ const VALID_QUERY = '/auth/google/callback?code=mockCode&state=mockState';
 
 describe('google-callback', () => {
   const validateAuthorizationCodeMock = deepMocked(google.validateAuthorizationCode);
-  const getUserByGoogleIdMock = deepMocked(Users.getUserByGoogleId);
-  const createUserMock = deepMocked(Users.createUser);
+  const getByGoogleIdMock = deepMocked(Users.getByGoogleId);
+  const createUserMock = deepMocked(Users.create);
 
   beforeEach(() => {
     validateAuthorizationCodeMock.mockResolvedValue({ idToken: () => 'mockIdToken' });
@@ -89,28 +89,28 @@ describe('google-callback', () => {
 
   it('should return user if exists', async () => {
     // Given
-    getUserByGoogleIdMock.mockResolvedValue({ id: 'mockExistsId' });
+    getByGoogleIdMock.mockResolvedValue({ id: 'mockExistsId' });
     // When
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
-    calls(Users.createUser).toHaveLength(0);
+    calls(Users.create).toHaveLength(0);
   });
 
   it('should create user if not found', async () => {
     // Given
-    getUserByGoogleIdMock.mockResolvedValue(undefined);
+    getByGoogleIdMock.mockResolvedValue(undefined);
     createUserMock.mockResolvedValue({ id: 'mockCreateId' });
     // When
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
-    call(Users.createUser).toMatchObject({ googleId: 'googleSub' });
+    call(Users.create).toMatchObject({ googleId: 'googleSub' });
   });
 
   it('should return 500 if user creation fails', async () => {
     // Given
-    getUserByGoogleIdMock.mockResolvedValue(undefined);
+    getByGoogleIdMock.mockResolvedValue(undefined);
     createUserMock.mockResolvedValue(undefined);
     // When
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
@@ -120,7 +120,7 @@ describe('google-callback', () => {
 
   it('should set session cookie and redirect on success', async () => {
     // Given
-    getUserByGoogleIdMock.mockResolvedValue({ id: 'mockExistsId' });
+    getByGoogleIdMock.mockResolvedValue({ id: 'mockExistsId' });
     // When
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
