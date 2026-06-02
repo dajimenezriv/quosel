@@ -32,9 +32,6 @@ importers:
       stripe:
         specifier: ^22.1.1
         version: 22.1.1(@types/node@24.12.4)
-      zod:
-        specifier: ^4.4.3
-        version: 4.4.3
       zod-validation-error:
         specifier: ^5.0.0
         version: 5.0.0(zod@4.4.3)

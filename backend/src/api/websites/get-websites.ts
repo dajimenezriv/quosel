@@ -1,8 +1,7 @@
-import { jsonResponse } from '@/core/api/json-response.ts';
 import type { AuthVariables } from '@/core/api/middleware/auth.ts';
+import { jsonResponse, setupResponses } from '@/core/api/utils.ts';
 import { Websites } from '@/infra/postgres/websites.ts';
-import { createRoute, type RouteHandler } from '@hono/zod-openapi';
-import z from 'zod';
+import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const PlaceSchema = z.object({
   id: z.string(),
@@ -42,12 +41,7 @@ const ResponseSchema = z.object({ websites: z.array(WebsiteSchema) });
 export const getWebsitesRoute = createRoute({
   method: 'get',
   path: '/get-websites',
-  responses: {
-    200: {
-      content: { 'application/json': { schema: ResponseSchema } },
-      description: 'List of websites for the authenticated user',
-    },
-  },
+  responses: setupResponses(200, ResponseSchema),
 });
 
 export const getWebsites: RouteHandler<typeof getWebsitesRoute, { Variables: AuthVariables }> = async (c) => {

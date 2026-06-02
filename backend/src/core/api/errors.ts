@@ -1,4 +1,3 @@
-import { z } from '@hono/zod-openapi';
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
 
 export class ApiError extends Error {
@@ -11,5 +10,3 @@ export class ApiError extends Error {
     this.extra = extra;
   }
 }
-
-export const ErrorSchema = z.object({ error: z.string() }).openapi('Error');

@@ -1,6 +1,6 @@
 import { createRouter } from '@/core/api/create-router.ts';
 import { createRoute, z } from '@hono/zod-openapi';
-import { jsonResponse } from '../../core/api/json-response.ts';
+import { jsonResponse, setupResponses } from '../../core/api/utils.ts';
 
 export const healthRouter = createRouter();
 
@@ -9,12 +9,7 @@ const ResponseSchema = z.object({ status: z.literal('ok') });
 const healthRoute = createRoute({
   method: 'get',
   path: '/health',
-  responses: {
-    200: {
-      content: { 'application/json': { schema: ResponseSchema } },
-      description: 'Service is healthy',
-    },
-  },
+  responses: setupResponses(200, ResponseSchema),
 });
 
 healthRouter.openapi(healthRoute, (c) => {

@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { z } from 'zod';
+import { z } from '@hono/zod-openapi';
 import { logger } from './logger.ts';
 
 const EnvSchema = z.object({

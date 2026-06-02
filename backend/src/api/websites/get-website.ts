@@ -1,9 +1,8 @@
-import { ApiError, ErrorSchema } from '@/core/api/errors.ts';
-import { jsonResponse } from '@/core/api/json-response.ts';
+import { ApiError } from '@/core/api/errors.ts';
 import type { AuthVariables } from '@/core/api/middleware/auth.ts';
+import { jsonResponse, setupResponses } from '@/core/api/utils.ts';
 import { Websites } from '@/infra/postgres/websites.ts';
-import { createRoute, type RouteHandler } from '@hono/zod-openapi';
-import z from 'zod';
+import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const ReviewSchema = z.object({
   id: z.string(),
@@ -66,16 +65,7 @@ export const getWebsiteRoute = createRoute({
   request: {
     params: z.object({ websiteId: z.string() }),
   },
-  responses: {
-    200: {
-      content: { 'application/json': { schema: ResponseSchema } },
-      description: 'Full website details',
-    },
-    404: {
-      content: { 'application/json': { schema: ErrorSchema } },
-      description: 'Website not found',
-    },
-  },
+  responses: setupResponses(200, ResponseSchema),
 });
 
 export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthVariables }> = async (c) => {

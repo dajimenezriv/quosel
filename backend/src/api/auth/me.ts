@@ -1,7 +1,7 @@
 import { Sessions } from '@/infra/postgres/sessions.ts';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { getCookie } from 'hono/cookie';
-import { jsonResponse } from '../../core/api/json-response.ts';
+import { jsonResponse, setupResponses } from '../../core/api/utils.ts';
 
 const UserSchema = z.object({
   id: z.string(),
@@ -17,12 +17,7 @@ const ResponseSchema = z.object({ user: UserSchema.nullable() });
 export const meRoute = createRoute({
   method: 'get',
   path: '/me',
-  responses: {
-    200: {
-      content: { 'application/json': { schema: ResponseSchema } },
-      description: 'Current user',
-    },
-  },
+  responses: setupResponses(200, ResponseSchema),
 });
 
 export const me: RouteHandler<typeof meRoute> = async (c) => {

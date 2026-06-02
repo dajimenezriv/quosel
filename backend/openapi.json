@@ -25,7 +25,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Service is healthy",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -44,6 +44,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -52,7 +62,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Current user",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -112,6 +122,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -120,7 +140,17 @@
       "post": {
         "responses": {
           "204": {
-            "description": "Logged out"
+            "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -129,7 +159,7 @@
       "get": {
         "responses": {
           "200": {
-            "description": "List of websites for the authenticated user",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -274,6 +304,16 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -292,7 +332,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Full website details",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
@@ -508,8 +548,8 @@
               }
             }
           },
-          "404": {
-            "description": "Website not found",
+          "500": {
+            "description": "Error",
             "content": {
               "application/json": {
                 "schema": {
@@ -536,7 +576,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Website id",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {

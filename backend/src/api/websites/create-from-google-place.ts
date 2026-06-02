@@ -1,10 +1,9 @@
-import { ApiError, ErrorSchema } from '@/core/api/errors.ts';
-import { jsonResponse } from '@/core/api/json-response.ts';
+import { ApiError } from '@/core/api/errors.ts';
 import type { AuthVariables } from '@/core/api/middleware/auth.ts';
+import { jsonResponse, setupResponses } from '@/core/api/utils.ts';
 import { env } from '@/core/env.ts';
 import { Websites, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/websites.ts';
-import { createRoute, type RouteHandler } from '@hono/zod-openapi';
-import z from 'zod';
+import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 /**
  * Place IDs uniquely identify a place in the Google Places database and on Google Maps. Examples:
@@ -35,16 +34,7 @@ export const createFromGooglePlaceRoute = createRoute({
       }),
     }),
   },
-  responses: {
-    200: {
-      content: { 'application/json': { schema: ResponseSchema } },
-      description: 'Website id',
-    },
-    500: {
-      content: { 'application/json': { schema: ErrorSchema } },
-      description: 'Error',
-    },
-  },
+  responses: setupResponses(200, ResponseSchema),
 });
 
 export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRoute, { Variables: AuthVariables }> = async (c) => {

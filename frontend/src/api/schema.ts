@@ -20,7 +20,6 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Service is healthy */
                 200: {
                     headers: {
                         [name: string]: unknown;
@@ -30,6 +29,15 @@ export interface paths {
                             /** @enum {string} */
                             status: "ok";
                         };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
                     };
                 };
             };
@@ -58,7 +66,6 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Current user */
                 200: {
                     headers: {
                         [name: string]: unknown;
@@ -75,6 +82,15 @@ export interface paths {
                                 currentPeriodEnd: string | null;
                             } | null;
                         };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
                     };
                 };
             };
@@ -105,12 +121,20 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Logged out */
                 204: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content?: never;
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
                 };
             };
         };
@@ -136,7 +160,6 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description List of websites for the authenticated user */
                 200: {
                     headers: {
                         [name: string]: unknown;
@@ -180,6 +203,15 @@ export interface paths {
                         };
                     };
                 };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
             };
         };
         put?: never;
@@ -208,7 +240,6 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Full website details */
                 200: {
                     headers: {
                         [name: string]: unknown;
@@ -271,8 +302,8 @@ export interface paths {
                         };
                     };
                 };
-                /** @description Website not found */
-                404: {
+                /** @description Error */
+                500: {
                     headers: {
                         [name: string]: unknown;
                     };
@@ -310,7 +341,6 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description Website id */
                 200: {
                     headers: {
                         [name: string]: unknown;
