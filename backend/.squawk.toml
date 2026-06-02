@@ -1,0 +1,8 @@
+pg_version = "18"
+excluded_rules = [
+  "adding-foreign-key-constraint",
+  "constraint-missing-not-valid",
+  "prefer-bigint-over-int",
+  "require-concurrent-index-creation",
+  "require-timeout-settings",
+]

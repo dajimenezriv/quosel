@@ -1,99 +1,88 @@
-import { bigint, doublePrecision, index, integer, jsonb, numeric, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { bigint, doublePrecision, index, integer, jsonb, numeric, pgTable, timestamp } from 'drizzle-orm/pg-core';
+import { createdAt, foreignKey, id, nullableText, text, updatedAt } from './utils';
 
 export const users = pgTable('users', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  googleId: text('google_id').notNull().unique(),
-  email: text('email').notNull(),
+  id: id(),
+  googleId: text('google_id').unique(),
+  email: text('email'),
   name: text('name'),
   picture: text('picture'),
-  stripeCustomerId: text('stripe_customer_id').unique(),
-  stripeSubscriptionId: text('stripe_subscription_id').unique(),
+  stripeCustomerId: nullableText('stripe_customer_id').unique(),
+  stripeSubscriptionId: nullableText('stripe_subscription_id').unique(),
   subscriptionStatus: text('subscription_status'),
   subscriptionPriceId: text('subscription_price_id'),
   currentPeriodEnd: timestamp('current_period_end', { withTimezone: true }),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  createdAt: createdAt(),
 });
 
 export const sessions = pgTable('sessions', {
   id: text('id').primaryKey(),
-  userId: uuid('user_id')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
+  userId: foreignKey('user_id').references(() => users.id, { onDelete: 'cascade' }),
   expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
 });
 
 export const places = pgTable('places', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  userId: uuid('user_id')
-    .references(() => users.id, { onDelete: 'cascade' })
-    .notNull(),
-  googlePlaceId: text('google_place_id').notNull(),
-  displayNameText: text('display_name_text').notNull(),
-  displayNameLanguageCode: text('display_name_language_code').notNull(),
-  nationalPhoneNumber: text('national_phone_number').notNull(),
-  internationalPhoneNumber: text('international_phone_number').notNull(),
-  formattedAddress: text('formatted_address').notNull(),
-  shortFormattedAddress: text('short_formatted_address').notNull(),
+  id: id(),
+  userId: foreignKey('user_id').references(() => users.id, { onDelete: 'cascade' }),
+  googleId: text('google_id').unique(),
+  name: text('name'),
+  internationalPhoneNumber: text('international_phone_number'),
+  formattedAddress: text('formatted_address'),
+  shortFormattedAddress: text('short_formatted_address'),
   latitude: doublePrecision('latitude').notNull(),
   longitude: doublePrecision('longitude').notNull(),
   rating: numeric('rating', { precision: 2, scale: 1 }),
   userRatingCount: integer('user_rating_count'),
-  googleMapsPlaceUri: text('google_maps_place_uri').notNull(),
-  googleMapsReviewsUri: text('google_maps_reviews_uri').notNull(),
-  googleMapsPhotosUri: text('google_maps_photos_uri').notNull(),
+  googleMapsPlaceUri: text('google_maps_place_uri'),
+  googleMapsReviewsUri: text('google_maps_reviews_uri'),
+  googleMapsPhotosUri: text('google_maps_photos_uri'),
   raw: jsonb('raw'),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  createdAt: createdAt(),
+  updatedAt: updatedAt(),
 });
-
-export const websites = pgTable('websites', {
-  id: uuid('id').primaryKey().defaultRandom(),
-  placeId: uuid('place_id')
-    .notNull()
-    .references(() => places.id, { onDelete: 'cascade' }),
-  userId: uuid('user_id')
-    .notNull()
-    .references(() => users.id, { onDelete: 'cascade' }),
-  domain: text('domain').notNull().unique(),
-  template: text('template').notNull().default('default'),
-  texts: text('texts').array().notNull().default([]),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
-});
-
-export const websiteImages = pgTable(
-  'website_images',
-  {
-    id: uuid('id').primaryKey().defaultRandom(),
-    websiteId: uuid('website_id')
-      .notNull()
-      .references(() => websites.id, { onDelete: 'cascade' }),
-    userId: uuid('user_id')
-      .notNull()
-      .references(() => users.id, { onDelete: 'cascade' }),
-    url: text('url').notNull(),
-    sizeBytes: bigint('size_bytes', { mode: 'number' }).notNull(),
-    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-  },
-  (t) => [index('website_images_website_id_idx').on(t.websiteId)],
-);
 
 export const reviews = pgTable(
   'reviews',
   {
-    id: uuid('id').primaryKey().defaultRandom(),
-    placeId: uuid('place_id')
-      .notNull()
-      .references(() => places.id, { onDelete: 'cascade' }),
-    googleReviewName: text('google_review_name').notNull().unique(),
+    id: id(),
+    placeId: foreignKey('place_id').references(() => places.id, { onDelete: 'cascade' }),
+    googleId: text('google_id').unique(),
     rating: numeric('rating', { precision: 2, scale: 1 }).notNull(),
-    originalText: text('original_text').notNull(),
-    originalTextLanguageCode: text('original_text_language_code').notNull(),
-    authorDisplayName: text('author_display_name').notNull(),
-    authorPhotoUri: text('author_photo_uri').notNull(),
+    text: text('text'),
+    authorName: text('author_name'),
+    authorPhotoUri: text('author_photo_uri'),
     publishTime: timestamp('publish_time', { withTimezone: true }).notNull(),
-    googleMapsUri: text('google_maps_uri').notNull(),
-    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    googleMapsUri: text('google_maps_uri'),
+    createdAt: createdAt(),
+    updatedAt: updatedAt(),
   },
   (t) => [index('reviews_place_id_idx').on(t.placeId)],
+);
+
+export const websites = pgTable(
+  'websites',
+  {
+    id: id(),
+    userId: foreignKey('user_id').references(() => users.id, { onDelete: 'cascade' }),
+    placeId: foreignKey('place_id').references(() => places.id, { onDelete: 'cascade' }),
+    domain: text('domain').unique(),
+    template: text('template'),
+    texts: text('texts').array().notNull().default([]),
+    createdAt: createdAt(),
+    updatedAt: updatedAt(),
+  },
+  (t) => [index('websites_user_id_idx').on(t.userId)],
+);
+
+export const websiteImages = pgTable(
+  'website_images',
+  {
+    id: id(),
+    userId: foreignKey('user_id').references(() => users.id, { onDelete: 'cascade' }),
+    websiteId: foreignKey('website_id').references(() => websites.id, { onDelete: 'cascade' }),
+    url: text('url'),
+    sizeBytes: bigint('size_bytes', { mode: 'number' }).notNull(),
+    createdAt: createdAt(),
+  },
+  (t) => [index('website_images_user_id_idx').on(t.userId), index('website_images_website_id_idx').on(t.websiteId)],
 );
