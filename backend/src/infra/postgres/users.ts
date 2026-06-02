@@ -1,14 +1,12 @@
 import { slugify } from '@/core/utils';
 import { eq, type InferInsertModel } from 'drizzle-orm';
 import { db } from './client';
-import { places, reviews, users, websites } from './schema';
-import type { PlaceInsert, ReviewInsert } from './websites';
+import { places, users, websites } from './schema';
+import type { PlaceInsert } from './websites';
 
 const EXAMPLE_PLACE: Omit<PlaceInsert, 'userId'> = {
-  googlePlaceId: 'example_place_id',
-  displayNameText: 'The Golden Spoon',
-  displayNameLanguageCode: 'en',
-  nationalPhoneNumber: '(555) 123-4567',
+  googleId: 'example_place_id',
+  name: 'The Golden Spoon',
   internationalPhoneNumber: '+1 555-123-4567',
   formattedAddress: '123 Main Street, Springfield, IL 62701, USA',
   shortFormattedAddress: '123 Main St, Springfield',
@@ -20,39 +18,6 @@ const EXAMPLE_PLACE: Omit<PlaceInsert, 'userId'> = {
   googleMapsReviewsUri: 'https://maps.google.com/?cid=example#reviews',
   googleMapsPhotosUri: 'https://maps.google.com/?cid=example#photos',
 };
-
-const EXAMPLE_REVIEWS: ReviewInsert[] = [
-  {
-    googleReviewName: 'example_review_1',
-    rating: '5.0',
-    originalText: 'Absolutely love this place! The food is always fresh and the staff are so friendly. Highly recommend the pasta.',
-    originalTextLanguageCode: 'en',
-    authorDisplayName: 'Maria Johnson',
-    authorPhotoUri: 'https://lh3.googleusercontent.com/a/example1',
-    publishTime: new Date('2024-03-15T14:00:00Z'),
-    googleMapsUri: 'https://maps.google.com/reviews/example1',
-  },
-  {
-    googleReviewName: 'example_review_2',
-    rating: '4.0',
-    originalText: 'Great atmosphere and good food. Service was a bit slow on a busy Saturday night but overall a solid experience.',
-    originalTextLanguageCode: 'en',
-    authorDisplayName: 'James Carter',
-    authorPhotoUri: 'https://lh3.googleusercontent.com/a/example2',
-    publishTime: new Date('2024-04-22T19:30:00Z'),
-    googleMapsUri: 'https://maps.google.com/reviews/example2',
-  },
-  {
-    googleReviewName: 'example_review_3',
-    rating: '5.0',
-    originalText: 'My favorite spot in town. Cozy interior, amazing desserts, and the owner always remembers our names. A hidden gem!',
-    originalTextLanguageCode: 'en',
-    authorDisplayName: 'Sofia Nguyen',
-    authorPhotoUri: 'https://lh3.googleusercontent.com/a/example3',
-    publishTime: new Date('2024-05-10T12:15:00Z'),
-    googleMapsUri: 'https://maps.google.com/reviews/example3',
-  },
-];
 
 export class Users {
   static async getUserByGoogleId(googleId: string) {
@@ -71,10 +36,8 @@ export class Users {
         .returning();
       if (!newPlace) return;
 
-      await tx.insert(reviews).values(EXAMPLE_REVIEWS.map((r) => ({ ...r, placeId: newPlace.id })));
-
-      const domain = `${slugify(EXAMPLE_PLACE.displayNameText)}-${newPlace.id.slice(0, 8)}`;
-      await tx.insert(websites).values({ placeId: newPlace.id, userId: newUser.id, domain });
+      const domain = `${slugify(EXAMPLE_PLACE.name)}-${newPlace.id.slice(0, 8)}`;
+      await tx.insert(websites).values({ placeId: newPlace.id, userId: newUser.id, domain, template: '' });
 
       return newUser;
     });

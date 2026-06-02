@@ -56,11 +56,9 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
   const parsedData = await schema.parseAsync(data);
 
   const place: PlaceInsert = {
-    googlePlaceId,
+    googleId: googlePlaceId,
     userId,
-    displayNameText: parsedData.displayName.text,
-    displayNameLanguageCode: parsedData.displayName.languageCode,
-    nationalPhoneNumber: parsedData.nationalPhoneNumber,
+    name: parsedData.displayName.text,
     internationalPhoneNumber: parsedData.internationalPhoneNumber,
     formattedAddress: parsedData.formattedAddress,
     shortFormattedAddress: parsedData.shortFormattedAddress,
@@ -75,11 +73,10 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
   };
 
   const reviews: ReviewInsert[] = parsedData.reviews.map((r) => ({
-    googleReviewName: r.name,
+    googleId: r.name,
     rating: r.rating.toString(),
-    originalText: r.originalText.text,
-    originalTextLanguageCode: r.originalText.languageCode,
-    authorDisplayName: r.authorAttribution.displayName,
+    text: r.originalText.text,
+    authorName: r.authorAttribution.displayName,
     authorPhotoUri: r.authorAttribution.photoUri,
     publishTime: new Date(r.publishTime),
     googleMapsUri: r.googleMapsUri,

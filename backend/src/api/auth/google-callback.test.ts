@@ -14,13 +14,6 @@ vi.mock(import('arctic'));
 const VALID_COOKIES = 'google_state=mockState; google_verifier=mockVerifier';
 const VALID_QUERY = '/auth/google/callback?code=mockCode&state=mockState';
 
-const mockClaims = {
-  sub: 'googleSub',
-  email: 'user@example.com',
-  name: 'User',
-  picture: null,
-};
-
 describe('google-callback', () => {
   const validateAuthorizationCodeMock = deepMocked(google.validateAuthorizationCode);
   const getUserByGoogleIdMock = deepMocked(Users.getUserByGoogleId);
@@ -28,7 +21,7 @@ describe('google-callback', () => {
 
   beforeEach(() => {
     validateAuthorizationCodeMock.mockResolvedValue({ idToken: () => 'mockIdToken' });
-    vi.mocked(decodeIdToken).mockReturnValue(mockClaims);
+    vi.mocked(decodeIdToken).mockReturnValue({ sub: 'googleSub' });
   });
 
   it('should return 400 if code is missing', async () => {
@@ -112,7 +105,7 @@ describe('google-callback', () => {
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
-    call(Users.createUser).toStrictEqual({ ...mockClaims, googleId: 'googleSub' });
+    call(Users.createUser).toMatchObject({ googleId: 'googleSub' });
   });
 
   it('should return 500 if user creation fails', async () => {

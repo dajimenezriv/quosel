@@ -6,11 +6,9 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const ReviewSchema = z.object({
   id: z.string(),
-  googleReviewName: z.string(),
   rating: z.string(),
-  originalText: z.string(),
-  originalTextLanguageCode: z.string(),
-  authorDisplayName: z.string(),
+  text: z.string(),
+  authorName: z.string(),
   authorPhotoUri: z.string(),
   publishTime: z.date(),
   googleMapsUri: z.string(),
@@ -27,10 +25,8 @@ const ImageSchema = z.object({
 const PlaceSchema = z.object({
   id: z.string(),
   userId: z.string(),
-  googlePlaceId: z.string(),
-  displayNameText: z.string(),
-  displayNameLanguageCode: z.string(),
-  nationalPhoneNumber: z.string(),
+  googleId: z.string(),
+  name: z.string(),
   internationalPhoneNumber: z.string(),
   formattedAddress: z.string(),
   shortFormattedAddress: z.string(),
@@ -44,7 +40,6 @@ const PlaceSchema = z.object({
   raw: z.unknown().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
-  reviews: z.array(ReviewSchema),
 });
 
 const ResponseSchema = z.object({
@@ -57,6 +52,7 @@ const ResponseSchema = z.object({
   updatedAt: z.date(),
   place: PlaceSchema,
   images: z.array(ImageSchema),
+  reviews: z.array(ReviewSchema),
 });
 
 export const getWebsiteRoute = createRoute({

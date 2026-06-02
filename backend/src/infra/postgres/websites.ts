@@ -26,7 +26,7 @@ export class Websites {
   }
 
   static async getById(userId: UserId, websiteId: string) {
-    const [row] = await db
+    const [websiteRow] = await db
       .select({
         id: websites.id,
         userId: websites.userId,
@@ -41,24 +41,22 @@ export class Websites {
       .innerJoin(places, eq(websites.placeId, places.id))
       .where(and(eq(websites.id, websiteId), eq(websites.userId, userId)));
 
-    if (!row) return;
+    if (!websiteRow) return;
 
-    const [placeReviews, images] = await Promise.all([
+    const [reviewRows, imageRows] = await Promise.all([
       db
         .select({
           id: reviews.id,
-          googleReviewName: reviews.googleReviewName,
           rating: reviews.rating,
-          originalText: reviews.originalText,
-          originalTextLanguageCode: reviews.originalTextLanguageCode,
-          authorDisplayName: reviews.authorDisplayName,
+          text: reviews.text,
+          authorName: reviews.authorName,
           authorPhotoUri: reviews.authorPhotoUri,
           publishTime: reviews.publishTime,
           googleMapsUri: reviews.googleMapsUri,
           createdAt: reviews.createdAt,
         })
         .from(reviews)
-        .where(eq(reviews.placeId, row.place.id)),
+        .where(eq(reviews.placeId, websiteRow.place.id)),
       db
         .select({
           id: websiteImages.id,
@@ -71,32 +69,30 @@ export class Websites {
     ]);
 
     return {
-      ...row,
-      place: { ...row.place, reviews: placeReviews },
-      images,
+      ...websiteRow,
+      reviews: reviewRows,
+      images: imageRows,
     };
   }
 
   static async create(place: PlaceInsert, placeReviews: ReviewInsert[]) {
     return await db.transaction(async (tx) => {
-      const [inserted] = await tx.insert(places).values(place).returning();
-      if (!inserted) return;
+      const [placeRow] = await tx.insert(places).values(place).returning();
+      if (!placeRow) return;
 
       if (placeReviews.length > 0) {
-        await tx.insert(reviews).values(
-          placeReviews.map((r) => ({
-            ...r,
-            placeId: inserted.id,
-          })),
-        );
+        await tx.insert(reviews).values(placeReviews.map((r) => ({ ...r, placeId: placeRow.id })));
       }
 
-      const domain = `${slugify(place.displayNameText)}-${inserted.id.slice(0, 8)}`;
+      const domain = `${slugify(place.name)}-${placeRow.id.slice(0, 8)}`;
 
-      const [website] = await tx.insert(websites).values({ placeId: inserted.id, userId: place.userId, domain }).returning();
-      if (!website) return;
+      const [websiteRow] = await tx
+        .insert(websites)
+        .values({ placeId: placeRow.id, userId: place.userId, domain, template: '' })
+        .returning();
+      if (!websiteRow) return;
 
-      return website.id;
+      return websiteRow.id;
     });
   }
 }

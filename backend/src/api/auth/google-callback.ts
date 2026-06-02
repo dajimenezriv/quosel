@@ -43,7 +43,16 @@ export async function googleCallback(c: Context) {
   const googleId = claims.sub;
   let user = await Users.getUserByGoogleId(googleId);
 
-  if (!user) user = await Users.createUser({ ...claims, googleId });
+  if (!user) {
+    user = await Users.createUser({
+      googleId,
+      email: claims.email,
+      name: claims.name ?? '',
+      picture: claims.picture ?? '',
+      subscriptionPriceId: '',
+      subscriptionStatus: '',
+    });
+  }
 
   if (!user) throw new ApiError(500, 'Failed to create a user');
 

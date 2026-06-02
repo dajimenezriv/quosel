@@ -44,21 +44,4 @@ describe('me', () => {
       },
     });
   });
-
-  it('should return user with null nullable fields', async () => {
-    // Given
-    const user = {
-      id: 'userId',
-      email: 'user@example.com',
-      name: null,
-      picture: null,
-      subscriptionStatus: null,
-      currentPeriodEnd: null,
-    };
-    getSessionByIdMock.mockResolvedValue({ user });
-    // When
-    const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
-    // Then
-    await expectJson(res, 200, { user });
-  });
 });

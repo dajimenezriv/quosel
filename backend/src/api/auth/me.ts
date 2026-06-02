@@ -6,9 +6,9 @@ import { jsonResponse, setupResponses } from '../../core/api/utils';
 const UserSchema = z.object({
   id: z.string(),
   email: z.string(),
-  name: z.string().nullable(),
-  picture: z.string().nullable(),
-  subscriptionStatus: z.string().nullable(),
+  name: z.string(),
+  picture: z.string(),
+  subscriptionStatus: z.string(),
   currentPeriodEnd: z.iso.datetime().nullable(),
 });
 
