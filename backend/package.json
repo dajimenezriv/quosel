@@ -26,7 +26,7 @@
     "db:reset": "node scripts/reset-db.ts",
     "========== Testing ==========": "",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test:cov": "vitest run --coverage",
     "========== Other ==========": "",
     "openapi": "tsx scripts/generate-openapi.ts && openapi-typescript openapi.json -o ../frontend/src/api/schema.ts"
   },
