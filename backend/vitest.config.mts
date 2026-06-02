@@ -1,4 +1,8 @@
+import { resolve } from 'node:path';
+import { config } from 'dotenv';
 import { defineConfig } from 'vitest/config';
+
+const { parsed: testEnv = {} } = config({ path: resolve(import.meta.dirname, '.env.test') });
 
 export default defineConfig({
   resolve: {
@@ -6,6 +10,7 @@ export default defineConfig({
   },
   test: {
     clearMocks: true,
+    env: testEnv,
     globals: true,
     include: ['src/**/*.test.ts'],
     setupFiles: ['tests/setup.helper.test.ts'],
