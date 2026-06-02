@@ -18,7 +18,6 @@ const PlaceSchema = z.object({
   googleMapsPlaceUri: z.string(),
   googleMapsReviewsUri: z.string(),
   googleMapsPhotosUri: z.string(),
-  raw: z.unknown().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });

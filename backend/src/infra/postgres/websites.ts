@@ -1,6 +1,6 @@
 import type { UserId } from '@/core/types';
 import { slugify } from '@/core/utils';
-import { and, eq, type InferInsertModel } from 'drizzle-orm';
+import { and, eq, getTableColumns, type InferInsertModel } from 'drizzle-orm';
 import { db } from './client';
 import { places, reviews, websiteImages, websites } from './schema';
 
@@ -10,16 +10,7 @@ export type ReviewInsert = Omit<InferInsertModel<typeof reviews>, 'placeId'>;
 export class Websites {
   static async getAllByUserId(userId: UserId) {
     return await db
-      .select({
-        id: websites.id,
-        userId: websites.userId,
-        domain: websites.domain,
-        template: websites.template,
-        texts: websites.texts,
-        createdAt: websites.createdAt,
-        updatedAt: websites.updatedAt,
-        place: places,
-      })
+      .select({ ...getTableColumns(websites), place: places })
       .from(websites)
       .innerJoin(places, eq(websites.placeId, places.id))
       .where(eq(websites.userId, userId));
@@ -27,45 +18,15 @@ export class Websites {
 
   static async getById(userId: UserId, websiteId: string) {
     const [websiteRow] = await db
-      .select({
-        id: websites.id,
-        userId: websites.userId,
-        domain: websites.domain,
-        template: websites.template,
-        texts: websites.texts,
-        createdAt: websites.createdAt,
-        updatedAt: websites.updatedAt,
-        place: places,
-      })
+      .select({ ...getTableColumns(websites), place: places })
       .from(websites)
       .innerJoin(places, eq(websites.placeId, places.id))
       .where(and(eq(websites.id, websiteId), eq(websites.userId, userId)));
-
     if (!websiteRow) return;
 
     const [reviewRows, imageRows] = await Promise.all([
-      db
-        .select({
-          id: reviews.id,
-          rating: reviews.rating,
-          text: reviews.text,
-          authorName: reviews.authorName,
-          authorPhotoUri: reviews.authorPhotoUri,
-          publishTime: reviews.publishTime,
-          googleMapsUri: reviews.googleMapsUri,
-          createdAt: reviews.createdAt,
-        })
-        .from(reviews)
-        .where(eq(reviews.placeId, websiteRow.place.id)),
-      db
-        .select({
-          id: websiteImages.id,
-          url: websiteImages.url,
-          sizeBytes: websiteImages.sizeBytes,
-          createdAt: websiteImages.createdAt,
-        })
-        .from(websiteImages)
-        .where(eq(websiteImages.websiteId, websiteId)),
+      db.select(getTableColumns(reviews)).from(reviews).where(eq(reviews.placeId, websiteRow.place.id)),
+      db.select(getTableColumns(websiteImages)).from(websiteImages).where(eq(websiteImages.websiteId, websiteId)),
     ]);
 
     return {

@@ -4,12 +4,12 @@ import { sessions, users } from './schema';
 
 export class Sessions {
   static async getById(id: string) {
-    const [res] = await db
+    const [row] = await db
       .select({ user: users, session: sessions })
       .from(sessions)
       .innerJoin(users, eq(users.id, sessions.userId))
       .where(and(eq(sessions.id, id), gt(sessions.expiresAt, new Date())));
-    return res;
+    return row;
   }
 
   static async create(session: InferInsertModel<typeof sessions>) {

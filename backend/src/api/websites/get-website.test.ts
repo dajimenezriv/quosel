@@ -1,13 +1,13 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
-import { expectError, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
+import { deepMocked, expectError, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
 
 vi.mock(import('@/infra/postgres/websites'));
 
 describe('get-website', () => {
   mockAuthMiddleware();
 
-  const getByIdMock = vi.mocked(Websites.getById);
+  const getByIdMock = deepMocked(Websites.getById);
 
   it('should return 401 if session is not provided', async () => {
     // When
@@ -50,7 +50,6 @@ describe('get-website', () => {
         googleMapsPlaceUri: 'https://maps.google.com/?cid=example',
         googleMapsReviewsUri: 'https://maps.google.com/?cid=example#reviews',
         googleMapsPhotosUri: 'https://maps.google.com/?cid=example#photos',
-        raw: null,
         createdAt: new Date('2024-01-01T00:00:00.000Z'),
         updatedAt: new Date('2024-01-01T00:00:00.000Z'),
       },

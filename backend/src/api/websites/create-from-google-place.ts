@@ -69,7 +69,7 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
     googleMapsPlaceUri: parsedData.googleMapsLinks.placeUri,
     googleMapsReviewsUri: parsedData.googleMapsLinks.reviewsUri,
     googleMapsPhotosUri: parsedData.googleMapsLinks.photosUri,
-    raw: parsedData,
+    raw: data,
   };
 
   const reviews: ReviewInsert[] = parsedData.reviews.map((r) => ({
@@ -91,7 +91,6 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
 
 const schema = z.object({
   id: z.string(),
-  nationalPhoneNumber: z.string(),
   internationalPhoneNumber: z.string(),
   formattedAddress: z.string(),
   location: z.object({ latitude: z.number(), longitude: z.number() }),
@@ -105,16 +104,13 @@ const schema = z.object({
     ),
   }),
   userRatingCount: z.number(),
-  displayName: z.object({ text: z.string(), languageCode: z.string() }),
+  displayName: z.object({ text: z.string() }),
   shortFormattedAddress: z.string(),
   reviews: z.array(
     z.object({
       name: z.string(),
       rating: z.number(),
-      originalText: z.object({
-        text: z.string(),
-        languageCode: z.string(),
-      }),
+      originalText: z.object({ text: z.string() }),
       authorAttribution: z.object({
         displayName: z.string(),
         photoUri: z.url(),
