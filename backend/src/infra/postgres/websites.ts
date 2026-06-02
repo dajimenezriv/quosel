@@ -1,8 +1,8 @@
-import type { UserId } from '@/core/types.ts';
-import { slugify } from '@/core/utils.ts';
+import type { UserId } from '@/core/types';
+import { slugify } from '@/core/utils';
 import { and, eq, type InferInsertModel } from 'drizzle-orm';
-import { db } from './client.ts';
-import { places, reviews, websiteImages, websites } from './schema.ts';
+import { db } from './client';
+import { places, reviews, websiteImages, websites } from './schema';
 
 export type PlaceInsert = InferInsertModel<typeof places>;
 export type ReviewInsert = Omit<InferInsertModel<typeof reviews>, 'placeId'>;

@@ -1,5 +1,5 @@
-import { setupResponses } from '@/core/api/utils.ts';
-import { Sessions } from '@/infra/postgres/sessions.ts';
+import { setupResponses } from '@/core/api/utils';
+import { Sessions } from '@/infra/postgres/sessions';
 import { createRoute, type RouteHandler } from '@hono/zod-openapi';
 import { deleteCookie, getCookie } from 'hono/cookie';
 

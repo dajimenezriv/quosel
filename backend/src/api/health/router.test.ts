@@ -1,7 +1,7 @@
-import { app } from '@/app.ts';
-import { expectJson } from '@/tests/utils.helper.test.ts';
+import { app } from '@/app';
+import { expectJson } from '@/tests/utils.helper.test';
 
-vi.mock(import('@/infra/postgres/websites.ts'));
+vi.mock(import('@/infra/postgres/websites'));
 
 describe('router', () => {
   it('should return 200 always', async () => {

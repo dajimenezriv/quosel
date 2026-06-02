@@ -1,1 +1,1 @@
-vi.mock(import('@/core/logger.ts'));
+vi.mock(import('@/core/logger'));

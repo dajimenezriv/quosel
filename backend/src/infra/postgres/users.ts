@@ -1,8 +1,8 @@
-import { slugify } from '@/core/utils.ts';
+import { slugify } from '@/core/utils';
 import { eq, type InferInsertModel } from 'drizzle-orm';
-import { db } from './client.ts';
-import { places, reviews, users, websites } from './schema.ts';
-import type { PlaceInsert, ReviewInsert } from './websites.ts';
+import { db } from './client';
+import { places, reviews, users, websites } from './schema';
+import type { PlaceInsert, ReviewInsert } from './websites';
 
 const EXAMPLE_PLACE: Omit<PlaceInsert, 'userId'> = {
   googlePlaceId: 'example_place_id',

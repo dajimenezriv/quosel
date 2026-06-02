@@ -1,8 +1,8 @@
 import { serve } from '@hono/node-server';
-import { app } from './app.ts';
-import { requestLogger } from './core/api/middleware/logger.ts';
-import { env } from './core/env.ts';
-import { logger } from './core/logger.ts';
+import { app } from './app';
+import { requestLogger } from './core/api/middleware/logger';
+import { env } from './core/env';
+import { logger } from './core/logger';
 
 app.use('*', requestLogger);
 

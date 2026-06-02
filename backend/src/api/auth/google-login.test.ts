@@ -1,10 +1,10 @@
-import { app } from '@/app.ts';
-import { call } from '@/tests/utils.helper.test.ts';
+import { app } from '@/app';
+import { call } from '@/tests/utils.helper.test';
 import { generateCodeVerifier, generateState } from 'arctic';
-import { google } from './utils.ts';
+import { google } from './utils';
 
-vi.mock(import('@/api/auth/utils.ts'));
-vi.mock(import('@/core/env.ts'));
+vi.mock(import('@/api/auth/utils'));
+vi.mock(import('@/core/env'));
 vi.mock(import('arctic'));
 
 describe('google-login', () => {

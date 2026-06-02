@@ -1,7 +1,7 @@
-import { Sessions } from '@/infra/postgres/sessions.ts';
+import { Sessions } from '@/infra/postgres/sessions';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { getCookie } from 'hono/cookie';
-import { jsonResponse, setupResponses } from '../../core/api/utils.ts';
+import { jsonResponse, setupResponses } from '../../core/api/utils';
 
 const UserSchema = z.object({
   id: z.string(),

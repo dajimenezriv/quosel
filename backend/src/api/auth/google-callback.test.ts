@@ -1,14 +1,14 @@
-import { google } from '@/api/auth/utils.ts';
-import { app } from '@/app.ts';
-import { Sessions } from '@/infra/postgres/sessions.ts';
-import { Users } from '@/infra/postgres/users.ts';
-import { call, calls, deepMocked, expectError } from '@/tests/utils.helper.test.ts';
+import { google } from '@/api/auth/utils';
+import { app } from '@/app';
+import { Sessions } from '@/infra/postgres/sessions';
+import { Users } from '@/infra/postgres/users';
+import { call, calls, deepMocked, expectError } from '@/tests/utils.helper.test';
 import { decodeIdToken, OAuth2RequestError } from 'arctic';
 
-vi.mock(import('@/api/auth/utils.ts'));
-vi.mock(import('@/infra/postgres/users.ts'));
-vi.mock(import('@/infra/postgres/sessions.ts'));
-vi.mock(import('@/core/env.ts'));
+vi.mock(import('@/api/auth/utils'));
+vi.mock(import('@/infra/postgres/users'));
+vi.mock(import('@/infra/postgres/sessions'));
+vi.mock(import('@/core/env'));
 vi.mock(import('arctic'));
 
 const VALID_COOKIES = 'google_state=mockState; google_verifier=mockVerifier';

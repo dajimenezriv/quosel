@@ -1,6 +1,6 @@
-import type { AuthVariables } from '@/core/api/middleware/auth.ts';
-import { jsonResponse, setupResponses } from '@/core/api/utils.ts';
-import { Websites } from '@/infra/postgres/websites.ts';
+import type { AuthVariables } from '@/core/api/middleware/auth';
+import { jsonResponse, setupResponses } from '@/core/api/utils';
+import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const PlaceSchema = z.object({

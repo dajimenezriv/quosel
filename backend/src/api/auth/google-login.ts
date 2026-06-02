@@ -1,5 +1,5 @@
-import { google } from '@/api/auth/utils.ts';
-import { env } from '@/core/env.ts';
+import { google } from '@/api/auth/utils';
+import { env } from '@/core/env';
 import { generateCodeVerifier, generateState } from 'arctic';
 import type { Context } from 'hono';
 import { setCookie } from 'hono/cookie';

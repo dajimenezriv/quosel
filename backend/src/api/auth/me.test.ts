@@ -1,8 +1,8 @@
-import { app } from '@/app.ts';
-import { Sessions } from '@/infra/postgres/sessions.ts';
-import { deepMocked, expectJson } from '@/tests/utils.helper.test.ts';
+import { app } from '@/app';
+import { Sessions } from '@/infra/postgres/sessions';
+import { deepMocked, expectJson } from '@/tests/utils.helper.test';
 
-vi.mock(import('@/infra/postgres/sessions.ts'));
+vi.mock(import('@/infra/postgres/sessions'));
 
 describe('me', () => {
   const getSessionByIdMock = deepMocked(Sessions.getById);

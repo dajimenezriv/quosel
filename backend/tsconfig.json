@@ -2,15 +2,13 @@
   "compilerOptions": {
     "target": "es2023",
     "lib": ["es2023"],
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "types": ["node", "vitest/globals"],
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
     "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
-    "allowImportingTsExtensions": true,
     "noEmit": true,
     "skipLibCheck": true,
     "paths": {

@@ -1,8 +1,8 @@
-import { ApiError } from '@/core/api/errors.ts';
-import type { AuthVariables } from '@/core/api/middleware/auth.ts';
-import { jsonResponse, setupResponses } from '@/core/api/utils.ts';
-import { env } from '@/core/env.ts';
-import { Websites, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/websites.ts';
+import { ApiError } from '@/core/api/errors';
+import type { AuthVariables } from '@/core/api/middleware/auth';
+import { jsonResponse, setupResponses } from '@/core/api/utils';
+import { env } from '@/core/env';
+import { Websites, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 /**

@@ -1,5 +1,5 @@
 import { writeFileSync } from 'node:fs';
-import { app } from '../src/app.ts';
+import { app } from '../src/app';
 
 const doc = app.getOpenAPI31Document({
   openapi: '3.1.0',

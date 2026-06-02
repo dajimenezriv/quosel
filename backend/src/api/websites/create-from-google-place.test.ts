@@ -1,9 +1,9 @@
-import { app } from '@/app.ts';
-import { Websites } from '@/infra/postgres/websites.ts';
-import { expectError, expectJson, mockAuthMiddleware, POST_AUTH_REQUEST } from '@/tests/utils.helper.test.ts';
+import { app } from '@/app';
+import { Websites } from '@/infra/postgres/websites';
+import { expectError, expectJson, mockAuthMiddleware, POST_AUTH_REQUEST } from '@/tests/utils.helper.test';
 
-vi.mock(import('@/core/env.ts'));
-vi.mock(import('@/infra/postgres/websites.ts'));
+vi.mock(import('@/core/env'));
+vi.mock(import('@/infra/postgres/websites'));
 
 const VALID_URL = '/websites/create-from-google-place?googlePlaceId=ChIJRWnYS1BHYA0RK5rHEosqXcQ';
 

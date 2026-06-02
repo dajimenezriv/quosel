@@ -1,8 +1,8 @@
-import { createRouter } from '@/core/api/create-router.ts';
-import { googleCallback } from './google-callback.ts';
-import { googleLogin } from './google-login.ts';
-import { logout, logoutRoute } from './logout.ts';
-import { me, meRoute } from './me.ts';
+import { createRouter } from '@/core/api/create-router';
+import { googleCallback } from './google-callback';
+import { googleLogin } from './google-login';
+import { logout, logoutRoute } from './logout';
+import { me, meRoute } from './me';
 
 export const authRouter = createRouter();
 

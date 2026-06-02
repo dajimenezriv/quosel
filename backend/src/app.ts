@@ -1,13 +1,13 @@
 import { cors } from 'hono/cors';
-import { authRouter } from './api/auth/router.ts';
-import { healthRouter } from './api/health/router.ts';
-import { websitesRouter } from './api/websites/router.ts';
-import { createRouter } from './core/api/create-router.ts';
-import { ApiError } from './core/api/errors.ts';
-import { requireAuth } from './core/api/middleware/auth.ts';
-import { env } from './core/env.ts';
-import { logger } from './core/logger.ts';
-import { billingRouter } from './routes/billing.ts';
+import { authRouter } from './api/auth/router';
+import { healthRouter } from './api/health/router';
+import { websitesRouter } from './api/websites/router';
+import { createRouter } from './core/api/create-router';
+import { ApiError } from './core/api/errors';
+import { requireAuth } from './core/api/middleware/auth';
+import { env } from './core/env';
+import { logger } from './core/logger';
+import { billingRouter } from './routes/billing';
 
 export const app = createRouter();
 

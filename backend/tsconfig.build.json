@@ -5,8 +5,7 @@
     "rootDir": "src",
     "noEmit": false,
     "declaration": false,
-    "sourceMap": false,
-    "rewriteRelativeImportExtensions": true
+    "sourceMap": false
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.test.ts"]

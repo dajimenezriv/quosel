@@ -1,8 +1,8 @@
-import type { UserId } from '@/core/types.ts';
-import { Sessions } from '@/infra/postgres/sessions.ts';
+import type { UserId } from '@/core/types';
+import { Sessions } from '@/infra/postgres/sessions';
 import { getCookie } from 'hono/cookie';
 import { createMiddleware } from 'hono/factory';
-import { ApiError } from '../errors.ts';
+import { ApiError } from '../errors';
 
 export type AuthVariables = {
   userId: UserId;

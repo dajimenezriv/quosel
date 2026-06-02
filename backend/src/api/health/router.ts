@@ -1,6 +1,6 @@
-import { createRouter } from '@/core/api/create-router.ts';
+import { createRouter } from '@/core/api/create-router';
 import { createRoute, z } from '@hono/zod-openapi';
-import { jsonResponse, setupResponses } from '../../core/api/utils.ts';
+import { jsonResponse, setupResponses } from '../../core/api/utils';
 
 export const healthRouter = createRouter();
 

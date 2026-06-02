@@ -1,12 +1,12 @@
 import { randomBytes } from 'node:crypto';
-import { Sessions } from '@/infra/postgres/sessions.ts';
+import { Sessions } from '@/infra/postgres/sessions';
 import { decodeIdToken, OAuth2RequestError } from 'arctic';
 import type { Context } from 'hono';
 import { deleteCookie, getCookie, setCookie } from 'hono/cookie';
-import { ApiError } from '../../core/api/errors.ts';
-import { env } from '../../core/env.ts';
-import { Users } from '../../infra/postgres/users.ts';
-import { google } from './utils.ts';
+import { ApiError } from '../../core/api/errors';
+import { env } from '../../core/env';
+import { Users } from '../../infra/postgres/users';
+import { google } from './utils';
 
 const isProd = env.NODE_ENV === 'production';
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30;

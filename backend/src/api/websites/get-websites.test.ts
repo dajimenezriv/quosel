@@ -1,8 +1,8 @@
-import { app } from '@/app.ts';
-import { Websites } from '@/infra/postgres/websites.ts';
-import { expectError, expectJson, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test.ts';
+import { app } from '@/app';
+import { Websites } from '@/infra/postgres/websites';
+import { expectError, expectJson, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
 
-vi.mock(import('@/infra/postgres/websites.ts'));
+vi.mock(import('@/infra/postgres/websites'));
 
 describe('get-websites', () => {
   mockAuthMiddleware();

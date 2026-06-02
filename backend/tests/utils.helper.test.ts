@@ -1,4 +1,4 @@
-import { Sessions } from '@/infra/postgres/sessions.ts';
+import { Sessions } from '@/infra/postgres/sessions';
 import type { DeepPartial } from 'ts-essentials';
 import type { MockedFunction } from 'vitest';
 

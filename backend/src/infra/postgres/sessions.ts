@@ -1,6 +1,6 @@
 import { and, eq, gt, type InferInsertModel } from 'drizzle-orm';
-import { db } from './client.ts';
-import { sessions, users } from './schema.ts';
+import { db } from './client';
+import { sessions, users } from './schema';
 
 export class Sessions {
   static async getById(id: string) {
