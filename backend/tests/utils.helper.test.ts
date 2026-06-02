@@ -1,8 +1,20 @@
+import { Sessions } from '@/infra/postgres/sessions.ts';
 import type { DeepPartial } from 'ts-essentials';
 import type { MockedFunction } from 'vitest';
 
+export const GET_AUTH_REQUEST = { headers: { Cookie: 'session=sessionId' } };
+export const POST_AUTH_REQUEST = { method: 'POST', headers: { Cookie: 'session=sessionId' } };
+
 export function deepMocked<T extends (...args: any[]) => unknown>(fn: T) {
   return vi.mocked(fn) as MockedFunction<(...args: Parameters<T>) => DeepPartial<ReturnType<T>>>;
+}
+
+export function mockAuthMiddleware() {
+  const getSessionByIdMock = vi.spyOn(Sessions, 'getById');
+
+  beforeEach(() => {
+    getSessionByIdMock.mockResolvedValue({ user: { id: 'userId' } } as any);
+  });
 }
 
 function getCalls(object: any) {

@@ -1,17 +1,26 @@
 import { app } from '@/app.ts';
 import { Websites } from '@/infra/postgres/websites.ts';
-import { expectJson } from '@/tests/utils.helper.test.ts';
+import { expectError, expectJson, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test.ts';
 
 vi.mock(import('@/infra/postgres/websites.ts'));
 
 describe('get-websites', () => {
+  mockAuthMiddleware();
+
   const getAllByUserIdMock = vi.mocked(Websites.getAllByUserId);
+
+  it('should return 401 if session is not provided', async () => {
+    // When
+    const res = await app.request('/websites/get-websites');
+    // Then
+    await expectError(res, 401, 'Unauthorized');
+  });
 
   it('should return 200 with an empty array when user has no websites', async () => {
     // Given
     getAllByUserIdMock.mockResolvedValue([]);
     // When
-    const res = await app.request('/websites/get-websites');
+    const res = await app.request('/websites/get-websites', GET_AUTH_REQUEST);
     // Then
     await expectJson(res, 200, { websites: [] });
   });
@@ -51,7 +60,7 @@ describe('get-websites', () => {
     };
     getAllByUserIdMock.mockResolvedValue([website]);
     // When
-    const res = await app.request('/websites/get-websites');
+    const res = await app.request('/websites/get-websites', GET_AUTH_REQUEST);
     // Then
     await expectJson(res, 200, {
       websites: [

@@ -1,6 +1,6 @@
 import { app } from '@/app.ts';
 import { Websites } from '@/infra/postgres/websites.ts';
-import { expectError, expectJson } from '@/tests/utils.helper.test.ts';
+import { expectError, expectJson, mockAuthMiddleware, POST_AUTH_REQUEST } from '@/tests/utils.helper.test.ts';
 
 vi.mock(import('@/core/env.ts'));
 vi.mock(import('@/infra/postgres/websites.ts'));
@@ -8,6 +8,8 @@ vi.mock(import('@/infra/postgres/websites.ts'));
 const VALID_URL = '/websites/create-from-google-place?googlePlaceId=ChIJRWnYS1BHYA0RK5rHEosqXcQ';
 
 describe('create-from-google-place', () => {
+  mockAuthMiddleware();
+
   const fetchMock = vi.spyOn(globalThis, 'fetch');
   const createWebsiteMock = vi.mocked(Websites.create);
 
@@ -19,9 +21,16 @@ describe('create-from-google-place', () => {
     createWebsiteMock.mockResolvedValue('websiteId');
   });
 
-  it('should return 400 if googlePlaceId is missing', async () => {
+  it('should return 401 if session is not provided', async () => {
     // When
     const res = await app.request('/websites/create-from-google-place', { method: 'POST' });
+    // Then
+    await expectError(res, 401, 'Unauthorized');
+  });
+
+  it('should return 400 if googlePlaceId is missing', async () => {
+    // When
+    const res = await app.request('/websites/create-from-google-place', POST_AUTH_REQUEST);
     // Then
     await expectError(res, 400, 'Validation error: Invalid input: expected string, received undefined at "googlePlaceId"');
   });
@@ -34,7 +43,7 @@ describe('create-from-google-place', () => {
       text: () => Promise.resolve('Service Unavailable'),
     } as Response);
     // When
-    const res = await app.request(VALID_URL, { method: 'POST' });
+    const res = await app.request(VALID_URL, POST_AUTH_REQUEST);
     // Then
     await expectError(res, 500, 'Cannot obtain place details from Google Maps');
   });
@@ -43,14 +52,14 @@ describe('create-from-google-place', () => {
     // Given
     createWebsiteMock.mockResolvedValue(undefined);
     // When
-    const res = await app.request(VALID_URL, { method: 'POST' });
+    const res = await app.request(VALID_URL, POST_AUTH_REQUEST);
     // Then
     await expectError(res, 500, 'Failed to create place');
   });
 
   it('should return 200 and the place id on success', async () => {
     // When
-    const res = await app.request(VALID_URL, { method: 'POST' });
+    const res = await app.request(VALID_URL, POST_AUTH_REQUEST);
     // Then
     await expectJson(res, 200, { websiteId: 'websiteId' });
   });
