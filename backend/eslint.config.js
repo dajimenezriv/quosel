@@ -5,6 +5,7 @@ import sonarjsPlugin from 'eslint-plugin-sonarjs';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
 export default [
+  { ignores: ['src/infra/postgres/prisma', 'dist'] },
   prettierRecommended,
   sonarjsPlugin.configs.recommended,
   ...tsPlugin.configs['flat/recommended'],
