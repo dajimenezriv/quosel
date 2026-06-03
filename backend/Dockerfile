@@ -21,9 +21,10 @@ RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm install --frozen-lockfile
 
 COPY tsconfig.json tsup.config.ts ./
+COPY prisma ./prisma
 COPY src ./src
 
-RUN pnpm build
+RUN pnpm db:types && pnpm build
 
 # runtime
 FROM node:24-alpine AS runtime

@@ -1,4 +1,4 @@
-name: Deploy landing
+name: Landing deploy
 
 on:
   workflow_dispatch:
