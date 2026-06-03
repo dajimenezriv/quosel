@@ -1,4 +1,4 @@
 {
-  "ignoreDependencies": ["@railway/cli"],
-  "project": ["src/**/*.ts"]
+  "ignoreDependencies": ["@railway/cli", "@prisma/client"],
+  "project": ["src/**/*.ts", "tests/**/*.ts"]
 }

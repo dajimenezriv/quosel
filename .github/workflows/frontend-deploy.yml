@@ -1,11 +1,11 @@
-name: Deploy frontend
+name: Frontend deploy
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths: ["frontend/**"]
-  pull_request:
+  # pull_request:
 
 concurrency:
   group: frontend-deploy-${{ github.ref }}

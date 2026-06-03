@@ -1,21 +1,17 @@
-import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
-import { jsonResponse } from '../../core/response.ts';
+import { createRouter } from '@/core/api/create-router';
+import { createRoute, z } from '@hono/zod-openapi';
+import { jsonResponse, setupResponses } from '../../core/api/utils';
 
-export const healthRouter = new OpenAPIHono();
+export const healthRouter = createRouter();
 
-const HealthSchema = z.object({ status: z.literal('ok') }).openapi('Health');
+const ResponseSchema = z.object({ status: z.literal('ok') });
 
 const healthRoute = createRoute({
   method: 'get',
   path: '/health',
-  responses: {
-    200: {
-      content: { 'application/json': { schema: HealthSchema } },
-      description: 'Service is healthy',
-    },
-  },
+  responses: setupResponses(200, ResponseSchema),
 });
 
 healthRouter.openapi(healthRoute, (c) => {
-  return jsonResponse(c, HealthSchema, { status: 'ok' }, 200);
+  return jsonResponse(c, ResponseSchema, { status: 'ok' }, 200);
 });

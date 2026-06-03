@@ -1,36 +1,15 @@
-import { OpenAPIHono } from '@hono/zod-openapi';
 import { cors } from 'hono/cors';
-import { ApiError, ErrorSchema } from './api/errors.ts';
-import { healthRouter } from './api/health/router.ts';
-import { placesRouter } from './api/places/router.ts';
-import { env } from './core/env.ts';
-import { logger } from './core/logger.ts';
-import { jsonResponse } from './core/response.ts';
-import { requireAuth } from './middleware/auth.ts';
-import { requestLogger } from './middleware/logger.ts';
-import { authRouter } from './routes/auth.ts';
-import { billingRouter } from './routes/billing.ts';
+import { authRouter } from './api/auth/router';
+import { billingRouter } from './api/billing/router';
+import { healthRouter } from './api/health/router';
+import { websitesRouter } from './api/websites/router';
+import { createRouter } from './core/api/create-router';
+import { ApiError } from './core/api/errors';
+import { requireAuth } from './core/api/middleware/auth';
+import { env } from './core/env';
+import { logger } from './core/logger';
 
-export const openApiDoc = {
-  openapi: '3.1.0',
-  info: {
-    title: 'Quosel API',
-    version: '1.0.0',
-  },
-} as const;
-
-export const app = new OpenAPIHono();
-
-app.use('*', requestLogger);
-
-app.onError((error, c) => {
-  if (error instanceof ApiError) {
-    return jsonResponse(c, ErrorSchema, { error: error.message }, error.status);
-  }
-
-  logger.error('Unhandled error', { error });
-  return jsonResponse(c, ErrorSchema, { error: 'Internal Server Error' }, 500);
-});
+export const app = createRouter();
 
 app.use(
   '*',
@@ -40,15 +19,20 @@ app.use(
   }),
 );
 
+app.onError((error, c) => {
+  if (error instanceof ApiError) {
+    logger.error(error.message, error.extra);
+    return c.json({ error: error.message }, error.status);
+  }
+
+  logger.error('Unhandled error', { error });
+  return c.json({ error: 'Internal Server Error' }, 500);
+});
+
 app.route('/', healthRouter);
-app.route('/', authRouter);
-app.route('/', billingRouter);
-
-app.use('/places/*', requireAuth);
-app.route('/places', placesRouter);
-
-if (env.NODE_ENV === 'development') {
-  const { swaggerUI } = await import('@hono/swagger-ui');
-  app.doc('/openapi.json', openApiDoc);
-  app.get('/docs', swaggerUI({ url: '/openapi.json' }));
-}
+app.route('/auth', authRouter);
+app.use('/billing/portal', requireAuth);
+app.use('/billing/checkout', requireAuth);
+app.route('/billing', billingRouter);
+app.use('/websites/*', requireAuth);
+app.route('/websites', websitesRouter);

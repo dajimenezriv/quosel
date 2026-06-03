@@ -6,32 +6,7 @@
   },
   "components": {
     "schemas": {
-      "Health": {
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "ok"
-            ]
-          }
-        },
-        "required": [
-          "status"
-        ]
-      },
-      "Place": {
-        "type": "object",
-        "properties": {
-          "placeId": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "placeId"
-        ]
-      },
-      "PlacesError": {
+      "Error": {
         "type": "object",
         "properties": {
           "error": {
@@ -50,11 +25,32 @@
       "get": {
         "responses": {
           "200": {
-            "description": "Service is healthy",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Health"
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "ok"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -62,7 +58,510 @@
         }
       }
     },
-    "/places/add-google-place": {
+    "/auth/me": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "picture": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "subscriptionStatus": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "currentPeriodEnd": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "format": "date-time"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "email",
+                        "name",
+                        "picture",
+                        "subscriptionStatus",
+                        "currentPeriodEnd"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "user"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/websites/get-websites": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "websites": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "userId": {
+                            "type": "string"
+                          },
+                          "domain": {
+                            "type": "string"
+                          },
+                          "template": {
+                            "type": "string"
+                          },
+                          "texts": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "place": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "userId": {
+                                "type": "string"
+                              },
+                              "googlePlaceId": {
+                                "type": "string"
+                              },
+                              "displayNameText": {
+                                "type": "string"
+                              },
+                              "displayNameLanguageCode": {
+                                "type": "string"
+                              },
+                              "nationalPhoneNumber": {
+                                "type": "string"
+                              },
+                              "internationalPhoneNumber": {
+                                "type": "string"
+                              },
+                              "formattedAddress": {
+                                "type": "string"
+                              },
+                              "shortFormattedAddress": {
+                                "type": "string"
+                              },
+                              "latitude": {
+                                "type": "number"
+                              },
+                              "longitude": {
+                                "type": "number"
+                              },
+                              "rating": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "userRatingCount": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "googleMapsPlaceUri": {
+                                "type": "string"
+                              },
+                              "googleMapsReviewsUri": {
+                                "type": "string"
+                              },
+                              "googleMapsPhotosUri": {
+                                "type": "string"
+                              },
+                              "raw": {},
+                              "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "updatedAt": {
+                                "type": "string",
+                                "format": "date-time"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "userId",
+                              "googlePlaceId",
+                              "displayNameText",
+                              "displayNameLanguageCode",
+                              "nationalPhoneNumber",
+                              "internationalPhoneNumber",
+                              "formattedAddress",
+                              "shortFormattedAddress",
+                              "latitude",
+                              "longitude",
+                              "rating",
+                              "userRatingCount",
+                              "googleMapsPlaceUri",
+                              "googleMapsReviewsUri",
+                              "googleMapsPhotosUri",
+                              "createdAt",
+                              "updatedAt"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "userId",
+                          "domain",
+                          "template",
+                          "texts",
+                          "createdAt",
+                          "updatedAt",
+                          "place"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "websites"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/websites/get-website/:websiteId": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "domain": {
+                      "type": "string"
+                    },
+                    "template": {
+                      "type": "string"
+                    },
+                    "texts": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "place": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "userId": {
+                          "type": "string"
+                        },
+                        "googlePlaceId": {
+                          "type": "string"
+                        },
+                        "displayNameText": {
+                          "type": "string"
+                        },
+                        "displayNameLanguageCode": {
+                          "type": "string"
+                        },
+                        "nationalPhoneNumber": {
+                          "type": "string"
+                        },
+                        "internationalPhoneNumber": {
+                          "type": "string"
+                        },
+                        "formattedAddress": {
+                          "type": "string"
+                        },
+                        "shortFormattedAddress": {
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "type": "number"
+                        },
+                        "longitude": {
+                          "type": "number"
+                        },
+                        "rating": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "userRatingCount": {
+                          "type": [
+                            "number",
+                            "null"
+                          ]
+                        },
+                        "googleMapsPlaceUri": {
+                          "type": "string"
+                        },
+                        "googleMapsReviewsUri": {
+                          "type": "string"
+                        },
+                        "googleMapsPhotosUri": {
+                          "type": "string"
+                        },
+                        "raw": {},
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "reviews": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "googleReviewName": {
+                                "type": "string"
+                              },
+                              "rating": {
+                                "type": "string"
+                              },
+                              "originalText": {
+                                "type": "string"
+                              },
+                              "originalTextLanguageCode": {
+                                "type": "string"
+                              },
+                              "authorDisplayName": {
+                                "type": "string"
+                              },
+                              "authorPhotoUri": {
+                                "type": "string"
+                              },
+                              "publishTime": {
+                                "type": "string",
+                                "format": "date-time"
+                              },
+                              "googleMapsUri": {
+                                "type": "string"
+                              },
+                              "createdAt": {
+                                "type": "string",
+                                "format": "date-time"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "googleReviewName",
+                              "rating",
+                              "originalText",
+                              "originalTextLanguageCode",
+                              "authorDisplayName",
+                              "authorPhotoUri",
+                              "publishTime",
+                              "googleMapsUri",
+                              "createdAt"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "userId",
+                        "googlePlaceId",
+                        "displayNameText",
+                        "displayNameLanguageCode",
+                        "nationalPhoneNumber",
+                        "internationalPhoneNumber",
+                        "formattedAddress",
+                        "shortFormattedAddress",
+                        "latitude",
+                        "longitude",
+                        "rating",
+                        "userRatingCount",
+                        "googleMapsPlaceUri",
+                        "googleMapsReviewsUri",
+                        "googleMapsPhotosUri",
+                        "createdAt",
+                        "updatedAt",
+                        "reviews"
+                      ]
+                    },
+                    "images": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "url": {
+                            "type": "string"
+                          },
+                          "sizeBytes": {
+                            "type": "number"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "url",
+                          "sizeBytes",
+                          "createdAt"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "userId",
+                    "domain",
+                    "template",
+                    "texts",
+                    "createdAt",
+                    "updatedAt",
+                    "place",
+                    "images"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/websites/create-from-google-place": {
       "post": {
         "parameters": [
           {
@@ -77,11 +576,19 @@
         ],
         "responses": {
           "200": {
-            "description": "Place details",
+            "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Place"
+                  "type": "object",
+                  "properties": {
+                    "websiteId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "websiteId"
+                  ]
                 }
               }
             }
@@ -91,7 +598,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PlacesError"
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }

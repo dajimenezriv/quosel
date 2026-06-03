@@ -1,7 +1,25 @@
 import { serve } from '@hono/node-server';
-import { app } from './app.ts';
-import { env } from './core/env.ts';
-import { logger } from './core/logger.ts';
+import { app } from './app';
+import { requestLogger } from './core/api/middleware/logger';
+import { env } from './core/env';
+import { logger } from './core/logger';
+
+app.use('*', requestLogger);
+
+if (env.NODE_ENV === 'development') {
+  const { swaggerUI } = await import('@hono/swagger-ui');
+
+  const doc = app.getOpenAPI31Document({
+    openapi: '3.1.0',
+    info: {
+      title: 'Quosel API',
+      version: '1.0.0',
+    },
+  });
+
+  app.doc('/openapi.json', doc);
+  app.get('/docs', swaggerUI({ url: '/openapi.json' }));
+}
 
 serve({ fetch: app.fetch, port: env.PORT }, (info) => {
   logger.info('Server listening', { address: info.address, port: info.port });

@@ -4,7 +4,7 @@ import { client } from '../client';
 export function useAddGooglePlace() {
   return useMutation({
     mutationFn: async (googlePlaceId: string) => {
-      const { data, error } = await client.POST('/places/add-google-place', {
+      const { data, error } = await client.POST('/websites/create-from-google-place', {
         params: { query: { googlePlaceId } },
       });
 

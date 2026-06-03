@@ -14,7 +14,10 @@
   "files.eol": "\n",
   "files.exclude": {
     "**/.git": true,
-    "**/node_modules": true
+    "**/node_modules": true,
+    "backend": false,
+    "frontend": true,
+    "landing": true
   },
   "git.ignoreLimitWarning": true,
   "js/ts.referencesCodeLens.enabled": true,

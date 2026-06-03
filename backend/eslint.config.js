@@ -5,6 +5,7 @@ import sonarjsPlugin from 'eslint-plugin-sonarjs';
 import unicornPlugin from 'eslint-plugin-unicorn';
 
 export default [
+  { ignores: ['src/infra/postgres/prisma', 'dist'] },
   prettierRecommended,
   sonarjsPlugin.configs.recommended,
   ...tsPlugin.configs['flat/recommended'],
@@ -43,7 +44,11 @@ export default [
   {
     files: ['**/*.test.ts'],
     rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      'sonarjs/assertions-in-tests': 'off',
       'sonarjs/no-clear-text-protocols': 'off',
+      'sonarjs/no-empty-test-file': 'off',
     },
   },
 ];
