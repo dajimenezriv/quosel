@@ -1,30 +1,8 @@
-import { eq } from 'drizzle-orm';
-import { db } from './client';
-import { users } from './schema';
+import { createUser } from '@/tests/utils.helper.test';
 import { Sessions } from './sessions';
 
-describe('sessions', () => {
-  let userId: string;
-  const googleId = crypto.randomUUID();
-
-  beforeEach(async () => {
-    const [user] = await db
-      .insert(users)
-      .values({
-        googleId,
-        email: 'sessions@test.com',
-        name: '',
-        picture: '',
-        subscriptionStatus: '',
-        subscriptionPriceId: '',
-      })
-      .returning();
-    userId = user!.id;
-  });
-
-  afterEach(async () => {
-    await db.delete(users).where(eq(users.googleId, googleId));
-  });
+describe('sessions', async () => {
+  const { userId } = await createUser();
 
   it('should work', async () => {
     // Create expired session
@@ -34,8 +12,8 @@ describe('sessions', () => {
     // When
     await Sessions.create({ id, userId, expiresAt });
     // Then
-    let res = await Sessions.getById(id);
-    expect(res).toBeUndefined();
+    let session = await Sessions.getById(id);
+    expect(session).toBeNull();
 
     // Create working session
     // Given
@@ -44,14 +22,14 @@ describe('sessions', () => {
     // When
     await Sessions.create({ id, userId, expiresAt });
     // Then
-    res = await Sessions.getById(id);
-    expect(res?.session.id).toBe(id);
+    session = await Sessions.getById(id);
+    expect(session!.id).toBe(id);
 
     // Delete working session
     // When
     await Sessions.deleteById(id);
     // Then
-    res = await Sessions.getById(id);
-    expect(res).toBeUndefined();
+    session = await Sessions.getById(id);
+    expect(session).toBeNull();
   });
 });

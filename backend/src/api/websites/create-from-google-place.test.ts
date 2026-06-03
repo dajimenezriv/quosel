@@ -11,14 +11,13 @@ describe('create-from-google-place', () => {
   mockAuthMiddleware();
 
   const fetchMock = vi.spyOn(globalThis, 'fetch');
-  const createWebsiteMock = vi.mocked(Websites.create);
 
   beforeEach(() => {
     fetchMock.mockResolvedValue({
       ok: true,
       json: () => Promise.resolve(mock),
     } as Response);
-    createWebsiteMock.mockResolvedValue('websiteId');
+    vi.mocked(Websites.create).mockResolvedValue('websiteId');
   });
 
   it('should return 401 if session is not provided', async () => {
@@ -46,15 +45,6 @@ describe('create-from-google-place', () => {
     const res = await app.request(VALID_URL, POST_AUTH_REQUEST);
     // Then
     await expectError(res, 500, 'Cannot obtain place details from Google Maps');
-  });
-
-  it('should return 500 if cannot create place in db', async () => {
-    // Given
-    createWebsiteMock.mockResolvedValue(undefined);
-    // When
-    const res = await app.request(VALID_URL, POST_AUTH_REQUEST);
-    // Then
-    await expectError(res, 500, 'Failed to create place');
   });
 
   it('should return 200 and the place id on success', async () => {

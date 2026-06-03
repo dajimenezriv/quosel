@@ -1,22 +1,19 @@
-import { and, eq, gt, type InferInsertModel } from 'drizzle-orm';
-import { db } from './client';
-import { sessions, users } from './schema';
+import { prisma } from './client';
+import type { Prisma } from './prisma/client';
 
 export class Sessions {
   static async getById(id: string) {
-    const [row] = await db
-      .select({ user: users, session: sessions })
-      .from(sessions)
-      .innerJoin(users, eq(users.id, sessions.userId))
-      .where(and(eq(sessions.id, id), gt(sessions.expiresAt, new Date())));
-    return row;
+    return await prisma.session.findFirst({
+      where: { id, expiresAt: { gt: new Date() } },
+      include: { user: true },
+    });
   }
 
-  static async create(session: InferInsertModel<typeof sessions>) {
-    await db.insert(sessions).values(session);
+  static async create(session: Prisma.SessionUncheckedCreateInput) {
+    await prisma.session.create({ data: session });
   }
 
   static async deleteById(id: string) {
-    await db.delete(sessions).where(eq(sessions.id, id));
+    await prisma.session.delete({ where: { id } });
   }
 }

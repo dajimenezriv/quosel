@@ -5,7 +5,6 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const PlaceSchema = z.object({
   id: z.string(),
-  userId: z.string(),
   googleId: z.string(),
   name: z.string(),
   internationalPhoneNumber: z.string(),
@@ -13,7 +12,7 @@ const PlaceSchema = z.object({
   shortFormattedAddress: z.string(),
   latitude: z.number(),
   longitude: z.number(),
-  rating: z.string().nullable(),
+  rating: z.number().nullable(),
   userRatingCount: z.number().nullable(),
   googleMapsPlaceUri: z.string(),
   googleMapsReviewsUri: z.string(),

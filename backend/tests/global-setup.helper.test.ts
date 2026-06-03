@@ -1,11 +1,6 @@
-import { env } from '@/core/env';
-import { drizzle } from 'drizzle-orm/postgres-js';
-import { migrate } from 'drizzle-orm/postgres-js/migrator';
-import postgres from 'postgres';
+import { execSync } from 'node:child_process';
 
-export async function setup() {
-  const client = postgres(env.DATABASE_URL);
-  const db = drizzle(client);
-  await migrate(db, { migrationsFolder: 'drizzle' });
-  await client.end();
+export function setup() {
+  // eslint-disable-next-line sonarjs/no-os-command-from-path
+  execSync('prisma migrate reset --force', { stdio: 'inherit' });
 }

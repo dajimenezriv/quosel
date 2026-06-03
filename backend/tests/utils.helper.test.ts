@@ -1,4 +1,6 @@
 import { logger } from '@/core/logger';
+import type { UserId } from '@/core/types';
+import { prisma } from '@/infra/postgres/client';
 import { Sessions } from '@/infra/postgres/sessions';
 import type { DeepPartial } from 'ts-essentials';
 import type { MockedFunction } from 'vitest';
@@ -6,8 +8,8 @@ import type { MockedFunction } from 'vitest';
 export const GET_AUTH_REQUEST = { headers: { Cookie: 'session=sessionId' } };
 export const POST_AUTH_REQUEST = { method: 'POST', headers: { Cookie: 'session=sessionId' } };
 
-export const loggerFn = vi.fn();
-export const loggerMock = vi.mocked(logger);
+const loggerFn = vi.fn();
+const loggerMock = vi.mocked(logger);
 loggerMock.info.mockImplementation(loggerFn);
 loggerMock.error.mockImplementation(loggerFn);
 
@@ -21,6 +23,25 @@ export function mockAuthMiddleware() {
   beforeEach(() => {
     getSessionByIdMock.mockResolvedValue({ user: { id: 'userId' } } as any);
   });
+}
+
+export async function createUser() {
+  const user = await prisma.user.create({
+    data: {
+      googleId: crypto.randomUUID(),
+      email: 'sessions@test.com',
+      name: '',
+      picture: '',
+      subscriptionStatus: '',
+      subscriptionPriceId: '',
+    },
+  });
+
+  afterAll(async () => {
+    await prisma.user.delete({ where: { id: user.id } });
+  });
+
+  return { ...user, userId: user.id as UserId };
 }
 
 function getCalls(object: any) {

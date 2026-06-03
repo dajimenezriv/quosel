@@ -57,14 +57,13 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
 
   const place: PlaceInsert = {
     googleId: googlePlaceId,
-    userId,
     name: parsedData.displayName.text,
     internationalPhoneNumber: parsedData.internationalPhoneNumber,
     formattedAddress: parsedData.formattedAddress,
     shortFormattedAddress: parsedData.shortFormattedAddress,
     latitude: parsedData.location.latitude,
     longitude: parsedData.location.longitude,
-    rating: parsedData.rating.toString(),
+    rating: parsedData.rating,
     userRatingCount: parsedData.userRatingCount,
     googleMapsPlaceUri: parsedData.googleMapsLinks.placeUri,
     googleMapsReviewsUri: parsedData.googleMapsLinks.reviewsUri,
@@ -74,7 +73,7 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
 
   const reviews: ReviewInsert[] = parsedData.reviews.map((r) => ({
     googleId: r.name,
-    rating: r.rating.toString(),
+    rating: r.rating,
     text: r.originalText.text,
     authorName: r.authorAttribution.displayName,
     authorPhotoUri: r.authorAttribution.photoUri,
@@ -82,9 +81,7 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
     googleMapsUri: r.googleMapsUri,
   }));
 
-  const websiteId = await Websites.create(place, reviews);
-
-  if (!websiteId) throw new ApiError(500, 'Failed to create place');
+  const websiteId = await Websites.create(userId, place, reviews);
 
   return jsonResponse(c, ResponseSchema, { websiteId }, 200);
 };

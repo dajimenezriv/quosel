@@ -16,7 +16,7 @@ describe('me', () => {
 
   it('should return null if session not found in db', async () => {
     // Given
-    getSessionByIdMock.mockResolvedValue(undefined);
+    getSessionByIdMock.mockResolvedValue(null);
     // When
     const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then

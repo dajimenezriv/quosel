@@ -21,7 +21,7 @@ export default defineConfig({
       reportOnFailure: true,
       provider: 'v8',
       include: ['src/**/*.ts'],
-      exclude: ['src/**/*.test.ts', 'src/index.ts'],
+      exclude: ['src/**/*.test.ts', 'src/index.ts', 'src/infra/postgres/prisma'],
     },
   },
 });

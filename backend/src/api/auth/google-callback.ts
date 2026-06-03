@@ -54,8 +54,6 @@ export async function googleCallback(c: Context) {
     });
   }
 
-  if (!user) throw new ApiError(500, 'Failed to create a user');
-
   const userId = user.id;
   const sessionId = randomBytes(20).toString('hex');
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS);

@@ -99,23 +99,13 @@ describe('google-callback', () => {
 
   it('should create user if not found', async () => {
     // Given
-    getByGoogleIdMock.mockResolvedValue(undefined);
+    getByGoogleIdMock.mockResolvedValue(null);
     createUserMock.mockResolvedValue({ id: 'mockCreateId' });
     // When
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
     call(Users.create).toMatchObject({ googleId: 'googleSub' });
-  });
-
-  it('should return 500 if user creation fails', async () => {
-    // Given
-    getByGoogleIdMock.mockResolvedValue(undefined);
-    createUserMock.mockResolvedValue(undefined);
-    // When
-    const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
-    // Then
-    await expectError(res, 500, 'Failed to create a user');
   });
 
   it('should set session cookie and redirect on success', async () => {

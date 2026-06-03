@@ -7,7 +7,6 @@ import { ApiError } from './core/api/errors';
 import { requireAuth } from './core/api/middleware/auth';
 import { env } from './core/env';
 import { logger } from './core/logger';
-import { billingRouter } from './routes/billing';
 
 export const app = createRouter();
 
@@ -31,6 +30,6 @@ app.onError((error, c) => {
 
 app.route('/', healthRouter);
 app.route('/auth', authRouter);
-app.route('/', billingRouter);
+// app.route('/', billingRouter);
 app.use('/websites/*', requireAuth);
 app.route('/websites', websitesRouter);

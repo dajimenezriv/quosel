@@ -1,11 +1,10 @@
-import { eq } from 'drizzle-orm';
-import { db } from './client';
-import { users } from './schema';
+import { prisma } from './client';
+import type { Prisma } from './prisma/client';
 import { Users } from './users';
 
 describe('users', () => {
   const googleId = crypto.randomUUID();
-  const baseUser = {
+  const baseUser: Prisma.UserCreateInput = {
     googleId,
     email: 'users@test.com',
     name: '',
@@ -15,19 +14,19 @@ describe('users', () => {
   };
 
   afterEach(async () => {
-    await db.delete(users).where(eq(users.googleId, googleId));
+    await prisma.user.delete({ where: { googleId } });
   });
 
   it('should work', async () => {
     // Create a user
     // When
-    let res = await Users.create(baseUser);
+    const user = await Users.create(baseUser);
     // Then
-    expect(res?.googleId).toBe(googleId);
+    expect(user?.googleId).toBe(googleId);
 
     // Retrieve existing user
     // When
-    res = await Users.getByGoogleId(googleId);
+    let res = await Users.getByGoogleId(googleId);
     // Then
     expect(res?.googleId).toBe(googleId);
 
@@ -35,6 +34,6 @@ describe('users', () => {
     // When
     res = await Users.getByGoogleId('other');
     // Then
-    expect(res).toBeUndefined();
+    expect(res).toBeNull();
   });
 });

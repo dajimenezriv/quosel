@@ -38,7 +38,6 @@ describe('get-websites', () => {
         updatedAt: new Date('2024-01-01T00:00:00.000Z'),
         place: {
           id: 'place-id',
-          userId: 'user-id',
           googleId: 'google-place-id',
           name: 'The Golden Spoon',
           internationalPhoneNumber: '+1 555-123-4567',
@@ -46,7 +45,7 @@ describe('get-websites', () => {
           shortFormattedAddress: '123 Main St, Springfield',
           latitude: 39.7817,
           longitude: -89.6501,
-          rating: '4.5',
+          rating: 4.5,
           userRatingCount: 3,
           googleMapsPlaceUri: 'https://maps.google.com/?cid=example',
           googleMapsReviewsUri: 'https://maps.google.com/?cid=example#reviews',

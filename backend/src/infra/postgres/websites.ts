@@ -1,57 +1,61 @@
+import { randomBytes } from 'node:crypto';
 import type { UserId } from '@/core/types';
 import { slugify } from '@/core/utils';
-import { and, eq, getTableColumns, type InferInsertModel } from 'drizzle-orm';
-import { db } from './client';
-import { places, reviews, websiteImages, websites } from './schema';
+import { prisma } from './client';
+import type { Prisma } from './prisma/client';
 
-export type PlaceInsert = InferInsertModel<typeof places>;
-export type ReviewInsert = Omit<InferInsertModel<typeof reviews>, 'placeId'>;
+export type PlaceInsert = Prisma.PlaceUncheckedCreateInput;
+export type ReviewInsert = Omit<Prisma.ReviewUncheckedCreateInput, 'placeId'>;
 
 export class Websites {
+  static randomDomain(name: string) {
+    return `${slugify(name)}-${randomBytes(4).toString('hex')}`;
+  }
+
   static async getAllByUserId(userId: UserId) {
-    return await db
-      .select({ ...getTableColumns(websites), place: places })
-      .from(websites)
-      .innerJoin(places, eq(websites.placeId, places.id))
-      .where(eq(websites.userId, userId));
+    return await prisma.website.findMany({
+      where: { userId },
+      include: { place: true },
+    });
   }
 
   static async getById(userId: UserId, websiteId: string) {
-    const [websiteRow] = await db
-      .select({ ...getTableColumns(websites), place: places })
-      .from(websites)
-      .innerJoin(places, eq(websites.placeId, places.id))
-      .where(and(eq(websites.id, websiteId), eq(websites.userId, userId)));
-    if (!websiteRow) return;
-
-    const [reviewRows, imageRows] = await Promise.all([
-      db.select(getTableColumns(reviews)).from(reviews).where(eq(reviews.placeId, websiteRow.place.id)),
-      db.select(getTableColumns(websiteImages)).from(websiteImages).where(eq(websiteImages.websiteId, websiteId)),
-    ]);
-
-    return {
-      ...websiteRow,
-      reviews: reviewRows,
-      images: imageRows,
-    };
+    return await prisma.website.findFirst({
+      where: { id: websiteId, userId },
+      include: {
+        place: {
+          include: { reviews: true },
+        },
+        websiteImages: true,
+      },
+    });
   }
 
-  static async create(place: PlaceInsert, placeReviews: ReviewInsert[]) {
-    return await db.transaction(async (tx) => {
-      const [placeRow] = await tx.insert(places).values(place).returning();
-      if (!placeRow) return;
+  static async create(userId: UserId, place: PlaceInsert, placeReviews: ReviewInsert[]) {
+    return await prisma.$transaction(async (tx) => {
+      const { googleId: googlePlaceId, ...placeUpdate } = place;
+      const { id: placeId } = await tx.place.upsert({
+        where: { googleId: googlePlaceId },
+        create: place,
+        update: placeUpdate,
+      });
 
       if (placeReviews.length > 0) {
-        await tx.insert(reviews).values(placeReviews.map((r) => ({ ...r, placeId: placeRow.id })));
+        await Promise.all(
+          placeReviews.map(({ googleId, ...reviewUpdate }) =>
+            tx.review.upsert({
+              where: { googleId },
+              create: { ...reviewUpdate, googleId, placeId },
+              update: { ...reviewUpdate, placeId },
+            }),
+          ),
+        );
       }
 
-      const domain = `${slugify(place.name)}-${placeRow.id.slice(0, 8)}`;
-
-      const [websiteRow] = await tx
-        .insert(websites)
-        .values({ placeId: placeRow.id, userId: place.userId, domain, template: '' })
-        .returning();
-      if (!websiteRow) return;
+      const domain = this.randomDomain(place.name);
+      const websiteRow = await tx.website.create({
+        data: { placeId, userId, domain, template: '' },
+      });
 
       return websiteRow.id;
     });
