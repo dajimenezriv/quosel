@@ -29,12 +29,6 @@ importers:
       hono:
         specifier: ^4.12.23
         version: 4.12.23
-      pg:
-        specifier: ^8.21.0
-        version: 8.21.0
-      postgres:
-        specifier: ^3.4.9
-        version: 3.4.9
       stripe:
         specifier: ^22.1.1
         version: 22.1.1(@types/node@24.12.4)
@@ -54,9 +48,6 @@ importers:
       '@types/node':
         specifier: ^24.12.4
         version: 24.12.4
-      '@types/pg':
-        specifier: ^8.20.0
-        version: 8.20.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.59.4
         version: 8.59.4(@typescript-eslint/parser@8.60.0(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3))(eslint@10.4.0(jiti@2.7.0))(typescript@6.0.3)
@@ -2353,10 +2344,6 @@ packages:
 
   postgres@3.4.7:
     resolution: {integrity: sha512-Jtc2612XINuBjIl/QTWsV5UvE8UHuNblcO3vVADSrKsrc6RqGX6lOW1cEo3CM2v0XG4Nat8nI+YM7/f26VxXLw==}
-    engines: {node: '>=12'}
-
-  postgres@3.4.9:
-    resolution: {integrity: sha512-GD3qdB0x1z9xgFI6cdRD6xu2Sp2WCOEoe3mtnyB5Ee0XrrL5Pe+e4CCnJrRMnL1zYtRDZmQQVbvOttLnKDLnaw==}
     engines: {node: '>=12'}
 
   prelude-ls@1.2.1:
@@ -4778,8 +4765,6 @@ snapshots:
       xtend: 4.0.2
 
   postgres@3.4.7: {}
-
-  postgres@3.4.9: {}
 
   prelude-ls@1.2.1: {}
 

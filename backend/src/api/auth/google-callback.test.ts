@@ -2,7 +2,7 @@ import { google } from '@/api/auth/utils';
 import { app } from '@/app';
 import { Sessions } from '@/infra/postgres/sessions';
 import { Users } from '@/infra/postgres/users';
-import { call, calls, deepMocked, expectError } from '@/tests/utils.helper.test';
+import { call, calls, deepMocked, expectError, loggerFn } from '@/tests/utils.helper.test';
 import { decodeIdToken, OAuth2RequestError } from 'arctic';
 
 vi.mock(import('@/api/auth/utils'));
@@ -80,10 +80,12 @@ describe('google-callback', () => {
 
   it('should return 500 for unknown errors', async () => {
     // Given
-    validateAuthorizationCodeMock.mockRejectedValue(new Error('unexpected'));
+    const error = new Error('unexpected');
+    validateAuthorizationCodeMock.mockRejectedValue(error);
     // When
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
+    call(loggerFn).toStrictEqual(['Unhandled error', { error }]);
     await expectError(res, 500, 'Internal Server Error');
   });
 
