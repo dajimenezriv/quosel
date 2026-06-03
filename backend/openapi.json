@@ -398,7 +398,7 @@
         }
       }
     },
-    "/websites/get-website/:websiteId": {
+    "/websites/get-website/{websiteId}": {
       "get": {
         "parameters": [
           {
