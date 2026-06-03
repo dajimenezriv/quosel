@@ -75,9 +75,9 @@ export interface paths {
                             user: {
                                 id: string;
                                 email: string;
-                                name: string | null;
-                                picture: string | null;
-                                subscriptionStatus: string | null;
+                                name: string;
+                                picture: string;
+                                subscriptionStatus: string;
                                 /** Format: date-time */
                                 currentPeriodEnd: string | null;
                             } | null;
@@ -144,6 +144,141 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/billing/portal": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            url: string;
+                        };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/billing/checkout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            url: string;
+                        };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/billing/webhooks/stripe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            received: boolean;
+                        };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/websites/get-websites": {
         parameters: {
             query?: never;
@@ -178,22 +313,18 @@ export interface paths {
                                 updatedAt: string;
                                 place: {
                                     id: string;
-                                    userId: string;
-                                    googlePlaceId: string;
-                                    displayNameText: string;
-                                    displayNameLanguageCode: string;
-                                    nationalPhoneNumber: string;
+                                    googleId: string;
+                                    name: string;
                                     internationalPhoneNumber: string;
                                     formattedAddress: string;
                                     shortFormattedAddress: string;
                                     latitude: number;
                                     longitude: number;
-                                    rating: string | null;
+                                    rating: number | null;
                                     userRatingCount: number | null;
                                     googleMapsPlaceUri: string;
                                     googleMapsReviewsUri: string;
                                     googleMapsPhotosUri: string;
-                                    raw?: unknown;
                                     /** Format: date-time */
                                     createdAt: string;
                                     /** Format: date-time */
@@ -222,7 +353,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/websites/get-website/:websiteId": {
+    "/websites/get-website/{websiteId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -257,33 +388,27 @@ export interface paths {
                             updatedAt: string;
                             place: {
                                 id: string;
-                                userId: string;
-                                googlePlaceId: string;
-                                displayNameText: string;
-                                displayNameLanguageCode: string;
-                                nationalPhoneNumber: string;
+                                googleId: string;
+                                name: string;
                                 internationalPhoneNumber: string;
                                 formattedAddress: string;
                                 shortFormattedAddress: string;
                                 latitude: number;
                                 longitude: number;
-                                rating: string | null;
+                                rating: number | null;
                                 userRatingCount: number | null;
                                 googleMapsPlaceUri: string;
                                 googleMapsReviewsUri: string;
                                 googleMapsPhotosUri: string;
-                                raw?: unknown;
                                 /** Format: date-time */
                                 createdAt: string;
                                 /** Format: date-time */
                                 updatedAt: string;
                                 reviews: {
                                     id: string;
-                                    googleReviewName: string;
-                                    rating: string;
-                                    originalText: string;
-                                    originalTextLanguageCode: string;
-                                    authorDisplayName: string;
+                                    rating: number;
+                                    text: string;
+                                    authorName: string;
                                     authorPhotoUri: string;
                                     /** Format: date-time */
                                     publishTime: string;
@@ -292,7 +417,7 @@ export interface paths {
                                     createdAt: string;
                                 }[];
                             };
-                            images: {
+                            websiteImages: {
                                 id: string;
                                 url: string;
                                 sizeBytes: number;

@@ -27,6 +27,11 @@ const navGroups: NavGroup[] = [
         url: '/',
         icon: MapPin,
       },
+      {
+        title: 'Websites',
+        url: '/websites',
+        icon: MapPin,
+      },
     ],
   },
 ];

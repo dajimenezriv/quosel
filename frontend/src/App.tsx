@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import { useTheme } from './core/theme/use-theme';
 import { router } from './pages/router';
 
@@ -18,6 +19,7 @@ export function App() {
   return (
     <div className="font-sans antialiased" style={{ fontFamily: 'var(--font-inter)' }}>
       <QueryClientProvider client={queryClient}>
+        <Toaster />
         <RouterProvider router={router} />
       </QueryClientProvider>
     </div>

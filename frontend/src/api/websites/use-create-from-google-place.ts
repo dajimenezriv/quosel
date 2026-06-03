@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { client } from '../client';
 
-export function useAddGooglePlace() {
+export function useCreateFromGooglePlace() {
   return useMutation({
     mutationFn: async (googlePlaceId: string) => {
       const { data, error } = await client.POST('/websites/create-from-google-place', {
