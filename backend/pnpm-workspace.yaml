@@ -1,5 +1,0 @@
-allowBuilds:
-  '@prisma/engines': false
-  '@railway/cli': false
-  esbuild: false
-  prisma: false
