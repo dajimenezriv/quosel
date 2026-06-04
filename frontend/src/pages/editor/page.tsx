@@ -2,8 +2,10 @@ import { useGetWebsite } from '@/api/websites/use-get-website';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { useThemeStore } from '@/core/theme/use-theme-store';
 import { renderTemplate } from '@quosel/templates';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Customizer } from './customizer';
+import { CustomizerTrigger } from './customizer-trigger';
 
 function SafariFrame({ html }: { html: string }) {
   const { isDarkMode } = useThemeStore();
@@ -102,6 +104,7 @@ function SafariFrame({ html }: { html: string }) {
 export default function Page() {
   const { websiteId } = useParams<{ websiteId: string }>();
   const { data } = useGetWebsite(websiteId!);
+  const [isCustomizerOpen, setIsCustomizerOpen] = useState(true);
 
   const html = useMemo(() => (data ? renderTemplate(data) : ''), [data]);
 
@@ -110,6 +113,8 @@ export default function Page() {
       {data && (
         <div className="h-full">
           <SafariFrame html={html} />
+          <CustomizerTrigger onClick={() => setIsCustomizerOpen(true)} />
+          <Customizer open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
         </div>
       )}
     </BaseLayout>
