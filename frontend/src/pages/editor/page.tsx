@@ -13,13 +13,9 @@ function SafariFrame({ html }: { html: string }) {
   return (
     <div
       className="flex h-full w-full flex-col overflow-hidden rounded-xl shadow-2xl"
-      style={{ border: `1px solid ${d ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.12)'}` }}
-    >
+      style={{ border: `1px solid ${d ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.12)'}` }}>
       {/* Toolbar */}
-      <div
-        className="flex shrink-0 items-center gap-2 px-4"
-        style={{ background: d ? '#323232' : '#f5f5f5', height: 52 }}
-      >
+      <div className="flex shrink-0 items-center gap-2 px-4" style={{ background: d ? '#323232' : '#f5f5f5', height: 52 }}>
         {/* Traffic lights */}
         <div className="flex shrink-0 items-center gap-1.5">
           <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -54,17 +50,13 @@ function SafariFrame({ html }: { html: string }) {
               border: `1px solid ${d ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.15)'}`,
               borderRadius: 8,
               boxShadow: d ? 'none' : '0 1px 2px rgba(0,0,0,0.06)',
-            }}
-          >
+            }}>
             {/* Lock icon */}
             <svg width="11" height="13" viewBox="0 0 11 13" fill="none" className="shrink-0" style={{ color: d ? '#666' : '#999' }}>
               <rect x="0.75" y="5.75" width="9.5" height="6.5" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
               <path d="M3 5.5V4a2.5 2.5 0 015 0v1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
             </svg>
-            <span
-              className="flex-1 select-none text-center text-[12px]"
-              style={{ color: d ? '#aaa' : '#444', letterSpacing: 0.1 }}
-            >
+            <span className="flex-1 text-center text-[12px] select-none" style={{ color: d ? '#aaa' : '#444', letterSpacing: 0.1 }}>
               preview
             </span>
           </div>
@@ -78,28 +70,22 @@ function SafariFrame({ html }: { html: string }) {
           background: d ? '#282828' : '#ebebeb',
           borderTop: `1px solid ${d ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.08)'}`,
           height: 34,
-        }}
-      >
+        }}>
         {/* Active tab */}
         <div
           className="flex items-center gap-1.5 px-5"
           style={{
             background: d ? '#323232' : '#f5f5f5',
             borderRight: `1px solid ${d ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.1)'}`,
-          }}
-        >
+          }}>
           {/* favicon placeholder */}
-          <div
-            className="h-3.5 w-3.5 shrink-0 rounded-[3px]"
-            style={{ background: d ? '#4a4a4a' : '#d0d0d0' }}
-          />
-          <span className="select-none text-[12px]" style={{ color: d ? '#ccc' : '#333' }}>
+          <div className="h-3.5 w-3.5 shrink-0 rounded-[3px]" style={{ background: d ? '#4a4a4a' : '#d0d0d0' }} />
+          <span className="text-[12px] select-none" style={{ color: d ? '#ccc' : '#333' }}>
             Preview
           </span>
           <button
             className="ml-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px]"
-            style={{ color: d ? '#555' : '#aaa' }}
-          >
+            style={{ color: d ? '#555' : '#aaa' }}>
             ✕
           </button>
         </div>
@@ -122,7 +108,7 @@ export default function Page() {
   return (
     <BaseLayout title="Editor">
       {data && (
-        <div style={{ height: 'calc(100vh - var(--header-height) - 3rem)' }}>
+        <div className="h-full">
           <SafariFrame html={html} />
         </div>
       )}
