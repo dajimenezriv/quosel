@@ -1,2 +1,2 @@
-export type { WebsiteData } from './types';
-export { BasicTemplate } from './basic';
+export type { WebsiteData } from "./types";
+export { renderTemplate } from "./render";

@@ -3,21 +3,7 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { BasicTemplate, type WebsiteData } from '@quosel/templates';
-import { createElement } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
-
-const wrapHtml = (body: string) => `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-${body}
-</body>
-</html>`;
+import { renderTemplate, type WebsiteData } from '@quosel/templates';
 
 export const publishRoute = createRoute({
   method: 'post',
@@ -46,6 +32,5 @@ export const publish: RouteHandler<typeof publishRoute, { Variables: AuthVariabl
     websiteImages: website.websiteImages,
   };
 
-  const html = renderToStaticMarkup(createElement(BasicTemplate, { data }));
-  return c.html(wrapHtml(html));
+  return c.html(renderTemplate(data));
 };
