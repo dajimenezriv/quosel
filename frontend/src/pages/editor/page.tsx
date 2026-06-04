@@ -1,12 +1,12 @@
 import { useGetWebsite } from '@/api/websites/use-get-website';
 import { BaseLayout } from '@/components/layouts/base-layout';
+import { Button } from '@/components/ui/button';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { renderTemplate } from '@quosel/templates';
-import { Laptop, Smartphone } from 'lucide-react';
+import { Laptop, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Customizer } from './customizer';
-import { CustomizerTrigger } from './customizer-trigger';
 
 function SafariFrame({ html }: { html: string }) {
   const isDarkMode = useEditorStore((s) => s.draft?.isDarkMode ?? false);
@@ -120,7 +120,6 @@ function IPhoneFrame({ html }: { html: string }) {
             ? '0 0 0 1.5px #3a3a3c, 0 0 0 3px #2a2a2c, 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.06)'
             : '0 0 0 1.5px #c8b89a, 0 0 0 3px #e8d8c0, 0 30px 80px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.5)',
         }}>
-
         {/* Side buttons — volume up */}
         <div
           className="absolute"
@@ -167,7 +166,6 @@ function IPhoneFrame({ html }: { html: string }) {
             height: 'calc(100% - 16px)',
             background: '#000',
           }}>
-
           {/* Status bar */}
           <div className="relative z-10 flex shrink-0 items-center justify-between px-8" style={{ height: 54, background: '#fff' }}>
             <span className="text-[15px] font-semibold" style={{ color: '#000', letterSpacing: -0.3 }}>
@@ -175,7 +173,7 @@ function IPhoneFrame({ html }: { html: string }) {
             </span>
             {/* Dynamic Island */}
             <div
-              className="absolute left-1/2 top-3 -translate-x-1/2"
+              className="absolute top-3 left-1/2 -translate-x-1/2"
               style={{ width: 120, height: 34, borderRadius: 20, background: '#000' }}
             />
             {/* Right icons */}
@@ -260,12 +258,17 @@ function IPhoneFrame({ html }: { html: string }) {
               <button className="flex h-10 w-10 items-center justify-center">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                   <rect x="2" y="4" width="12" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
-                  <path d="M5 4V3a2 2 0 012-2h6a2 2 0 012 2v9a2 2 0 01-2 2h-1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <path
+                    d="M5 4V3a2 2 0 012-2h6a2 2 0 012 2v9a2 2 0 01-2 2h-1"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </button>
             </div>
             {/* Home indicator */}
-            <div className="flex justify-center pb-2 pt-1">
+            <div className="flex justify-center pt-1 pb-2">
               <div className="h-1 w-32 rounded-full" style={{ background: d ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.2)' }} />
             </div>
           </div>
@@ -292,10 +295,10 @@ export default function Page() {
   const html = useMemo(() => (draft ? renderTemplate(draft) : ''), [draft]);
 
   return (
-    <BaseLayout title="Editor">
-      {data && (
-        <div className="flex h-full flex-col">
-          {/* Device toggle */}
+    <BaseLayout
+      title="Editor"
+      extra={
+        <>
           <div className="flex shrink-0 justify-center py-3">
             <div className="bg-muted flex gap-1 rounded-lg p-1">
               <button
@@ -312,12 +315,15 @@ export default function Page() {
               </button>
             </div>
           </div>
+          <Button variant="outline" size="icon" onClick={() => setIsCustomizerOpen(true)} className="cursor-pointer">
+            <Settings className="h-[1.2rem] w-[1.2rem]" />
+          </Button>
+        </>
+      }>
+      {data && (
+        <div className="flex h-full flex-col">
+          <div className="min-h-0 flex-1">{device === 'laptop' ? <SafariFrame html={html} /> : <IPhoneFrame html={html} />}</div>
 
-          <div className="min-h-0 flex-1">
-            {device === 'laptop' ? <SafariFrame html={html} /> : <IPhoneFrame html={html} />}
-          </div>
-
-          <CustomizerTrigger onClick={() => setIsCustomizerOpen(true)} />
           <Customizer open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
         </div>
       )}

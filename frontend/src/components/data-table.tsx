@@ -12,23 +12,8 @@ import {
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import {
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  useReactTable,
-  type ColumnDef,
-} from '@tanstack/react-table';
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-  EllipsisVertical,
-  ExternalLink,
-  MapPin,
-  Star,
-} from 'lucide-react';
+import { flexRender, getCoreRowModel, getPaginationRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table';
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, EllipsisVertical, ExternalLink, MapPin, Star } from 'lucide-react';
 import * as React from 'react';
 import { z } from 'zod';
 import { schema } from './task-schema';
