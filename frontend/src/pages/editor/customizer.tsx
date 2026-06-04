@@ -1,12 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { useEditorStore } from '@/core/editor/use-editor-store';
 import { Layout, Palette, RotateCcw, Settings, X } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { LayoutTab } from './layout-tab';
-import { themes } from './theme-data';
 import { ThemeTab } from './theme-tab';
-import { useThemeManager } from './use-theme-manager';
 
 interface ThemeCustomizerProps {
   open: boolean;
@@ -14,24 +13,13 @@ interface ThemeCustomizerProps {
 }
 
 export function Customizer({ open, onOpenChange }: ThemeCustomizerProps) {
-  const { applyTweakcnTheme } = useThemeManager();
+  const setTweakcnThemeKey = useEditorStore((s) => s.setTweakcnThemeKey);
 
   const [activeTab, setActiveTab] = useState('theme');
-  const [selectedTweakcnTheme, setSelectedTweakcnTheme] = useState('');
 
   const handleReset = () => {
-    setSelectedTweakcnTheme('');
+    setTweakcnThemeKey('');
   };
-
-  // Re-apply themes when theme mode changes
-  useEffect(() => {
-    if (selectedTweakcnTheme) {
-      const selectedPreset = themes.find((t) => t.key === selectedTweakcnTheme)?.value;
-      if (selectedPreset) {
-        applyTweakcnTheme(selectedPreset);
-      }
-    }
-  }, [applyTweakcnTheme]);
 
   return (
     <>

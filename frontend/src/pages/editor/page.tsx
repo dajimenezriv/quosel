@@ -1,14 +1,14 @@
 import { useGetWebsite } from '@/api/websites/use-get-website';
 import { BaseLayout } from '@/components/layouts/base-layout';
-import { useThemeStore } from '@/core/theme/use-theme-store';
+import { useEditorStore } from '@/core/editor/use-editor-store';
 import { renderTemplate } from '@quosel/templates';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Customizer } from './customizer';
 import { CustomizerTrigger } from './customizer-trigger';
 
 function SafariFrame({ html }: { html: string }) {
-  const { isDarkMode } = useThemeStore();
+  const isDarkMode = useEditorStore((s) => s.draft?.isDarkMode ?? false);
 
   const d = isDarkMode;
 
@@ -106,7 +106,14 @@ export default function Page() {
   const { data } = useGetWebsite(websiteId!);
   const [isCustomizerOpen, setIsCustomizerOpen] = useState(true);
 
-  const html = useMemo(() => (data ? renderTemplate(data) : ''), [data]);
+  const hydrate = useEditorStore((s) => s.hydrate);
+  const draft = useEditorStore((s) => s.draft);
+
+  useEffect(() => {
+    if (data) hydrate({ ...data, tweakcnThemeKey: 'Claude', isDarkMode: false });
+  }, [data, hydrate]);
+
+  const html = useMemo(() => (draft ? renderTemplate(draft) : ''), [draft]);
 
   return (
     <BaseLayout title="Editor">

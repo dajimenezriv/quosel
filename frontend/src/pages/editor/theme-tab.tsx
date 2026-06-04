@@ -2,23 +2,24 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
+import { useEditorStore } from '@/core/editor/use-editor-store';
 import { Dices, Moon, Sun } from 'lucide-react';
-import React, { useState } from 'react';
 import { themes } from './theme-data';
-import { useThemeManager } from './use-theme-manager';
 
 export function ThemeTab() {
-  const { applyTweakcnTheme } = useThemeManager();
-  const isDarkMode = useState(false);
+  const isDarkMode = useEditorStore((s) => s.draft?.isDarkMode ?? false);
+  const tweakcnThemeKey = useEditorStore((s) => s.draft?.tweakcnThemeKey ?? '');
+  const setIsDarkMode = useEditorStore((s) => s.setIsDarkMode);
+  const setTweakcnThemeKey = useEditorStore((s) => s.setTweakcnThemeKey);
 
   const handleRandomTweakcn = () => {
     const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-    applyTweakcnTheme(randomTheme.value);
+    setTweakcnThemeKey(randomTheme.key);
   };
 
-  const handleLightMode = (event: React.MouseEvent<HTMLButtonElement>) => {};
+  const handleLightMode = () => setIsDarkMode(false);
 
-  const handleDarkMode = (event: React.MouseEvent<HTMLButtonElement>) => {};
+  const handleDarkMode = () => setIsDarkMode(true);
 
   return (
     <div className="space-y-6 p-4">
@@ -33,12 +34,9 @@ export function ThemeTab() {
         </div>
 
         <Select
-          value={''}
+          value={tweakcnThemeKey}
           onValueChange={(key) => {
-            const selectedPreset = themes.find((t) => t.key === key)?.value;
-            if (selectedPreset) {
-              applyTweakcnTheme(selectedPreset);
-            }
+            setTweakcnThemeKey(key);
           }}>
           <SelectTrigger className="w-full cursor-pointer">
             <SelectValue placeholder="Choose Tweakcn Theme" />

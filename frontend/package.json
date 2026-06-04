@@ -36,6 +36,7 @@
     "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "immer": "^11.1.8",
     "lucide-react": "^1.16.0",
     "openapi-fetch": "^0.17.0",
     "posthog-js": "^1.376.0",
