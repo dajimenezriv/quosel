@@ -22,7 +22,7 @@ export function BaseLayout({ children, title, extra }: Props) {
       <AppSidebar />
       <SidebarInset>
         <SiteHeader title={title} extra={extra} />
-        <div className="flex flex-1 flex-col p-6">{children}</div>
+        <div className="flex flex-1 flex-col">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

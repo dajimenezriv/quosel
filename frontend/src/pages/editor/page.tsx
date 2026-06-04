@@ -2,6 +2,7 @@ import { useGetWebsite } from '@/api/websites/use-get-website';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { Button } from '@/components/ui/button';
 import { useEditorStore } from '@/core/editor/use-editor-store';
+import { useThemeStore } from '@/core/theme/use-theme-store';
 import { renderTemplate } from '@quosel/templates';
 import { Laptop, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
@@ -9,9 +10,7 @@ import { useParams } from 'react-router-dom';
 import { Customizer } from './customizer';
 
 function SafariFrame({ html }: { html: string }) {
-  const isDarkMode = useEditorStore((s) => s.draft?.isDarkMode ?? false);
-
-  const d = isDarkMode;
+  const d = useThemeStore((s) => s.isDarkMode);
 
   return (
     <div
@@ -103,7 +102,7 @@ function SafariFrame({ html }: { html: string }) {
 }
 
 function IPhoneFrame({ html }: { html: string }) {
-  const isDarkMode = useEditorStore((s) => s.draft?.isDarkMode ?? false);
+  const isDarkMode = useThemeStore((s) => s.isDarkMode);
   const d = isDarkMode;
 
   return (
@@ -294,6 +293,10 @@ export default function Page() {
 
   const html = useMemo(() => (draft ? renderTemplate(draft) : ''), [draft]);
 
+  function toggleCustomizer() {
+    setIsCustomizerOpen(!isCustomizerOpen);
+  }
+
   return (
     <BaseLayout
       title="Editor"
@@ -315,14 +318,14 @@ export default function Page() {
               </button>
             </div>
           </div>
-          <Button variant="outline" size="icon" onClick={() => setIsCustomizerOpen(true)} className="cursor-pointer">
+          <Button variant="outline" size="icon" onClick={toggleCustomizer} className="cursor-pointer">
             <Settings className="h-[1.2rem] w-[1.2rem]" />
           </Button>
         </>
       }>
       {data && (
-        <div className="flex h-full flex-col">
-          <div className="min-h-0 flex-1">{device === 'laptop' ? <SafariFrame html={html} /> : <IPhoneFrame html={html} />}</div>
+        <div className="flex h-full">
+          <div className="w-full p-6">{device === 'laptop' ? <SafariFrame html={html} /> : <IPhoneFrame html={html} />}</div>
 
           <Customizer open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
         </div>
