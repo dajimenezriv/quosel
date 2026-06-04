@@ -1,0 +1,50 @@
+import type { WebsiteData } from "../types";
+import { getInitials } from "../utils";
+
+const NAV_LINKS = [
+  "Sobre Nosotros",
+  "Barbero",
+  "Servicios",
+  "Galería",
+  "Visitas",
+  "Reseñas",
+  "Visítanos",
+];
+
+export function Navigation({ data }: { data: WebsiteData }) {
+  const initials = getInitials(data.place.name);
+
+  return (
+    <nav className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-10 py-5">
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--primary)]">
+          <span className="text-xs font-light tracking-wider text-[var(--primary)]">
+            {initials}
+          </span>
+        </div>
+        <span className="text-xs tracking-[0.25em] uppercase">
+          {data.place.name}
+        </span>
+      </div>
+
+      <div className="hidden items-center gap-8 md:flex">
+        {NAV_LINKS.map((link) => (
+          <a
+            key={link}
+            href="#"
+            className="text-xs tracking-[0.15em] uppercase text-[var(--foreground-70)] transition-colors hover:text-[var(--foreground)]"
+          >
+            {link}
+          </a>
+        ))}
+      </div>
+
+      <a
+        href="#"
+        className="border border-[var(--primary)] px-6 py-2 text-xs tracking-[0.2em] uppercase text-[var(--primary)] transition-all hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]"
+      >
+        Reservar
+      </a>
+    </nav>
+  );
+}

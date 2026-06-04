@@ -9,4 +9,14 @@ export interface WebsiteData {
   websiteImages: Array<{ url: string }>;
   tweakcnThemeKey: string;
   isDarkMode: boolean;
+  blocks: {
+    hero: {
+      firstTitle: string;
+      secondTitle: string;
+      text: string;
+      ctaText: string;
+      ctaLink: string;
+      phone: string;
+    };
+  };
 }

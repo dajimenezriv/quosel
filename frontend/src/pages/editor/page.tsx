@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { useThemeStore } from '@/core/theme/use-theme-store';
 import { renderTemplate } from '@quosel/templates';
-import { Laptop, Settings, Smartphone } from 'lucide-react';
+import { Download, Laptop, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Customizer } from './customizer';
@@ -297,6 +297,16 @@ export default function Page() {
     setIsCustomizerOpen(!isCustomizerOpen);
   }
 
+  function exportHtml() {
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'index.html';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <BaseLayout
       title="Editor"
@@ -318,6 +328,9 @@ export default function Page() {
               </button>
             </div>
           </div>
+          <Button variant="outline" size="icon" onClick={exportHtml} className="cursor-pointer">
+            <Download className="h-[1.2rem] w-[1.2rem]" />
+          </Button>
           <Button variant="outline" size="icon" onClick={toggleCustomizer} className="cursor-pointer">
             <Settings className="h-[1.2rem] w-[1.2rem]" />
           </Button>
