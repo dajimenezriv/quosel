@@ -237,19 +237,19 @@ export function Template({ data }: { data: WebsiteData }) {
               <div className="h-full w-full bg-[var(--popover)]" />
             </div>
 
-            <div className="relative z-10 px-16 pb-24 md:px-24">
+            <div className="relative z-10 px-6 pb-24 md:px-24">
               <h1 className="leading-none" style={{ fontFamily: SERIF }}>
-                <span className="block text-7xl font-light text-[var(--foreground)] md:text-8xl">
+                <span className="block text-5xl font-light text-[var(--foreground)] md:text-7xl lg:text-8xl">
                   Tu barbero,
                 </span>
-                <span className="block text-7xl font-light italic text-[var(--primary)] md:text-8xl">
+                <span className="block text-5xl font-light italic text-[var(--primary)] md:text-7xl lg:text-8xl">
                   {data.place.name}.
                 </span>
               </h1>
 
               {data.place.formattedAddress && (
                 <p
-                  className="mt-8 max-w-sm text-base italic text-[var(--foreground-70)]"
+                  className="mt-8 max-w-xs text-base italic text-[var(--foreground-70)] md:max-w-sm"
                   style={{ fontFamily: SERIF }}
                 >
                   {data.place.formattedAddress}
@@ -263,17 +263,17 @@ export function Template({ data }: { data: WebsiteData }) {
                 </p>
               )}
 
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a
                   href="#"
-                  className="bg-[var(--primary)] px-8 py-3 text-xs tracking-[0.25em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
+                  className="bg-[var(--primary)] px-8 py-3 text-center text-xs tracking-[0.25em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
                 >
                   Reservar Cita
                 </a>
                 {data.place.internationalPhoneNumber && (
                   <a
                     href={`tel:${data.place.internationalPhoneNumber}`}
-                    className="border border-[var(--foreground-40)] px-8 py-3 text-xs tracking-[0.2em] uppercase transition-colors hover:border-[var(--foreground)]"
+                    className="border border-[var(--foreground-40)] px-8 py-3 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:border-[var(--foreground)]"
                   >
                     {data.place.internationalPhoneNumber}
                   </a>
@@ -290,11 +290,15 @@ export function Template({ data }: { data: WebsiteData }) {
           </section>
 
           {/* Stats bar */}
-          <section className="grid grid-cols-4 border-b border-t border-[var(--foreground-10)] bg-[var(--card)]">
+          <section className="grid grid-cols-2 border-b border-t border-[var(--foreground-10)] bg-[var(--card)] md:grid-cols-4">
             {stats.map((stat, i) => (
               <div
                 key={i}
-                className={`px-10 py-8 text-center${i < stats.length - 1 ? " border-r border-[var(--foreground-10)]" : ""}`}
+                className={`px-10 py-8 text-center border-[var(--foreground-10)]${
+                  i % 2 === 0 ? " border-r" : ""
+                }${i < 2 ? " border-b md:border-b-0" : ""}${
+                  i % 2 !== 0 && i < 3 ? " md:border-r" : ""
+                }`}
               >
                 <div
                   className="text-3xl font-light italic text-[var(--primary)]"
@@ -310,7 +314,7 @@ export function Template({ data }: { data: WebsiteData }) {
           </section>
 
           {/* About section */}
-          <section className="grid gap-16 bg-[var(--card)] px-24 py-24 md:grid-cols-2">
+          <section className="grid gap-8 bg-[var(--card)] px-6 py-12 md:gap-16 md:px-24 md:py-24 md:grid-cols-2">
             <div>
               <p className="mb-6 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
                 — Sobre Nosotros
@@ -363,9 +367,9 @@ export function Template({ data }: { data: WebsiteData }) {
           </section>
 
           {/* Services section */}
-          <section className="bg-[var(--background)] px-24 py-20">
+          <section className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20">
             {/* Header */}
-            <div className="mb-16 grid grid-cols-2 items-start gap-16">
+            <div className="mb-8 grid gap-6 md:mb-16 md:grid-cols-2 md:items-start md:gap-16">
               <div>
                 <p className="mb-4 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
                   — Carta
@@ -380,7 +384,7 @@ export function Template({ data }: { data: WebsiteData }) {
                 </h2>
               </div>
               <p
-                className="pt-14 text-sm italic leading-relaxed text-[var(--foreground-50)]"
+                className="text-sm italic leading-relaxed text-[var(--foreground-50)] md:pt-14"
                 style={{ fontFamily: SERIF }}
               >
                 Reserva directo en Booksy: elige el servicio, el día y la hora.
@@ -408,8 +412,17 @@ export function Template({ data }: { data: WebsiteData }) {
                   <div>
                     {group.items.map((item, i) => (
                       <div key={item.name}>
-                        <div className="flex items-start gap-8 py-5">
-                          <div className="flex-1">
+                        <div className="flex flex-wrap items-start gap-y-1 py-5 md:flex-nowrap md:gap-x-8">
+                          <span className="order-1 text-xs tracking-[0.15em] uppercase text-[var(--foreground-30)] md:order-2 md:shrink-0 md:pt-0.5">
+                            {item.duration}
+                          </span>
+                          <span
+                            className="order-2 grow text-right text-xl font-light italic text-[var(--primary)] md:order-3 md:w-16 md:shrink-0 md:grow-0"
+                            style={{ fontFamily: SERIF }}
+                          >
+                            {item.price}
+                          </span>
+                          <div className="order-3 w-full md:order-1 md:w-auto md:flex-1">
                             <p className="text-base text-[var(--foreground)]">
                               {item.name}
                             </p>
@@ -417,15 +430,6 @@ export function Template({ data }: { data: WebsiteData }) {
                               {item.desc}
                             </p>
                           </div>
-                          <span className="shrink-0 pt-0.5 text-xs tracking-[0.15em] uppercase text-[var(--foreground-30)]">
-                            {item.duration}
-                          </span>
-                          <span
-                            className="shrink-0 w-16 text-right text-xl font-light italic text-[var(--primary)]"
-                            style={{ fontFamily: SERIF }}
-                          >
-                            {item.price}
-                          </span>
                         </div>
                         {i < group.items.length - 1 && (
                           <div className="border-t border-[var(--foreground-10)]" />
@@ -438,7 +442,7 @@ export function Template({ data }: { data: WebsiteData }) {
             </div>
 
             {/* Footer */}
-            <div className="mt-16 flex items-center justify-between border-t border-[var(--foreground-10)] pt-8">
+            <div className="mt-10 flex flex-col gap-4 border-t border-[var(--foreground-10)] pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
               <p className="text-xs tracking-[0.2em] uppercase text-[var(--foreground-30)]">
                 Carta completa disponible en Booksy.
               </p>
@@ -452,8 +456,8 @@ export function Template({ data }: { data: WebsiteData }) {
           </section>
 
           {/* Gallery section */}
-          <section className="bg-[var(--background)] px-24 py-20">
-            <div className="mb-12 grid grid-cols-2 items-start gap-16">
+          <section className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20">
+            <div className="mb-8 grid gap-6 md:mb-12 md:grid-cols-2 md:items-start md:gap-16">
               <div>
                 <p className="mb-4 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
                   — Galería
@@ -467,7 +471,7 @@ export function Template({ data }: { data: WebsiteData }) {
                 </h2>
               </div>
               <p
-                className="pt-12 text-sm italic leading-relaxed text-[var(--foreground-50)]"
+                className="text-sm italic leading-relaxed text-[var(--foreground-50)] md:pt-12"
                 style={{ fontFamily: SERIF }}
               >
                 Cortes, degradados, barba y detalle. Lo que sale por la puerta
@@ -475,7 +479,7 @@ export function Template({ data }: { data: WebsiteData }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
               {Array.from({ length: 8 }).map((_, i) => (
                 <div key={i} className="aspect-square bg-[var(--muted)]" />
               ))}
@@ -492,8 +496,8 @@ export function Template({ data }: { data: WebsiteData }) {
           </section>
 
           {/* Reviews section */}
-          <section className="bg-[var(--card)] px-24 py-20">
-            <div className="mb-16 flex items-start justify-between gap-16">
+          <section className="bg-[var(--card)] px-6 py-12 md:px-24 md:py-20">
+            <div className="mb-8 flex flex-col gap-6 md:mb-16 md:flex-row md:items-start md:justify-between md:gap-16">
               <div>
                 <p className="mb-4 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
                   — Opiniones
@@ -539,7 +543,7 @@ export function Template({ data }: { data: WebsiteData }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {REVIEWS.map((review) => (
                 <div
                   key={review.author}
@@ -566,14 +570,14 @@ export function Template({ data }: { data: WebsiteData }) {
           </section>
 
           {/* Visit section */}
-          <section className="grid grid-cols-2 bg-[var(--background)]">
+          <section className="grid grid-cols-1 bg-[var(--background)] md:grid-cols-2">
             {/* Left: info */}
-            <div className="px-24 py-20">
+            <div className="px-6 py-12 md:px-24 md:py-20">
               <p className="mb-6 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
                 — Visítanos
               </p>
               <h2
-                className="mb-14 text-7xl font-light leading-tight text-[var(--foreground)]"
+                className="mb-8 text-5xl font-light leading-tight text-[var(--foreground)] md:mb-14 md:text-7xl"
                 style={{ fontFamily: SERIF }}
               >
                 {data.place.formattedAddress.split(",")[0]?.trim()},{" "}
@@ -690,7 +694,7 @@ export function Template({ data }: { data: WebsiteData }) {
             {/* Right: Map */}
             <iframe
               src={`https://maps.google.com/maps?q=${encodeURIComponent(data.place.formattedAddress)}&output=embed`}
-              className="h-full w-full border-0"
+              className="min-h-80 w-full border-0 md:h-full"
               loading="lazy"
             />
           </section>
@@ -698,9 +702,9 @@ export function Template({ data }: { data: WebsiteData }) {
           {/* CTA section */}
           <section className="relative flex min-h-96 items-center justify-center py-32 text-center">
             <div className="absolute inset-0 bg-[var(--popover)]" />
-            <div className="relative z-10 max-w-2xl px-8">
+            <div className="relative z-10 max-w-2xl px-6 md:px-8">
               <h2
-                className="text-6xl font-light italic leading-tight text-[var(--primary)]"
+                className="text-4xl font-light italic leading-tight text-[var(--primary)] md:text-6xl"
                 style={{ fontFamily: SERIF }}
               >
                 Tu próxima cita empieza aquí.
@@ -709,16 +713,16 @@ export function Template({ data }: { data: WebsiteData }) {
                 Reserva en Booksy o síguenos en Instagram. Las dos puertas para
                 entrar en la barbería antes incluso de cruzarla.
               </p>
-              <div className="mt-10 flex justify-center gap-4">
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <a
                   href="#"
-                  className="bg-[var(--primary)] px-8 py-4 text-xs tracking-[0.2em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
+                  className="bg-[var(--primary)] px-8 py-4 text-center text-xs tracking-[0.2em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
                 >
                   Reservar en Booksy →
                 </a>
                 <a
                   href="#"
-                  className="border border-[var(--foreground-40)] px-8 py-4 text-xs tracking-[0.2em] uppercase text-[var(--foreground)] transition-colors hover:border-[var(--foreground)]"
+                  className="border border-[var(--foreground-40)] px-8 py-4 text-center text-xs tracking-[0.2em] uppercase text-[var(--foreground)] transition-colors hover:border-[var(--foreground)]"
                 >
                   Seguir en Instagram →
                 </a>
@@ -727,10 +731,10 @@ export function Template({ data }: { data: WebsiteData }) {
           </section>
 
           {/* Footer */}
-          <footer className="bg-[var(--card)] px-24 py-16">
-            <div className="grid grid-cols-4 gap-12">
+          <footer className="bg-[var(--card)] px-6 py-12 md:px-24 md:py-16">
+            <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
               {/* Logo + description */}
-              <div>
+              <div className="col-span-2 md:col-span-1">
                 <div className="mb-5 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--primary)]">
                     <span className="text-xs font-light tracking-wider text-[var(--primary)]">
@@ -802,7 +806,7 @@ export function Template({ data }: { data: WebsiteData }) {
               </div>
 
               {/* Reserva & Redes */}
-              <div>
+              <div className="col-span-2 md:col-span-1">
                 <p className="mb-4 text-xs tracking-[0.2em] uppercase text-[var(--primary)]">
                   Reserva &amp; Redes
                 </p>
