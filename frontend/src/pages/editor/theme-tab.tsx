@@ -1,12 +1,10 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Separator } from '@/components/ui/separator';
 import { Dices, Moon, Sun } from 'lucide-react';
 import React, { useState } from 'react';
-import { tweakcnThemes } from './theme-data';
+import { themes } from './theme-data';
 import { useThemeManager } from './use-theme-manager';
 
 export function ThemeTab() {
@@ -14,7 +12,7 @@ export function ThemeTab() {
   const isDarkMode = useState(false);
 
   const handleRandomTweakcn = () => {
-    const randomTheme = tweakcnThemes[Math.floor(Math.random() * tweakcnThemes.length)];
+    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
     applyTweakcnTheme(randomTheme.value);
   };
 
@@ -37,7 +35,7 @@ export function ThemeTab() {
         <Select
           value={''}
           onValueChange={(key) => {
-            const selectedPreset = tweakcnThemes.find((t) => t.key === key)?.value;
+            const selectedPreset = themes.find((t) => t.key === key)?.value;
             if (selectedPreset) {
               applyTweakcnTheme(selectedPreset);
             }
@@ -47,7 +45,7 @@ export function ThemeTab() {
           </SelectTrigger>
           <SelectContent className="max-h-60">
             <div className="p-2">
-              {tweakcnThemes.map((theme) => (
+              {themes.map((theme) => (
                 <SelectItem key={theme.key} value={theme.key} className="cursor-pointer">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
@@ -73,7 +71,6 @@ export function ThemeTab() {
 
       <Separator />
 
-      {/* Mode Section */}
       <div className="space-y-3">
         <Label className="text-sm font-medium">Mode</Label>
         <div className="grid grid-cols-2 gap-2">

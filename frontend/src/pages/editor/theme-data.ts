@@ -1,7 +1,6 @@
-import type { ColorTheme } from './theme-customizer';
-import { tweakcnPresets } from './tweakcn-theme-presets';
+import { tweakcnThemes } from '@quosel/templates';
 
-export const tweakcnThemes: ColorTheme[] = Object.entries(tweakcnPresets).map(([key, value]) => ({
+export const themes = Object.entries(tweakcnThemes).map(([key, value]) => ({
   key,
   value,
 }));

@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Layout, Palette, RotateCcw, Settings, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { LayoutTab } from './layout-tab';
-import { tweakcnThemes } from './theme-data';
+import { themes } from './theme-data';
 import { ThemeTab } from './theme-tab';
 import { useThemeManager } from './use-theme-manager';
 
@@ -26,7 +26,7 @@ export function Customizer({ open, onOpenChange }: ThemeCustomizerProps) {
   // Re-apply themes when theme mode changes
   useEffect(() => {
     if (selectedTweakcnTheme) {
-      const selectedPreset = tweakcnThemes.find((t) => t.key === selectedTweakcnTheme)?.value;
+      const selectedPreset = themes.find((t) => t.key === selectedTweakcnTheme)?.value;
       if (selectedPreset) {
         applyTweakcnTheme(selectedPreset);
       }
