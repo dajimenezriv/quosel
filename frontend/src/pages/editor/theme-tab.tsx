@@ -15,7 +15,7 @@ export function ThemeTab() {
 
   const handleRandomTweakcn = () => {
     const randomTheme = tweakcnThemes[Math.floor(Math.random() * tweakcnThemes.length)];
-    applyTweakcnTheme(randomTheme.preset);
+    applyTweakcnTheme(randomTheme.value);
   };
 
   const handleLightMode = (event: React.MouseEvent<HTMLButtonElement>) => {};
@@ -36,8 +36,8 @@ export function ThemeTab() {
 
         <Select
           value={''}
-          onValueChange={(value) => {
-            const selectedPreset = tweakcnThemes.find((t) => t.value === value)?.preset;
+          onValueChange={(key) => {
+            const selectedPreset = tweakcnThemes.find((t) => t.key === key)?.value;
             if (selectedPreset) {
               applyTweakcnTheme(selectedPreset);
             }
@@ -48,27 +48,21 @@ export function ThemeTab() {
           <SelectContent className="max-h-60">
             <div className="p-2">
               {tweakcnThemes.map((theme) => (
-                <SelectItem key={theme.value} value={theme.value} className="cursor-pointer">
+                <SelectItem key={theme.key} value={theme.key} className="cursor-pointer">
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
                       <div
                         className="border-border/20 h-3 w-3 rounded-full border"
-                        style={{ backgroundColor: theme.preset.styles.light.primary }}
+                        style={{ backgroundColor: theme.value.light.primary }}
                       />
                       <div
                         className="border-border/20 h-3 w-3 rounded-full border"
-                        style={{ backgroundColor: theme.preset.styles.light.secondary }}
+                        style={{ backgroundColor: theme.value.light.secondary }}
                       />
-                      <div
-                        className="border-border/20 h-3 w-3 rounded-full border"
-                        style={{ backgroundColor: theme.preset.styles.light.accent }}
-                      />
-                      <div
-                        className="border-border/20 h-3 w-3 rounded-full border"
-                        style={{ backgroundColor: theme.preset.styles.light.muted }}
-                      />
+                      <div className="border-border/20 h-3 w-3 rounded-full border" style={{ backgroundColor: theme.value.light.accent }} />
+                      <div className="border-border/20 h-3 w-3 rounded-full border" style={{ backgroundColor: theme.value.light.muted }} />
                     </div>
-                    <span>{theme.name}</span>
+                    <span>{theme.key}</span>
                   </div>
                 </SelectItem>
               ))}

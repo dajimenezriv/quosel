@@ -1,13 +1,6 @@
-export interface ThemePreset {
-  label?: string;
-  styles: {
-    light: Record<string, string>;
-    dark: Record<string, string>;
-  };
-}
+import type { ThemePreset } from './tweakcn-theme-presets';
 
 export interface ColorTheme {
-  name: string;
-  value: string;
-  preset: ThemePreset;
+  key: string;
+  value: ThemePreset;
 }

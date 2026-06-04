@@ -26,7 +26,7 @@ export function Customizer({ open, onOpenChange }: ThemeCustomizerProps) {
   // Re-apply themes when theme mode changes
   useEffect(() => {
     if (selectedTweakcnTheme) {
-      const selectedPreset = tweakcnThemes.find((t) => t.value === selectedTweakcnTheme)?.preset;
+      const selectedPreset = tweakcnThemes.find((t) => t.key === selectedTweakcnTheme)?.value;
       if (selectedPreset) {
         applyTweakcnTheme(selectedPreset);
       }
