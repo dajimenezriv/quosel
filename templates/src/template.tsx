@@ -47,6 +47,21 @@ export function Template({ data }: { data: WebsiteData }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{data.place.name}</title>
         <script src="https://cdn.tailwindcss.com" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          document.addEventListener('click', function(e) {
+            var a = e.target.closest('a[href^="#"]');
+            if (!a) return;
+            var id = a.getAttribute('href').slice(1);
+            var el = document.getElementById(id);
+            if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth' });
+          });
+        `,
+          }}
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"
@@ -58,7 +73,6 @@ export function Template({ data }: { data: WebsiteData }) {
           className="min-h-screen bg-[var(--background)] text-[var(--foreground)]"
           style={{ fontFamily: SANS }}
         >
-          {/* Navigation */}
           <Navigation data={data} />
           <Hero data={data} />
           <Stats data={data} />

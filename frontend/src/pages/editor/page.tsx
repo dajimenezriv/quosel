@@ -288,7 +288,22 @@ export default function Page() {
   const setDevice = useEditorStore((s) => s.setDevice);
 
   useEffect(() => {
-    if (data) hydrate({ ...data, tweakcnThemeKey: 'Claude', isDarkMode: false });
+    if (data)
+      hydrate({
+        ...data,
+        tweakcnThemeKey: 'Claude',
+        isDarkMode: false,
+        blocks: {
+          hero: {
+            firstTitle: 'Tu barbero,',
+            secondTitle: 'Barbero Benimaclet',
+            text: 'Cortes, degradados y barba en el corazón de Benimaclet. Atención personalizada, ambiente del barrio y reserva online en Booksy.',
+            ctaText: 'Reservar cita',
+            ctaLink: 'https://booksy.com/es-es/17924_barbero-benimaclet_barberia_58087_valencia',
+            phone: '+34 622 73 02 33',
+          },
+        },
+      });
   }, [data, hydrate]);
 
   const html = useMemo(() => (draft ? renderTemplate(draft) : ''), [draft]);
@@ -336,11 +351,11 @@ export default function Page() {
           </Button>
         </>
       }>
-      {data && (
+      {draft && (
         <div className="flex h-full">
           <div className="w-full p-6">{device === 'laptop' ? <SafariFrame html={html} /> : <IPhoneFrame html={html} />}</div>
 
-          <Customizer open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
+          <Customizer data={draft} open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
         </div>
       )}
     </BaseLayout>

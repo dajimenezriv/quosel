@@ -2,7 +2,7 @@ import { SERIF } from "../utils";
 
 export function CTA() {
   return (
-    <section className="relative flex min-h-96 items-center justify-center py-32 text-center">
+    <section id="cta" className="relative flex min-h-96 items-center justify-center py-32 text-center">
       <div className="absolute inset-0 bg-[var(--popover)]" />
       <div className="relative z-10 max-w-2xl px-6 md:px-8">
         <h2

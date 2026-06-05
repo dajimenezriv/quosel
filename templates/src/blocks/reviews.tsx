@@ -21,7 +21,7 @@ const REVIEWS = [
 
 export function Reviews({ data }: { data: WebsiteData }) {
   return (
-    <section className="bg-[var(--card)] px-6 py-12 md:px-24 md:py-20">
+    <section id="reviews" className="bg-[var(--card)] px-6 py-12 md:px-24 md:py-20">
       <div className="mb-8 flex flex-col gap-6 md:mb-16 md:flex-row md:items-start md:justify-between md:gap-16">
         <div>
           <p className="mb-4 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">

@@ -1,20 +1,22 @@
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEditorStore } from '@/core/editor/use-editor-store';
+import type { WebsiteData } from '@quosel/templates';
 import { Layout, Palette, RotateCcw, Settings, X } from 'lucide-react';
 import { useState } from 'react';
 import { LayoutTab } from './layout-tab';
 import { ThemeTab } from './theme-tab';
 
-interface ThemeCustomizerProps {
+interface Props {
+  data: WebsiteData;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export function Customizer({ open, onOpenChange }: ThemeCustomizerProps) {
+export function Customizer({ data, open, onOpenChange }: Props) {
   const setTweakcnThemeKey = useEditorStore((s) => s.setTweakcnThemeKey);
 
-  const [activeTab, setActiveTab] = useState('theme');
+  const [activeTab, setActiveTab] = useState('layout');
 
   const handleReset = () => {
     setTweakcnThemeKey('');
@@ -43,21 +45,21 @@ export function Customizer({ open, onOpenChange }: ThemeCustomizerProps) {
         <Tabs value={activeTab} onValueChange={setActiveTab} className="flex h-full flex-col">
           <div className="py-2">
             <TabsList className="grid h-12 w-full grid-cols-2 rounded-none p-1.5">
-              <TabsTrigger value="theme" className="data-[state=active]:bg-background cursor-pointer">
-                <Palette className="mr-1 h-4 w-4" /> Theme
-              </TabsTrigger>
               <TabsTrigger value="layout" className="data-[state=active]:bg-background cursor-pointer">
                 <Layout className="mr-1 h-4 w-4" /> Layout
+              </TabsTrigger>
+              <TabsTrigger value="theme" className="data-[state=active]:bg-background cursor-pointer">
+                <Palette className="mr-1 h-4 w-4" /> Theme
               </TabsTrigger>
             </TabsList>
           </div>
 
-          <TabsContent value="theme" className="mt-0 flex-1">
-            <ThemeTab />
+          <TabsContent value="layout" className="mt-0 flex-1">
+            <LayoutTab data={data} />
           </TabsContent>
 
-          <TabsContent value="layout" className="mt-0 flex-1">
-            <LayoutTab />
+          <TabsContent value="theme" className="mt-0 flex-1">
+            <ThemeTab />
           </TabsContent>
         </Tabs>
       </div>

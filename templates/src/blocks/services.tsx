@@ -101,7 +101,7 @@ const SERVICE_GROUPS = [
 
 export function Services() {
   return (
-    <section className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20">
+    <section id="services" className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20">
       {/* Header */}
       <div className="mb-8 grid gap-6 md:mb-16 md:grid-cols-2 md:items-start md:gap-16">
         <div>

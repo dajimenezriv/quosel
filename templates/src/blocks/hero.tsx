@@ -11,51 +11,34 @@ export function Hero({ data }: { data: WebsiteData }) {
       <div className="relative z-10 px-6 pb-24 md:px-24">
         <h1 className="leading-none" style={{ fontFamily: SERIF }}>
           <span className="block text-5xl font-light text-[var(--foreground)] md:text-7xl lg:text-8xl">
-            Tu barbero,
+            {data.blocks.hero.firstTitle}
           </span>
           <span className="block text-5xl font-light italic text-[var(--primary)] md:text-7xl lg:text-8xl">
-            {data.place.name}.
+            {data.blocks.hero.secondTitle}
           </span>
         </h1>
 
-        {data.place.formattedAddress && (
-          <p
-            className="mt-8 max-w-xs text-base italic text-[var(--foreground-70)] md:max-w-sm"
-            style={{ fontFamily: SERIF }}
-          >
-            {data.place.formattedAddress}
-            {data.place.rating !== null && (
-              <>
-                {" "}
-                · ★ {data.place.rating} ({data.place.userRatingCount} reseñas)
-              </>
-            )}
-          </p>
-        )}
+        <p
+          className="mt-8 max-w-xs text-base italic text-[var(--foreground-70)] md:max-w-sm"
+          style={{ fontFamily: SERIF }}
+        >
+          {data.blocks.hero.text}
+        </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a
-            href="#"
+            href={data.blocks.hero.ctaLink}
             className="bg-[var(--primary)] px-8 py-3 text-center text-xs tracking-[0.25em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
           >
-            Reservar Cita
+            {data.blocks.hero.ctaText}
           </a>
-          {data.place.internationalPhoneNumber && (
-            <a
-              href={`tel:${data.place.internationalPhoneNumber}`}
-              className="border border-[var(--foreground-40)] px-8 py-3 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:border-[var(--foreground)]"
-            >
-              {data.place.internationalPhoneNumber}
-            </a>
-          )}
+          <a
+            href={`tel:${data.blocks.hero.phone}`}
+            className="border border-[var(--foreground-40)] px-8 py-3 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:border-[var(--foreground)]"
+          >
+            {data.blocks.hero.phone}
+          </a>
         </div>
-      </div>
-
-      <div className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3">
-        <span className="text-xs tracking-[0.3em] uppercase text-[var(--foreground-40)]">
-          Scroll
-        </span>
-        <div className="h-12 w-px bg-[var(--foreground-30)]" />
       </div>
     </section>
   );

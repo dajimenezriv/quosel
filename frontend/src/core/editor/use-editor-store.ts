@@ -15,6 +15,7 @@ interface EditorStore {
   isDirty: () => boolean;
   setIsDarkMode: (value: boolean) => void;
   setTweakcnThemeKey: (key: string) => void;
+  updateDraft: (data: WebsiteData) => void;
 }
 
 export const useEditorStore = create<EditorStore>()(
@@ -25,6 +26,7 @@ export const useEditorStore = create<EditorStore>()(
       device: 'laptop',
       setDevice: (device) => set({ device }),
       hydrate: (data) => set({ draft: structuredClone(data), initial: structuredClone(data) }),
+      updateDraft: (data) => set({ draft: data }),
       reset: () => set((s) => ({ draft: s.initial ? structuredClone(s.initial) : null })),
       isDirty: () => JSON.stringify(get().draft) !== JSON.stringify(get().initial),
       setIsDarkMode: (value) =>
