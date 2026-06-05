@@ -10,7 +10,7 @@ const NAV_LINKS = [
 
 export function Navigation({ data }: { data: WebsiteData }) {
   return (
-    <nav className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-10 py-5 bg-[var(--background)]/80 backdrop-blur-sm border-border border-b">
+    <nav className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-10 py-5 bg-[var(--background)]/80 backdrop-blur-sm border-[var(--primary)] border-b">
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--primary)]">
           <span className="text-xs font-light tracking-wider text-[var(--primary)]">
