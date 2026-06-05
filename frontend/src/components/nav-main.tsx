@@ -1,5 +1,5 @@
 import { Collapsible } from '@/components/ui/collapsible';
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type LucideIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ export function NavMain({ label, items }: Props) {
   const location = useLocation();
 
   return (
-    <SidebarGroup>
+    <div className="flex flex-col p-2">
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
@@ -34,6 +34,6 @@ export function NavMain({ label, items }: Props) {
           </Collapsible>
         ))}
       </SidebarMenu>
-    </SidebarGroup>
+    </div>
   );
 }

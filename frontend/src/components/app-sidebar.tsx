@@ -1,15 +1,7 @@
 import { Logo } from '@/components/logo';
 import { NavMain, type NavItem } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from '@/components/ui/sidebar';
+import { SidebarMenuButton } from '@/components/ui/sidebar';
 import { MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -38,29 +30,25 @@ const navGroups: NavGroup[] = [
 
 export function AppSidebar() {
   return (
-    <Sidebar>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size="lg" asChild>
-              <Link to="/">
-                <div className="text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                  <Logo size={32} />
-                </div>
-                <span className="truncate font-medium">Quosel</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
+    <div className="flex h-svh w-70 flex-col p-2">
+      <div className="p-2">
+        <SidebarMenuButton size="lg" asChild>
+          <Link to="/">
+            <div className="size-8 items-center">
+              <Logo size={32} />
+            </div>
+            <span className="font-medium">Quosel</span>
+          </Link>
+        </SidebarMenuButton>
+      </div>
+      <div className="flex flex-1 flex-col">
         {navGroups.map((group) => (
           <NavMain key={group.label} label={group.label} items={group.items} />
         ))}
-      </SidebarContent>
-      <SidebarFooter>
+      </div>
+      <div className="p-2">
         <NavUser />
-      </SidebarFooter>
-    </Sidebar>
+      </div>
+    </div>
   );
 }

@@ -11,6 +11,9 @@
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
   "explorer.sortOrder": "filesFirst",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "files.eol": "\n",
   "files.exclude": {
     "**/.git": true,

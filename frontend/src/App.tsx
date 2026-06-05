@@ -17,11 +17,9 @@ export function App() {
   useTheme();
 
   return (
-    <div className="font-sans antialiased" style={{ fontFamily: 'var(--font-inter)' }}>
-      <QueryClientProvider client={queryClient}>
-        <Toaster />
-        <RouterProvider router={router} />
-      </QueryClientProvider>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <Toaster />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }

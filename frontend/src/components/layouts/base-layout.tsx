@@ -1,7 +1,6 @@
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import type { CSSProperties, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -11,19 +10,12 @@ interface Props {
 
 export function BaseLayout({ children, title, extra }: Props) {
   return (
-    <SidebarProvider
-      style={
-        {
-          '--sidebar-width': '16rem',
-          '--sidebar-width-icon': '3rem',
-          '--header-height': 'calc(var(--spacing) * 14)',
-        } as CSSProperties
-      }>
+    <div className="bg-sidebar flex flex-1">
       <AppSidebar />
-      <SidebarInset>
+      <main className="bg-background m-2 flex min-w-0 flex-1 flex-col rounded-xl shadow-sm">
         <SiteHeader title={title} extra={extra} />
-        <div className="flex flex-1 flex-col">{children}</div>
-      </SidebarInset>
-    </SidebarProvider>
+        <div className="flex flex-1 overflow-auto p-6">{children}</div>
+      </main>
+    </div>
   );
 }

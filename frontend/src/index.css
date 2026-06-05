@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-inter);
+  --font-sans: 'Inter', system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -39,8 +39,6 @@
 }
 
 :root {
-  --font-inter: 'Inter', system-ui, sans-serif;
-  --radius: 0.5rem;
   --background: #faf9f5;
   --foreground: #3d3929;
   --card: #faf9f5;
@@ -113,13 +111,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: var(--font-inter);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground font-sans antialiased;
   }
-}
-
-html {
-  scroll-behavior: smooth;
 }

@@ -384,8 +384,8 @@ export default function Page() {
         </>
       }>
       {draft && (
-        <div className="flex h-full">
-          <div className="w-full p-6">{device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}</div>
+        <div className="flex flex-1">
+          <div className="w-full">{device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}</div>
 
           <Customizer data={draft} open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
         </div>
