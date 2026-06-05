@@ -36,7 +36,7 @@ const ResponseSchema = z.object({ websites: z.array(WebsiteSchema) });
 
 export const getWebsitesRoute = createRoute({
   method: 'get',
-  path: '/get-websites',
+  path: '/',
   responses: setupResponses(200, ResponseSchema),
 });
 

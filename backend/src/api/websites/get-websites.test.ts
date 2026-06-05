@@ -11,7 +11,7 @@ describe('get-websites', () => {
 
   it('should return 401 if session is not provided', async () => {
     // When
-    const res = await app.request('/websites/get-websites');
+    const res = await app.request('/websites');
     // Then
     await expectError(res, 401, 'Unauthorized');
   });
@@ -20,7 +20,7 @@ describe('get-websites', () => {
     // Given
     getAllByUserIdMock.mockResolvedValue([]);
     // When
-    const res = await app.request('/websites/get-websites', GET_AUTH_REQUEST);
+    const res = await app.request('/websites', GET_AUTH_REQUEST);
     // Then
     await expectJson(res, 200, { websites: [] });
   });
@@ -56,7 +56,7 @@ describe('get-websites', () => {
       },
     ]);
     // When
-    const res = await app.request('/websites/get-websites', GET_AUTH_REQUEST);
+    const res = await app.request('/websites', GET_AUTH_REQUEST);
     // Then
     expect(res.status).toBe(200);
   });
