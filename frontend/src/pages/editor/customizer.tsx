@@ -31,7 +31,7 @@ export function Customizer({ data, open, onOpenChange }: Props) {
             <Settings className="h-4 w-4" />
           </div>
           <div className="text-lg font-semibold">Customizer</div>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <Button variant="outline" size="icon" onClick={handleReset} className="h-8 w-8 cursor-pointer">
               <RotateCcw className="h-4 w-4" />
             </Button>
@@ -42,28 +42,26 @@ export function Customizer({ data, open, onOpenChange }: Props) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto">
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex h-full flex-col">
-          <div className="py-2">
-            <TabsList className="grid h-12 w-full grid-cols-2 rounded-none p-1.5">
-              <TabsTrigger value="layout" className="data-[state=active]:bg-background cursor-pointer">
-                <Layout className="mr-1 h-4 w-4" /> Layout
-              </TabsTrigger>
-              <TabsTrigger value="theme" className="data-[state=active]:bg-background cursor-pointer">
-                <Palette className="mr-1 h-4 w-4" /> Theme
-              </TabsTrigger>
-            </TabsList>
-          </div>
+      <Tabs value={activeTab} onValueChange={setActiveTab}>
+        <div className="py-2">
+          <TabsList className="flex h-12 w-full rounded-none p-1.5">
+            <TabsTrigger value="layout" className="data-[state=active]:bg-background cursor-pointer">
+              <Layout className="mr-1 h-4 w-4" /> Layout
+            </TabsTrigger>
+            <TabsTrigger value="theme" className="data-[state=active]:bg-background cursor-pointer">
+              <Palette className="mr-1 h-4 w-4" /> Theme
+            </TabsTrigger>
+          </TabsList>
+        </div>
 
-          <TabsContent value="layout" className="mt-0 flex-1">
-            <LayoutTab data={data} />
-          </TabsContent>
+        <TabsContent value="layout">
+          <LayoutTab data={data} />
+        </TabsContent>
 
-          <TabsContent value="theme" className="mt-0 flex-1">
-            <ThemeTab />
-          </TabsContent>
-        </Tabs>
-      </div>
+        <TabsContent value="theme">
+          <ThemeTab />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
