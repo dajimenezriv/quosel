@@ -22,7 +22,40 @@ export function LayoutTab({ data }: Props) {
       {/* Sidebar Collapsible Mode */}
       <div className="space-y-3">
         <div className="grid grid-cols-1 gap-3">
-          <div className={`relative cursor-pointer rounded-md border p-4 transition-colors ${'border-border hover:border-border/60'}`}>
+          <div className="border-border hover:border-border/60 relative cursor-pointer rounded-md border p-4 transition-colors">
+            <div className="space-y-2">
+              <div className="text-center text-xs font-semibold">Navigation</div>
+              <Input
+                value={data.blocks.nav.logo}
+                onChange={handleChange((draft, value) => {
+                  draft.blocks.nav.logo = value;
+                })}
+              />
+              {data.blocks.nav.links.map((link, idx) => (
+                <Input
+                  key={link.label}
+                  value={link.label}
+                  onChange={handleChange((draft, value) => {
+                    draft.blocks.nav.links[idx].label = value;
+                  })}
+                />
+              ))}
+              <Input
+                value={data.blocks.nav.ctaText}
+                onChange={handleChange((draft, value) => {
+                  draft.blocks.nav.ctaText = value;
+                })}
+              />
+              <Input
+                value={data.blocks.nav.ctaLink}
+                onChange={handleChange((draft, value) => {
+                  draft.blocks.nav.ctaLink = value;
+                })}
+              />
+            </div>
+          </div>
+
+          <div className="border-border hover:border-border/60 relative cursor-pointer rounded-md border p-4 transition-colors">
             <div className="space-y-2">
               <div className="text-center text-xs font-semibold">Hero</div>
               <Input

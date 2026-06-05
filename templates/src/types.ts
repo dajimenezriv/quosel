@@ -10,6 +10,12 @@ export interface WebsiteData {
   tweakcnThemeKey: string;
   isDarkMode: boolean;
   blocks: {
+    nav: {
+      logo: string;
+      links: Array<{ label: string; href: string }>;
+      ctaText: string;
+      ctaLink: string;
+    };
     hero: {
       firstTitle: string;
       secondTitle: string;

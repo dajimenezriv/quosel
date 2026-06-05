@@ -27,6 +27,7 @@ export function Hero({ data }: { data: WebsiteData }) {
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a
+            target="__blank"
             href={data.blocks.hero.ctaLink}
             className="bg-[var(--primary)] px-8 py-3 text-center text-xs tracking-[0.25em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
           >
