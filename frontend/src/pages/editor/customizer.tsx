@@ -23,7 +23,7 @@ export function Customizer({ data, open, onOpenChange }: Props) {
   };
 
   return (
-    <div className={`flex flex-col overflow-hidden border-l transition-[width] duration-300 ${open ? 'w-140' : 'w-0'}`}>
+    <div className={`flex flex-col border-l transition-[width] duration-300 ${open ? 'w-140' : 'w-0'}`}>
       <div className="p-4 pb-2">
         <div className="flex items-center gap-2">
           <div className="bg-primary/10 rounded-lg p-2">

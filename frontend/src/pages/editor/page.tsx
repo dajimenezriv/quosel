@@ -359,17 +359,17 @@ export default function Page() {
       title="Editor"
       extra={
         <>
-          <div className="flex shrink-0 justify-center py-3">
-            <div className="bg-muted flex gap-1 rounded-lg p-1">
+          <div className="flex">
+            <div className="bg-muted text-muted-foreground flex rounded-lg p-1">
               <button
                 onClick={() => setDevice('laptop')}
-                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-colors ${device === 'laptop' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>
+                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm ${device === 'laptop' ? 'bg-background text-foreground' : 'cursor-pointer'}`}>
                 <Laptop className="h-4 w-4" />
                 Laptop
               </button>
               <button
                 onClick={() => setDevice('phone')}
-                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-colors ${device === 'phone' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'}`}>
+                className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm ${device === 'phone' ? 'bg-background text-foreground shadow-sm' : 'cursor-pointer'}`}>
                 <Smartphone className="h-4 w-4" />
                 Phone
               </button>
@@ -385,7 +385,7 @@ export default function Page() {
       }>
       {draft && (
         <div className="flex flex-1">
-          <div className="w-full">{device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}</div>
+          <div className="flex flex-1 pr-6">{device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}</div>
 
           <Customizer data={draft} open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
         </div>
