@@ -18,96 +18,91 @@ export function LayoutTab({ data }: Props) {
   }
 
   return (
-    <div className="space-y-6 p-4">
-      {/* Sidebar Collapsible Mode */}
-      <div className="space-y-3">
-        <div className="grid grid-cols-1 gap-3">
-          <div className="border-border hover:border-border/60 relative cursor-pointer rounded-md border p-4 transition-colors">
-            <div className="space-y-2">
-              <div className="text-center text-xs font-semibold">Navigation</div>
-              <Input
-                value={data.blocks.nav.logo}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.nav.logo = value;
-                })}
-              />
-              {data.blocks.nav.links.map((link, idx) => (
-                <Input
-                  key={link.label}
-                  value={link.label}
-                  onChange={handleChange((draft, value) => {
-                    draft.blocks.nav.links[idx].label = value;
-                  })}
-                />
-              ))}
-              <Input
-                value={data.blocks.nav.ctaText}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.nav.ctaText = value;
-                })}
-              />
-              <Input
-                value={data.blocks.nav.ctaLink}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.nav.ctaLink = value;
-                })}
-              />
-            </div>
-          </div>
-
-          <div className="border-border hover:border-border/60 relative cursor-pointer rounded-md border p-4 transition-colors">
-            <div className="space-y-2">
-              <div className="text-center text-xs font-semibold">Hero</div>
-              <Input
-                value={data.blocks.hero.firstTitle}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.hero.firstTitle = value;
-                })}
-              />
-              <Input
-                value={data.blocks.hero.secondTitle}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.hero.secondTitle = value;
-                })}
-              />
-              <Input
-                value={data.blocks.hero.text}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.hero.text = value;
-                })}
-              />
-              <Input
-                value={data.blocks.hero.ctaText}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.hero.ctaText = value;
-                })}
-              />
-              <Input
-                value={data.blocks.hero.ctaLink}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.hero.ctaLink = value;
-                })}
-              />
-              <Input
-                value={data.blocks.hero.phone}
-                onChange={handleChange((draft, value) => {
-                  draft.blocks.hero.phone = value;
-                })}
-              />
-            </div>
-          </div>
-          {sidebarCollapsibleOptions.map((option) => (
-            <div
-              key={option.value}
-              className={`relative cursor-pointer rounded-md border p-4 transition-colors ${'border-border hover:border-border/60'}`}>
-              <div className="space-y-2">
-                <div className="text-center text-xs font-semibold">{option.name}</div>
-                <div className="bg-background flex h-12 rounded border"></div>
-              </div>
-            </div>
+    <div className="flex flex-col gap-3 p-4">
+      <div className="border-border hover:border-border/60 relative cursor-pointer rounded-md border p-4 transition-colors">
+        <div className="space-y-2">
+          <div className="text-center text-xs font-semibold">Navigation</div>
+          <Input
+            value={data.blocks.nav.logo}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.nav.logo = value;
+            })}
+          />
+          {data.blocks.nav.links.map((link, idx) => (
+            <Input
+              key={link.label}
+              value={link.label}
+              onChange={handleChange((draft, value) => {
+                draft.blocks.nav.links[idx].label = value;
+              })}
+            />
           ))}
+          <Input
+            value={data.blocks.nav.ctaText}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.nav.ctaText = value;
+            })}
+          />
+          <Input
+            value={data.blocks.nav.ctaLink}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.nav.ctaLink = value;
+            })}
+          />
         </div>
       </div>
+
+      <div className="border-border hover:border-border/60 relative cursor-pointer rounded-md border p-4 transition-colors">
+        <div className="space-y-2">
+          <div className="text-center text-xs font-semibold">Hero</div>
+          <Input
+            value={data.blocks.hero.firstTitle}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.hero.firstTitle = value;
+            })}
+          />
+          <Input
+            value={data.blocks.hero.secondTitle}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.hero.secondTitle = value;
+            })}
+          />
+          <Input
+            value={data.blocks.hero.text}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.hero.text = value;
+            })}
+          />
+          <Input
+            value={data.blocks.hero.ctaText}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.hero.ctaText = value;
+            })}
+          />
+          <Input
+            value={data.blocks.hero.ctaLink}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.hero.ctaLink = value;
+            })}
+          />
+          <Input
+            value={data.blocks.hero.phone}
+            onChange={handleChange((draft, value) => {
+              draft.blocks.hero.phone = value;
+            })}
+          />
+        </div>
+      </div>
+      {sidebarCollapsibleOptions.map((option) => (
+        <div
+          key={option.value}
+          className={`relative cursor-pointer rounded-md border p-4 transition-colors ${'border-border hover:border-border/60'}`}>
+          <div className="space-y-2">
+            <div className="text-center text-xs font-semibold">{option.name}</div>
+            <div className="bg-background flex h-12 rounded border"></div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
