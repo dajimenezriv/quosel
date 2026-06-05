@@ -14,7 +14,7 @@ export function BaseLayout({ children, title, extra }: Props) {
       <AppSidebar />
       <main className="bg-background m-2 flex min-w-0 flex-1 flex-col rounded-xl shadow-sm">
         <SiteHeader title={title} extra={extra} />
-        <div className="flex flex-1 overflow-auto p-6">{children}</div>
+        <div className="flex flex-1 overflow-auto">{children}</div>
       </main>
     </div>
   );
