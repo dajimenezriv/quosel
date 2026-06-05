@@ -384,11 +384,11 @@ export default function Page() {
         </>
       }>
       {draft && (
-        <div className="flex flex-1">
+        <>
           <div className="flex flex-1 p-6">{device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}</div>
 
-          <Customizer data={draft} open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
-        </div>
+          <Customizer data={draft} open={isCustomizerOpen} />
+        </>
       )}
     </BaseLayout>
   );
