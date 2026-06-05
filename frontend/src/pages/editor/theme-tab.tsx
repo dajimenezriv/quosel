@@ -22,11 +22,11 @@ export function ThemeTab() {
   const handleDarkMode = () => setIsDarkMode(true);
 
   return (
-    <div className="space-y-6 p-4">
+    <div className="space-y-6">
       {/* Tweakcn Theme Presets */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-sm font-medium">Tweakcn Theme Presets</Label>
+          <Label className="text-sm font-medium">Themes</Label>
           <Button variant="outline" size="sm" onClick={handleRandomTweakcn} className="cursor-pointer">
             <Dices className="mr-1.5 h-3.5 w-3.5" />
             Random

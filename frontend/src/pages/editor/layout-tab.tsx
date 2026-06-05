@@ -3,10 +3,11 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
+import { cn } from '@/lib/utils';
 import type { WebsiteData } from '@quosel/templates';
 import { produce } from 'immer';
-import { Navigation, Type } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { ChevronRight, Navigation, Type } from 'lucide-react';
+import { useState, type ReactNode } from 'react';
 
 interface Props {
   data: WebsiteData;
@@ -28,7 +29,7 @@ export function LayoutTab({ data }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-4">
       <Section title="Navigation" icon={<Navigation className="h-4 w-4" />}>
         <Field label="Logo">
           <Input
@@ -136,13 +137,16 @@ export function LayoutTab({ data }: Props) {
 }
 
 function Section({ title, icon, children }: { title: string; icon: ReactNode; children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center gap-2">
+      <button onClick={() => setOpen((o) => !o)} className="flex cursor-pointer items-center gap-2 py-2">
         <span className="text-muted-foreground">{icon}</span>
         <span className="text-sm font-semibold">{title}</span>
-      </div>
-      {children}
+        <ChevronRight className={cn('text-muted-foreground ml-auto h-4 w-4 transition-transform', open && 'rotate-90')} />
+      </button>
+      {open && children}
     </div>
   );
 }
