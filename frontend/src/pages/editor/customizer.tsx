@@ -25,46 +25,44 @@ export function Customizer({ data, open, onOpenChange }: Props) {
 
   return (
     <div className={cn('flex flex-col border-l transition-[width] duration-300', `${open ? 'w-120' : 'w-0'}`)}>
-      <div className="flex min-h-0 flex-1 flex-col overflow-auto">
-        <div className="p-4 pb-2">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary/10 rounded-lg p-2">
-              <Settings className="h-4 w-4" />
-            </div>
-            <div className="text-lg font-semibold">Customizer</div>
-            <div className="ml-auto flex items-center gap-2">
-              <Button variant="outline" size="icon" onClick={handleReset} className="h-8 w-8 cursor-pointer">
-                <RotateCcw className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="icon" onClick={() => onOpenChange(false)} className="h-8 w-8 cursor-pointer">
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
+      <div className="p-4 pb-2">
+        <div className="flex items-center gap-2">
+          <div className="bg-primary/10 rounded-lg p-2">
+            <Settings className="h-4 w-4" />
+          </div>
+          <div className="text-lg font-semibold">Customizer</div>
+          <div className="ml-auto flex items-center gap-2">
+            <Button variant="outline" size="icon" onClick={handleReset} className="h-8 w-8 cursor-pointer">
+              <RotateCcw className="h-4 w-4" />
+            </Button>
+            <Button variant="outline" size="icon" onClick={() => onOpenChange(false)} className="h-8 w-8 cursor-pointer">
+              <X className="h-4 w-4" />
+            </Button>
           </div>
         </div>
+      </div>
 
-        <div className="flex-1 overflow-y-auto">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="flex h-full flex-col">
-            <div className="py-2">
-              <TabsList className="grid h-12 w-full grid-cols-2 rounded-none p-1.5">
-                <TabsTrigger value="layout" className="data-[state=active]:bg-background cursor-pointer">
-                  <Layout className="mr-1 h-4 w-4" /> Layout
-                </TabsTrigger>
-                <TabsTrigger value="theme" className="data-[state=active]:bg-background cursor-pointer">
-                  <Palette className="mr-1 h-4 w-4" /> Theme
-                </TabsTrigger>
-              </TabsList>
-            </div>
+      <div className="flex-1 overflow-y-auto">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="flex h-full flex-col">
+          <div className="py-2">
+            <TabsList className="grid h-12 w-full grid-cols-2 rounded-none p-1.5">
+              <TabsTrigger value="layout" className="data-[state=active]:bg-background cursor-pointer">
+                <Layout className="mr-1 h-4 w-4" /> Layout
+              </TabsTrigger>
+              <TabsTrigger value="theme" className="data-[state=active]:bg-background cursor-pointer">
+                <Palette className="mr-1 h-4 w-4" /> Theme
+              </TabsTrigger>
+            </TabsList>
+          </div>
 
-            <TabsContent value="layout" className="mt-0 flex-1">
-              <LayoutTab data={data} />
-            </TabsContent>
+          <TabsContent value="layout" className="mt-0 flex-1">
+            <LayoutTab data={data} />
+          </TabsContent>
 
-            <TabsContent value="theme" className="mt-0 flex-1">
-              <ThemeTab />
-            </TabsContent>
-          </Tabs>
-        </div>
+          <TabsContent value="theme" className="mt-0 flex-1">
+            <ThemeTab />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
