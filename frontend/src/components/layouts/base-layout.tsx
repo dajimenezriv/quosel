@@ -1,32 +1,30 @@
 import { AppSidebar } from '@/components/app-sidebar';
 import { SiteHeader } from '@/components/site-header';
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
-import * as React from 'react';
+import { useSidebarStore } from '@/core/sidebar/use-sidebar-store';
+import { cn } from '@/lib/utils';
+import { type ReactNode } from 'react';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   title: string;
+  extra?: ReactNode;
 }
 
-export function BaseLayout({ children, title }: Props) {
+export function BaseLayout({ children, title, extra }: Props) {
+  const open = useSidebarStore((s) => s.open);
+
   return (
-    <SidebarProvider
-      style={
-        {
-          '--sidebar-width': '16rem',
-          '--sidebar-width-icon': '3rem',
-          '--header-height': 'calc(var(--spacing) * 14)',
-        } as React.CSSProperties
-      }>
-      <AppSidebar />
-      <SidebarInset>
-        <SiteHeader title={title} />
-        <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">{children}</div>
-          </div>
+    <>
+      <div className={cn('shrink-0 overflow-hidden transition-[width] duration-300 ease-in-out', open ? 'w-70' : 'w-0')}>
+        <div className="flex h-full w-70 flex-col p-4 pr-2">
+          <AppSidebar />
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+      </div>
+
+      <main className="bg-background m-2 flex min-w-0 flex-1 flex-col rounded-xl shadow-sm">
+        <SiteHeader title={title} extra={extra} />
+        <div className="flex min-h-0 flex-1">{children}</div>
+      </main>
+    </>
   );
 }

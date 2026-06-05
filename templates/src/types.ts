@@ -1,0 +1,28 @@
+export interface WebsiteData {
+  place: {
+    name: string;
+    internationalPhoneNumber: string;
+    formattedAddress: string;
+    rating: number | null;
+    userRatingCount: number | null;
+  };
+  websiteImages: Array<{ url: string }>;
+  tweakcnThemeKey: string;
+  isDarkMode: boolean;
+  blocks: {
+    nav: {
+      logo: string;
+      links: Array<{ label: string; href: string }>;
+      ctaText: string;
+      ctaLink: string;
+    };
+    hero: {
+      firstTitle: string;
+      secondTitle: string;
+      text: string;
+      ctaText: string;
+      ctaLink: string;
+      phone: string;
+    };
+  };
+}

@@ -55,7 +55,7 @@ const ResponseSchema = z.object({
 
 export const getWebsiteRoute = createRoute({
   method: 'get',
-  path: '/get-website/:websiteId',
+  path: '/get-website/{websiteId}',
   request: {
     params: z.object({ websiteId: z.string() }),
   },

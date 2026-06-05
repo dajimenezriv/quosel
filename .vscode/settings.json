@@ -11,13 +11,17 @@
   "editor.wordWrap": "on",
   "explorer.compactFolders": false,
   "explorer.sortOrder": "filesFirst",
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "files.eol": "\n",
   "files.exclude": {
     "**/.git": true,
     "**/node_modules": true,
     "backend": false,
-    "frontend": true,
-    "landing": false
+    "frontend": false,
+    "landing": false,
+    "templates": false
   },
   "git.ignoreLimitWarning": true,
   "js/ts.referencesCodeLens.enabled": true,

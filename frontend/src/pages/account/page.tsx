@@ -14,7 +14,7 @@ export default function Page() {
 
   return (
     <BaseLayout title="Account Settings">
-      <div className="space-y-6 px-4 lg:px-6">
+      <div className="space-y-6">
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <CurrentPlanCard plan={currentPlanData} />
           <BillingHistoryCard history={billingHistoryData} />

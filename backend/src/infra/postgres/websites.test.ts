@@ -39,6 +39,10 @@ describe('websites', async () => {
     const res = await prisma.website.findFirst({ where: { id: websiteId } });
     expect(res!.domain).toContain('small-business-');
 
+    // Create website without reviews
+    // When
+    await Websites.create(userId1, place, []);
+
     // Create website for non logged user
     // When
     await Websites.create(userId2, place, [review]);
@@ -47,7 +51,7 @@ describe('websites', async () => {
     // When
     const websiteRows = await Websites.getAllByUserId(userId1);
     // Then
-    expect(websiteRows).toHaveLength(1);
+    expect(websiteRows).toHaveLength(2);
 
     // Get website for a user
     // When

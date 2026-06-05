@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-inter);
+  --font-sans: 'Inter', system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -39,8 +39,6 @@
 }
 
 :root {
-  --font-inter: 'Inter', system-ui, sans-serif;
-  --radius: 0.5rem;
   --background: #faf9f5;
   --foreground: #3d3929;
   --card: #faf9f5;
@@ -112,41 +110,4 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground font-sans;
-    font-family: var(--font-inter);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
-/* Ensure consistent font rendering across different DPI levels */
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-  body {
-    -webkit-font-smoothing: subpixel-antialiased;
-  }
-}
-
-/* Fix for sidebar "none" mode height issue */
-.sidebar-none-mode [data-slot='sidebar'] {
-  height: 100vh !important;
-  min-height: 100vh !important;
-}
-
-/* Fix for right-side inset variant support */
-@media (min-width: 768px) {
-  /* Right sidebar inset variant - margin adjustments */
-  [data-side='right'][data-variant='inset'] ~ [data-slot='sidebar-inset'] {
-    margin-right: 0 !important;
-  }
-
-  /* Right sidebar inset variant - collapsed state margin */
-  [data-side='right'][data-variant='inset'][data-state='collapsed'] ~ [data-slot='sidebar-inset'] {
-    margin-right: 0.5rem !important;
-  }
-}
-
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
 }

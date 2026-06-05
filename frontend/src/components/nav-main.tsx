@@ -1,5 +1,5 @@
 import { Collapsible } from '@/components/ui/collapsible';
-import { SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type LucideIcon } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -18,8 +18,8 @@ export function NavMain({ label, items }: Props) {
   const location = useLocation();
 
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+    <>
+      <span className="text-sidebar-foreground/70 2 mb-4 px-2 text-xs font-medium">{label}</span>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible key={item.title} asChild className="group/collapsible">
@@ -34,6 +34,6 @@ export function NavMain({ label, items }: Props) {
           </Collapsible>
         ))}
       </SidebarMenu>
-    </SidebarGroup>
+    </>
   );
 }

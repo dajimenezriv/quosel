@@ -1,0 +1,13 @@
+packages:
+  - "backend"
+  - "frontend"
+  - "templates"
+allowBuilds:
+  "@prisma/engines": false
+  "@railway/cli": false
+  core-js: false
+  esbuild: false
+  prisma: false
+  protobufjs: false
+  sharp: false
+  workerd: false

@@ -81,22 +81,13 @@
                           "type": "string"
                         },
                         "name": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
+                          "type": "string"
                         },
                         "picture": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
+                          "type": "string"
                         },
                         "subscriptionStatus": {
-                          "type": [
-                            "string",
-                            "null"
-                          ]
+                          "type": "string"
                         },
                         "currentPeriodEnd": {
                           "type": [
@@ -141,6 +132,108 @@
         "responses": {
           "204": {
             "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/portal": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/checkout": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/billing/webhooks/stripe": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "received": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "received"
+                  ]
+                }
+              }
+            }
           },
           "500": {
             "description": "Error",
@@ -202,19 +295,10 @@
                               "id": {
                                 "type": "string"
                               },
-                              "userId": {
+                              "googleId": {
                                 "type": "string"
                               },
-                              "googlePlaceId": {
-                                "type": "string"
-                              },
-                              "displayNameText": {
-                                "type": "string"
-                              },
-                              "displayNameLanguageCode": {
-                                "type": "string"
-                              },
-                              "nationalPhoneNumber": {
+                              "name": {
                                 "type": "string"
                               },
                               "internationalPhoneNumber": {
@@ -234,7 +318,7 @@
                               },
                               "rating": {
                                 "type": [
-                                  "string",
+                                  "number",
                                   "null"
                                 ]
                               },
@@ -253,7 +337,6 @@
                               "googleMapsPhotosUri": {
                                 "type": "string"
                               },
-                              "raw": {},
                               "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -265,11 +348,8 @@
                             },
                             "required": [
                               "id",
-                              "userId",
-                              "googlePlaceId",
-                              "displayNameText",
-                              "displayNameLanguageCode",
-                              "nationalPhoneNumber",
+                              "googleId",
+                              "name",
                               "internationalPhoneNumber",
                               "formattedAddress",
                               "shortFormattedAddress",
@@ -318,7 +398,7 @@
         }
       }
     },
-    "/websites/get-website/:websiteId": {
+    "/websites/get-website/{websiteId}": {
       "get": {
         "parameters": [
           {
@@ -370,19 +450,10 @@
                         "id": {
                           "type": "string"
                         },
-                        "userId": {
+                        "googleId": {
                           "type": "string"
                         },
-                        "googlePlaceId": {
-                          "type": "string"
-                        },
-                        "displayNameText": {
-                          "type": "string"
-                        },
-                        "displayNameLanguageCode": {
-                          "type": "string"
-                        },
-                        "nationalPhoneNumber": {
+                        "name": {
                           "type": "string"
                         },
                         "internationalPhoneNumber": {
@@ -402,7 +473,7 @@
                         },
                         "rating": {
                           "type": [
-                            "string",
+                            "number",
                             "null"
                           ]
                         },
@@ -421,7 +492,6 @@
                         "googleMapsPhotosUri": {
                           "type": "string"
                         },
-                        "raw": {},
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -438,19 +508,13 @@
                               "id": {
                                 "type": "string"
                               },
-                              "googleReviewName": {
-                                "type": "string"
-                              },
                               "rating": {
+                                "type": "number"
+                              },
+                              "text": {
                                 "type": "string"
                               },
-                              "originalText": {
-                                "type": "string"
-                              },
-                              "originalTextLanguageCode": {
-                                "type": "string"
-                              },
-                              "authorDisplayName": {
+                              "authorName": {
                                 "type": "string"
                               },
                               "authorPhotoUri": {
@@ -470,11 +534,9 @@
                             },
                             "required": [
                               "id",
-                              "googleReviewName",
                               "rating",
-                              "originalText",
-                              "originalTextLanguageCode",
-                              "authorDisplayName",
+                              "text",
+                              "authorName",
                               "authorPhotoUri",
                               "publishTime",
                               "googleMapsUri",
@@ -485,11 +547,8 @@
                       },
                       "required": [
                         "id",
-                        "userId",
-                        "googlePlaceId",
-                        "displayNameText",
-                        "displayNameLanguageCode",
-                        "nationalPhoneNumber",
+                        "googleId",
+                        "name",
                         "internationalPhoneNumber",
                         "formattedAddress",
                         "shortFormattedAddress",
@@ -505,7 +564,7 @@
                         "reviews"
                       ]
                     },
-                    "images": {
+                    "websiteImages": {
                       "type": "array",
                       "items": {
                         "type": "object",
@@ -542,7 +601,7 @@
                     "createdAt",
                     "updatedAt",
                     "place",
-                    "images"
+                    "websiteImages"
                   ]
                 }
               }

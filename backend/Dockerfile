@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@11 --activate
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json ../pnpm-lock.yaml ../pnpm-workspace.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm install --frozen-lockfile --prod
 
@@ -16,7 +16,7 @@ WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@11 --activate
 
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json ../pnpm-lock.yaml ../pnpm-workspace.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
     pnpm install --frozen-lockfile
 
