@@ -3,13 +3,23 @@ import { BaseLayout } from '@/components/layouts/base-layout';
 import { Button } from '@/components/ui/button';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { useThemeStore } from '@/core/theme/use-theme-store';
-import { renderTemplate } from '@quosel/templates';
+import { buildRootStyles, renderTemplate, TemplateBody } from '@quosel/templates';
+import type { WebsiteData } from '@quosel/templates';
 import { Download, Laptop, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
+import Frame from 'react-frame-component';
 import { useParams } from 'react-router-dom';
 import { Customizer } from './customizer';
 
-function SafariFrame({ html }: { html: string }) {
+const FRAME_INITIAL_CONTENT = `<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap">
+<script>document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1);var el=document.getElementById(id);if(!el)return;e.preventDefault();el.scrollIntoView({behavior:'smooth'});});</script>
+</head><body><div class="frame-root"></div></body></html>`;
+
+function SafariFrame({ data }: { data: WebsiteData }) {
   const d = useThemeStore((s) => s.isDarkMode);
 
   return (
@@ -95,13 +105,18 @@ function SafariFrame({ html }: { html: string }) {
 
       {/* Page content */}
       <div className="min-h-0 flex-1 bg-white">
-        <iframe srcDoc={html} className="h-full w-full border-0" />
+        <Frame
+          initialContent={FRAME_INITIAL_CONTENT}
+          head={<style dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />}
+          className="h-full w-full border-0">
+          <TemplateBody data={data} />
+        </Frame>
       </div>
     </div>
   );
 }
 
-function IPhoneFrame({ html }: { html: string }) {
+function IPhoneFrame({ data }: { data: WebsiteData }) {
   const isDarkMode = useThemeStore((s) => s.isDarkMode);
   const d = isDarkMode;
 
@@ -201,7 +216,12 @@ function IPhoneFrame({ html }: { html: string }) {
 
           {/* Page content */}
           <div className="min-h-0 flex-1 bg-white">
-            <iframe srcDoc={html} className="h-full w-full border-0" />
+            <Frame
+              initialContent={FRAME_INITIAL_CONTENT}
+              head={<style dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />}
+              className="h-full w-full border-0">
+              <TemplateBody data={data} />
+            </Frame>
           </div>
 
           {/* Safari bottom bar */}
@@ -365,7 +385,7 @@ export default function Page() {
       }>
       {draft && (
         <div className="flex h-full">
-          <div className="w-full p-6">{device === 'laptop' ? <SafariFrame html={html} /> : <IPhoneFrame html={html} />}</div>
+          <div className="w-full p-6">{device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}</div>
 
           <Customizer data={draft} open={isCustomizerOpen} onOpenChange={setIsCustomizerOpen} />
         </div>

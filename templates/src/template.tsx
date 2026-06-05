@@ -13,7 +13,7 @@ import type { WebsiteData } from "./types";
 
 const SANS = "var(--font-sans)";
 
-function buildRootStyles(data: WebsiteData) {
+export function buildRootStyles(data: WebsiteData) {
   const theme = tweakcnThemes[data.tweakcnThemeKey];
   const style = data.isDarkMode ? theme?.dark : theme?.light;
 
@@ -37,6 +37,26 @@ function buildRootStyles(data: WebsiteData) {
     .join("\n");
 
   return `:root {\n${themeVars}\n${opacityVars}\n}`;
+}
+
+export function TemplateBody({ data }: { data: WebsiteData }) {
+  return (
+    <div
+      className="min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+      style={{ fontFamily: SANS }}
+    >
+      <Navigation data={data} />
+      <Hero data={data} />
+      <Stats data={data} />
+      <About data={data} />
+      <Gallery data={data} />
+      <Reviews data={data} />
+      <Services />
+      <Location data={data} />
+      <CTA />
+      <Footer data={data} />
+    </div>
+  );
 }
 
 export function Template({ data }: { data: WebsiteData }) {
@@ -69,21 +89,7 @@ export function Template({ data }: { data: WebsiteData }) {
         <style dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
       </head>
       <body>
-        <div
-          className="min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-          style={{ fontFamily: SANS }}
-        >
-          <Navigation data={data} />
-          <Hero data={data} />
-          <Stats data={data} />
-          <About data={data} />
-          <Gallery data={data} />
-          <Reviews data={data} />
-          <Services />
-          <Location data={data} />
-          <CTA />
-          <Footer data={data} />
-        </div>
+        <TemplateBody data={data} />
       </body>
     </html>
   );
