@@ -24,16 +24,16 @@ export function Customizer({ data, open }: Props) {
 
   return (
     <div className={cn('flex flex-col border-l transition-[width] duration-300', `${open ? 'w-120' : 'w-0'}`)}>
-      <div className="flex items-center gap-2 p-4">
-        <div className="bg-primary/10 rounded-lg p-2">
-          <Settings className="h-4 w-4" />
-        </div>
-        <div className="text-lg font-semibold">Customizer</div>
+      <div className="flex items-center justify-between p-4">
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" onClick={handleReset} className="h-8 w-8 cursor-pointer">
-            <RotateCcw className="h-4 w-4" />
-          </Button>
+          <div className="bg-primary/10 rounded-lg p-2">
+            <Settings className="h-4 w-4" />
+          </div>
+          <span className="text-lg font-semibold">Customizer</span>
         </div>
+        <Button variant="outline" size="icon" onClick={handleReset} className="h-8 w-8 cursor-pointer">
+          <RotateCcw className="h-4 w-4" />
+        </Button>
       </div>
 
       <Tabs value={activeTab} onValueChange={setActiveTab} className="flex min-h-0 flex-col">

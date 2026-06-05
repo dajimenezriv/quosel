@@ -385,7 +385,9 @@ export default function Page() {
       }>
       {draft && (
         <>
-          <div className="flex flex-1 p-6">{device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}</div>
+          <div className="flex flex-1 items-center justify-center p-6">
+            {device === 'laptop' ? <SafariFrame data={draft} /> : <IPhoneFrame data={draft} />}
+          </div>
 
           <Customizer data={draft} open={isCustomizerOpen} />
         </>
