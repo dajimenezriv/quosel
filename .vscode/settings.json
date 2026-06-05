@@ -16,8 +16,9 @@
     "**/.git": true,
     "**/node_modules": true,
     "backend": false,
-    "frontend": true,
-    "landing": false
+    "frontend": false,
+    "landing": false,
+    "templates": false
   },
   "git.ignoreLimitWarning": true,
   "js/ts.referencesCodeLens.enabled": true,
