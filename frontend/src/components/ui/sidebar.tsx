@@ -7,7 +7,7 @@ import { PanelLeftIcon } from 'lucide-react';
 import * as React from 'react';
 
 export function SidebarTrigger() {
-  const { toggleSidebar } = useSidebarStore();
+  const toggleSidebar = useSidebarStore((s) => s.toggleSidebar);
 
   return (
     <Button variant="ghost" size="icon" className="size-7" onClick={toggleSidebar}>
