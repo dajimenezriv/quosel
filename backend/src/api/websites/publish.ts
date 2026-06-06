@@ -24,6 +24,7 @@ export const publish: RouteHandler<typeof publishRoute, { Variables: AuthVariabl
   const blocks = await blocksSchema.parseAsync(website.blocks);
 
   const data: WebsiteData = {
+    place: website.place,
     isDarkMode: true,
     tweakcnThemeKey: 'Claude',
     blocks,
