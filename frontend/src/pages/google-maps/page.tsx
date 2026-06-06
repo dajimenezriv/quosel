@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Page() {
   const { mutate: addGooglePlace, isPending } = useCreateFromGooglePlace();
-  const [googlePlaceId, setGooglePlaceId] = useState('ChIJRWnYS1BHYA0RK5rHEosqXcQ');
+  const [googlePlaceId, setGooglePlaceId] = useState('ChIJK4j9CagbdkgRluwkqYLufoE');
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<Element>) {
@@ -22,7 +22,7 @@ export default function Page() {
   return (
     <BaseLayout title="Google Maps">
       <form onSubmit={handleSubmit} className="flex max-w-xl gap-2">
-        <Input placeholder="ChIJRWnYS1BHYA0RK5rHEosqXcQ" value={googlePlaceId} onChange={(e) => setGooglePlaceId(e.target.value)} />
+        <Input placeholder="ChIJK4j9CagbdkgRluwkqYLufoE" value={googlePlaceId} onChange={(e) => setGooglePlaceId(e.target.value)} />
         <Button type="submit" disabled={isPending}>
           Submit
         </Button>

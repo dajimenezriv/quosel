@@ -313,28 +313,6 @@ export default function Page() {
         ...data,
         tweakcnThemeKey: 'Claude',
         isDarkMode: false,
-        blocks: {
-          nav: {
-            logo: 'BB',
-            links: [
-              { label: 'About us', href: '#about' },
-              { label: 'Gallery', href: '#gallery' },
-              { label: 'Reviews', href: '#reviews' },
-              { label: 'Services', href: '#services' },
-              { label: 'Visit us', href: '#location' },
-            ],
-            ctaText: 'Reservar',
-            ctaLink: 'https://booksy.com/es-es/17924_barbero-benimaclet_barberia_58087_valencia',
-          },
-          hero: {
-            firstTitle: 'Tu barbero,',
-            secondTitle: 'Barbero Benimaclet',
-            text: 'Cortes, degradados y barba en el corazón de Benimaclet. Atención personalizada, ambiente del barrio y reserva online en Booksy.',
-            ctaText: 'Reservar cita',
-            ctaLink: 'https://booksy.com/es-es/17924_barbero-benimaclet_barberia_58087_valencia',
-            phone: '+34 622 73 02 33',
-          },
-        },
       });
   }, [data, hydrate]);
 
