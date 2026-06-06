@@ -436,9 +436,6 @@
                         "nav": {
                           "type": "object",
                           "properties": {
-                            "logo": {
-                              "type": "string"
-                            },
                             "ctaText": {
                               "type": "string"
                             },
@@ -447,7 +444,6 @@
                             }
                           },
                           "required": [
-                            "logo",
                             "ctaText",
                             "ctaLink"
                           ]
@@ -486,12 +482,140 @@
                             "phone",
                             "imageUrl"
                           ]
+                        },
+                        "aboutUs": {
+                          "type": "object",
+                          "properties": {
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text1": {
+                              "type": "string"
+                            },
+                            "text2": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "nav",
+                            "title",
+                            "text1",
+                            "text2",
+                            "imageUrl"
+                          ]
+                        },
+                        "gallery": {
+                          "type": "object",
+                          "properties": {
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "nav",
+                            "title",
+                            "text",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        "reviews": {
+                          "type": "object",
+                          "properties": {
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "nav",
+                            "title"
+                          ]
+                        },
+                        "services": {
+                          "type": "object",
+                          "properties": {
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "nav",
+                            "title",
+                            "text",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        "location": {
+                          "type": "object",
+                          "properties": {
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "address": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "nav",
+                            "title",
+                            "address",
+                            "ctaText",
+                            "ctaLink"
+                          ]
                         }
                       },
                       "required": [
                         "schemaVersion",
                         "nav",
-                        "hero"
+                        "hero",
+                        "aboutUs",
+                        "gallery",
+                        "reviews",
+                        "services",
+                        "location"
                       ]
                     },
                     "place": {

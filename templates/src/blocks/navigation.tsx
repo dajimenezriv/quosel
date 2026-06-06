@@ -1,12 +1,15 @@
 import type { WebsiteData } from "../types";
+import { getInitials } from "../utils";
 
 export function Navigation({ data }: { data: WebsiteData }) {
+  const initials = getInitials(data.place.name);
+
   const navLinks = [
-    { label: "Sobre Nosotros", href: "#about" },
-    { label: "Galería", href: "#gallery" },
-    { label: "Reseñas", href: "#reviews" },
-    { label: "Servicios", href: "#services" },
-    { label: "Visítanos", href: "#location" },
+    { label: data.blocks.aboutUs.nav, href: "#about" },
+    { label: data.blocks.gallery.nav, href: "#gallery" },
+    { label: data.blocks.reviews.nav, href: "#reviews" },
+    { label: data.blocks.services.nav, href: "#services" },
+    { label: data.blocks.location.nav, href: "#location" },
   ];
 
   return (
@@ -14,7 +17,7 @@ export function Navigation({ data }: { data: WebsiteData }) {
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--primary)]">
           <span className="text-xs font-light tracking-wider text-[var(--primary)]">
-            {data.blocks.nav.logo}
+            {initials}
           </span>
         </div>
         <span className="text-xs tracking-[0.25em] uppercase">

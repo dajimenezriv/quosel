@@ -312,7 +312,7 @@ export default function Page() {
       hydrate({
         ...data,
         tweakcnThemeKey: 'Claude',
-        isDarkMode: false,
+        isDarkMode: true,
       });
   }, [data, hydrate]);
 

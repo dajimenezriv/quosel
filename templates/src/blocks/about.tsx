@@ -9,7 +9,7 @@ export function About({ data }: { data: WebsiteData }) {
     >
       <div>
         <p className="mb-6 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
-          — Sobre Nosotros
+          — {data.blocks.aboutUs.nav}
         </p>
         <h2
           className="text-5xl font-light leading-tight"
@@ -52,7 +52,14 @@ export function About({ data }: { data: WebsiteData }) {
         </div>
       </div>
 
-      <div className="relative min-h-80 bg-[var(--muted)]" />
+      <div className="relative min-h-80 bg-[var(--muted)]">
+        {data.blocks.aboutUs.imageUrl && (
+          <img
+            src={data.blocks.aboutUs.imageUrl}
+            className="absolute inset-0 h-full w-full object-cover opacity-80"
+          />
+        )}
+      </div>
     </section>
   );
 }

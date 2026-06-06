@@ -386,7 +386,6 @@ export interface paths {
                                 /** @enum {number} */
                                 schemaVersion: 1;
                                 nav: {
-                                    logo: string;
                                     ctaText: string;
                                     ctaLink: string;
                                 };
@@ -398,6 +397,38 @@ export interface paths {
                                     ctaLink: string;
                                     phone: string;
                                     imageUrl: string;
+                                };
+                                aboutUs: {
+                                    nav: string;
+                                    title: string;
+                                    text1: string;
+                                    text2: string;
+                                    imageUrl: string;
+                                };
+                                gallery: {
+                                    nav: string;
+                                    title: string;
+                                    text: string;
+                                    ctaText: string;
+                                    ctaLink: string;
+                                };
+                                reviews: {
+                                    nav: string;
+                                    title: string;
+                                };
+                                services: {
+                                    nav: string;
+                                    title: string;
+                                    text: string;
+                                    ctaText: string;
+                                    ctaLink: string;
+                                };
+                                location: {
+                                    nav: string;
+                                    title: string;
+                                    address: string;
+                                    ctaText: string;
+                                    ctaLink: string;
                                 };
                             };
                             place: {

@@ -4,7 +4,6 @@ export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
   schemaVersion: z.literal(1),
   nav: z.object({
-    logo: z.string(),
     ctaText: z.string(),
     ctaLink: z.string(),
   }),
@@ -16,6 +15,38 @@ export const blocksSchema = z.object({
     ctaLink: z.string(),
     phone: z.string(),
     imageUrl: z.string(),
+  }),
+  aboutUs: z.object({
+    nav: z.string(),
+    title: z.string(),
+    text1: z.string(),
+    text2: z.string(),
+    imageUrl: z.string(),
+  }),
+  gallery: z.object({
+    nav: z.string(),
+    title: z.string(),
+    text: z.string(),
+    ctaText: z.string(),
+    ctaLink: z.string(),
+  }),
+  reviews: z.object({
+    nav: z.string(),
+    title: z.string(),
+  }),
+  services: z.object({
+    nav: z.string(),
+    title: z.string(),
+    text: z.string(),
+    ctaText: z.string(),
+    ctaLink: z.string(),
+  }),
+  location: z.object({
+    nav: z.string(),
+    title: z.string(),
+    address: z.string(),
+    ctaText: z.string(),
+    ctaLink: z.string(),
   }),
 });
 
