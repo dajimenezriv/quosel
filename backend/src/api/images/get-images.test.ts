@@ -9,6 +9,10 @@ describe('get-images', () => {
 
   const getAllByUserIdMock = deepMocked(WebsiteImages.getAllByUserId);
 
+  beforeEach(() => {
+    vi.mocked(WebsiteImages.getUrl).mockReturnValue('https://asssets.quosel.com/images/userId/image.png');
+  });
+
   it('should return 401 if session is not provided', async () => {
     // When
     const res = await app.request('/images');

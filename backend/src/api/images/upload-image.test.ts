@@ -21,6 +21,10 @@ describe('upload-image', () => {
     return new File([new Uint8Array(sizeBytes)], 'image', { type });
   }
 
+  beforeEach(() => {
+    vi.mocked(WebsiteImages.getUrl).mockReturnValue('https://asssets.quosel.com/images/userId/image.png');
+  });
+
   it('should return 401 if session is not provided', async () => {
     // When
     const res = await app.request('/images/upload', { method: 'POST' });
