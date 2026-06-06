@@ -3,15 +3,25 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
+  "license": "UNLICENSED",
   "exports": {
     ".": "./src/index.ts"
+  },
+  "scripts": {
+    "========== Checks ==========": "",
+    "check-deps": "npm-check-updates -u"
   },
   "peerDependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.2.15",
-    "react": "^19.2.6"
+    "@types/react": "^19.2.16",
+    "@types/react-dom": "^19.2.3",
+    "npm-check-updates": "^22.2.2",
+    "react": "^19.2.7"
+  },
+  "dependencies": {
+    "zod": "^4.4.3"
   }
 }
