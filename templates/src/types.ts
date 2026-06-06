@@ -1,3 +1,24 @@
+import z from "zod";
+
+export type Blocks = z.infer<typeof blocksSchema>;
+export const blocksSchema = z.object({
+  schemaVersion: z.literal(1),
+  nav: z.object({
+    logo: z.string(),
+    ctaText: z.string(),
+    ctaLink: z.string(),
+  }),
+  hero: z.object({
+    firstTitle: z.string(),
+    secondTitle: z.string(),
+    text: z.string(),
+    ctaText: z.string(),
+    ctaLink: z.string(),
+    phone: z.string(),
+    imageUrl: z.string(),
+  }),
+});
+
 export interface WebsiteData {
   place: {
     name: string;
@@ -6,23 +27,7 @@ export interface WebsiteData {
     rating: number | null;
     userRatingCount: number | null;
   };
-  websiteImages: Array<{ url: string }>;
   tweakcnThemeKey: string;
   isDarkMode: boolean;
-  blocks: {
-    nav: {
-      logo: string;
-      links: Array<{ label: string; href: string }>;
-      ctaText: string;
-      ctaLink: string;
-    };
-    hero: {
-      firstTitle: string;
-      secondTitle: string;
-      text: string;
-      ctaText: string;
-      ctaLink: string;
-      phone: string;
-    };
-  };
+  blocks: Blocks;
 }

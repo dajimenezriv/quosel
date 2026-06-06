@@ -3,7 +3,10 @@ import { SERIF } from "../utils";
 
 export function Location({ data }: { data: WebsiteData }) {
   return (
-    <section id="location" className="grid grid-cols-1 bg-[var(--background)] md:grid-cols-2">
+    <section
+      id="location"
+      className="grid grid-cols-1 bg-[var(--background)] md:grid-cols-2"
+    >
       {/* Left: info */}
       <div className="px-6 py-12 md:px-24 md:py-20">
         <p className="mb-6 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">

@@ -1,14 +1,14 @@
 import type { WebsiteData } from "../types";
 
-const NAV_LINKS = [
-  { label: "Sobre Nosotros", href: "#about" },
-  { label: "Galería", href: "#gallery" },
-  { label: "Reseñas", href: "#reviews" },
-  { label: "Servicios", href: "#services" },
-  { label: "Visítanos", href: "#location" },
-];
-
 export function Navigation({ data }: { data: WebsiteData }) {
+  const navLinks = [
+    { label: "Sobre Nosotros", href: "#about" },
+    { label: "Galería", href: "#gallery" },
+    { label: "Reseñas", href: "#reviews" },
+    { label: "Servicios", href: "#services" },
+    { label: "Visítanos", href: "#location" },
+  ];
+
   return (
     <nav className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-10 py-5 bg-[var(--background)]/80 backdrop-blur-sm border-[var(--primary)] border-b">
       <div className="flex items-center gap-3">
@@ -23,7 +23,7 @@ export function Navigation({ data }: { data: WebsiteData }) {
       </div>
 
       <div className="hidden items-center gap-8 md:flex">
-        {data.blocks.nav.links.map((link) => (
+        {navLinks.map((link) => (
           <a
             key={link.label}
             href={link.href}

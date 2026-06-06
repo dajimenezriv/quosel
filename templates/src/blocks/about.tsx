@@ -3,7 +3,10 @@ import { SERIF } from "../utils";
 
 export function About({ data }: { data: WebsiteData }) {
   return (
-    <section id="about" className="grid gap-8 bg-[var(--card)] px-6 py-12 md:gap-16 md:px-24 md:py-24 md:grid-cols-2">
+    <section
+      id="about"
+      className="grid gap-8 bg-[var(--card)] px-6 py-12 md:gap-16 md:px-24 md:py-24 md:grid-cols-2"
+    >
       <div>
         <p className="mb-6 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
           — Sobre Nosotros
