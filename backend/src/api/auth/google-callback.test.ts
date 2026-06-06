@@ -85,8 +85,11 @@ describe('google-callback', () => {
     // When
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
-    call(loggerFn).toStrictEqual(['Unhandled error', { error }]);
     await expectError(res, 500, 'Internal Server Error');
+    calls(loggerFn).toMatchObject([
+      ['Unhandled error', { error }],
+      ['Request', { method: 'GET', path: '/auth/google/callback', status: 500 }],
+    ]);
   });
 
   it('should return user if exists', async () => {

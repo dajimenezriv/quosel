@@ -2,9 +2,6 @@ import { serve } from '@hono/node-server';
 import { app } from './app';
 import { env } from './core/env';
 import { logger } from './core/logger';
-import { seed } from './seed';
-
-await seed();
 
 if (env.NODE_ENV === 'development') {
   const { swaggerUI } = await import('@hono/swagger-ui');
