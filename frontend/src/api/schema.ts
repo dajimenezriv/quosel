@@ -279,7 +279,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/websites/get-websites": {
+    "/websites": {
         parameters: {
             query?: never;
             header?: never;
@@ -305,8 +305,6 @@ export interface paths {
                                 id: string;
                                 userId: string;
                                 domain: string;
-                                template: string;
-                                texts: string[];
                                 /** Format: date-time */
                                 createdAt: string;
                                 /** Format: date-time */
@@ -353,7 +351,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/websites/get-website/{websiteId}": {
+    "/websites/{websiteId}": {
         parameters: {
             query?: never;
             header?: never;
@@ -380,12 +378,28 @@ export interface paths {
                             id: string;
                             userId: string;
                             domain: string;
-                            template: string;
-                            texts: string[];
                             /** Format: date-time */
                             createdAt: string;
                             /** Format: date-time */
                             updatedAt: string;
+                            blocks: {
+                                /** @enum {number} */
+                                schemaVersion: 1;
+                                nav: {
+                                    logo: string;
+                                    ctaText: string;
+                                    ctaLink: string;
+                                };
+                                hero: {
+                                    firstTitle: string;
+                                    secondTitle: string;
+                                    text: string;
+                                    ctaText: string;
+                                    ctaLink: string;
+                                    phone: string;
+                                    imageUrl: string;
+                                };
+                            };
                             place: {
                                 id: string;
                                 googleId: string;
@@ -417,13 +431,6 @@ export interface paths {
                                     createdAt: string;
                                 }[];
                             };
-                            websiteImages: {
-                                id: string;
-                                url: string;
-                                sizeBytes: number;
-                                /** Format: date-time */
-                                createdAt: string;
-                            }[];
                         };
                     };
                 };
@@ -488,6 +495,201 @@ export interface paths {
             };
         };
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/websites/render-website/{websiteId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    websiteId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/images": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            images: {
+                                id: string;
+                                websiteId: string;
+                                url: string;
+                                sizeBytes: number;
+                                /** Format: date-time */
+                                createdAt: string;
+                            }[];
+                        };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/images/upload": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "multipart/form-data": {
+                        /** Format: binary */
+                        file: string;
+                        websiteId: string;
+                    };
+                };
+            };
+            responses: {
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            id: string;
+                            url: string;
+                            sizeBytes: number;
+                            /** Format: date-time */
+                            createdAt: string;
+                        };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/images/{imageId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    imageId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
         options?: never;
         head?: never;
         patch?: never;

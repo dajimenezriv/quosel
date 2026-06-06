@@ -5,7 +5,7 @@ export function useGetWebsites() {
   return useQuery({
     queryKey: ['websites'],
     queryFn: async () => {
-      const { data, error } = await client.GET('/websites/get-websites', {});
+      const { data, error } = await client.GET('/websites', {});
       if (error) throw error;
       return data;
     },
