@@ -43,15 +43,16 @@ export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: Aut
 
   const ext = file.type.split('/')[1];
   const key = `images/${userId}/${randomBytes(8).toString('hex')}.${ext}`;
-  const url = await uploadToR2(key, file);
+  await uploadToR2(key, file);
 
   const image = await WebsiteImages.create({
     key,
     userId,
     websiteId,
-    url,
     sizeBytes: file.size,
   });
 
-  return jsonResponse(c, ResponseSchema, image, 201);
+  const url = WebsiteImages.getUrl(key);
+
+  return jsonResponse(c, ResponseSchema, { ...image, url }, 201);
 };

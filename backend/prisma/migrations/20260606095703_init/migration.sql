@@ -86,7 +86,6 @@ CREATE TABLE IF NOT EXISTS "website_images" (
     "user_id" TEXT NOT NULL,
     "website_id" TEXT NOT NULL,
     "key" TEXT NOT NULL,
-    "url" TEXT NOT NULL,
     "size_bytes" INTEGER NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

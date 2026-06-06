@@ -49,7 +49,6 @@ describe('upload-image', () => {
       id: 'imageId',
       userId: 'userId',
       websiteId: 'websiteId',
-      url: 'https://r2.example.com/images/userId/abc123.jpg',
       sizeBytes: 1024,
       createdAt: new Date('2024-01-01T00:00:00.000Z'),
     });

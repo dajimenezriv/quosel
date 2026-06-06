@@ -104,7 +104,6 @@ model WebsiteImage {
   userId    String   @map("user_id")
   websiteId String   @map("website_id")
   key       String
-  url       String
   sizeBytes Int      @map("size_bytes")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
 

@@ -13,6 +13,4 @@ export async function uploadToR2(key: string, file: File) {
       ContentType: file.type,
     }),
   );
-
-  return `${env.R2_PUBLIC_URL}/${key}`;
 }

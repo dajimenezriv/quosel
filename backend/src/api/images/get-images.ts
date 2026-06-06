@@ -23,6 +23,10 @@ export const getImagesRoute = createRoute({
 
 export const getImages: RouteHandler<typeof getImagesRoute, { Variables: AuthVariables }> = async (c) => {
   const userId = c.get('userId');
-  const images = await WebsiteImages.getAllByUserId(userId);
+  const rawImages = await WebsiteImages.getAllByUserId(userId);
+  const images = rawImages.map((rawImage) => ({
+    ...rawImage,
+    url: WebsiteImages.getUrl(rawImage.key),
+  }));
   return jsonResponse(c, ResponseSchema, { images }, 200);
 };

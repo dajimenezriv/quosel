@@ -29,11 +29,10 @@ describe('get-images', () => {
     // Given
     getAllByUserIdMock.mockResolvedValue([
       {
-        id: 'image-id',
-        userId: 'user-id',
-        websiteId: 'website-id',
+        id: 'imageId',
+        userId: 'userId',
+        websiteId: 'websiteId',
         sizeBytes: 1024,
-        url: 'https://www.equinetmedia.com/hubfs/How-to-find-b2b-blog-images.png',
         createdAt: new Date('2024-01-01T00:00:00.000Z'),
       },
     ]);
