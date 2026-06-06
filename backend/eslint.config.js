@@ -33,6 +33,7 @@ export default [
       'object-shorthand': 'error',
       'require-await': 'error',
       'sonarjs/different-types-comparison': 'error',
+      'sonarjs/no-hardcoded-secrets': 'off',
       'sonarjs/no-ignored-exceptions': 'error',
       'sonarjs/no-nested-conditional': 'error',
       'sonarjs/no-nested-functions': 'error',

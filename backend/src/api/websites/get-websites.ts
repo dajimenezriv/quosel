@@ -25,8 +25,6 @@ const WebsiteSchema = z.object({
   id: z.string(),
   userId: z.string(),
   domain: z.string(),
-  template: z.string(),
-  texts: z.array(z.string()),
   createdAt: z.date(),
   updatedAt: z.date(),
   place: PlaceSchema,

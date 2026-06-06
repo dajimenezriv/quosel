@@ -3,6 +3,7 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
+import { blocksSchema } from '@quosel/templates';
 
 const ReviewSchema = z.object({
   id: z.string(),
@@ -12,13 +13,6 @@ const ReviewSchema = z.object({
   authorPhotoUri: z.string(),
   publishTime: z.date(),
   googleMapsUri: z.string(),
-  createdAt: z.date(),
-});
-
-const ImageSchema = z.object({
-  id: z.string(),
-  url: z.string(),
-  sizeBytes: z.number(),
   createdAt: z.date(),
 });
 
@@ -45,12 +39,10 @@ const ResponseSchema = z.object({
   id: z.string(),
   userId: z.string(),
   domain: z.string(),
-  template: z.string(),
-  texts: z.array(z.string()),
   createdAt: z.date(),
   updatedAt: z.date(),
+  blocks: blocksSchema,
   place: PlaceSchema,
-  websiteImages: z.array(ImageSchema),
 });
 
 export const getWebsiteRoute = createRoute({
@@ -69,5 +61,7 @@ export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthV
   const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  return jsonResponse(c, ResponseSchema, website, 200);
+  const blocks = await blocksSchema.parseAsync(website.blocks);
+
+  return jsonResponse(c, ResponseSchema, { ...website, blocks }, 200);
 };

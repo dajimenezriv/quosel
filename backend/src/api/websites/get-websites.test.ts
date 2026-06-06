@@ -32,8 +32,6 @@ describe('get-websites', () => {
         id: 'website-id',
         userId: 'user-id',
         domain: 'the-golden-spoon-abc12345',
-        template: 'default',
-        texts: [],
         createdAt: new Date('2024-01-01T00:00:00.000Z'),
         updatedAt: new Date('2024-01-01T00:00:00.000Z'),
         place: {

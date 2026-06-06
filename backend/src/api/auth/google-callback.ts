@@ -15,6 +15,8 @@ type GoogleIdTokenClaims = {
   sub: string;
   email: string;
   name: string | undefined;
+  givenName: string | undefined;
+  familyName: string | undefined;
   picture: string | undefined;
 };
 
@@ -48,6 +50,8 @@ export async function googleCallback(c: Context) {
       googleId,
       email: claims.email,
       name: claims.name ?? '',
+      givenName: claims.givenName ?? '',
+      familyName: claims.familyName ?? '',
       picture: claims.picture ?? '',
       subscriptionPriceId: '',
       subscriptionStatus: '',

@@ -7,6 +7,7 @@ import { websitesRouter } from './api/websites/router';
 import { createRouter } from './core/api/create-router';
 import { ApiError } from './core/api/errors';
 import { requireAuth } from './core/api/middleware/auth';
+import { requestLogger } from './core/api/middleware/logger';
 import { env } from './core/env';
 import { logger } from './core/logger';
 
@@ -19,6 +20,8 @@ app.use(
     credentials: true,
   }),
 );
+
+app.use('*', requestLogger);
 
 app.onError((error, c) => {
   if (error instanceof ApiError) {

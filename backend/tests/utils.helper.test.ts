@@ -31,6 +31,8 @@ export async function createUser() {
       googleId: crypto.randomUUID(),
       email: 'sessions@test.com',
       name: '',
+      givenName: '',
+      familyName: '',
       picture: '',
       subscriptionStatus: '',
       subscriptionPriceId: '',

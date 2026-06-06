@@ -1,6 +1,7 @@
 import { randomBytes } from 'node:crypto';
 import type { UserId } from '@/core/types';
 import { slugify } from '@/core/utils';
+import type { Blocks } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
@@ -26,12 +27,11 @@ export class Websites {
         place: {
           include: { reviews: true },
         },
-        websiteImages: true,
       },
     });
   }
 
-  static async create(userId: UserId, place: PlaceInsert, placeReviews: ReviewInsert[]) {
+  static async create(userId: UserId, place: PlaceInsert, placeReviews: ReviewInsert[], blocks: Blocks) {
     return await prisma.$transaction(async (tx) => {
       const { googleId: googlePlaceId, ...placeUpdate } = place;
       const { id: placeId } = await tx.place.upsert({
@@ -54,7 +54,7 @@ export class Websites {
 
       const domain = this.randomDomain(place.name);
       const websiteRow = await tx.website.create({
-        data: { placeId, userId, domain, template: '' },
+        data: { placeId, userId, domain, blocks },
       });
 
       return websiteRow.id;

@@ -12,6 +12,8 @@ model User {
   googleId             String    @unique @map("google_id")
   email                String
   name                 String
+  givenName            String    @map("given_name")
+  familyName           String    @map("family_name")
   picture              String
   stripeCustomerId     String?   @unique @map("stripe_customer_id")
   stripeSubscriptionId String?   @unique @map("stripe_subscription_id")
@@ -85,8 +87,7 @@ model Website {
   userId    String   @map("user_id")
   placeId   String   @map("place_id")
   domain    String   @unique
-  template  String
-  texts     String[] @default([])
+  blocks    Json
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
   updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
@@ -102,6 +103,7 @@ model WebsiteImage {
   id        String   @id @default(uuid())
   userId    String   @map("user_id")
   websiteId String   @map("website_id")
+  key       String
   url       String
   sizeBytes Int      @map("size_bytes")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz

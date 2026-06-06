@@ -46,6 +46,7 @@ export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: Aut
   const url = await uploadToR2(key, file);
 
   const image = await WebsiteImages.create({
+    key,
     userId,
     websiteId,
     url,

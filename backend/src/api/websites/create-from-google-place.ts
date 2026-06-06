@@ -3,23 +3,28 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { env } from '@/core/env';
 import { Websites, type PlaceInsert, type ReviewInsert } from '@/infra/postgres/websites';
+import { transformPlaceToBlocks } from '@/modules/websites/transform-place-to-blocks';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 /**
  * Place IDs uniquely identify a place in the Google Places database and on Google Maps. Examples:
- * ChIJRWnYS1BHYA0RK5rHEosqXcQ
+ * ChIJK4j9CagbdkgRluwkqYLufoE
  * GhIJQWDl0CIeQUARxks3icF8U8A
  * EicxMyBNYXJrZXQgU3QsIFdpbG1pbmd0b24sIE5DIDI4NDAxLCBVU0EiGhIYChQKEgnRTo6ixx-qiRHo_bbmkCm7ZRAN
  * EicxMyBNYXJrZXQgU3QsIFdpbG1pbmd0b24sIE5DIDI4NDAxLCBVU0E
  * IhoSGAoUChIJ0U6OoscfqokR6P225pApu2UQDQ
  * Place IDs are exempt from the caching restrictions stated in Section 3.2.3(b) of the Google Maps Platform Terms of Service.
  *
- * Place Details (New): https://places.googleapis.com/v1/places/ChIJRWnYS1BHYA0RK5rHEosqXcQ?fields=id,displayName&key=API_KEY
- * Place Details (Legacy): https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJRWnYS1BHYA0RK5rHEosqXcQ&key=YOUR_API_KEY
+ * Place Details (New): https://places.googleapis.com/v1/places/ChIJK4j9CagbdkgRluwkqYLufoE?fields=id&key=API_KEY
+ * Place Details (Legacy): https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJK4j9CagbdkgRluwkqYLufoE&key=YOUR_API_KEY
  *
  * Obtain Place ID for free at: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
  *
  * Sources: https://developers.google.com/maps/documentation/places/web-service/place-id
+ *
+ * Pricing
+ * https://developers.google.com/maps/billing-and-pricing/pricing
+ * https://developers.google.com/maps/billing-and-pricing/sku-details
  */
 
 const ResponseSchema = z.object({ websiteId: z.string() });
@@ -30,7 +35,7 @@ export const createFromGooglePlaceRoute = createRoute({
   request: {
     query: z.object({
       googlePlaceId: z.string().openapi({
-        example: 'ChIJRWnYS1BHYA0RK5rHEosqXcQ',
+        example: 'ChIJK4j9CagbdkgRluwkqYLufoE',
       }),
     }),
   },
@@ -58,7 +63,7 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
   const place: PlaceInsert = {
     googleId: googlePlaceId,
     name: parsedData.displayName.text,
-    internationalPhoneNumber: parsedData.internationalPhoneNumber,
+    internationalPhoneNumber: parsedData.internationalPhoneNumber ?? '',
     formattedAddress: parsedData.formattedAddress,
     shortFormattedAddress: parsedData.shortFormattedAddress,
     latitude: parsedData.location.latitude,
@@ -81,14 +86,16 @@ export const createFromGooglePlace: RouteHandler<typeof createFromGooglePlaceRou
     googleMapsUri: r.googleMapsUri,
   }));
 
-  const websiteId = await Websites.create(userId, place, reviews);
+  const blocks = transformPlaceToBlocks();
+
+  const websiteId = await Websites.create(userId, place, reviews, blocks);
 
   return jsonResponse(c, ResponseSchema, { websiteId }, 200);
 };
 
 const schema = z.object({
   id: z.string(),
-  internationalPhoneNumber: z.string(),
+  internationalPhoneNumber: z.string().optional(),
   formattedAddress: z.string(),
   location: z.object({ latitude: z.number(), longitude: z.number() }),
   rating: z.number(),

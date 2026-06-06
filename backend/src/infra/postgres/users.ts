@@ -1,4 +1,6 @@
 import type { UserId } from '@/core/types';
+import { templateBlocks } from '@/modules/websites/transform-place-to-blocks';
+import { SEED_PLACE_ID } from '@/seed';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 import { Websites } from './websites';
@@ -27,10 +29,10 @@ export class Users {
       const domain = Websites.randomDomain('default');
       await tx.website.create({
         data: {
-          placeId: '00000000-0000-0000-0000-000000000000',
           userId: userRow.id,
+          placeId: SEED_PLACE_ID,
           domain,
-          template: '',
+          blocks: templateBlocks,
         },
       });
 

@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS "users" (
     "google_id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "given_name" TEXT NOT NULL,
+    "family_name" TEXT NOT NULL,
     "picture" TEXT NOT NULL,
     "stripe_customer_id" TEXT,
     "stripe_subscription_id" TEXT,
@@ -71,8 +73,7 @@ CREATE TABLE IF NOT EXISTS "websites" (
     "user_id" TEXT NOT NULL,
     "place_id" TEXT NOT NULL,
     "domain" TEXT NOT NULL,
-    "template" TEXT NOT NULL,
-    "texts" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "blocks" JSONB NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -84,6 +85,7 @@ CREATE TABLE IF NOT EXISTS "website_images" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "website_id" TEXT NOT NULL,
+    "key" TEXT NOT NULL,
     "url" TEXT NOT NULL,
     "size_bytes" INTEGER NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -138,9 +140,5 @@ ALTER TABLE "website_images" ADD CONSTRAINT "website_images_user_id_fkey" FOREIG
 
 -- AddForeignKey
 ALTER TABLE "website_images" ADD CONSTRAINT "website_images_website_id_fkey" FOREIGN KEY ("website_id") REFERENCES "websites"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- SeedData
-INSERT INTO "places" ("id", "google_id", "name", "international_phone_number", "formatted_address", "short_formatted_address", "latitude", "longitude", "google_maps_place_uri", "google_maps_reviews_uri", "google_maps_photos_uri", "raw")
-VALUES ('00000000-0000-0000-0000-000000000000', 'default', 'Default Place', '', '', '', 0, 0, '', '', '', '{}');
 
 COMMIT;

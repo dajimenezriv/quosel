@@ -3,7 +3,7 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { renderTemplate, type WebsiteData } from '@quosel/templates';
+import { blocksSchema, renderTemplate, type WebsiteData } from '@quosel/templates';
 
 export const publishRoute = createRoute({
   method: 'post',
@@ -21,15 +21,12 @@ export const publish: RouteHandler<typeof publishRoute, { Variables: AuthVariabl
   const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
+  const blocks = await blocksSchema.parseAsync(website.blocks);
+
   const data: WebsiteData = {
-    place: {
-      name: website.place.name,
-      internationalPhoneNumber: website.place.internationalPhoneNumber,
-      formattedAddress: website.place.formattedAddress,
-      rating: website.place.rating,
-      userRatingCount: website.place.userRatingCount,
-    },
-    websiteImages: website.websiteImages,
+    isDarkMode: true,
+    tweakcnThemeKey: 'Claude',
+    blocks,
   };
 
   return c.html(renderTemplate(data));

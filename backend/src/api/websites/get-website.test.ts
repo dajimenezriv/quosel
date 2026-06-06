@@ -1,5 +1,6 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
+import { templateBlocks } from '@/modules/websites/transform-place-to-blocks';
 import { deepMocked, expectError, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
 
 vi.mock(import('@/infra/postgres/websites'));
@@ -31,10 +32,9 @@ describe('get-website', () => {
       id: 'website-id',
       userId: 'user-id',
       domain: 'the-golden-spoon-abc12345',
-      template: 'default',
-      texts: [],
       createdAt: new Date('2024-01-01T00:00:00.000Z'),
       updatedAt: new Date('2024-01-01T00:00:00.000Z'),
+      blocks: templateBlocks,
       place: {
         id: 'place-id',
         googleId: 'google-place-id',
@@ -64,14 +64,6 @@ describe('get-website', () => {
           },
         ],
       },
-      websiteImages: [
-        {
-          id: 'image-id',
-          url: 'https://images.quosel.com/examples/1.jpg',
-          sizeBytes: 0,
-          createdAt: new Date('2024-01-01T00:00:00.000Z'),
-        },
-      ],
     });
     // When
     const res = await app.request('/websites/website-id', GET_AUTH_REQUEST);

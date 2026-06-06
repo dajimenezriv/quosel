@@ -272,15 +272,6 @@
                           "domain": {
                             "type": "string"
                           },
-                          "template": {
-                            "type": "string"
-                          },
-                          "texts": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
-                          },
                           "createdAt": {
                             "type": "string",
                             "format": "date-time"
@@ -369,8 +360,6 @@
                           "id",
                           "userId",
                           "domain",
-                          "template",
-                          "texts",
                           "createdAt",
                           "updatedAt",
                           "place"
@@ -427,15 +416,6 @@
                     "domain": {
                       "type": "string"
                     },
-                    "template": {
-                      "type": "string"
-                    },
-                    "texts": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
                     "createdAt": {
                       "type": "string",
                       "format": "date-time"
@@ -443,6 +423,76 @@
                     "updatedAt": {
                       "type": "string",
                       "format": "date-time"
+                    },
+                    "blocks": {
+                      "type": "object",
+                      "properties": {
+                        "schemaVersion": {
+                          "type": "number",
+                          "enum": [
+                            1
+                          ]
+                        },
+                        "nav": {
+                          "type": "object",
+                          "properties": {
+                            "logo": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "logo",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        "hero": {
+                          "type": "object",
+                          "properties": {
+                            "firstTitle": {
+                              "type": "string"
+                            },
+                            "secondTitle": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            },
+                            "phone": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "firstTitle",
+                            "secondTitle",
+                            "text",
+                            "ctaText",
+                            "ctaLink",
+                            "phone",
+                            "imageUrl"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "schemaVersion",
+                        "nav",
+                        "hero"
+                      ]
                     },
                     "place": {
                       "type": "object",
@@ -563,45 +613,16 @@
                         "updatedAt",
                         "reviews"
                       ]
-                    },
-                    "websiteImages": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "string"
-                          },
-                          "url": {
-                            "type": "string"
-                          },
-                          "sizeBytes": {
-                            "type": "number"
-                          },
-                          "createdAt": {
-                            "type": "string",
-                            "format": "date-time"
-                          }
-                        },
-                        "required": [
-                          "id",
-                          "url",
-                          "sizeBytes",
-                          "createdAt"
-                        ]
-                      }
                     }
                   },
                   "required": [
                     "id",
                     "userId",
                     "domain",
-                    "template",
-                    "texts",
                     "createdAt",
                     "updatedAt",
-                    "place",
-                    "websiteImages"
+                    "blocks",
+                    "place"
                   ]
                 }
               }
@@ -626,7 +647,7 @@
           {
             "schema": {
               "type": "string",
-              "example": "ChIJRWnYS1BHYA0RK5rHEosqXcQ"
+              "example": "ChIJK4j9CagbdkgRluwkqYLufoE"
             },
             "required": true,
             "name": "googlePlaceId",
@@ -812,6 +833,35 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images/{imageId}": {
+      "delete": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "imageId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
           },
           "500": {
             "description": "Error",

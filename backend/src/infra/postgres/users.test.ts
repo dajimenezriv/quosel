@@ -9,6 +9,8 @@ describe('users', () => {
     googleId,
     email: 'users@test.com',
     name: '',
+    givenName: '',
+    familyName: '',
     picture: '',
     subscriptionStatus: '',
     subscriptionPriceId: '',

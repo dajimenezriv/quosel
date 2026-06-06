@@ -1,3 +1,4 @@
+import { templateBlocks } from '@/modules/websites/transform-place-to-blocks';
 import { createUser } from '@/tests/utils.helper.test';
 import { prisma } from './client';
 import { Websites, type PlaceInsert, type ReviewInsert } from './websites';
@@ -33,7 +34,7 @@ describe('websites', async () => {
   it('should work', async () => {
     // Create website for logged user
     // When
-    const websiteId = await Websites.create(userId1, place, [review]);
+    const websiteId = await Websites.create(userId1, place, [review], templateBlocks);
     // Then
     expect(websiteId).toBeDefined();
     const res = await prisma.website.findFirst({ where: { id: websiteId } });
@@ -41,11 +42,11 @@ describe('websites', async () => {
 
     // Create website without reviews
     // When
-    await Websites.create(userId1, place, []);
+    await Websites.create(userId1, place, [], templateBlocks);
 
     // Create website for non logged user
     // When
-    await Websites.create(userId2, place, [review]);
+    await Websites.create(userId2, place, [review], templateBlocks);
 
     // Get all websites for a user
     // When
