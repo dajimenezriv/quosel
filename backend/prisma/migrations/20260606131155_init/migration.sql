@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS "websites" (
 CREATE TABLE IF NOT EXISTS "website_images" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
-    "website_id" TEXT NOT NULL,
+    "website_id" TEXT,
     "key" TEXT NOT NULL,
     "size_bytes" INTEGER NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -138,6 +138,6 @@ ALTER TABLE "websites" ADD CONSTRAINT "websites_place_id_fkey" FOREIGN KEY ("pla
 ALTER TABLE "website_images" ADD CONSTRAINT "website_images_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "website_images" ADD CONSTRAINT "website_images_website_id_fkey" FOREIGN KEY ("website_id") REFERENCES "websites"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "website_images" ADD CONSTRAINT "website_images_website_id_fkey" FOREIGN KEY ("website_id") REFERENCES "websites"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 COMMIT;

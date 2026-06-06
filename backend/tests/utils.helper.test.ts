@@ -7,6 +7,7 @@ import type { MockedFunction } from 'vitest';
 
 export const GET_AUTH_REQUEST = { headers: { Cookie: 'session=sessionId' } };
 export const POST_AUTH_REQUEST = { method: 'POST', headers: { Cookie: 'session=sessionId' } };
+export const DELETE_AUTH_REQUEST = { method: 'DELETE', headers: { Cookie: 'session=sessionId' } };
 
 export const loggerFn = vi.fn();
 const loggerMock = vi.mocked(logger);

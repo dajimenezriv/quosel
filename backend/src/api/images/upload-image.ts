@@ -3,7 +3,7 @@ import { ApiError } from '@/core/api/errors';
 import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { WebsiteImages } from '@/infra/postgres/website-images';
-import { uploadToR2 } from '@/infra/r2/upload';
+import { R2 } from '@/infra/r2/r2';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const MAX_SIZE = 5 * 1024 * 1024;
@@ -43,7 +43,7 @@ export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: Aut
 
   const ext = file.type.split('/')[1];
   const key = `images/${userId}/${randomBytes(8).toString('hex')}.${ext}`;
-  await uploadToR2(key, file);
+  await R2.upload(key, file);
 
   const image = await WebsiteImages.create({
     key,
