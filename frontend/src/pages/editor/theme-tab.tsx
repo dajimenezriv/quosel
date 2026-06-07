@@ -73,7 +73,7 @@ export function ThemeTab() {
         <Label className="text-sm font-medium">Mode</Label>
         <div className="grid grid-cols-2 gap-2">
           <Button
-            variant={!isDarkMode ? 'secondary' : 'outline'}
+            variant={isDarkMode ? 'secondary' : 'outline'}
             size="sm"
             onClick={handleLightMode}
             className="mode-toggle-button relative cursor-pointer overflow-hidden">
@@ -81,7 +81,7 @@ export function ThemeTab() {
             Light
           </Button>
           <Button
-            variant={isDarkMode ? 'secondary' : 'outline'}
+            variant={!isDarkMode ? 'secondary' : 'outline'}
             size="sm"
             onClick={handleDarkMode}
             className="mode-toggle-button relative cursor-pointer overflow-hidden">
