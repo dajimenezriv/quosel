@@ -1,28 +1,30 @@
+import React from "react";
 import type { WebsiteData } from "../types";
 import { SERIF } from "../utils";
 
 export function Gallery({ data }: { data: WebsiteData }) {
   return (
-    <section id="gallery" className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20">
+    <section
+      id="gallery"
+      className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20"
+    >
       <div className="mb-8 grid gap-6 md:mb-12 md:grid-cols-2 md:items-start md:gap-16">
         <div>
           <p className="mb-4 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
-            — Galería
+            — {data.blocks.gallery.nav}
           </p>
           <h2
             className="text-5xl font-light text-[var(--foreground)]"
             style={{ fontFamily: SERIF }}
           >
-            Trabajos <em className="italic text-[var(--primary)]">recientes</em>
-            .
+            {data.blocks.gallery.title}
           </h2>
         </div>
         <p
           className="text-sm italic leading-relaxed text-[var(--foreground-50)] md:pt-12"
           style={{ fontFamily: SERIF }}
         >
-          Cortes, degradados, barba y detalle. Lo que sale por la puerta cada
-          día. Más fotos y vídeos en Instagram.
+          {data.blocks.gallery.text}
         </p>
       </div>
 

@@ -1,3 +1,4 @@
+import React from "react";
 import type { WebsiteData } from "../types";
 import { getInitials } from "../utils";
 

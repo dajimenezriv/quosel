@@ -1,3 +1,4 @@
+import React from "react";
 import { About } from "./blocks/about";
 import { CTA } from "./blocks/cta";
 import { Footer } from "./blocks/footer";

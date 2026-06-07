@@ -1,3 +1,4 @@
+import React from "react";
 import { SERIF } from "../utils";
 
 export function CTA() {
