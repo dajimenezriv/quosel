@@ -23,7 +23,7 @@ export function Customizer({ data, open }: Props) {
   };
 
   return (
-    <div className={cn('shrink-0 overflow-hidden transition-[width] duration-300', open ? 'w-120' : 'w-0')}>
+    <div className={cn('shrink-0 overflow-hidden', open ? 'w-120' : 'w-0')}>
       <div className="flex h-full w-120 flex-col border-l">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center gap-2">

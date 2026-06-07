@@ -15,7 +15,7 @@ export function BaseLayout({ children, title, extra }: Props) {
 
   return (
     <>
-      <div className={cn('shrink-0 overflow-hidden transition-[width] duration-300 ease-in-out', open ? 'w-70' : 'w-0')}>
+      <div className={cn('shrink-0 overflow-hidden', open ? 'w-70' : 'w-0')}>
         <div className="flex h-full w-70 flex-col p-4 pr-2">
           <AppSidebar />
         </div>

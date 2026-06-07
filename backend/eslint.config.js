@@ -38,6 +38,7 @@ export default [
       'sonarjs/no-nested-conditional': 'error',
       'sonarjs/no-nested-functions': 'error',
       'sonarjs/pseudo-random': 'error',
+      'sonarjs/todo-tag': 'warn',
       'unicorn/filename-case': ['error', { case: 'kebabCase' }],
       'unicorn/prefer-node-protocol': 'error',
     },

@@ -43,6 +43,7 @@ export async function googleCallback(c: Context) {
   }
 
   const googleId = claims.sub;
+  // TODO: Change with create or update
   let user = await Users.getByGoogleId(googleId);
 
   if (!user) {
