@@ -3,7 +3,7 @@ import { prisma } from './client';
 import { WebsiteImages } from './website-images';
 
 describe('website-images', async () => {
-  const { userId } = await createMockUser();
+  const { id: userId } = await createMockUser();
 
   beforeEach(async () => {
     await prisma.websiteImage.deleteMany({ where: { userId } });
@@ -31,7 +31,7 @@ describe('website-images', async () => {
 
     it('should not include images from other user', async () => {
       // Given
-      const { userId: userId2 } = await createMockUser();
+      const { id: userId2 } = await createMockUser();
       await createMockImage(userId2);
       // When
       const images = await WebsiteImages.getAllByUserId(userId);

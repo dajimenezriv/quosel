@@ -1,13 +1,13 @@
 import type { UserId } from '@/core/types';
 import { prisma } from '@/infra/postgres/client';
 import { createMockUser } from '@/tests/postgres.helper.test';
-import { Users } from './users';
+import { SEED_PLACE_ID, Users } from './users';
 
 describe('users', () => {
   describe('getById', () => {
     it('should return user if it exists', async () => {
       // Given
-      const { userId } = await createMockUser();
+      const { id: userId } = await createMockUser();
       // When
       const res = await Users.getById(userId);
       // Then
@@ -25,7 +25,7 @@ describe('users', () => {
   describe('update', () => {
     it('should update user if it exists', async () => {
       // Given
-      const { userId, name } = await createMockUser();
+      const { id: userId, name } = await createMockUser();
       // When
       const res = await Users.update(userId, { name: 'newName' });
       // Then
@@ -60,5 +60,33 @@ describe('users', () => {
     });
   });
 
-  describe('createOrUpdate', () => {});
+  describe('createOrUpdate', () => {
+    it('should update existing user when googleId exists', async () => {
+      // Given
+      const { id: userId, googleId, ...user } = await createMockUser();
+      // When
+      const res = await Users.createOrUpdate(googleId, { ...user, name: 'newName' });
+      // Then
+      expect(res.name).toBe('newName');
+      expect(await prisma.website.count({ where: { userId } })).toBe(0);
+    });
+
+    it('should create a new user and website when googleId does not exist', async () => {
+      // Given
+      const googleId = crypto.randomUUID();
+      // When
+      const { id: userId } = await Users.createOrUpdate(googleId, {
+        email: crypto.randomUUID(),
+        name: '',
+        givenName: '',
+        familyName: '',
+        picture: '',
+        subscriptionStatus: '',
+        subscriptionPriceId: '',
+      });
+      // Then
+      const websites = await prisma.website.findMany({ where: { userId } });
+      expect(websites).toMatchObject([{ placeId: SEED_PLACE_ID }]);
+    });
+  });
 });

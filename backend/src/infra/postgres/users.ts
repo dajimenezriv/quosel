@@ -4,7 +4,7 @@ import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 import { Websites } from './websites';
 
-const SEED_PLACE_ID = '00000000-0000-0000-0000-000000000000';
+export const SEED_PLACE_ID = '00000000-0000-0000-0000-000000000000';
 
 export class Users {
   static async getById(id: UserId) {

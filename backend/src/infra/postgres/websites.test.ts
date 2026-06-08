@@ -4,8 +4,8 @@ import { prisma } from './client';
 import { Websites, type PlaceInsert, type ReviewInsert } from './websites';
 
 describe('websites', async () => {
-  const { userId: userId1 } = await createMockUser();
-  const { userId: userId2 } = await createMockUser();
+  const { id: userId1 } = await createMockUser();
+  const { id: userId2 } = await createMockUser();
 
   const place: PlaceInsert = {
     googleId: crypto.randomUUID(),

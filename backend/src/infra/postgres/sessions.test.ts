@@ -2,7 +2,7 @@ import { createMockUser } from '@/tests/postgres.helper.test';
 import { Sessions } from './sessions';
 
 describe('sessions', async () => {
-  const { userId } = await createMockUser();
+  const { id: userId } = await createMockUser();
 
   it('should work', async () => {
     // Create expired session

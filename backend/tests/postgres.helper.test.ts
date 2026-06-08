@@ -16,7 +16,7 @@ export async function createMockUser() {
     },
   });
 
-  return { ...user, userId: user.id as UserId };
+  return { ...user, id: user.id as UserId };
 }
 
 export async function createMockPlace() {
