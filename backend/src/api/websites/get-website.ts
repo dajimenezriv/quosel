@@ -3,7 +3,7 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { blocksSchema } from '@quosel/templates';
+import { blocksSchema, stylesSchema, type Blocks, type Styles } from '@quosel/templates';
 
 const ReviewSchema = z.object({
   id: z.string(),
@@ -38,10 +38,11 @@ const PlaceSchema = z.object({
 const ResponseSchema = z.object({
   id: z.string(),
   userId: z.string(),
-  domain: z.string(),
+  domain: z.string().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
   blocks: blocksSchema,
+  styles: stylesSchema,
   place: PlaceSchema,
 });
 
@@ -61,7 +62,8 @@ export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthV
   const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  const blocks = await blocksSchema.parseAsync(website.blocks);
+  const blocks = website.blocks as Blocks;
+  const styles = website.styles as Styles;
 
-  return jsonResponse(c, ResponseSchema, { ...website, blocks }, 200);
+  return jsonResponse(c, ResponseSchema, { ...website, blocks, styles }, 200);
 };

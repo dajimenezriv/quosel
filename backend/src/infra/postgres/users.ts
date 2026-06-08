@@ -36,6 +36,7 @@ export class Users {
           placeId: SEED_PLACE_ID,
           domain,
           blocks: templateBlocks,
+          styles: {},
         },
       });
 

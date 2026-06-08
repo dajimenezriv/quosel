@@ -43,7 +43,7 @@ export async function createMockWebsite(userId: UserId, placeId: string) {
       userId,
       placeId,
       blocks: {},
-      domain: 'domain,',
+      styles: {},
     },
   });
 }

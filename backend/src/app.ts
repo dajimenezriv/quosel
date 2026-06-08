@@ -26,11 +26,11 @@ app.use('*', requestLogger);
 app.onError((error, c) => {
   if (error instanceof ApiError) {
     logger.error(error.message, error.extra);
-    return c.json({ error: error.message }, error.status);
+    return c.json({ message: error.message }, error.status);
   }
 
   logger.error('Unhandled error', { error });
-  return c.json({ error: 'Internal Server Error' }, 500);
+  return c.json({ message: 'Internal Server Error' }, 500);
 });
 
 app.route('/', healthRouter);

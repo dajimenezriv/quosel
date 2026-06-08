@@ -5,7 +5,7 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const ImageSchema = z.object({
   id: z.string(),
-  websiteId: z.string(),
+  websiteId: z.string().nullable(),
   url: z.string(),
   sizeBytes: z.number(),
   createdAt: z.date(),

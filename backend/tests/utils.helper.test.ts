@@ -5,9 +5,18 @@ import { Sessions } from '@/infra/postgres/sessions';
 import type { DeepPartial } from 'ts-essentials';
 import type { MockedFunction } from 'vitest';
 
-export const GET_AUTH_REQUEST = { headers: { Cookie: 'session=sessionId' } };
-export const POST_AUTH_REQUEST = { method: 'POST', headers: { Cookie: 'session=sessionId' } };
-export const DELETE_AUTH_REQUEST = { method: 'DELETE', headers: { Cookie: 'session=sessionId' } };
+const COOKIE_HEADERS = { headers: { Cookie: 'session=sessionId' } };
+export const GET_AUTH_REQUEST = COOKIE_HEADERS;
+export const POST_AUTH_REQUEST = { method: 'POST', ...COOKIE_HEADERS };
+export const DELETE_AUTH_REQUEST = { method: 'DELETE', ...COOKIE_HEADERS };
+
+export function putRequest(body?: object) {
+  return {
+    method: 'PUT',
+    headers: { Cookie: 'session=sessionId', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  };
+}
 
 export const loggerFn = vi.fn();
 const loggerMock = vi.mocked(logger);
@@ -71,5 +80,5 @@ export async function expectJson(res: Response, code: number, json: object) {
 
 export async function expectError(res: Response, code: number, message: string) {
   expect(res.status).toBe(code);
-  expect(await res.json()).toStrictEqual({ error: message });
+  expect(await res.json()).toStrictEqual({ message });
 }

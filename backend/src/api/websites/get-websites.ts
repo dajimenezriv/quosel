@@ -24,7 +24,7 @@ const PlaceSchema = z.object({
 const WebsiteSchema = z.object({
   id: z.string(),
   userId: z.string(),
-  domain: z.string(),
+  domain: z.string().nullable(),
   createdAt: z.date(),
   updatedAt: z.date(),
   place: PlaceSchema,

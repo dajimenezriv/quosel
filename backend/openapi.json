@@ -9,12 +9,12 @@
       "Error": {
         "type": "object",
         "properties": {
-          "error": {
+          "message": {
             "type": "string"
           }
         },
         "required": [
-          "error"
+          "message"
         ]
       }
     },
@@ -270,7 +270,10 @@
                             "type": "string"
                           },
                           "domain": {
-                            "type": "string"
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           },
                           "createdAt": {
                             "type": "string",
@@ -414,7 +417,10 @@
                       "type": "string"
                     },
                     "domain": {
-                      "type": "string"
+                      "type": [
+                        "string",
+                        "null"
+                      ]
                     },
                     "createdAt": {
                       "type": "string",
@@ -618,6 +624,82 @@
                         "location"
                       ]
                     },
+                    "styles": {
+                      "type": "object",
+                      "properties": {
+                        "schemaVersion": {
+                          "type": "number",
+                          "enum": [
+                            1
+                          ],
+                          "default": 1
+                        },
+                        "background": {
+                          "type": "string",
+                          "default": "#262624"
+                        },
+                        "foreground": {
+                          "type": "string",
+                          "default": "#c3c0b6"
+                        },
+                        "card": {
+                          "type": "string",
+                          "default": "#262624"
+                        },
+                        "card-foreground": {
+                          "type": "string",
+                          "default": "#faf9f5"
+                        },
+                        "popover": {
+                          "type": "string",
+                          "default": "#30302e"
+                        },
+                        "popover-foreground": {
+                          "type": "string",
+                          "default": "#e5e5e2"
+                        },
+                        "primary": {
+                          "type": "string",
+                          "default": "#d97757"
+                        },
+                        "primary-foreground": {
+                          "type": "string",
+                          "default": "#ffffff"
+                        },
+                        "secondary": {
+                          "type": "string",
+                          "default": "#faf9f5"
+                        },
+                        "secondary-foreground": {
+                          "type": "string",
+                          "default": "#30302e"
+                        },
+                        "muted": {
+                          "type": "string",
+                          "default": "#1b1b19"
+                        },
+                        "muted-foreground": {
+                          "type": "string",
+                          "default": "#b7b5a9"
+                        },
+                        "accent": {
+                          "type": "string",
+                          "default": "#1a1915"
+                        },
+                        "accent-foreground": {
+                          "type": "string",
+                          "default": "#f5f4ee"
+                        },
+                        "border": {
+                          "type": "string",
+                          "default": "#3e3e38"
+                        },
+                        "ring": {
+                          "type": "string",
+                          "default": "#d97757"
+                        }
+                      }
+                    },
                     "place": {
                       "type": "object",
                       "properties": {
@@ -746,11 +828,335 @@
                     "createdAt",
                     "updatedAt",
                     "blocks",
+                    "styles",
                     "place"
                   ]
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "required": false,
+            "name": "publish",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "blocks": {
+                    "type": "object",
+                    "properties": {
+                      "schemaVersion": {
+                        "type": "number",
+                        "enum": [
+                          1
+                        ]
+                      },
+                      "nav": {
+                        "type": "object",
+                        "properties": {
+                          "ctaText": {
+                            "type": "string"
+                          },
+                          "ctaLink": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "ctaText",
+                          "ctaLink"
+                        ]
+                      },
+                      "hero": {
+                        "type": "object",
+                        "properties": {
+                          "firstTitle": {
+                            "type": "string"
+                          },
+                          "secondTitle": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "ctaText": {
+                            "type": "string"
+                          },
+                          "ctaLink": {
+                            "type": "string"
+                          },
+                          "phone": {
+                            "type": "string"
+                          },
+                          "imageUrl": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "firstTitle",
+                          "secondTitle",
+                          "text",
+                          "ctaText",
+                          "ctaLink",
+                          "phone",
+                          "imageUrl"
+                        ]
+                      },
+                      "aboutUs": {
+                        "type": "object",
+                        "properties": {
+                          "nav": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "text1": {
+                            "type": "string"
+                          },
+                          "text2": {
+                            "type": "string"
+                          },
+                          "imageUrl": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "nav",
+                          "title",
+                          "text1",
+                          "text2",
+                          "imageUrl"
+                        ]
+                      },
+                      "gallery": {
+                        "type": "object",
+                        "properties": {
+                          "nav": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "ctaText": {
+                            "type": "string"
+                          },
+                          "ctaLink": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "nav",
+                          "title",
+                          "text",
+                          "ctaText",
+                          "ctaLink"
+                        ]
+                      },
+                      "reviews": {
+                        "type": "object",
+                        "properties": {
+                          "nav": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "nav",
+                          "title"
+                        ]
+                      },
+                      "services": {
+                        "type": "object",
+                        "properties": {
+                          "nav": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "text": {
+                            "type": "string"
+                          },
+                          "ctaText": {
+                            "type": "string"
+                          },
+                          "ctaLink": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "nav",
+                          "title",
+                          "text",
+                          "ctaText",
+                          "ctaLink"
+                        ]
+                      },
+                      "location": {
+                        "type": "object",
+                        "properties": {
+                          "nav": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "address": {
+                            "type": "string"
+                          },
+                          "ctaText": {
+                            "type": "string"
+                          },
+                          "ctaLink": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "nav",
+                          "title",
+                          "address",
+                          "ctaText",
+                          "ctaLink"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "schemaVersion",
+                      "nav",
+                      "hero",
+                      "aboutUs",
+                      "gallery",
+                      "reviews",
+                      "services",
+                      "location"
+                    ]
+                  },
+                  "styles": {
+                    "type": "object",
+                    "properties": {
+                      "schemaVersion": {
+                        "type": "number",
+                        "enum": [
+                          1
+                        ],
+                        "default": 1
+                      },
+                      "background": {
+                        "type": "string",
+                        "default": "#262624"
+                      },
+                      "foreground": {
+                        "type": "string",
+                        "default": "#c3c0b6"
+                      },
+                      "card": {
+                        "type": "string",
+                        "default": "#262624"
+                      },
+                      "card-foreground": {
+                        "type": "string",
+                        "default": "#faf9f5"
+                      },
+                      "popover": {
+                        "type": "string",
+                        "default": "#30302e"
+                      },
+                      "popover-foreground": {
+                        "type": "string",
+                        "default": "#e5e5e2"
+                      },
+                      "primary": {
+                        "type": "string",
+                        "default": "#d97757"
+                      },
+                      "primary-foreground": {
+                        "type": "string",
+                        "default": "#ffffff"
+                      },
+                      "secondary": {
+                        "type": "string",
+                        "default": "#faf9f5"
+                      },
+                      "secondary-foreground": {
+                        "type": "string",
+                        "default": "#30302e"
+                      },
+                      "muted": {
+                        "type": "string",
+                        "default": "#1b1b19"
+                      },
+                      "muted-foreground": {
+                        "type": "string",
+                        "default": "#b7b5a9"
+                      },
+                      "accent": {
+                        "type": "string",
+                        "default": "#1a1915"
+                      },
+                      "accent-foreground": {
+                        "type": "string",
+                        "default": "#f5f4ee"
+                      },
+                      "border": {
+                        "type": "string",
+                        "default": "#3e3e38"
+                      },
+                      "ring": {
+                        "type": "string",
+                        "default": "#d97757"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "blocks",
+                  "styles"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
           },
           "500": {
             "description": "Error",
@@ -810,35 +1216,6 @@
         }
       }
     },
-    "/websites/render-website/{websiteId}": {
-      "post": {
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "websiteId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": ""
-          },
-          "500": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/images": {
       "get": {
         "responses": {
@@ -858,7 +1235,10 @@
                             "type": "string"
                           },
                           "websiteId": {
-                            "type": "string"
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           },
                           "url": {
                             "type": "string"
