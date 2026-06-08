@@ -1,4 +1,4 @@
-import z from "zod";
+import z from 'zod';
 
 export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({

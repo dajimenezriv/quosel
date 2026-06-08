@@ -286,18 +286,39 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
+      '@ianvs/prettier-plugin-sort-imports':
+        specifier: ^4.7.1
+        version: 4.7.1(prettier@3.8.3)
       '@types/react':
         specifier: ^19.2.16
         version: 19.2.16
       '@types/react-dom':
         specifier: ^19.2.3
         version: 19.2.3(@types/react@19.2.16)
+      eslint-config-prettier:
+        specifier: ^10.1.8
+        version: 10.1.8(eslint@10.4.1(jiti@2.7.0))
+      eslint-plugin-prettier:
+        specifier: ^5.5.6
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.4.1(jiti@2.7.0)))(eslint@10.4.1(jiti@2.7.0))(prettier@3.8.3)
+      knip:
+        specifier: ^6.15.0
+        version: 6.15.0
       npm-check-updates:
         specifier: ^22.2.2
         version: 22.2.2
+      prettier:
+        specifier: ^3.8.3
+        version: 3.8.3
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.0
+        version: 0.8.0(@ianvs/prettier-plugin-sort-imports@4.7.1(prettier@3.8.3))(prettier@3.8.3)
       react:
         specifier: ^19.2.7
         version: 19.2.7
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
 
 packages:
 
