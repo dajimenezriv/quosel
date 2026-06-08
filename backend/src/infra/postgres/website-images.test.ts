@@ -12,9 +12,9 @@ describe('website-images', async () => {
   describe('getUrl', () => {
     it('should join R2 public url and key', () => {
       // When
-      const url = WebsiteImages.getUrl('images/userId/image.png');
+      const url = WebsiteImages.getUrl('imageId');
       // Then
-      expect(url).toBe('https://r2_public_url/images/userId/image.png');
+      expect(url).toBe('https://r2_public_url/images/imageId');
     });
   });
 

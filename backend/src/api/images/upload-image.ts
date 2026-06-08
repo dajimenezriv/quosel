@@ -41,8 +41,7 @@ export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: Aut
   if (file.size > MAX_SIZE) throw new ApiError(400, 'File too large (max 5 MB)');
 
   const id = crypto.randomUUID();
-  const key = `images/${id}`;
-  await R2.upload(key, file);
+  await R2.upload(`images/${id}`, file);
 
   const image = await WebsiteImages.create({
     id,
@@ -51,7 +50,7 @@ export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: Aut
     sizeBytes: file.size,
   });
 
-  const url = WebsiteImages.getUrl(key);
+  const url = WebsiteImages.getUrl(id);
 
   return jsonResponse(c, ResponseSchema, { ...image, url }, 201);
 };

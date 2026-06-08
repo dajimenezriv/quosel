@@ -19,7 +19,7 @@ export const deleteImage: RouteHandler<typeof deleteImageRoute, { Variables: Aut
 
   const image = await WebsiteImages.delete(userId, imageId);
 
-  await R2.delete(image.key);
+  await R2.delete(`images/${image.id}`);
 
   return c.body(null, 204);
 };

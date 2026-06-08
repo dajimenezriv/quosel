@@ -10,8 +10,10 @@ export const r2 = new S3Client({
   },
 });
 
+type Key = `websites/${string}/index.html` | `images/${string}`;
+
 export class R2 {
-  static async upload(key: string, file: File) {
+  static async upload(key: Key, file: File) {
     const buffer = await file.arrayBuffer();
 
     await r2.send(
@@ -24,7 +26,7 @@ export class R2 {
     );
   }
 
-  static async delete(key: string) {
+  static async delete(key: Key) {
     await r2.send(
       new DeleteObjectCommand({
         Bucket: env.R2_BUCKET_NAME,

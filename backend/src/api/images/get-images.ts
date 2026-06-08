@@ -26,7 +26,7 @@ export const getImages: RouteHandler<typeof getImagesRoute, { Variables: AuthVar
   const rawImages = await WebsiteImages.getAllByUserId(userId);
   const images = rawImages.map((rawImage) => ({
     ...rawImage,
-    url: WebsiteImages.getUrl(rawImage.key),
+    url: WebsiteImages.getUrl(rawImage.id),
   }));
   return jsonResponse(c, ResponseSchema, { images }, 200);
 };

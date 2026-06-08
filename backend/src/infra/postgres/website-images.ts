@@ -4,8 +4,8 @@ import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
 export class WebsiteImages {
-  static getUrl(key: string) {
-    return `${env.R2_PUBLIC_URL}/${key}`;
+  static getUrl(imageId: string) {
+    return `${env.R2_PUBLIC_URL}/images/${imageId}`;
   }
 
   static async getAllByUserId(userId: UserId) {
