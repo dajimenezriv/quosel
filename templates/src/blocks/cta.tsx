@@ -1,12 +1,11 @@
 import React from 'react';
-import { SERIF } from '../utils';
 
 export function CTA() {
   return (
     <section id="cta" className="relative flex min-h-96 items-center justify-center py-32 text-center">
       <div className="absolute inset-0 bg-[var(--popover)]" />
       <div className="relative z-10 max-w-2xl px-6 md:px-8">
-        <h2 className="text-4xl leading-tight font-light text-[var(--primary)] italic md:text-6xl" style={{ fontFamily: SERIF }}>
+        <h2 className="text-4xl leading-tight font-[var(--font-serif)] font-light text-[var(--primary)] italic md:text-6xl">
           Tu próxima cita empieza aquí.
         </h2>
         <p className="mt-6 text-sm leading-relaxed text-[var(--foreground-60)]">

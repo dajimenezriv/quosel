@@ -1,5 +1,3 @@
-export const SERIF = 'var(--font-serif)';
-
 export function getInitials(name: string): string {
   return name
     .split(/\s+/)

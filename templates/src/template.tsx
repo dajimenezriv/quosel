@@ -11,8 +11,6 @@ import { Services } from './blocks/services';
 import { Stats } from './blocks/stats';
 import type { WebsiteData } from './types';
 
-const SANS = 'var(--font-sans)';
-
 export function buildRootStyles(data: WebsiteData) {
   const themeVars = Object.entries(data.styles)
     .filter(([, v]) => v != null)
@@ -33,7 +31,7 @@ export function buildRootStyles(data: WebsiteData) {
 
 export function TemplateBody({ data }: { data: WebsiteData }) {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]" style={{ fontFamily: SANS }}>
+    <div className="min-h-screen bg-[var(--background)] font-[var(--font-sans)] text-[var(--foreground)]">
       <Navigation data={data} />
       <Hero data={data} />
       <Stats data={data} />

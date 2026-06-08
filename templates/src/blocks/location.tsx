@@ -1,6 +1,5 @@
 import React from 'react';
 import type { WebsiteData } from '../types';
-import { SERIF } from '../utils';
 
 export function Location({ data }: { data: WebsiteData }) {
   return (
@@ -8,7 +7,7 @@ export function Location({ data }: { data: WebsiteData }) {
       {/* Left: info */}
       <div className="px-6 py-12 md:px-24 md:py-20">
         <p className="mb-6 text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— Visítanos</p>
-        <h2 className="mb-8 text-5xl leading-tight font-light text-[var(--foreground)] md:mb-14 md:text-7xl" style={{ fontFamily: SERIF }}>
+        <h2 className="mb-8 text-5xl leading-tight font-[var(--font-serif)] font-light text-[var(--foreground)] md:mb-14 md:text-7xl">
           {data.place.formattedAddress.split(',')[0]?.trim()},{' '}
           <em className="text-[var(--primary)] italic">{data.place.formattedAddress.split(',')[1]?.trim()}</em>.
         </h2>

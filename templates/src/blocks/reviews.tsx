@@ -1,6 +1,5 @@
 import React from 'react';
 import type { WebsiteData } from '../types';
-import { SERIF } from '../utils';
 
 const REVIEWS = [
   {
@@ -26,7 +25,7 @@ export function Reviews({ data }: { data: WebsiteData }) {
       <div className="mb-8 flex flex-col gap-6 md:mb-16 md:flex-row md:items-start md:justify-between md:gap-16">
         <div>
           <p className="mb-4 text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— Opiniones</p>
-          <h2 className="text-5xl font-light text-[var(--foreground)]" style={{ fontFamily: SERIF }}>
+          <h2 className="text-5xl font-[var(--font-serif)] font-light text-[var(--foreground)]">
             La voz <em className="text-[var(--primary)] italic">del cliente</em>.
           </h2>
         </div>
@@ -34,7 +33,7 @@ export function Reviews({ data }: { data: WebsiteData }) {
         <div className="shrink-0 border border-[var(--primary-30)] p-6">
           <div className="grid grid-cols-2 divide-x divide-[var(--primary-20)]">
             <div className="pr-8 text-center">
-              <div className="text-4xl font-light text-[var(--primary)] italic" style={{ fontFamily: SERIF }}>
+              <div className="text-4xl font-[var(--font-serif)] font-light text-[var(--primary)] italic">
                 {data.place.rating ? data.place.rating.toString().replace('.', ',') : '–'}
               </div>
               <div className="mt-1 text-[var(--primary)]">★★★★★</div>
@@ -43,9 +42,7 @@ export function Reviews({ data }: { data: WebsiteData }) {
               </div>
             </div>
             <div className="pl-8 text-center">
-              <div className="text-4xl font-light text-[var(--primary)] italic" style={{ fontFamily: SERIF }}>
-                4,9
-              </div>
+              <div className="text-4xl font-[var(--font-serif)] font-light text-[var(--primary)] italic">4,9</div>
               <div className="mt-1 text-[var(--primary)]">★★★★★</div>
               <div className="mt-2 text-xs tracking-[0.15em] text-[var(--foreground-30)] uppercase">Booksy · 324</div>
             </div>
@@ -57,7 +54,7 @@ export function Reviews({ data }: { data: WebsiteData }) {
         {REVIEWS.map((review) => (
           <div key={review.author} className="flex flex-col border border-[var(--foreground-10)] bg-[var(--popover)] p-8">
             <div className="text-lg text-[var(--primary)]">★★★★★</div>
-            <p className="mt-4 flex-1 text-sm leading-relaxed text-[var(--foreground-80)] italic" style={{ fontFamily: SERIF }}>
+            <p className="mt-4 flex-1 text-sm leading-relaxed font-[var(--font-serif)] text-[var(--foreground-80)] italic">
               "{review.text}"
             </p>
             <div className="mt-6 flex items-center justify-between border-t border-[var(--foreground-10)] pt-4">

@@ -1,6 +1,5 @@
 import React from 'react';
 import type { WebsiteData } from '../types';
-import { SERIF } from '../utils';
 
 export function Hero({ data }: { data: WebsiteData }) {
   return (
@@ -11,14 +10,14 @@ export function Hero({ data }: { data: WebsiteData }) {
       </div>
 
       <div className="relative z-10 px-6 pb-24 md:px-24">
-        <h1 className="leading-none" style={{ fontFamily: SERIF }}>
+        <h1 className="leading-none font-[var(--font-serif)]">
           <span className="block text-5xl font-light text-[var(--foreground)] md:text-7xl lg:text-8xl">{data.blocks.hero.firstTitle}</span>
           <span className="block text-5xl font-light text-[var(--primary)] italic md:text-7xl lg:text-8xl">
             {data.blocks.hero.secondTitle}
           </span>
         </h1>
 
-        <p className="mt-8 max-w-xs text-base text-[var(--foreground-70)] italic md:max-w-sm" style={{ fontFamily: SERIF }}>
+        <p className="mt-8 max-w-xs text-base font-[var(--font-serif)] text-[var(--foreground-70)] italic md:max-w-sm">
           {data.blocks.hero.text}
         </p>
 

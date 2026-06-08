@@ -1,5 +1,4 @@
 import React from 'react';
-import { SERIF } from '../utils';
 
 const SERVICE_GROUPS = [
   {
@@ -107,11 +106,11 @@ export function Services() {
       <div className="mb-8 grid gap-6 md:mb-16 md:grid-cols-2 md:items-start md:gap-16">
         <div>
           <p className="mb-4 text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— Carta</p>
-          <h2 className="text-5xl leading-tight font-light text-[var(--foreground)]" style={{ fontFamily: SERIF }}>
+          <h2 className="text-5xl leading-tight font-[var(--font-serif)] font-light text-[var(--foreground)]">
             Servicios <em className="text-[var(--primary)] italic">&amp;</em> precios.
           </h2>
         </div>
-        <p className="text-sm leading-relaxed text-[var(--foreground-50)] italic md:pt-14" style={{ fontFamily: SERIF }}>
+        <p className="text-sm leading-relaxed font-[var(--font-serif)] text-[var(--foreground-50)] italic md:pt-14">
           Reserva directo en Booksy: elige el servicio, el día y la hora. Sin sorpresas, sin letra pequeña.
         </p>
       </div>
@@ -134,9 +133,7 @@ export function Services() {
                     <span className="order-1 text-xs tracking-[0.15em] text-[var(--foreground-30)] uppercase md:order-2 md:shrink-0 md:pt-0.5">
                       {item.duration}
                     </span>
-                    <span
-                      className="order-2 grow text-right text-xl font-light text-[var(--primary)] italic md:order-3 md:w-16 md:shrink-0 md:grow-0"
-                      style={{ fontFamily: SERIF }}>
+                    <span className="order-2 grow text-right text-xl font-[var(--font-serif)] font-light text-[var(--primary)] italic md:order-3 md:w-16 md:shrink-0 md:grow-0">
                       {item.price}
                     </span>
                     <div className="order-3 w-full md:order-1 md:w-auto md:flex-1">

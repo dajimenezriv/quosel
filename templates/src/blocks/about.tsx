@@ -1,18 +1,15 @@
 import React from 'react';
 import type { WebsiteData } from '../types';
-import { SERIF } from '../utils';
 
 export function About({ data }: { data: WebsiteData }) {
   return (
     <section id="about" className="grid gap-8 bg-[var(--card)] px-6 py-12 md:grid-cols-2 md:gap-16 md:px-24 md:py-24">
       <div>
         <p className="mb-6 text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— {data.blocks.aboutUs.nav}</p>
-        <h2 className="text-5xl leading-tight font-light" style={{ fontFamily: SERIF }}>
+        <h2 className="text-5xl leading-tight font-[var(--font-serif)] font-light">
           Una barbería <em className="text-[var(--primary)] italic">{data.place.name}</em>, para el barrio.
         </h2>
-        <blockquote
-          className="mt-10 border-l-2 border-[var(--primary)] pl-6 text-lg text-[var(--foreground-70)] italic"
-          style={{ fontFamily: SERIF }}>
+        <blockquote className="mt-10 border-l-2 border-[var(--primary)] pl-6 text-lg font-[var(--font-serif)] text-[var(--foreground-70)] italic">
           Cortes de calidad, atención personalizada y el ambiente del barrio. Sin prisas, sin trámites, sin sorpresas.
         </blockquote>
         <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--foreground-60)]">
