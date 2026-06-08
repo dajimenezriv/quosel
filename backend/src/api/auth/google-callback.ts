@@ -43,21 +43,15 @@ export async function googleCallback(c: Context) {
   }
 
   const googleId = claims.sub;
-  // TODO: Change with create or update
-  let user = await Users.getByGoogleId(googleId);
-
-  if (!user) {
-    user = await Users.create({
-      googleId,
-      email: claims.email,
-      name: claims.name ?? '',
-      givenName: claims.givenName ?? '',
-      familyName: claims.familyName ?? '',
-      picture: claims.picture ?? '',
-      subscriptionPriceId: '',
-      subscriptionStatus: '',
-    });
-  }
+  const user = await Users.createOrUpdate(googleId, {
+    email: claims.email,
+    name: claims.name ?? '',
+    givenName: claims.givenName ?? '',
+    familyName: claims.familyName ?? '',
+    picture: claims.picture ?? '',
+    subscriptionPriceId: '',
+    subscriptionStatus: '',
+  });
 
   const userId = user.id;
   const sessionId = randomBytes(20).toString('hex');

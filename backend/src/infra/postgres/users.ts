@@ -11,10 +11,6 @@ export class Users {
     return await prisma.user.findUnique({ where: { id } });
   }
 
-  static async getByGoogleId(googleId: string) {
-    return await prisma.user.findUnique({ where: { googleId } });
-  }
-
   static async update(id: UserId, data: Prisma.UserUncheckedUpdateInput) {
     return await prisma.user.update({ where: { id }, data });
   }
@@ -23,9 +19,15 @@ export class Users {
     return await prisma.user.update({ where: { stripeCustomerId }, data });
   }
 
-  static async create(user: Prisma.UserUncheckedCreateInput) {
+  static async createOrUpdate(googleId: string, data: Omit<Prisma.UserUncheckedCreateInput, 'googleId'>) {
     return await prisma.$transaction(async (tx) => {
-      const userRow = await tx.user.create({ data: user });
+      const existing = await tx.user.findUnique({ where: { googleId } });
+
+      if (existing) {
+        return await tx.user.update({ where: { googleId }, data });
+      }
+
+      const userRow = await tx.user.create({ data: { googleId, ...data } });
 
       await seedPlace(tx);
 

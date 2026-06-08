@@ -2,15 +2,15 @@ import type { UserId } from '@/core/types';
 import { prisma } from '@/infra/postgres/client';
 
 export async function createMockUser() {
-  const unique = crypto.randomUUID();
   const user = await prisma.user.create({
     data: {
-      googleId: unique,
-      email: unique,
+      googleId: crypto.randomUUID(),
+      email: crypto.randomUUID(),
       name: 'name',
       givenName: 'givenName',
       familyName: 'familyName',
       picture: 'picture',
+      stripeCustomerId: crypto.randomUUID(),
       subscriptionStatus: 'subscriptionStatus',
       subscriptionPriceId: 'subscriptionPriceId',
     },

@@ -1,67 +1,64 @@
 import type { UserId } from '@/core/types';
-import { prisma } from './client';
-import type { Prisma } from './prisma/client';
+import { prisma } from '@/infra/postgres/client';
+import { createMockUser } from '@/tests/postgres.helper.test';
 import { Users } from './users';
 
 describe('users', () => {
-  const googleId = crypto.randomUUID();
-  const baseUser: Prisma.UserCreateInput = {
-    googleId,
-    email: 'users@test.com',
-    name: '',
-    givenName: '',
-    familyName: '',
-    picture: '',
-    subscriptionStatus: '',
-    subscriptionPriceId: '',
-  };
+  describe('getById', () => {
+    it('should return user if it exists', async () => {
+      // Given
+      const { userId } = await createMockUser();
+      // When
+      const res = await Users.getById(userId);
+      // Then
+      expect(res!.id).toBe(userId);
+    });
 
-  afterEach(async () => {
-    await prisma.user.delete({ where: { googleId } });
+    it('should return null if not exists', async () => {
+      // When
+      const res = await Users.getById('userId' as UserId);
+      // Then
+      expect(res).toBeNull();
+    });
   });
 
-  it('should work', async () => {
-    // Create a user
-    // When
-    const user = await Users.create(baseUser);
-    const userId = user.id as UserId;
-    // Then
-    expect(user?.googleId).toBe(googleId);
+  describe('update', () => {
+    it('should update user if it exists', async () => {
+      // Given
+      const { userId, name } = await createMockUser();
+      // When
+      const res = await Users.update(userId, { name: 'newName' });
+      // Then
+      expect(name).toBe('name');
+      expect(res!.name).toBe('newName');
+    });
 
-    // Retrieve existing user by id
-    // When
-    let res = await Users.getById(userId);
-    // Then
-    expect(res!.email).toBe('users@test.com');
-
-    // Retrieve non existing user by google id
-    // When
-    res = await Users.getById('other' as UserId);
-    // Then
-    expect(res).toBeNull();
-
-    // Update user
-    // When
-    res = await Users.update(userId, { stripeCustomerId: 'stripeCustomerId' });
-    // Then
-    expect(res!.stripeCustomerId).toBe('stripeCustomerId');
-
-    // Update user by stripe customer id
-    // When
-    res = await Users.updateByStripeCustomerId('stripeCustomerId', { email: 'users_changed@test.com' });
-    // Then
-    expect(res!.email).toBe('users_changed@test.com');
-
-    // Retrieve existing user by google id
-    // When
-    res = await Users.getByGoogleId(googleId);
-    // Then
-    expect(res!.email).toBe('users_changed@test.com');
-
-    // Retrieve non existing user by google id
-    // When
-    res = await Users.getByGoogleId('other');
-    // Then
-    expect(res).toBeNull();
+    it('should throw error if user does not exist', async () => {
+      // When
+      const promise = Users.update('nonExisting' as UserId, { email: 'update@mail.com' });
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for an update.');
+    });
   });
+
+  describe('updateByStripeCustomerId', () => {
+    it('should update user if it exists', async () => {
+      // Given
+      const { stripeCustomerId, name } = await createMockUser();
+      // When
+      const res = await Users.updateByStripeCustomerId(stripeCustomerId!, { name: 'newName' });
+      // Then
+      expect(name).toBe('name');
+      expect(res!.name).toBe('newName');
+    });
+
+    it('should throw error if user does not exist', async () => {
+      // When
+      const promise = Users.updateByStripeCustomerId('nonExisting', { email: 'update@mail.com' });
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for an update.');
+    });
+  });
+
+  describe('createOrUpdate', () => {});
 });
