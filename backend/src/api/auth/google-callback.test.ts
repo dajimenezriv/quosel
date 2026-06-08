@@ -2,7 +2,7 @@ import { google } from '@/api/auth/utils';
 import { app } from '@/app';
 import { Sessions } from '@/infra/postgres/sessions';
 import { Users } from '@/infra/postgres/users';
-import { call, calls, deepMocked, expectError, loggerFn } from '@/tests/utils.helper.test';
+import { calls, deepMocked, expectError, loggerFn } from '@/tests/utils.helper.test';
 import { decodeIdToken, OAuth2RequestError } from 'arctic';
 
 vi.mock(import('@/api/auth/utils'));
@@ -99,7 +99,7 @@ describe('google-callback', () => {
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
-    calls(Users.create).toHaveLength(0);
+    calls(Users.create).toStrictEqual([]);
   });
 
   it('should create user if not found', async () => {
@@ -110,7 +110,7 @@ describe('google-callback', () => {
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
-    call(Users.create).toMatchObject({ googleId: 'googleSub' });
+    calls(Users.create).toMatchObject({ googleId: 'googleSub' });
   });
 
   it('should set session cookie and redirect on success', async () => {
@@ -120,7 +120,7 @@ describe('google-callback', () => {
     const res = await app.request(VALID_QUERY, { headers: { Cookie: VALID_COOKIES } });
     // Then
     expect(res.status).toBe(302);
-    call(Sessions.create).toMatchObject({ userId: 'mockExistsId' });
+    calls(Sessions.create).toMatchObject({ userId: 'mockExistsId' });
     expect(res.headers.getSetCookie()).toStrictEqual([
       'google_state=; Max-Age=0; Path=/',
       'google_verifier=; Max-Age=0; Path=/',

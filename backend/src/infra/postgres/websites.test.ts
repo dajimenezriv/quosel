@@ -1,11 +1,11 @@
 import { templateBlocks } from '@/modules/websites/transform-place-to-blocks';
-import { createUser } from '@/tests/utils.helper.test';
+import { createMockUser } from '@/tests/postgres.helper.test';
 import { prisma } from './client';
 import { Websites, type PlaceInsert, type ReviewInsert } from './websites';
 
 describe('websites', async () => {
-  const { userId: userId1 } = await createUser();
-  const { userId: userId2 } = await createUser();
+  const { userId: userId1 } = await createMockUser();
+  const { userId: userId2 } = await createMockUser();
 
   const place: PlaceInsert = {
     googleId: crypto.randomUUID(),

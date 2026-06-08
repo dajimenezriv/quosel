@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { R2 } from '@/infra/r2/r2';
-import { call, calls, deepMocked, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
+import { calls, deepMocked, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
 import type { Blocks } from '@quosel/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
@@ -31,7 +31,6 @@ describe('update-website', () => {
   mockAuthMiddleware();
 
   const getByIdMock = deepMocked(Websites.getById);
-  const uploadMock = vi.mocked(R2.upload);
 
   beforeEach(() => {
     getByIdMock.mockResolvedValue({ id: 'websiteId', place: WEBSITE_MOCK.place });
@@ -65,7 +64,7 @@ describe('update-website', () => {
     const res = await app.request('/websites/websiteId', putRequest(VALID_BODY));
     // Then
     expect(res.status).toBe(204);
-    calls(uploadMock).toStrictEqual([]);
+    calls(R2.upload).toStrictEqual([]);
   });
 
   it('should return 204 and upload to R2 when publish is true', async () => {
@@ -73,6 +72,6 @@ describe('update-website', () => {
     const res = await app.request('/websites/websiteId?publish=true', putRequest(VALID_BODY));
     // Then
     expect(res.status).toBe(204);
-    call(uploadMock).toStrictEqual(['websites/websiteId/index.html', expect.any(File)]);
+    calls(R2.upload).toStrictEqual(['websites/websiteId/index.html', expect.any(File)]);
   });
 });

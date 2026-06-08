@@ -1,6 +1,6 @@
 import { app } from '@/app';
 import { Sessions } from '@/infra/postgres/sessions';
-import { call, calls } from '@/tests/utils.helper.test';
+import { calls } from '@/tests/utils.helper.test';
 
 vi.mock(import('@/infra/postgres/sessions'));
 
@@ -21,7 +21,7 @@ describe('logout', () => {
     });
     // Then
     expect(res.status).toBe(204);
-    call(Sessions.deleteById).toBe('sessionId');
+    calls(Sessions.deleteById).toBe('sessionId');
   });
 
   it('should not delete session in db if cookie is not set', async () => {
@@ -29,6 +29,6 @@ describe('logout', () => {
     const res = await app.request('/auth/logout', { method: 'POST' });
     // Then
     expect(res.status).toBe(204);
-    calls(Sessions.deleteById).toHaveLength(0);
+    calls(Sessions.deleteById).toStrictEqual([]);
   });
 });

@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { WebsiteImages } from '@/infra/postgres/website-images';
 import { R2 } from '@/infra/r2/r2';
-import { call, deepMocked, DELETE_AUTH_REQUEST, expectError, mockAuthMiddleware } from '@/tests/utils.helper.test';
+import { calls, deepMocked, DELETE_AUTH_REQUEST, expectError, mockAuthMiddleware } from '@/tests/utils.helper.test';
 
 vi.mock(import('@/infra/postgres/website-images'));
 vi.mock(import('@/infra/r2/r2'));
@@ -25,6 +25,6 @@ describe('delete-image', () => {
     const res = await app.request('/images/imageId', DELETE_AUTH_REQUEST);
     // Then
     expect(res.status).toBe(204);
-    call(R2.delete).toBe('images/imageId');
+    calls(R2.delete).toBe('images/imageId');
   });
 });

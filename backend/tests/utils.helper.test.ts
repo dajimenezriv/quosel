@@ -1,9 +1,12 @@
 import { logger } from '@/core/logger';
-import type { UserId } from '@/core/types';
-import { prisma } from '@/infra/postgres/client';
 import { Sessions } from '@/infra/postgres/sessions';
 import type { DeepPartial } from 'ts-essentials';
 import type { MockedFunction } from 'vitest';
+
+export const loggerFn = vi.fn();
+const loggerMock = vi.mocked(logger);
+loggerMock.info.mockImplementation(loggerFn);
+loggerMock.error.mockImplementation(loggerFn);
 
 const COOKIE_HEADERS = { headers: { Cookie: 'session=sessionId' } };
 export const GET_AUTH_REQUEST = COOKIE_HEADERS;
@@ -18,11 +21,6 @@ export function putRequest(body?: object) {
   };
 }
 
-export const loggerFn = vi.fn();
-const loggerMock = vi.mocked(logger);
-loggerMock.info.mockImplementation(loggerFn);
-loggerMock.error.mockImplementation(loggerFn);
-
 export function deepMocked<T extends (...args: any[]) => unknown>(fn: T) {
   return vi.mocked(fn) as MockedFunction<(...args: Parameters<T>) => DeepPartial<ReturnType<T>>>;
 }
@@ -35,41 +33,12 @@ export function mockAuthMiddleware() {
   });
 }
 
-export async function createUser() {
-  const user = await prisma.user.create({
-    data: {
-      googleId: crypto.randomUUID(),
-      email: crypto.randomUUID(),
-      name: '',
-      givenName: '',
-      familyName: '',
-      picture: '',
-      subscriptionStatus: '',
-      subscriptionPriceId: '',
-    },
-  });
-
-  afterAll(async () => {
-    await prisma.user.delete({ where: { id: user.id } });
-  });
-
-  return { ...user, userId: user.id as UserId };
-}
-
-function getCalls(object: any) {
-  return object.mock.calls.map((call: any) => {
+export function calls(object: any) {
+  const calls = object.mock.calls.map((call: any) => {
     if (call.length === 1) return call[0];
     return call;
   });
-}
-
-export function calls(object: any) {
-  return expect(getCalls(object));
-}
-
-export function call(object: any) {
-  const calls = getCalls(object);
-  if (calls.length !== 1) throw new Error(`Invalid length in ${object.getMockName()}: ${calls.length} calls`);
+  if (calls.length !== 1) return expect(calls);
   return expect(calls[0]);
 }
 
