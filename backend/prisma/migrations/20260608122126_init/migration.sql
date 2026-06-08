@@ -72,8 +72,10 @@ CREATE TABLE IF NOT EXISTS "websites" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "place_id" TEXT NOT NULL,
-    "domain" TEXT NOT NULL,
+    "domain" TEXT,
     "blocks" JSONB NOT NULL,
+    "styles" JSONB NOT NULL,
+    "published_at" TIMESTAMPTZ,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -96,6 +98,9 @@ CREATE TABLE IF NOT EXISTS "website_images" (
 CREATE UNIQUE INDEX "users_google_id_key" ON "users"("google_id");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "users_stripe_customer_id_key" ON "users"("stripe_customer_id");
 
 -- CreateIndex
@@ -108,19 +113,7 @@ CREATE UNIQUE INDEX "places_google_id_key" ON "places"("google_id");
 CREATE UNIQUE INDEX "reviews_google_id_key" ON "reviews"("google_id");
 
 -- CreateIndex
-CREATE INDEX IF NOT EXISTS "reviews_place_id_idx" ON "reviews"("place_id");
-
--- CreateIndex
 CREATE UNIQUE INDEX "websites_domain_key" ON "websites"("domain");
-
--- CreateIndex
-CREATE INDEX IF NOT EXISTS "websites_user_id_idx" ON "websites"("user_id");
-
--- CreateIndex
-CREATE INDEX IF NOT EXISTS "website_images_user_id_idx" ON "website_images"("user_id");
-
--- CreateIndex
-CREATE INDEX IF NOT EXISTS "website_images_website_id_idx" ON "website_images"("website_id");
 
 -- AddForeignKey
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

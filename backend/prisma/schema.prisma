@@ -10,7 +10,7 @@ datasource db {
 model User {
   id                   String    @id @default(uuid())
   googleId             String    @unique @map("google_id")
-  email                String
+  email                String    @unique
   name                 String
   givenName            String    @map("given_name")
   familyName           String    @map("family_name")
@@ -78,24 +78,24 @@ model Review {
 
   place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
 
-  @@index([placeId], map: "reviews_place_id_idx")
   @@map("reviews")
 }
 
 model Website {
-  id        String   @id @default(uuid())
-  userId    String   @map("user_id")
-  placeId   String   @map("place_id")
-  domain    String   @unique
-  blocks    Json
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  id          String    @id @default(uuid())
+  userId      String    @map("user_id")
+  placeId     String    @map("place_id")
+  domain      String?   @unique
+  blocks      Json
+  styles      Json
+  publishedAt DateTime? @map("published_at") @db.Timestamptz
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   place         Place          @relation(fields: [placeId], references: [id], onDelete: Cascade)
   websiteImages WebsiteImage[]
 
-  @@index([userId], map: "websites_user_id_idx")
   @@map("websites")
 }
 
@@ -110,7 +110,5 @@ model WebsiteImage {
   user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   website Website? @relation(fields: [websiteId], references: [id], onDelete: SetNull)
 
-  @@index([userId], map: "website_images_user_id_idx")
-  @@index([websiteId], map: "website_images_website_id_idx")
   @@map("website_images")
 }
