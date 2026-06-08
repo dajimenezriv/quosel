@@ -52,7 +52,6 @@ export const blocksSchema = z.object({
 
 export type Styles = z.infer<typeof stylesSchema>;
 export const stylesSchema = z.object({
-  schemaVersion: z.literal(1).default(1),
   background: z.string().default('#262624'),
   foreground: z.string().default('#c3c0b6'),
   card: z.string().default('#262624'),

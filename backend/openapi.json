@@ -627,13 +627,6 @@
                     "styles": {
                       "type": "object",
                       "properties": {
-                        "schemaVersion": {
-                          "type": "number",
-                          "enum": [
-                            1
-                          ],
-                          "default": 1
-                        },
                         "background": {
                           "type": "string",
                           "default": "#262624"
@@ -1072,13 +1065,6 @@
                   "styles": {
                     "type": "object",
                     "properties": {
-                      "schemaVersion": {
-                        "type": "number",
-                        "enum": [
-                          1
-                        ],
-                        "default": 1
-                      },
                       "background": {
                         "type": "string",
                         "default": "#262624"
