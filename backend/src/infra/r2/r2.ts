@@ -10,7 +10,7 @@ export const r2 = new S3Client({
   },
 });
 
-type Key = `websites/${string}/index.html` | `images/${string}`;
+type Key = `websites/${string}.html` | `images/${string}`;
 
 export class R2 {
   static async upload(key: Key, file: File) {

@@ -72,6 +72,6 @@ describe('update-website', () => {
     const res = await app.request('/websites/websiteId?publish=true', putRequest(VALID_BODY));
     // Then
     expect(res.status).toBe(204);
-    calls(R2.upload).toStrictEqual(['websites/websiteId/index.html', expect.any(File)]);
+    calls(R2.upload).toStrictEqual(['websites/websiteId.html', expect.any(File)]);
   });
 });

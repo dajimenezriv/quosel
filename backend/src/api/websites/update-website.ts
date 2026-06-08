@@ -42,7 +42,7 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
   if (publish) {
     const html = renderTemplate({ place: website.place, blocks, styles });
     const file = new File([html], 'index.html', { type: 'text/html' });
-    await R2.upload(`websites/${websiteId}/index.html`, file);
+    await R2.upload(`websites/${websiteId}.html`, file);
   }
 
   return c.body(null, 204);
