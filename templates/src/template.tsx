@@ -9,16 +9,12 @@ import { Navigation } from './blocks/navigation';
 import { Reviews } from './blocks/reviews';
 import { Services } from './blocks/services';
 import { Stats } from './blocks/stats';
-import { tweakcnThemes } from './tweakcn-themes';
 import type { WebsiteData } from './types';
 
 const SANS = 'var(--font-sans)';
 
 export function buildRootStyles(data: WebsiteData) {
-  const theme = tweakcnThemes[data.tweakcnThemeKey];
-  const style = data.isDarkMode ? theme?.dark : theme?.light;
-
-  const themeVars = Object.entries(style ?? {})
+  const themeVars = Object.entries(data.styles)
     .filter(([, v]) => v != null)
     .map(([k, v]) => `  --${k}: ${v};`)
     .join('\n');

@@ -50,6 +50,27 @@ export const blocksSchema = z.object({
   }),
 });
 
+export type Styles = z.infer<typeof stylesSchema>;
+export const stylesSchema = z.object({
+  schemaVersion: z.literal(1),
+  background: z.string().default('#262624'),
+  foreground: z.string().default('#c3c0b6'),
+  card: z.string().default('#262624'),
+  'card-foreground': z.string().default('#faf9f5'),
+  popover: z.string().default('#30302e'),
+  'popover-foreground': z.string().default('#e5e5e2'),
+  primary: z.string().default('#d97757'),
+  'primary-foreground': z.string().default('#ffffff'),
+  secondary: z.string().default('#faf9f5'),
+  'secondary-foreground': z.string().default('#30302e'),
+  muted: z.string().default('#1b1b19'),
+  'muted-foreground': z.string().default('#b7b5a9'),
+  accent: z.string().default('#1a1915'),
+  'accent-foreground': z.string().default('#f5f4ee'),
+  border: z.string().default('#3e3e38'),
+  ring: z.string().default('#d97757'),
+});
+
 export interface WebsiteData {
   place: {
     name: string;
@@ -58,7 +79,6 @@ export interface WebsiteData {
     rating: number | null;
     userRatingCount: number | null;
   };
-  tweakcnThemeKey: string;
-  isDarkMode: boolean;
   blocks: Blocks;
+  styles: Styles;
 }
