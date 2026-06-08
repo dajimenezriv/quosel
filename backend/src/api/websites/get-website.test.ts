@@ -35,6 +35,7 @@ describe('get-website', () => {
       createdAt: new Date('2024-01-01T00:00:00.000Z'),
       updatedAt: new Date('2024-01-01T00:00:00.000Z'),
       blocks: templateBlocks,
+      styles: {},
       place: {
         id: 'place-id',
         googleId: 'google-place-id',

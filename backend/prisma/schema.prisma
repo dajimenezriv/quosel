@@ -100,10 +100,9 @@ model Website {
 }
 
 model WebsiteImage {
-  id        String   @id @default(uuid())
+  id        String   @id
   userId    String   @map("user_id")
   websiteId String?  @map("website_id")
-  key       String
   sizeBytes Int      @map("size_bytes")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
 

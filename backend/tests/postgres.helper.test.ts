@@ -51,7 +51,7 @@ export async function createMockWebsite(userId: UserId, placeId: string) {
 export async function createMockImage(userId: UserId) {
   return await prisma.websiteImage.create({
     data: {
-      key: 'key',
+      id: crypto.randomUUID(),
       sizeBytes: 1024,
       userId,
     },

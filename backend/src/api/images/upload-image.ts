@@ -1,4 +1,3 @@
-import { randomBytes } from 'node:crypto';
 import { ApiError } from '@/core/api/errors';
 import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
@@ -41,12 +40,12 @@ export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: Aut
   if (!ALLOWED_TYPES.includes(file.type)) throw new ApiError(400, 'Invalid file type');
   if (file.size > MAX_SIZE) throw new ApiError(400, 'File too large (max 5 MB)');
 
-  const ext = file.type.split('/')[1];
-  const key = `images/${userId}/${randomBytes(8).toString('hex')}.${ext}`;
+  const id = crypto.randomUUID();
+  const key = `images/${id}`;
   await R2.upload(key, file);
 
   const image = await WebsiteImages.create({
-    key,
+    id,
     userId,
     websiteId,
     sizeBytes: file.size,

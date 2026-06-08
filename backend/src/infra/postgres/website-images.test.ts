@@ -43,7 +43,7 @@ describe('website-images', async () => {
   describe('create', () => {
     it('should create an image', async () => {
       // When
-      const image = await WebsiteImages.create({ key: 'key', sizeBytes: 1024, userId });
+      const image = await WebsiteImages.create({ id: crypto.randomUUID(), sizeBytes: 1024, userId });
       // Then
       expect(image).toBeDefined();
     });
@@ -52,7 +52,7 @@ describe('website-images', async () => {
       // When
       const image = WebsiteImages.create({ sizeBytes: 1024, userId } as any);
       // Then
-      await expect(image).rejects.toThrow('Argument `key` is missing.');
+      await expect(image).rejects.toThrow('Argument `id` is missing.');
     });
   });
 

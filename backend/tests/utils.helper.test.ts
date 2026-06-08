@@ -39,7 +39,7 @@ export async function createUser() {
   const user = await prisma.user.create({
     data: {
       googleId: crypto.randomUUID(),
-      email: 'sessions@test.com',
+      email: crypto.randomUUID(),
       name: '',
       givenName: '',
       familyName: '',

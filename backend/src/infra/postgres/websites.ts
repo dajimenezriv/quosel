@@ -1,9 +1,14 @@
 import { randomBytes } from 'node:crypto';
 import type { UserId } from '@/core/types';
 import { slugify } from '@/core/utils';
-import type { Blocks } from '@quosel/templates';
+import type { Blocks, Styles } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
+
+interface WebsiteUpdate {
+  blocks: Blocks;
+  styles: Styles;
+}
 
 export type PlaceInsert = Prisma.PlaceUncheckedCreateInput;
 export type ReviewInsert = Omit<Prisma.ReviewUncheckedCreateInput, 'placeId'>;
@@ -31,6 +36,13 @@ export class Websites {
     });
   }
 
+  static async update(userId: UserId, websiteId: string, data: WebsiteUpdate) {
+    return await prisma.website.update({
+      where: { id: websiteId, userId },
+      data,
+    });
+  }
+
   static async create(userId: UserId, place: PlaceInsert, placeReviews: ReviewInsert[], blocks: Blocks) {
     return await prisma.$transaction(async (tx) => {
       const { googleId: googlePlaceId, ...placeUpdate } = place;
@@ -54,7 +66,13 @@ export class Websites {
 
       const domain = this.randomDomain(place.name);
       const websiteRow = await tx.website.create({
-        data: { placeId, userId, domain, blocks },
+        data: {
+          placeId,
+          userId,
+          domain,
+          blocks,
+          styles: {},
+        },
       });
 
       return websiteRow.id;
