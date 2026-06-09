@@ -10,23 +10,21 @@ export function CTA() {
             "url('https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format')",
         }}
       />
-      <div className="absolute inset-0 bg-[var(--popover)]/70" />
+      <div className="bg-popover/70 absolute inset-0" />
       <div className="relative z-10 max-w-2xl px-6 md:px-8">
-        <h2 className="text-4xl leading-tight font-[var(--font-serif)] font-light text-[var(--primary)] italic md:text-6xl">
-          Tu próxima cita empieza aquí.
-        </h2>
-        <p className="mt-6 text-sm leading-relaxed text-[var(--foreground-60)]">
+        <h2 className="text-primary text-4xl leading-tight font-(--font-serif) italic md:text-6xl">Tu próxima cita empieza aquí.</h2>
+        <p className="mt-6 text-sm leading-relaxed text-(--foreground-60)">
           Reserva en Booksy o síguenos en Instagram. Las dos puertas para entrar en la barbería antes incluso de cruzarla.
         </p>
         <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
           <a
             href="#"
-            className="bg-[var(--primary)] px-8 py-4 text-center text-xs tracking-[0.2em] text-[var(--primary-foreground)] uppercase transition-colors hover:opacity-90">
+            className="bg-primary text-primary-foreground px-8 py-4 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:opacity-90">
             Reservar en Booksy →
           </a>
           <a
             href="#"
-            className="border border-[var(--foreground-40)] px-8 py-4 text-center text-xs tracking-[0.2em] text-[var(--foreground)] uppercase transition-colors hover:border-[var(--foreground)]">
+            className="text-foreground hover:border-foreground border border-(--foreground-40) px-8 py-4 text-center text-xs tracking-[0.2em] uppercase transition-colors">
             Seguir en Instagram →
           </a>
         </div>

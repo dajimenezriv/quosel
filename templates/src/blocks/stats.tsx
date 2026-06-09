@@ -10,15 +10,15 @@ export function Stats({ data }: { data: WebsiteData }) {
   ];
 
   return (
-    <section className="grid grid-cols-2 border-t border-b border-[var(--foreground-10)] bg-[var(--card)] md:grid-cols-4">
+    <section className="bg-card grid grid-cols-2 border-t border-b border-(--foreground-10) md:grid-cols-4">
       {stats.map((stat, i) => (
         <div
           key={i}
           className={`px-10 py-8 text-center border-[var(--foreground-10)]${
             i % 2 === 0 ? 'border-r' : ''
           }${i < 2 ? 'border-b md:border-b-0' : ''}${i % 2 !== 0 && i < 3 ? 'md:border-r' : ''}`}>
-          <div className="text-3xl font-[var(--font-serif)] font-light text-[var(--primary)] italic">{stat.value}</div>
-          <div className="mt-2 text-xs tracking-[0.2em] text-[var(--foreground-40)] uppercase">{stat.label}</div>
+          <div className="text-primary text-3xl font-(--font-serif) italic">{stat.value}</div>
+          <div className="mt-2 text-xs tracking-[0.2em] text-(--foreground-40) uppercase">{stat.label}</div>
         </div>
       ))}
     </section>

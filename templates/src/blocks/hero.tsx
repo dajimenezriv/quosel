@@ -14,18 +14,18 @@ export function Hero({ data }: { data: WebsiteData }) {
           <span className="text-primary block text-5xl font-light italic md:text-7xl lg:text-8xl">{data.blocks.hero.secondTitle}</span>
         </h1>
 
-        <p className="mt-8 max-w-xl text-base font-[var(--font-serif)] text-[var(--foreground-70)] italic">{data.blocks.hero.text}</p>
+        <p className="mt-8 max-w-xl text-base font-(--font-serif) text-(--foreground-70) italic">{data.blocks.hero.text}</p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a
             target="__blank"
             href={data.blocks.hero.ctaLink}
-            className="bg-[var(--primary)] px-8 py-3 text-center text-xs tracking-[0.25em] text-[var(--primary-foreground)] uppercase transition-colors hover:opacity-90">
+            className="bg-primary text-primary-foreground px-8 py-3 text-center text-xs tracking-[0.25em] uppercase transition-colors hover:opacity-90">
             {data.blocks.hero.ctaText}
           </a>
           <a
             href={`tel:${data.blocks.hero.phone}`}
-            className="border border-[var(--foreground-40)] px-8 py-3 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:border-[var(--foreground)]">
+            className="hover:border-foreground border border-(--foreground-40) px-8 py-3 text-center text-xs tracking-[0.2em] uppercase transition-colors">
             {data.blocks.hero.phone}
           </a>
         </div>
