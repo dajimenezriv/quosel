@@ -42,8 +42,12 @@ export const blocksSchema = z.object({
   reviews: z.object({
     nav: z.string(),
     title: z.string(),
-    rating: z.number().optional(),
-    userRatingCount: z.number().optional(),
+    stats: z.array(
+      z.object({
+        value: z.string(),
+        label: z.string(),
+      }),
+    ),
     reviews: z.array(
       z.object({
         text: z.string(),

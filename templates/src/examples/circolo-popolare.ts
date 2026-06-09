@@ -30,7 +30,7 @@ export const circoloPopolareBlocks: Blocks = {
     text1:
       'Our limited-edition crockery finally landed! From Alemanna and Trinarchia in Sicily to Fima and Nataloni in Umbria, bring home the ultimate Italian tablescape.',
     text2:
-      'The squadra in the kitchen is cooking up a generous Italo-feast: think crispy Neapolitan Pizzas, creamy burratas and Carbonara served from a Pecorino wheel, all handmade with fresh ingredients from the Bel Paese. Take a seat at the long Mediterranean table and admire the 20,000 bottles of vintage spirits and wines, lining up the walls whilst sipping on your glass of Espresso Martini. This is your Sicilian getaway in London.',
+      'The squadra in the kitchen is cooking up a generous Italo-feast: think crispy Neapolitan Pizzas, creamy burratas and Carbonara served from a Pecorino wheel, all handmade with fresh ingredients from the Bel Paese.\n\nTake a seat at the long Mediterranean table and admire the 20,000 bottles of vintage spirits and wines, lining up the walls whilst sipping on your glass of Espresso Martini.\n\nThis is your Sicilian getaway in London.',
     imageUrl:
       'https://cdn.sanity.io/images/aa3sekul/production/b02785058d8cc5dd327d343ae6bf54ab71e69cf5-9358x6239.jpg?w=3072&fit=crop&auto=format',
   },
@@ -54,8 +54,10 @@ export const circoloPopolareBlocks: Blocks = {
   reviews: {
     nav: 'Reviews',
     title: 'The voice of the customer.',
-    rating: 4.8,
-    userRatingCount: 312,
+    stats: [
+      { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
+      { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
+    ],
     reviews: [
       {
         text: 'Amazing spot. The ambience is honestly one of the best parts of the place. Very relaxed, warm and perfect for a slow meal.\nThe food completely lived up to it as well. I had the mushroom truffle toast and the truffle pasta and both were excellent. The truffle flavour was spot on and the pasta in particular really blew me away.\nEverything just worked together the atmosphere, the food, the overall vibe. Left the place genuinely impressed and had a great time.\nThe team also mentioned they have opened a sister branch in Dublin, so I will definitely be checking that one out as well.',
@@ -79,7 +81,7 @@ export const circoloPopolareBlocks: Blocks = {
   },
   services: {
     nav: 'Services',
-    title: 'Services & prices.',
+    title: 'Services & prices',
     text: 'Reserva directo en Booksy: elige el servicio, el día y la hora. Sin sorpresas, sin letra pequeña.',
     serviceGroups: [
       {

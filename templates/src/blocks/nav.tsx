@@ -13,7 +13,7 @@ export function Nav({ data }: { data: WebsiteData }) {
   ];
 
   return (
-    <nav className="border-primary fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-5 backdrop-blur-sm">
+    <nav className="border-primary fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-5 opacity-90 backdrop-blur-sm">
       <a className="text-xs tracking-[0.25em] uppercase" href="#home">
         {block.name}
       </a>

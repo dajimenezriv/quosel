@@ -3,14 +3,14 @@ import type { WebsiteData } from '../types';
 
 export function Gallery({ data }: { data: WebsiteData }) {
   return (
-    <section id="gallery" className="bg-popover flex justify-center px-24 py-24">
-      <div className="flex flex-col">
-        <div className="mb-8 grid gap-6 md:mb-12 md:grid-cols-2 md:items-start md:gap-16">
-          <div>
-            <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {data.blocks.gallery.nav}</p>
+    <section id="gallery" className="bg-popover flex justify-center p-24">
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-4">
+          <p className="text-primary text-xs tracking-[0.25em] uppercase">— {data.blocks.gallery.nav}</p>
+          <div className="flex items-end justify-between">
             <h2 className="text-foreground text-5xl">{data.blocks.gallery.title}</h2>
+            <p className="w-150 text-sm leading-relaxed text-(--foreground-50) italic">{data.blocks.gallery.text}</p>
           </div>
-          <p className="pt-12 text-sm leading-relaxed text-(--foreground-50) italic">{data.blocks.gallery.text}</p>
         </div>
 
         <div className="grid grid-cols-4 gap-2">
