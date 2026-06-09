@@ -52,32 +52,25 @@ export const blocksSchema = z.object({
 
 export type Styles = z.infer<typeof stylesSchema>;
 export const stylesSchema = z.object({
-  background: z.string().default('#262624'),
-  foreground: z.string().default('#c3c0b6'),
-  card: z.string().default('#262624'),
-  'card-foreground': z.string().default('#faf9f5'),
-  popover: z.string().default('#30302e'),
-  'popover-foreground': z.string().default('#e5e5e2'),
-  primary: z.string().default('#d97757'),
-  'primary-foreground': z.string().default('#ffffff'),
-  secondary: z.string().default('#faf9f5'),
-  'secondary-foreground': z.string().default('#30302e'),
-  muted: z.string().default('#1b1b19'),
-  'muted-foreground': z.string().default('#b7b5a9'),
-  accent: z.string().default('#1a1915'),
-  'accent-foreground': z.string().default('#f5f4ee'),
-  border: z.string().default('#3e3e38'),
-  ring: z.string().default('#d97757'),
+  background: z.string(),
+  foreground: z.string(),
+  card: z.string(),
+  'card-foreground': z.string(),
+  popover: z.string(),
+  'popover-foreground': z.string(),
+  primary: z.string(),
+  'primary-foreground': z.string(),
+  secondary: z.string(),
+  'secondary-foreground': z.string(),
+  muted: z.string(),
+  'muted-foreground': z.string(),
+  accent: z.string(),
+  'accent-foreground': z.string(),
+  border: z.string(),
+  ring: z.string(),
 });
 
 export interface WebsiteData {
-  place: {
-    name: string;
-    internationalPhoneNumber: string;
-    formattedAddress: string;
-    rating: number | null;
-    userRatingCount: number | null;
-  };
   blocks: Blocks;
   styles: Styles;
 }
