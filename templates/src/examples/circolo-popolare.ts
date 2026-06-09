@@ -8,6 +8,12 @@ export const circoloPopolareBlocks: Blocks = {
     ctaText: 'Book a Table',
     ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   },
+  stats: [
+    { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
+    { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
+    { value: '+87K', label: 'FOLLOWERS ON INSTAGRAM' },
+    { value: 'M-S', label: 'MORNING AND AFTERNOON' },
+  ],
   hero: {
     firstTitle: 'Your italian restaurant,',
     secondTitle: 'Circolo Popolare',

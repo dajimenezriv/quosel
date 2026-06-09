@@ -9,6 +9,12 @@ export const blocksSchema = z.object({
     ctaText: z.string(),
     ctaLink: z.string(),
   }),
+  stats: z.array(
+    z.object({
+      value: z.string(),
+      label: z.string(),
+    }),
+  ),
   hero: z.object({
     firstTitle: z.string(),
     secondTitle: z.string(),
