@@ -10,11 +10,11 @@ export function Services({ data }: { data: WebsiteData }) {
       <div className="mb-8 grid gap-6 md:mb-16 md:grid-cols-2 md:items-start md:gap-16">
         <div>
           <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— Carta</p>
-          <h2 className="text-foreground text-5xl leading-tight font-(--font-serif)">
+          <h2 className="text-foreground text-5xl leading-tight">
             Servicios <em className="text-primary italic">&amp;</em> precios.
           </h2>
         </div>
-        <p className="text-sm leading-relaxed font-(--font-serif) text-(--foreground-50) italic md:pt-14">
+        <p className="text-sm leading-relaxed text-(--foreground-50) italic md:pt-14">
           Reserva directo en Booksy: elige el servicio, el día y la hora. Sin sorpresas, sin letra pequeña.
         </p>
       </div>
@@ -34,7 +34,7 @@ export function Services({ data }: { data: WebsiteData }) {
                       <p className="text-foreground text-base">{item.title}</p>
                       <p className="text-xs leading-relaxed text-(--foreground-40)">{item.text}</p>
                     </div>
-                    <span className="text-primary text-right text-xl font-(--font-serif) italic">{item.price}</span>
+                    <span className="text-primary text-right text-xl italic">{item.price}</span>
                   </div>
                   {i < group.services.length - 1 && <div className="border-t border-(--foreground-10)" />}
                 </div>

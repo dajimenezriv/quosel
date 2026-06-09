@@ -17,7 +17,7 @@ export function Stats({ data }: { data: WebsiteData }) {
           className={`px-10 py-8 text-center border-[var(--foreground-10)]${
             i % 2 === 0 ? 'border-r' : ''
           }${i < 2 ? 'border-b md:border-b-0' : ''}${i % 2 !== 0 && i < 3 ? 'md:border-r' : ''}`}>
-          <div className="text-primary text-3xl font-(--font-serif) italic">{stat.value}</div>
+          <div className="text-primary text-3xl italic">{stat.value}</div>
           <div className="mt-2 text-xs tracking-[0.2em] text-(--foreground-40) uppercase">{stat.label}</div>
         </div>
       ))}

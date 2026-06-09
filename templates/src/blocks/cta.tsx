@@ -12,7 +12,7 @@ export function CTA() {
       />
       <div className="bg-popover/70 absolute inset-0" />
       <div className="relative z-10 max-w-2xl px-6 md:px-8">
-        <h2 className="text-primary text-4xl leading-tight font-(--font-serif) italic md:text-6xl">Tu próxima cita empieza aquí.</h2>
+        <h2 className="text-primary text-4xl leading-tight italic md:text-6xl">Tu próxima cita empieza aquí.</h2>
         <p className="mt-6 text-sm leading-relaxed text-(--foreground-60)">
           Reserva en Booksy o síguenos en Instagram. Las dos puertas para entrar en la barbería antes incluso de cruzarla.
         </p>

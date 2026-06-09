@@ -8,7 +8,7 @@ export function Location({ data }: { data: WebsiteData }) {
         {/* Left: info */}
         <div className="px-6 py-12 md:px-24 md:py-20">
           <p className="text-primary mb-6 text-xs tracking-[0.25em] uppercase">— Visítanos</p>
-          <h2 className="text-foreground mb-8 text-5xl leading-tight font-(--font-serif) md:mb-14 md:text-7xl">
+          <h2 className="text-foreground mb-8 text-5xl leading-tight md:mb-14 md:text-7xl">
             {data.blocks.location.formattedAddress.split(',')[0]?.trim()},{' '}
             <em className="text-primary italic">{data.blocks.location.formattedAddress.split(',')[1]?.trim()}</em>.
           </h2>

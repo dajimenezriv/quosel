@@ -5,7 +5,7 @@ import { Footer } from './blocks/footer';
 import { Gallery } from './blocks/gallery';
 import { Hero } from './blocks/hero';
 import { Location } from './blocks/location';
-import { Navigation } from './blocks/navigation';
+import { Nav } from './blocks/nav';
 import { Reviews } from './blocks/reviews';
 import { Services } from './blocks/services';
 import { Stats } from './blocks/stats';
@@ -40,8 +40,8 @@ export function buildRootStyles(data: WebsiteData) {
 
 export function TemplateBody({ data }: { data: WebsiteData }) {
   return (
-    <div className="bg-background text-foreground min-h-screen font-(--font-sans)">
-      <Navigation data={data} />
+    <div className="bg-background text-foreground min-h-screen">
+      <Nav data={data} />
       <Hero data={data} />
       <Stats data={data} />
       <About data={data} />

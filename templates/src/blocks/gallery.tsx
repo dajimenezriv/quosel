@@ -8,9 +8,9 @@ export function Gallery({ data }: { data: WebsiteData }) {
         <div className="mb-8 grid gap-6 md:mb-12 md:grid-cols-2 md:items-start md:gap-16">
           <div>
             <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {data.blocks.gallery.nav}</p>
-            <h2 className="text-foreground text-5xl font-(--font-serif)">{data.blocks.gallery.title}</h2>
+            <h2 className="text-foreground text-5xl">{data.blocks.gallery.title}</h2>
           </div>
-          <p className="pt-12 text-sm leading-relaxed font-(--font-serif) text-(--foreground-50) italic">{data.blocks.gallery.text}</p>
+          <p className="pt-12 text-sm leading-relaxed text-(--foreground-50) italic">{data.blocks.gallery.text}</p>
         </div>
 
         <div className="grid grid-cols-4 gap-2">
