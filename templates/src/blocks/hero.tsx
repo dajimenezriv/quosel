@@ -1,9 +1,7 @@
 import React from 'react';
-import type { WebsiteData } from '../types';
+import type { HeroBlock } from '../types';
 
-export function Hero({ data }: { data: WebsiteData }) {
-  const block = data.blocks.hero;
-
+export function Hero({ block }: { block: HeroBlock }) {
   return (
     <section id="home" className="relative flex min-h-screen items-end">
       <img src={block.imageUrl} className="absolute h-full w-full object-cover opacity-10" />

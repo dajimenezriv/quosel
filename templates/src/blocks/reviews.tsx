@@ -1,14 +1,14 @@
 import React from 'react';
-import type { WebsiteData } from '../types';
+import type { ReviewsBlock } from '../types';
 
-export function Reviews({ data }: { data: WebsiteData }) {
+export function Reviews({ block }: { block: ReviewsBlock }) {
   return (
     <section id="reviews" className="flex justify-center py-24">
       <div className="flex max-w-400 flex-col">
         <div className="mb-8 flex flex-col gap-6 md:mb-16 md:flex-row md:items-start md:justify-between md:gap-16">
           <div>
-            <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {data.blocks.reviews.nav}</p>
-            <h2 className="text-foreground text-5xl">{data.blocks.reviews.title}</h2>
+            <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
+            <h2 className="text-foreground text-5xl">{block.title}</h2>
           </div>
 
           <div className="shrink-0 border border-(--primary-30) p-6">
@@ -28,7 +28,7 @@ export function Reviews({ data }: { data: WebsiteData }) {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {data.blocks.reviews.reviews.map((review) => (
+          {block.reviews.map((review) => (
             <div key={review.author} className="bg-secondary-foreground flex flex-col border border-(--foreground-10) p-8">
               <div className="text-primary text-lg">★★★★★</div>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-(--foreground-80) italic">"{review.text}"</p>

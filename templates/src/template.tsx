@@ -1,9 +1,9 @@
 import React from 'react';
-import { About } from './blocks/about';
 import { CTA } from './blocks/cta';
 import { Footer } from './blocks/footer';
 import { Gallery } from './blocks/gallery';
 import { Hero } from './blocks/hero';
+import { Info } from './blocks/info';
 import { Location } from './blocks/location';
 import { Nav } from './blocks/nav';
 import { Reviews } from './blocks/reviews';
@@ -42,14 +42,16 @@ export function TemplateBody({ data }: { data: WebsiteData }) {
   return (
     <div className="bg-background text-foreground min-h-screen">
       <Nav data={data} />
-      <Hero data={data} />
-      <Stats data={data} />
-      <About data={data} />
-      <Gallery data={data} />
-      <Reviews data={data} />
-      <Services data={data} />
-      <Location data={data} />
-      <CTA />
+      {data.blocks.blocks.map((block) => {
+        if (block.type === 'stats') return <Stats block={block} />;
+        if (block.type === 'hero') return <Hero block={block} />;
+        if (block.type === 'info') return <Info block={block} />;
+        if (block.type === 'gallery') return <Gallery block={block} />;
+        if (block.type === 'reviews') return <Reviews block={block} />;
+        if (block.type === 'services') return <Services block={block} />;
+        if (block.type === 'location') return <Location block={block} />;
+        if (block.type === 'cta') return <CTA block={block} />;
+      })}
       <Footer data={data} />
     </div>
   );

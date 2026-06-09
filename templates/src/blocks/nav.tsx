@@ -5,15 +5,15 @@ export function Nav({ data }: { data: WebsiteData }) {
   const block = data.blocks.nav;
 
   const navLinks = [
-    { label: data.blocks.aboutUs.nav, href: '#about' },
-    { label: data.blocks.gallery.nav, href: '#gallery' },
-    { label: data.blocks.reviews.nav, href: '#reviews' },
-    { label: data.blocks.services.nav, href: '#services' },
-    { label: data.blocks.location.nav, href: '#location' },
+    // { label: data.blocks.aboutUs.nav, href: '#about' },
+    // { label: data.blocks.gallery.nav, href: '#gallery' },
+    // { label: data.blocks.reviews.nav, href: '#reviews' },
+    // { label: data.blocks.services.nav, href: '#services' },
+    // { label: data.blocks.location.nav, href: '#location' },
   ];
 
   return (
-    <nav className="border-primary fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-5 opacity-90 backdrop-blur-sm">
+    <nav className="border-border fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-5 opacity-90 backdrop-blur-sm">
       <a className="text-xs tracking-[0.25em] uppercase" href="#home">
         {block.name}
       </a>

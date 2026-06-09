@@ -1,9 +1,7 @@
 import React from 'react';
-import { WebsiteData } from '../types';
+import { ServicesBlock } from '../types';
 
-export function Services({ data }: { data: WebsiteData }) {
-  const block = data.blocks.services;
-
+export function Services({ block }: { block: ServicesBlock }) {
   return (
     <section id="services" className="bg-secondary-foreground flex justify-center py-24">
       <div className="flex w-250 flex-col">

@@ -1,17 +1,15 @@
 import React from 'react';
-import type { WebsiteData } from '../types';
+import type { LocationBlock } from '../types';
 
-export function Location({ data }: { data: WebsiteData }) {
-  const block = data.blocks.location;
-
+export function Location({ block }: { block: LocationBlock }) {
   return (
     <section id="location" className="bg-background flex justify-center py-24">
       <div className="flex w-300 items-center gap-20">
         <div className="flex flex-1 flex-col">
           <p className="text-primary mb-6 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
           <h2 className="text-foreground mb-8 text-5xl leading-tight md:mb-14 md:text-7xl">
-            {data.blocks.location.formattedAddress.split(',')[0]?.trim()},{' '}
-            <em className="text-primary italic">{data.blocks.location.formattedAddress.split(',')[1]?.trim()}</em>.
+            {block.formattedAddress.split(',')[0]?.trim()},{' '}
+            <em className="text-primary italic">{block.formattedAddress.split(',')[1]?.trim()}</em>.
           </h2>
 
           <div>
@@ -19,16 +17,14 @@ export function Location({ data }: { data: WebsiteData }) {
             <div className="flex gap-12 border-t border-(--foreground-10) py-6">
               <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Dirección</span>
               <div>
-                <p className="text-foreground text-sm">{data.blocks.location.formattedAddress.split(',').slice(0, 2).join(',').trim()}</p>
-                <p className="mt-1 text-xs text-(--foreground-40)">
-                  {data.blocks.location.formattedAddress.split(',').slice(2).join(',').trim()}
-                </p>
+                <p className="text-foreground text-sm">{block.formattedAddress.split(',').slice(0, 2).join(',').trim()}</p>
+                <p className="mt-1 text-xs text-(--foreground-40)">{block.formattedAddress.split(',').slice(2).join(',').trim()}</p>
               </div>
             </div>
 
             <div className="flex gap-12 border-t border-(--foreground-10) py-6">
               <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Phone</span>
-              <p className="text-foreground text-sm">{data.blocks.location.phone}</p>
+              <p className="text-foreground text-sm">{block.phone}</p>
             </div>
 
             {/* Horario */}

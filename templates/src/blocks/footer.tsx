@@ -33,13 +33,9 @@ export function Footer({ data }: { data: WebsiteData }) {
         <div>
           <p className="text-primary mb-4 text-xs tracking-[0.2em] uppercase">Contacto</p>
           <div className="space-y-2">
-            {data.blocks.location.phone && <p className="text-foreground text-xs font-medium">{data.blocks.location.phone}</p>}
-            <p className="text-foreground text-xs font-medium">
-              {data.blocks.location.formattedAddress.split(',').slice(0, 2).join(',').trim()}
-            </p>
-            <p className="text-xs text-(--foreground-40)">
-              {data.blocks.location.formattedAddress.split(',').slice(2, 3).join(',').trim()}
-            </p>
+            <p className="text-foreground text-xs font-medium">Phone</p>
+            <p className="text-foreground text-xs font-medium">Adress</p>
+            <p className="text-xs text-(--foreground-40)">Adress</p>
           </div>
         </div>
 
