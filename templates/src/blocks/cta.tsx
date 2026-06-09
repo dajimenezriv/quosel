@@ -3,7 +3,14 @@ import React from 'react';
 export function CTA() {
   return (
     <section id="cta" className="relative flex min-h-96 items-center justify-center py-32 text-center">
-      <div className="absolute inset-0 bg-[var(--popover)]" />
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-10"
+        style={{
+          backgroundImage:
+            "url('https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format')",
+        }}
+      />
+      <div className="absolute inset-0 bg-[var(--popover)]/70" />
       <div className="relative z-10 max-w-2xl px-6 md:px-8">
         <h2 className="text-4xl leading-tight font-[var(--font-serif)] font-light text-[var(--primary)] italic md:text-6xl">
           Tu próxima cita empieza aquí.

@@ -1,19 +1,13 @@
 import React from 'react';
 import type { WebsiteData } from '../types';
-import { getInitials } from '../utils';
 
 export function Footer({ data }: { data: WebsiteData }) {
-  const initials = getInitials(data.blocks.name);
-
   return (
     <footer className="bg-[var(--card)] px-6 py-12 md:px-24 md:py-16">
       <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
         {/* Logo + description */}
         <div className="col-span-2 md:col-span-1">
           <div className="mb-5 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--primary)]">
-              <span className="text-xs font-light tracking-wider text-[var(--primary)]">{initials}</span>
-            </div>
             <span className="text-xs tracking-[0.25em] text-[var(--foreground)] uppercase">{data.blocks.name}</span>
           </div>
           <p className="text-xs leading-relaxed text-[var(--foreground-40)]">

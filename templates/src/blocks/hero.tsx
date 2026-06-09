@@ -5,8 +5,7 @@ export function Hero({ data }: { data: WebsiteData }) {
   return (
     <section className="relative flex min-h-screen items-center">
       <div className="absolute inset-0">
-        {data.blocks.hero.imageUrl && <img src={data.blocks.hero.imageUrl} className="h-full w-full object-cover" />}
-        <div className="absolute inset-0 bg-[var(--popover)] opacity-90" />
+        <img src={data.blocks.hero.imageUrl} className="h-full w-full object-cover opacity-10" />
       </div>
 
       <div className="z-10 px-6 pb-24 md:px-24">
