@@ -63,10 +63,6 @@ export function Template({ data }: { data: WebsiteData }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{data.blocks.name}</title>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"
-        />
         <style type="text/tailwindcss" dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
       </head>
       <body>
