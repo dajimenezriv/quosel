@@ -28,7 +28,7 @@ export function Navigation({ data }: { data: WebsiteData }) {
       <a
         target="__blank"
         href={data.blocks.nav.ctaLink}
-        className="border border-[var(--primary)] px-6 py-2 text-xs tracking-[0.2em] text-[var(--primary)] uppercase transition-all hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]">
+        className="bg-[var(--primary)] px-6 py-2 text-xs tracking-[0.2em] text-[var(--primary-foreground)] uppercase transition-all hover:opacity-80">
         {data.blocks.nav.ctaText}
       </a>
     </nav>
