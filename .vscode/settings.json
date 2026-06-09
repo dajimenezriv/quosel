@@ -20,7 +20,7 @@
     "**/node_modules": true,
     "backend": false,
     "frontend": false,
-    "landing": false,
+    "landing": true,
     "templates": false
   },
   "git.ignoreLimitWarning": true,

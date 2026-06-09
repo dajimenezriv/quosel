@@ -26,12 +26,21 @@ export function buildRootStyles(data: WebsiteData) {
     .flatMap(([name, opacities]) => opacities.map((op) => `  --${name}-${op}: color-mix(in srgb, var(--${name}) ${op}%, transparent);`))
     .join('\n');
 
-  return `:root {\n${themeVars}\n${opacityVars}\n}`;
+  const colorVars = Object.entries(data.styles)
+    .filter(([, v]) => v != null)
+    .map(([k, v]) => `  --color-${k}: ${v};`)
+    .join('\n');
+
+  const res = `@theme inline {\n${colorVars}\n}
+  
+  :root {\n${themeVars}\n${opacityVars}\n}`;
+
+  return res;
 }
 
 export function TemplateBody({ data }: { data: WebsiteData }) {
   return (
-    <div className="min-h-screen bg-[var(--background)] font-[var(--font-sans)] text-[var(--foreground)]">
+    <div className="bg-background text-foreground min-h-screen font-(--font-sans)">
       <Navigation data={data} />
       <Hero data={data} />
       <Stats data={data} />
@@ -53,12 +62,12 @@ export function Template({ data }: { data: WebsiteData }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{data.blocks.name}</title>
-        <script src="https://cdn.tailwindcss.com" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"
         />
-        <style dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
+        <style type="text/tailwindcss" dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
       </head>
       <body>
         <TemplateBody data={data} />

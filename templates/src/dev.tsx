@@ -6,6 +6,7 @@ import { buildRootStyles, TemplateBody } from './template';
 const data = { blocks: circoloPopolareBlocks, styles: claudeStyles };
 
 const style = document.createElement('style');
+style.setAttribute('type', 'text/tailwindcss');
 style.textContent = buildRootStyles(data);
 document.head.appendChild(style);
 
