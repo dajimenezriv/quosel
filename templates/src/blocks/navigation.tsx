@@ -1,10 +1,7 @@
 import React from 'react';
 import type { WebsiteData } from '../types';
-import { getInitials } from '../utils';
 
 export function Navigation({ data }: { data: WebsiteData }) {
-  const initials = getInitials(data.place.name);
-
   const navLinks = [
     { label: data.blocks.aboutUs.nav, href: '#about' },
     { label: data.blocks.gallery.nav, href: '#gallery' },
@@ -15,12 +12,7 @@ export function Navigation({ data }: { data: WebsiteData }) {
 
   return (
     <nav className="fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b border-[var(--primary)] bg-[var(--background)]/80 px-10 py-5 backdrop-blur-sm">
-      <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--primary)]">
-          <span className="text-xs font-light tracking-wider text-[var(--primary)]">{initials}</span>
-        </div>
-        <span className="text-xs tracking-[0.25em] uppercase">{data.place.name}</span>
-      </div>
+      <span className="text-xs tracking-[0.25em] uppercase">{data.blocks.nav.name}</span>
 
       <div className="hidden items-center gap-8 md:flex">
         {navLinks.map((link) => (
