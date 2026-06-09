@@ -3,7 +3,7 @@ import type { WebsiteData } from '../types';
 
 export function Gallery({ data }: { data: WebsiteData }) {
   return (
-    <section id="gallery" className="bg-popover flex justify-center p-24">
+    <section id="gallery" className="bg-secondary-foreground flex justify-center p-24">
       <div className="flex flex-col gap-10">
         <div className="flex flex-col gap-4">
           <p className="text-primary text-xs tracking-[0.25em] uppercase">— {data.blocks.gallery.nav}</p>

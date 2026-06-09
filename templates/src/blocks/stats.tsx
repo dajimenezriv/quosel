@@ -5,7 +5,7 @@ export function Stats({ data }: { data: WebsiteData }) {
   const block = data.blocks.stats;
 
   return (
-    <section className="bg-card flex justify-around border-y border-(--foreground-10)">
+    <section className="flex justify-around border-y border-(--foreground-10)">
       {block.map((stat, i) => (
         <div key={i} className="border-(--foreground-10) px-10 py-8 text-center">
           <div className="text-primary text-3xl italic">{stat.value}</div>

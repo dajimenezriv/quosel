@@ -3,7 +3,7 @@ import type { WebsiteData } from '../types';
 
 export function Footer({ data }: { data: WebsiteData }) {
   return (
-    <footer className="bg-card px-6 py-12 md:px-24 md:py-16">
+    <footer className="px-6 py-12 md:px-24 md:py-16">
       <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
         {/* Logo + description */}
         <div className="col-span-2 md:col-span-1">

@@ -5,7 +5,7 @@ export function Services({ data }: { data: WebsiteData }) {
   const block = data.blocks.services;
 
   return (
-    <section id="services" className="bg-popover flex justify-center py-24">
+    <section id="services" className="bg-secondary-foreground flex justify-center py-24">
       <div className="flex w-250 flex-col">
         <div className="mb-10 flex flex-col">
           <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— Carta</p>

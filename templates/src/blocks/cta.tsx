@@ -10,7 +10,6 @@ export function CTA() {
             "url('https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format')",
         }}
       />
-      <div className="bg-popover/70 absolute inset-0" />
       <div className="relative z-10 max-w-2xl px-6 md:px-8">
         <h2 className="text-primary text-4xl leading-tight italic md:text-6xl">Tu próxima cita empieza aquí.</h2>
         <p className="mt-6 text-sm leading-relaxed text-(--foreground-60)">
