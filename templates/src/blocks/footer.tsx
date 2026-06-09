@@ -3,7 +3,7 @@ import type { WebsiteData } from '../types';
 import { getInitials } from '../utils';
 
 export function Footer({ data }: { data: WebsiteData }) {
-  const initials = getInitials(data.place.name);
+  const initials = getInitials(data.blocks.name);
 
   return (
     <footer className="bg-[var(--card)] px-6 py-12 md:px-24 md:py-16">
@@ -14,7 +14,7 @@ export function Footer({ data }: { data: WebsiteData }) {
             <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--primary)]">
               <span className="text-xs font-light tracking-wider text-[var(--primary)]">{initials}</span>
             </div>
-            <span className="text-xs tracking-[0.25em] text-[var(--foreground)] uppercase">{data.place.name}</span>
+            <span className="text-xs tracking-[0.25em] text-[var(--foreground)] uppercase">{data.blocks.name}</span>
           </div>
           <p className="text-xs leading-relaxed text-[var(--foreground-40)]">
             Barbería en el corazón del barrio. Cortes, degradados, barba y conversación. Reserva online o pásate a conocernos.
@@ -39,13 +39,13 @@ export function Footer({ data }: { data: WebsiteData }) {
         <div>
           <p className="mb-4 text-xs tracking-[0.2em] text-[var(--primary)] uppercase">Contacto</p>
           <div className="space-y-2">
-            {data.place.internationalPhoneNumber && (
-              <p className="text-xs font-medium text-[var(--foreground)]">{data.place.internationalPhoneNumber}</p>
-            )}
+            {data.blocks.location.phone && <p className="text-xs font-medium text-[var(--foreground)]">{data.blocks.location.phone}</p>}
             <p className="text-xs font-medium text-[var(--foreground)]">
-              {data.place.formattedAddress.split(',').slice(0, 2).join(',').trim()}
+              {data.blocks.location.formattedAddress.split(',').slice(0, 2).join(',').trim()}
             </p>
-            <p className="text-xs text-[var(--foreground-40)]">{data.place.formattedAddress.split(',').slice(2, 3).join(',').trim()}</p>
+            <p className="text-xs text-[var(--foreground-40)]">
+              {data.blocks.location.formattedAddress.split(',').slice(2, 3).join(',').trim()}
+            </p>
           </div>
         </div>
 

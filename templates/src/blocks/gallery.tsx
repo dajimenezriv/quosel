@@ -3,29 +3,32 @@ import type { WebsiteData } from '../types';
 
 export function Gallery({ data }: { data: WebsiteData }) {
   return (
-    <section id="gallery" className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20">
-      <div className="mb-8 grid gap-6 md:mb-12 md:grid-cols-2 md:items-start md:gap-16">
-        <div>
-          <p className="mb-4 text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— {data.blocks.gallery.nav}</p>
-          <h2 className="text-5xl font-[var(--font-serif)] font-light text-[var(--foreground)]">{data.blocks.gallery.title}</h2>
+    <section id="gallery" className="flex justify-center bg-[var(--popover)] px-24 py-24">
+      <div className="flex flex-col">
+        <div className="mb-8 grid gap-6 md:mb-12 md:grid-cols-2 md:items-start md:gap-16">
+          <div>
+            <p className="mb-4 text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— {data.blocks.gallery.nav}</p>
+            <h2 className="text-5xl font-[var(--font-serif)] font-light text-[var(--foreground)]">{data.blocks.gallery.title}</h2>
+          </div>
+          <p className="pt-12 text-sm leading-relaxed font-[var(--font-serif)] text-[var(--foreground-50)] italic">
+            {data.blocks.gallery.text}
+          </p>
         </div>
-        <p className="text-sm leading-relaxed font-[var(--font-serif)] text-[var(--foreground-50)] italic md:pt-12">
-          {data.blocks.gallery.text}
-        </p>
-      </div>
 
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="aspect-square bg-[var(--muted)]" />
-        ))}
-      </div>
+        <div className="grid grid-cols-4 gap-2">
+          {data.blocks.gallery.images.map((image, i) => (
+            <img key={i} className="aspect-square bg-[var(--muted)] object-cover opacity-80" src={image} />
+          ))}
+        </div>
 
-      <div className="mt-12 flex justify-center">
-        <a
-          href="#"
-          className="border border-[var(--primary-60)] px-8 py-3 text-xs tracking-[0.2em] text-[var(--primary)] uppercase transition-all hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]">
-          Ver Más en Instagram →
-        </a>
+        <div className="mt-12 flex justify-center">
+          <a
+            target="__blank"
+            href={data.blocks.gallery.ctaLink}
+            className="border border-[var(--primary-60)] px-8 py-3 text-xs tracking-[0.2em] text-[var(--primary)] uppercase transition-all hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]">
+            {data.blocks.gallery.ctaText}
+          </a>
+        </div>
       </div>
     </section>
   );

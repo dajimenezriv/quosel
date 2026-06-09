@@ -38,7 +38,7 @@ export function TemplateBody({ data }: { data: WebsiteData }) {
       <About data={data} />
       <Gallery data={data} />
       <Reviews data={data} />
-      <Services />
+      <Services data={data} />
       <Location data={data} />
       <CTA />
       <Footer data={data} />
@@ -52,7 +52,7 @@ export function Template({ data }: { data: WebsiteData }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{data.place.name}</title>
+        <title>{data.blocks.name}</title>
         <script src="https://cdn.tailwindcss.com" />
         <link
           rel="stylesheet"

@@ -3,37 +3,23 @@ import type { WebsiteData } from '../types';
 
 export function About({ data }: { data: WebsiteData }) {
   return (
-    <section id="about" className="grid gap-8 bg-[var(--card)] px-6 py-12 md:grid-cols-2 md:gap-16 md:px-24 md:py-24">
-      <div>
-        <p className="mb-6 text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— {data.blocks.aboutUs.nav}</p>
-        <h2 className="text-5xl leading-tight font-[var(--font-serif)] font-light">
-          Una barbería <em className="text-[var(--primary)] italic">{data.place.name}</em>, para el barrio.
-        </h2>
-        <blockquote className="mt-10 border-l-2 border-[var(--primary)] pl-6 text-lg font-[var(--font-serif)] text-[var(--foreground-70)] italic">
-          Cortes de calidad, atención personalizada y el ambiente del barrio. Sin prisas, sin trámites, sin sorpresas.
-        </blockquote>
-        <div className="mt-6 space-y-4 text-sm leading-relaxed text-[var(--foreground-60)]">
-          <p>
-            Llevamos años haciendo lo mismo:{' '}
-            <span className="text-[var(--primary)]">cortes precisos, barbas trabajadas con calma y un acabado que se nota a la mano.</span>{' '}
-            Cada cliente, un caso. Cada visita, un trato cercano.
-          </p>
-          <p>
-            Por la silla pasan vecinos de toda la vida, estudiantes, padres con sus hijos y gente que viene desde otros barrios buscando un
-            corte que dure. Nos preocupa más tu próxima visita que la caja de hoy.
-          </p>
-          {data.place.formattedAddress && (
-            <p>
-              Reserva online o ven a conocernos. Estamos en <span className="text-[var(--primary)]">{data.place.formattedAddress}</span>.
-            </p>
-          )}
-        </div>
-      </div>
+    <section id="about" className="flex justify-center bg-[var(--card)] py-24">
+      <div className="flex flex-col">
+        <p className="text-xs tracking-[0.25em] text-[var(--primary)] uppercase">— {data.blocks.aboutUs.nav}</p>
+        <h2 className="mt-6 text-5xl leading-tight font-[var(--font-serif)] font-light">{data.blocks.aboutUs.title}</h2>
 
-      <div className="relative min-h-80 bg-[var(--muted)]">
-        {data.blocks.aboutUs.imageUrl && (
-          <img src={data.blocks.aboutUs.imageUrl} className="absolute inset-0 h-full w-full object-cover opacity-80" />
-        )}
+        <div className="mt-10 flex w-[1300px] gap-20">
+          <div className="flex flex-1 flex-col">
+            <blockquote className="mt-10 border-l-2 border-[var(--primary)] pl-6 text-lg font-[var(--font-serif)] text-[var(--foreground-70)] italic">
+              {data.blocks.aboutUs.text1}
+            </blockquote>
+            <p className="mt-6 leading-relaxed text-[var(--foreground-60)]">{data.blocks.aboutUs.text2}</p>
+          </div>
+
+          <div className="aspect-square flex-1 bg-[var(--muted)]">
+            <img src={data.blocks.aboutUs.imageUrl} className="h-full w-full object-cover opacity-80" />
+          </div>
+        </div>
       </div>
     </section>
   );

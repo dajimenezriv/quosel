@@ -3,13 +3,10 @@ import type { WebsiteData } from '../types';
 
 export function Stats({ data }: { data: WebsiteData }) {
   const stats = [
-    {
-      value: data.place.rating ? `${data.place.rating.toString().replace('.', ',')}★` : '–',
-      label: `GOOGLE · ${data.place.userRatingCount ?? 0} RESEÑAS`,
-    },
-    { value: '4,9★', label: 'BOOKSY · 324 RESEÑAS' },
-    { value: '+1K', label: 'SEGUIDORES EN INSTAGRAM' },
-    { value: 'L-S', label: 'MAÑANA Y TARDE' },
+    { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
+    { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
+    { value: '+87K', label: 'FOLLOWERS ON INSTAGRAM' },
+    { value: 'M-S', label: 'MORNING AND AFTERNOON' },
   ];
 
   return (

@@ -3,7 +3,9 @@ import z from 'zod';
 export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
   schemaVersion: z.literal(1),
+  name: z.string(),
   nav: z.object({
+    name: z.string(),
     ctaText: z.string(),
     ctaLink: z.string(),
   }),
@@ -27,24 +29,48 @@ export const blocksSchema = z.object({
     nav: z.string(),
     title: z.string(),
     text: z.string(),
+    images: z.array(z.string()),
     ctaText: z.string(),
     ctaLink: z.string(),
   }),
   reviews: z.object({
     nav: z.string(),
     title: z.string(),
+    rating: z.number().optional(),
+    userRatingCount: z.number().optional(),
+    reviews: z.array(
+      z.object({
+        text: z.string(),
+        author: z.string(),
+        source: z.string(),
+        url: z.string(),
+      }),
+    ),
   }),
   services: z.object({
     nav: z.string(),
     title: z.string(),
     text: z.string(),
+    serviceGroups: z.array(
+      z.object({
+        title: z.string(),
+        services: z.array(
+          z.object({
+            title: z.string(),
+            text: z.string(),
+            price: z.string(),
+          }),
+        ),
+      }),
+    ),
     ctaText: z.string(),
     ctaLink: z.string(),
   }),
   location: z.object({
     nav: z.string(),
     title: z.string(),
-    address: z.string(),
+    formattedAddress: z.string(),
+    phone: z.string().optional(),
     ctaText: z.string(),
     ctaLink: z.string(),
   }),

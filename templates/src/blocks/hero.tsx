@@ -5,11 +5,11 @@ export function Hero({ data }: { data: WebsiteData }) {
   return (
     <section className="relative flex min-h-screen items-center">
       <div className="absolute inset-0">
-        {data.blocks.hero.imageUrl && <img src={data.blocks.hero.imageUrl} alt="" className="h-full w-full object-cover" />}
-        <div className="absolute inset-0 bg-[var(--popover)] opacity-80" />
+        {data.blocks.hero.imageUrl && <img src={data.blocks.hero.imageUrl} className="h-full w-full object-cover" />}
+        <div className="absolute inset-0 bg-[var(--popover)] opacity-90" />
       </div>
 
-      <div className="relative z-10 px-6 pb-24 md:px-24">
+      <div className="z-10 px-6 pb-24 md:px-24">
         <h1 className="leading-none font-[var(--font-serif)]">
           <span className="block text-5xl font-light text-[var(--foreground)] md:text-7xl lg:text-8xl">{data.blocks.hero.firstTitle}</span>
           <span className="block text-5xl font-light text-[var(--primary)] italic md:text-7xl lg:text-8xl">
@@ -17,9 +17,7 @@ export function Hero({ data }: { data: WebsiteData }) {
           </span>
         </h1>
 
-        <p className="mt-8 max-w-xs text-base font-[var(--font-serif)] text-[var(--foreground-70)] italic md:max-w-sm">
-          {data.blocks.hero.text}
-        </p>
+        <p className="mt-8 max-w-xl text-base font-[var(--font-serif)] text-[var(--foreground-70)] italic">{data.blocks.hero.text}</p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a
