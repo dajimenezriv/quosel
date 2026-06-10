@@ -338,6 +338,13 @@
                           "updatedAt": {
                             "type": "string",
                             "format": "date-time"
+                          },
+                          "publishedAt": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "format": "date-time"
                           }
                         },
                         "required": [
@@ -346,7 +353,8 @@
                           "name",
                           "styles",
                           "createdAt",
-                          "updatedAt"
+                          "updatedAt",
+                          "publishedAt"
                         ]
                       }
                     }
@@ -928,6 +936,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "name": {
+                    "type": "string"
+                  },
                   "blocks": {
                     "type": "object",
                     "properties": {
@@ -1396,6 +1407,7 @@
                   }
                 },
                 "required": [
+                  "name",
                   "blocks",
                   "styles"
                 ]

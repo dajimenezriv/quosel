@@ -11,6 +11,7 @@ const WebsiteSchema = z.object({
   styles: stylesSchema,
   createdAt: z.date(),
   updatedAt: z.date(),
+  publishedAt: z.date().nullable(),
 });
 
 const ResponseSchema = z.object({ websites: z.array(WebsiteSchema) });

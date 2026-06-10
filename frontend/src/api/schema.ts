@@ -324,6 +324,8 @@ export interface paths {
                                 createdAt: string;
                                 /** Format: date-time */
                                 updatedAt: string;
+                                /** Format: date-time */
+                                publishedAt: string | null;
                             }[];
                         };
                     };
@@ -514,6 +516,7 @@ export interface paths {
             requestBody?: {
                 content: {
                     "application/json": {
+                        name: string;
                         blocks: {
                             /** @enum {number} */
                             schemaVersion: 1;

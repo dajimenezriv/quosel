@@ -29,12 +29,12 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     header: 'Domain',
     cell: ({ row }) => (
       <a
-        href={`https://${row.original.domain}`}
+        href="#"
         target="_blank"
         rel="noopener noreferrer"
         onClick={(e) => e.stopPropagation()}
         className="flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400">
-        {row.original.domain}
+        Domain
         <ExternalLink className="size-3 shrink-0" />
       </a>
     ),
