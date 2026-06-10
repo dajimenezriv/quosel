@@ -1,7 +1,7 @@
 import type { AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
+import { R2 } from '@/infra/cloudflare/r2';
 import { WebsiteImages } from '@/infra/postgres/website-images';
-import { R2 } from '@/infra/r2/r2';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 export const deleteImageRoute = createRoute({

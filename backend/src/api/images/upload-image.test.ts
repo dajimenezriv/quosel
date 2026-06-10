@@ -3,7 +3,7 @@ import { WebsiteImages } from '@/infra/postgres/website-images';
 import { deepMocked, expectError, mockAuthMiddleware } from '@/tests/utils.helper.test';
 
 vi.mock(import('@/infra/postgres/website-images'));
-vi.mock(import('@/infra/r2/r2'));
+vi.mock(import('@/infra/cloudflare/r2'));
 
 describe('upload-image', () => {
   mockAuthMiddleware();
