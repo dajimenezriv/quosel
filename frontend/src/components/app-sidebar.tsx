@@ -7,13 +7,8 @@ import { Link } from 'react-router-dom';
 
 const navItems: NavItem[] = [
   {
-    title: 'Google Maps',
-    url: '/',
-    icon: MapPin,
-  },
-  {
     title: 'Websites',
-    url: '/websites',
+    url: '/',
     icon: MapPin,
   },
 ];

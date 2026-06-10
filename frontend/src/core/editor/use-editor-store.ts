@@ -1,5 +1,4 @@
 import type { WebsiteData } from '@quosel/templates';
-import { produce } from 'immer';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -11,16 +10,13 @@ interface EditorStore {
   device: Device;
   setDevice: (device: Device) => void;
   hydrate: (data: WebsiteData) => void;
-  reset: () => void;
-  isDirty: () => boolean;
-  setIsDarkMode: (value: boolean) => void;
-  setTweakcnThemeKey: (key: string) => void;
   updateDraft: (data: WebsiteData) => void;
+  reset: () => void;
 }
 
 export const useEditorStore = create<EditorStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       initial: null,
       draft: null,
       device: 'laptop',
@@ -28,19 +24,6 @@ export const useEditorStore = create<EditorStore>()(
       hydrate: (data) => set({ draft: structuredClone(data), initial: structuredClone(data) }),
       updateDraft: (data) => set({ draft: data }),
       reset: () => set((s) => ({ draft: s.initial ? structuredClone(s.initial) : null })),
-      isDirty: () => JSON.stringify(get().draft) !== JSON.stringify(get().initial),
-      setIsDarkMode: (value) =>
-        set(
-          produce((state: EditorStore) => {
-            if (state.draft) state.draft.isDarkMode = value;
-          }),
-        ),
-      setTweakcnThemeKey: (key) =>
-        set(
-          produce((state: EditorStore) => {
-            if (state.draft) state.draft.tweakcnThemeKey = key;
-          }),
-        ),
     }),
     {
       name: 'editor',

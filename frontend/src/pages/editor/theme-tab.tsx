@@ -1,95 +1,96 @@
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Separator } from '@/components/ui/separator';
 import { useEditorStore } from '@/core/editor/use-editor-store';
-import { Dices, Moon, Sun } from 'lucide-react';
-import { themes } from './theme-data';
+import { stylesSchema, type WebsiteData } from '@quosel/templates';
+import { produce } from 'immer';
+import { Lightbulb } from 'lucide-react';
+import { useRef, useState } from 'react';
 
-export function ThemeTab() {
-  const isDarkMode = useEditorStore((s) => s.draft?.isDarkMode ?? false);
-  const tweakcnThemeKey = useEditorStore((s) => s.draft?.tweakcnThemeKey ?? '');
-  const setIsDarkMode = useEditorStore((s) => s.setIsDarkMode);
-  const setTweakcnThemeKey = useEditorStore((s) => s.setTweakcnThemeKey);
+const HEX_RE = /#[0-9a-fA-F]{6}\b|#[0-9a-fA-F]{3}\b/g;
 
-  const handleRandomTweakcn = () => {
-    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-    setTweakcnThemeKey(randomTheme.key);
-  };
+function contrastColor(hex: string): string {
+  const full = hex.length === 4 ? `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}` : hex;
+  const r = parseInt(full.slice(1, 3), 16);
+  const g = parseInt(full.slice(3, 5), 16);
+  const b = parseInt(full.slice(5, 7), 16);
+  return (0.299 * r + 0.587 * g + 0.114 * b) / 255 > 0.5 ? '#000000' : '#ffffff';
+}
 
-  const handleLightMode = () => setIsDarkMode(false);
+function renderHighlighted(text: string) {
+  const parts: React.ReactNode[] = [];
+  let last = 0;
+  HEX_RE.lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = HEX_RE.exec(text)) !== null) {
+    if (match.index > last) parts.push(text.slice(last, match.index));
+    const color = match[0];
+    parts.push(
+      <span key={match.index} style={{ backgroundColor: color, color: contrastColor(color), borderRadius: '2px' }}>
+        {color}
+      </span>,
+    );
+    last = match.index + color.length;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return parts;
+}
 
-  const handleDarkMode = () => setIsDarkMode(true);
+interface Props {
+  data: WebsiteData;
+}
+
+export function ThemeTab({ data }: Props) {
+  const updateDraft = useEditorStore((s) => s.updateDraft);
+  const [text, setText] = useState(() => JSON.stringify(data.styles, null, 2));
+  const [error, setError] = useState<string | null>(null);
+  const backdropRef = useRef<HTMLDivElement>(null);
+
+  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const value = e.target.value;
+    setText(value);
+    try {
+      const parsed = stylesSchema.parse(JSON.parse(value));
+      updateDraft(
+        produce(data, (draft) => {
+          draft.styles = parsed;
+        }),
+      );
+      setError(null);
+    } catch {
+      setError('Invalid JSON or missing required fields');
+    }
+  }
+
+  function handleScroll(e: React.UIEvent<HTMLTextAreaElement>) {
+    if (backdropRef.current) {
+      backdropRef.current.scrollTop = e.currentTarget.scrollTop;
+    }
+  }
 
   return (
-    <div className="space-y-6">
-      {/* Tweakcn Theme Presets */}
-      <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <Label className="text-sm font-medium">Themes</Label>
-          <Button variant="outline" size="sm" onClick={handleRandomTweakcn} className="cursor-pointer">
-            <Dices className="mr-1.5 h-3.5 w-3.5" />
-            Random
-          </Button>
-        </div>
-
-        <Select
-          value={tweakcnThemeKey}
-          onValueChange={(key) => {
-            setTweakcnThemeKey(key);
-          }}>
-          <SelectTrigger className="w-full cursor-pointer">
-            <SelectValue placeholder="Choose Tweakcn Theme" />
-          </SelectTrigger>
-          <SelectContent className="max-h-60">
-            <div className="p-2">
-              {themes.map((theme) => (
-                <SelectItem key={theme.key} value={theme.key} className="cursor-pointer">
-                  <div className="flex items-center gap-2">
-                    <div className="flex gap-1">
-                      <div
-                        className="border-border/20 h-3 w-3 rounded-full border"
-                        style={{ backgroundColor: theme.value.light.primary }}
-                      />
-                      <div
-                        className="border-border/20 h-3 w-3 rounded-full border"
-                        style={{ backgroundColor: theme.value.light.secondary }}
-                      />
-                      <div className="border-border/20 h-3 w-3 rounded-full border" style={{ backgroundColor: theme.value.light.accent }} />
-                      <div className="border-border/20 h-3 w-3 rounded-full border" style={{ backgroundColor: theme.value.light.muted }} />
-                    </div>
-                    <span>{theme.key}</span>
-                  </div>
-                </SelectItem>
-              ))}
-            </div>
-          </SelectContent>
-        </Select>
+    <div className="flex flex-col gap-2">
+      <div className="bg-muted text-muted-foreground flex gap-2 rounded-md px-3 py-2 text-xs">
+        <Lightbulb className="mt-0.5 h-3 w-3 shrink-0" />
+        <span>
+          Copy this JSON and ask an AI: <em>"Generate a color palette based on [your color] using this structure."</em> Then paste the
+          result back here.
+        </span>
       </div>
-
-      <Separator />
-
-      <div className="space-y-3">
-        <Label className="text-sm font-medium">Mode</Label>
-        <div className="grid grid-cols-2 gap-2">
-          <Button
-            variant={isDarkMode ? 'secondary' : 'outline'}
-            size="sm"
-            onClick={handleLightMode}
-            className="mode-toggle-button relative cursor-pointer overflow-hidden">
-            <Sun className="mr-1 h-4 w-4 transition-transform duration-300" />
-            Light
-          </Button>
-          <Button
-            variant={!isDarkMode ? 'secondary' : 'outline'}
-            size="sm"
-            onClick={handleDarkMode}
-            className="mode-toggle-button relative cursor-pointer overflow-hidden">
-            <Moon className="mr-1 h-4 w-4 transition-transform duration-300" />
-            Dark
-          </Button>
+      <div className="border-input focus-within:border-ring focus-within:ring-ring/50 relative overflow-hidden rounded-md border transition-[color,box-shadow] focus-within:ring-[3px]">
+        <div
+          ref={backdropRef}
+          aria-hidden
+          className="text-foreground pointer-events-none absolute inset-0 overflow-hidden px-3 py-2 font-mono wrap-break-word whitespace-pre-wrap">
+          {renderHighlighted(text)}
         </div>
+        <textarea
+          className="text relative field-sizing-content min-h-100 w-full resize-none bg-transparent px-3 py-2 font-mono outline-none"
+          style={{ color: 'transparent', caretColor: 'var(--foreground)' }}
+          value={text}
+          onChange={handleChange}
+          onScroll={handleScroll}
+          spellCheck={false}
+        />
       </div>
+      {error && <p className="text-destructive text-xs">{error}</p>}
     </div>
   );
 }

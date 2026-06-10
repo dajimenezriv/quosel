@@ -304,30 +304,27 @@ export interface paths {
                             websites: {
                                 id: string;
                                 userId: string;
-                                domain: string;
+                                name: string;
+                                domain: string | null;
+                                styles: {
+                                    background: string;
+                                    foreground: string;
+                                    "card-foreground": string;
+                                    primary: string;
+                                    "primary-foreground": string;
+                                    secondary: string;
+                                    "secondary-foreground": string;
+                                    muted: string;
+                                    "muted-foreground": string;
+                                    accent: string;
+                                    "accent-foreground": string;
+                                    border: string;
+                                    ring: string;
+                                };
                                 /** Format: date-time */
                                 createdAt: string;
                                 /** Format: date-time */
                                 updatedAt: string;
-                                place: {
-                                    id: string;
-                                    googleId: string;
-                                    name: string;
-                                    internationalPhoneNumber: string;
-                                    formattedAddress: string;
-                                    shortFormattedAddress: string;
-                                    latitude: number;
-                                    longitude: number;
-                                    rating: number | null;
-                                    userRatingCount: number | null;
-                                    googleMapsPlaceUri: string;
-                                    googleMapsReviewsUri: string;
-                                    googleMapsPhotosUri: string;
-                                    /** Format: date-time */
-                                    createdAt: string;
-                                    /** Format: date-time */
-                                    updatedAt: string;
-                                };
                             }[];
                         };
                     };
@@ -377,19 +374,20 @@ export interface paths {
                         "application/json": {
                             id: string;
                             userId: string;
-                            domain: string;
-                            /** Format: date-time */
-                            createdAt: string;
-                            /** Format: date-time */
-                            updatedAt: string;
+                            name: string;
+                            domain: string | null;
                             blocks: {
                                 /** @enum {number} */
                                 schemaVersion: 1;
+                                name: string;
                                 nav: {
+                                    name: string;
                                     ctaText: string;
                                     ctaLink: string;
                                 };
-                                hero: {
+                                blocks: ({
+                                    /** @enum {string} */
+                                    type: "hero";
                                     firstTitle: string;
                                     secondTitle: string;
                                     text: string;
@@ -397,71 +395,99 @@ export interface paths {
                                     ctaLink: string;
                                     phone: string;
                                     imageUrl: string;
-                                };
-                                aboutUs: {
+                                } | {
+                                    /** @enum {string} */
+                                    type: "stats";
+                                    stats: {
+                                        value: string;
+                                        label: string;
+                                    }[];
+                                } | {
+                                    /** @enum {string} */
+                                    type: "info";
                                     nav: string;
                                     title: string;
                                     text1: string;
                                     text2: string;
                                     imageUrl: string;
-                                };
-                                gallery: {
-                                    nav: string;
+                                } | {
+                                    /** @enum {string} */
+                                    type: "cta";
                                     title: string;
                                     text: string;
                                     ctaText: string;
                                     ctaLink: string;
-                                };
-                                reviews: {
-                                    nav: string;
-                                    title: string;
-                                };
-                                services: {
+                                    imageUrl: string;
+                                } | {
+                                    /** @enum {string} */
+                                    type: "gallery";
                                     nav: string;
                                     title: string;
                                     text: string;
+                                    images: string[];
                                     ctaText: string;
                                     ctaLink: string;
-                                };
-                                location: {
+                                } | {
+                                    /** @enum {string} */
+                                    type: "reviews";
                                     nav: string;
                                     title: string;
-                                    address: string;
+                                    stats: {
+                                        value: string;
+                                        label: string;
+                                    }[];
+                                    reviews: {
+                                        text: string;
+                                        author: string;
+                                        source: string;
+                                        url: string;
+                                    }[];
+                                } | {
+                                    /** @enum {string} */
+                                    type: "services";
+                                    nav: string;
+                                    title: string;
+                                    text: string;
+                                    serviceGroups: {
+                                        title: string;
+                                        services: {
+                                            title: string;
+                                            text: string;
+                                            price: string;
+                                        }[];
+                                    }[];
                                     ctaText: string;
                                     ctaLink: string;
-                                };
+                                } | {
+                                    /** @enum {string} */
+                                    type: "location";
+                                    nav: string;
+                                    title: string;
+                                    formattedAddress: string;
+                                    phone?: string;
+                                    ctaText: string;
+                                    ctaLink: string;
+                                })[];
                             };
-                            place: {
-                                id: string;
-                                googleId: string;
-                                name: string;
-                                internationalPhoneNumber: string;
-                                formattedAddress: string;
-                                shortFormattedAddress: string;
-                                latitude: number;
-                                longitude: number;
-                                rating: number | null;
-                                userRatingCount: number | null;
-                                googleMapsPlaceUri: string;
-                                googleMapsReviewsUri: string;
-                                googleMapsPhotosUri: string;
-                                /** Format: date-time */
-                                createdAt: string;
-                                /** Format: date-time */
-                                updatedAt: string;
-                                reviews: {
-                                    id: string;
-                                    rating: number;
-                                    text: string;
-                                    authorName: string;
-                                    authorPhotoUri: string;
-                                    /** Format: date-time */
-                                    publishTime: string;
-                                    googleMapsUri: string;
-                                    /** Format: date-time */
-                                    createdAt: string;
-                                }[];
+                            styles: {
+                                background: string;
+                                foreground: string;
+                                "card-foreground": string;
+                                primary: string;
+                                "primary-foreground": string;
+                                secondary: string;
+                                "secondary-foreground": string;
+                                muted: string;
+                                "muted-foreground": string;
+                                accent: string;
+                                "accent-foreground": string;
+                                border: string;
+                                ring: string;
                             };
+                            /** Format: date-time */
+                            createdAt: string;
+                            /** Format: date-time */
+                            updatedAt: string;
                         };
                     };
                 };
@@ -476,80 +502,131 @@ export interface paths {
                 };
             };
         };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/websites/create-from-google-place": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: {
+        put: {
             parameters: {
-                query: {
-                    googlePlaceId: string;
+                query?: {
+                    publish?: boolean | null;
                 };
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": {
-                            websiteId: string;
-                        };
-                    };
-                };
-                /** @description Error */
-                500: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "application/json": components["schemas"]["Error"];
-                    };
-                };
-            };
-        };
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/websites/render-website/{websiteId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: {
-            parameters: {
-                query?: never;
                 header?: never;
                 path: {
                     websiteId: string;
                 };
                 cookie?: never;
             };
-            requestBody?: never;
+            requestBody?: {
+                content: {
+                    "application/json": {
+                        blocks: {
+                            /** @enum {number} */
+                            schemaVersion: 1;
+                            name: string;
+                            nav: {
+                                name: string;
+                                ctaText: string;
+                                ctaLink: string;
+                            };
+                            blocks: ({
+                                /** @enum {string} */
+                                type: "hero";
+                                firstTitle: string;
+                                secondTitle: string;
+                                text: string;
+                                ctaText: string;
+                                ctaLink: string;
+                                phone: string;
+                                imageUrl: string;
+                            } | {
+                                /** @enum {string} */
+                                type: "stats";
+                                stats: {
+                                    value: string;
+                                    label: string;
+                                }[];
+                            } | {
+                                /** @enum {string} */
+                                type: "info";
+                                nav: string;
+                                title: string;
+                                text1: string;
+                                text2: string;
+                                imageUrl: string;
+                            } | {
+                                /** @enum {string} */
+                                type: "cta";
+                                title: string;
+                                text: string;
+                                ctaText: string;
+                                ctaLink: string;
+                                imageUrl: string;
+                            } | {
+                                /** @enum {string} */
+                                type: "gallery";
+                                nav: string;
+                                title: string;
+                                text: string;
+                                images: string[];
+                                ctaText: string;
+                                ctaLink: string;
+                            } | {
+                                /** @enum {string} */
+                                type: "reviews";
+                                nav: string;
+                                title: string;
+                                stats: {
+                                    value: string;
+                                    label: string;
+                                }[];
+                                reviews: {
+                                    text: string;
+                                    author: string;
+                                    source: string;
+                                    url: string;
+                                }[];
+                            } | {
+                                /** @enum {string} */
+                                type: "services";
+                                nav: string;
+                                title: string;
+                                text: string;
+                                serviceGroups: {
+                                    title: string;
+                                    services: {
+                                        title: string;
+                                        text: string;
+                                        price: string;
+                                    }[];
+                                }[];
+                                ctaText: string;
+                                ctaLink: string;
+                            } | {
+                                /** @enum {string} */
+                                type: "location";
+                                nav: string;
+                                title: string;
+                                formattedAddress: string;
+                                phone?: string;
+                                ctaText: string;
+                                ctaLink: string;
+                            })[];
+                        };
+                        styles: {
+                            background: string;
+                            foreground: string;
+                            "card-foreground": string;
+                            primary: string;
+                            "primary-foreground": string;
+                            secondary: string;
+                            "secondary-foreground": string;
+                            muted: string;
+                            "muted-foreground": string;
+                            accent: string;
+                            "accent-foreground": string;
+                            border: string;
+                            ring: string;
+                        };
+                    };
+                };
+            };
             responses: {
                 204: {
                     headers: {
@@ -568,6 +645,7 @@ export interface paths {
                 };
             };
         };
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -598,7 +676,7 @@ export interface paths {
                         "application/json": {
                             images: {
                                 id: string;
-                                websiteId: string;
+                                websiteId: string | null;
                                 url: string;
                                 sizeBytes: number;
                                 /** Format: date-time */
@@ -731,7 +809,7 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         Error: {
-            error: string;
+            message: string;
         };
     };
     responses: never;

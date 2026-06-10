@@ -1,6 +1,5 @@
 import Account from '@/pages/account/page';
 import Editor from '@/pages/editor/page';
-import GoogleMaps from '@/pages/google-maps/page';
 import Login from '@/pages/login/page';
 import ProtectedLayout from '@/pages/protected-layout';
 import Websites from '@/pages/websites/page';
@@ -11,8 +10,7 @@ export const router = createBrowserRouter([
   {
     element: <ProtectedLayout />,
     children: [
-      { path: '/', element: <GoogleMaps /> },
-      { path: '/websites', element: <Websites /> },
+      { path: '/', element: <Websites /> },
       { path: '/editor/:websiteId', element: <Editor /> },
       { path: '/account', element: <Account /> },
       { path: '*', element: <Navigate to="/" replace /> },

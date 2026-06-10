@@ -1,23 +1,37 @@
 import { useGetWebsite } from '@/api/websites/use-get-website';
+import { useUpdateWebsite } from '@/api/websites/use-update-website';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { Button } from '@/components/ui/button';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { useThemeStore } from '@/core/theme/use-theme-store';
 import { buildRootStyles, renderTemplate, TemplateBody } from '@quosel/templates';
 import type { WebsiteData } from '@quosel/templates';
-import { Download, Laptop, Settings, Smartphone } from 'lucide-react';
+import { Download, Globe, Laptop, Save, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import Frame from 'react-frame-component';
 import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 import { Customizer } from './customizer';
 
 const FRAME_INITIAL_CONTENT = `<!DOCTYPE html><html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script>document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1);var el=document.getElementById(id);if(!el)return;e.preventDefault();el.scrollIntoView({behavior:'smooth'});});</script>
 </head><body><div class="frame-root"></div></body></html>`;
+
+function ContentFrame({ data }: { data: WebsiteData }) {
+  return (
+    <div className="min-h-0 flex-1 bg-white">
+      <Frame
+        initialContent={FRAME_INITIAL_CONTENT}
+        head={<style type="text/tailwindcss" dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />}
+        className="h-full w-full border-0">
+        <TemplateBody data={data} />
+      </Frame>
+    </div>
+  );
+}
 
 function SafariFrame({ data }: { data: WebsiteData }) {
   const d = useThemeStore((s) => s.isDarkMode);
@@ -103,15 +117,7 @@ function SafariFrame({ data }: { data: WebsiteData }) {
         </div>
       </div>
 
-      {/* Page content */}
-      <div className="min-h-0 flex-1 bg-white">
-        <Frame
-          initialContent={FRAME_INITIAL_CONTENT}
-          head={<style dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />}
-          className="h-full w-full border-0">
-          <TemplateBody data={data} />
-        </Frame>
-      </div>
+      <ContentFrame data={data} />
     </div>
   );
 }
@@ -215,14 +221,7 @@ function IPhoneFrame({ data }: { data: WebsiteData }) {
           </div>
 
           {/* Page content */}
-          <div className="min-h-0 flex-1 bg-white">
-            <Frame
-              initialContent={FRAME_INITIAL_CONTENT}
-              head={<style dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />}
-              className="h-full w-full border-0">
-              <TemplateBody data={data} />
-            </Frame>
-          </div>
+          <ContentFrame data={data} />
 
           {/* Safari bottom bar */}
           <div
@@ -308,18 +307,37 @@ export default function Page() {
   const setDevice = useEditorStore((s) => s.setDevice);
 
   useEffect(() => {
-    if (data)
-      hydrate({
-        ...data,
-        tweakcnThemeKey: 'Claude',
-        isDarkMode: true,
-      });
+    if (data) hydrate(data);
   }, [data, hydrate]);
+
+  const { mutate: updateWebsite, isPending } = useUpdateWebsite();
 
   const html = useMemo(() => (draft ? renderTemplate(draft) : ''), [draft]);
 
   function toggleCustomizer() {
     setIsCustomizerOpen(!isCustomizerOpen);
+  }
+
+  function save() {
+    if (!draft || !websiteId) return;
+    updateWebsite(
+      { websiteId, ...draft },
+      {
+        onSuccess: () => toast.success('Website saved successfully'),
+        onError: (error) => toast.error(`Cannot save website: ${error.message}`),
+      },
+    );
+  }
+
+  function publish() {
+    if (!draft || !websiteId) return;
+    updateWebsite(
+      { websiteId, ...draft, publish: true },
+      {
+        onSuccess: () => toast.success('Website published successfully'),
+        onError: (error) => toast.error(`Cannot publish website: ${error.message}`),
+      },
+    );
   }
 
   function exportHtml() {
@@ -353,8 +371,17 @@ export default function Page() {
               </button>
             </div>
           </div>
-          <Button variant="outline" size="icon" onClick={exportHtml} className="cursor-pointer">
+          <Button variant="outline" onClick={exportHtml} className="cursor-pointer">
             <Download className="h-[1.2rem] w-[1.2rem]" />
+            Export
+          </Button>
+          <Button variant="outline" onClick={save} disabled={isPending} className="cursor-pointer">
+            <Save className="h-[1.2rem] w-[1.2rem]" />
+            Save
+          </Button>
+          <Button onClick={publish} disabled={isPending} className="cursor-pointer">
+            <Globe className="h-[1.2rem] w-[1.2rem]" />
+            Publish
           </Button>
           <Button variant="outline" size="icon" onClick={toggleCustomizer} className="cursor-pointer">
             <Settings className="h-[1.2rem] w-[1.2rem]" />

@@ -22,7 +22,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
     id: 'place',
     header: 'Place',
-    cell: ({ row }) => <span className="font-medium">{row.original.place.name}</span>,
+    cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
   },
   {
     id: 'domain',
@@ -42,19 +42,17 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
     id: 'address',
     header: 'Address',
-    cell: ({ row }) => <span className="text-muted-foreground">{row.original.place.shortFormattedAddress}</span>,
+    cell: ({ row }) => <span className="text-muted-foreground">Address</span>,
   },
   {
     id: 'rating',
     header: 'Rating',
     cell: ({ row }) => {
-      const { rating, userRatingCount } = row.original.place;
-      if (rating === null) return <span className="text-muted-foreground">—</span>;
       return (
         <Badge variant="outline" className="text-muted-foreground gap-1 px-1.5">
           <Star className="size-3 fill-yellow-400 text-yellow-400" />
-          {rating.toFixed(1)}
-          {userRatingCount !== null && <span className="text-xs">({userRatingCount.toLocaleString()})</span>}
+          {1}
+          <span className="text-xs">(20)</span>
         </Badge>
       );
     },
@@ -62,7 +60,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   {
     id: 'template',
     header: 'Template',
-    cell: ({ row }) => <span className="text-muted-foreground capitalize">{row.original.template}</span>,
+    cell: ({ row }) => <span className="text-muted-foreground capitalize">Template</span>,
   },
   {
     id: 'createdAt',
@@ -87,7 +85,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     header: '',
     cell: ({ row }) => (
       <a
-        href={row.original.place.googleMapsPlaceUri}
+        href={row.original.name}
         target="_blank"
         rel="noopener noreferrer"
         title="View on Google Maps"

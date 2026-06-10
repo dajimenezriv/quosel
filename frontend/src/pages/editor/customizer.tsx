@@ -14,13 +14,9 @@ interface Props {
 }
 
 export function Customizer({ data, open }: Props) {
-  const setTweakcnThemeKey = useEditorStore((s) => s.setTweakcnThemeKey);
+  const reset = useEditorStore((s) => s.reset);
 
   const [activeTab, setActiveTab] = useState('layout');
-
-  const handleReset = () => {
-    setTweakcnThemeKey('');
-  };
 
   return (
     <div className={cn('shrink-0 overflow-hidden', open ? 'w-120' : 'w-0')}>
@@ -32,7 +28,7 @@ export function Customizer({ data, open }: Props) {
             </div>
             <span className="text-lg font-semibold">Customizer</span>
           </div>
-          <Button variant="outline" size="icon" onClick={handleReset} className="h-8 w-8 cursor-pointer">
+          <Button variant="outline" size="icon" onClick={reset} className="h-8 w-8 cursor-pointer">
             <RotateCcw className="h-4 w-4" />
           </Button>
         </div>
@@ -52,7 +48,7 @@ export function Customizer({ data, open }: Props) {
           </TabsContent>
 
           <TabsContent value="theme" className="flex min-h-0 flex-1 flex-col overflow-auto p-4">
-            <ThemeTab />
+            <ThemeTab data={data} />
           </TabsContent>
         </Tabs>
       </div>
