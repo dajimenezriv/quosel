@@ -52,7 +52,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm db:migrate
         env:
-          DATABASE_URL: ${{ secrets.RAILWAY_DATBASE_URL }}
+          DATABASE_URL: ${{ secrets.RAILWAY_DATABASE_URL }}
       - run: pnpm deploy
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
