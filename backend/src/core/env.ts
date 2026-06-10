@@ -8,7 +8,6 @@ const EnvSchema = z.object({
   GOOGLE_OAUTH_CLIENT_ID: z.string().min(1),
   GOOGLE_OAUTH_CLIENT_SECRET: z.string().min(1),
   GOOGLE_OAUTH_REDIRECT_URI: z.url(),
-  GOOGLE_PLACES_API_KEY: z.string().min(1),
   NODE_ENV: z.enum(['development', 'production', 'test']),
   PORT: z.coerce.number().int(),
   STRIPE_PRICE_ID: z.string().min(1),

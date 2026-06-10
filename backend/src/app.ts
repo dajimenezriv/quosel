@@ -1,4 +1,5 @@
 import { cors } from 'hono/cors';
+import { secureHeaders } from 'hono/secure-headers';
 import { authRouter } from './api/auth/router';
 import { billingRouter } from './api/billing/router';
 import { healthRouter } from './api/health/router';
@@ -12,6 +13,8 @@ import { env } from './core/env';
 import { logger } from './core/logger';
 
 export const app = createRouter();
+
+app.use(secureHeaders());
 
 app.use(
   '*',

@@ -37,6 +37,7 @@ describe('update-website', () => {
     const res = await app.request('/websites/websiteId', putRequest(VALID_BODY));
     // Then
     expect(res.status).toBe(204);
+    calls(Websites.update).toStrictEqual(['websiteId', VALID_BODY]);
     calls(R2.upload).toStrictEqual([]);
   });
 
@@ -45,6 +46,7 @@ describe('update-website', () => {
     const res = await app.request('/websites/websiteId?publish=true', putRequest(VALID_BODY));
     // Then
     expect(res.status).toBe(204);
+    calls(Websites.update).toStrictEqual(['websiteId', { ...VALID_BODY, publishedAt: expect.any(Date) }]);
     calls(R2.upload).toStrictEqual(['websites/websiteId.html', expect.any(File)]);
   });
 });

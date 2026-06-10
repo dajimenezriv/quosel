@@ -36,6 +36,7 @@ model Session {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@map("sessions")
 }
 
@@ -52,6 +53,7 @@ model Website {
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   websiteImages WebsiteImage[]
 
+  @@index([userId])
   @@map("websites")
 }
 
@@ -65,5 +67,7 @@ model WebsiteImage {
   user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   website Website? @relation(fields: [websiteId], references: [id], onDelete: SetNull)
 
+  @@index([userId])
+  @@index([websiteId])
   @@map("website_images")
 }

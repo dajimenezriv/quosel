@@ -2,6 +2,7 @@ import { ApiError } from '@/core/api/errors';
 import type { AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { R2 } from '@/infra/cloudflare/r2';
+import type { Prisma } from '@/infra/postgres/prisma/client';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/templates';
@@ -32,11 +33,16 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
   const websiteId = c.req.param('websiteId');
   const { publish } = c.req.valid('query');
   const { blocks, styles } = c.req.valid('json');
+  // TODO: we are not checking if the website belongs to the user
 
   const website = await Websites.getById(websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  await Websites.update(websiteId, { blocks, styles });
+  const data: Prisma.WebsiteUpdateInput = { blocks, styles };
+
+  if (publish) data.publishedAt = new Date();
+
+  await Websites.update(websiteId, data);
 
   if (publish) {
     const html = renderTemplate({ blocks, styles });

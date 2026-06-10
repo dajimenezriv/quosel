@@ -65,6 +65,18 @@ CREATE UNIQUE INDEX "users_stripe_customer_id_key" ON "users"("stripe_customer_i
 -- CreateIndex
 CREATE UNIQUE INDEX "users_stripe_subscription_id_key" ON "users"("stripe_subscription_id");
 
+-- CreateIndex
+CREATE INDEX IF NOT EXISTS "sessions_user_id_idx" ON "sessions"("user_id");
+
+-- CreateIndex
+CREATE INDEX IF NOT EXISTS "websites_user_id_idx" ON "websites"("user_id");
+
+-- CreateIndex
+CREATE INDEX IF NOT EXISTS "website_images_user_id_idx" ON "website_images"("user_id");
+
+-- CreateIndex
+CREATE INDEX IF NOT EXISTS "website_images_website_id_idx" ON "website_images"("website_id");
+
 -- AddForeignKey
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 

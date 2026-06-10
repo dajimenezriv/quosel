@@ -36,6 +36,7 @@ export const uploadImageRoute = createRoute({
 export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: AuthVariables }> = async (c) => {
   const userId = c.get('userId');
   const { file, websiteId } = c.req.valid('form');
+  // TODO: we are not checking if the website belongs to the user
 
   if (!ALLOWED_TYPES.includes(file.type)) throw new ApiError(400, 'Invalid file type');
   if (file.size > MAX_SIZE) throw new ApiError(400, 'File too large (max 5 MB)');

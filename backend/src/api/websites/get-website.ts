@@ -26,6 +26,7 @@ export const getWebsiteRoute = createRoute({
 
 export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
   const { websiteId } = c.req.valid('param');
+  // TODO: we are not checking if the website belongs to the user
 
   const website = await Websites.getById(websiteId);
   if (!website) throw new ApiError(404, 'Website not found');

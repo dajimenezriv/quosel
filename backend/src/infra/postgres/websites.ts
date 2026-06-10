@@ -4,10 +4,6 @@ import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
 export class Websites {
-  // static randomDomain(name: string) {
-  //   return `${slugify(name)}-${randomBytes(4).toString('hex')}`;
-  // }
-
   static async getAllByUserId(userId: UserId) {
     return await prisma.website.findMany({ where: { userId } });
   }
