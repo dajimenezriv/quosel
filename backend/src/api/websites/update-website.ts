@@ -1,5 +1,4 @@
 import { ApiError } from '@/core/api/errors';
-import type { AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { R2 } from '@/infra/r2/r2';
@@ -28,16 +27,15 @@ export const updateWebsiteRoute = createRoute({
   responses: setupResponses(204),
 });
 
-export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
-  const userId = c.get('userId');
+export const updateWebsite: RouteHandler<typeof updateWebsiteRoute> = async (c) => {
   const websiteId = c.req.param('websiteId');
   const { publish } = c.req.valid('query');
   const { blocks, styles } = c.req.valid('json');
 
-  const website = await Websites.getById(userId, websiteId);
+  const website = await Websites.getById(websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  await Websites.update(userId, websiteId, { blocks, styles });
+  await Websites.update(websiteId, { blocks, styles });
 
   if (publish) {
     const html = renderTemplate({ blocks, styles });

@@ -1,5 +1,4 @@
 import { ApiError } from '@/core/api/errors';
-import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -25,11 +24,10 @@ export const getWebsiteRoute = createRoute({
   responses: setupResponses(200, ResponseSchema),
 });
 
-export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
-  const userId = c.get('userId');
+export const getWebsite: RouteHandler<typeof getWebsiteRoute> = async (c) => {
   const { websiteId } = c.req.valid('param');
 
-  const website = await Websites.getById(userId, websiteId);
+  const website = await Websites.getById(websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
   const blocks = website.blocks as Blocks;

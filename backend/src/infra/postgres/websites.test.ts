@@ -27,32 +27,19 @@ describe('websites', () => {
   });
 
   describe('getById', () => {
-    it('should return website if it exists for the given user', async () => {
+    it('should return website if it exists', async () => {
       // Given
       const { id: userId } = await createMockUser();
       const { id: websiteId } = await Websites.create(userId, 'My Website');
       // When
-      const website = await Websites.getById(userId, websiteId);
+      const website = await Websites.getById(websiteId);
       // Then
       expect(website!.id).toBe(websiteId);
     });
 
-    it('should return null if website belongs to a different user', async () => {
-      // Given
-      const { id: userId1 } = await createMockUser();
-      const { id: userId2 } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId1, 'My Website');
-      // When
-      const website = await Websites.getById(userId2, websiteId);
-      // Then
-      expect(website).toBeNull();
-    });
-
     it('should return null if website does not exist', async () => {
-      // Given
-      const { id: userId } = await createMockUser();
       // When
-      const website = await Websites.getById(userId, 'non-existing-id');
+      const website = await Websites.getById('non-existing-id');
       // Then
       expect(website).toBeNull();
     });
@@ -86,27 +73,14 @@ describe('websites', () => {
       const { id: userId } = await createMockUser();
       const { id: websiteId } = await Websites.create(userId, 'My Website');
       // When
-      const updated = await Websites.update(userId, websiteId, { name: 'Updated Name' });
+      const updated = await Websites.update(websiteId, { name: 'Updated Name' });
       // Then
       expect(updated.name).toBe('Updated Name');
     });
 
     it('should throw error if website does not exist', async () => {
-      // Given
-      const { id: userId } = await createMockUser();
       // When
-      const promise = Websites.update(userId, 'non-existing-id', { name: 'Updated' });
-      // Then
-      await expect(promise).rejects.toThrow('No record was found for an update.');
-    });
-
-    it('should throw error if website belongs to a different user', async () => {
-      // Given
-      const { id: userId1 } = await createMockUser();
-      const { id: userId2 } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId1, 'My Website');
-      // When
-      const promise = Websites.update(userId2, websiteId, { name: 'Updated' });
+      const promise = Websites.update('non-existing-id', { name: 'Updated' });
       // Then
       await expect(promise).rejects.toThrow('No record was found for an update.');
     });

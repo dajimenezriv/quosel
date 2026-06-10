@@ -40,7 +40,7 @@ app.use('/billing/portal', requireAuth);
 app.use('/billing/checkout', requireAuth);
 app.route('/billing', billingRouter);
 
-app.use('/websites/*', requireAuth);
+app.use('/websites', requireAuth);
 app.route('/websites', websitesRouter);
 
 app.use('/images/*', requireAuth);

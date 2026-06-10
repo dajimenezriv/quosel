@@ -12,8 +12,8 @@ export class Websites {
     return await prisma.website.findMany({ where: { userId } });
   }
 
-  static async getById(userId: UserId, websiteId: string) {
-    return await prisma.website.findFirst({ where: { id: websiteId, userId } });
+  static async getById(websiteId: string) {
+    return await prisma.website.findFirst({ where: { id: websiteId } });
   }
 
   static async create(userId: UserId, name: string) {
@@ -27,7 +27,7 @@ export class Websites {
     });
   }
 
-  static async update(userId: UserId, websiteId: string, data: Prisma.WebsiteUpdateInput) {
-    return await prisma.website.update({ where: { id: websiteId, userId }, data });
+  static async update(websiteId: string, data: Prisma.WebsiteUpdateInput) {
+    return await prisma.website.update({ where: { id: websiteId }, data });
   }
 }

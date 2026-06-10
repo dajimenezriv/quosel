@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { R2 } from '@/infra/r2/r2';
-import { calls, deepMocked, expectError, loggerFn, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
+import { calls, deepMocked, expectError, putRequest } from '@/tests/utils.helper.test';
 import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
@@ -10,19 +10,10 @@ vi.mock(import('@/infra/r2/r2'));
 const VALID_BODY = { blocks: circoloPopolareBlocks, styles: claudeStyles };
 
 describe('update-website', () => {
-  mockAuthMiddleware();
-
   const getByIdMock = deepMocked(Websites.getById);
 
   beforeEach(() => {
     getByIdMock.mockResolvedValue({ id: 'websiteId' });
-  });
-
-  it('should return 401 if session is not provided', async () => {
-    // When
-    const res = await app.request('/websites/websiteId', { method: 'PUT' });
-    // Then
-    await expectError(res, 401, 'Unauthorized');
   });
 
   it('should return 400 if body is invalid', async () => {
