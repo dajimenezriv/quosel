@@ -1,5 +1,5 @@
 import React from 'react';
-import { ServicesBlock } from '../types';
+import type { ServicesBlock } from '../types';
 
 export function Services({ block }: { block: ServicesBlock }) {
   return (

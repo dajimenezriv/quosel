@@ -1,5 +1,5 @@
 import React from 'react';
-import { CtaBlock } from '../types';
+import type { CtaBlock } from '../types';
 
 export function CTA({ block }: { block: CtaBlock }) {
   return (
