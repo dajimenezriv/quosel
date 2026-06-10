@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS "websites" (
     "id" TEXT NOT NULL,
     "user_id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "domain" TEXT,
     "blocks" JSONB NOT NULL,
     "styles" JSONB NOT NULL,
     "published_at" TIMESTAMPTZ,
@@ -65,9 +64,6 @@ CREATE UNIQUE INDEX "users_stripe_customer_id_key" ON "users"("stripe_customer_i
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_stripe_subscription_id_key" ON "users"("stripe_subscription_id");
-
--- CreateIndex
-CREATE UNIQUE INDEX "websites_domain_key" ON "websites"("domain");
 
 -- AddForeignKey
 ALTER TABLE "sessions" ADD CONSTRAINT "sessions_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

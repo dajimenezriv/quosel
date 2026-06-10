@@ -272,12 +272,6 @@
                           "name": {
                             "type": "string"
                           },
-                          "domain": {
-                            "type": [
-                              "string",
-                              "null"
-                            ]
-                          },
                           "styles": {
                             "type": "object",
                             "properties": {
@@ -350,7 +344,6 @@
                           "id",
                           "userId",
                           "name",
-                          "domain",
                           "styles",
                           "createdAt",
                           "updatedAt"
@@ -406,12 +399,6 @@
                     },
                     "name": {
                       "type": "string"
-                    },
-                    "domain": {
-                      "type": [
-                        "string",
-                        "null"
-                      ]
                     },
                     "blocks": {
                       "type": "object",
@@ -892,7 +879,6 @@
                     "id",
                     "userId",
                     "name",
-                    "domain",
                     "blocks",
                     "styles",
                     "createdAt",

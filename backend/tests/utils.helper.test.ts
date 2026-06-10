@@ -10,7 +10,6 @@ loggerMock.error.mockImplementation(loggerFn);
 
 const COOKIE_HEADERS = { headers: { Cookie: 'session=sessionId' } };
 export const GET_AUTH_REQUEST = COOKIE_HEADERS;
-export const POST_AUTH_REQUEST = { method: 'POST', ...COOKIE_HEADERS };
 export const DELETE_AUTH_REQUEST = { method: 'DELETE', ...COOKIE_HEADERS };
 
 export function putRequest(body?: object) {

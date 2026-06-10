@@ -8,7 +8,6 @@ const WebsiteSchema = z.object({
   id: z.string(),
   userId: z.string(),
   name: z.string(),
-  domain: z.string().nullable(),
   styles: stylesSchema,
   createdAt: z.date(),
   updatedAt: z.date(),

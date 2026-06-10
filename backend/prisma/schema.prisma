@@ -43,7 +43,6 @@ model Website {
   id          String    @id @default(uuid())
   userId      String    @map("user_id")
   name        String
-  domain      String?   @unique
   blocks      Json
   styles      Json
   publishedAt DateTime? @map("published_at") @db.Timestamptz

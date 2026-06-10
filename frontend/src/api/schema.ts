@@ -305,7 +305,6 @@ export interface paths {
                                 id: string;
                                 userId: string;
                                 name: string;
-                                domain: string | null;
                                 styles: {
                                     background: string;
                                     foreground: string;
@@ -375,7 +374,6 @@ export interface paths {
                             id: string;
                             userId: string;
                             name: string;
-                            domain: string | null;
                             blocks: {
                                 /** @enum {number} */
                                 schemaVersion: 1;
