@@ -6,6 +6,7 @@ export const schema = z.object({
   name: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
+  publishedAt: z.string().nullable(),
 });
 
 export type Website = z.infer<typeof schema>;

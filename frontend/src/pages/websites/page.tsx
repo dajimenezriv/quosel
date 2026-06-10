@@ -9,7 +9,7 @@ export default function Page() {
 
   return (
     <BaseLayout title="Websites">
-      <div className="flex-1">
+      <div className="flex-1 p-6">
         <DataTable data={data?.websites ?? []} onRowClick={(id) => navigate(`/editor/${id}`)} />
       </div>
     </BaseLayout>

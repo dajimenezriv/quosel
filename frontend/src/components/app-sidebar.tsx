@@ -18,13 +18,10 @@ export function AppSidebar() {
     <>
       <SidebarMenuButton size="lg" asChild>
         <Link to="/">
-          <div className="size-8 items-center">
-            <Logo size={32} />
-          </div>
-          <span className="font-medium">Quosel</span>
+          <Logo size={32} />
         </Link>
       </SidebarMenuButton>
-      <div className="mt-6 flex flex-1 flex-col">
+      <div className="mt-10 flex flex-1 flex-col">
         <NavMain label="Pages" items={navItems} />
       </div>
       <NavUser />

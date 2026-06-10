@@ -81,6 +81,16 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     ),
   },
   {
+    id: 'publishedAt',
+    header: 'Published',
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">
+        {row.original.publishedAt &&
+          new Date(row.original.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+      </span>
+    ),
+  },
+  {
     id: 'maps',
     header: '',
     cell: ({ row }) => (
