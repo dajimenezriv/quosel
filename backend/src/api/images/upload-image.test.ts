@@ -1,8 +1,10 @@
 import { app } from '@/app';
 import { WebsiteImages } from '@/infra/postgres/website-images';
+import { Websites } from '@/infra/postgres/websites';
 import { deepMocked, expectError, mockAuthMiddleware } from '@/tests/utils.helper.test';
 
 vi.mock(import('@/infra/postgres/website-images'));
+vi.mock(import('@/infra/postgres/websites'));
 vi.mock(import('@/infra/cloudflare/r2'));
 
 describe('upload-image', () => {
@@ -22,6 +24,7 @@ describe('upload-image', () => {
   }
 
   beforeEach(() => {
+    deepMocked(Websites.getById).mockResolvedValue({ id: 'websiteId', userId: 'userId' });
     vi.mocked(WebsiteImages.getUrl).mockReturnValue('https://asssets.quosel.com/images/userId/image.png');
     deepMocked(WebsiteImages.create).mockResolvedValue({
       id: 'imageId',
@@ -37,6 +40,24 @@ describe('upload-image', () => {
     const res = await app.request('/images/upload', { method: 'POST' });
     // Then
     await expectError(res, 401, 'Unauthorized');
+  });
+
+  it('should return 404 when the website does not exist', async () => {
+    // Given
+    deepMocked(Websites.getById).mockResolvedValue(null);
+    // When
+    const res = await app.request('/images/upload', makeRequest(file));
+    // Then
+    await expectError(res, 404, 'Website not found');
+  });
+
+  it('should return 404 when the website belongs to another user', async () => {
+    // Given
+    deepMocked(Websites.getById).mockResolvedValue({ id: 'websiteId', userId: 'otherUserId' });
+    // When
+    const res = await app.request('/images/upload', makeRequest(file));
+    // Then
+    await expectError(res, 404, 'Website not found');
   });
 
   it('should return 400 when file type is not allowed', async () => {

@@ -3,6 +3,7 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { R2 } from '@/infra/cloudflare/r2';
 import { WebsiteImages } from '@/infra/postgres/website-images';
+import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const MAX_SIZE = 5 * 1024 * 1024;
@@ -36,10 +37,12 @@ export const uploadImageRoute = createRoute({
 export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: AuthVariables }> = async (c) => {
   const userId = c.get('userId');
   const { file, websiteId } = c.req.valid('form');
-  // TODO: we are not checking if the website belongs to the user
 
   if (!ALLOWED_TYPES.includes(file.type)) throw new ApiError(400, 'Invalid file type');
   if (file.size > MAX_SIZE) throw new ApiError(400, 'File too large (max 5 MB)');
+
+  const website = await Websites.getById(websiteId);
+  if (!website || website.userId !== userId) throw new ApiError(404, 'Website not found');
 
   const id = crypto.randomUUID();
   await R2.upload(`images/${id}`, file);
