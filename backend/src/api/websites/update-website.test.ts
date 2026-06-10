@@ -1,31 +1,13 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { R2 } from '@/infra/r2/r2';
-import { calls, deepMocked, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
-import type { Blocks } from '@quosel/templates';
+import { calls, deepMocked, expectError, loggerFn, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
+import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
 vi.mock(import('@/infra/r2/r2'));
 
-const VALID_BLOCKS: Blocks = {
-  schemaVersion: 1,
-  nav: { ctaText: 'Contact', ctaLink: '#contact' },
-  hero: { firstTitle: 'Hello', secondTitle: 'World', text: 'text', ctaText: 'CTA', ctaLink: '#cta', phone: '123', imageUrl: '' },
-  aboutUs: { nav: 'About', title: 'About Us', text1: 'text1', text2: 'text2', imageUrl: '' },
-  gallery: { nav: 'Gallery', title: 'Gallery', text: 'text', ctaText: 'See more', ctaLink: '#gallery' },
-  reviews: { nav: 'Reviews', title: 'Reviews' },
-  services: { nav: 'Services', title: 'Services', text: 'text', ctaText: 'Book', ctaLink: '#services' },
-  location: { nav: 'Location', title: 'Location', address: '123 Main St', ctaText: 'Directions', ctaLink: '#location' },
-};
-
-const VALID_BODY = { blocks: VALID_BLOCKS, styles: {} };
-
-const WEBSITE_MOCK = {
-  place: {
-    name: 'Test Place',
-    formattedAddress: '123 Main St',
-  },
-};
+const VALID_BODY = { blocks: circoloPopolareBlocks, styles: claudeStyles };
 
 describe('update-website', () => {
   mockAuthMiddleware();
@@ -33,7 +15,7 @@ describe('update-website', () => {
   const getByIdMock = deepMocked(Websites.getById);
 
   beforeEach(() => {
-    getByIdMock.mockResolvedValue({ id: 'websiteId', place: WEBSITE_MOCK.place });
+    getByIdMock.mockResolvedValue({ id: 'websiteId' });
   });
 
   it('should return 401 if session is not provided', async () => {

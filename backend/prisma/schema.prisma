@@ -39,52 +39,10 @@ model Session {
   @@map("sessions")
 }
 
-model Place {
-  id                       String   @id @default(uuid())
-  googleId                 String   @unique @map("google_id")
-  name                     String
-  internationalPhoneNumber String   @map("international_phone_number")
-  formattedAddress         String   @map("formatted_address")
-  shortFormattedAddress    String   @map("short_formatted_address")
-  latitude                 Float    @db.DoublePrecision
-  longitude                Float    @db.DoublePrecision
-  rating                   Float?   @db.Real
-  userRatingCount          Int?     @map("user_rating_count")
-  googleMapsPlaceUri       String   @map("google_maps_place_uri")
-  googleMapsReviewsUri     String   @map("google_maps_reviews_uri")
-  googleMapsPhotosUri      String   @map("google_maps_photos_uri")
-  raw                      Json
-  createdAt                DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt                DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
-
-  reviews  Review[]
-  websites Website[]
-
-  @@map("places")
-}
-
-model Review {
-  id             String   @id @default(uuid())
-  placeId        String   @map("place_id")
-  googleId       String   @unique @map("google_id")
-  rating         Float    @db.Real
-  text           String
-  authorName     String   @map("author_name")
-  authorPhotoUri String   @map("author_photo_uri")
-  publishTime    DateTime @map("publish_time") @db.Timestamptz
-  googleMapsUri  String   @map("google_maps_uri")
-  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
-
-  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
-
-  @@map("reviews")
-}
-
 model Website {
   id          String    @id @default(uuid())
   userId      String    @map("user_id")
-  placeId     String    @map("place_id")
+  name        String
   domain      String?   @unique
   blocks      Json
   styles      Json
@@ -93,7 +51,6 @@ model Website {
   updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  place         Place          @relation(fields: [placeId], references: [id], onDelete: Cascade)
   websiteImages WebsiteImage[]
 
   @@map("websites")

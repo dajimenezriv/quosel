@@ -8,7 +8,6 @@ import { decodeIdToken, OAuth2RequestError } from 'arctic';
 vi.mock(import('@/api/auth/utils'));
 vi.mock(import('@/infra/postgres/users'));
 vi.mock(import('@/infra/postgres/sessions'));
-vi.mock(import('@/core/env'));
 vi.mock(import('arctic'));
 
 const VALID_COOKIES = 'google_state=mockState; google_verifier=mockVerifier';

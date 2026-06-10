@@ -1,7 +1,7 @@
 import type { UserId } from '@/core/types';
 import { prisma } from '@/infra/postgres/client';
 import { createMockUser } from '@/tests/postgres.helper.test';
-import { SEED_PLACE_ID, Users } from './users';
+import { Users } from './users';
 
 describe('users', () => {
   describe('getById', () => {
@@ -63,10 +63,11 @@ describe('users', () => {
   describe('createOrUpdate', () => {
     it('should update existing user when googleId exists', async () => {
       // Given
-      const { id: userId, googleId, ...user } = await createMockUser();
+      const { id: userId, googleId, name, ...user } = await createMockUser();
       // When
       const res = await Users.createOrUpdate(googleId, { ...user, name: 'newName' });
       // Then
+      expect(name).toBe('name');
       expect(res.name).toBe('newName');
       expect(await prisma.website.count({ where: { userId } })).toBe(0);
     });
@@ -85,8 +86,7 @@ describe('users', () => {
         subscriptionPriceId: '',
       });
       // Then
-      const websites = await prisma.website.findMany({ where: { userId } });
-      expect(websites).toMatchObject([{ placeId: SEED_PLACE_ID }]);
+      expect(await prisma.website.count({ where: { userId } })).toBe(1);
     });
   });
 });

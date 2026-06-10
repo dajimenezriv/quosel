@@ -4,7 +4,6 @@ import { generateCodeVerifier, generateState } from 'arctic';
 import { google } from './utils';
 
 vi.mock(import('@/api/auth/utils'));
-vi.mock(import('@/core/env'));
 vi.mock(import('arctic'));
 
 describe('google-login', () => {

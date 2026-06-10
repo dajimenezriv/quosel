@@ -1,6 +1,7 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { deepMocked, expectError, expectJson, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
+import { claudeStyles } from '@quosel/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
 
@@ -29,28 +30,13 @@ describe('get-websites', () => {
     // Given
     getAllByUserIdMock.mockResolvedValue([
       {
-        id: 'website-id',
-        userId: 'user-id',
-        domain: 'the-golden-spoon-abc12345',
+        id: 'websiteId',
+        userId: 'userId',
+        name: 'name',
+        domain: null,
+        styles: claudeStyles,
         createdAt: new Date('2024-01-01T00:00:00.000Z'),
         updatedAt: new Date('2024-01-01T00:00:00.000Z'),
-        place: {
-          id: 'place-id',
-          googleId: 'google-place-id',
-          name: 'The Golden Spoon',
-          internationalPhoneNumber: '+1 555-123-4567',
-          formattedAddress: '123 Main Street, Springfield, IL 62701, USA',
-          shortFormattedAddress: '123 Main St, Springfield',
-          latitude: 39.7817,
-          longitude: -89.6501,
-          rating: 4.5,
-          userRatingCount: 3,
-          googleMapsPlaceUri: 'https://maps.google.com/?cid=example',
-          googleMapsReviewsUri: 'https://maps.google.com/?cid=example#reviews',
-          googleMapsPhotosUri: 'https://maps.google.com/?cid=example#photos',
-          createdAt: new Date('2024-01-01T00:00:00.000Z'),
-          updatedAt: new Date('2024-01-01T00:00:00.000Z'),
-        },
       },
     ]);
     // When

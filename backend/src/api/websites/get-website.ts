@@ -5,45 +5,15 @@ import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { blocksSchema, stylesSchema, type Blocks, type Styles } from '@quosel/templates';
 
-const ReviewSchema = z.object({
-  id: z.string(),
-  rating: z.number(),
-  text: z.string(),
-  authorName: z.string(),
-  authorPhotoUri: z.string(),
-  publishTime: z.date(),
-  googleMapsUri: z.string(),
-  createdAt: z.date(),
-});
-
-const PlaceSchema = z.object({
-  id: z.string(),
-  googleId: z.string(),
-  name: z.string(),
-  internationalPhoneNumber: z.string(),
-  formattedAddress: z.string(),
-  shortFormattedAddress: z.string(),
-  latitude: z.number(),
-  longitude: z.number(),
-  rating: z.number().nullable(),
-  userRatingCount: z.number().nullable(),
-  googleMapsPlaceUri: z.string(),
-  googleMapsReviewsUri: z.string(),
-  googleMapsPhotosUri: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-  reviews: z.array(ReviewSchema),
-});
-
 const ResponseSchema = z.object({
   id: z.string(),
   userId: z.string(),
+  name: z.string(),
   domain: z.string().nullable(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
   blocks: blocksSchema,
   styles: stylesSchema,
-  place: PlaceSchema,
+  createdAt: z.date(),
+  updatedAt: z.date(),
 });
 
 export const getWebsiteRoute = createRoute({

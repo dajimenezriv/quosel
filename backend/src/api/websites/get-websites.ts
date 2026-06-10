@@ -2,32 +2,16 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-
-const PlaceSchema = z.object({
-  id: z.string(),
-  googleId: z.string(),
-  name: z.string(),
-  internationalPhoneNumber: z.string(),
-  formattedAddress: z.string(),
-  shortFormattedAddress: z.string(),
-  latitude: z.number(),
-  longitude: z.number(),
-  rating: z.number().nullable(),
-  userRatingCount: z.number().nullable(),
-  googleMapsPlaceUri: z.string(),
-  googleMapsReviewsUri: z.string(),
-  googleMapsPhotosUri: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
-});
+import { stylesSchema, type Styles } from '@quosel/templates';
 
 const WebsiteSchema = z.object({
   id: z.string(),
   userId: z.string(),
+  name: z.string(),
   domain: z.string().nullable(),
+  styles: stylesSchema,
   createdAt: z.date(),
   updatedAt: z.date(),
-  place: PlaceSchema,
 });
 
 const ResponseSchema = z.object({ websites: z.array(WebsiteSchema) });
@@ -40,6 +24,12 @@ export const getWebsitesRoute = createRoute({
 
 export const getWebsites: RouteHandler<typeof getWebsitesRoute, { Variables: AuthVariables }> = async (c) => {
   const userId = c.get('userId');
-  const websites = await Websites.getAllByUserId(userId);
+  const rawWebsites = await Websites.getAllByUserId(userId);
+
+  const websites = rawWebsites.map((rawWebsite) => ({
+    ...rawWebsite,
+    styles: rawWebsite.styles as Styles,
+  }));
+
   return jsonResponse(c, ResponseSchema, { websites }, 200);
 };
