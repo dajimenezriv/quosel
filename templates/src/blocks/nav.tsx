@@ -4,13 +4,13 @@ import type { WebsiteData } from '../types';
 export function Nav({ data }: { data: WebsiteData }) {
   const block = data.blocks.nav;
 
-  const navLinks = [
-    // { label: data.blocks.aboutUs.nav, href: '#about' },
-    // { label: data.blocks.gallery.nav, href: '#gallery' },
-    // { label: data.blocks.reviews.nav, href: '#reviews' },
-    // { label: data.blocks.services.nav, href: '#services' },
-    // { label: data.blocks.location.nav, href: '#location' },
-  ];
+  const navLinks: Array<{ label: string; href: string }> = [];
+
+  for (const b of data.blocks.blocks) {
+    if ('nav' in b) {
+      navLinks.push({ label: b.nav, href: `#${b.nav}` });
+    }
+  }
 
   return (
     <nav className="border-border fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-5 opacity-90 backdrop-blur-sm">

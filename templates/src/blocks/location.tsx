@@ -3,7 +3,7 @@ import type { LocationBlock } from '../types';
 
 export function Location({ block }: { block: LocationBlock }) {
   return (
-    <section id="location" className="bg-background flex justify-center py-24">
+    <section id={block.nav} className="bg-background flex justify-center py-24">
       <div className="flex w-300 items-center gap-20">
         <div className="flex flex-1 flex-col">
           <p className="text-primary mb-6 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>

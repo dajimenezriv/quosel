@@ -3,7 +3,7 @@ import type { InfoBlock } from '../types';
 
 export function Info({ block }: { block: InfoBlock }) {
   return (
-    <section id="about" className="flex justify-center py-24">
+    <section id={block.nav} className="flex justify-center py-24">
       <div className="flex w-250 flex-col">
         <p className="text-primary text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
         <h2 className="mt-4 text-5xl">{block.title}</h2>

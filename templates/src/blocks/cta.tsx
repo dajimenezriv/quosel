@@ -3,7 +3,7 @@ import { CtaBlock } from '../types';
 
 export function CTA({ block }: { block: CtaBlock }) {
   return (
-    <section id="cta" className="relative flex min-h-96 items-center justify-center py-32 text-center">
+    <section className="relative flex min-h-96 items-center justify-center py-32 text-center">
       <div
         className="absolute inset-0 bg-cover bg-center opacity-10"
         style={{

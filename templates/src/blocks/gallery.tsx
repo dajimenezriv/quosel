@@ -3,7 +3,7 @@ import type { GalleryBlock } from '../types';
 
 export function Gallery({ block }: { block: GalleryBlock }) {
   return (
-    <section id="gallery" className="bg-secondary-foreground flex justify-center p-24">
+    <section id={block.nav} className="bg-secondary-foreground flex justify-center p-24">
       <div className="flex flex-col gap-10">
         <div className="flex flex-col gap-4">
           <p className="text-primary text-xs tracking-[0.25em] uppercase">— {block.nav}</p>

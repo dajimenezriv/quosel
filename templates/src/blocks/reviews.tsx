@@ -3,7 +3,7 @@ import type { ReviewsBlock } from '../types';
 
 export function Reviews({ block }: { block: ReviewsBlock }) {
   return (
-    <section id="reviews" className="flex justify-center py-24">
+    <section id={block.nav} className="flex justify-center py-24">
       <div className="flex max-w-400 flex-col">
         <div className="mb-8 flex flex-col gap-6 md:mb-16 md:flex-row md:items-start md:justify-between md:gap-16">
           <div>

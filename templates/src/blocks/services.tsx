@@ -3,7 +3,7 @@ import { ServicesBlock } from '../types';
 
 export function Services({ block }: { block: ServicesBlock }) {
   return (
-    <section id="services" className="bg-secondary-foreground flex justify-center py-24">
+    <section id={block.nav} className="bg-secondary-foreground flex justify-center py-24">
       <div className="flex w-250 flex-col">
         <div className="mb-10 flex flex-col">
           <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— Carta</p>
