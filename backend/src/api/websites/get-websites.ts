@@ -1,4 +1,4 @@
-import type { AuthVariables } from '@/core/api/middleware/auth';
+import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -19,6 +19,7 @@ const ResponseSchema = z.object({ websites: z.array(WebsiteSchema) });
 export const getWebsitesRoute = createRoute({
   method: 'get',
   path: '/',
+  middleware: [requireAuth],
   responses: setupResponses(200, ResponseSchema),
 });
 

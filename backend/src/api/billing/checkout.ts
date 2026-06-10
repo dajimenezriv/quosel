@@ -1,5 +1,6 @@
 import { ApiError } from '@/core/api/errors';
-import type { AuthVariables } from '@/core/api/middleware/auth';
+import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
+import { rateLimit } from '@/core/api/middleware/rate-limit';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { env } from '@/core/env';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -11,6 +12,7 @@ const ResponseSchema = z.object({ url: z.string() });
 export const checkoutRoute = createRoute({
   method: 'post',
   path: '/checkout',
+  middleware: [requireAuth, rateLimit({ limit: 10, windowMs: 60_000 })],
   responses: setupResponses(200, ResponseSchema),
 });
 

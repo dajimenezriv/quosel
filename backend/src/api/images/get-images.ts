@@ -1,4 +1,4 @@
-import type { AuthVariables } from '@/core/api/middleware/auth';
+import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { WebsiteImages } from '@/infra/postgres/website-images';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -18,6 +18,7 @@ const ResponseSchema = z.object({
 export const getImagesRoute = createRoute({
   method: 'get',
   path: '/',
+  middleware: [requireAuth],
   responses: setupResponses(200, ResponseSchema),
 });
 

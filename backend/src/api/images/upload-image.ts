@@ -1,5 +1,6 @@
 import { ApiError } from '@/core/api/errors';
-import type { AuthVariables } from '@/core/api/middleware/auth';
+import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
+import { rateLimit } from '@/core/api/middleware/rate-limit';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { R2 } from '@/infra/cloudflare/r2';
 import { WebsiteImages } from '@/infra/postgres/website-images';
@@ -19,6 +20,7 @@ const ResponseSchema = z.object({
 export const uploadImageRoute = createRoute({
   method: 'post',
   path: '/upload',
+  middleware: [requireAuth, rateLimit({ limit: 10, windowMs: 30_000 })],
   request: {
     body: {
       content: {

@@ -85,4 +85,37 @@ describe('websites', () => {
       await expect(promise).rejects.toThrow('No record was found for an update.');
     });
   });
+
+  describe('delete', () => {
+    it('should delete the website if it belongs to the user', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      const { id: websiteId } = await Websites.create(userId, 'My Website');
+      // When
+      const deleted = await Websites.delete(userId, websiteId);
+      // Then
+      expect(deleted.id).toBe(websiteId);
+      expect(await Websites.getById(websiteId)).toBeNull();
+    });
+
+    it('should throw if website does not exist', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      // When
+      const promise = Websites.delete(userId, 'nonExistingId');
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for a delete.');
+    });
+
+    it('should throw if website belongs to another user', async () => {
+      // Given
+      const { id: userId1 } = await createMockUser();
+      const { id: userId2 } = await createMockUser();
+      const { id: websiteId } = await Websites.create(userId1, 'My Website');
+      // When
+      const promise = Websites.delete(userId2, websiteId);
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for a delete.');
+    });
+  });
 });

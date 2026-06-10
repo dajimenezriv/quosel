@@ -28,4 +28,8 @@ export class Websites {
   static async update(websiteId: string, data: WebsiteUpdate) {
     return await prisma.website.update({ where: { id: websiteId }, data });
   }
+
+  static async delete(userId: UserId, websiteId: string) {
+    return await prisma.website.delete({ where: { id: websiteId, userId } });
+  }
 }

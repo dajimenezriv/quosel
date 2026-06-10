@@ -18,6 +18,24 @@ describe('website-images', async () => {
     });
   });
 
+  describe('getById', () => {
+    it('should return image if it exists', async () => {
+      // Given
+      const image = await createMockImage(userId);
+      // When
+      const found = await WebsiteImages.getById(image.id);
+      // Then
+      expect(found!.id).toBe(image.id);
+    });
+
+    it('should return null if image does not exist', async () => {
+      // When
+      const found = await WebsiteImages.getById('nonExisting');
+      // Then
+      expect(found).toBeNull();
+    });
+  });
+
   describe('getAllByUserId', () => {
     it('should retrieve all images for a user', async () => {
       // Given

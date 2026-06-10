@@ -8,9 +8,16 @@ const loggerMock = vi.mocked(logger);
 loggerMock.info.mockImplementation(loggerFn);
 loggerMock.error.mockImplementation(loggerFn);
 
-const COOKIE_HEADERS = { headers: { Cookie: 'session=sessionId' } };
-export const GET_AUTH_REQUEST = COOKIE_HEADERS;
-export const DELETE_AUTH_REQUEST = { method: 'DELETE', ...COOKIE_HEADERS };
+export const GET_AUTH_REQUEST = { headers: { Cookie: 'session=sessionId' } };
+export const DELETE_AUTH_REQUEST = { method: 'DELETE', headers: { Cookie: 'session=sessionId' } };
+
+export function postRequest(body?: object) {
+  return {
+    method: 'POST',
+    headers: { Cookie: 'session=sessionId', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  };
+}
 
 export function putRequest(body?: object) {
   return {
@@ -25,10 +32,8 @@ export function deepMocked<T extends (...args: any[]) => unknown>(fn: T) {
 }
 
 export function mockAuthMiddleware() {
-  const getSessionByIdMock = vi.spyOn(Sessions, 'getById');
-
   beforeEach(() => {
-    getSessionByIdMock.mockResolvedValue({ user: { id: 'userId' } } as any);
+    vi.spyOn(Sessions, 'getById').mockResolvedValue({ user: { id: 'userId' } } as any);
   });
 }
 

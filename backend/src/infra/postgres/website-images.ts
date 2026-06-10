@@ -8,6 +8,10 @@ export class WebsiteImages {
     return `${env.R2_PUBLIC_URL}/images/${imageId}`;
   }
 
+  static async getById(imageId: string) {
+    return await prisma.websiteImage.findFirst({ where: { id: imageId } });
+  }
+
   static async getAllByUserId(userId: UserId) {
     return await prisma.websiteImage.findMany({
       where: { userId },
