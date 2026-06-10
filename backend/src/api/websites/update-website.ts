@@ -1,4 +1,5 @@
 import { ApiError } from '@/core/api/errors';
+import type { AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { R2 } from '@/infra/r2/r2';
@@ -27,7 +28,7 @@ export const updateWebsiteRoute = createRoute({
   responses: setupResponses(204),
 });
 
-export const updateWebsite: RouteHandler<typeof updateWebsiteRoute> = async (c) => {
+export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
   const websiteId = c.req.param('websiteId');
   const { publish } = c.req.valid('query');
   const { blocks, styles } = c.req.valid('json');
