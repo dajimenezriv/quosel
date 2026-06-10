@@ -4,7 +4,7 @@ packages:
   - "templates"
 allowBuilds:
   "@prisma/engines": false
-  "@railway/cli": false
+  "@railway/cli": true
   core-js: false
   esbuild: false
   prisma: false
