@@ -8,7 +8,7 @@ vi.mock(import('@/infra/cloudflare/r2'));
 describe('upload-image', () => {
   mockAuthMiddleware();
 
-  const createMock = deepMocked(WebsiteImages.create);
+  const file = makeFile('image/jpeg', 1024);
 
   function makeRequest(file: File, websiteId = 'websiteId') {
     const form = new FormData();
@@ -23,6 +23,13 @@ describe('upload-image', () => {
 
   beforeEach(() => {
     vi.mocked(WebsiteImages.getUrl).mockReturnValue('https://asssets.quosel.com/images/userId/image.png');
+    deepMocked(WebsiteImages.create).mockResolvedValue({
+      id: 'imageId',
+      userId: 'userId',
+      websiteId: 'websiteId',
+      sizeBytes: 1024,
+      createdAt: new Date('2024-01-01T00:00:00.000Z'),
+    });
   });
 
   it('should return 401 if session is not provided', async () => {
@@ -47,18 +54,17 @@ describe('upload-image', () => {
   });
 
   it('should return 201 with the created image', async () => {
-    // Given
-    const file = makeFile('image/jpeg', 1024);
-    createMock.mockResolvedValue({
-      id: 'imageId',
-      userId: 'userId',
-      websiteId: 'websiteId',
-      sizeBytes: 1024,
-      createdAt: new Date('2024-01-01T00:00:00.000Z'),
-    });
     // When
     const res = await app.request('/images/upload', makeRequest(file));
     // Then
     expect(res.status).toBe(201);
+  });
+
+  it('should return 429 when exceeding the rate limit', async () => {
+    // When
+    for (let i = 0; i < 10; i++) await app.request('/images/upload', makeRequest(file));
+    const res = await app.request('/images/upload', makeRequest(file));
+    // Then
+    await expectError(res, 429, 'Too many requests');
   });
 });

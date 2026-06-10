@@ -9,6 +9,7 @@ import { createRouter } from './core/api/create-router';
 import { ApiError } from './core/api/errors';
 import { requireAuth } from './core/api/middleware/auth';
 import { requestLogger } from './core/api/middleware/logger';
+import { rateLimit } from './core/api/middleware/rate-limit';
 import { env } from './core/env';
 import { logger } from './core/logger';
 
@@ -39,12 +40,13 @@ app.onError((error, c) => {
 app.route('/', healthRouter);
 app.route('/auth', authRouter);
 
-app.use('/billing/portal', requireAuth);
-app.use('/billing/checkout', requireAuth);
+app.use('/billing/portal', requireAuth, rateLimit({ limit: 10, windowMs: 60_000 }));
+app.use('/billing/checkout', requireAuth, rateLimit({ limit: 10, windowMs: 60_000 }));
 app.route('/billing', billingRouter);
 
 app.use('/websites', requireAuth);
 app.route('/websites', websitesRouter);
 
 app.use('/images/*', requireAuth);
+app.use('/images/upload', rateLimit({ limit: 10, windowMs: 30_000 }));
 app.route('/images', imagesRouter);
