@@ -3,6 +3,8 @@ import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
+type GoogleProfile = Pick<Prisma.UserUncheckedCreateInput, 'email' | 'name' | 'givenName' | 'familyName' | 'picture'>;
+
 export class Users {
   static async getById(id: UserId) {
     return await prisma.user.findUnique({ where: { id } });
@@ -16,7 +18,7 @@ export class Users {
     return await prisma.user.update({ where: { stripeCustomerId }, data });
   }
 
-  static async createOrUpdate(googleId: string, data: Omit<Prisma.UserUncheckedCreateInput, 'googleId'>) {
+  static async createOrUpdate(googleId: string, data: GoogleProfile) {
     return await prisma.$transaction(async (tx) => {
       const existing = await tx.user.findUnique({ where: { googleId } });
 
@@ -24,7 +26,14 @@ export class Users {
         return await tx.user.update({ where: { googleId }, data });
       }
 
-      const userRow = await tx.user.create({ data: { googleId, ...data } });
+      const userRow = await tx.user.create({
+        data: {
+          ...data,
+          googleId,
+          subscriptionStatus: '',
+          subscriptionPriceId: '',
+        },
+      });
 
       await tx.website.create({
         data: {

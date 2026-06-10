@@ -39,7 +39,7 @@ describe('websites', () => {
 
     it('should return null if website does not exist', async () => {
       // When
-      const website = await Websites.getById('non-existing-id');
+      const website = await Websites.getById('nonExistingId');
       // Then
       expect(website).toBeNull();
     });
@@ -80,7 +80,7 @@ describe('websites', () => {
 
     it('should throw error if website does not exist', async () => {
       // When
-      const promise = Websites.update('non-existing-id', { name: 'Updated' });
+      const promise = Websites.update('nonExistingId', { name: 'Updated' });
       // Then
       await expect(promise).rejects.toThrow('No record was found for an update.');
     });

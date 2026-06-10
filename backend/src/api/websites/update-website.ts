@@ -8,6 +8,7 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/templates';
 
 const BodySchema = z.object({
+  name: z.string(),
   blocks: blocksSchema,
   styles: stylesSchema,
 });
@@ -32,13 +33,13 @@ export const updateWebsiteRoute = createRoute({
 export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
   const websiteId = c.req.param('websiteId');
   const { publish } = c.req.valid('query');
-  const { blocks, styles } = c.req.valid('json');
+  const { name, blocks, styles } = c.req.valid('json');
   // TODO: we are not checking if the website belongs to the user
 
   const website = await Websites.getById(websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  const data: Prisma.WebsiteUpdateInput = { blocks, styles };
+  const data: Prisma.WebsiteUpdateInput = { name, blocks, styles };
 
   if (publish) data.publishedAt = new Date();
 

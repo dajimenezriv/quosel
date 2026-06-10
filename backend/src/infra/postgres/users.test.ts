@@ -82,8 +82,6 @@ describe('users', () => {
         givenName: '',
         familyName: '',
         picture: '',
-        subscriptionStatus: '',
-        subscriptionPriceId: '',
       });
       // Then
       expect(await prisma.website.count({ where: { userId } })).toBe(1);

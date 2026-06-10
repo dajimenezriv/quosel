@@ -7,7 +7,11 @@ import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
 vi.mock(import('@/infra/postgres/websites'));
 vi.mock(import('@/infra/cloudflare/r2'));
 
-const VALID_BODY = { blocks: circoloPopolareBlocks, styles: claudeStyles };
+const VALID_BODY = {
+  name: 'Website',
+  blocks: circoloPopolareBlocks,
+  styles: claudeStyles,
+};
 
 describe('update-website', () => {
   const getByIdMock = deepMocked(Websites.getById);

@@ -49,8 +49,6 @@ export async function googleCallback(c: Context) {
     givenName: claims.givenName ?? '',
     familyName: claims.familyName ?? '',
     picture: claims.picture ?? '',
-    subscriptionPriceId: '',
-    subscriptionStatus: '',
   });
 
   const userId = user.id;

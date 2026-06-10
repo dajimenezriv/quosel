@@ -3,6 +3,8 @@ import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
+type WebsiteUpdate = Pick<Prisma.WebsiteUpdateInput, 'name' | 'publishedAt' | 'blocks' | 'styles'>;
+
 export class Websites {
   static async getAllByUserId(userId: UserId) {
     return await prisma.website.findMany({ where: { userId } });
@@ -23,7 +25,7 @@ export class Websites {
     });
   }
 
-  static async update(websiteId: string, data: Prisma.WebsiteUpdateInput) {
+  static async update(websiteId: string, data: WebsiteUpdate) {
     return await prisma.website.update({ where: { id: websiteId }, data });
   }
 }
