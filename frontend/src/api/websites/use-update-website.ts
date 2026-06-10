@@ -1,5 +1,6 @@
 import type { Blocks, Styles } from '@quosel/templates';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 import { client } from '../client';
 
 interface UpdateWebsiteParams {
@@ -21,6 +22,14 @@ export function useUpdateWebsite() {
       });
 
       if (error) throw error;
+    },
+    onSuccess: (_, { publish }) => {
+      if (publish) toast.success('Website published successfully');
+      else toast.success('Website saved successfully');
+    },
+    onError: (error, { publish }) => {
+      if (publish) toast.error(`Cannot publish website: ${error.message}`);
+      else toast.error(`Cannot save website: ${error.message}`);
     },
   });
 }

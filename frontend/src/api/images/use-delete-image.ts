@@ -13,6 +13,7 @@ export function useDeleteImage() {
       if (error) throw error;
     },
     onSuccess: () => {
+      toast.success('Image deleted successfully');
       queryClient.invalidateQueries({ queryKey: ['images'] });
     },
     onError: (error) => {

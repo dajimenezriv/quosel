@@ -8,6 +8,7 @@ export function useUploadImage() {
   return useMutation({
     mutationFn: async ({ file, websiteId }: { file: File; websiteId: string }) => {
       const { data, error } = await client.POST('/images/upload', {
+        // @ts-expect-error openapi says it should be a string
         body: { file, websiteId },
         bodySerializer: (body) => {
           const { file, websiteId } = body!;
@@ -21,6 +22,7 @@ export function useUploadImage() {
       return data;
     },
     onSuccess: () => {
+      toast.success('Image uploaded successfully');
       queryClient.invalidateQueries({ queryKey: ['images'] });
     },
     onError: (error) => {
