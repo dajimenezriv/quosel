@@ -1,20 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { useSidebarStore } from '@/core/sidebar/use-sidebar-store';
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { PanelLeftIcon } from 'lucide-react';
 import * as React from 'react';
-
-export function SidebarTrigger() {
-  const toggleSidebar = useSidebarStore((s) => s.toggleSidebar);
-
-  return (
-    <Button variant="ghost" size="icon" className="size-7" onClick={toggleSidebar}>
-      <PanelLeftIcon />
-    </Button>
-  );
-}
 
 export function SidebarMenu({ className, ...props }: React.ComponentProps<'ul'>) {
   return <ul className={cn('flex w-full min-w-0 flex-col gap-1', className)} {...props} />;

@@ -1,4 +1,3 @@
-import { Logo } from '@/components/logo';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,14 +6,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { SidebarMenuButton } from '@/components/ui/sidebar';
 import { useAuth } from '@/old/auth';
-import { CircleUser, EllipsisVertical, LogOut } from 'lucide-react';
+import { User as CircleUser, LogOut } from 'lucide-react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { Button } from './ui/button';
 
 export function NavUser() {
   const { user: user2, logout } = useAuth();
   const navigate = useNavigate();
+  const [pictureError, setPictureError] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -24,18 +25,17 @@ export function NavUser() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <SidebarMenuButton size="lg" className="cursor-pointer">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg">
-            {user2?.picture ? <img src={user2.picture} width={28} height={28} alt="Logo" className="rounded" /> : <Logo size={28} />}
-          </div>
-          <div className="grid flex-1 text-left text-sm leading-tight">
-            <span className="truncate font-medium">{user2?.name}</span>
-            <span className="text-muted-foreground truncate text-xs">{user2?.email}</span>
-          </div>
-          <EllipsisVertical className="ml-auto size-4" />
-        </SidebarMenuButton>
+        <button className="flex size-10 cursor-pointer items-center justify-center rounded-lg">
+          {user2?.picture && !pictureError ? (
+            <img src={user2.picture} width={32} height={32} alt="User" className="rounded-lg" onError={() => setPictureError(true)} />
+          ) : (
+            <Button variant="outline" size="icon" className="cursor-pointer">
+              <CircleUser className="h-[1.2rem] w-[1.2rem]" />
+            </Button>
+          )}
+        </button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg" side="top" align="end" sideOffset={4}>
+      <DropdownMenuContent className="min-w-56 rounded-lg" side="right" align="end" sideOffset={8}>
         <DropdownMenuGroup>
           <DropdownMenuItem asChild className="cursor-pointer">
             <Link to="/account">
