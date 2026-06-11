@@ -1,3 +1,4 @@
+import { useGetWebsites } from '@/api/websites/use-get-websites';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,21 +10,14 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { EllipsisVertical, ExternalLink, MapPin, Star } from 'lucide-react';
-import { type Website } from './task-schema';
 
 function formatDate(date: string) {
   return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
-export function DataTable({
-  data,
-  onRowClick,
-  onDelete,
-}: {
-  data: Website[];
-  onRowClick?: (id: string) => void;
-  onDelete?: (id: string) => void;
-}) {
+export function DataTable({ onRowClick, onDelete }: { onRowClick?: (id: string) => void; onDelete?: (id: string) => void }) {
+  const { data } = useGetWebsites();
+
   return (
     <div className="overflow-hidden rounded-lg border">
       <Table>
@@ -42,8 +36,8 @@ export function DataTable({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.length ? (
-            data.map((website) => (
+          {data ? (
+            data.websites.map((website) => (
               <TableRow key={website.id} onClick={() => onRowClick?.(website.id)} className={onRowClick ? 'cursor-pointer' : ''}>
                 <TableCell>
                   <span className="font-medium">{website.name}</span>

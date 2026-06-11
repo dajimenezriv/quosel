@@ -1,6 +1,5 @@
 import { useCreateWebsite } from '@/api/websites/use-create-website';
 import { useDeleteWebsite } from '@/api/websites/use-delete-website';
-import { useGetWebsites } from '@/api/websites/use-get-websites';
 import { DataTable } from '@/components/data-table';
 import { BaseLayout } from '@/components/layouts/base-layout';
 import { Button } from '@/components/ui/button';
@@ -11,7 +10,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Page() {
-  const { data } = useGetWebsites();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState('');
@@ -49,7 +47,7 @@ export default function Page() {
         </Button>
       }>
       <div className="flex-1 p-6">
-        <DataTable data={data?.websites ?? []} onRowClick={(id) => navigate(`/editor/${id}`)} onDelete={setDeleteId} />
+        <DataTable onRowClick={(id) => navigate(`/editor/${id}`)} onDelete={setDeleteId} />
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
