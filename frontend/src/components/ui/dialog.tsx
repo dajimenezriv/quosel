@@ -8,11 +8,7 @@ export function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive
   return <DialogPrimitive.Root {...props} />;
 }
 
-export function DialogTrigger({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
-  return <DialogPrimitive.Trigger {...props} />;
-}
-
-export function DialogPortal({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
+function DialogPortal({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
   return <DialogPrimitive.Portal {...props} />;
 }
 
@@ -20,7 +16,7 @@ export function DialogClose({ ...props }: React.ComponentProps<typeof DialogPrim
   return <DialogPrimitive.Close {...props} />;
 }
 
-export function DialogOverlay({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
+function DialogOverlay({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
   return (
     <DialogPrimitive.Overlay
       className={cn(

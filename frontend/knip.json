@@ -1,4 +1,5 @@
 {
   "ignore": ["**/*.test.{ts,tsx}", "src/api/schema.ts"],
+  "ignoreDependencies": ["wrangler"],
   "project": ["src/**/*.{ts,tsx}"]
 }
