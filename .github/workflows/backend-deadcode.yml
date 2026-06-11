@@ -37,4 +37,5 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
 
       - run: pnpm install --frozen-lockfile
+      - run: pnpm db:types
       - run: pnpm knip

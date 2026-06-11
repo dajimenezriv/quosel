@@ -5,6 +5,7 @@ import { client } from '../client';
 
 interface UpdateWebsiteParams {
   websiteId: string;
+  name: string;
   blocks: Blocks;
   styles: Styles;
   publish?: boolean;

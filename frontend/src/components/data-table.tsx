@@ -44,10 +44,7 @@ export function DataTable({
         <TableBody>
           {data.length ? (
             data.map((website) => (
-              <TableRow
-                key={website.id}
-                onClick={() => onRowClick?.(website.id)}
-                className={onRowClick ? 'cursor-pointer' : ''}>
+              <TableRow key={website.id} onClick={() => onRowClick?.(website.id)} className={onRowClick ? 'cursor-pointer' : ''}>
                 <TableCell>
                   <span className="font-medium">{website.name}</span>
                 </TableCell>

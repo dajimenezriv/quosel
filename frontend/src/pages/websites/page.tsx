@@ -49,11 +49,7 @@ export default function Page() {
         </Button>
       }>
       <div className="flex-1 p-6">
-        <DataTable
-          data={data?.websites ?? []}
-          onRowClick={(id) => navigate(`/editor/${id}`)}
-          onDelete={setDeleteId}
-        />
+        <DataTable data={data?.websites ?? []} onRowClick={(id) => navigate(`/editor/${id}`)} onDelete={setDeleteId} />
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
