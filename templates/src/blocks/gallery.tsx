@@ -1,44 +1,32 @@
-import type { WebsiteData } from "../types";
-import { SERIF } from "../utils";
+/** @jsxRuntime automatic @jsxImportSource react */
+import type { GalleryBlock } from '../types';
 
-export function Gallery({ data }: { data: WebsiteData }) {
+export function Gallery({ block }: { block: GalleryBlock }) {
   return (
-    <section id="gallery" className="bg-[var(--background)] px-6 py-12 md:px-24 md:py-20">
-      <div className="mb-8 grid gap-6 md:mb-12 md:grid-cols-2 md:items-start md:gap-16">
-        <div>
-          <p className="mb-4 text-xs tracking-[0.25em] uppercase text-[var(--primary)]">
-            — Galería
-          </p>
-          <h2
-            className="text-5xl font-light text-[var(--foreground)]"
-            style={{ fontFamily: SERIF }}
-          >
-            Trabajos <em className="italic text-[var(--primary)]">recientes</em>
-            .
-          </h2>
+    <section id={block.nav} className="bg-secondary-foreground flex justify-center p-24">
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-4">
+          <p className="text-primary text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
+          <div className="flex items-end justify-between">
+            <h2 className="text-foreground text-5xl">{block.title}</h2>
+            <p className="w-150 text-sm leading-relaxed text-(--foreground-50) italic">{block.text}</p>
+          </div>
         </div>
-        <p
-          className="text-sm italic leading-relaxed text-[var(--foreground-50)] md:pt-12"
-          style={{ fontFamily: SERIF }}
-        >
-          Cortes, degradados, barba y detalle. Lo que sale por la puerta cada
-          día. Más fotos y vídeos en Instagram.
-        </p>
-      </div>
 
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="aspect-square bg-[var(--muted)]" />
-        ))}
-      </div>
+        <div className="grid grid-cols-4 gap-2">
+          {block.images.map((image, i) => (
+            <img key={i} className="aspect-square object-cover opacity-80" src={image} />
+          ))}
+        </div>
 
-      <div className="mt-12 flex justify-center">
-        <a
-          href="#"
-          className="border border-[var(--primary-60)] px-8 py-3 text-xs tracking-[0.2em] uppercase text-[var(--primary)] transition-all hover:bg-[var(--primary)] hover:text-[var(--primary-foreground)]"
-        >
-          Ver Más en Instagram →
-        </a>
+        <div className="mt-12 flex justify-center">
+          <a
+            target="__blank"
+            href={block.ctaLink}
+            className="text-primary hover:bg-primary hover:text-primary-foreground border border-(--primary-60) px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all">
+            {block.ctaText}
+          </a>
+        </div>
       </div>
     </section>
   );

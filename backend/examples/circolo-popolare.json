@@ -1,0 +1,503 @@
+{
+  "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE",
+  "id": "ChIJK4j9CagbdkgRluwkqYLufoE",
+  "types": [
+    "italian_restaurant",
+    "pizza_restaurant",
+    "family_restaurant",
+    "mediterranean_restaurant",
+    "european_restaurant",
+    "restaurant",
+    "food",
+    "point_of_interest",
+    "establishment"
+  ],
+  "formattedAddress": "40-41 Rathbone Pl, London W1T 1HX, UK",
+  "addressComponents": [
+    { "longText": "40-41", "shortText": "40-41", "types": ["street_number"], "languageCode": "en-US" },
+    { "longText": "Rathbone Place", "shortText": "Rathbone Pl", "types": ["route"], "languageCode": "en" },
+    { "longText": "London", "shortText": "London", "types": ["postal_town"], "languageCode": "en" },
+    {
+      "longText": "Greater London",
+      "shortText": "Greater London",
+      "types": ["administrative_area_level_2", "political"],
+      "languageCode": "en"
+    },
+    { "longText": "England", "shortText": "England", "types": ["administrative_area_level_1", "political"], "languageCode": "en" },
+    { "longText": "United Kingdom", "shortText": "GB", "types": ["country", "political"], "languageCode": "en" },
+    { "longText": "W1T 1HX", "shortText": "W1T 1HX", "types": ["postal_code"], "languageCode": "en-US" }
+  ],
+  "plusCode": { "globalCode": "9C3XGV88+VF", "compoundCode": "GV88+VF London, UK" },
+  "location": { "latitude": 51.5171895, "longitude": -0.13386789999999998 },
+  "viewport": {
+    "low": { "latitude": 51.515836669708506, "longitude": -0.13512828029150203 },
+    "high": { "latitude": 51.518534630291505, "longitude": -0.132430319708498 }
+  },
+  "rating": 4.8,
+  "googleMapsUri": "https://maps.google.com/?cid=9331157722909174934&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+  "websiteUri": "https://www.circolopopolare.com/restaurants/circolopopolare-london?utm_source=google&utm_medium=organic&utm_campaign=mybusiness-website",
+  "regularOpeningHours": {
+    "openNow": true,
+    "periods": [
+      { "open": { "day": 0, "hour": 11, "minute": 0 }, "close": { "day": 0, "hour": 22, "minute": 0 } },
+      { "open": { "day": 1, "hour": 12, "minute": 0 }, "close": { "day": 1, "hour": 16, "minute": 0 } },
+      { "open": { "day": 1, "hour": 17, "minute": 0 }, "close": { "day": 1, "hour": 22, "minute": 30 } },
+      { "open": { "day": 2, "hour": 12, "minute": 0 }, "close": { "day": 2, "hour": 16, "minute": 0 } },
+      { "open": { "day": 2, "hour": 17, "minute": 0 }, "close": { "day": 2, "hour": 22, "minute": 30 } },
+      { "open": { "day": 3, "hour": 12, "minute": 0 }, "close": { "day": 3, "hour": 16, "minute": 0 } },
+      { "open": { "day": 3, "hour": 17, "minute": 0 }, "close": { "day": 3, "hour": 22, "minute": 30 } },
+      { "open": { "day": 4, "hour": 12, "minute": 0 }, "close": { "day": 4, "hour": 22, "minute": 30 } },
+      { "open": { "day": 5, "hour": 12, "minute": 0 }, "close": { "day": 5, "hour": 22, "minute": 30 } },
+      { "open": { "day": 6, "hour": 11, "minute": 0 }, "close": { "day": 6, "hour": 22, "minute": 30 } }
+    ],
+    "weekdayDescriptions": [
+      "Monday: 12:00 – 4:00 PM, 5:00 – 10:30 PM",
+      "Tuesday: 12:00 – 4:00 PM, 5:00 – 10:30 PM",
+      "Wednesday: 12:00 – 4:00 PM, 5:00 – 10:30 PM",
+      "Thursday: 12:00 – 10:30 PM",
+      "Friday: 12:00 – 10:30 PM",
+      "Saturday: 11:00 AM – 10:30 PM",
+      "Sunday: 11:00 AM – 10:00 PM"
+    ],
+    "nextCloseTime": "2026-06-05T21:30:00Z"
+  },
+  "utcOffsetMinutes": 60,
+  "adrFormatAddress": "<span class=\"street-address\">40-41 Rathbone Place</span>, <span class=\"locality\">London</span> <span class=\"postal-code\">W1T 1HX</span>, <span class=\"country-name\">UK</span>",
+  "businessStatus": "OPERATIONAL",
+  "priceLevel": "PRICE_LEVEL_EXPENSIVE",
+  "userRatingCount": 39066,
+  "iconMaskBaseUri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+  "iconBackgroundColor": "#FF9E67",
+  "displayName": { "text": "Circolo Popolare", "languageCode": "en" },
+  "primaryTypeDisplayName": { "text": "Italian Restaurant", "languageCode": "en-US" },
+  "takeout": true,
+  "delivery": false,
+  "dineIn": true,
+  "curbsidePickup": true,
+  "reservable": true,
+  "servesBreakfast": true,
+  "servesLunch": true,
+  "servesDinner": true,
+  "servesBeer": true,
+  "servesWine": true,
+  "servesBrunch": true,
+  "servesVegetarianFood": true,
+  "currentOpeningHours": {
+    "openNow": true,
+    "periods": [
+      {
+        "open": { "day": 0, "hour": 11, "minute": 0, "date": { "year": 2026, "month": 6, "day": 7 } },
+        "close": { "day": 0, "hour": 22, "minute": 0, "date": { "year": 2026, "month": 6, "day": 7 } }
+      },
+      {
+        "open": { "day": 1, "hour": 12, "minute": 0, "date": { "year": 2026, "month": 6, "day": 8 } },
+        "close": { "day": 1, "hour": 16, "minute": 0, "date": { "year": 2026, "month": 6, "day": 8 } }
+      },
+      {
+        "open": { "day": 1, "hour": 17, "minute": 0, "date": { "year": 2026, "month": 6, "day": 8 } },
+        "close": { "day": 1, "hour": 22, "minute": 30, "date": { "year": 2026, "month": 6, "day": 8 } }
+      },
+      {
+        "open": { "day": 2, "hour": 12, "minute": 0, "date": { "year": 2026, "month": 6, "day": 9 } },
+        "close": { "day": 2, "hour": 16, "minute": 0, "date": { "year": 2026, "month": 6, "day": 9 } }
+      },
+      {
+        "open": { "day": 2, "hour": 17, "minute": 0, "date": { "year": 2026, "month": 6, "day": 9 } },
+        "close": { "day": 2, "hour": 22, "minute": 30, "date": { "year": 2026, "month": 6, "day": 9 } }
+      },
+      {
+        "open": { "day": 3, "hour": 12, "minute": 0, "date": { "year": 2026, "month": 6, "day": 10 } },
+        "close": { "day": 3, "hour": 16, "minute": 0, "date": { "year": 2026, "month": 6, "day": 10 } }
+      },
+      {
+        "open": { "day": 3, "hour": 17, "minute": 0, "date": { "year": 2026, "month": 6, "day": 10 } },
+        "close": { "day": 3, "hour": 22, "minute": 30, "date": { "year": 2026, "month": 6, "day": 10 } }
+      },
+      {
+        "open": { "day": 4, "hour": 12, "minute": 0, "date": { "year": 2026, "month": 6, "day": 11 } },
+        "close": { "day": 4, "hour": 22, "minute": 30, "date": { "year": 2026, "month": 6, "day": 11 } }
+      },
+      {
+        "open": { "day": 5, "hour": 12, "minute": 0, "date": { "year": 2026, "month": 6, "day": 5 } },
+        "close": { "day": 5, "hour": 22, "minute": 30, "date": { "year": 2026, "month": 6, "day": 5 } }
+      },
+      {
+        "open": { "day": 6, "hour": 11, "minute": 0, "date": { "year": 2026, "month": 6, "day": 6 } },
+        "close": { "day": 6, "hour": 22, "minute": 30, "date": { "year": 2026, "month": 6, "day": 6 } }
+      }
+    ],
+    "weekdayDescriptions": [
+      "Monday: 12:00 – 4:00 PM, 5:00 – 10:30 PM",
+      "Tuesday: 12:00 – 4:00 PM, 5:00 – 10:30 PM",
+      "Wednesday: 12:00 – 4:00 PM, 5:00 – 10:30 PM",
+      "Thursday: 12:00 – 10:30 PM",
+      "Friday: 12:00 – 10:30 PM",
+      "Saturday: 11:00 AM – 10:30 PM",
+      "Sunday: 11:00 AM – 10:00 PM"
+    ],
+    "nextCloseTime": "2026-06-05T21:30:00Z"
+  },
+  "primaryType": "italian_restaurant",
+  "shortFormattedAddress": "40-41 Rathbone Pl, London",
+  "editorialSummary": {
+    "text": "Glam, atmospheric eatery, opulently decorated with  20,000 bottles, serving trattoria fare & drinks.",
+    "languageCode": "en"
+  },
+  "reviews": [
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/reviews/Ci9DQUlRQUNvZENodHljRjlvT20xR2FFOHpWelY2WlVOd1RFTkVXbWRYUzBjMU9HYxAB",
+      "relativePublishTimeDescription": "3 months ago",
+      "rating": 5,
+      "text": {
+        "text": "Amazing spot. The ambience is honestly one of the best parts of the place. Very relaxed, warm and perfect for a slow meal.\n\nThe food completely lived up to it as well. I had the mushroom truffle toast and the truffle pasta and both were excellent. The truffle flavour was spot on and the pasta in particular really blew me away.\n\nEverything just worked together the atmosphere, the food, the overall vibe. Left the place genuinely impressed and had a great time.\n\nThe team also mentioned they have opened a sister branch in Dublin, so I will definitely be checking that one out as well.",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "Amazing spot. The ambience is honestly one of the best parts of the place. Very relaxed, warm and perfect for a slow meal.\n\nThe food completely lived up to it as well. I had the mushroom truffle toast and the truffle pasta and both were excellent. The truffle flavour was spot on and the pasta in particular really blew me away.\n\nEverything just worked together the atmosphere, the food, the overall vibe. Left the place genuinely impressed and had a great time.\n\nThe team also mentioned they have opened a sister branch in Dublin, so I will definitely be checking that one out as well.",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Pratik Rajiv Shah",
+        "uri": "https://www.google.com/maps/contrib/102187489811180558967/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWmtpdGdXtDH56u7q6dIiN0L4aXGvhcPuCJhqW3AFJPuC-WG4us=s128-c0x00000000-cc-rp-mo-ba5"
+      },
+      "publishTime": "2026-03-06T20:29:14.140011116Z",
+      "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT20xR2FFOHpWelY2WlVOd1RFTkVXbWRYUzBjMU9HYxAB&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT20xR2FFOHpWelY2WlVOd1RFTkVXbWRYUzBjMU9HYxAB!2m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2pGUFFVdFlSSFJFZUY5SU1GVnNORGh5YmtnNVlWRRAB",
+      "relativePublishTimeDescription": "3 months ago",
+      "rating": 5,
+      "text": {
+        "text": "⸻\n\nWe had a mixed experience at this restaurant. The carbonara unfortunately wasn’t great and didn’t quite meet our expectations. However, the atmosphere was amazing , warm, welcoming, and really enjoyable.\n\nWhat truly stood out was the service. The staff were attentive and kind, and the manager was extremely understanding about the issue with the food. They handled the situation professionally and generously didn’t charge us for the carbonara, which we really appreciated.\n\nTo top it off, they even offered us complimentary limoncello shots, which was such a thoughtful gesture.\n\nWhile the food wasn’t perfect this time, the outstanding service and lovely atmosphere would definitely make us consider coming back.",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "⸻\n\nWe had a mixed experience at this restaurant. The carbonara unfortunately wasn’t great and didn’t quite meet our expectations. However, the atmosphere was amazing , warm, welcoming, and really enjoyable.\n\nWhat truly stood out was the service. The staff were attentive and kind, and the manager was extremely understanding about the issue with the food. They handled the situation professionally and generously didn’t charge us for the carbonara, which we really appreciated.\n\nTo top it off, they even offered us complimentary limoncello shots, which was such a thoughtful gesture.\n\nWhile the food wasn’t perfect this time, the outstanding service and lovely atmosphere would definitely make us consider coming back.",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Geni",
+        "uri": "https://www.google.com/maps/contrib/110073222748837893532/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWQiBWV-iZ39k1I-51ru1ZnkPxWkL5541WQ0adz188-E6wpECc=s128-c0x00000000-cc-rp-mo-ba3"
+      },
+      "publishTime": "2026-03-01T23:16:17.107134841Z",
+      "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2pGUFFVdFlSSFJFZUY5SU1GVnNORGh5YmtnNVlWRRAB&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2pGUFFVdFlSSFJFZUY5SU1GVnNORGh5YmtnNVlWRRAB!2m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/reviews/Ci9DQUlRQUNvZENodHljRjlvT2paU09GRXpaWFZwZFZac1lWWnBla2hrTjBwNGJXYxAB",
+      "relativePublishTimeDescription": "3 months ago",
+      "rating": 2,
+      "text": {
+        "text": "We ordered a variety of cocktails to start, and the drinks were definitely a highlight. The Mandarin Mojito and Golden Age were both excellent & refreshing, well balanced, and clearly made with care.\n\nStarters were solid overall, with the cheese croquettes standing out as the favourite at the table.\n\nFor mains, we ordered the meatballs and crispy truffle potatoes. Unfortunately, this is where things fell short. The meatball dish arrived as just three meatballs on a bed of spinach with some Parmesan on top, which felt underwhelming for the price. The truffle potatoes were disappointing not crispy at all (despite being described as crispy on menu) and lacking flavour beyond the cheese on top. Another guest ordered the normal potatoes and experienced the same issue, so it didn’t seem like a one off.\n\nFor dessert, we ordered the lemon pie, which was enjoyable, and the remaining desserts were kindly given to us complimentary due to the issues with our main course a gesture we appreciated.\n\nThe manager was fantastic and handled the situation professionally and kindly. However, the waiting staff experience was mixed. When we raised issues, food was taken away without resolution or explanation, and on two occasions staff walked off mid conversation, which felt dismissive and confusing from a customer service perspective.\n\nThat said, the ambience is stunning. The décor is vibrant and immersive, genuinely making you feel like you’re dining on the streets of Italy easily one of the restaurant’s strongest points.\n\nOverall, a beautiful setting with great cocktails and good starters, but inconsistent mains and service prevent it from being the full experience it promises to be.",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "We ordered a variety of cocktails to start, and the drinks were definitely a highlight. The Mandarin Mojito and Golden Age were both excellent & refreshing, well balanced, and clearly made with care.\n\nStarters were solid overall, with the cheese croquettes standing out as the favourite at the table.\n\nFor mains, we ordered the meatballs and crispy truffle potatoes. Unfortunately, this is where things fell short. The meatball dish arrived as just three meatballs on a bed of spinach with some Parmesan on top, which felt underwhelming for the price. The truffle potatoes were disappointing not crispy at all (despite being described as crispy on menu) and lacking flavour beyond the cheese on top. Another guest ordered the normal potatoes and experienced the same issue, so it didn’t seem like a one off.\n\nFor dessert, we ordered the lemon pie, which was enjoyable, and the remaining desserts were kindly given to us complimentary due to the issues with our main course a gesture we appreciated.\n\nThe manager was fantastic and handled the situation professionally and kindly. However, the waiting staff experience was mixed. When we raised issues, food was taken away without resolution or explanation, and on two occasions staff walked off mid conversation, which felt dismissive and confusing from a customer service perspective.\n\nThat said, the ambience is stunning. The décor is vibrant and immersive, genuinely making you feel like you’re dining on the streets of Italy easily one of the restaurant’s strongest points.\n\nOverall, a beautiful setting with great cocktails and good starters, but inconsistent mains and service prevent it from being the full experience it promises to be.",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Travelin’ Bill",
+        "uri": "https://www.google.com/maps/contrib/115675871151661438846/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVNKlPZrX_eYRsubu9Z_l7E8w3goidxuuYRLKHkxZoutN62TU4=s128-c0x00000000-cc-rp-mo-ba4"
+      },
+      "publishTime": "2026-02-20T18:21:31.898352305Z",
+      "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT2paU09GRXpaWFZwZFZac1lWWnBla2hrTjBwNGJXYxAB&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2paU09GRXpaWFZwZFZac1lWWnBla2hrTjBwNGJXYxAB!2m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/reviews/Ci9DQUlRQUNvZENodHljRjlvT21rM1VGWlZZVzVGYTFkc1p6WkRUbXhuVVdwbFZWRRAB",
+      "relativePublishTimeDescription": "3 months ago",
+      "rating": 4,
+      "text": {
+        "text": "Beautiful interior, very special experience. Book beforehand, very popular place. Prices adequate, pizzas thin, crunchy and tasty. Giant lemon pie is fantastically looking (but too sweet to my taste). The only nuances: I was not provided with the tap water I ordered. The table was wobbly. The bill came late. About 100GBP for 4 people (2 pizzas, tartar, green side, 2 soft drinks, 1 glass of wine, 1 cocktail, lemon pie and a tea pot). Authentic place overall.",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "Beautiful interior, very special experience. Book beforehand, very popular place. Prices adequate, pizzas thin, crunchy and tasty. Giant lemon pie is fantastically looking (but too sweet to my taste). The only nuances: I was not provided with the tap water I ordered. The table was wobbly. The bill came late. About 100GBP for 4 people (2 pizzas, tartar, green side, 2 soft drinks, 1 glass of wine, 1 cocktail, lemon pie and a tea pot). Authentic place overall.",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Ismayil J",
+        "uri": "https://www.google.com/maps/contrib/113757983113701253549/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIu_iDSeu7nsheAvAhIc6iB_yJWV6Cxp73sOkz_fjoY4e9FgGY=s128-c0x00000000-cc-rp-mo-ba5"
+      },
+      "publishTime": "2026-02-15T18:14:08.076330299Z",
+      "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT21rM1VGWlZZVzVGYTFkc1p6WkRUbXhuVVdwbFZWRRAB&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT21rM1VGWlZZVzVGYTFkc1p6WkRUbXhuVVdwbFZWRRAB!2m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/reviews/Ci9DQUlRQUNvZENodHljRjlvT21GdVpWOWpNVE4yYkZOWGRXVjBXV2hGYUVGaGQwRRAB",
+      "relativePublishTimeDescription": "3 months ago",
+      "rating": 5,
+      "text": {
+        "text": "Such a great spot! 🍝✨ It is very popular, so definitely book ahead. We came here for a birthday and it was perfect. The pasta selection is big, but the staff was so helpful in guiding us. As for dessert... wow. We ordered almost everything! Do yourself a favor and get the profiteroles and the Lemon Cake (it is massive!). Highly recommend!",
+        "languageCode": "en"
+      },
+      "originalText": {
+        "text": "Such a great spot! 🍝✨ It is very popular, so definitely book ahead. We came here for a birthday and it was perfect. The pasta selection is big, but the staff was so helpful in guiding us. As for dessert... wow. We ordered almost everything! Do yourself a favor and get the profiteroles and the Lemon Cake (it is massive!). Highly recommend!",
+        "languageCode": "en"
+      },
+      "authorAttribution": {
+        "displayName": "Doux Ella",
+        "uri": "https://www.google.com/maps/contrib/101231126926466495349/reviews",
+        "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXmrw-jBkMlyeNMOK4q6YoDEyio9MwiwyR12EsdlRQqcID4yBksVg=s128-c0x00000000-cc-rp-mo-ba5"
+      },
+      "publishTime": "2026-02-09T09:31:01.260458350Z",
+      "flagContentUri": "https://www.google.com/local/content/rap/report?postId=Ci9DQUlRQUNvZENodHljRjlvT21GdVpWOWpNVE4yYkZOWGRXVjBXV2hGYUVGaGQwRRAB&d=17924085&t=1",
+      "googleMapsUri": "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT21GdVpWOWpNVE4yYkZOWGRXVjBXV2hGYUVGaGQwRRAB!2m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    }
+  ],
+  "photos": [
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3n3r2S3ijhhTxFxMmzJPeXNO9NmQ9b71ysUkVzxQd3jOOLVfRlBcFDios3RFvCEqW0uPyB9ZSA0HdT85XotNh5ZelFgBDCdW5VPkdapgS6TS4sknPwmAlgQw4YGdho5rJUIPHMca_TtJg_ikKzvpAI9sbgLjND_pES_9lM7hYvWDkcq3BE1DSwJpjO8wZfe0FPN95Gzj1N26Z4YnfVAYU6zsNpUUXsP7PU5PT59eMyrrGmL5Xqk4rNGL1mecBwZON5b641XoNv3b7krofrnJFQOiP7noxndjkgWl8I_YX8-6YDbXhJh_4ICcrxL40t60EzEtvImq7DHHmaDDgqqev9zD7_vbYgRJwc54w_B9b-HJaCfQgweErGEop-553bnW5qMO-Cu7gu-InJxHVZmju8T6Vh-FEDAYUtCt8KAEnOK181iGv3A8zTNRRnuDF08",
+      "widthPx": 1626,
+      "heightPx": 917,
+      "authorAttributions": [
+        {
+          "displayName": "Circolo Popolare",
+          "uri": "https://maps.google.com/maps/contrib/108319630165586043426",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJtCv2897VQlNj01CTE3_Ow2HOEMNj7llNLdt2OAMKYJncAQw=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhAlJaDncglP3USZpHNzeHQJ&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhAlJaDncglP3USZpHNzeHQJ!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3kodTum4vUDWhnslHBcxi5K8fm9H4k_jRKqKB_goBsCNNhJ1NxbQceztTkHLVn7O68x7uM_go61nutlllcmx7hwarmrIpugsIwslSt7eeuG8m2UMnw69-ijrZ_WtPmbuUlac9DfpMZtss7GZYUkFp2eKUCtqZjou2xmkzg922gwYFBouZUoqFtJbzWYcDt5gIAY6T_1PC9Yi5Ie7NpWzRfSB1Frcwo3bL9d1kZ3WR1J0fIk1pKwUwUHqtRQWgWLl7TfNthJzhWH4u2lMe2TWlZRnINoAjERcGe3qhkmUK_8wmBMOxhecAopO26ukoYZErvh5Dg4JCSRcXiMpSJLwpqw_7dG_NADvE5w29xCB1B-Ez0eWdkL2LpQxRGwysCTCg2aFHiFl0uJc95H37IGaPlyT2AcVIGokYBN6g5apD_SzA",
+      "widthPx": 1067,
+      "heightPx": 1600,
+      "authorAttributions": [
+        {
+          "displayName": "Circolo Popolare",
+          "uri": "https://maps.google.com/maps/contrib/108319630165586043426",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJtCv2897VQlNj01CTE3_Ow2HOEMNj7llNLdt2OAMKYJncAQw=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIHM0ogKEICAgIC8j_LWZw&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIHM0ogKEICAgIC8j_LWZw!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3lxfF7TRM9lpeE8htkQQ31bdHQzbfruMdVccBNGifLRCLGlaoHCj4AkAFdk5uFp68dcKLiEjR_CbOdeDVn3sV9iGRy8jF9WNzCwvkDeWARWte3D-9oOecuKEoxi3omfhRp-fmTUXe8sN7zoP9MAN8bLPXAEBDxTb7jelxceNh_yG44L2VYHBhvuuZqQZwWrL-TQXyVRS0J_ysAP0c8ejY-y7bpdM6i7-NW30_qMX0CMZJBuQdGV0_76Pz-yRqnbtJ8FWdmEH_80JVZJhp6PDlDIZnkGaBViI67VfDtTBMPYmsJPqaL17DkZe85VwAF_hsjAFlVyLL88V9B1BiFrRH0_vSTWmZx3NmX0hYAW54B5MH8Zk8lkW_hKQn0SvqQsSf7E6Ol-YerpZm6s-F95R_oN8vU1GooYoDJxsjR9rYEMqrTp6Ihi8jnT01gtQpVR",
+      "widthPx": 3600,
+      "heightPx": 4800,
+      "authorAttributions": [
+        {
+          "displayName": "Fatima Alshammari",
+          "uri": "https://maps.google.com/maps/contrib/106619924014087857420",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocKoQiHQCCGm5jT5rEA5zxT7v5PgShoKp6gHZknUM-GuHao50Q=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhDIUmozzwfw3eDulVHCbFVf&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhDIUmozzwfw3eDulVHCbFVf!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3nNvqs8HukGKgs5FGtRCONPBuunqJe_yxVU47X9vUuNO_92hKJe3WJm3VliYLpvlBabPwaDtb9BUdvXuiv66hX_mMEyhTsezAVsgrgx4m5APnXOX8o7E9M_9lZnByBZEtJTG4mYo7TOh106O6kWa9F9uzSq42KbwO12MHEPdrZE55EI2PFDzxJoXX2HnHb3DTC6iCHfyEoXR82WDvfflDKoD3ATnI6psrjnwrgxGmnOq6fDi8htINKDBPSEfMEcS7c-QPzjBzORPAl8pAg7XQ0TUemDVYNDVrkotj4oIVav-NSHrNAJodMX1alqdpQlPh3relGeWjQqZ1qrHSylSc3jSQAk12jocteyxf2EesT0Czatx4S3wQJt4G7YFA5N1GRd3_fzCHH_irs9_aTkxoHbMA1c0vgwF5ruJ2YMyWg2CVYuO_itdF2qq8_Qnx0W",
+      "widthPx": 4032,
+      "heightPx": 3024,
+      "authorAttributions": [
+        {
+          "displayName": "Rahul Mudaliar",
+          "uri": "https://maps.google.com/maps/contrib/102272603359593923462",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocIhLp6x8LpvXvOsW5OKtN4J13dqrRlgtiBKLvddt7WSGTtLug=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhByHN26q0mm9SyaTjPWm5-I&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhByHN26q0mm9SyaTjPWm5-I!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3kv3-NN6McL6xHmBZQ6upMbpdXsVYJ43q8e5PYDMru8HrKvBbIduqxTWNatYaCI6BC1Xbb2eLPcKuuSbW-8eTUuUcP126rMiDWelMnJkP6zMYcSaJA5OPyGwWAGkukxWBbcRdm8uI0MVU03gULkoii66H1bAuU4UElg9DTMrB6ghVOoCGJikdSSby7YBCEkdo8s6lO8T31tE_kv_rAUo57Uix5NzRco4zqyTWEcFqiW4ekkYlmLhTWKjudHZNdnTnVK5i1j7pn1agAkwvZdAOU_qC2RnvCsGfQVAlCU-NUUY8XdcmVbpU1MJLmdHjNfOnnTjTOSK-cH5OXbtlZucxUsL3fJ5_SP6uJgoiYOhFjmxjqx3xEAi5e-PAl7Id73re0A00jr-Wjvq9o2_jHbgcWTIz8mX3CS-1RPL38oRU_63scgrXYjby21RtxPA6Im",
+      "widthPx": 3024,
+      "heightPx": 4032,
+      "authorAttributions": [
+        {
+          "displayName": "Male",
+          "uri": "https://maps.google.com/maps/contrib/110522969923544880634",
+          "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjVgySVr-IBLnEQCQvUfj_F-gLvZtzSKhCFeVgEBhPJ4PMXzhaU=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhB5R1dQbgCICKgedmg7c-5L&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhB5R1dQbgCICKgedmg7c-5L!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3nXsi-CU6ZVYUe7fyiIYqxVji14ugYllB7De3VwBGb7cIIim4ldWw9txvmRve-oB9N4YMF6jmErLz4uSyoaQ1agxkI5xdkmbb78QtQ9a0f5aKZUsYHRpmvjH1yczS6VAb3sPfI5emIZJJ-d5XWV30-_4UWf-pSeQewmsEKAD7-3bgWmDEF9tDvpC5gOhaYGHQP2dqQqI5g2GdKk_mztbVdCh7AMBBv5T1IvVcIUjAVC2k75ej5uBgT8lFu2nawe9Mq1Y_wXHx03lF4rqK003NMJjyvcYcq1P3WITqleIQdf5LCo5F6f8oQmCOuLKmYwWG36eJO5ezL90KZwTsCiMXI6EE9rvVw31dcZ5_J12HYLXGXmROpb065EiCYw4kdp36-IFxK5P_u7yWVt2ybSC0nLVqEowbtGPZax3foxtmBmuKZOlCC_U9HGqzKx-LtP",
+      "widthPx": 3024,
+      "heightPx": 4032,
+      "authorAttributions": [
+        {
+          "displayName": "John",
+          "uri": "https://maps.google.com/maps/contrib/116605930757880087608",
+          "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjXJNKQNo0e0r-oyBOsHlHC3JOvX_CTfd-9ZfbRQAiCpM1K6vIE=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhAcNpNdJFK_W0CqupK4YOrn&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhAcNpNdJFK_W0CqupK4YOrn!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3mJ5is-tjwbXsvf-JE22DR_7b6ajRGDm_XgUcOtXBQfb0jS30rd2YjNdNr_rjvAsNnGZ68wAZTDoi4IqZUn6lXx47pqgXJTfy0zcK-upw-5b9HtjM23ViIvY6ijyrU3pRRbhYngko256SQ2UlluSEaIxBjfFRooP-73b-n_KLL5C7rtDjfyzQOA6St_SSPyQImrA76J55mfl1rMummY5IXG9STpH1Jmauy59T48ZRJjJhKcQkAPrQJjvQZeTfRVoORJKNpwNKcjpIe6L1kD4J6GDN7kBlelf8IVJGnTk4RZmgjLSpdTAx0l4UnI0-ubOty0V5MFrBR5DLNv7kWRvifV3dXVeWZeT5Y9fZLL5OGFVN81aFQRJQ0Fzmla1sCPFOgAj6yDkcUntytTt1JNHhDG-g_gyefOW0uR74UoC2R6O4JpZ4eFs46W4A2jo1ia",
+      "widthPx": 1200,
+      "heightPx": 824,
+      "authorAttributions": [
+        {
+          "displayName": "Kuman",
+          "uri": "https://maps.google.com/maps/contrib/106944376122755264196",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJHUAf8F8VEl6clHGv0os5IDNer2yf_LerfYeGJiScst1AdAw=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhA2E_TRqf-z3YtwzwFJt8D5&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhA2E_TRqf-z3YtwzwFJt8D5!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3n3ULa3Nc0b6IjMN9W66_GX09XXho4O_zUjBdi-FiaxLT5NN_2kr2vwLYBLETWkHJBkeTYfhMy9EXl0NXr9g8AFs7AOrQg3NX0erazxJUMGzhkd0pjHF7JeNeyjbBCiqEbIwrOPcotijyjhOueMM8rdLaUBRBMCoj0ezxMcj9yb-gPHrhq0MfjF_z6qIulm4_s1NeX2v3Cwi8OXV7qwvlus64Ycl4-uZnN1i3noP4vhPMfz-Qf4us06NZCry0WWdIXsb0d9dIjt28Fc9u82JF6iwkoQE7QxYLWpmBR5o8Z3uPt9BratS9NmMNfpdz1lj5qnZaWGH9JgVYXmE07Ux7z-xjxtVanPjcO2rkUS_QoFy7wdWGoPxB1k92ZWt-534IIy0RzjzIhx_USVWDq838gPV_7d6-WUZx-GY5ONKe1wB_cR_y_ZMVPndIcCVg",
+      "widthPx": 3600,
+      "heightPx": 4800,
+      "authorAttributions": [
+        {
+          "displayName": "Quinten Braem",
+          "uri": "https://maps.google.com/maps/contrib/118133355961155387263",
+          "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjWkuJQfk_h6ZMDyii185Mr1N_ryCZDHcmee4tmteMEBbB5UUs2-Eg=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhD4ej6PiszvRupivVnqvz3O&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhD4ej6PiszvRupivVnqvz3O!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3lTIoIfDGpyn4EdAQbVg5AdRgbvCfD7VIvs9nZiasebqjHoyKEgVAdy1ib2Q1GkSDcff4CLUHC2ILOtWu3vTVEYC4pxQm2qjeE8n2P0XC2q-iC7M_ZkeV7IthGT2czB0q8-i6yLt_13bfo5UD-1fOYK9A_zfC7IkxBV7bAWuttVCXh3ix8Y--fDP7b36xLl0XgH4sdPMHaDuzi9LRlc37BSwIQiQpLfxAh4Y407TzjhJFhiv58oH21ZSBKkHZRsutVPiC78bslTjfrAzNyCdNl7lCMIGmgmktLPty2jQaiSmMeGtMLgC16Zuh_tiaSGVNZVOgzOo521K1C_c9QcFsOo4OP5gsRLcm75lgVt_oBz3A3BblkjWL0DUa5QTT0ItrhvrybtBUiiqH8whxUIsa1lulyg5xM0ZDLXOQJMYTs-ptbVx1yIASehv2KfZps4",
+      "widthPx": 4080,
+      "heightPx": 3072,
+      "authorAttributions": [
+        {
+          "displayName": "Adam Clark",
+          "uri": "https://maps.google.com/maps/contrib/105020175069761857737",
+          "photoUri": "https://lh3.googleusercontent.com/a-/ALV-UjW2ZafF9L0rFrrvVYAWMdXoek37LtW8CQzuVv8iMMt2Aqrz_eoDtw=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhDg3nJXiqqMQEEVgd1i0bAv&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhDg3nJXiqqMQEEVgd1i0bAv!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    },
+    {
+      "name": "places/ChIJK4j9CagbdkgRluwkqYLufoE/photos/AaVGc3md05_d97zNgyZpv58LdaEM9ty0qBBYTro6MrRgxyLcDBPyPPCtrylET771quKz-XbW2A5gGlw9wOnssLia0clemAtBrtKYfR7BwQrmNAQJQ2fsO4s3rKR0isZMnePQHhfIhQ_apvtNON7fVs39T51KYk3-B6oXYZ6CaOEEQgRpYNj7RqnsZslhD8y3kQssTyQushd6akPJbrgXXvTIiIqSJO7_etnGh_F-psR3iQ5HyTTmnVHAPwuVFDE5OuRiav3Y9pHtJHQIcYphNpobuuu_GtnYiYfVW9NO28_Vfw-tp3lv0Q_WKrsmUGTjv944VrdpCth8QjPALjAT1ygUNvM5lBIH_Y0apQ1Pc82LPhEFOeF_QY929AY2xf2moqvculXNXljMghUkH2Mq_PqYEEWfOOOheyUAL0aO_qsn6WMSCqA3CiGKrATmk3XShtAN",
+      "widthPx": 3600,
+      "heightPx": 4800,
+      "authorAttributions": [
+        {
+          "displayName": "Olivia M",
+          "uri": "https://maps.google.com/maps/contrib/100605681130925005538",
+          "photoUri": "https://lh3.googleusercontent.com/a/ACg8ocJV2XMLz0HE3VaZwesBX-jjSXPFkPn0W1oMiFCwoYRgwVhJQ2U=s100-p-k-no-mo"
+        }
+      ],
+      "flagContentUri": "https://www.google.com/local/imagery/report/?cb_client=maps_api_places.places_api&image_key=!1e10!2sCIABIhAs4n1SxaRRwyiF_180Sd6d&hl=en-US",
+      "googleMapsUri": "https://www.google.com/maps/place//data=!3m4!1e2!3m2!1sCIABIhAs4n1SxaRRwyiF_180Sd6d!2e10!4m2!3m1!1s0x48761ba809fd882b:0x817eee82a924ec96"
+    }
+  ],
+  "outdoorSeating": true,
+  "liveMusic": false,
+  "menuForChildren": true,
+  "servesCocktails": true,
+  "servesDessert": true,
+  "servesCoffee": true,
+  "goodForChildren": true,
+  "allowsDogs": true,
+  "restroom": true,
+  "goodForGroups": true,
+  "goodForWatchingSports": false,
+  "paymentOptions": { "acceptsCreditCards": true, "acceptsDebitCards": true, "acceptsCashOnly": false, "acceptsNfc": true },
+  "parkingOptions": {
+    "freeParkingLot": true,
+    "paidParkingLot": true,
+    "freeStreetParking": true,
+    "paidStreetParking": true,
+    "valetParking": false
+  },
+  "accessibilityOptions": {
+    "wheelchairAccessibleParking": false,
+    "wheelchairAccessibleEntrance": true,
+    "wheelchairAccessibleRestroom": true,
+    "wheelchairAccessibleSeating": true
+  },
+  "pureServiceAreaBusiness": false,
+  "addressDescriptor": {
+    "landmarks": [
+      {
+        "name": "places/ChIJUwzMay0bdkgR2il_ihMRcME",
+        "placeId": "ChIJUwzMay0bdkgR2il_ihMRcME",
+        "displayName": { "text": "Tottenham Court Road", "languageCode": "en" },
+        "types": ["establishment", "point_of_interest", "subway_station", "train_station", "transit_station"],
+        "spatialRelationship": "AROUND_THE_CORNER",
+        "straightLineDistanceMeters": 276.99927,
+        "travelDistanceMeters": 202.35739
+      },
+      {
+        "name": "places/ChIJ67O7iiwbdkgRz8q7QhChAos",
+        "placeId": "ChIJ67O7iiwbdkgRz8q7QhChAos",
+        "displayName": { "text": "Pixelogic Media UK Ltd", "languageCode": "en" },
+        "types": ["establishment", "point_of_interest"],
+        "spatialRelationship": "AROUND_THE_CORNER",
+        "straightLineDistanceMeters": 37.7554,
+        "travelDistanceMeters": 58.49762
+      },
+      {
+        "name": "places/ChIJQeu76SwbdkgRG8qLfRo3Y80",
+        "placeId": "ChIJQeu76SwbdkgRG8qLfRo3Y80",
+        "displayName": { "text": "Pret A Manger", "languageCode": "en" },
+        "types": ["bakery", "cafe", "establishment", "food", "point_of_interest", "restaurant", "store"],
+        "spatialRelationship": "DOWN_THE_ROAD",
+        "straightLineDistanceMeters": 61.177994,
+        "travelDistanceMeters": 54.993435
+      },
+      {
+        "name": "places/ChIJJ7VUaS0bdkgRRxOOSvN_HaE",
+        "placeId": "ChIJJ7VUaS0bdkgRRxOOSvN_HaE",
+        "displayName": { "text": "Dominion Theatre", "languageCode": "en" },
+        "types": ["establishment", "point_of_interest", "tourist_attraction"],
+        "straightLineDistanceMeters": 276.64175,
+        "travelDistanceMeters": 319.0369
+      },
+      {
+        "name": "places/ChIJKxXG7iwbdkgRWKtXHkNZnqE",
+        "placeId": "ChIJKxXG7iwbdkgRWKtXHkNZnqE",
+        "displayName": { "text": "The Roxy", "languageCode": "en" },
+        "types": ["bar", "establishment", "night_club", "point_of_interest"],
+        "spatialRelationship": "DOWN_THE_ROAD",
+        "straightLineDistanceMeters": 78.24433,
+        "travelDistanceMeters": 73.269714
+      }
+    ],
+    "areas": [
+      {
+        "name": "places/ChIJX6QHYCkbdkgR9-PkycLMXGI",
+        "placeId": "ChIJX6QHYCkbdkgR9-PkycLMXGI",
+        "displayName": { "text": "Fitzrovia", "languageCode": "en" },
+        "containment": "WITHIN"
+      }
+    ]
+  },
+  "googleMapsLinks": {
+    "directionsUri": "https://www.google.com/maps/dir//''/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x48761ba809fd882b:0x817eee82a924ec96!3e0?g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "placeUri": "https://maps.google.com/?cid=9331157722909174934&g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "writeAReviewUri": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x48761ba809fd882b:0x817eee82a924ec96!12e1?g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x48761ba809fd882b:0x817eee82a924ec96!9m1!1b1?g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA",
+    "photosUri": "https://www.google.com/maps/place//data=!4m3!3m2!1s0x48761ba809fd882b:0x817eee82a924ec96!10e5?g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAIYBCAA"
+  },
+  "priceRange": { "startPrice": { "currencyCode": "GBP", "units": "20" }, "endPrice": { "currencyCode": "GBP", "units": "70" } },
+  "reviewSummary": {
+    "text": {
+      "text": "Diners say this Italian restaurant serves up delicious truffle pasta, creamy burrata, and a standout lemon meringue pie. They also highlight the beautiful and lively atmosphere, with many praising the stunning decor and Instagrammable interior.",
+      "languageCode": "en-US"
+    },
+    "flagContentUri": "https://www.google.com/local/content/rap/report?postId=5%401:CAIQACodChtyc19oOnVNRndlSUVObmxBRTllZHF2UklLUGc%7CCAIQACorChtyc19oOnVNRndlSUVObmxBRTllZHF2UklLUGcSDAiTvt_BBhDYm4aRAg&d=17924085&t=8",
+    "disclosureText": { "text": "Summarized with Gemini", "languageCode": "en-US" },
+    "reviewsUri": "https://www.google.com/maps/place//data=!4m4!3m3!1s0x48761ba809fd882b:0x817eee82a924ec96!9m1!1b1"
+  },
+  "timeZone": { "id": "Europe/London" },
+  "postalAddress": {
+    "regionCode": "GB",
+    "languageCode": "en-US",
+    "postalCode": "W1T 1HX",
+    "locality": "London",
+    "addressLines": ["40-41 Rathbone Place"]
+  },
+  "googleMapsTypeLabel": { "text": "Italian Restaurant", "languageCode": "en-US" }
+}

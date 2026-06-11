@@ -9,12 +9,12 @@
       "Error": {
         "type": "object",
         "properties": {
-          "error": {
+          "message": {
             "type": "string"
           }
         },
         "required": [
-          "error"
+          "message"
         ]
       }
     },
@@ -248,7 +248,56 @@
         }
       }
     },
-    "/websites/get-websites": {
+    "/websites": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "responses": {
           "200": {
@@ -269,17 +318,67 @@
                           "userId": {
                             "type": "string"
                           },
-                          "domain": {
+                          "name": {
                             "type": "string"
                           },
-                          "template": {
-                            "type": "string"
-                          },
-                          "texts": {
-                            "type": "array",
-                            "items": {
-                              "type": "string"
-                            }
+                          "styles": {
+                            "type": "object",
+                            "properties": {
+                              "background": {
+                                "type": "string"
+                              },
+                              "foreground": {
+                                "type": "string"
+                              },
+                              "card-foreground": {
+                                "type": "string"
+                              },
+                              "primary": {
+                                "type": "string"
+                              },
+                              "primary-foreground": {
+                                "type": "string"
+                              },
+                              "secondary": {
+                                "type": "string"
+                              },
+                              "secondary-foreground": {
+                                "type": "string"
+                              },
+                              "muted": {
+                                "type": "string"
+                              },
+                              "muted-foreground": {
+                                "type": "string"
+                              },
+                              "accent": {
+                                "type": "string"
+                              },
+                              "accent-foreground": {
+                                "type": "string"
+                              },
+                              "border": {
+                                "type": "string"
+                              },
+                              "ring": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "background",
+                              "foreground",
+                              "card-foreground",
+                              "primary",
+                              "primary-foreground",
+                              "secondary",
+                              "secondary-foreground",
+                              "muted",
+                              "muted-foreground",
+                              "accent",
+                              "accent-foreground",
+                              "border",
+                              "ring"
+                            ]
                           },
                           "createdAt": {
                             "type": "string",
@@ -289,91 +388,22 @@
                             "type": "string",
                             "format": "date-time"
                           },
-                          "place": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "string"
-                              },
-                              "googleId": {
-                                "type": "string"
-                              },
-                              "name": {
-                                "type": "string"
-                              },
-                              "internationalPhoneNumber": {
-                                "type": "string"
-                              },
-                              "formattedAddress": {
-                                "type": "string"
-                              },
-                              "shortFormattedAddress": {
-                                "type": "string"
-                              },
-                              "latitude": {
-                                "type": "number"
-                              },
-                              "longitude": {
-                                "type": "number"
-                              },
-                              "rating": {
-                                "type": [
-                                  "number",
-                                  "null"
-                                ]
-                              },
-                              "userRatingCount": {
-                                "type": [
-                                  "number",
-                                  "null"
-                                ]
-                              },
-                              "googleMapsPlaceUri": {
-                                "type": "string"
-                              },
-                              "googleMapsReviewsUri": {
-                                "type": "string"
-                              },
-                              "googleMapsPhotosUri": {
-                                "type": "string"
-                              },
-                              "createdAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "updatedAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              }
-                            },
-                            "required": [
-                              "id",
-                              "googleId",
-                              "name",
-                              "internationalPhoneNumber",
-                              "formattedAddress",
-                              "shortFormattedAddress",
-                              "latitude",
-                              "longitude",
-                              "rating",
-                              "userRatingCount",
-                              "googleMapsPlaceUri",
-                              "googleMapsReviewsUri",
-                              "googleMapsPhotosUri",
-                              "createdAt",
-                              "updatedAt"
-                            ]
+                          "publishedAt": {
+                            "type": [
+                              "string",
+                              "null"
+                            ],
+                            "format": "date-time"
                           }
                         },
                         "required": [
                           "id",
                           "userId",
-                          "domain",
-                          "template",
-                          "texts",
+                          "name",
+                          "styles",
                           "createdAt",
                           "updatedAt",
-                          "place"
+                          "publishedAt"
                         ]
                       }
                     }
@@ -398,7 +428,7 @@
         }
       }
     },
-    "/websites/get-website/{websiteId}": {
+    "/websites/{websiteId}": {
       "get": {
         "parameters": [
           {
@@ -424,17 +454,474 @@
                     "userId": {
                       "type": "string"
                     },
-                    "domain": {
+                    "name": {
                       "type": "string"
                     },
-                    "template": {
-                      "type": "string"
+                    "blocks": {
+                      "type": "object",
+                      "properties": {
+                        "schemaVersion": {
+                          "type": "number",
+                          "enum": [
+                            1
+                          ]
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "nav": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        "blocks": {
+                          "type": "array",
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "hero"
+                                    ]
+                                  },
+                                  "firstTitle": {
+                                    "type": "string"
+                                  },
+                                  "secondTitle": {
+                                    "type": "string"
+                                  },
+                                  "text": {
+                                    "type": "string"
+                                  },
+                                  "ctaText": {
+                                    "type": "string"
+                                  },
+                                  "ctaLink": {
+                                    "type": "string"
+                                  },
+                                  "phone": {
+                                    "type": "string"
+                                  },
+                                  "imageUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "firstTitle",
+                                  "secondTitle",
+                                  "text",
+                                  "ctaText",
+                                  "ctaLink",
+                                  "phone",
+                                  "imageUrl"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "stats"
+                                    ]
+                                  },
+                                  "stats": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "label": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "value",
+                                        "label"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "stats"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "info"
+                                    ]
+                                  },
+                                  "nav": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "text1": {
+                                    "type": "string"
+                                  },
+                                  "text2": {
+                                    "type": "string"
+                                  },
+                                  "imageUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "nav",
+                                  "title",
+                                  "text1",
+                                  "text2",
+                                  "imageUrl"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "cta"
+                                    ]
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "text": {
+                                    "type": "string"
+                                  },
+                                  "ctaText": {
+                                    "type": "string"
+                                  },
+                                  "ctaLink": {
+                                    "type": "string"
+                                  },
+                                  "imageUrl": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "title",
+                                  "text",
+                                  "ctaText",
+                                  "ctaLink",
+                                  "imageUrl"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "gallery"
+                                    ]
+                                  },
+                                  "nav": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "text": {
+                                    "type": "string"
+                                  },
+                                  "images": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "ctaText": {
+                                    "type": "string"
+                                  },
+                                  "ctaLink": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "nav",
+                                  "title",
+                                  "text",
+                                  "images",
+                                  "ctaText",
+                                  "ctaLink"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "reviews"
+                                    ]
+                                  },
+                                  "nav": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "stats": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "value": {
+                                          "type": "string"
+                                        },
+                                        "label": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "value",
+                                        "label"
+                                      ]
+                                    }
+                                  },
+                                  "reviews": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "text": {
+                                          "type": "string"
+                                        },
+                                        "author": {
+                                          "type": "string"
+                                        },
+                                        "source": {
+                                          "type": "string"
+                                        },
+                                        "url": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "text",
+                                        "author",
+                                        "source",
+                                        "url"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "nav",
+                                  "title",
+                                  "stats",
+                                  "reviews"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "services"
+                                    ]
+                                  },
+                                  "nav": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "text": {
+                                    "type": "string"
+                                  },
+                                  "serviceGroups": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "title": {
+                                          "type": "string"
+                                        },
+                                        "services": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "title": {
+                                                "type": "string"
+                                              },
+                                              "text": {
+                                                "type": "string"
+                                              },
+                                              "price": {
+                                                "type": "string"
+                                              }
+                                            },
+                                            "required": [
+                                              "title",
+                                              "text",
+                                              "price"
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "services"
+                                      ]
+                                    }
+                                  },
+                                  "ctaText": {
+                                    "type": "string"
+                                  },
+                                  "ctaLink": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "nav",
+                                  "title",
+                                  "text",
+                                  "serviceGroups",
+                                  "ctaText",
+                                  "ctaLink"
+                                ]
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "type": {
+                                    "type": "string",
+                                    "enum": [
+                                      "location"
+                                    ]
+                                  },
+                                  "nav": {
+                                    "type": "string"
+                                  },
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "formattedAddress": {
+                                    "type": "string"
+                                  },
+                                  "phone": {
+                                    "type": "string"
+                                  },
+                                  "ctaText": {
+                                    "type": "string"
+                                  },
+                                  "ctaLink": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "type",
+                                  "nav",
+                                  "title",
+                                  "formattedAddress",
+                                  "ctaText",
+                                  "ctaLink"
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "schemaVersion",
+                        "name",
+                        "nav",
+                        "blocks"
+                      ]
                     },
-                    "texts": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
+                    "styles": {
+                      "type": "object",
+                      "properties": {
+                        "background": {
+                          "type": "string"
+                        },
+                        "foreground": {
+                          "type": "string"
+                        },
+                        "card-foreground": {
+                          "type": "string"
+                        },
+                        "primary": {
+                          "type": "string"
+                        },
+                        "primary-foreground": {
+                          "type": "string"
+                        },
+                        "secondary": {
+                          "type": "string"
+                        },
+                        "secondary-foreground": {
+                          "type": "string"
+                        },
+                        "muted": {
+                          "type": "string"
+                        },
+                        "muted-foreground": {
+                          "type": "string"
+                        },
+                        "accent": {
+                          "type": "string"
+                        },
+                        "accent-foreground": {
+                          "type": "string"
+                        },
+                        "border": {
+                          "type": "string"
+                        },
+                        "ring": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "background",
+                        "foreground",
+                        "card-foreground",
+                        "primary",
+                        "primary-foreground",
+                        "secondary",
+                        "secondary-foreground",
+                        "muted",
+                        "muted-foreground",
+                        "accent",
+                        "accent-foreground",
+                        "border",
+                        "ring"
+                      ]
                     },
                     "createdAt": {
                       "type": "string",
@@ -443,134 +930,606 @@
                     "updatedAt": {
                       "type": "string",
                       "format": "date-time"
-                    },
-                    "place": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "googleId": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "internationalPhoneNumber": {
-                          "type": "string"
-                        },
-                        "formattedAddress": {
-                          "type": "string"
-                        },
-                        "shortFormattedAddress": {
-                          "type": "string"
-                        },
-                        "latitude": {
-                          "type": "number"
-                        },
-                        "longitude": {
-                          "type": "number"
-                        },
-                        "rating": {
-                          "type": [
-                            "number",
-                            "null"
-                          ]
-                        },
-                        "userRatingCount": {
-                          "type": [
-                            "number",
-                            "null"
-                          ]
-                        },
-                        "googleMapsPlaceUri": {
-                          "type": "string"
-                        },
-                        "googleMapsReviewsUri": {
-                          "type": "string"
-                        },
-                        "googleMapsPhotosUri": {
-                          "type": "string"
-                        },
-                        "createdAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "updatedAt": {
-                          "type": "string",
-                          "format": "date-time"
-                        },
-                        "reviews": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "string"
-                              },
-                              "rating": {
-                                "type": "number"
-                              },
-                              "text": {
-                                "type": "string"
-                              },
-                              "authorName": {
-                                "type": "string"
-                              },
-                              "authorPhotoUri": {
-                                "type": "string"
-                              },
-                              "publishTime": {
-                                "type": "string",
-                                "format": "date-time"
-                              },
-                              "googleMapsUri": {
-                                "type": "string"
-                              },
-                              "createdAt": {
-                                "type": "string",
-                                "format": "date-time"
-                              }
-                            },
-                            "required": [
-                              "id",
-                              "rating",
-                              "text",
-                              "authorName",
-                              "authorPhotoUri",
-                              "publishTime",
-                              "googleMapsUri",
-                              "createdAt"
-                            ]
-                          }
-                        }
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "userId",
+                    "name",
+                    "blocks",
+                    "styles",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "required": false,
+            "name": "publish",
+            "in": "query"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "blocks": {
+                    "type": "object",
+                    "properties": {
+                      "schemaVersion": {
+                        "type": "number",
+                        "enum": [
+                          1
+                        ]
                       },
-                      "required": [
-                        "id",
-                        "googleId",
-                        "name",
-                        "internationalPhoneNumber",
-                        "formattedAddress",
-                        "shortFormattedAddress",
-                        "latitude",
-                        "longitude",
-                        "rating",
-                        "userRatingCount",
-                        "googleMapsPlaceUri",
-                        "googleMapsReviewsUri",
-                        "googleMapsPhotosUri",
-                        "createdAt",
-                        "updatedAt",
-                        "reviews"
-                      ]
+                      "name": {
+                        "type": "string"
+                      },
+                      "nav": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "ctaText": {
+                            "type": "string"
+                          },
+                          "ctaLink": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "ctaText",
+                          "ctaLink"
+                        ]
+                      },
+                      "blocks": {
+                        "type": "array",
+                        "items": {
+                          "anyOf": [
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "hero"
+                                  ]
+                                },
+                                "firstTitle": {
+                                  "type": "string"
+                                },
+                                "secondTitle": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                },
+                                "ctaText": {
+                                  "type": "string"
+                                },
+                                "ctaLink": {
+                                  "type": "string"
+                                },
+                                "phone": {
+                                  "type": "string"
+                                },
+                                "imageUrl": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "firstTitle",
+                                "secondTitle",
+                                "text",
+                                "ctaText",
+                                "ctaLink",
+                                "phone",
+                                "imageUrl"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "stats"
+                                  ]
+                                },
+                                "stats": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "value": {
+                                        "type": "string"
+                                      },
+                                      "label": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "value",
+                                      "label"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "stats"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "info"
+                                  ]
+                                },
+                                "nav": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "text1": {
+                                  "type": "string"
+                                },
+                                "text2": {
+                                  "type": "string"
+                                },
+                                "imageUrl": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "nav",
+                                "title",
+                                "text1",
+                                "text2",
+                                "imageUrl"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "cta"
+                                  ]
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                },
+                                "ctaText": {
+                                  "type": "string"
+                                },
+                                "ctaLink": {
+                                  "type": "string"
+                                },
+                                "imageUrl": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "title",
+                                "text",
+                                "ctaText",
+                                "ctaLink",
+                                "imageUrl"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "gallery"
+                                  ]
+                                },
+                                "nav": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                },
+                                "images": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "string"
+                                  }
+                                },
+                                "ctaText": {
+                                  "type": "string"
+                                },
+                                "ctaLink": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "nav",
+                                "title",
+                                "text",
+                                "images",
+                                "ctaText",
+                                "ctaLink"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "reviews"
+                                  ]
+                                },
+                                "nav": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "stats": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "value": {
+                                        "type": "string"
+                                      },
+                                      "label": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "value",
+                                      "label"
+                                    ]
+                                  }
+                                },
+                                "reviews": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "text": {
+                                        "type": "string"
+                                      },
+                                      "author": {
+                                        "type": "string"
+                                      },
+                                      "source": {
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "text",
+                                      "author",
+                                      "source",
+                                      "url"
+                                    ]
+                                  }
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "nav",
+                                "title",
+                                "stats",
+                                "reviews"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "services"
+                                  ]
+                                },
+                                "nav": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "text": {
+                                  "type": "string"
+                                },
+                                "serviceGroups": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "title": {
+                                        "type": "string"
+                                      },
+                                      "services": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "title": {
+                                              "type": "string"
+                                            },
+                                            "text": {
+                                              "type": "string"
+                                            },
+                                            "price": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "title",
+                                            "text",
+                                            "price"
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "title",
+                                      "services"
+                                    ]
+                                  }
+                                },
+                                "ctaText": {
+                                  "type": "string"
+                                },
+                                "ctaLink": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "nav",
+                                "title",
+                                "text",
+                                "serviceGroups",
+                                "ctaText",
+                                "ctaLink"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string",
+                                  "enum": [
+                                    "location"
+                                  ]
+                                },
+                                "nav": {
+                                  "type": "string"
+                                },
+                                "title": {
+                                  "type": "string"
+                                },
+                                "formattedAddress": {
+                                  "type": "string"
+                                },
+                                "phone": {
+                                  "type": "string"
+                                },
+                                "ctaText": {
+                                  "type": "string"
+                                },
+                                "ctaLink": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "type",
+                                "nav",
+                                "title",
+                                "formattedAddress",
+                                "ctaText",
+                                "ctaLink"
+                              ]
+                            }
+                          ]
+                        }
+                      }
                     },
-                    "websiteImages": {
+                    "required": [
+                      "schemaVersion",
+                      "name",
+                      "nav",
+                      "blocks"
+                    ]
+                  },
+                  "styles": {
+                    "type": "object",
+                    "properties": {
+                      "background": {
+                        "type": "string"
+                      },
+                      "foreground": {
+                        "type": "string"
+                      },
+                      "card-foreground": {
+                        "type": "string"
+                      },
+                      "primary": {
+                        "type": "string"
+                      },
+                      "primary-foreground": {
+                        "type": "string"
+                      },
+                      "secondary": {
+                        "type": "string"
+                      },
+                      "secondary-foreground": {
+                        "type": "string"
+                      },
+                      "muted": {
+                        "type": "string"
+                      },
+                      "muted-foreground": {
+                        "type": "string"
+                      },
+                      "accent": {
+                        "type": "string"
+                      },
+                      "accent-foreground": {
+                        "type": "string"
+                      },
+                      "border": {
+                        "type": "string"
+                      },
+                      "ring": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "background",
+                      "foreground",
+                      "card-foreground",
+                      "primary",
+                      "primary-foreground",
+                      "secondary",
+                      "secondary-foreground",
+                      "muted",
+                      "muted-foreground",
+                      "accent",
+                      "accent-foreground",
+                      "border",
+                      "ring"
+                    ]
+                  }
+                },
+                "required": [
+                  "blocks",
+                  "styles"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "images": {
                       "type": "array",
                       "items": {
                         "type": "object",
                         "properties": {
                           "id": {
                             "type": "string"
+                          },
+                          "websiteId": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
                           },
                           "url": {
                             "type": "string"
@@ -585,6 +1544,7 @@
                         },
                         "required": [
                           "id",
+                          "websiteId",
                           "url",
                           "sizeBytes",
                           "createdAt"
@@ -593,15 +1553,7 @@
                     }
                   },
                   "required": [
-                    "id",
-                    "userId",
-                    "domain",
-                    "template",
-                    "texts",
-                    "createdAt",
-                    "updatedAt",
-                    "place",
-                    "websiteImages"
+                    "images"
                   ]
                 }
               }
@@ -620,37 +1572,91 @@
         }
       }
     },
-    "/websites/create-from-google-place": {
+    "/images/upload": {
       "post": {
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "example": "ChIJRWnYS1BHYA0RK5rHEosqXcQ"
-            },
-            "required": true,
-            "name": "googlePlaceId",
-            "in": "query"
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "websiteId": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "file",
+                  "websiteId"
+                ]
+              }
+            }
           }
-        ],
+        },
         "responses": {
-          "200": {
+          "201": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "websiteId": {
+                    "id": {
                       "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "sizeBytes": {
+                      "type": "number"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
                     }
                   },
                   "required": [
-                    "websiteId"
+                    "id",
+                    "url",
+                    "sizeBytes",
+                    "createdAt"
                   ]
                 }
               }
             }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images/{imageId}": {
+      "delete": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "imageId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
           },
           "500": {
             "description": "Error",

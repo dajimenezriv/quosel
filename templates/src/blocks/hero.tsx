@@ -1,43 +1,28 @@
-import type { WebsiteData } from "../types";
-import { SERIF } from "../utils";
+/** @jsxRuntime automatic @jsxImportSource react */
+import type { HeroBlock } from '../types';
 
-export function Hero({ data }: { data: WebsiteData }) {
+export function Hero({ block }: { block: HeroBlock }) {
   return (
-    <section className="relative flex min-h-screen items-center">
-      <div className="absolute inset-0">
-        <div className="h-full w-full bg-[var(--popover)]" />
-      </div>
+    <section id="home" className="relative flex min-h-screen items-end">
+      <img src={block.imageUrl} className="absolute h-full w-full object-cover opacity-10" />
 
-      <div className="relative z-10 px-6 pb-24 md:px-24">
-        <h1 className="leading-none" style={{ fontFamily: SERIF }}>
-          <span className="block text-5xl font-light text-[var(--foreground)] md:text-7xl lg:text-8xl">
-            {data.blocks.hero.firstTitle}
-          </span>
-          <span className="block text-5xl font-light italic text-[var(--primary)] md:text-7xl lg:text-8xl">
-            {data.blocks.hero.secondTitle}
-          </span>
-        </h1>
+      <div className="z-10 m-30 flex flex-col">
+        <span className="text-foreground text-8xl font-light">{block.firstTitle}</span>
+        <span className="text-primary text-8xl font-light italic">{block.secondTitle}</span>
 
-        <p
-          className="mt-8 max-w-xs text-base italic text-[var(--foreground-70)] md:max-w-sm"
-          style={{ fontFamily: SERIF }}
-        >
-          {data.blocks.hero.text}
-        </p>
+        <p className="mt-8 w-150 text-(--foreground-70) italic">{block.text}</p>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+        <div className="mt-10 flex gap-3">
           <a
             target="__blank"
-            href={data.blocks.hero.ctaLink}
-            className="bg-[var(--primary)] px-8 py-3 text-center text-xs tracking-[0.25em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
-          >
-            {data.blocks.hero.ctaText}
+            href={block.ctaLink}
+            className="bg-primary text-primary-foreground px-8 py-3 text-center text-xs tracking-[0.25em] uppercase hover:opacity-90">
+            {block.ctaText}
           </a>
           <a
-            href={`tel:${data.blocks.hero.phone}`}
-            className="border border-[var(--foreground-40)] px-8 py-3 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:border-[var(--foreground)]"
-          >
-            {data.blocks.hero.phone}
+            href={`tel:${block.phone}`}
+            className="hover:border-foreground border border-(--foreground-40) px-8 py-3 text-center text-xs tracking-[0.2em] uppercase">
+            {block.phone}
           </a>
         </div>
       </div>

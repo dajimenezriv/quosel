@@ -1,34 +1,28 @@
-import { SERIF } from "../utils";
+/** @jsxRuntime automatic @jsxImportSource react */
+import type { CtaBlock } from '../types';
 
-export function CTA() {
+export function CTA({ block }: { block: CtaBlock }) {
   return (
-    <section id="cta" className="relative flex min-h-96 items-center justify-center py-32 text-center">
-      <div className="absolute inset-0 bg-[var(--popover)]" />
+    <section className="relative flex min-h-96 items-center justify-center py-32 text-center">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-10"
+        style={{
+          backgroundImage:
+            "url('https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format')",
+        }}
+      />
       <div className="relative z-10 max-w-2xl px-6 md:px-8">
-        <h2
-          className="text-4xl font-light italic leading-tight text-[var(--primary)] md:text-6xl"
-          style={{ fontFamily: SERIF }}
-        >
-          Tu próxima cita empieza aquí.
-        </h2>
-        <p className="mt-6 text-sm leading-relaxed text-[var(--foreground-60)]">
-          Reserva en Booksy o síguenos en Instagram. Las dos puertas para entrar
-          en la barbería antes incluso de cruzarla.
-        </p>
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-          <a
-            href="#"
-            className="bg-[var(--primary)] px-8 py-4 text-center text-xs tracking-[0.2em] uppercase text-[var(--primary-foreground)] transition-colors hover:opacity-90"
-          >
-            Reservar en Booksy →
-          </a>
-          <a
-            href="#"
-            className="border border-[var(--foreground-40)] px-8 py-4 text-center text-xs tracking-[0.2em] uppercase text-[var(--foreground)] transition-colors hover:border-[var(--foreground)]"
-          >
-            Seguir en Instagram →
-          </a>
-        </div>
+        <h2 className="text-primary text-4xl leading-tight italic md:text-6xl">{block.title}</h2>
+        <p className="mt-6 text-sm leading-relaxed text-(--foreground-60)">{block.text}</p>
+        {block.ctaText && (
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <a
+              href={block.ctaLink}
+              className="bg-primary text-primary-foreground px-8 py-4 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:opacity-90">
+              {block.ctaText}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

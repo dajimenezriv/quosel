@@ -1,4 +1,7 @@
 {
   "name": "quosel",
-  "private": true
+  "private": true,
+  "scripts": {
+    "docker": "docker build -f backend/Dockerfile -t quosel-backend-test ."
+  }
 }

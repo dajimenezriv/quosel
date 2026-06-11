@@ -1,25 +1,28 @@
-import { AppSidebar } from '@/components/app-sidebar';
+import { Logo } from '@/components/logo';
+import { NavUser } from '@/components/nav-user';
 import { SiteHeader } from '@/components/site-header';
-import { useSidebarStore } from '@/core/sidebar/use-sidebar-store';
-import { cn } from '@/lib/utils';
 import { type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
+  showSidebar?: boolean;
   children: ReactNode;
   title: string;
   extra?: ReactNode;
 }
 
-export function BaseLayout({ children, title, extra }: Props) {
-  const open = useSidebarStore((s) => s.open);
-
+export function BaseLayout({ showSidebar = true, children, title, extra }: Props) {
   return (
     <>
-      <div className={cn('shrink-0 overflow-hidden transition-[width] duration-300 ease-in-out', open ? 'w-70' : 'w-0')}>
-        <div className="flex h-full w-70 flex-col p-4 pr-2">
-          <AppSidebar />
+      {showSidebar && (
+        <div className="my-4 mr-1 ml-3 flex flex-col items-center justify-between">
+          <Link to="/">
+            <Logo size={32} />
+          </Link>
+
+          <NavUser />
         </div>
-      </div>
+      )}
 
       <main className="bg-background m-2 flex min-w-0 flex-1 flex-col rounded-xl shadow-sm">
         <SiteHeader title={title} extra={extra} />

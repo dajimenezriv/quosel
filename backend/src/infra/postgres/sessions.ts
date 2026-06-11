@@ -14,6 +14,6 @@ export class Sessions {
   }
 
   static async deleteById(id: string) {
-    await prisma.session.delete({ where: { id } });
+    await prisma.session.deleteMany({ where: { id } });
   }
 }

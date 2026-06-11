@@ -1,59 +1,57 @@
-import { About } from "./blocks/about";
-import { CTA } from "./blocks/cta";
-import { Footer } from "./blocks/footer";
-import { Gallery } from "./blocks/gallery";
-import { Hero } from "./blocks/hero";
-import { Location } from "./blocks/location";
-import { Navigation } from "./blocks/navigation";
-import { Reviews } from "./blocks/reviews";
-import { Services } from "./blocks/services";
-import { Stats } from "./blocks/stats";
-import { tweakcnThemes } from "./tweakcn-themes";
-import type { WebsiteData } from "./types";
-
-const SANS = "var(--font-sans)";
+/** @jsxRuntime automatic @jsxImportSource react */
+import { CTA } from './blocks/cta';
+import { Footer } from './blocks/footer';
+import { Gallery } from './blocks/gallery';
+import { Hero } from './blocks/hero';
+import { Info } from './blocks/info';
+import { Location } from './blocks/location';
+import { Nav } from './blocks/nav';
+import { Reviews } from './blocks/reviews';
+import { Services } from './blocks/services';
+import { Stats } from './blocks/stats';
+import type { WebsiteData } from './types';
 
 export function buildRootStyles(data: WebsiteData) {
-  const theme = tweakcnThemes[data.tweakcnThemeKey];
-  const style = data.isDarkMode ? theme?.dark : theme?.light;
-
-  const themeVars = Object.entries(style ?? {})
+  const themeVars = Object.entries(data.styles)
     .filter(([, v]) => v != null)
     .map(([k, v]) => `  --${k}: ${v};`)
-    .join("\n");
+    .join('\n');
 
   const opacityEntries: [string, number[]][] = [
-    ["primary", [10, 20, 30, 60, 70]],
-    ["foreground", [10, 25, 30, 40, 50, 60, 70, 80]],
+    ['primary', [10, 20, 30, 60, 70]],
+    ['foreground', [10, 25, 30, 40, 50, 60, 70, 80]],
   ];
 
   const opacityVars = opacityEntries
-    .flatMap(([name, opacities]) =>
-      opacities.map(
-        (op) =>
-          `  --${name}-${op}: color-mix(in srgb, var(--${name}) ${op}%, transparent);`,
-      ),
-    )
-    .join("\n");
+    .flatMap(([name, opacities]) => opacities.map((op) => `  --${name}-${op}: color-mix(in srgb, var(--${name}) ${op}%, transparent);`))
+    .join('\n');
 
-  return `:root {\n${themeVars}\n${opacityVars}\n}`;
+  const colorVars = Object.entries(data.styles)
+    .filter(([, v]) => v != null)
+    .map(([k, v]) => `  --color-${k}: ${v};`)
+    .join('\n');
+
+  const res = `@theme inline {\n${colorVars}\n}
+  
+  :root {\n${themeVars}\n${opacityVars}\n}`;
+
+  return res;
 }
 
 export function TemplateBody({ data }: { data: WebsiteData }) {
   return (
-    <div
-      className="min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ fontFamily: SANS }}
-    >
-      <Navigation data={data} />
-      <Hero data={data} />
-      <Stats data={data} />
-      <About data={data} />
-      <Gallery data={data} />
-      <Reviews data={data} />
-      <Services />
-      <Location data={data} />
-      <CTA />
+    <div className="bg-background text-foreground min-h-screen">
+      <Nav data={data} />
+      {data.blocks.blocks.map((block) => {
+        if (block.type === 'stats') return <Stats block={block} />;
+        if (block.type === 'hero') return <Hero block={block} />;
+        if (block.type === 'info') return <Info block={block} />;
+        if (block.type === 'gallery') return <Gallery block={block} />;
+        if (block.type === 'reviews') return <Reviews block={block} />;
+        if (block.type === 'services') return <Services block={block} />;
+        if (block.type === 'location') return <Location block={block} />;
+        if (block.type === 'cta') return <CTA block={block} />;
+      })}
       <Footer data={data} />
     </div>
   );
@@ -61,32 +59,13 @@ export function TemplateBody({ data }: { data: WebsiteData }) {
 
 export function Template({ data }: { data: WebsiteData }) {
   return (
-    <html lang="es">
+    <html lang="es" className="scroll-smooth">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{data.place.name}</title>
-        <script src="https://cdn.tailwindcss.com" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-          document.addEventListener('click', function(e) {
-            var a = e.target.closest('a[href^="#"]');
-            if (!a) return;
-            var id = a.getAttribute('href').slice(1);
-            var el = document.getElementById(id);
-            if (!el) return;
-            e.preventDefault();
-            el.scrollIntoView({ behavior: 'smooth' });
-          });
-        `,
-          }}
-        />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap"
-        />
-        <style dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
+        <title>{data.blocks.name}</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <style type="text/tailwindcss" dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
       </head>
       <body>
         <TemplateBody data={data} />

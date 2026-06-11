@@ -1,39 +1,13 @@
-import type { WebsiteData } from "../types";
-import { SERIF } from "../utils";
+/** @jsxRuntime automatic @jsxImportSource react */
+import type { StatsBlock } from '../types';
 
-export function Stats({ data }: { data: WebsiteData }) {
-  const stats = [
-    {
-      value: data.place.rating
-        ? `${data.place.rating.toString().replace(".", ",")}★`
-        : "–",
-      label: `GOOGLE · ${data.place.userRatingCount ?? 0} RESEÑAS`,
-    },
-    { value: "4,9★", label: "BOOKSY · 324 RESEÑAS" },
-    { value: "+1K", label: "SEGUIDORES EN INSTAGRAM" },
-    { value: "L-S", label: "MAÑANA Y TARDE" },
-  ];
-
+export function Stats({ block }: { block: StatsBlock }) {
   return (
-    <section className="grid grid-cols-2 border-b border-t border-[var(--foreground-10)] bg-[var(--card)] md:grid-cols-4">
-      {stats.map((stat, i) => (
-        <div
-          key={i}
-          className={`px-10 py-8 text-center border-[var(--foreground-10)]${
-            i % 2 === 0 ? " border-r" : ""
-          }${i < 2 ? " border-b md:border-b-0" : ""}${
-            i % 2 !== 0 && i < 3 ? " md:border-r" : ""
-          }`}
-        >
-          <div
-            className="text-3xl font-light italic text-[var(--primary)]"
-            style={{ fontFamily: SERIF }}
-          >
-            {stat.value}
-          </div>
-          <div className="mt-2 text-xs tracking-[0.2em] uppercase text-[var(--foreground-40)]">
-            {stat.label}
-          </div>
+    <section className="flex justify-around border-y border-(--foreground-10)">
+      {block.stats.map((stat, i) => (
+        <div key={i} className="flex-1 border-l border-(--foreground-10) px-10 py-8 text-center first:border-l-0">
+          <div className="text-primary text-3xl italic">{stat.value}</div>
+          <div className="mt-2 text-xs tracking-[0.2em] text-(--foreground-40) uppercase">{stat.label}</div>
         </div>
       ))}
     </section>

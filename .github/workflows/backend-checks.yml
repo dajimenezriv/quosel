@@ -56,6 +56,5 @@ jobs:
       - run: pnpm tsc
       - run: pnpm format
       - run: pnpm lint
-      - run: pnpm knip
       - run: pnpm test:cov
       - run: pnpm db:lint

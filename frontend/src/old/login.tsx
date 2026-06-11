@@ -1,21 +1,23 @@
 import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
-import '../App.css';
 import { useAuth } from './auth';
 import { isSubscribed, openPortal, startCheckout } from './billing';
 
+function getBillingReturn(): 'success' | 'cancel' | null {
+  const billing = new URLSearchParams(window.location.search).get('billing');
+  return billing === 'success' || billing === 'cancel' ? billing : null;
+}
+
 function useBillingReturn(onReturn: () => void) {
-  const [banner, setBanner] = useState<'success' | 'cancel' | null>(null);
+  const [banner, setBanner] = useState(getBillingReturn);
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const billing = params.get('billing');
-    if (billing === 'success' || billing === 'cancel') {
-      setBanner(billing);
-      window.history.replaceState({}, '', window.location.pathname);
-      posthog.capture(billing === 'success' ? 'checkout_completed' : 'checkout_canceled');
-      if (billing === 'success') onReturn();
-    }
+    const billing = getBillingReturn();
+    if (!billing) return;
+
+    window.history.replaceState({}, '', window.location.pathname);
+    posthog.capture(billing === 'success' ? 'checkout_completed' : 'checkout_canceled');
+    if (billing === 'success') onReturn();
   }, [onReturn]);
 
   return { banner, dismiss: () => setBanner(null) };

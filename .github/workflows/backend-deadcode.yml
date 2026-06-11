@@ -1,0 +1,41 @@
+name: Backend deadcode
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["backend/**"]
+  pull_request:
+    paths: ["backend/**"]
+
+concurrency:
+  group: backend-deadcode-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deadcode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: backend
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm db:types
+      - run: pnpm knip

@@ -1,10 +1,9 @@
 import { app } from '@/app';
-import { call } from '@/tests/utils.helper.test';
+import { calls } from '@/tests/utils.helper.test';
 import { generateCodeVerifier, generateState } from 'arctic';
 import { google } from './utils';
 
 vi.mock(import('@/api/auth/utils'));
-vi.mock(import('@/core/env'));
 vi.mock(import('arctic'));
 
 describe('google-login', () => {
@@ -24,6 +23,6 @@ describe('google-login', () => {
       'google_state=mockState; Max-Age=600; Path=/; HttpOnly; SameSite=Lax',
       'google_verifier=mockVerifier; Max-Age=600; Path=/; HttpOnly; SameSite=Lax',
     ]);
-    call(google.createAuthorizationURL).toStrictEqual(['mockState', 'mockVerifier', ['openid', 'email', 'profile']]);
+    calls(google.createAuthorizationURL).toStrictEqual(['mockState', 'mockVerifier', ['openid', 'email', 'profile']]);
   });
 });

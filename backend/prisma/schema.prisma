@@ -10,8 +10,10 @@ datasource db {
 model User {
   id                   String    @id @default(uuid())
   googleId             String    @unique @map("google_id")
-  email                String
+  email                String    @unique
   name                 String
+  givenName            String    @map("given_name")
+  familyName           String    @map("family_name")
   picture              String
   stripeCustomerId     String?   @unique @map("stripe_customer_id")
   stripeSubscriptionId String?   @unique @map("stripe_subscription_id")
@@ -34,82 +36,38 @@ model Session {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@index([userId])
   @@map("sessions")
 }
 
-model Place {
-  id                       String   @id @default(uuid())
-  googleId                 String   @unique @map("google_id")
-  name                     String
-  internationalPhoneNumber String   @map("international_phone_number")
-  formattedAddress         String   @map("formatted_address")
-  shortFormattedAddress    String   @map("short_formatted_address")
-  latitude                 Float    @db.DoublePrecision
-  longitude                Float    @db.DoublePrecision
-  rating                   Float?   @db.Real
-  userRatingCount          Int?     @map("user_rating_count")
-  googleMapsPlaceUri       String   @map("google_maps_place_uri")
-  googleMapsReviewsUri     String   @map("google_maps_reviews_uri")
-  googleMapsPhotosUri      String   @map("google_maps_photos_uri")
-  raw                      Json
-  createdAt                DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt                DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
-
-  reviews  Review[]
-  websites Website[]
-
-  @@map("places")
-}
-
-model Review {
-  id             String   @id @default(uuid())
-  placeId        String   @map("place_id")
-  googleId       String   @unique @map("google_id")
-  rating         Float    @db.Real
-  text           String
-  authorName     String   @map("author_name")
-  authorPhotoUri String   @map("author_photo_uri")
-  publishTime    DateTime @map("publish_time") @db.Timestamptz
-  googleMapsUri  String   @map("google_maps_uri")
-  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt      DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
-
-  place Place @relation(fields: [placeId], references: [id], onDelete: Cascade)
-
-  @@index([placeId], map: "reviews_place_id_idx")
-  @@map("reviews")
-}
-
 model Website {
-  id        String   @id @default(uuid())
-  userId    String   @map("user_id")
-  placeId   String   @map("place_id")
-  domain    String   @unique
-  template  String
-  texts     String[] @default([])
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
-  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  id          String    @id @default(uuid())
+  userId      String    @map("user_id")
+  name        String
+  blocks      Json
+  styles      Json
+  publishedAt DateTime? @map("published_at") @db.Timestamptz
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
 
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  place         Place          @relation(fields: [placeId], references: [id], onDelete: Cascade)
   websiteImages WebsiteImage[]
 
-  @@index([userId], map: "websites_user_id_idx")
+  @@index([userId])
   @@map("websites")
 }
 
 model WebsiteImage {
-  id        String   @id @default(uuid())
+  id        String   @id
   userId    String   @map("user_id")
-  websiteId String   @map("website_id")
-  url       String
+  websiteId String?  @map("website_id")
   sizeBytes Int      @map("size_bytes")
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
 
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  website Website @relation(fields: [websiteId], references: [id], onDelete: Cascade)
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  website Website? @relation(fields: [websiteId], references: [id], onDelete: SetNull)
 
-  @@index([userId], map: "website_images_user_id_idx")
-  @@index([websiteId], map: "website_images_website_id_idx")
+  @@index([userId])
+  @@index([websiteId])
   @@map("website_images")
 }

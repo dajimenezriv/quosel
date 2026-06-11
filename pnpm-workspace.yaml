@@ -4,10 +4,11 @@ packages:
   - "templates"
 allowBuilds:
   "@prisma/engines": false
-  "@railway/cli": false
+  "@railway/cli": true
   core-js: false
   esbuild: false
   prisma: false
   protobufjs: false
   sharp: false
   workerd: false
+minimumReleaseAge: 1440

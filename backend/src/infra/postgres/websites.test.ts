@@ -1,62 +1,121 @@
-import { createUser } from '@/tests/utils.helper.test';
-import { prisma } from './client';
-import { Websites, type PlaceInsert, type ReviewInsert } from './websites';
+import { createMockUser } from '@/tests/postgres.helper.test';
+import { Websites } from './websites';
 
-describe('websites', async () => {
-  const { userId: userId1 } = await createUser();
-  const { userId: userId2 } = await createUser();
+describe('websites', () => {
+  describe('getAllByUserId', () => {
+    it('should return only websites for the given user', async () => {
+      // Given
+      const { id: userId1 } = await createMockUser();
+      const { id: userId2 } = await createMockUser();
+      await Websites.create(userId1, 'Website 1');
+      await Websites.create(userId1, 'Website 2');
+      await Websites.create(userId2, 'Other Website');
+      // When
+      const websites = await Websites.getAllByUserId(userId1);
+      // Then
+      expect(websites).toHaveLength(2);
+    });
 
-  const place: PlaceInsert = {
-    googleId: crypto.randomUUID(),
-    formattedAddress: '',
-    shortFormattedAddress: '',
-    googleMapsPhotosUri: '',
-    googleMapsPlaceUri: '',
-    googleMapsReviewsUri: '',
-    internationalPhoneNumber: '',
-    latitude: 0,
-    longitude: 0,
-    name: 'Small Business',
-    raw: {},
-  };
+    it('should return empty array if user has no websites', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      // When
+      const websites = await Websites.getAllByUserId(userId);
+      // Then
+      expect(websites).toHaveLength(0);
+    });
+  });
 
-  const review: ReviewInsert = {
-    googleId: crypto.randomUUID(),
-    authorName: '',
-    authorPhotoUri: '',
-    googleMapsUri: '',
-    publishTime: new Date(),
-    rating: 0,
-    text: '',
-  };
+  describe('getById', () => {
+    it('should return website if it exists', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      const { id: websiteId } = await Websites.create(userId, 'My Website');
+      // When
+      const website = await Websites.getById(websiteId);
+      // Then
+      expect(website!.id).toBe(websiteId);
+    });
 
-  it('should work', async () => {
-    // Create website for logged user
-    // When
-    const websiteId = await Websites.create(userId1, place, [review]);
-    // Then
-    expect(websiteId).toBeDefined();
-    const res = await prisma.website.findFirst({ where: { id: websiteId } });
-    expect(res!.domain).toContain('small-business-');
+    it('should return null if website does not exist', async () => {
+      // When
+      const website = await Websites.getById('nonExistingId');
+      // Then
+      expect(website).toBeNull();
+    });
+  });
 
-    // Create website without reviews
-    // When
-    await Websites.create(userId1, place, []);
+  describe('create', () => {
+    it('should create a website', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      // When
+      const website = await Websites.create(userId, 'My Website');
+      // Then
+      expect(website.id).toBeDefined();
+      expect(website.userId).toBe(userId);
+      expect(website.name).toBe('My Website');
+    });
 
-    // Create website for non logged user
-    // When
-    await Websites.create(userId2, place, [review]);
+    it('should create a website', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      // When
+      const promise = Websites.create(userId, {} as any);
+      // Then
+      await expect(promise).rejects.toThrow('Argument `name`: Invalid value provided.');
+    });
+  });
 
-    // Get all websites for a user
-    // When
-    const websiteRows = await Websites.getAllByUserId(userId1);
-    // Then
-    expect(websiteRows).toHaveLength(2);
+  describe('update', () => {
+    it('should update website fields', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      const { id: websiteId } = await Websites.create(userId, 'My Website');
+      // When
+      const updated = await Websites.update(websiteId, { name: 'Updated Name' });
+      // Then
+      expect(updated.name).toBe('Updated Name');
+    });
 
-    // Get website for a user
-    // When
-    const websiteRow = await Websites.getById(userId1, websiteId!);
-    // Then
-    expect(websiteRow!.id).toBe(websiteId);
+    it('should throw error if website does not exist', async () => {
+      // When
+      const promise = Websites.update('nonExistingId', { name: 'Updated' });
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for an update.');
+    });
+  });
+
+  describe('delete', () => {
+    it('should delete the website if it belongs to the user', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      const { id: websiteId } = await Websites.create(userId, 'My Website');
+      // When
+      const deleted = await Websites.delete(userId, websiteId);
+      // Then
+      expect(deleted.id).toBe(websiteId);
+      expect(await Websites.getById(websiteId)).toBeNull();
+    });
+
+    it('should throw if website does not exist', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      // When
+      const promise = Websites.delete(userId, 'nonExistingId');
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for a delete.');
+    });
+
+    it('should throw if website belongs to another user', async () => {
+      // Given
+      const { id: userId1 } = await createMockUser();
+      const { id: userId2 } = await createMockUser();
+      const { id: websiteId } = await Websites.create(userId1, 'My Website');
+      // When
+      const promise = Websites.delete(userId2, websiteId);
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for a delete.');
+    });
   });
 });

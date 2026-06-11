@@ -11,7 +11,7 @@ export function jsonResponse<S extends z.ZodType, Status extends ContentfulStatu
   return c.json(schema.parse(data), status);
 }
 
-const ErrorSchema = z.object({ error: z.string() }).openapi('Error');
+const ErrorSchema = z.object({ message: z.string() }).openapi('Error');
 
 export function setupResponses(code: StatusCode, schema?: z.ZodObject) {
   return {
