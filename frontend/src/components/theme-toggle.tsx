@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { Moon, Sun } from 'lucide-react';
-import '@/core/theme/circular-transition.css';
 import { useThemeStore } from '@/core/theme/use-theme-store';
+import { Moon, Sun } from 'lucide-react';
 
 export function ThemeToggle() {
   const { isDarkMode, setIsDarkMode } = useThemeStore();
