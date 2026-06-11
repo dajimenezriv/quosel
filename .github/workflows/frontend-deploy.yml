@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths: ["frontend/**"]
-  pull_request:
+  # pull_request:
 
 concurrency:
   group: frontend-deploy-${{ github.ref }}
