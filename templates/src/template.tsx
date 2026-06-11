@@ -1,4 +1,4 @@
-import React from 'react';
+/** @jsxRuntime automatic @jsxImportSource react */
 import { CTA } from './blocks/cta';
 import { Footer } from './blocks/footer';
 import { Gallery } from './blocks/gallery';

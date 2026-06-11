@@ -9,7 +9,6 @@ import { SafariDevice } from '@/modules/editor/devices/safari-device';
 import { Laptop, Save, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { toast } from 'sonner';
 
 export default function Page() {
   const { websiteId } = useParams<{ websiteId: string }>();
@@ -33,13 +32,7 @@ export default function Page() {
 
   function save() {
     if (!draft || !websiteId) return;
-    updateWebsite(
-      { websiteId, ...draft },
-      {
-        onSuccess: () => toast.success('Website saved successfully'),
-        onError: (error) => toast.error(`Cannot save website: ${error.message}`),
-      },
-    );
+    updateWebsite({ websiteId, ...draft });
   }
 
   return (

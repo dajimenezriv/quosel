@@ -1,4 +1,4 @@
-import React from 'react';
+/** @jsxRuntime automatic @jsxImportSource react */
 import type { CtaBlock } from '../types';
 
 export function CTA({ block }: { block: CtaBlock }) {

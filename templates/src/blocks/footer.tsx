@@ -1,4 +1,4 @@
-import React from 'react';
+/** @jsxRuntime automatic @jsxImportSource react */
 import type { WebsiteData } from '../types';
 
 export function Footer({ data }: { data: WebsiteData }) {

@@ -1,4 +1,4 @@
-import React from 'react';
+/** @jsxRuntime automatic @jsxImportSource react */
 import type { ReviewsBlock } from '../types';
 
 export function Reviews({ block }: { block: ReviewsBlock }) {

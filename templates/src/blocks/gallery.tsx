@@ -1,4 +1,4 @@
-import React from 'react';
+/** @jsxRuntime automatic @jsxImportSource react */
 import type { GalleryBlock } from '../types';
 
 export function Gallery({ block }: { block: GalleryBlock }) {
