@@ -551,7 +551,7 @@ export interface paths {
             requestBody?: {
                 content: {
                     "application/json": {
-                        name: string;
+                        name?: string;
                         blocks: {
                             /** @enum {number} */
                             schemaVersion: 1;
