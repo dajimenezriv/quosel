@@ -8,8 +8,8 @@ export default function Page() {
 
   return (
     <div className="flex h-screen w-screen bg-[#262624] text-white">
-      <header className="absolute top-6 left-6">
-        <Logo size={36} />
+      <header className="absolute top-4 left-4">
+        <Logo size={32} />
       </header>
       <main className="flex min-h-0 flex-1">
         <div className="flex w-1/2 items-center justify-center pb-16">
