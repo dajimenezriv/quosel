@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["backend/**"]
+    paths: ["backend/**", "templates/**"]
   pull_request:
-    paths: ["backend/**"]
+    paths: ["backend/**", "templates/**"]
 
 concurrency:
   group: backend-checks-${{ github.ref }}
