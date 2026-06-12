@@ -21,8 +21,7 @@ export function CtaLayout({ data, block, index }: Props) {
       icon={<MousePointerClick className="h-4 w-4" />}
       onMoveUp={moveUp}
       onMoveDown={moveDown}
-      onRemove={removeBlock}
-    >
+      onRemove={removeBlock}>
       <Field label="Title">
         <Textarea
           className="min-h-0"
