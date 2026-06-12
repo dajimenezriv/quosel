@@ -70,10 +70,17 @@ export function Section({
   );
 }
 
-export function Subgroup({ title, children }: { title: string; children: ReactNode }) {
+export function Subgroup({ title, onRemove, children }: { title: string; onRemove?: () => void; children: ReactNode }) {
   return (
     <div className="bg-muted/40 flex flex-col gap-3 rounded-md p-3">
-      <span className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">{title}</span>
+      <div className="flex items-center justify-between">
+        <span className="text-muted-foreground text-[11px] font-medium tracking-wide uppercase">{title}</span>
+        {onRemove && (
+          <button onClick={onRemove} className="text-muted-foreground hover:text-destructive cursor-pointer">
+            <Trash2 className="h-4 w-4" />
+          </button>
+        )}
+      </div>
       {children}
     </div>
   );
