@@ -31,7 +31,7 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
           <div className="mb-5 flex items-center gap-3">
             <span className="text-foreground text-xs tracking-[0.25em] uppercase">{data.blocks.name}</span>
           </div>
-          <p className="text-xs leading-relaxed text-(--foreground-40)">{block.description}</p>
+          <p className="text-foreground/40 text-xs leading-relaxed">{block.description}</p>
         </div>
 
         <Column title="Navigate" links={navLinks} />
@@ -39,15 +39,15 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
         <Column title="Booking &amp; Social" links={block.links} />
       </div>
 
-      <div className="mt-12 flex items-center justify-between border-t border-(--foreground-10) pt-6">
-        <p className="text-xs text-(--foreground-40)">
+      <div className="border-foreground/10 mt-12 flex items-center justify-between border-t pt-6">
+        <p className="text-foreground/40 text-xs">
           © {new Date().getFullYear()} {data.blocks.name}
         </p>
         {block.legalLinks.length > 0 && (
           <ul className="flex flex-wrap gap-6">
             {block.legalLinks.map((link) => (
               <li key={link.label}>
-                <a href={link.url} className="hover:text-foreground text-xs text-(--foreground-40) transition-colors">
+                <a href={link.url} className="hover:text-foreground text-foreground/40 text-xs transition-colors">
                   {link.label}
                 </a>
               </li>
@@ -68,7 +68,7 @@ function Column({ title, links }: { title: string; links: Links }) {
       <ul>
         {links.map((link) => (
           <li key={link.label}>
-            <a target="__blank" href={link.url} className="hover:text-foreground text-xs text-(--foreground-40) transition-colors">
+            <a target="__blank" href={link.url} className="hover:text-foreground text-foreground/40 text-xs transition-colors">
               {link.label}
             </a>
           </li>

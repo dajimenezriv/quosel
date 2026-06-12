@@ -18,7 +18,7 @@ export function Nav({ data }: { data: WebsiteData }) {
           <a
             key={idx}
             href={link.url}
-            className="hover:text-foreground text-xs tracking-[0.15em] text-(--foreground-70) uppercase transition-colors">
+            className="hover:text-foreground text-foreground/70 text-xs tracking-[0.15em] uppercase transition-colors">
             {link.label}
           </a>
         ))}

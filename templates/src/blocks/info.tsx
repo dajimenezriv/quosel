@@ -10,8 +10,8 @@ export function Info({ block }: { block: InfoBlock }) {
 
         <div className="mt-20 flex gap-20">
           <div className="flex flex-1 flex-col gap-10">
-            <blockquote className="border-primary border-l-2 pl-6 text-lg text-(--foreground-70) italic">{block.text1}</blockquote>
-            <p className="whitespace-pre-line text-(--foreground-60)">{block.text2}</p>
+            <blockquote className="border-primary text-foreground/70 border-l-2 pl-6 text-lg italic">{block.text1}</blockquote>
+            <p className="text-foreground/60 whitespace-pre-line">{block.text2}</p>
           </div>
 
           <img src={block.imageUrl} className="h-130 w-130 object-cover opacity-80" />
