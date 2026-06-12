@@ -416,7 +416,6 @@ export interface paths {
                                 schemaVersion: 1;
                                 name: string;
                                 nav: {
-                                    name: string;
                                     ctaText: string;
                                     ctaLink: string;
                                 };
@@ -571,7 +570,6 @@ export interface paths {
                             schemaVersion: 1;
                             name: string;
                             nav: {
-                                name: string;
                                 ctaText: string;
                                 ctaLink: string;
                             };
