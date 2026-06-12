@@ -1,7 +1,8 @@
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import type { FooterBlock, WebsiteData } from '@quosel/templates';
-import { PanelBottom } from 'lucide-react';
+import { PanelBottom, Plus, Trash2 } from 'lucide-react';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export function FooterLayout({ data, block, index }: Props) {
-  const { handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<FooterBlock>(data, index);
+  const { handleInput, handleTextArea, updateBlock, removeBlock, moveUp, moveDown } = useBlockHandlers<FooterBlock>(data, index);
 
   return (
     <Section title="Footer" icon={<PanelBottom className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
@@ -42,47 +43,87 @@ export function FooterLayout({ data, block, index }: Props) {
         />
       </Field>
 
-      {block.links.map((link, linkIndex) => (
-        <Subgroup key={linkIndex} title={`Link ${linkIndex + 1}`}>
-          <Field label="Label">
+      <Subgroup title="Links">
+        {block.links.map((link, linkIndex) => (
+          <div key={linkIndex} className="flex items-center gap-2">
             <Input
+              placeholder="Label"
               value={link.label}
               onChange={handleInput((block, value) => {
                 block.links[linkIndex].label = value;
               })}
             />
-          </Field>
-          <Field label="URL">
             <Input
+              placeholder="URL"
               value={link.url}
               onChange={handleInput((block, value) => {
                 block.links[linkIndex].url = value;
               })}
             />
-          </Field>
-        </Subgroup>
-      ))}
+            <button
+              onClick={() =>
+                updateBlock((block) => {
+                  block.links.splice(linkIndex, 1);
+                })
+              }
+              className="text-muted-foreground hover:text-destructive cursor-pointer">
+              <Trash2 className="h-4 w-4" />
+            </button>
+          </div>
+        ))}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            updateBlock((block) => {
+              block.links.push({ label: '', url: '' });
+            })
+          }>
+          <Plus className="h-4 w-4" />
+          Add link
+        </Button>
+      </Subgroup>
 
-      {block.legalLinks.map((link, linkIndex) => (
-        <Subgroup key={linkIndex} title={`Legal Link ${linkIndex + 1}`}>
-          <Field label="Label">
+      <Subgroup title="Legal Links">
+        {block.legalLinks.map((link, linkIndex) => (
+          <div key={linkIndex} className="flex items-center gap-2">
             <Input
+              placeholder="Label"
               value={link.label}
               onChange={handleInput((block, value) => {
                 block.legalLinks[linkIndex].label = value;
               })}
             />
-          </Field>
-          <Field label="URL">
             <Input
+              placeholder="URL"
               value={link.url}
               onChange={handleInput((block, value) => {
                 block.legalLinks[linkIndex].url = value;
               })}
             />
-          </Field>
-        </Subgroup>
-      ))}
+            <button
+              onClick={() =>
+                updateBlock((block) => {
+                  block.legalLinks.splice(linkIndex, 1);
+                })
+              }
+              className="text-muted-foreground hover:text-destructive cursor-pointer">
+              <Trash2 className="h-4 w-4" />
+            </button>
+          </div>
+        ))}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() =>
+            updateBlock((block) => {
+              block.legalLinks.push({ label: '', url: '' });
+            })
+          }>
+          <Plus className="h-4 w-4" />
+          Add legal link
+        </Button>
+      </Subgroup>
     </Section>
   );
 }
