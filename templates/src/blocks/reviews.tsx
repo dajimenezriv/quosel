@@ -11,20 +11,19 @@ export function Reviews({ block }: { block: ReviewsBlock }) {
             <h2 className="text-foreground text-5xl">{block.title}</h2>
           </div>
 
-          <div className="shrink-0 border border-(--primary-30) p-6">
-            <div className="grid grid-cols-2 divide-x divide-(--primary-20)">
-              <div className="pr-8 text-center">
-                <div className="text-primary text-4xl italic">4.8</div>
-                <div className="text-primary mt-1">★★★★★</div>
-                <div className="mt-2 text-xs tracking-[0.15em] text-(--foreground-30) uppercase">Google · 39k</div>
-              </div>
-              <div className="pl-8 text-center">
-                <div className="text-primary text-4xl italic">4,9</div>
-                <div className="text-primary mt-1">★★★★★</div>
-                <div className="mt-2 text-xs tracking-[0.15em] text-(--foreground-30) uppercase">Booksy · 324</div>
+          {block.stats.length > 0 && (
+            <div className="shrink-0 border border-(--primary-30) p-6">
+              <div className="flex divide-x divide-(--primary-20)">
+                {block.stats.map((stat, statIndex) => (
+                  <div key={statIndex} className="px-8 text-center first:pl-0 last:pr-0">
+                    <div className="text-primary text-4xl italic">{stat.value}</div>
+                    <div className="text-primary mt-1">★★★★★</div>
+                    <div className="mt-2 text-xs tracking-[0.15em] text-(--foreground-30) uppercase">{stat.label}</div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

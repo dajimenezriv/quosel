@@ -148,7 +148,6 @@ export const circoloPopolareBlocks: Blocks = {
     },
     {
       type: 'reviews',
-
       nav: 'Reviews',
       title: 'The voice of the customer.',
       stats: [
