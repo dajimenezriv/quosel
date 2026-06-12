@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
@@ -18,6 +20,7 @@ export function Section({
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-4">
@@ -39,9 +42,27 @@ export function Section({
           <ChevronDown className="h-4 w-4" />
         </button>
         {onRemove && (
-          <button onClick={onRemove} className="text-muted-foreground hover:text-destructive cursor-pointer">
-            <Trash2 className="h-4 w-4" />
-          </button>
+          <>
+            <button onClick={() => setConfirmOpen(true)} className="text-muted-foreground hover:text-destructive cursor-pointer">
+              <Trash2 className="h-4 w-4" />
+            </button>
+            <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Remove section</DialogTitle>
+                  <DialogDescription>This will remove the "{title}" section from your website.</DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogClose>
+                  <Button variant="destructive" onClick={onRemove}>
+                    Remove
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </>
         )}
       </div>
       {open && children}
