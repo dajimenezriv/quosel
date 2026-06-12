@@ -1,6 +1,6 @@
 import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
-import { useAuth } from './auth';
+import { loginWithGoogle, useAuth } from './auth';
 import { isSubscribed, openPortal, startCheckout } from './billing';
 
 function getBillingReturn(): 'success' | 'cancel' | null {
@@ -24,7 +24,7 @@ function useBillingReturn(onReturn: () => void) {
 }
 
 export function Login() {
-  const { user, loading, login, logout, refresh } = useAuth();
+  const { user, loading, logout, refresh } = useAuth();
   const { banner, dismiss } = useBillingReturn(refresh);
   const [billingLoading, setBillingLoading] = useState(false);
 
@@ -87,7 +87,7 @@ export function Login() {
           </button>
         </>
       ) : (
-        <button type="button" className="counter" onClick={login}>
+        <button type="button" className="counter" onClick={loginWithGoogle}>
           Login with Google
         </button>
       )}
