@@ -4,7 +4,6 @@ export const circoloPopolareBlocks: Blocks = {
   schemaVersion: 1,
   name: 'Circolo Popolare',
   nav: {
-    name: 'Circolo Popolare',
     ctaText: 'Book a Table',
     ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   },
@@ -42,7 +41,7 @@ export const circoloPopolareBlocks: Blocks = {
     },
     {
       type: 'cta',
-      title: 'El detalle lo es todo',
+      title: 'Every detail matters',
       text: '',
       ctaText: '',
       ctaLink: '',
@@ -67,40 +66,10 @@ export const circoloPopolareBlocks: Blocks = {
       ctaLink: 'https://www.instagram.com/circolopopolare',
     },
     {
-      type: 'reviews',
-
-      nav: 'Reviews',
-      title: 'The voice of the customer.',
-      stats: [
-        { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
-        { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
-      ],
-      reviews: [
-        {
-          text: 'Amazing spot. The ambience is honestly one of the best parts of the place. Very relaxed, warm and perfect for a slow meal.\nThe food completely lived up to it as well. I had the mushroom truffle toast and the truffle pasta and both were excellent. The truffle flavour was spot on and the pasta in particular really blew me away.\nEverything just worked together the atmosphere, the food, the overall vibe. Left the place genuinely impressed and had a great time.\nThe team also mentioned they have opened a sister branch in Dublin, so I will definitely be checking that one out as well.',
-          author: 'Patrik Rajiv Shah',
-          source: 'Google',
-          url: 'https://maps.app.goo.gl/hpyRZof6n4zB2A2u7',
-        },
-        {
-          text: 'Such a great spot! 🍝✨ It is very popular, so definitely book ahead. We came here for a birthday and it was perfect. The pasta selection is big, but the staff was so helpful in guiding us. As for dessert... wow. We ordered almost everything! Do yourself a favor and get the profiteroles and the Lemon Cake (it is massive!). Highly recommend!',
-          author: 'Doux Ella',
-          source: 'Google',
-          url: 'https://maps.app.goo.gl/PASEqM9LTAG7GgPr6',
-        },
-        {
-          text: 'Firstly it’s one for the coolest looking restaurants in town that is located in a closed ground level in a busy area of London.\nHard to find such a well crafted restaurant.\nAs for the food, it’s has authentic Italian food very good veg and non veg options and an amazing dessert menu. The drinks are also good.\nWe tried the starters, pizzas and truffle pasta. In the desserts their pistachio profetti rolls with chocolate sauce.\nThe staff is very good and the service is really good.',
-          author: 'Deepakh Bhojwani',
-          source: 'Google',
-          url: 'https://maps.app.goo.gl/RaKtpiyxeLKYLnDN9',
-        },
-      ],
-    },
-    {
       type: 'services',
       nav: 'Services',
       title: 'Services & prices',
-      text: 'Reserva directo en Booksy: elige el servicio, el día y la hora. Sin sorpresas, sin letra pequeña.',
+      text: 'Book directly online: pick the dish, the day and the time. No surprises, no fine print.',
       serviceGroups: [
         {
           title: 'To Share',
@@ -178,12 +147,34 @@ export const circoloPopolareBlocks: Blocks = {
       ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
     },
     {
-      type: 'cta',
-      title: 'Tu próxima cita empieza aquí.',
-      text: 'Reserva en Booksy o síguenos en Instagram. Las dos puertas para entrar en la barbería antes incluso de cruzarla.',
-      ctaText: 'Reservar en Booksy →',
-      ctaLink: '#',
-      imageUrl: '',
+      type: 'reviews',
+
+      nav: 'Reviews',
+      title: 'The voice of the customer.',
+      stats: [
+        { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
+        { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
+      ],
+      reviews: [
+        {
+          text: 'Amazing spot. The ambience is honestly one of the best parts of the place. Very relaxed, warm and perfect for a slow meal.\nThe food completely lived up to it as well. I had the mushroom truffle toast and the truffle pasta and both were excellent. The truffle flavour was spot on and the pasta in particular really blew me away.\nEverything just worked together the atmosphere, the food, the overall vibe. Left the place genuinely impressed and had a great time.\nThe team also mentioned they have opened a sister branch in Dublin, so I will definitely be checking that one out as well.',
+          author: 'Patrik Rajiv Shah',
+          source: 'Google',
+          url: 'https://maps.app.goo.gl/hpyRZof6n4zB2A2u7',
+        },
+        {
+          text: 'Such a great spot! 🍝✨ It is very popular, so definitely book ahead. We came here for a birthday and it was perfect. The pasta selection is big, but the staff was so helpful in guiding us. As for dessert... wow. We ordered almost everything! Do yourself a favor and get the profiteroles and the Lemon Cake (it is massive!). Highly recommend!',
+          author: 'Doux Ella',
+          source: 'Google',
+          url: 'https://maps.app.goo.gl/PASEqM9LTAG7GgPr6',
+        },
+        {
+          text: 'Firstly it’s one for the coolest looking restaurants in town that is located in a closed ground level in a busy area of London.\nHard to find such a well crafted restaurant.\nAs for the food, it’s has authentic Italian food very good veg and non veg options and an amazing dessert menu. The drinks are also good.\nWe tried the starters, pizzas and truffle pasta. In the desserts their pistachio profetti rolls with chocolate sauce.\nThe staff is very good and the service is really good.',
+          author: 'Deepakh Bhojwani',
+          source: 'Google',
+          url: 'https://maps.app.goo.gl/RaKtpiyxeLKYLnDN9',
+        },
+      ],
     },
     {
       type: 'location',
@@ -193,6 +184,30 @@ export const circoloPopolareBlocks: Blocks = {
       phone: '+44 20 3893 6800',
       ctaText: 'Book a Table',
       ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
+    },
+    {
+      type: 'cta',
+      title: 'Your next visit starts here.',
+      text: 'Book a table or follow us on Instagram. Two ways into the restaurant before you even step inside.',
+      ctaText: 'Book a Table →',
+      ctaLink: '#',
+      imageUrl: '',
+    },
+    {
+      type: 'footer',
+      description:
+        'Your Sicilian getaway in London. Crispy Neapolitan pizzas, creamy burratas and Carbonara served from a Pecorino wheel, in the heart of Fitzrovia.',
+      phone: '+44 20 3893 6800',
+      address: '40-41 Rathbone Pl, London W1T 1HX, UK',
+      links: [
+        { label: 'Book a Table', url: 'https://www.circolopopolare.com/restaurants/circolopopolare-london' },
+        { label: 'Instagram', url: 'https://www.instagram.com/circolopopolare' },
+      ],
+      legalLinks: [
+        { label: 'Legal Notice', url: '/legal-notice' },
+        { label: 'Privacy Policy', url: '/privacy-policy' },
+        { label: 'Cookie Policy', url: '/cookie-policy' },
+      ],
     },
   ],
 };

@@ -9,6 +9,7 @@ import { Navigation, Plus } from 'lucide-react';
 import { Fragment } from 'react';
 import { addableBlockTypes, createBlock, type AddableBlockType } from './block-defaults';
 import { CtaLayout } from './cta-layout';
+import { FooterLayout } from './footer-layout';
 import { GalleryLayout } from './gallery-layout';
 import { HeroLayout } from './hero-layout';
 import { InfoLayout } from './info-layout';
@@ -59,6 +60,8 @@ export function LayoutTab({ data }: Props) {
         return <ServicesLayout data={data} block={block} index={index} />;
       case 'location':
         return <LocationLayout data={data} block={block} index={index} />;
+      case 'footer':
+        return <FooterLayout data={data} block={block} index={index} />;
     }
   }
 

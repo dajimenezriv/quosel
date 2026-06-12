@@ -416,7 +416,6 @@ export interface paths {
                                 schemaVersion: 1;
                                 name: string;
                                 nav: {
-                                    name: string;
                                     ctaText: string;
                                     ctaLink: string;
                                 };
@@ -502,6 +501,20 @@ export interface paths {
                                     phone?: string;
                                     ctaText: string;
                                     ctaLink: string;
+                                } | {
+                                    /** @enum {string} */
+                                    type: "footer";
+                                    description: string;
+                                    phone: string;
+                                    address: string;
+                                    links: {
+                                        label: string;
+                                        url: string;
+                                    }[];
+                                    legalLinks: {
+                                        label: string;
+                                        url: string;
+                                    }[];
                                 })[];
                             };
                             styles: {
@@ -557,7 +570,6 @@ export interface paths {
                             schemaVersion: 1;
                             name: string;
                             nav: {
-                                name: string;
                                 ctaText: string;
                                 ctaLink: string;
                             };
@@ -643,6 +655,20 @@ export interface paths {
                                 phone?: string;
                                 ctaText: string;
                                 ctaLink: string;
+                            } | {
+                                /** @enum {string} */
+                                type: "footer";
+                                description: string;
+                                phone: string;
+                                address: string;
+                                links: {
+                                    label: string;
+                                    url: string;
+                                }[];
+                                legalLinks: {
+                                    label: string;
+                                    url: string;
+                                }[];
                             })[];
                         };
                         styles: {

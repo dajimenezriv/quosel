@@ -17,4 +17,5 @@ export {
   type ReviewsBlock,
   type ServicesBlock,
   type LocationBlock,
+  type FooterBlock,
 } from './types';
