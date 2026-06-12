@@ -1,11 +1,9 @@
 import loginIllustration from '@/assets/login.png';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/old/auth';
+import { loginWithGoogle } from '@/old/auth';
 
 export default function Page() {
-  const { login } = useAuth();
-
   return (
     <div className="flex h-screen w-screen bg-[#262624] text-white">
       <header className="absolute top-4 left-4">
@@ -20,7 +18,7 @@ export default function Page() {
             </div>
             <Button
               type="button"
-              onClick={login}
+              onClick={loginWithGoogle}
               className="h-12 w-full cursor-pointer rounded-full bg-white text-base text-black hover:bg-white/90">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="size-5">
                 <path

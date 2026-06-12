@@ -1,3 +1,4 @@
+export { emptyBlocks } from './examples/empty';
 export { circoloPopolareBlocks } from './examples/circolo-popolare';
 export { claudeStyles } from './styles';
 export { renderTemplate } from './render';
