@@ -1,10 +1,13 @@
+import { Button } from '@/components/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import type { WebsiteData } from '@quosel/templates';
 import { produce } from 'immer';
-import { Navigation } from 'lucide-react';
+import { Navigation, Plus } from 'lucide-react';
 import { Fragment } from 'react';
+import { addableBlockTypes, createBlock, type AddableBlockType } from './block-defaults';
 import { CtaLayout } from './cta-layout';
 import { GalleryLayout } from './gallery-layout';
 import { HeroLayout } from './hero-layout';
@@ -14,6 +17,8 @@ import { ReviewsLayout } from './reviews-layout';
 import { ServicesLayout } from './services-layout';
 import { StatsLayout } from './stats-layout';
 import { Field, Section, Subgroup } from './utils';
+
+const MAX_BLOCKS = 15;
 
 interface Props {
   data: WebsiteData;
@@ -26,6 +31,14 @@ export function LayoutTab({ data }: Props) {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       updateDraft(produce(data, (draft) => updater(draft, e.target.value)));
     };
+  }
+
+  function addBlock(type: AddableBlockType) {
+    updateDraft(
+      produce(data, (draft) => {
+        draft.blocks.blocks.push(createBlock(type));
+      }),
+    );
   }
 
   function renderBlock(block: WebsiteData['blocks']['blocks'][number], index: number) {
@@ -78,6 +91,23 @@ export function LayoutTab({ data }: Props) {
           {renderBlock(block, index)}
         </Fragment>
       ))}
+
+      <Separator />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline" disabled={data.blocks.blocks.length >= MAX_BLOCKS}>
+            <Plus className="h-4 w-4" />
+            Add Section
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          {addableBlockTypes.map(({ type, label }) => (
+            <DropdownMenuItem key={type} onClick={() => addBlock(type)}>
+              {label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }

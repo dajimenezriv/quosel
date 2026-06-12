@@ -12,10 +12,10 @@ interface Props {
 }
 
 export function ReviewsLayout({ data, block, index }: Props) {
-  const { handleInput, handleTextArea } = useBlockHandlers<ReviewsBlock>(data, index);
+  const { handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<ReviewsBlock>(data, index);
 
   return (
-    <Section title="Reviews" icon={<Star className="h-4 w-4" />}>
+    <Section title="Reviews" icon={<Star className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       <Field label="Navigation Label">
         <Input
           value={block.nav}

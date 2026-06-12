@@ -27,5 +27,25 @@ export function useBlockHandlers<T extends Block>(data: WebsiteData, index: numb
     };
   }
 
-  return { updateBlock, handleInput, handleTextArea };
+  function removeBlock() {
+    updateDraft(
+      produce(data, (draft) => {
+        draft.blocks.blocks.splice(index, 1);
+      }),
+    );
+  }
+
+  function moveBlock(offset: -1 | 1) {
+    updateDraft(
+      produce(data, (draft) => {
+        const [block] = draft.blocks.blocks.splice(index, 1);
+        draft.blocks.blocks.splice(index + offset, 0, block);
+      }),
+    );
+  }
+
+  const moveUp = index > 0 ? () => moveBlock(-1) : undefined;
+  const moveDown = index < data.blocks.blocks.length - 1 ? () => moveBlock(1) : undefined;
+
+  return { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown };
 }
