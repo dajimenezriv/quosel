@@ -13,6 +13,7 @@ export const addableBlockTypes: { type: AddableBlockType; label: string }[] = [
   { type: 'reviews', label: 'Reviews' },
   { type: 'services', label: 'Services' },
   { type: 'location', label: 'Location' },
+  { type: 'footer', label: 'Footer' },
 ];
 
 export function createBlock(type: AddableBlockType): Block {
@@ -47,5 +48,14 @@ export function createBlock(type: AddableBlockType): Block {
       };
     case 'location':
       return { type: 'location', nav: 'Location', title: '', formattedAddress: '', phone: '', ctaText: '', ctaLink: '' };
+    case 'footer':
+      return {
+        type: 'footer',
+        description: '',
+        phone: '',
+        formattedAddress: '',
+        links: [{ label: '', url: '' }],
+        legalLinks: [{ label: '', url: '' }],
+      };
   }
 }

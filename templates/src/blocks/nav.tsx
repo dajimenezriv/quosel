@@ -1,28 +1,23 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { getNavLinks } from '../core/utils';
 import type { WebsiteData } from '../types';
 
 export function Nav({ data }: { data: WebsiteData }) {
   const block = data.blocks.nav;
 
-  const navLinks: Array<{ label: string; href: string }> = [];
-
-  for (const b of data.blocks.blocks) {
-    if ('nav' in b) {
-      navLinks.push({ label: b.nav, href: `#${b.nav}` });
-    }
-  }
+  const navLinks = getNavLinks(data);
 
   return (
     <nav className="border-border fixed top-0 right-0 left-0 z-50 flex items-center justify-between border-b px-10 py-5 opacity-90 backdrop-blur-sm">
       <a className="text-xs tracking-[0.25em] uppercase" href="#home">
-        {block.name}
+        {data.blocks.name}
       </a>
 
       <div className="hidden items-center gap-8 md:flex">
         {navLinks.map((link, idx) => (
           <a
             key={idx}
-            href={link.href}
+            href={link.url}
             className="hover:text-foreground text-xs tracking-[0.15em] text-(--foreground-70) uppercase transition-colors">
             {link.label}
           </a>

@@ -109,12 +109,31 @@ const locationBlockSchema = z.object({
   ctaLink: z.string(),
 });
 
+export type FooterBlock = z.infer<typeof footerBlockSchema>;
+const footerBlockSchema = z.object({
+  type: z.literal('footer'),
+  description: z.string(),
+  phone: z.string(),
+  formattedAddress: z.string(),
+  links: z.array(
+    z.object({
+      label: z.string(),
+      url: z.string(),
+    }),
+  ),
+  legalLinks: z.array(
+    z.object({
+      label: z.string(),
+      url: z.string(),
+    }),
+  ),
+});
+
 export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
   schemaVersion: z.literal(1),
   name: z.string(),
   nav: z.object({
-    name: z.string(),
     ctaText: z.string(),
     ctaLink: z.string(),
   }),
@@ -128,6 +147,7 @@ export const blocksSchema = z.object({
       reviewsBlockSchema,
       servicesBlockSchema,
       locationBlockSchema,
+      footerBlockSchema,
     ]),
   ),
 });

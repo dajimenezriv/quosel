@@ -13,9 +13,9 @@ export function Location({ block }: { block: LocationBlock }) {
           </h2>
 
           <div>
-            {/* Dirección */}
+            {/* Address */}
             <div className="flex gap-12 border-t border-(--foreground-10) py-6">
-              <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Dirección</span>
+              <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Address</span>
               <div>
                 <p className="text-foreground text-sm">{block.formattedAddress.split(',').slice(0, 2).join(',').trim()}</p>
                 <p className="mt-1 text-xs text-(--foreground-40)">{block.formattedAddress.split(',').slice(2).join(',').trim()}</p>
@@ -27,7 +27,7 @@ export function Location({ block }: { block: LocationBlock }) {
               <p className="text-foreground text-sm">{block.phone}</p>
             </div>
 
-            {/* Horario */}
+            {/* Schedule */}
             <div className="flex gap-12 border-t border-(--foreground-10) py-6">
               <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Schedule</span>
               <div className="space-y-1.5 text-sm">
@@ -46,7 +46,7 @@ export function Location({ block }: { block: LocationBlock }) {
               </div>
             </div>
 
-            {/* Redes */}
+            {/* Social Media */}
             <div className="flex gap-12 border-t border-b border-(--foreground-10) py-6">
               <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Social Media</span>
               <p className="text-foreground text-sm">Instagram · @circolopopolare</p>

@@ -4,7 +4,6 @@ export const emptyBlocks: Blocks = {
   schemaVersion: 1,
   name: 'Empty',
   nav: {
-    name: 'Empty',
     ctaText: '',
     ctaLink: '',
   },

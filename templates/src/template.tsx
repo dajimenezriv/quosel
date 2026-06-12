@@ -51,15 +51,15 @@ export function TemplateBody({ data }: { data: WebsiteData }) {
         if (block.type === 'services') return <Services block={block} />;
         if (block.type === 'location') return <Location block={block} />;
         if (block.type === 'cta') return <CTA block={block} />;
+        if (block.type === 'footer') return <Footer data={data} block={block} />;
       })}
-      <Footer data={data} />
     </div>
   );
 }
 
 export function Template({ data }: { data: WebsiteData }) {
   return (
-    <html lang="es" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

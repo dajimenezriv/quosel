@@ -502,6 +502,20 @@ export interface paths {
                                     phone?: string;
                                     ctaText: string;
                                     ctaLink: string;
+                                } | {
+                                    /** @enum {string} */
+                                    type: "footer";
+                                    description: string;
+                                    phone: string;
+                                    formattedAddress: string;
+                                    links: {
+                                        label: string;
+                                        url: string;
+                                    }[];
+                                    legalLinks: {
+                                        label: string;
+                                        url: string;
+                                    }[];
                                 })[];
                             };
                             styles: {
@@ -643,6 +657,20 @@ export interface paths {
                                 phone?: string;
                                 ctaText: string;
                                 ctaLink: string;
+                            } | {
+                                /** @enum {string} */
+                                type: "footer";
+                                description: string;
+                                phone: string;
+                                formattedAddress: string;
+                                links: {
+                                    label: string;
+                                    url: string;
+                                }[];
+                                legalLinks: {
+                                    label: string;
+                                    url: string;
+                                }[];
                             })[];
                         };
                         styles: {
