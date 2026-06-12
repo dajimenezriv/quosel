@@ -19,7 +19,8 @@ export function buildRootStyles(data: WebsiteData) {
 
   const opacityEntries: [string, number[]][] = [
     ['primary', [10, 20, 30, 60, 70]],
-    ['foreground', [10, 25, 30, 40, 50, 60, 70, 80]],
+    ['foreground', [10, 30, 40, 60, 70]],
+    ['secondary-foreground', [10, 25, 30, 40, 50, 80]],
   ];
 
   const opacityVars = opacityEntries

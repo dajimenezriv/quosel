@@ -96,6 +96,7 @@ export function LayoutTab({ data }: Props) {
       ))}
 
       <Separator />
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" disabled={data.blocks.blocks.length >= MAX_BLOCKS}>

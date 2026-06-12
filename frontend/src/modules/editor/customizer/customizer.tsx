@@ -3,8 +3,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { cn } from '@/lib/utils';
 import type { WebsiteData } from '@quosel/templates';
-import { Layout, Palette, RotateCcw, Settings } from 'lucide-react';
+import { Layout, Palette, RotateCcw, Settings, SlidersHorizontal } from 'lucide-react';
 import { useState } from 'react';
+import { GeneralTab } from './general-tab/general-tab';
 import { LayoutTab } from './layout-tab';
 import { ThemeTab } from './theme-tab';
 
@@ -35,6 +36,9 @@ export function Customizer({ data, open }: Props) {
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="flex min-h-0 flex-1 flex-col">
           <TabsList className="flex h-12 rounded-none p-1.5">
+            <TabsTrigger value="general" className="data-[state=active]:bg-background cursor-pointer">
+              <SlidersHorizontal className="mr-1 h-4 w-4" /> General
+            </TabsTrigger>
             <TabsTrigger value="layout" className="data-[state=active]:bg-background cursor-pointer">
               <Layout className="mr-1 h-4 w-4" /> Layout
             </TabsTrigger>
@@ -43,7 +47,11 @@ export function Customizer({ data, open }: Props) {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="layout" className="flex min-h-0 flex-1 flex-col gap-3 overflow-auto p-4">
+          <TabsContent value="general" className="flex min-h-0 flex-1 flex-col overflow-auto p-4">
+            <GeneralTab data={data} />
+          </TabsContent>
+
+          <TabsContent value="layout" className="flex min-h-0 flex-1 flex-col overflow-auto p-4">
             <LayoutTab data={data} />
           </TabsContent>
 
