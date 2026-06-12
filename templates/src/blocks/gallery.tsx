@@ -9,7 +9,7 @@ export function Gallery({ block }: { block: GalleryBlock }) {
           <p className="text-primary text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
           <div className="flex items-end justify-between">
             <h2 className="text-secondary-foreground text-5xl">{block.title}</h2>
-            <p className="w-150 text-sm leading-relaxed text-(--secondary-foreground-50) italic">{block.text}</p>
+            <p className="text-secondary-foreground/50 w-150 text-sm leading-relaxed italic">{block.text}</p>
           </div>
         </div>
 
@@ -23,7 +23,7 @@ export function Gallery({ block }: { block: GalleryBlock }) {
           <a
             target="__blank"
             href={block.ctaLink}
-            className="text-primary hover:bg-primary hover:text-primary-foreground border border-(--primary-60) px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all">
+            className="text-primary hover:bg-primary hover:text-primary-foreground border-primary/60 border px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all">
             {block.ctaText}
           </a>
         </div>

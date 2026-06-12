@@ -13,7 +13,7 @@ export function Services({ block }: { block: ServicesBlock }) {
         <div className="flex flex-col gap-10">
           {block.serviceGroups.map((group) => (
             <div key={group.title}>
-              <div className="border-b border-(--primary-30) pb-2">
+              <div className="border-primary/30 border-b pb-2">
                 <span className="text-primary text-xs tracking-[0.2em] uppercase">{group.title}</span>
               </div>
 
@@ -23,11 +23,11 @@ export function Services({ block }: { block: ServicesBlock }) {
                     <div className="flex items-center justify-between py-2">
                       <div className="flex flex-col">
                         <p className="text-secondary-foreground text-base">{item.title}</p>
-                        <p className="text-xs leading-relaxed text-(--secondary-foreground-40)">{item.text}</p>
+                        <p className="text-secondary-foreground/40 text-xs leading-relaxed">{item.text}</p>
                       </div>
                       <span className="text-primary text-right text-xl italic">{item.price}</span>
                     </div>
-                    {i < group.services.length - 1 && <div className="border-t border-(--secondary-foreground-10)" />}
+                    {i < group.services.length - 1 && <div className="border-secondary-foreground/10 border-t" />}
                   </div>
                 ))}
               </div>
@@ -36,11 +36,11 @@ export function Services({ block }: { block: ServicesBlock }) {
         </div>
 
         {/* Footer */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-(--secondary-foreground-10) pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
+        <div className="border-secondary-foreground/10 mt-10 flex flex-col gap-4 border-t pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
           <a
             target="__blank"
             href={block.ctaLink}
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground border bg-(--primary-10) px-6 py-3 text-xs tracking-[0.2em] uppercase transition-all">
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-primary/10 border px-6 py-3 text-xs tracking-[0.2em] uppercase transition-all">
             {block.ctaText}
           </a>
         </div>

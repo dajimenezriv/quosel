@@ -17,16 +17,6 @@ export function buildRootStyles(data: WebsiteData) {
     .map(([k, v]) => `  --${k}: ${v};`)
     .join('\n');
 
-  const opacityEntries: [string, number[]][] = [
-    ['primary', [10, 20, 30, 60, 70]],
-    ['foreground', [10, 30, 40, 60, 70]],
-    ['secondary-foreground', [10, 25, 30, 40, 50, 80]],
-  ];
-
-  const opacityVars = opacityEntries
-    .flatMap(([name, opacities]) => opacities.map((op) => `  --${name}-${op}: color-mix(in srgb, var(--${name}) ${op}%, transparent);`))
-    .join('\n');
-
   const colorVars = Object.entries(data.styles)
     .filter(([, v]) => v != null)
     .map(([k, v]) => `  --color-${k}: ${v};`)
@@ -34,7 +24,7 @@ export function buildRootStyles(data: WebsiteData) {
 
   const res = `@theme inline {\n${colorVars}\n}
   
-  :root {\n${themeVars}\n${opacityVars}\n}`;
+  :root {\n${themeVars}\n}`;
 
   return res;
 }

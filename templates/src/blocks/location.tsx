@@ -14,41 +14,41 @@ export function Location({ block }: { block: LocationBlock }) {
 
           <div>
             {/* Address */}
-            <div className="flex gap-12 border-t border-(--foreground-10) py-6">
-              <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Address</span>
+            <div className="border-foreground/10 flex gap-12 border-t py-6">
+              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Address</span>
               <div>
                 <p className="text-foreground text-sm">{block.formattedAddress.split(',').slice(0, 2).join(',').trim()}</p>
-                <p className="mt-1 text-xs text-(--foreground-40)">{block.formattedAddress.split(',').slice(2).join(',').trim()}</p>
+                <p className="text-foreground/40 mt-1 text-xs">{block.formattedAddress.split(',').slice(2).join(',').trim()}</p>
               </div>
             </div>
 
-            <div className="flex gap-12 border-t border-(--foreground-10) py-6">
-              <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Phone</span>
+            <div className="border-foreground/10 flex gap-12 border-t py-6">
+              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Phone</span>
               <p className="text-foreground text-sm">{block.phone}</p>
             </div>
 
             {/* Schedule */}
-            <div className="flex gap-12 border-t border-(--foreground-10) py-6">
-              <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Schedule</span>
+            <div className="border-foreground/10 flex gap-12 border-t py-6">
+              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Schedule</span>
               <div className="space-y-1.5 text-sm">
                 <div className="flex gap-8">
                   <span className="text-foreground w-36">Monday — Friday</span>
-                  <span className="text-(--foreground-60)">10:00 — 14:00 · 16:00 — 20:00</span>
+                  <span className="text-foreground/60">10:00 — 14:00 · 16:00 — 20:00</span>
                 </div>
                 <div className="flex gap-8">
                   <span className="text-foreground w-36">Saturday</span>
-                  <span className="text-(--foreground-60)">10:00 — 14:00</span>
+                  <span className="text-foreground/60">10:00 — 14:00</span>
                 </div>
                 <div className="flex gap-8">
                   <span className="text-foreground w-36">Sunday</span>
-                  <span className="text-(--foreground-60)">Closed</span>
+                  <span className="text-foreground/60">Closed</span>
                 </div>
               </div>
             </div>
 
             {/* Social Media */}
-            <div className="flex gap-12 border-t border-b border-(--foreground-10) py-6">
-              <span className="w-30 shrink-0 text-xs tracking-[0.2em] text-(--primary-70) uppercase">Social Media</span>
+            <div className="border-foreground/10 flex gap-12 border-t border-b py-6">
+              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Social Media</span>
               <p className="text-foreground text-sm">Instagram · @circolopopolare</p>
             </div>
           </div>

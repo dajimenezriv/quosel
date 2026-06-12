@@ -12,13 +12,13 @@ export function Reviews({ block }: { block: ReviewsBlock }) {
           </div>
 
           {block.stats.length > 0 && (
-            <div className="shrink-0 border border-(--primary-30) p-6">
-              <div className="flex divide-x divide-(--primary-20)">
+            <div className="border-primary/30 shrink-0 border p-6">
+              <div className="divide-primary/20 flex divide-x">
                 {block.stats.map((stat, statIndex) => (
                   <div key={statIndex} className="px-8 text-center first:pl-0 last:pr-0">
                     <div className="text-primary text-4xl italic">{stat.value}</div>
                     <div className="text-primary mt-1">★★★★★</div>
-                    <div className="mt-2 text-xs tracking-[0.15em] text-(--foreground-30) uppercase">{stat.label}</div>
+                    <div className="text-foreground/30 mt-2 text-xs tracking-[0.15em] uppercase">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -28,12 +28,12 @@ export function Reviews({ block }: { block: ReviewsBlock }) {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {block.reviews.map((review) => (
-            <div key={review.author} className="bg-secondary flex flex-col border border-(--secondary-foreground-10) p-8">
+            <div key={review.author} className="bg-secondary border-secondary-foreground/10 flex flex-col border p-8">
               <div className="text-primary text-lg">★★★★★</div>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-(--secondary-foreground-80) italic">"{review.text}"</p>
-              <div className="mt-6 flex items-center justify-between border-t border-(--secondary-foreground-10) pt-4">
-                <span className="text-xs tracking-[0.15em] text-(--secondary-foreground-30) uppercase">{review.author}</span>
-                <span className="text-xs tracking-[0.15em] text-(--secondary-foreground-25) uppercase">{review.source}</span>
+              <p className="text-secondary-foreground/80 mt-4 flex-1 text-sm leading-relaxed italic">"{review.text}"</p>
+              <div className="border-secondary-foreground/10 mt-6 flex items-center justify-between border-t pt-4">
+                <span className="text-secondary-foreground/30 text-xs tracking-[0.15em] uppercase">{review.author}</span>
+                <span className="text-secondary-foreground/25 text-xs tracking-[0.15em] uppercase">{review.source}</span>
               </div>
             </div>
           ))}
