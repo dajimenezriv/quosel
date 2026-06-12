@@ -35,9 +35,9 @@ export function FooterLayout({ data, block, index }: Props) {
       </Field>
       <Field label="Address">
         <Input
-          value={block.formattedAddress}
+          value={block.address}
           onChange={handleInput((block, value) => {
-            block.formattedAddress = value;
+            block.address = value;
           })}
         />
       </Field>

@@ -864,7 +864,7 @@
                                   "phone": {
                                     "type": "string"
                                   },
-                                  "formattedAddress": {
+                                  "address": {
                                     "type": "string"
                                   },
                                   "links": {
@@ -908,7 +908,7 @@
                                   "type",
                                   "description",
                                   "phone",
-                                  "formattedAddress",
+                                  "address",
                                   "links",
                                   "legalLinks"
                                 ]
@@ -1455,7 +1455,7 @@
                                 "phone": {
                                   "type": "string"
                                 },
-                                "formattedAddress": {
+                                "address": {
                                   "type": "string"
                                 },
                                 "links": {
@@ -1499,7 +1499,7 @@
                                 "type",
                                 "description",
                                 "phone",
-                                "formattedAddress",
+                                "address",
                                 "links",
                                 "legalLinks"
                               ]

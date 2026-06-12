@@ -506,7 +506,7 @@ export interface paths {
                                     type: "footer";
                                     description: string;
                                     phone: string;
-                                    formattedAddress: string;
+                                    address: string;
                                     links: {
                                         label: string;
                                         url: string;
@@ -660,7 +660,7 @@ export interface paths {
                                 type: "footer";
                                 description: string;
                                 phone: string;
-                                formattedAddress: string;
+                                address: string;
                                 links: {
                                     label: string;
                                     url: string;
