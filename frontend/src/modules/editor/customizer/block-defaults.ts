@@ -53,9 +53,9 @@ export function createBlock(type: AddableBlockType): Block {
         type: 'footer',
         description: '',
         phone: '',
-        formattedAddress: '',
-        links: [{ label: '', url: '' }],
-        legalLinks: [{ label: '', url: '' }],
+        address: '',
+        links: [],
+        legalLinks: [],
       };
   }
 }

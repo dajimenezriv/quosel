@@ -198,7 +198,7 @@ export const circoloPopolareBlocks: Blocks = {
       description:
         'Your Sicilian getaway in London. Crispy Neapolitan pizzas, creamy burratas and Carbonara served from a Pecorino wheel, in the heart of Fitzrovia.',
       phone: '+44 20 3893 6800',
-      formattedAddress: '40-41 Rathbone Pl, London W1T 1HX, UK',
+      address: '40-41 Rathbone Pl, London W1T 1HX, UK',
       links: [
         { label: 'Book a Table', url: 'https://www.circolopopolare.com/restaurants/circolopopolare-london' },
         { label: 'Instagram', url: 'https://www.instagram.com/circolopopolare' },

@@ -114,7 +114,7 @@ const footerBlockSchema = z.object({
   type: z.literal('footer'),
   description: z.string(),
   phone: z.string(),
-  formattedAddress: z.string(),
+  address: z.string(),
   links: z.array(
     z.object({
       label: z.string(),

@@ -2,6 +2,8 @@
 import { getNavLinks } from '../core/utils';
 import type { FooterBlock, WebsiteData } from '../types';
 
+type Links = Array<{ label: string; url: string }>;
+
 export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock }) {
   const navLinks = getNavLinks(data);
 
@@ -11,16 +13,20 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: data.blocks.name,
-    address: block.formattedAddress,
+    address: block.address,
     telephone: block.phone,
   });
+
+  const links: Links = [];
+
+  if (block.phone) links.push({ label: block.phone, url: `tel:${block.phone.replace(/\s/g, '')}` });
+  if (block.address) links.push({ label: block.address, url: '' });
 
   return (
     <footer className="px-24 py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
       <div className="flex">
-        {/* Logo + description */}
         <div className="flex-1">
           <div className="mb-5 flex items-center gap-3">
             <span className="text-foreground text-xs tracking-[0.25em] uppercase">{data.blocks.name}</span>
@@ -29,19 +35,10 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
         </div>
 
         <Column title="Navigate" links={navLinks} />
-
-        <Column
-          title="Contact"
-          links={[
-            { label: block.phone, url: `tel:${block.phone.replace(/\s/g, '')}` },
-            { label: block.formattedAddress, url: '' },
-          ]}
-        />
-
+        <Column title="Contact" links={links} />
         <Column title="Booking &amp; Social" links={block.links} />
       </div>
 
-      {/* Copyright + legal */}
       <div className="mt-12 flex items-center justify-between border-t border-(--foreground-10) pt-6">
         <p className="text-xs text-(--foreground-40)">
           © {new Date().getFullYear()} {data.blocks.name}
@@ -62,7 +59,7 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
   );
 }
 
-function Column({ title, links }: { title: string; links: Array<{ label: string; url: string }> }) {
+function Column({ title, links }: { title: string; links: Links }) {
   if (links.length === 0) return;
 
   return (
