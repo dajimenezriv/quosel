@@ -12,10 +12,10 @@ interface Props {
 }
 
 export function ServicesLayout({ data, block, index }: Props) {
-  const { handleInput, handleTextArea } = useBlockHandlers<ServicesBlock>(data, index);
+  const { handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<ServicesBlock>(data, index);
 
   return (
-    <Section title="Services" icon={<Briefcase className="h-4 w-4" />}>
+    <Section title="Services" icon={<Briefcase className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       <Field label="Navigation Label">
         <Input
           value={block.nav}

@@ -19,9 +19,9 @@ export function Nav({ data }: { data: WebsiteData }) {
       </a>
 
       <div className="hidden items-center gap-8 md:flex">
-        {navLinks.map((link) => (
+        {navLinks.map((link, idx) => (
           <a
-            key={link.label}
+            key={idx}
             href={link.href}
             className="hover:text-foreground text-xs tracking-[0.15em] text-(--foreground-70) uppercase transition-colors">
             {link.label}

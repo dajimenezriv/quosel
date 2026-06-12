@@ -11,10 +11,10 @@ interface Props {
 }
 
 export function StatsLayout({ data, block, index }: Props) {
-  const { handleInput } = useBlockHandlers<StatsBlock>(data, index);
+  const { handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<StatsBlock>(data, index);
 
   return (
-    <Section title="Stats" icon={<BarChart3 className="h-4 w-4" />}>
+    <Section title="Stats" icon={<BarChart3 className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       {block.stats.map((stat, statIndex) => (
         <Subgroup key={statIndex} title={`Stat ${statIndex + 1}`}>
           <Field label="Value">

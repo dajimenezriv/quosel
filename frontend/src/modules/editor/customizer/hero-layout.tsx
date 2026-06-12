@@ -13,10 +13,10 @@ interface Props {
 }
 
 export function HeroLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea } = useBlockHandlers<HeroBlock>(data, index);
+  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<HeroBlock>(data, index);
 
   return (
-    <Section title="Hero" icon={<Type className="h-4 w-4" />}>
+    <Section title="Hero" icon={<Type className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       <Field label="First line">
         <Textarea
           className="min-h-0"

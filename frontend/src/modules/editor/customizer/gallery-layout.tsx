@@ -13,10 +13,10 @@ interface Props {
 }
 
 export function GalleryLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea } = useBlockHandlers<GalleryBlock>(data, index);
+  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<GalleryBlock>(data, index);
 
   return (
-    <Section title="Gallery" icon={<Images className="h-4 w-4" />}>
+    <Section title="Gallery" icon={<Images className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       <Field label="Navigation Label">
         <Input
           value={block.nav}

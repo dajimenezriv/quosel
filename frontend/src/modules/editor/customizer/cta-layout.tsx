@@ -13,10 +13,15 @@ interface Props {
 }
 
 export function CtaLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea } = useBlockHandlers<CtaBlock>(data, index);
+  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<CtaBlock>(data, index);
 
   return (
-    <Section title="Call to Action" icon={<MousePointerClick className="h-4 w-4" />}>
+    <Section
+      title="Call to Action"
+      icon={<MousePointerClick className="h-4 w-4" />}
+      onMoveUp={moveUp}
+      onMoveDown={moveDown}
+      onRemove={removeBlock}>
       <Field label="Title">
         <Textarea
           className="min-h-0"

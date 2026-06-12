@@ -13,10 +13,10 @@ interface Props {
 }
 
 export function InfoLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea } = useBlockHandlers<InfoBlock>(data, index);
+  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<InfoBlock>(data, index);
 
   return (
-    <Section title="Info" icon={<Info className="h-4 w-4" />}>
+    <Section title="Info" icon={<Info className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       <Field label="Navigation Label">
         <Input
           value={block.nav}
