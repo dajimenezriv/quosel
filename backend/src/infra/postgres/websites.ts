@@ -1,5 +1,5 @@
 import type { UserId } from '@/core/types';
-import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
+import { claudeStyles, emptyBlocks } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
@@ -19,7 +19,7 @@ export class Websites {
       data: {
         userId,
         name,
-        blocks: circoloPopolareBlocks,
+        blocks: emptyBlocks,
         styles: claudeStyles,
       },
     });

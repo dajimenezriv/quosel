@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "========== Checks ==========": "",
     "check-deps": "npm-check-updates -u",
-    "tsc": "tsc",
+    "tsc": "tsc -b",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --check",

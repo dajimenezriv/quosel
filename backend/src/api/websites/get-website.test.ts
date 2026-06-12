@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { deepMocked, expectError } from '@/tests/utils.helper.test';
-import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
+import { claudeStyles, emptyBlocks } from '@quosel/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
 
@@ -23,7 +23,7 @@ describe('get-website', () => {
       id: 'websiteId',
       userId: 'userId',
       name: 'name',
-      blocks: circoloPopolareBlocks,
+      blocks: emptyBlocks,
       styles: claudeStyles,
       createdAt: new Date('2024-01-01T00:00:00.000Z'),
       updatedAt: new Date('2024-01-01T00:00:00.000Z'),

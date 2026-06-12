@@ -66,7 +66,6 @@ export const circoloPopolareBlocks: Blocks = {
       ctaText: 'See more on Instagram →',
       ctaLink: 'https://www.instagram.com/circolopopolare',
     },
-
     {
       type: 'reviews',
 
