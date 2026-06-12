@@ -3,11 +3,11 @@ import type { ServicesBlock } from '../types';
 
 export function Services({ block }: { block: ServicesBlock }) {
   return (
-    <section id={block.nav} className="bg-secondary-foreground flex justify-center py-24">
+    <section id={block.nav} className="bg-secondary flex justify-center py-24">
       <div className="flex w-250 flex-col">
         <div className="mb-10 flex flex-col">
           <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— Carta</p>
-          <h2 className="text-foreground text-5xl leading-tight">{block.title}</h2>
+          <h2 className="text-secondary-foreground text-5xl leading-tight">{block.title}</h2>
         </div>
 
         <div className="flex flex-col gap-10">
@@ -22,12 +22,12 @@ export function Services({ block }: { block: ServicesBlock }) {
                   <div key={item.title} className="flex flex-col">
                     <div className="flex items-center justify-between py-2">
                       <div className="flex flex-col">
-                        <p className="text-foreground text-base">{item.title}</p>
-                        <p className="text-xs leading-relaxed text-(--foreground-40)">{item.text}</p>
+                        <p className="text-secondary-foreground text-base">{item.title}</p>
+                        <p className="text-xs leading-relaxed text-(--secondary-foreground-40)">{item.text}</p>
                       </div>
                       <span className="text-primary text-right text-xl italic">{item.price}</span>
                     </div>
-                    {i < group.services.length - 1 && <div className="border-t border-(--foreground-10)" />}
+                    {i < group.services.length - 1 && <div className="border-t border-(--secondary-foreground-10)" />}
                   </div>
                 ))}
               </div>
@@ -36,7 +36,7 @@ export function Services({ block }: { block: ServicesBlock }) {
         </div>
 
         {/* Footer */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-(--foreground-10) pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 flex flex-col gap-4 border-t border-(--secondary-foreground-10) pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
           <a
             target="__blank"
             href={block.ctaLink}

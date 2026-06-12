@@ -28,12 +28,12 @@ export function Reviews({ block }: { block: ReviewsBlock }) {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {block.reviews.map((review) => (
-            <div key={review.author} className="bg-secondary-foreground flex flex-col border border-(--foreground-10) p-8">
+            <div key={review.author} className="bg-secondary flex flex-col border border-(--secondary-foreground-10) p-8">
               <div className="text-primary text-lg">★★★★★</div>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-(--foreground-80) italic">"{review.text}"</p>
-              <div className="mt-6 flex items-center justify-between border-t border-(--foreground-10) pt-4">
-                <span className="text-xs tracking-[0.15em] text-(--foreground-30) uppercase">{review.author}</span>
-                <span className="text-xs tracking-[0.15em] text-(--foreground-25) uppercase">{review.source}</span>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-(--secondary-foreground-80) italic">"{review.text}"</p>
+              <div className="mt-6 flex items-center justify-between border-t border-(--secondary-foreground-10) pt-4">
+                <span className="text-xs tracking-[0.15em] text-(--secondary-foreground-30) uppercase">{review.author}</span>
+                <span className="text-xs tracking-[0.15em] text-(--secondary-foreground-25) uppercase">{review.source}</span>
               </div>
             </div>
           ))}
