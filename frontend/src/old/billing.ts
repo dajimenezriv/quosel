@@ -1,8 +1,8 @@
+import { env } from '@/core/env';
 import posthog from 'posthog-js';
-import { API_URL } from './auth';
 
 async function postJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_URL}${path}`, {
+  const res = await fetch(`${env.VITE_API_URL}${path}`, {
     method: 'POST',
     credentials: 'include',
   });
