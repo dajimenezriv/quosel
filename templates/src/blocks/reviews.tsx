@@ -1,9 +1,10 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { slugify } from '../core/utils';
 import type { ReviewsBlock } from '../types';
 
 export function Reviews({ block }: { block: ReviewsBlock }) {
   return (
-    <section id={block.nav} className="flex justify-center px-6 py-24 md:px-0">
+    <section id={slugify(block.nav)} className="flex justify-center px-6 py-24 md:px-0">
       <div className="flex w-full max-w-400 flex-col">
         <div className="mb-8 flex flex-col gap-6 md:mb-16 md:flex-row md:items-start md:justify-between md:gap-16">
           <div>

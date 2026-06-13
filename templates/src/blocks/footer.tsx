@@ -60,7 +60,7 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
 }
 
 function Column({ title, links }: { title: string; links: Links }) {
-  if (links.length === 0) return;
+  if (links.length === 0) return null;
 
   return (
     <div className="flex-1 flex-col gap-2 md:text-center">
@@ -68,7 +68,11 @@ function Column({ title, links }: { title: string; links: Links }) {
       <ul>
         {links.map((link) => (
           <li key={link.label}>
-            <a target="__blank" href={link.url} className="hover:text-foreground text-foreground/40 text-xs transition-colors">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={link.url}
+              className="hover:text-foreground text-foreground/40 text-xs transition-colors">
               {link.label}
             </a>
           </li>

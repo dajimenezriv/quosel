@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { circoloPopolareBlocks } from './examples/circolo-popolare';
-import { claudeStyles } from './styles';
-import { buildRootStyles, TemplateBody } from './template';
+import { buildRootStyles, claudeStyles } from './styles';
+import { TemplateBody } from './template';
 
 const data = { blocks: circoloPopolareBlocks, styles: claudeStyles };
 

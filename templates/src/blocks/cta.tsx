@@ -18,6 +18,8 @@ export function CTA({ block }: { block: CtaBlock }) {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <a
               href={block.ctaLink}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-primary text-primary-foreground px-8 py-4 text-center text-xs tracking-[0.2em] uppercase transition-colors hover:opacity-90">
               {block.ctaText}
             </a>
