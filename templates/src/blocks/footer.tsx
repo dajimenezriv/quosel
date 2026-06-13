@@ -60,7 +60,7 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
 }
 
 function Column({ title, links }: { title: string; links: Links }) {
-  if (links.length === 0) return;
+  if (links.length === 0) return null;
 
   return (
     <div className="flex-1 flex-col gap-2 md:text-center">
