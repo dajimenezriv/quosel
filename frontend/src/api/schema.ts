@@ -308,7 +308,6 @@ export interface paths {
                                 styles: {
                                     background: string;
                                     foreground: string;
-                                    "card-foreground": string;
                                     primary: string;
                                     "primary-foreground": string;
                                     secondary: string;
@@ -545,7 +544,6 @@ export interface paths {
                             styles: {
                                 background: string;
                                 foreground: string;
-                                "card-foreground": string;
                                 primary: string;
                                 "primary-foreground": string;
                                 secondary: string;
@@ -724,7 +722,6 @@ export interface paths {
                         styles: {
                             background: string;
                             foreground: string;
-                            "card-foreground": string;
                             primary: string;
                             "primary-foreground": string;
                             secondary: string;
