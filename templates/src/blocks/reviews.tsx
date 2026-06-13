@@ -3,8 +3,8 @@ import type { ReviewsBlock } from '../types';
 
 export function Reviews({ block }: { block: ReviewsBlock }) {
   return (
-    <section id={block.nav} className="flex justify-center py-24">
-      <div className="flex max-w-400 flex-col">
+    <section id={block.nav} className="flex justify-center px-6 py-24 md:px-0">
+      <div className="flex w-full max-w-400 flex-col">
         <div className="mb-8 flex flex-col gap-6 md:mb-16 md:flex-row md:items-start md:justify-between md:gap-16">
           <div>
             <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>

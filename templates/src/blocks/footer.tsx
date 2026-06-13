@@ -23,10 +23,10 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
   if (block.address) links.push({ label: block.address, url: '' });
 
   return (
-    <footer className="px-24 py-16">
+    <footer className="px-6 py-12 md:px-24 md:py-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
 
-      <div className="flex">
+      <div className="flex flex-col gap-10 md:flex-row md:gap-0">
         <div className="flex-1">
           <div className="mb-5 flex items-center gap-3">
             <span className="text-foreground text-xs tracking-[0.25em] uppercase">{data.blocks.name}</span>
@@ -39,7 +39,7 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
         <Column title={block.linksTitle} links={block.links} />
       </div>
 
-      <div className="border-foreground/10 mt-12 flex items-center justify-between border-t pt-6">
+      <div className="border-foreground/10 mt-12 flex flex-col gap-4 border-t pt-6 md:flex-row md:items-center md:justify-between">
         <p className="text-foreground/40 text-xs">
           © {new Date().getFullYear()} {data.blocks.name}
         </p>
@@ -63,7 +63,7 @@ function Column({ title, links }: { title: string; links: Links }) {
   if (links.length === 0) return;
 
   return (
-    <div className="flex-1 flex-col gap-2 text-center">
+    <div className="flex-1 flex-col gap-2 md:text-center">
       <p className="text-primary mb-2 text-xs tracking-[0.2em] uppercase">{title}</p>
       <ul>
         {links.map((link) => (

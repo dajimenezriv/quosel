@@ -3,8 +3,8 @@ import type { ServicesBlock } from '../types';
 
 export function Services({ block }: { block: ServicesBlock }) {
   return (
-    <section id={block.nav} className="bg-secondary flex justify-center py-24">
-      <div className="flex w-250 flex-col">
+    <section id={block.nav} className="bg-secondary flex justify-center px-6 py-24 md:px-0">
+      <div className="flex w-full max-w-250 flex-col">
         <div className="mb-10 flex flex-col">
           <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
           <h2 className="text-secondary-foreground text-5xl leading-tight">{block.title}</h2>
@@ -20,7 +20,7 @@ export function Services({ block }: { block: ServicesBlock }) {
               <div>
                 {group.services.map((item, i) => (
                   <div key={item.title} className="flex flex-col">
-                    <div className="flex items-center justify-between py-2">
+                    <div className="flex items-center justify-between gap-4 py-2">
                       <div className="flex flex-col">
                         <p className="text-secondary-foreground text-base">{item.title}</p>
                         <p className="text-secondary-foreground/40 text-xs leading-relaxed">{item.text}</p>
