@@ -1,4 +1,4 @@
-import type { WebsiteData } from '@quosel/templates';
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 

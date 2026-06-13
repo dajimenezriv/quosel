@@ -32,7 +32,7 @@ export default function Page() {
 
   function save() {
     if (!draft || !websiteId) return;
-    updateWebsite({ websiteId, ...draft });
+    updateWebsite({ websiteId, data: draft });
   }
 
   return (

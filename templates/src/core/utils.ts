@@ -3,9 +3,10 @@ import type { WebsiteData } from '../types';
 export function slugify(value: string) {
   return value
     .toLowerCase()
-    .trim()
+    .normalize('NFD')
+    .replace(/\p{Mn}/gu, '')
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/^-|-$/g, '');
 }
 
 export function getNavLinks(data: WebsiteData) {

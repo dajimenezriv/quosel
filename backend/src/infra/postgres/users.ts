@@ -2,6 +2,7 @@ import type { UserId } from '@/core/types';
 import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
+import { Websites } from './websites';
 
 type GoogleProfile = Pick<Prisma.UserUncheckedCreateInput, 'email' | 'name' | 'givenName' | 'familyName' | 'picture'>;
 
@@ -35,10 +36,12 @@ export class Users {
         },
       });
 
+      const name = 'Circolo Popolare';
       await tx.website.create({
         data: {
           userId: userRow.id,
-          name: 'Circolo Popolare',
+          name,
+          slug: Websites.randomSlug(name),
           blocks: circoloPopolareBlocks,
           styles: claudeStyles,
         },

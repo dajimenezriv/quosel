@@ -1,6 +1,7 @@
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { HeroBlock, WebsiteData } from '@quosel/templates';
+import type { HeroBlock } from '@quosel/templates';
 import { Type } from 'lucide-react';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';
@@ -65,22 +66,24 @@ export function HeroLayout({ data, block, index }: Props) {
       </Field>
 
       <Subgroup title="Call to Action">
-        <Field label="Button Text">
-          <Input
-            value={block.ctaText}
-            onChange={handleInput((block, value) => {
-              block.ctaText = value;
-            })}
-          />
-        </Field>
-        <Field label="Button Link">
-          <Input
-            value={block.ctaLink}
-            onChange={handleInput((block, value) => {
-              block.ctaLink = value;
-            })}
-          />
-        </Field>
+        <div className="flex items-center gap-2">
+          <Field label="Button Text">
+            <Input
+              value={block.ctaText}
+              onChange={handleInput((block, value) => {
+                block.ctaText = value;
+              })}
+            />
+          </Field>
+          <Field label="Button Link">
+            <Input
+              value={block.ctaLink}
+              onChange={handleInput((block, value) => {
+                block.ctaLink = value;
+              })}
+            />
+          </Field>
+        </div>
       </Subgroup>
     </Section>
   );

@@ -1,6 +1,7 @@
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
 import { useEditorStore } from '@/core/editor/use-editor-store';
-import type { WebsiteData } from '@quosel/templates';
+import { slugify } from '@quosel/templates';
 import { produce } from 'immer';
 import { Field } from '../utils';
 
@@ -20,6 +21,18 @@ export function GeneralTab({ data }: Props) {
             updateDraft(
               produce(data, (draft) => {
                 draft.blocks.name = e.target.value;
+              }),
+            );
+          }}
+        />
+      </Field>
+      <Field label="Slug">
+        <Input
+          value={data.slug}
+          onChange={(e) => {
+            updateDraft(
+              produce(data, (draft) => {
+                draft.slug = slugify(e.target.value);
               }),
             );
           }}

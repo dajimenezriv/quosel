@@ -33,12 +33,12 @@ export default function Page() {
 
   function save() {
     if (!draft || !websiteId) return;
-    updateWebsite({ websiteId, ...draft });
+    updateWebsite({ websiteId, data: draft });
   }
 
   function publish() {
     if (!draft || !websiteId) return;
-    updateWebsite({ websiteId, ...draft, publish: true });
+    updateWebsite({ websiteId, publish: true, data: draft });
   }
 
   function exportHtml() {

@@ -453,6 +453,9 @@
                     "name": {
                       "type": "string"
                     },
+                    "slug": {
+                      "type": "string"
+                    },
                     "blocks": {
                       "type": "object",
                       "properties": {
@@ -1050,6 +1053,7 @@
                     "id",
                     "userId",
                     "name",
+                    "slug",
                     "blocks",
                     "styles",
                     "createdAt",
@@ -1100,6 +1104,9 @@
                 "type": "object",
                 "properties": {
                   "name": {
+                    "type": "string"
+                  },
+                  "slug": {
                     "type": "string"
                   },
                   "blocks": {
@@ -1688,6 +1695,8 @@
                   }
                 },
                 "required": [
+                  "name",
+                  "slug",
                   "blocks",
                   "styles"
                 ]

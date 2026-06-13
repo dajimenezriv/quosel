@@ -1,6 +1,7 @@
 export { emptyBlocks } from './examples/empty';
 export { circoloPopolareBlocks } from './examples/circolo-popolare';
 export { claudeStyles, buildRootStyles } from './styles';
+export { slugify } from './core/utils';
 export { renderTemplate } from './render';
 export { TemplateBody } from './template';
 export {

@@ -1,8 +1,8 @@
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { cn } from '@/lib/utils';
-import type { WebsiteData } from '@quosel/templates';
 import { Layout, Palette, RotateCcw, Settings, SlidersHorizontal } from 'lucide-react';
 import { useState } from 'react';
 import { GeneralTab } from './general-tab/general-tab';

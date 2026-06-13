@@ -2,12 +2,10 @@ import type { Styles, WebsiteData } from './types';
 
 export function buildRootStyles(data: WebsiteData) {
   const themeVars = Object.entries(data.styles)
-    .filter(([, v]) => v != null)
     .map(([k, v]) => `  --${k}: ${v};`)
     .join('\n');
 
   const colorVars = Object.entries(data.styles)
-    .filter(([, v]) => v != null)
     .map(([k, v]) => `  --color-${k}: ${v};`)
     .join('\n');
 

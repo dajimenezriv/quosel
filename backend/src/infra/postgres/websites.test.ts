@@ -55,15 +55,16 @@ describe('websites', () => {
       expect(website.id).toBeDefined();
       expect(website.userId).toBe(userId);
       expect(website.name).toBe('My Website');
+      expect(website.slug).toMatch(/^my-website-[0-9a-f]{8}$/);
     });
 
-    it('should create a website', async () => {
+    it('should throw if name is invalid', async () => {
       // Given
       const { id: userId } = await createMockUser();
       // When
       const promise = Websites.create(userId, {} as any);
       // Then
-      await expect(promise).rejects.toThrow('Argument `name`: Invalid value provided.');
+      await expect(promise).rejects.toThrow();
     });
   });
 

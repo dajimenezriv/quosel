@@ -51,11 +51,11 @@ describe('delete-website', () => {
 
   it('should return 204 and delete the published file when website was published', async () => {
     // Given
-    deepMocked(Websites.getById).mockResolvedValue({ userId: 'userId', publishedAt: new Date() });
+    deepMocked(Websites.getById).mockResolvedValue({ userId: 'userId', slug: 'websiteSlug', publishedAt: new Date() });
     // When
     const res = await app.request('/websites/websiteId', DELETE_AUTH_REQUEST);
     // Then
     expect(res.status).toBe(204);
-    calls(R2.delete).toBe('websites/websiteId.html');
+    calls(R2.delete).toBe('websites/websiteSlug.html');
   });
 });
