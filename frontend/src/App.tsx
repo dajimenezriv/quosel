@@ -10,7 +10,7 @@ import { router } from './pages/router';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: true,
+      refetchOnWindowFocus: false,
       retry: false,
     },
   },

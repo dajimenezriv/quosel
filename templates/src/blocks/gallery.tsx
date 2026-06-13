@@ -19,14 +19,16 @@ export function Gallery({ block }: { block: GalleryBlock }) {
           ))}
         </div>
 
-        <div className="mt-12 flex justify-center">
-          <a
-            target="__blank"
-            href={block.ctaLink}
-            className="text-primary hover:bg-primary hover:text-primary-foreground border-primary/60 border px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all">
-            {block.ctaText}
-          </a>
-        </div>
+        {block.ctaText && (
+          <div className="mt-12 flex justify-center">
+            <a
+              target="__blank"
+              href={block.ctaLink}
+              className="text-primary hover:bg-primary hover:text-primary-foreground border-primary/60 border px-8 py-3 text-xs tracking-[0.2em] uppercase transition-all">
+              {block.ctaText}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
