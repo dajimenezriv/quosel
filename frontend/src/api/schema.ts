@@ -497,15 +497,40 @@ export interface paths {
                                     type: "location";
                                     nav: string;
                                     title: string;
-                                    formattedAddress: string;
-                                    phone?: string;
+                                    /** @default [] */
+                                    details: {
+                                        label: string;
+                                        value: string;
+                                    }[];
+                                    /**
+                                     * @default {
+                                     *       "title": "",
+                                     *       "items": []
+                                     *     }
+                                     */
+                                    schedule: {
+                                        title: string;
+                                        items: {
+                                            label: string;
+                                            value: string;
+                                        }[];
+                                    };
+                                    /** @default  */
+                                    mapUrl: string;
                                     ctaText: string;
                                     ctaLink: string;
                                 } | {
                                     /** @enum {string} */
                                     type: "footer";
                                     description: string;
+                                    /** @default Navigate */
+                                    navigateTitle: string;
+                                    /** @default Contact */
+                                    contactTitle: string;
+                                    /** @default Booking & Social */
+                                    linksTitle: string;
                                     phone: string;
+                                    /** @default  */
                                     address: string;
                                     links: {
                                         label: string;
@@ -651,16 +676,41 @@ export interface paths {
                                 type: "location";
                                 nav: string;
                                 title: string;
-                                formattedAddress: string;
-                                phone?: string;
+                                /** @default [] */
+                                details?: {
+                                    label: string;
+                                    value: string;
+                                }[];
+                                /**
+                                 * @default {
+                                 *       "title": "",
+                                 *       "items": []
+                                 *     }
+                                 */
+                                schedule?: {
+                                    title: string;
+                                    items: {
+                                        label: string;
+                                        value: string;
+                                    }[];
+                                };
+                                /** @default  */
+                                mapUrl?: string;
                                 ctaText: string;
                                 ctaLink: string;
                             } | {
                                 /** @enum {string} */
                                 type: "footer";
                                 description: string;
+                                /** @default Navigate */
+                                navigateTitle?: string;
+                                /** @default Contact */
+                                contactTitle?: string;
+                                /** @default Booking & Social */
+                                linksTitle?: string;
                                 phone: string;
-                                address: string;
+                                /** @default  */
+                                address?: string;
                                 links: {
                                     label: string;
                                     url: string;

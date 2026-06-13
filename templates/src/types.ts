@@ -103,8 +103,26 @@ const locationBlockSchema = z.object({
   type: z.literal('location'),
   nav: z.string(),
   title: z.string(),
-  formattedAddress: z.string(),
-  phone: z.string().optional(),
+  details: z
+    .array(
+      z.object({
+        label: z.string(),
+        value: z.string(),
+      }),
+    )
+    .default([]),
+  schedule: z
+    .object({
+      title: z.string(),
+      items: z.array(
+        z.object({
+          label: z.string(),
+          value: z.string(),
+        }),
+      ),
+    })
+    .default({ title: '', items: [] }),
+  mapUrl: z.string().default(''),
   ctaText: z.string(),
   ctaLink: z.string(),
 });
@@ -113,6 +131,9 @@ export type FooterBlock = z.infer<typeof footerBlockSchema>;
 const footerBlockSchema = z.object({
   type: z.literal('footer'),
   description: z.string(),
+  navigateTitle: z.string().default('Navigate'),
+  contactTitle: z.string().default('Contact'),
+  linksTitle: z.string().default('Booking & Social'),
   phone: z.string(),
   address: z.string().default(''),
   links: z.array(

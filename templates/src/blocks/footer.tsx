@@ -34,9 +34,9 @@ export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock 
           <p className="text-foreground/40 text-xs leading-relaxed">{block.description}</p>
         </div>
 
-        <Column title="Navigate" links={navLinks} />
-        <Column title="Contact" links={links} />
-        <Column title="Booking &amp; Social" links={block.links} />
+        <Column title={block.navigateTitle} links={navLinks} />
+        <Column title={block.contactTitle} links={links} />
+        <Column title={block.linksTitle} links={block.links} />
       </div>
 
       <div className="border-foreground/10 mt-12 flex items-center justify-between border-t pt-6">

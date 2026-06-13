@@ -827,11 +827,62 @@
                                   "title": {
                                     "type": "string"
                                   },
-                                  "formattedAddress": {
-                                    "type": "string"
+                                  "details": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "label": {
+                                          "type": "string"
+                                        },
+                                        "value": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "label",
+                                        "value"
+                                      ]
+                                    },
+                                    "default": []
                                   },
-                                  "phone": {
-                                    "type": "string"
+                                  "schedule": {
+                                    "type": "object",
+                                    "properties": {
+                                      "title": {
+                                        "type": "string"
+                                      },
+                                      "items": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "label": {
+                                              "type": "string"
+                                            },
+                                            "value": {
+                                              "type": "string"
+                                            }
+                                          },
+                                          "required": [
+                                            "label",
+                                            "value"
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "default": {
+                                      "title": "",
+                                      "items": []
+                                    },
+                                    "required": [
+                                      "title",
+                                      "items"
+                                    ]
+                                  },
+                                  "mapUrl": {
+                                    "type": "string",
+                                    "default": ""
                                   },
                                   "ctaText": {
                                     "type": "string"
@@ -844,7 +895,6 @@
                                   "type",
                                   "nav",
                                   "title",
-                                  "formattedAddress",
                                   "ctaText",
                                   "ctaLink"
                                 ]
@@ -861,11 +911,24 @@
                                   "description": {
                                     "type": "string"
                                   },
+                                  "navigateTitle": {
+                                    "type": "string",
+                                    "default": "Navigate"
+                                  },
+                                  "contactTitle": {
+                                    "type": "string",
+                                    "default": "Contact"
+                                  },
+                                  "linksTitle": {
+                                    "type": "string",
+                                    "default": "Booking & Social"
+                                  },
                                   "phone": {
                                     "type": "string"
                                   },
                                   "address": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "default": ""
                                   },
                                   "links": {
                                     "type": "array",
@@ -908,7 +971,6 @@
                                   "type",
                                   "description",
                                   "phone",
-                                  "address",
                                   "links",
                                   "legalLinks"
                                 ]
@@ -1418,11 +1480,62 @@
                                 "title": {
                                   "type": "string"
                                 },
-                                "formattedAddress": {
-                                  "type": "string"
+                                "details": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "label": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "label",
+                                      "value"
+                                    ]
+                                  },
+                                  "default": []
                                 },
-                                "phone": {
-                                  "type": "string"
+                                "schedule": {
+                                  "type": "object",
+                                  "properties": {
+                                    "title": {
+                                      "type": "string"
+                                    },
+                                    "items": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "label": {
+                                            "type": "string"
+                                          },
+                                          "value": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "required": [
+                                          "label",
+                                          "value"
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "default": {
+                                    "title": "",
+                                    "items": []
+                                  },
+                                  "required": [
+                                    "title",
+                                    "items"
+                                  ]
+                                },
+                                "mapUrl": {
+                                  "type": "string",
+                                  "default": ""
                                 },
                                 "ctaText": {
                                   "type": "string"
@@ -1435,7 +1548,6 @@
                                 "type",
                                 "nav",
                                 "title",
-                                "formattedAddress",
                                 "ctaText",
                                 "ctaLink"
                               ]
@@ -1452,11 +1564,24 @@
                                 "description": {
                                   "type": "string"
                                 },
+                                "navigateTitle": {
+                                  "type": "string",
+                                  "default": "Navigate"
+                                },
+                                "contactTitle": {
+                                  "type": "string",
+                                  "default": "Contact"
+                                },
+                                "linksTitle": {
+                                  "type": "string",
+                                  "default": "Booking & Social"
+                                },
                                 "phone": {
                                   "type": "string"
                                 },
                                 "address": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "default": ""
                                 },
                                 "links": {
                                   "type": "array",
@@ -1499,7 +1624,6 @@
                                 "type",
                                 "description",
                                 "phone",
-                                "address",
                                 "links",
                                 "legalLinks"
                               ]
