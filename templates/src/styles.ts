@@ -1,13 +1,11 @@
-import type { Styles, WebsiteData } from './types';
+import type { Styles, TemplateData } from './types';
 
-export function buildRootStyles(data: WebsiteData) {
+export function buildRootStyles(data: TemplateData) {
   const themeVars = Object.entries(data.styles)
-    .filter(([, v]) => v != null)
     .map(([k, v]) => `  --${k}: ${v};`)
     .join('\n');
 
   const colorVars = Object.entries(data.styles)
-    .filter(([, v]) => v != null)
     .map(([k, v]) => `  --color-${k}: ${v};`)
     .join('\n');
 

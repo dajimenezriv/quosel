@@ -9,6 +9,7 @@ const ResponseSchema = z.object({
   id: z.string(),
   userId: z.string(),
   name: z.string(),
+  slug: z.string(),
   blocks: blocksSchema,
   styles: stylesSchema,
   createdAt: z.date(),

@@ -189,7 +189,7 @@ export const stylesSchema = z.object({
   ring: z.string(),
 });
 
-export interface WebsiteData {
+export interface TemplateData {
   blocks: Blocks;
   styles: Styles;
 }

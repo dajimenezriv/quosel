@@ -410,6 +410,7 @@ export interface paths {
                             id: string;
                             userId: string;
                             name: string;
+                            slug: string;
                             blocks: {
                                 /** @enum {number} */
                                 schemaVersion: 1;
@@ -588,6 +589,7 @@ export interface paths {
                 content: {
                     "application/json": {
                         name?: string;
+                        slug: string;
                         blocks: {
                             /** @enum {number} */
                             schemaVersion: 1;

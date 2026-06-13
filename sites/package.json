@@ -1,0 +1,20 @@
+{
+  "name": "sites",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tsc": "tsc",
+    "========== Checks ==========": "",
+    "check-deps": "npm-check-updates -u"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260613.1",
+    "npm-check-updates": "^22.2.3",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.100.0"
+  }
+}

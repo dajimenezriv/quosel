@@ -1,6 +1,7 @@
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { InfoBlock, WebsiteData } from '@quosel/templates';
+import type { InfoBlock } from '@quosel/templates';
 import { Info } from 'lucide-react';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';

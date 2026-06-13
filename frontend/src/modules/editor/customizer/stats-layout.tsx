@@ -1,6 +1,7 @@
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import type { StatsBlock, WebsiteData } from '@quosel/templates';
+import type { StatsBlock } from '@quosel/templates';
 import { BarChart3, Plus, Trash2 } from 'lucide-react';
 import { useBlockHandlers } from './use-block-handlers';
 import { Section } from './utils';

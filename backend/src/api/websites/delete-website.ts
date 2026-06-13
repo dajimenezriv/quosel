@@ -24,7 +24,7 @@ export const deleteWebsite: RouteHandler<typeof deleteWebsiteRoute, { Variables:
 
   await Websites.delete(userId, websiteId);
 
-  if (website.publishedAt) await R2.delete(`websites/${websiteId}.html`);
+  if (website.publishedAt) await R2.delete(`websites/${website.slug}.html`);
 
   return c.body(null, 204);
 };

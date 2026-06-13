@@ -23,6 +23,7 @@ describe('get-website', () => {
       id: 'websiteId',
       userId: 'userId',
       name: 'name',
+      slug: 'slug',
       blocks: emptyBlocks,
       styles: claudeStyles,
       createdAt: new Date('2024-01-01T00:00:00.000Z'),

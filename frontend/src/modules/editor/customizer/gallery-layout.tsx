@@ -1,7 +1,8 @@
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { GalleryBlock, WebsiteData } from '@quosel/templates';
+import type { GalleryBlock } from '@quosel/templates';
 import { Images, Plus, Trash2 } from 'lucide-react';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';

@@ -1,8 +1,8 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { getNavLinks } from '../core/utils';
-import type { WebsiteData } from '../types';
+import type { TemplateData } from '../types';
 
-export function Nav({ data }: { data: WebsiteData }) {
+export function Nav({ data }: { data: TemplateData }) {
   const block = data.blocks.nav;
 
   const navLinks = getNavLinks(data);

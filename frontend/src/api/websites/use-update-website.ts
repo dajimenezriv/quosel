@@ -3,22 +3,27 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { client } from '../client';
 
-interface UpdateWebsiteParams {
-  websiteId: string;
+export interface WebsiteData {
+  slug: string;
   blocks: Blocks;
   styles: Styles;
+}
+
+interface Props {
+  websiteId: string;
   publish?: boolean;
+  data: WebsiteData;
 }
 
 export function useUpdateWebsite() {
   return useMutation({
-    mutationFn: async ({ websiteId, publish, ...body }: UpdateWebsiteParams) => {
+    mutationFn: async ({ websiteId, publish, data }: Props) => {
       const { error } = await client.PUT('/websites/{websiteId}', {
         params: {
           path: { websiteId },
           query: { publish },
         },
-        body,
+        body: data,
       });
 
       if (error) throw error;

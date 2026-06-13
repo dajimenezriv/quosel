@@ -1,9 +1,9 @@
+import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useEditorStore } from '@/core/editor/use-editor-store';
-import type { WebsiteData } from '@quosel/templates';
 import { produce } from 'immer';
 import { Navigation, Plus } from 'lucide-react';
 import { Fragment } from 'react';
@@ -69,22 +69,24 @@ export function LayoutTab({ data }: Props) {
     <div className="flex flex-col gap-4">
       <Section title="Navigation" icon={<Navigation className="h-4 w-4" />}>
         <Subgroup title="Call to Action">
-          <Field label="Button Text">
-            <Input
-              value={data.blocks.nav.ctaText}
-              onChange={handleInput((draft, value) => {
-                draft.blocks.nav.ctaText = value;
-              })}
-            />
-          </Field>
-          <Field label="Button Link">
-            <Input
-              value={data.blocks.nav.ctaLink}
-              onChange={handleInput((draft, value) => {
-                draft.blocks.nav.ctaLink = value;
-              })}
-            />
-          </Field>
+          <div className="flex items-center gap-2">
+            <Field label="Button Text">
+              <Input
+                value={data.blocks.nav.ctaText}
+                onChange={handleInput((draft, value) => {
+                  draft.blocks.nav.ctaText = value;
+                })}
+              />
+            </Field>
+            <Field label="Button Link">
+              <Input
+                value={data.blocks.nav.ctaLink}
+                onChange={handleInput((draft, value) => {
+                  draft.blocks.nav.ctaLink = value;
+                })}
+              />
+            </Field>
+          </div>
         </Subgroup>
       </Section>
 

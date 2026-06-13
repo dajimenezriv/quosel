@@ -1,11 +1,16 @@
+import { randomBytes } from 'node:crypto';
 import type { UserId } from '@/core/types';
-import { claudeStyles, emptyBlocks } from '@quosel/templates';
+import { claudeStyles, emptyBlocks, slugify } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
-type WebsiteUpdate = Pick<Prisma.WebsiteUpdateInput, 'name' | 'publishedAt' | 'blocks' | 'styles'>;
+type WebsiteUpdate = Pick<Prisma.WebsiteUpdateInput, 'name' | 'slug' | 'publishedAt' | 'blocks' | 'styles'>;
 
 export class Websites {
+  static randomSlug(name: string) {
+    return `${slugify(name)}-${randomBytes(4).toString('hex')}`;
+  }
+
   static async getAllByUserId(userId: UserId) {
     return await prisma.website.findMany({ where: { userId } });
   }
@@ -19,6 +24,7 @@ export class Websites {
       data: {
         userId,
         name,
+        slug: this.randomSlug(name),
         blocks: emptyBlocks,
         styles: claudeStyles,
       },
