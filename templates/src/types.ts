@@ -177,7 +177,6 @@ export type Styles = z.infer<typeof stylesSchema>;
 export const stylesSchema = z.object({
   background: z.string(),
   foreground: z.string(),
-  'card-foreground': z.string(),
   primary: z.string(),
   'primary-foreground': z.string(),
   secondary: z.string(),

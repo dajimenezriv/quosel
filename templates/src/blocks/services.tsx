@@ -6,7 +6,7 @@ export function Services({ block }: { block: ServicesBlock }) {
     <section id={block.nav} className="bg-secondary flex justify-center py-24">
       <div className="flex w-250 flex-col">
         <div className="mb-10 flex flex-col">
-          <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— Carta</p>
+          <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
           <h2 className="text-secondary-foreground text-5xl leading-tight">{block.title}</h2>
         </div>
 
@@ -35,15 +35,16 @@ export function Services({ block }: { block: ServicesBlock }) {
           ))}
         </div>
 
-        {/* Footer */}
-        <div className="border-secondary-foreground/10 mt-10 flex flex-col gap-4 border-t pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
-          <a
-            target="__blank"
-            href={block.ctaLink}
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-primary/10 border px-6 py-3 text-xs tracking-[0.2em] uppercase transition-all">
-            {block.ctaText}
-          </a>
-        </div>
+        {block.ctaText && (
+          <div className="border-secondary-foreground/10 mt-10 flex flex-col gap-4 border-t pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
+            <a
+              target="__blank"
+              href={block.ctaLink}
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-primary/10 border px-6 py-3 text-xs tracking-[0.2em] uppercase transition-all">
+              {block.ctaText}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
