@@ -68,7 +68,11 @@ function Column({ title, links }: { title: string; links: Links }) {
       <ul>
         {links.map((link) => (
           <li key={link.label}>
-            <a target="__blank" href={link.url} className="hover:text-foreground text-foreground/40 text-xs transition-colors">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={link.url}
+              className="hover:text-foreground text-foreground/40 text-xs transition-colors">
               {link.label}
             </a>
           </li>

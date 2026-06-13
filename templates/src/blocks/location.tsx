@@ -1,9 +1,10 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { slugify } from '../core/utils';
 import type { LocationBlock } from '../types';
 
 export function Location({ block }: { block: LocationBlock }) {
   return (
-    <section id={block.nav} className="bg-background flex justify-center px-6 py-24 md:px-0">
+    <section id={slugify(block.nav)} className="bg-background flex justify-center px-6 py-24 md:px-0">
       <div className="flex w-full max-w-300 flex-col gap-12 md:flex-row md:items-center md:gap-20">
         <div className="flex flex-1 flex-col">
           <p className="text-primary mb-6 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
@@ -34,7 +35,8 @@ export function Location({ block }: { block: LocationBlock }) {
 
           <div className="mt-10">
             <a
-              target="__blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href={block.ctaLink}
               className="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] uppercase transition-colors hover:opacity-90">
               {block.ctaText}
@@ -42,10 +44,7 @@ export function Location({ block }: { block: LocationBlock }) {
           </div>
         </div>
 
-        <iframe
-          src={block.mapUrl}
-          className="flex aspect-square w-full flex-1 border-0 opacity-80 md:w-120"
-          loading="lazy"></iframe>
+        <iframe src={block.mapUrl} className="flex aspect-square w-full flex-1 border-0 opacity-80 md:w-120" loading="lazy"></iframe>
       </div>
     </section>
   );

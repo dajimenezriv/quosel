@@ -9,40 +9,23 @@ import { Nav } from './blocks/nav';
 import { Reviews } from './blocks/reviews';
 import { Services } from './blocks/services';
 import { Stats } from './blocks/stats';
+import { buildRootStyles } from './styles';
 import type { WebsiteData } from './types';
-
-export function buildRootStyles(data: WebsiteData) {
-  const themeVars = Object.entries(data.styles)
-    .filter(([, v]) => v != null)
-    .map(([k, v]) => `  --${k}: ${v};`)
-    .join('\n');
-
-  const colorVars = Object.entries(data.styles)
-    .filter(([, v]) => v != null)
-    .map(([k, v]) => `  --color-${k}: ${v};`)
-    .join('\n');
-
-  const res = `@theme inline {\n${colorVars}\n}
-  
-  :root {\n${themeVars}\n}`;
-
-  return res;
-}
 
 export function TemplateBody({ data }: { data: WebsiteData }) {
   return (
     <div className="bg-background text-foreground min-h-screen">
       <Nav data={data} />
-      {data.blocks.blocks.map((block) => {
-        if (block.type === 'stats') return <Stats block={block} />;
-        if (block.type === 'hero') return <Hero block={block} />;
-        if (block.type === 'info') return <Info block={block} />;
-        if (block.type === 'gallery') return <Gallery block={block} />;
-        if (block.type === 'reviews') return <Reviews block={block} />;
-        if (block.type === 'services') return <Services block={block} />;
-        if (block.type === 'location') return <Location block={block} />;
-        if (block.type === 'cta') return <CTA block={block} />;
-        if (block.type === 'footer') return <Footer data={data} block={block} />;
+      {data.blocks.blocks.map((block, i) => {
+        if (block.type === 'stats') return <Stats key={i} block={block} />;
+        if (block.type === 'hero') return <Hero key={i} block={block} />;
+        if (block.type === 'info') return <Info key={i} block={block} />;
+        if (block.type === 'gallery') return <Gallery key={i} block={block} />;
+        if (block.type === 'reviews') return <Reviews key={i} block={block} />;
+        if (block.type === 'services') return <Services key={i} block={block} />;
+        if (block.type === 'location') return <Location key={i} block={block} />;
+        if (block.type === 'cta') return <CTA key={i} block={block} />;
+        if (block.type === 'footer') return <Footer key={i} data={data} block={block} />;
       })}
     </div>
   );

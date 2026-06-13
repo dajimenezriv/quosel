@@ -1,9 +1,10 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { slugify } from '../core/utils';
 import type { ServicesBlock } from '../types';
 
 export function Services({ block }: { block: ServicesBlock }) {
   return (
-    <section id={block.nav} className="bg-secondary flex justify-center px-6 py-24 md:px-0">
+    <section id={slugify(block.nav)} className="bg-secondary flex justify-center px-6 py-24 md:px-0">
       <div className="flex w-full max-w-250 flex-col">
         <div className="mb-10 flex flex-col">
           <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
@@ -38,7 +39,8 @@ export function Services({ block }: { block: ServicesBlock }) {
         {block.ctaText && (
           <div className="border-secondary-foreground/10 mt-10 flex flex-col gap-4 border-t pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
             <a
-              target="__blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href={block.ctaLink}
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-primary/10 border px-6 py-3 text-xs tracking-[0.2em] uppercase transition-all">
               {block.ctaText}

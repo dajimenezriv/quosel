@@ -25,7 +25,8 @@ export function Nav({ data }: { data: WebsiteData }) {
       </div>
 
       <a
-        target="__blank"
+        target="_blank"
+        rel="noopener noreferrer"
         href={block.ctaLink}
         className="bg-primary text-primary-foreground px-6 py-2 text-xs tracking-[0.2em] uppercase transition-all hover:opacity-80">
         {block.ctaText}
