@@ -588,7 +588,7 @@ export interface paths {
             requestBody?: {
                 content: {
                     "application/json": {
-                        name: string;
+                        name?: string;
                         slug: string;
                         blocks: {
                             /** @enum {number} */

@@ -8,7 +8,7 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/templates';
 
 const BodySchema = z.object({
-  name: z.string(),
+  name: z.string().optional(),
   slug: z.string(),
   blocks: blocksSchema,
   styles: stylesSchema,
