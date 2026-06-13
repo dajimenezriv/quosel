@@ -1,9 +1,9 @@
 import { useThemeStore } from '@/core/theme/use-theme-store';
-import type { WebsiteData } from '@quosel/templates';
+import type { TemplateData } from '@quosel/templates';
 import { ContentFrame } from './utils';
 
 interface Props {
-  data: WebsiteData;
+  data: TemplateData;
 }
 
 export function IPhoneDevice({ data }: Props) {

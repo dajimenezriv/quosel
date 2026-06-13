@@ -1,4 +1,4 @@
-import { buildRootStyles, TemplateBody, type WebsiteData } from '@quosel/templates';
+import { buildRootStyles, TemplateBody, type TemplateData } from '@quosel/templates';
 import Frame from 'react-frame-component';
 
 const FRAME_INITIAL_CONTENT = `<!DOCTYPE html><html lang="es"><head>
@@ -8,7 +8,7 @@ const FRAME_INITIAL_CONTENT = `<!DOCTYPE html><html lang="es"><head>
 <script>document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var id=a.getAttribute('href').slice(1);var el=document.getElementById(id);if(!el)return;e.preventDefault();el.scrollIntoView({behavior:'smooth'});});</script>
 </head><body><div class="frame-root"></div></body></html>`;
 
-export function ContentFrame({ data }: { data: WebsiteData }) {
+export function ContentFrame({ data }: { data: TemplateData }) {
   return (
     <div className="min-h-0 flex-1 bg-white">
       <Frame

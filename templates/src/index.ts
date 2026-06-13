@@ -5,7 +5,7 @@ export { slugify } from './core/utils';
 export { renderTemplate } from './render';
 export { TemplateBody } from './template';
 export {
-  type WebsiteData,
+  type TemplateData,
   blocksSchema,
   stylesSchema,
   type Blocks,

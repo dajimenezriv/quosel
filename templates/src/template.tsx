@@ -10,9 +10,9 @@ import { Reviews } from './blocks/reviews';
 import { Services } from './blocks/services';
 import { Stats } from './blocks/stats';
 import { buildRootStyles } from './styles';
-import type { WebsiteData } from './types';
+import type { TemplateData } from './types';
 
-export function TemplateBody({ data }: { data: WebsiteData }) {
+export function TemplateBody({ data }: { data: TemplateData }) {
   return (
     <div className="bg-background text-foreground min-h-screen">
       <Nav data={data} />
@@ -31,7 +31,7 @@ export function TemplateBody({ data }: { data: WebsiteData }) {
   );
 }
 
-export function Template({ data }: { data: WebsiteData }) {
+export function Template({ data }: { data: TemplateData }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>

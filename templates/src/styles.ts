@@ -1,6 +1,6 @@
-import type { Styles, WebsiteData } from './types';
+import type { Styles, TemplateData } from './types';
 
-export function buildRootStyles(data: WebsiteData) {
+export function buildRootStyles(data: TemplateData) {
   const themeVars = Object.entries(data.styles)
     .map(([k, v]) => `  --${k}: ${v};`)
     .join('\n');

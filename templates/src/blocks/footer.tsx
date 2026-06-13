@@ -1,10 +1,10 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { getNavLinks } from '../core/utils';
-import type { FooterBlock, WebsiteData } from '../types';
+import type { FooterBlock, TemplateData } from '../types';
 
 type Links = Array<{ label: string; url: string }>;
 
-export function Footer({ data, block }: { data: WebsiteData; block: FooterBlock }) {
+export function Footer({ data, block }: { data: TemplateData; block: FooterBlock }) {
   const navLinks = getNavLinks(data);
 
   // This is to generate rich results for machines

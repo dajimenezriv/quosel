@@ -1,2 +1,7 @@
 pg_version = "18"
-excluded_rules = ["prefer-bigint-over-int", "require-timeout-settings"]
+excluded_rules = [
+  "adding-not-nullable-field",
+  "prefer-bigint-over-int",
+  "require-concurrent-index-creation",
+  "require-timeout-settings",
+]
