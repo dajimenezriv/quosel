@@ -39,7 +39,7 @@ function ScreenTooSmall() {
           <MonitorIcon className="text-muted-foreground size-12" />
           <h1 className="font-serif text-4xl font-bold">Screen too small</h1>
           <p className="text-muted-foreground text-sm">
-            Quosel is a website editor and needs a screen at least 1280px wide. Please open it on a bigger screen.
+            Quosel is a website editor and needs a screen at least 1048px wide. Please open it on a bigger screen.
           </p>
         </div>
       </main>

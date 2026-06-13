@@ -330,9 +330,6 @@
                               "foreground": {
                                 "type": "string"
                               },
-                              "card-foreground": {
-                                "type": "string"
-                              },
                               "primary": {
                                 "type": "string"
                               },
@@ -367,7 +364,6 @@
                             "required": [
                               "background",
                               "foreground",
-                              "card-foreground",
                               "primary",
                               "primary-foreground",
                               "secondary",
@@ -995,9 +991,6 @@
                         "foreground": {
                           "type": "string"
                         },
-                        "card-foreground": {
-                          "type": "string"
-                        },
                         "primary": {
                           "type": "string"
                         },
@@ -1032,7 +1025,6 @@
                       "required": [
                         "background",
                         "foreground",
-                        "card-foreground",
                         "primary",
                         "primary-foreground",
                         "secondary",
@@ -1648,9 +1640,6 @@
                       "foreground": {
                         "type": "string"
                       },
-                      "card-foreground": {
-                        "type": "string"
-                      },
                       "primary": {
                         "type": "string"
                       },
@@ -1685,7 +1674,6 @@
                     "required": [
                       "background",
                       "foreground",
-                      "card-foreground",
                       "primary",
                       "primary-foreground",
                       "secondary",

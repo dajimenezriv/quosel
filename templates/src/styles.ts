@@ -3,7 +3,6 @@ import type { Styles } from './types';
 export const claudeStyles: Styles = {
   background: '#262624',
   foreground: '#c3c0b6',
-  'card-foreground': '#faf9f5',
   primary: '#d97757',
   'primary-foreground': '#ffffff',
   secondary: '#30302e',

@@ -152,8 +152,8 @@ export const circoloPopolareBlocks: Blocks = {
       nav: 'Reviews',
       title: 'The voice of the customer.',
       stats: [
-        { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
-        { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
+        { value: '4,8', label: 'GOOGLE · 39.177 REVIEWS' },
+        { value: '4,2', label: 'TRIPADVISOR · 2.715 REVIEWS' },
       ],
       reviews: [
         {
