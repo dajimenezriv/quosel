@@ -47,11 +47,14 @@ export function createBlock(type: AddableBlockType): Block {
         ctaLink: '',
       };
     case 'location':
-      return { type: 'location', nav: 'Location', title: '', formattedAddress: '', phone: '', ctaText: '', ctaLink: '' };
+      return { type: 'location', nav: 'Location', title: '', details: [], schedule: { title: '', items: [] }, mapUrl: '', ctaText: '', ctaLink: '' };
     case 'footer':
       return {
         type: 'footer',
         description: '',
+        navigateTitle: 'Navigate',
+        contactTitle: 'Contact',
+        linksTitle: 'Booking & Social',
         phone: '',
         address: '',
         links: [],

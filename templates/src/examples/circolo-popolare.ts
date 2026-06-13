@@ -45,7 +45,8 @@ export const circoloPopolareBlocks: Blocks = {
       text: '',
       ctaText: '',
       ctaLink: '',
-      imageUrl: '',
+      imageUrl:
+        'https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format',
     },
     {
       type: 'gallery',
@@ -179,8 +180,21 @@ export const circoloPopolareBlocks: Blocks = {
       type: 'location',
       nav: 'Location',
       title: 'Dolores Marqués, 9.',
-      formattedAddress: '40-41 Rathbone Pl, London W1T 1HX, UK',
-      phone: '+44 20 3893 6800',
+      details: [
+        { label: 'Address', value: '40-41 Rathbone Pl, London W1T 1HX, UK' },
+        { label: 'Phone', value: '+44 20 3893 6800' },
+        { label: 'Social Media', value: 'Instagram · @circolopopolare' },
+      ],
+      schedule: {
+        title: 'Schedule',
+        items: [
+          { label: 'Monday — Friday', value: '10:00 — 14:00 · 16:00 — 20:00' },
+          { label: 'Saturday', value: '10:00 — 14:00' },
+          { label: 'Sunday', value: 'Closed' },
+        ],
+      },
+      mapUrl:
+        'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d620.6958523025477!2d-0.13451297141411575!3d51.517189498231176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ba809fd882b%3A0x817eee82a924ec96!2sCircolo%20Popolare!5e0!3m2!1sen!2ses!4v1781019604772!5m2!1sen!2ses',
       ctaText: 'Book a Table',
       ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
     },
@@ -189,13 +203,16 @@ export const circoloPopolareBlocks: Blocks = {
       title: 'Your next visit starts here.',
       text: 'Book a table or follow us on Instagram. Two ways into the restaurant before you even step inside.',
       ctaText: 'Book a Table →',
-      ctaLink: '#',
-      imageUrl: '',
+      ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/circolo-popolare-barcelona-jerome-galland-bar-1-693e68003cbcf.jpg',
     },
     {
       type: 'footer',
       description:
         'Your Sicilian getaway in London. Crispy Neapolitan pizzas, creamy burratas and Carbonara served from a Pecorino wheel, in the heart of Fitzrovia.',
+      navigateTitle: 'Navigate',
+      contactTitle: 'Contact',
+      linksTitle: 'Booking & Social',
       phone: '+44 20 3893 6800',
       address: '40-41 Rathbone Pl, London W1T 1HX, UK',
       links: [

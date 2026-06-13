@@ -26,24 +26,51 @@ export function FooterLayout({ data, block, index }: Props) {
           })}
         />
       </Field>
-      <Field label="Phone">
+      <Field label="Navigate title">
         <Input
-          value={block.phone}
+          value={block.navigateTitle}
           onChange={handleInput((block, value) => {
-            block.phone = value;
-          })}
-        />
-      </Field>
-      <Field label="Address">
-        <Input
-          value={block.address}
-          onChange={handleInput((block, value) => {
-            block.address = value;
+            block.navigateTitle = value;
           })}
         />
       </Field>
 
+      <Subgroup title="Contact">
+        <Field label="Title">
+          <Input
+            value={block.contactTitle}
+            onChange={handleInput((block, value) => {
+              block.contactTitle = value;
+            })}
+          />
+        </Field>
+        <Field label="Phone">
+          <Input
+            value={block.phone}
+            onChange={handleInput((block, value) => {
+              block.phone = value;
+            })}
+          />
+        </Field>
+        <Field label="Address">
+          <Input
+            value={block.address}
+            onChange={handleInput((block, value) => {
+              block.address = value;
+            })}
+          />
+        </Field>
+      </Subgroup>
+
       <Subgroup title="Links">
+        <Field label="Title">
+          <Input
+            value={block.linksTitle}
+            onChange={handleInput((block, value) => {
+              block.linksTitle = value;
+            })}
+          />
+        </Field>
         {block.links.map((link, linkIndex) => (
           <div key={linkIndex} className="flex items-center gap-2">
             <Input

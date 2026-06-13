@@ -7,50 +7,29 @@ export function Location({ block }: { block: LocationBlock }) {
       <div className="flex w-300 items-center gap-20">
         <div className="flex flex-1 flex-col">
           <p className="text-primary mb-6 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
-          <h2 className="text-foreground mb-8 text-5xl leading-tight md:mb-14 md:text-7xl">
-            {block.formattedAddress.split(',')[0]?.trim()},{' '}
-            <em className="text-primary italic">{block.formattedAddress.split(',')[1]?.trim()}</em>.
-          </h2>
+          <h2 className="text-foreground mb-8 text-5xl leading-tight md:mb-14 md:text-7xl">{block.title}</h2>
 
           <div>
-            {/* Address */}
-            <div className="border-foreground/10 flex gap-12 border-t py-6">
-              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Address</span>
-              <div>
-                <p className="text-foreground text-sm">{block.formattedAddress.split(',').slice(0, 2).join(',').trim()}</p>
-                <p className="text-foreground/40 mt-1 text-xs">{block.formattedAddress.split(',').slice(2).join(',').trim()}</p>
+            {block.details.map((detail, i) => (
+              <div key={i} className="border-foreground/10 flex gap-12 border-t py-6">
+                <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">{detail.label}</span>
+                <p className="text-foreground text-sm">{detail.value}</p>
               </div>
-            </div>
+            ))}
 
-            <div className="border-foreground/10 flex gap-12 border-t py-6">
-              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Phone</span>
-              <p className="text-foreground text-sm">{block.phone}</p>
-            </div>
-
-            {/* Schedule */}
-            <div className="border-foreground/10 flex gap-12 border-t py-6">
-              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Schedule</span>
-              <div className="space-y-1.5 text-sm">
-                <div className="flex gap-8">
-                  <span className="text-foreground w-36">Monday — Friday</span>
-                  <span className="text-foreground/60">10:00 — 14:00 · 16:00 — 20:00</span>
-                </div>
-                <div className="flex gap-8">
-                  <span className="text-foreground w-36">Saturday</span>
-                  <span className="text-foreground/60">10:00 — 14:00</span>
-                </div>
-                <div className="flex gap-8">
-                  <span className="text-foreground w-36">Sunday</span>
-                  <span className="text-foreground/60">Closed</span>
+            {block.schedule.items.length > 0 && (
+              <div className="border-foreground/10 flex gap-12 border-t py-6">
+                <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">{block.schedule.title}</span>
+                <div className="space-y-1.5 text-sm">
+                  {block.schedule.items.map((item, i) => (
+                    <div key={i} className="flex gap-8">
+                      <span className="text-foreground w-36">{item.label}</span>
+                      <span className="text-foreground/60">{item.value}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
-
-            {/* Social Media */}
-            <div className="border-foreground/10 flex gap-12 border-t border-b py-6">
-              <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">Social Media</span>
-              <p className="text-foreground text-sm">Instagram · @circolopopolare</p>
-            </div>
+            )}
           </div>
 
           <div className="mt-10">
@@ -63,9 +42,8 @@ export function Location({ block }: { block: LocationBlock }) {
           </div>
         </div>
 
-        {/* Right: Map */}
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d620.6958523025477!2d-0.13451297141411575!3d51.517189498231176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ba809fd882b%3A0x817eee82a924ec96!2sCircolo%20Popolare!5e0!3m2!1sen!2ses!4v1781019604772!5m2!1sen!2ses"
+          src={block.mapUrl}
           className="flex aspect-square w-120 flex-1 border-0 opacity-80"
           loading="lazy"></iframe>
       </div>

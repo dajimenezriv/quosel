@@ -7,8 +7,7 @@ export function CTA({ block }: { block: CtaBlock }) {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format')",
+          backgroundImage: `url('${block.imageUrl}')`,
         }}
       />
       <div className="bg-background/80 absolute inset-0" />
