@@ -1,19 +1,11 @@
 import type { Styles, TemplateData } from './types';
 
 export function buildRootStyles(data: TemplateData) {
-  const themeVars = Object.entries(data.styles)
-    .map(([k, v]) => `  --${k}: ${v};`)
-    .join('\n');
-
   const colorVars = Object.entries(data.styles)
     .map(([k, v]) => `  --color-${k}: ${v};`)
     .join('\n');
 
-  const res = `@theme inline {\n${colorVars}\n}
-
-  :root {\n${themeVars}\n}`;
-
-  return res;
+  return `@theme inline {\n${colorVars}\n}`;
 }
 
 export const claudeStyles: Styles = {

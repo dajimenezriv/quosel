@@ -41,8 +41,5 @@ COPY --chown=node:node backend/package.json ./
 USER node
 EXPOSE 3000
 
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
-  CMD wget -qO- http://localhost:3000/health || exit 1
-
 ENTRYPOINT ["dumb-init", "--"]
 CMD ["node", "dist/index.js"]

@@ -2,6 +2,7 @@ packages:
   - "backend"
   - "frontend"
   - "templates"
+  - "sites"
 allowBuilds:
   "@prisma/engines": false
   "@railway/cli": true

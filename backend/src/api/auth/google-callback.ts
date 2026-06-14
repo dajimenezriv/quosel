@@ -5,7 +5,9 @@ import type { Context } from 'hono';
 import { deleteCookie, getCookie, setCookie } from 'hono/cookie';
 import { ApiError } from '../../core/api/errors';
 import { env } from '../../core/env';
+import { logger } from '../../core/logger';
 import { Users } from '../../infra/postgres/users';
+import { Resend } from '../../infra/resend/resend';
 import { google } from './utils';
 
 const isProd = env.NODE_ENV === 'production';
@@ -43,7 +45,7 @@ export async function googleCallback(c: Context) {
   }
 
   const googleId = claims.sub;
-  const user = await Users.createOrUpdate(googleId, {
+  const { user, created } = await Users.createOrUpdate(googleId, {
     email: claims.email,
     name: claims.name ?? '',
     givenName: claims.givenName ?? '',
@@ -52,6 +54,14 @@ export async function googleCallback(c: Context) {
   });
 
   const userId = user.id;
+
+  if (created) {
+    const { error } = await Resend.sendWelcome(user.email, user.givenName);
+    if (error) {
+      logger.error('Failed to send welcome email', { userId, error });
+    }
+  }
+
   const sessionId = randomBytes(20).toString('hex');
   const expiresAt = new Date(Date.now() + SESSION_TTL_MS);
   await Sessions.create({ id: sessionId, expiresAt, userId });
