@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths: ["backend/**", "templates/**"]
-  pull_request:
+  # pull_request:
 
 concurrency:
   group: backend-deploy-${{ github.ref }}
