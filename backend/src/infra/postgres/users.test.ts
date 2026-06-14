@@ -65,10 +65,11 @@ describe('users', () => {
       // Given
       const { id: userId, googleId, name, ...user } = await createMockUser();
       // When
-      const res = await Users.createOrUpdate(googleId, { ...user, name: 'newName' });
+      const { user: res, created } = await Users.createOrUpdate(googleId, { ...user, name: 'newName' });
       // Then
       expect(name).toBe('name');
       expect(res.name).toBe('newName');
+      expect(created).toBe(false);
       expect(await prisma.website.count({ where: { userId } })).toBe(0);
     });
 
@@ -76,7 +77,10 @@ describe('users', () => {
       // Given
       const googleId = crypto.randomUUID();
       // When
-      const { id: userId } = await Users.createOrUpdate(googleId, {
+      const {
+        user: { id: userId },
+        created,
+      } = await Users.createOrUpdate(googleId, {
         email: crypto.randomUUID(),
         name: '',
         givenName: '',
@@ -84,6 +88,7 @@ describe('users', () => {
         picture: '',
       });
       // Then
+      expect(created).toBe(true);
       expect(await prisma.website.count({ where: { userId } })).toBe(1);
     });
   });

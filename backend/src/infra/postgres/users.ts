@@ -24,7 +24,8 @@ export class Users {
       const existing = await tx.user.findUnique({ where: { googleId } });
 
       if (existing) {
-        return await tx.user.update({ where: { googleId }, data });
+        const userRow = await tx.user.update({ where: { googleId }, data });
+        return { user: userRow, created: false };
       }
 
       const userRow = await tx.user.create({
@@ -47,7 +48,7 @@ export class Users {
         },
       });
 
-      return userRow;
+      return { user: userRow, created: true };
     });
   }
 }

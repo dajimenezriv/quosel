@@ -15,6 +15,8 @@ const EnvSchema = z.object({
   R2_BUCKET_NAME: z.string().min(1),
   R2_PUBLIC_URL: z.url(),
   R2_SECRET_ACCESS_KEY: z.string().min(1),
+  RESEND_API_KEY: z.string().min(1),
+  SENTRY_DSN: z.string().min(1),
   STRIPE_PRICE_ID: z.string().min(1),
   STRIPE_SECRET_KEY: z.string().min(1),
   STRIPE_WEBHOOK_SECRET: z.string().min(1),

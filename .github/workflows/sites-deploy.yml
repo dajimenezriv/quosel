@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths: ["sites/**"]
-  # pull_request:
+  pull_request:
 
 concurrency:
   group: sites-deploy-${{ github.ref }}
