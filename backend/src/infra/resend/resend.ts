@@ -1,7 +1,7 @@
 import { env } from '@/core/env';
-import { Resend as RawResend } from 'resend';
+import * as resend from 'resend';
 
-const resend = new RawResend(env.RESEND_API_KEY);
+const client = new resend.Resend(env.RESEND_API_KEY);
 
 const FROM = 'Quosel <noreply@quosel.com>';
 const REPLY_TO = 'hello@quosel.com';
@@ -10,7 +10,7 @@ export class Resend {
   static async sendWelcome(to: string, givenName: string) {
     const greeting = givenName ? `Hi ${givenName}` : 'Hi';
 
-    return await resend.emails.send({
+    return await client.emails.send({
       from: FROM,
       to,
       replyTo: REPLY_TO,
