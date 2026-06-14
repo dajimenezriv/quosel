@@ -1,0 +1,51 @@
+name: Backend backup
+
+on:
+  workflow_dispatch:
+  pull_request:
+  schedule:
+    - cron: "0 3 * * *" # daily 03:00 UTC
+
+concurrency:
+  group: backend-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container: postgres:18
+
+    permissions:
+      contents: read
+
+    steps:
+      - run: apt-get update && apt-get install -y --no-install-recommends awscli ca-certificates
+
+      - name: Dump and upload to R2
+        env:
+          DATABASE_URL: ${{ secrets.RAILWAY_DATABASE_URL }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_REQUEST_CHECKSUM_CALCULATION: WHEN_REQUIRED
+          AWS_RESPONSE_CHECKSUM_VALIDATION: WHEN_REQUIRED
+          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+        run: |
+          set -euo pipefail
+
+          key="backups/quosel-$(date -u +%Y-%m-%dT%H-%M-%SZ).sql.gz"
+          endpoint="https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com"
+
+          pg_dump "$DATABASE_URL" \
+            --no-owner \
+            --no-privileges \
+            --clean \
+            --if-exists \
+            | gzip \
+            | aws s3 cp - "s3://$R2_BUCKET_NAME/$key" \
+                --endpoint-url "$endpoint" \
+                --region auto \
+                --content-type application/gzip
+
+          echo "Backup uploaded: $key"
