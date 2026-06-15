@@ -1,0 +1,44 @@
+---
+import SectionLabel from '../components/section-label.astro';
+
+// Real local-business sites shipped with Quosel.
+// TODO: switch Gestel to https://gestelsl.com once the custom domain is live.
+const sites = [
+  { name: 'Circolo Popolare', url: 'https://sites.quosel.com/circolo-popolare', initial: 'C', accent: 'from-rose-400 to-orange-400' },
+  { name: 'Gestel', url: 'https://sites.quosel.com/gestel', initial: 'G', accent: 'from-violet-400 to-blue-400' },
+];
+---
+
+<section id="built-with" class="w-full">
+  <SectionLabel title="Built with Quosel" description="Real local-business sites freelancers shipped with Quosel." />
+
+  <div class="flex flex-wrap justify-center gap-4 px-6 py-12">
+    {
+      sites.map(({ name, url, initial, accent }) => (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener"
+          class="border-border bg-card hover:bg-muted group flex items-center gap-3 rounded-xl border px-5 py-4 shadow-sm transition-colors">
+          <span class={`flex h-9 w-9 items-center justify-center rounded-lg bg-linear-to-br ${accent} text-sm font-bold text-white`}>
+            {initial}
+          </span>
+          <span class="text-foreground text-sm font-semibold">{name}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="text-muted-foreground group-hover:text-foreground ml-1 transition-colors">
+            <path d="M7 17L17 7M17 7H7M17 7v10" />
+          </svg>
+        </a>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,86 @@
+---
+import SectionLabel from './section-label.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  url: string;
+  href: string;
+  linkLabel: string;
+}
+const { id, title, description, url, href, linkLabel } = Astro.props;
+---
+
+<section id={id} class="w-full">
+  <SectionLabel title={title} description={description} />
+
+  <div class="px-6 py-12">
+    <!-- Browser frame -->
+    <div class="border-border bg-card mx-auto w-full max-w-4xl overflow-hidden rounded-xl border shadow-lg">
+      <!-- Top bar -->
+      <div class="border-border bg-muted flex items-center gap-3 border-b px-4 py-2.5">
+        <div class="flex shrink-0 gap-1.5">
+          <span class="h-3 w-3 rounded-full bg-red-400"></span>
+          <span class="h-3 w-3 rounded-full bg-yellow-400"></span>
+          <span class="h-3 w-3 rounded-full bg-green-400"></span>
+        </div>
+        <div
+          class="bg-card border-border text-muted-foreground mx-auto flex max-w-md min-w-0 flex-1 items-center gap-1.5 rounded-md border px-3 py-1 text-xs">
+          <slot name="icon" />
+          <span class="truncate">{url}</span>
+        </div>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener"
+          class="text-muted-foreground hover:text-foreground hidden shrink-0 items-center gap-1 text-xs font-medium transition-colors sm:inline-flex">
+          {linkLabel}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg
+          >
+        </a>
+      </div>
+
+      <!-- Viewport: poster with a link to the live page -->
+      <div class="bg-background relative max-h-115 w-full overflow-hidden">
+        <slot />
+
+        <!-- Fade + CTA overlay -->
+        <div class="from-background/90 via-background/20 pointer-events-none absolute inset-0 bg-linear-to-t to-transparent"></div>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener"
+          class="group absolute inset-0 flex flex-col items-center justify-center gap-3"
+          aria-label={linkLabel}>
+          <span
+            class="bg-primary text-primary-foreground flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform group-hover:scale-110">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"></path></svg
+            >
+          </span>
+          <span class="bg-card/90 text-foreground rounded-full px-4 py-1.5 text-sm font-medium shadow-sm backdrop-blur">
+            {linkLabel}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

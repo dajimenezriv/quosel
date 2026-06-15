@@ -1,0 +1,7 @@
+{
+  "ignoreDependencies": ["wrangler", "tailwindcss"],
+  "project": ["src/**/*.astro"],
+  "astro": {
+    "entry": ["!src/pages/**/!(index|terms|privacy).astro"]
+  }
+}

@@ -1,12 +1,15 @@
 ---
+import Footer from '../components/footer.astro';
 import Layout from '../layouts/Layout.astro';
+import BuiltWith from './built-with.astro';
 import ClosingCTA from './closing-cta.astro';
+import EditorDemo from './editor-demo.astro';
 import FAQ from './faq.astro';
 import Features from './features.astro';
 import Header from './header.astro';
 import Hero from './hero.astro';
 import Pricing from './princing.astro';
-import UseCases from './use-cases.astro';
+import Showcase from './showcase.astro';
 ---
 
 <Layout>
@@ -15,41 +18,12 @@ import UseCases from './use-cases.astro';
   <main class="border-border flex w-[90%] max-w-7xl flex-col items-center justify-center border-x">
     <Hero />
     <Features />
-    <UseCases />
+    <Showcase />
+    <EditorDemo />
+    <BuiltWith />
     <FAQ />
     <Pricing />
     <ClosingCTA />
-
-    <footer class="border-border w-full border-t">
-      <div class="text-muted-foreground mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-8 text-sm sm:flex-row">
-        <span>© {new Date().getFullYear()} Quosel</span>
-        <div class="flex gap-6">
-          <a href="#" class="hover:text-foreground transition-colors">Terms</a>
-          <a href="#" class="hover:text-foreground transition-colors">Privacy</a>
-          <a href="mailto:hello@quosel.com" class="hover:text-foreground transition-colors">Contact</a>
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </main>
-
-  <!-- Theme toggle script -->
-  <script>
-    const toggle = document.getElementById('theme-toggle')!;
-    const moon = document.getElementById('icon-moon')!;
-    const sun = document.getElementById('icon-sun')!;
-
-    // Sync icon with current state
-    function syncIcon() {
-      const isDark = document.documentElement.classList.contains('dark');
-      moon.classList.toggle('hidden', isDark);
-      sun.classList.toggle('hidden', !isDark);
-    }
-    syncIcon();
-
-    toggle.addEventListener('click', () => {
-      const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      syncIcon();
-    });
-  </script>
 </Layout>

@@ -3,7 +3,7 @@ import SectionLabel from '../components/section-label.astro';
 ---
 
 <section id="faq" class="w-full">
-  <SectionLabel title="FAQ" description="Description" />
+  <SectionLabel title="FAQ" description="Answers to the most common questions about building and shipping sites with Quosel." />
 
   <div class="mx-auto max-w-5xl p-6">
     <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-16">
@@ -15,23 +15,23 @@ import SectionLabel from '../components/section-label.astro';
             [
               {
                 q: 'What exactly is Quosel?',
-                a: 'Quosel converts any Google Maps business link into a polished, ready-to-deliver landing page. It auto-imports photos, reviews, hours, and contact info — no manual data entry.',
+                a: 'Quosel is the fastest way to build local-business sites: start from a modern template, let AI write the copy, upload your images, then share a live link so the client can polish it with you before you publish.',
               },
               {
                 q: 'Do I need to install any software?',
-                a: 'No installation needed. Quosel is fully web-based — paste a URL in your browser and your page is ready within seconds.',
+                a: 'No installation needed. Quosel is fully web-based — build, share, and publish right from your browser.',
               },
               {
-                q: 'How does the Google Maps import work?',
-                a: 'We use the Google Places API to pull all available business data and structure it into a beautiful page automatically.',
+                q: 'How does the AI copy work?',
+                a: 'Quosel drafts tailored copy for every block — hero, services, about, and more — from the business details, so you start with a real first draft instead of a blank page.',
               },
               {
-                q: 'Can I customize the generated pages?',
-                a: 'Yes. After generation you can edit copy, swap photos, adjust colors, and rearrange sections using our simple editor.',
+                q: 'Can my client edit the site themselves?',
+                a: "Yes. Share a public link and your client can refine the copy in real time, watching changes update live. When you're both happy, you hit Publish.",
               },
               {
-                q: 'What file formats can I export?',
-                a: 'Clean HTML/CSS for any host, or publish to a Quosel URL. Custom domains are available on Pro and Agency plans.',
+                q: 'How do I publish the finished site?',
+                a: "One click. Quosel publishes the site to the client's own custom domain — no manual hosting or file wrangling. Custom domains are available on the Pro plan.",
               },
             ].map(({ q, a }, i) => (
               <div class="faq-item">
@@ -62,19 +62,15 @@ import SectionLabel from '../components/section-label.astro';
               },
               {
                 q: 'Do you offer a free trial?',
-                a: 'Your first 3 landing pages are completely free, no credit card required. Try the full import and generation flow before committing.',
+                a: 'Your first 3 sites are completely free, no credit card required. Try the full build-and-publish flow before committing.',
               },
               {
-                q: 'What happens if I reach my page limit?',
-                a: "On the Starter plan, once you've used your 3 free pages you'll need to upgrade to Pro for unlimited pages. We notify you before you hit the limit.",
-              },
-              {
-                q: 'Can multiple team members use one account?',
-                a: 'Pro includes 5 workspaces and Agency includes unlimited workspaces. Each workspace can hold its own client projects and pages.',
+                q: 'What happens if I reach my site limit?',
+                a: "On the Starter plan, once you've used your 3 free sites you'll need to upgrade to Pro for unlimited sites. We notify you before you hit the limit.",
               },
               {
                 q: 'How is my data kept secure?',
-                a: "All data is encrypted in transit (TLS) and at rest. We only store what's needed to generate your page. See our privacy policy for full details.",
+                a: "All data is encrypted in transit (TLS) and at rest. We only store what's needed to build and publish your site. See our privacy policy for full details.",
               },
             ].map(({ q, a }, i) => (
               <div class="faq-item">

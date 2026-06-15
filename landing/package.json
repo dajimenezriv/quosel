@@ -11,7 +11,8 @@
     "========== Checks ==========": "",
     "check-deps": "npm-check-updates -u",
     "format": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format:fix": "prettier . --write",
+    "knip": "knip"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+    "knip": "^6.16.1",
     "npm-check-updates": "^22.2.1",
     "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
