@@ -21,6 +21,7 @@
     "backend": false,
     "frontend": false,
     "landing": false,
+    "sites": false,
     "templates": false
   },
   "git.ignoreLimitWarning": true,

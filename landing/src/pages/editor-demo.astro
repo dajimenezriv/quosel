@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import editorPreview from '../assets/circolo-popolare-editor.png';
+import BrowserShowcase from '../components/browser-showcase.astro';
+
+const editorUrl = 'https://app.quosel.com/public-editor/9acafda9-c93c-4a78-9351-44b0367cc4c9';
+---
+
+<BrowserShowcase
+  id="editor-demo"
+  title="Real-Time Editing"
+  description="Share a link and let the client polish the copy live — no account needed."
+  url="app.quosel.com/public-editor"
+  href={editorUrl}
+  linkLabel="Open editor">
+  <svg
+    slot="icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="11"
+    height="11"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="shrink-0 text-orange-500"
+    ><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg
+  >
+
+  <Image
+    src={editorPreview}
+    alt="Editing the Circolo Popolare site copy in the Quosel public editor"
+    width={1020}
+    loading="lazy"
+    class="block w-full"
+  />
+</BrowserShowcase>

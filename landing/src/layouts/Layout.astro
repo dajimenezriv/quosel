@@ -1,5 +1,11 @@
 ---
 import '../styles/global.css';
+
+const siteUrl = 'https://quosel.com/';
+const title = 'Quosel — Build, get approved, and ship local-business websites';
+const description =
+  'Start from a modern template, let AI write the copy, and share a live link clients can edit in real time — then publish to their own custom domain. Built for freelancers and agencies.';
+const ogImage = new URL('/og.png', siteUrl).href;
 ---
 
 <!doctype html>
@@ -9,11 +15,26 @@ import '../styles/global.css';
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Quosel — Instant landing pages from a Google Maps link</title>
-    <meta
-      name="description"
-      content="Paste a Google Maps URL, get a polished landing page for that business in minutes. Built for freelancers and agencies."
-    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Quosel" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1912" />
+    <meta property="og:image:height" content="914" />
+    <meta property="og:image:alt" content="Quosel — build and ship local-business websites" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <script is:inline>
       // Prevent flash of wrong theme — must run before body renders
       const stored = localStorage.getItem('theme');
