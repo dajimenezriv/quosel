@@ -1,5 +1,9 @@
 # Quosel
 
+## Landing
+
+[OG links](https://www.opengraph.xyz/url/https%3A%2F%2Fquosel.com)
+
 ## Frontend
 
 ### Cloudflare
