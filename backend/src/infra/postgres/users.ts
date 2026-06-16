@@ -1,5 +1,5 @@
 import type { UserId } from '@/core/types';
-import { circoloPopolareBlocks, claudeStyles } from '@quosel/templates';
+import { circoloPopolareBlocks, circoloPopolareContext, claudeStyles } from '@quosel/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 import { Websites } from './websites';
@@ -28,20 +28,14 @@ export class Users {
         return { user: userRow, created: false };
       }
 
-      const userRow = await tx.user.create({
-        data: {
-          ...data,
-          googleId,
-          subscriptionStatus: '',
-          subscriptionPriceId: '',
-        },
-      });
+      const userRow = await tx.user.create({ data: { ...data, googleId } });
 
       const name = 'Circolo Popolare';
       await tx.website.create({
         data: {
           userId: userRow.id,
           name,
+          context: circoloPopolareContext,
           slug: Websites.randomSlug(name),
           blocks: circoloPopolareBlocks,
           styles: claudeStyles,

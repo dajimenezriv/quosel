@@ -424,6 +424,57 @@
         }
       }
     },
+    "/websites/generate-field-text": {
+      "post": {
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "text"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/websites/{websiteId}": {
       "get": {
         "parameters": [
@@ -454,6 +505,9 @@
                       "type": "string"
                     },
                     "slug": {
+                      "type": "string"
+                    },
+                    "context": {
                       "type": "string"
                     },
                     "blocks": {
@@ -496,11 +550,9 @@
                                       "hero"
                                     ]
                                   },
-                                  "firstTitle": {
-                                    "type": "string"
-                                  },
-                                  "secondTitle": {
-                                    "type": "string"
+                                  "title": {
+                                    "type": "string",
+                                    "default": ""
                                   },
                                   "text": {
                                     "type": "string"
@@ -520,8 +572,6 @@
                                 },
                                 "required": [
                                   "type",
-                                  "firstTitle",
-                                  "secondTitle",
                                   "text",
                                   "ctaText",
                                   "ctaLink",
@@ -1054,6 +1104,7 @@
                     "userId",
                     "name",
                     "slug",
+                    "context",
                     "blocks",
                     "styles",
                     "createdAt",
@@ -1109,6 +1160,9 @@
                   "slug": {
                     "type": "string"
                   },
+                  "context": {
+                    "type": "string"
+                  },
                   "blocks": {
                     "type": "object",
                     "properties": {
@@ -1149,11 +1203,9 @@
                                     "hero"
                                   ]
                                 },
-                                "firstTitle": {
-                                  "type": "string"
-                                },
-                                "secondTitle": {
-                                  "type": "string"
+                                "title": {
+                                  "type": "string",
+                                  "default": ""
                                 },
                                 "text": {
                                   "type": "string"
@@ -1173,8 +1225,6 @@
                               },
                               "required": [
                                 "type",
-                                "firstTitle",
-                                "secondTitle",
                                 "text",
                                 "ctaText",
                                 "ctaLink",
@@ -1696,6 +1746,7 @@
                 },
                 "required": [
                   "slug",
+                  "context",
                   "blocks",
                   "styles"
                 ]

@@ -10,6 +10,7 @@ const ResponseSchema = z.object({
   userId: z.string(),
   name: z.string(),
   slug: z.string(),
+  context: z.string(),
   blocks: blocksSchema,
   styles: stylesSchema,
   createdAt: z.date(),
