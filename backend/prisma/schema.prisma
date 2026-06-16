@@ -20,7 +20,7 @@ model User {
   subscriptionStatus   String    @default("") @map("subscription_status")
   subscriptionPriceId  String    @default("") @map("subscription_price_id")
   currentPeriodEnd     DateTime? @map("current_period_end") @db.Timestamptz
-  cancelAtPeriodEnd    Boolean   @default(false) @map("cancel_at_period_end")
+  subscriptionCancelAt DateTime? @map("subscription_cancel_at") @db.Timestamptz
   createdAt            DateTime  @default(now()) @map("created_at") @db.Timestamptz
 
   sessions      Session[]

@@ -9,7 +9,7 @@ export async function syncSubscription(sub: Stripe.Subscription) {
   const priceId = item?.price.id ?? '';
   const periodEnd = item?.current_period_end;
   const currentPeriodEnd = periodEnd ? new Date(periodEnd * 1000) : null;
-  const cancelAtPeriodEnd = sub.cancel_at_period_end;
+  const cancelAt = sub.cancel_at ? new Date(sub.cancel_at * 1000) : null;
 
   logger.info('Stripe sync subscription', {
     customerId,
@@ -17,7 +17,7 @@ export async function syncSubscription(sub: Stripe.Subscription) {
     status: sub.status,
     priceId,
     currentPeriodEnd,
-    cancelAtPeriodEnd,
+    cancelAt,
   });
 
   await Users.updateByStripeCustomerId(customerId, {
@@ -25,6 +25,6 @@ export async function syncSubscription(sub: Stripe.Subscription) {
     subscriptionStatus: sub.status,
     subscriptionPriceId: priceId,
     currentPeriodEnd,
-    cancelAtPeriodEnd,
+    subscriptionCancelAt: cancelAt,
   });
 }

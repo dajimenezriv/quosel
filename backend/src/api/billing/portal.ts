@@ -21,7 +21,7 @@ export const portal: RouteHandler<typeof portalRoute, { Variables: AuthVariables
 
   const session = await stripe.billingPortal.sessions.create({
     customer: customerId,
-    return_url: env.FRONTEND_URL,
+    return_url: `${env.FRONTEND_URL}/account`,
   });
 
   return jsonResponse(c, ResponseSchema, { url: session.url }, 200);
