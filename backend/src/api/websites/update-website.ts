@@ -5,7 +5,7 @@ import { R2 } from '@/infra/cloudflare/r2';
 import type { Prisma } from '@/infra/postgres/prisma/client';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/templates';
+import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/core/templates';
 
 const BodySchema = z.object({
   name: z.string().optional(),

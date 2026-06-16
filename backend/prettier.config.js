@@ -1,3 +1,3 @@
-import quoselConfig from '@quosel/templates/prettier';
+import quoselConfig from '@quosel/core/prettier';
 
 export default quoselConfig();

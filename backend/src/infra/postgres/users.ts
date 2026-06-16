@@ -1,5 +1,5 @@
 import type { UserId } from '@/core/types';
-import { circoloPopolareBlocks, circoloPopolareContext, claudeStyles } from '@quosel/templates';
+import { circoloPopolareBlocks, circoloPopolareContext, claudeStyles } from '@quosel/core/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 import { Websites } from './websites';

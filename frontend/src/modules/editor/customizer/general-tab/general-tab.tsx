@@ -2,7 +2,7 @@ import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
-import { slugify } from '@quosel/templates';
+import { slugify } from '@quosel/core/templates';
 import { produce } from 'immer';
 import { Field } from '../utils';
 

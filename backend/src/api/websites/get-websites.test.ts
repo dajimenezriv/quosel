@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { deepMocked, expectError, expectJson, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
-import { claudeStyles } from '@quosel/templates';
+import { claudeStyles } from '@quosel/core/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
 

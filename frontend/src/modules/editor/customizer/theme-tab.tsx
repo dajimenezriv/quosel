@@ -1,6 +1,6 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { useEditorStore } from '@/core/editor/use-editor-store';
-import { stylesSchema } from '@quosel/templates';
+import { stylesSchema } from '@quosel/core/templates';
 import { produce } from 'immer';
 import { Lightbulb } from 'lucide-react';
 import { useRef, useState } from 'react';

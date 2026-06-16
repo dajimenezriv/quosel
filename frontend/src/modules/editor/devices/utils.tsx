@@ -1,4 +1,4 @@
-import { buildRootStyles, TemplateBody, type TemplateData } from '@quosel/templates';
+import { buildRootStyles, TemplateBody, type TemplateData } from '@quosel/core/templates';
 import Frame from 'react-frame-component';
 
 const FRAME_INITIAL_CONTENT = `<!DOCTYPE html><html lang="es"><head>

@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 import type { UserId } from '@/core/types';
-import { claudeStyles, emptyBlocks, slugify } from '@quosel/templates';
+import { claudeStyles, emptyBlocks, slugify } from '@quosel/core/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 

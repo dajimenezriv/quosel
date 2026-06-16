@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-    "@quosel/templates": "workspace:*",
+    "@quosel/core": "workspace:*",
     "knip": "^6.16.1",
     "npm-check-updates": "^22.2.3",
     "prettier": "^3.8.4",

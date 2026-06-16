@@ -3,7 +3,7 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { blocksSchema, stylesSchema, type Blocks, type Styles } from '@quosel/templates';
+import { blocksSchema, stylesSchema, type Blocks, type Styles } from '@quosel/core/templates';
 
 const ResponseSchema = z.object({
   id: z.string(),

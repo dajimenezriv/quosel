@@ -2,7 +2,7 @@ import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { ReviewsBlock } from '@quosel/templates';
+import type { ReviewsBlock } from '@quosel/core/templates';
 import { Plus, Star, Trash2 } from 'lucide-react';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';

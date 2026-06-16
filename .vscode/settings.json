@@ -19,10 +19,10 @@
     "**/.git": true,
     "**/node_modules": true,
     "backend": false,
+    "core": false,
     "frontend": false,
     "landing": false,
-    "sites": false,
-    "templates": false
+    "sites": false
   },
   "git.ignoreLimitWarning": true,
   "js/ts.referencesCodeLens.enabled": true,
