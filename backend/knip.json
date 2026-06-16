@@ -1,4 +1,4 @@
 {
-  "ignoreDependencies": ["@prisma/client"],
+  "ignoreDependencies": ["@prisma/client", "react", "react-dom"],
   "project": ["src/**/*.ts", "tests/**/*.ts"]
 }

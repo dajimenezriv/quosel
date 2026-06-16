@@ -15,7 +15,7 @@ FROM node:24-alpine AS build
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@11 --activate
 COPY pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY templates ./templates
+COPY core ./core
 
 WORKDIR /app/backend
 COPY backend/package.json ./
