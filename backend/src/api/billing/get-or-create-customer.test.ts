@@ -35,6 +35,16 @@ describe('getOrCreateCustomer', () => {
     calls(stripe.customers.create).toStrictEqual([]);
   });
 
+  it('should not update the user when reusing an existing customer', async () => {
+    // Given
+    deepMocked(Users.getById).mockResolvedValue({ stripeCustomerId: 'existingCustomerId' });
+    deepMocked(stripe.customers.retrieve).mockResolvedValue({ id: 'existingCustomerId' });
+    // When
+    await getOrCreateCustomer(userId);
+    // Then
+    calls(Users.update).toStrictEqual([]);
+  });
+
   it('should create a new customer when the user has none', async () => {
     // When
     const res = await getOrCreateCustomer(userId);

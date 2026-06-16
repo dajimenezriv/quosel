@@ -6,6 +6,7 @@ import { logger } from '@/core/logger';
 import { Users } from '@/infra/postgres/users';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import type Stripe from 'stripe';
+import { syncSubscription } from './sync-subscription';
 import { stripe } from './utils';
 
 const ResponseSchema = z.object({ received: z.boolean() });
@@ -59,27 +60,3 @@ export const webhooksStripe: RouteHandler<typeof webhooksStripeRoute, { Variable
 
   return jsonResponse(c, ResponseSchema, { received: true }, 200);
 };
-
-async function syncSubscription(sub: Stripe.Subscription) {
-  const customerId = typeof sub.customer === 'string' ? sub.customer : sub.customer.id;
-
-  const item = sub.items.data[0];
-  const priceId = item?.price.id ?? '';
-  const periodEnd = item?.current_period_end;
-  const currentPeriodEnd = periodEnd ? new Date(periodEnd * 1000) : null;
-
-  logger.info('Stripe sync subscription', {
-    customerId,
-    subId: sub.id,
-    status: sub.status,
-    priceId,
-    currentPeriodEnd,
-  });
-
-  await Users.updateByStripeCustomerId(customerId, {
-    stripeSubscriptionId: sub.id,
-    subscriptionStatus: sub.status,
-    subscriptionPriceId: priceId,
-    currentPeriodEnd: currentPeriodEnd,
-  });
-}
