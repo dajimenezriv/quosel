@@ -54,11 +54,12 @@ export default function quoselConfig({ env = 'node', react = false, ignores = []
     tseslint.configs.recommended,
     sonarjs.configs.recommended,
     ...(react ? [reactHooks.configs.flat.recommended, reactRefresh.configs.vite] : []),
+    { languageOptions: { parserOptions: { tsconfigRootDir } } },
     {
       files: ['**/*.{ts,tsx}'],
       languageOptions: {
         globals: env === 'browser' ? globals.browser : globals.node,
-        parserOptions: { projectService: true, tsconfigRootDir },
+        parserOptions: { projectService: true },
       },
       plugins: { unicorn },
       rules,

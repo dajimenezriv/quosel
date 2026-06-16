@@ -6,7 +6,8 @@
   "license": "UNLICENSED",
   "exports": {
     ".": "./src/index.ts",
-    "./eslint": "./eslint.shared.js"
+    "./eslint": "./eslint.shared.js",
+    "./prettier": "./prettier.shared.js"
   },
   "scripts": {
     "dev": "vite",

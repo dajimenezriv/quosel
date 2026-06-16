@@ -244,6 +244,9 @@ importers:
       '@ianvs/prettier-plugin-sort-imports':
         specifier: ^4.7.1
         version: 4.7.1(prettier@3.8.4)
+      '@quosel/templates':
+        specifier: workspace:*
+        version: link:../templates
       knip:
         specifier: ^6.16.1
         version: 6.16.1
