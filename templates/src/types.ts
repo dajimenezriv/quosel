@@ -3,8 +3,7 @@ import z from 'zod';
 export type HeroBlock = z.infer<typeof heroBlockSchema>;
 const heroBlockSchema = z.object({
   type: z.literal('hero'),
-  firstTitle: z.string(),
-  secondTitle: z.string(),
+  title: z.string().default(''),
   text: z.string(),
   ctaText: z.string(),
   ctaLink: z.string(),
