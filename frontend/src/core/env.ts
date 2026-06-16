@@ -2,7 +2,6 @@ import { z } from 'zod';
 
 const EnvSchema = z.object({
   VITE_API_URL: z.string().min(1),
-  VITE_POSTHOG_KEY: z.string().optional(),
 });
 
 const parsed = EnvSchema.safeParse(import.meta.env);
