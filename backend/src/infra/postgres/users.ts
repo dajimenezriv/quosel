@@ -16,7 +16,7 @@ export class Users {
   }
 
   static async updateByStripeCustomerId(stripeCustomerId: string, data: Prisma.UserUncheckedUpdateInput) {
-    return await prisma.user.updateMany({ where: { stripeCustomerId }, data });
+    return await prisma.user.update({ where: { stripeCustomerId }, data });
   }
 
   static async createOrUpdate(googleId: string, data: GoogleProfile) {
