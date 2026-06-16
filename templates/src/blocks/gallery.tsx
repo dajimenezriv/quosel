@@ -1,4 +1,5 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { RichText } from '../core/rich-text';
 import { slugify } from '../core/utils';
 import type { GalleryBlock } from '../types';
 
@@ -9,7 +10,9 @@ export function Gallery({ block }: { block: GalleryBlock }) {
         <div className="flex flex-col gap-4">
           <p className="text-primary text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className="text-secondary-foreground text-5xl">{block.title}</h2>
+            <h2 className="text-secondary-foreground text-5xl">
+              <RichText text={block.title} />
+            </h2>
             <p className="text-secondary-foreground/50 text-sm leading-relaxed italic md:w-150 md:text-end">{block.text}</p>
           </div>
         </div>

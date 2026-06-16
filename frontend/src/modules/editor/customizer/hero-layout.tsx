@@ -1,8 +1,8 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import type { HeroBlock } from '@quosel/templates';
+import { circoloPopolareHero, type HeroBlock } from '@quosel/templates';
 import { Type } from 'lucide-react';
+import { GenerateTextField } from './generate-text-field';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
@@ -14,37 +14,30 @@ interface Props {
 }
 
 export function HeroLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<HeroBlock>(data, index);
+  const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<HeroBlock>(data, index);
 
   return (
     <Section title="Hero" icon={<Type className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
-      <Field label="First line">
-        <Textarea
-          className="min-h-0"
-          value={block.firstTitle}
-          onChange={handleTextArea((block, value) => {
-            block.firstTitle = value;
-          })}
-        />
-      </Field>
-      <Field label="Second line">
-        <Textarea
-          className="min-h-0"
-          value={block.secondTitle}
-          onChange={handleTextArea((block, value) => {
-            block.secondTitle = value;
-          })}
-        />
-      </Field>
-      <Field label="Description">
-        <Textarea
-          className="min-h-0"
-          value={block.text}
-          onChange={handleTextArea((block, value) => {
-            block.text = value;
-          })}
-        />
-      </Field>
+      <GenerateTextField
+        label="Title"
+        generateLabel="Hero title"
+        value={block.title}
+        example={circoloPopolareHero.title}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.title = value;
+        }}
+      />
+      <GenerateTextField
+        label="Description"
+        generateLabel="Hero description"
+        value={block.text}
+        example={circoloPopolareHero.text}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.text = value;
+        }}
+      />
       <Field label="Image">
         <ImageField
           value={block.imageUrl}

@@ -5,6 +5,7 @@ import { client } from '../client';
 
 export interface WebsiteData {
   slug: string;
+  context: string;
   blocks: Blocks;
   styles: Styles;
 }
@@ -19,11 +20,11 @@ export function useUpdateWebsite() {
   return useMutation({
     mutationFn: async ({ websiteId, publish, data }: Props) => {
       const { error } = await client.PUT('/websites/{websiteId}', {
+        body: data,
         params: {
           path: { websiteId },
           query: { publish },
         },
-        body: data,
       });
 
       if (error) throw error;

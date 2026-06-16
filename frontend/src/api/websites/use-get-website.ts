@@ -8,6 +8,7 @@ export function useGetWebsite(websiteId: string) {
       const { data, error } = await client.GET('/websites/{websiteId}', {
         params: { path: { websiteId } },
       });
+
       if (error) throw error;
       return data;
     },

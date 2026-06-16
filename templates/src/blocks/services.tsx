@@ -1,4 +1,5 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { RichText } from '../core/rich-text';
 import { slugify } from '../core/utils';
 import type { ServicesBlock } from '../types';
 
@@ -8,7 +9,9 @@ export function Services({ block }: { block: ServicesBlock }) {
       <div className="flex w-full max-w-250 flex-col">
         <div className="mb-10 flex flex-col">
           <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
-          <h2 className="text-secondary-foreground text-5xl leading-tight">{block.title}</h2>
+          <h2 className="text-secondary-foreground text-5xl leading-tight">
+            <RichText text={block.title} />
+          </h2>
         </div>
 
         <div className="flex flex-col gap-10">

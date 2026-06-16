@@ -1,5 +1,6 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { slugify } from '@quosel/templates';
 import { produce } from 'immer';
@@ -33,6 +34,20 @@ export function GeneralTab({ data }: Props) {
             updateDraft(
               produce(data, (draft) => {
                 draft.slug = slugify(e.target.value);
+              }),
+            );
+          }}
+        />
+      </Field>
+      <Field label="AI Context">
+        <Textarea
+          value={data.context}
+          placeholder="Describe the business (what it offers, tone, audience). Used when generating field text."
+          rows={4}
+          onChange={(e) => {
+            updateDraft(
+              produce(data, (draft) => {
+                draft.context = e.target.value;
               }),
             );
           }}

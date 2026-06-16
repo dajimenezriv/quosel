@@ -1,4 +1,4 @@
-import type { Blocks, HeroBlock } from '../types';
+import type { Blocks, HeroBlock, InfoBlock } from '../types';
 
 export const circoloPopolareContext = `Circolo Popolare is an Italian restaurant and pizzeria from the Big Mamma group, with locations in London, Manchester, Paris, Barcelona, and Madrid.\n\nOffering: Authentic Southern Italian food made for sharing — Neapolitan pizzas, handmade pasta (signature Carbonara served from a pecorino wheel), antipasti, grilled meats, and over-the-top desserts. Big draw is the maximalist setting: hanging plants, festoon lights, walls of vintage liquor bottles, long communal tables, bold cocktails.\n\nTone: Warm, playful, theatrical, unmistakably Italian. Leans into abundance and indulgence, drops in Italian phrases (la squadra, buon appetito), cheeky rather than formal.\n\nAudience: Groups, families, and couples after a lively, atmospheric night out — people who value vibe and Instagram-worthy interiors over quiet fine dining.\n\nFor a real test case: it's a branded chain with its own house voice, so mimic the structure but write original phrasing for anything published.`;
 
@@ -11,6 +11,18 @@ export const circoloPopolareHero: HeroBlock = {
   phone: '+44 204 578 4370',
   imageUrl:
     'https://cdn.sanity.io/images/aa3sekul/production/d229986a2fe1430dd3ef952a4c294ed56441794d-7243x4831.jpg?w=3072&fit=crop&auto=format',
+};
+
+export const circoloPopolareInfo: InfoBlock = {
+  type: 'info',
+  nav: 'About Us',
+  title: 'Circolo Popolare London - _~Italian Restaurant & Pizzeria~_ in Fitzrovia.',
+  text1:
+    '_Our limited-edition crockery finally landed! From Alemanna and Trinarchia in Sicily to Fima and Nataloni in Umbria, bring home the ultimate Italian tablescape._',
+  text2:
+    'The squadra in the kitchen is cooking up a generous Italo-feast: think crispy Neapolitan Pizzas, creamy burratas and Carbonara served from a Pecorino wheel, ~all handmade with fresh ingredients from the Bel Paese~.\n\nTake a seat at the long Mediterranean table and admire the 20,000 bottles of vintage spirits and wines, lining up the walls whilst sipping on your glass of Espresso Martini.\n\nThis is your ~Sicilian getaway in London~.',
+  imageUrl:
+    'https://cdn.sanity.io/images/aa3sekul/production/b02785058d8cc5dd327d343ae6bf54ab71e69cf5-9358x6239.jpg?w=3072&fit=crop&auto=format',
 };
 
 export const circoloPopolareBlocks: Blocks = {
@@ -31,17 +43,7 @@ export const circoloPopolareBlocks: Blocks = {
         { value: 'M-S', label: 'MORNING AND AFTERNOON' },
       ],
     },
-    {
-      type: 'info',
-      nav: 'About Us',
-      title: 'Circolo Popolare London - _~Italian Restaurant & Pizzeria~_ in Fitzrovia.',
-      text1:
-        '_Our limited-edition crockery finally landed! From Alemanna and Trinarchia in Sicily to Fima and Nataloni in Umbria, bring home the ultimate Italian tablescape._',
-      text2:
-        'The squadra in the kitchen is cooking up a generous Italo-feast: think crispy Neapolitan Pizzas, creamy burratas and Carbonara served from a Pecorino wheel, ~all handmade with fresh ingredients from the Bel Paese~.\n\nTake a seat at the long Mediterranean table and admire the 20,000 bottles of vintage spirits and wines, lining up the walls whilst sipping on your glass of Espresso Martini.\n\nThis is your ~Sicilian getaway in London~.',
-      imageUrl:
-        'https://cdn.sanity.io/images/aa3sekul/production/b02785058d8cc5dd327d343ae6bf54ab71e69cf5-9358x6239.jpg?w=3072&fit=crop&auto=format',
-    },
+    circoloPopolareInfo,
     {
       type: 'cta',
       title: '_~Every detail matters~_',
