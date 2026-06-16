@@ -3,6 +3,7 @@ import { z } from '@hono/zod-openapi';
 import { logger } from './logger';
 
 const EnvSchema = z.object({
+  DEEPSEEK_API_KEY: z.string().min(1),
   DATABASE_URL: z.string().min(1),
   FRONTEND_URL: z.url(),
   GOOGLE_OAUTH_CLIENT_ID: z.string().min(1),

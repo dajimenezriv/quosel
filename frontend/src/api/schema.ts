@@ -383,6 +383,57 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/websites/generate-field-text": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": {
+                        prompt: string;
+                    };
+                };
+            };
+            responses: {
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": {
+                            text: string;
+                        };
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/websites/{websiteId}": {
         parameters: {
             query?: never;
@@ -411,6 +462,7 @@ export interface paths {
                             userId: string;
                             name: string;
                             slug: string;
+                            context: string;
                             blocks: {
                                 /** @enum {number} */
                                 schemaVersion: 1;
@@ -422,8 +474,8 @@ export interface paths {
                                 blocks: ({
                                     /** @enum {string} */
                                     type: "hero";
-                                    firstTitle: string;
-                                    secondTitle: string;
+                                    /** @default  */
+                                    title: string;
                                     text: string;
                                     ctaText: string;
                                     ctaLink: string;
@@ -590,6 +642,7 @@ export interface paths {
                     "application/json": {
                         name?: string;
                         slug: string;
+                        context: string;
                         blocks: {
                             /** @enum {number} */
                             schemaVersion: 1;
@@ -601,8 +654,8 @@ export interface paths {
                             blocks: ({
                                 /** @enum {string} */
                                 type: "hero";
-                                firstTitle: string;
-                                secondTitle: string;
+                                /** @default  */
+                                title?: string;
                                 text: string;
                                 ctaText: string;
                                 ctaLink: string;

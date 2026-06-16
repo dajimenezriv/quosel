@@ -24,6 +24,7 @@ describe('get-website', () => {
       userId: 'userId',
       name: 'name',
       slug: 'slug',
+      context: 'context',
       blocks: emptyBlocks,
       styles: claudeStyles,
       createdAt: new Date('2024-01-01T00:00:00.000Z'),

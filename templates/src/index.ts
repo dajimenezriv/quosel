@@ -1,5 +1,5 @@
 export { emptyBlocks } from './examples/empty';
-export { circoloPopolareBlocks } from './examples/circolo-popolare';
+export { circoloPopolareContext, circoloPopolareHero, circoloPopolareInfo, circoloPopolareBlocks } from './examples/circolo-popolare';
 export { claudeStyles, buildRootStyles } from './styles';
 export { slugify } from './core/utils';
 export { renderTemplate } from './render';

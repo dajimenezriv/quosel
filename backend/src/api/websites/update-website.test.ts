@@ -8,8 +8,9 @@ vi.mock(import('@/infra/postgres/websites'));
 vi.mock(import('@/infra/cloudflare/r2'));
 
 const VALID_BODY = {
-  name: 'Website',
-  slug: 'websiteSlug',
+  name: 'name',
+  slug: 'slug',
+  context: 'context',
   blocks: emptyBlocks,
   styles: claudeStyles,
 };
@@ -18,7 +19,7 @@ describe('update-website', () => {
   const getByIdMock = deepMocked(Websites.getById);
 
   beforeEach(() => {
-    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'websiteSlug' });
+    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug' });
   });
 
   it('should return 400 if body is invalid', async () => {
@@ -52,6 +53,6 @@ describe('update-website', () => {
     // Then
     expect(res.status).toBe(204);
     calls(Websites.update).toStrictEqual(['websiteId', { ...VALID_BODY, publishedAt: expect.any(Date) }]);
-    calls(R2.upload).toStrictEqual(['websites/websiteSlug.html', expect.any(File)]);
+    calls(R2.upload).toStrictEqual(['websites/slug.html', expect.any(File)]);
   });
 });

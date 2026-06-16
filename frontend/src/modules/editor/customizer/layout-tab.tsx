@@ -15,6 +15,7 @@ import { HeroLayout } from './hero-layout';
 import { InfoLayout } from './info-layout';
 import { LocationLayout } from './location-layout';
 import { ReviewsLayout } from './reviews-layout';
+import { RichTextHint } from './rich-text-hint';
 import { ServicesLayout } from './services-layout';
 import { StatsLayout } from './stats-layout';
 import { Field, Section, Subgroup } from './utils';
@@ -67,6 +68,8 @@ export function LayoutTab({ data }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
+      <RichTextHint />
+
       <Section title="Navigation" icon={<Navigation className="h-4 w-4" />}>
         <Subgroup title="Call to Action">
           <div className="flex items-center gap-2">

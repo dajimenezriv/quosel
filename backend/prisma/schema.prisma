@@ -17,8 +17,8 @@ model User {
   picture              String
   stripeCustomerId     String?   @unique @map("stripe_customer_id")
   stripeSubscriptionId String?   @unique @map("stripe_subscription_id")
-  subscriptionStatus   String    @map("subscription_status")
-  subscriptionPriceId  String    @map("subscription_price_id")
+  subscriptionStatus   String    @default("") @map("subscription_status")
+  subscriptionPriceId  String    @default("") @map("subscription_price_id")
   currentPeriodEnd     DateTime? @map("current_period_end") @db.Timestamptz
   createdAt            DateTime  @default(now()) @map("created_at") @db.Timestamptz
 
@@ -45,6 +45,7 @@ model Website {
   userId      String    @map("user_id")
   name        String
   slug        String    @unique
+  context     String    @default("")
   blocks      Json
   styles      Json
   publishedAt DateTime? @map("published_at") @db.Timestamptz

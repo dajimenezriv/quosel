@@ -86,10 +86,13 @@ export function Subgroup({ title, onRemove, children }: { title: string; onRemov
   );
 }
 
-export function Field({ label, children }: { label: string; children: ReactNode }) {
+export function Field({ label, action, children }: { label: string; action?: ReactNode; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <Label className="text-muted-foreground text-xs">{label}</Label>
+      <div className="flex items-center justify-between">
+        <Label className="text-muted-foreground text-xs">{label}</Label>
+        {action}
+      </div>
       {children}
     </div>
   );

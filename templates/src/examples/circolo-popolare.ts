@@ -1,4 +1,29 @@
-import type { Blocks } from '../types';
+import type { Blocks, HeroBlock, InfoBlock } from '../types';
+
+export const circoloPopolareContext = `Circolo Popolare is an Italian restaurant and pizzeria from the Big Mamma group, with locations in London, Manchester, Paris, Barcelona, and Madrid.\n\nOffering: Authentic Southern Italian food made for sharing — Neapolitan pizzas, handmade pasta (signature Carbonara served from a pecorino wheel), antipasti, grilled meats, and over-the-top desserts. Big draw is the maximalist setting: hanging plants, festoon lights, walls of vintage liquor bottles, long communal tables, bold cocktails.\n\nTone: Warm, playful, theatrical, unmistakably Italian. Leans into abundance and indulgence, drops in Italian phrases (la squadra, buon appetito), cheeky rather than formal.\n\nAudience: Groups, families, and couples after a lively, atmospheric night out — people who value vibe and Instagram-worthy interiors over quiet fine dining.`;
+
+export const circoloPopolareHero: HeroBlock = {
+  type: 'hero',
+  title: 'Your italian restaurant,\n_~Circolo Popolare~_',
+  text: '_This is Circolo Popolare, our stunning trattoria in the heart of Fitzrovia, where the atmosphere is as warm as the Sicilian sun and food is the love language._',
+  ctaText: 'Book a Table',
+  ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
+  phone: '+44 204 578 4370',
+  imageUrl:
+    'https://cdn.sanity.io/images/aa3sekul/production/d229986a2fe1430dd3ef952a4c294ed56441794d-7243x4831.jpg?w=3072&fit=crop&auto=format',
+};
+
+export const circoloPopolareInfo: InfoBlock = {
+  type: 'info',
+  nav: 'About Us',
+  title: 'Circolo Popolare London - _~Italian Restaurant & Pizzeria~_ in Fitzrovia.',
+  text1:
+    '_Our limited-edition crockery finally landed! From Alemanna and Trinarchia in Sicily to Fima and Nataloni in Umbria, bring home the ultimate Italian tablescape._',
+  text2:
+    'The squadra in the kitchen is cooking up a generous Italo-feast: think crispy Neapolitan Pizzas, creamy burratas and Carbonara served from a Pecorino wheel, ~all handmade with fresh ingredients from the Bel Paese~.\n\nTake a seat at the long Mediterranean table and admire the 20,000 bottles of vintage spirits and wines, lining up the walls whilst sipping on your glass of Espresso Martini.\n\nThis is your ~Sicilian getaway in London~.',
+  imageUrl:
+    'https://cdn.sanity.io/images/aa3sekul/production/b02785058d8cc5dd327d343ae6bf54ab71e69cf5-9358x6239.jpg?w=3072&fit=crop&auto=format',
+};
 
 export const circoloPopolareBlocks: Blocks = {
   schemaVersion: 1,
@@ -8,17 +33,7 @@ export const circoloPopolareBlocks: Blocks = {
     ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   },
   blocks: [
-    {
-      type: 'hero',
-      firstTitle: 'Your italian restaurant,',
-      secondTitle: 'Circolo Popolare',
-      text: 'This is Circolo Popolare, our stunning trattoria in the heart of Fitzrovia, where the atmosphere is as warm as the Sicilian sun and food is the love language.',
-      ctaText: 'Book a Table',
-      ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
-      phone: '+44 204 578 4370',
-      imageUrl:
-        'https://cdn.sanity.io/images/aa3sekul/production/d229986a2fe1430dd3ef952a4c294ed56441794d-7243x4831.jpg?w=3072&fit=crop&auto=format',
-    },
+    circoloPopolareHero,
     {
       type: 'stats',
       stats: [
@@ -28,20 +43,10 @@ export const circoloPopolareBlocks: Blocks = {
         { value: 'M-S', label: 'MORNING AND AFTERNOON' },
       ],
     },
-    {
-      type: 'info',
-      nav: 'About Us',
-      title: 'Circolo Popolare London - Italian Restaurant & Pizzeria in Fitzrovia.',
-      text1:
-        'Our limited-edition crockery finally landed! From Alemanna and Trinarchia in Sicily to Fima and Nataloni in Umbria, bring home the ultimate Italian tablescape.',
-      text2:
-        'The squadra in the kitchen is cooking up a generous Italo-feast: think crispy Neapolitan Pizzas, creamy burratas and Carbonara served from a Pecorino wheel, all handmade with fresh ingredients from the Bel Paese.\n\nTake a seat at the long Mediterranean table and admire the 20,000 bottles of vintage spirits and wines, lining up the walls whilst sipping on your glass of Espresso Martini.\n\nThis is your Sicilian getaway in London.',
-      imageUrl:
-        'https://cdn.sanity.io/images/aa3sekul/production/b02785058d8cc5dd327d343ae6bf54ab71e69cf5-9358x6239.jpg?w=3072&fit=crop&auto=format',
-    },
+    circoloPopolareInfo,
     {
       type: 'cta',
-      title: 'Every detail matters',
+      title: '_~Every detail matters~_',
       text: '',
       ctaText: '',
       ctaLink: '',
@@ -51,17 +56,17 @@ export const circoloPopolareBlocks: Blocks = {
     {
       type: 'gallery',
       nav: 'Gallery',
-      title: 'Our meals.',
+      title: 'Our _~meals~_.',
       text: `Try our speedy lunch set menu with your colleagues, for when you're short on time but big on lunch! Available from Monday to Friday, from 12:00 15:45, from £23.`,
       images: [
-        'https://cdn.sanity.io/images/aa3sekul/production/3f2fbe9463e75cfc24bbf7fe3f3e7935aabbe08b-3666x5499.jpg?w=3072&fit=crop&auto=format',
-        'https://cdn.sanity.io/images/aa3sekul/production/86eabde60877aa041890869c5fa6c3ddcf7cf4ab-8691x5794.jpg?w=3072&fit=crop&auto=format',
+        'https://cdn.sanity.io/images/aa3sekul/production/3f2fbe9463e75cfc24bbf7fe3f3e7935aabbe08b-3666x5499.jpg?w=1024&q=60&fit=crop&auto=format',
+        'https://cdn.sanity.io/images/aa3sekul/production/86eabde60877aa041890869c5fa6c3ddcf7cf4ab-8691x5794.jpg?w=1024&q=60&fit=crop&auto=format',
         'https://media.timeout.com/images/105541105/image.jpg',
-        'https://cdn.sanity.io/images/aa3sekul/production/d6dab7745c43fb455699b1e3f7e0b269a6c1df15-6104x8139.jpg?w=3072&fit=crop&auto=format',
-        'https://cdn.sanity.io/images/aa3sekul/production/62210fbbc3bab7b6c554263f48c5090c843d8a83-5915x8873.jpg?w=3072&fit=crop&auto=format',
-        'https://cdn.sanity.io/images/aa3sekul/production/6bfc32b2fc9202942d5ac593de4be4d6cfe21b2d-5715x8573.jpg?w=3072&fit=crop&auto=format',
-        'https://cdn.prod.rexby.com/image/d965fc1d80984631af4b7a2a80f833c4?format=webp&width=1080&height=1350&quality=80',
-        'https://cdn.sanity.io/images/aa3sekul/production/911e0e36c573f25347ba7e59cea3622f1c8a0369-6041x9062.jpg?w=3072&fit=crop&auto=format',
+        'https://cdn.sanity.io/images/aa3sekul/production/d6dab7745c43fb455699b1e3f7e0b269a6c1df15-6104x8139.jpg?w=1024&q=60&fit=crop&auto=format',
+        'https://cdn.sanity.io/images/aa3sekul/production/62210fbbc3bab7b6c554263f48c5090c843d8a83-5915x8873.jpg?w=1024&q=60&fit=crop&auto=format',
+        'https://cdn.sanity.io/images/aa3sekul/production/6bfc32b2fc9202942d5ac593de4be4d6cfe21b2d-5715x8573.jpg?w=1024&q=60&fit=crop&auto=format',
+        'https://cdn.prod.rexby.com/image/d965fc1d80984631af4b7a2a80f833c4?format=webp&width=540&height=675&quality=50',
+        'https://cdn.sanity.io/images/aa3sekul/production/911e0e36c573f25347ba7e59cea3622f1c8a0369-6041x9062.jpg?w=1024&q=60&fit=crop&auto=format',
       ],
       ctaText: 'See more on Instagram →',
       ctaLink: 'https://www.instagram.com/circolopopolare',
@@ -69,7 +74,7 @@ export const circoloPopolareBlocks: Blocks = {
     {
       type: 'services',
       nav: 'Services',
-      title: 'Services & prices',
+      title: 'Services _~&~_ prices',
       text: 'Book directly online: pick the dish, the day and the time. No surprises, no fine print.',
       serviceGroups: [
         {
