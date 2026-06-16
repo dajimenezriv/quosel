@@ -1,8 +1,12 @@
-import './instrument';
 import { serve } from '@hono/node-server';
+import { init } from '@sentry/node';
 import { app } from './app';
 import { env } from './core/env';
 import { logger } from './core/logger';
+
+if (env.NODE_ENV === 'production') {
+  init({ dsn: env.SENTRY_DSN });
+}
 
 if (env.NODE_ENV === 'development') {
   const { swaggerUI } = await import('@hono/swagger-ui');

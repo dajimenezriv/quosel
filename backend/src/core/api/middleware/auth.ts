@@ -6,6 +6,7 @@ import { ApiError } from '../errors';
 
 export type AuthVariables = {
   userId: UserId;
+  userEmail: string;
 };
 
 export const requireAuth = createMiddleware<{ Variables: AuthVariables }>(async (c, next) => {
@@ -16,5 +17,6 @@ export const requireAuth = createMiddleware<{ Variables: AuthVariables }>(async 
   if (!row) throw new ApiError(401, 'Unauthorized');
 
   c.set('userId', row.user.id as UserId);
+  c.set('userEmail', row.user.email);
   await next();
 });
