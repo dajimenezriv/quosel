@@ -116,6 +116,9 @@ importers:
       '@railway/cli':
         specifier: ^5.12.1
         version: 5.12.1
+      '@stripe/cli':
+        specifier: ^1.42.13
+        version: 1.42.13
       '@types/node':
         specifier: 'catalog:'
         version: 24.13.2
@@ -3162,6 +3165,41 @@ packages:
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+
+  '@stripe/cli-darwin-arm64@1.42.13':
+    resolution: {integrity: sha512-k0Wnk6M8et77rHqJrHxqzK0Mtsfmc3BGj5RWaoYgp526JQ397Uge7qdedt9IDbzC/U7TwoYh0QqVHUW1s58FRg==}
+    cpu: [arm64]
+    os: [darwin]
+    hasBin: true
+
+  '@stripe/cli-darwin-x64@1.42.13':
+    resolution: {integrity: sha512-35Y+cBkucdTrFBGySgo5mHec/7dkfRhMdIOqHydnGxYVgylYEplSPfJj3On1q0EBn4fB3AUa1Q42rmjMM95KtQ==}
+    cpu: [x64]
+    os: [darwin]
+    hasBin: true
+
+  '@stripe/cli-linux-arm64@1.42.13':
+    resolution: {integrity: sha512-lMThtoaofPMuTeJuPibCcCpNmzneTX26vIUWeRbtVDC6co2PgwCmGsFpEF2RF3ndmEWrxir/2WK8ocFDXQu9xw==}
+    cpu: [arm64]
+    os: [linux]
+    hasBin: true
+
+  '@stripe/cli-linux-x64@1.42.13':
+    resolution: {integrity: sha512-NTHgIuTSTJvGfuPVHu3R04EPCSgrSWTTv7uiscOVHUv7O9v7H6i7RIzteCRziigxNpW87EIMlFGmfFWGtvygfQ==}
+    cpu: [x64]
+    os: [linux]
+    hasBin: true
+
+  '@stripe/cli-win32-x64@1.42.13':
+    resolution: {integrity: sha512-tnC56SLJjYS6OhBq72jXvzMoy8kLaWB4EwNzIFj2l1Q2hgu7pbo91tvhYAnRnF5jh/G3C8CHl3S+trPntLQYRg==}
+    cpu: [x64]
+    os: [win32]
+    hasBin: true
+
+  '@stripe/cli@1.42.13':
+    resolution: {integrity: sha512-Tb2zo3jC0vD4bZY/btHIOPuDf9T1kVxyR09VqwzgM36j12UUrFjq4tt2/FUfFZbF1QTxcHE+dCPeQIOPM9c9DQ==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   '@tailwindcss/node@4.3.1':
     resolution: {integrity: sha512-6NDaqRoAMSXD1mr/RXu0HBvNE9a2n5tHPsxu9XHLws8o4Twes5rBM2205SUUiJ9goAtadrN6xTGX0UDEwp/N4A==}
@@ -8386,6 +8424,29 @@ snapshots:
   '@stablelib/base64@1.0.1': {}
 
   '@standard-schema/spec@1.1.0': {}
+
+  '@stripe/cli-darwin-arm64@1.42.13':
+    optional: true
+
+  '@stripe/cli-darwin-x64@1.42.13':
+    optional: true
+
+  '@stripe/cli-linux-arm64@1.42.13':
+    optional: true
+
+  '@stripe/cli-linux-x64@1.42.13':
+    optional: true
+
+  '@stripe/cli-win32-x64@1.42.13':
+    optional: true
+
+  '@stripe/cli@1.42.13':
+    optionalDependencies:
+      '@stripe/cli-darwin-arm64': 1.42.13
+      '@stripe/cli-darwin-x64': 1.42.13
+      '@stripe/cli-linux-arm64': 1.42.13
+      '@stripe/cli-linux-x64': 1.42.13
+      '@stripe/cli-win32-x64': 1.42.13
 
   '@tailwindcss/node@4.3.1':
     dependencies:

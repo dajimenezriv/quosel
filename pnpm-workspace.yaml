@@ -7,6 +7,7 @@ packages:
 allowBuilds:
   "@prisma/engines": false
   "@railway/cli": true
+  "@stripe/cli": true
   core-js: false
   esbuild: false
   prisma: false
