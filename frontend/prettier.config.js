@@ -1,15 +1,3 @@
-/** @type {import("prettier").Config} */
-export default {
-  arrowParens: 'always',
-  bracketSameLine: true,
-  bracketSpacing: true,
-  endOfLine: 'lf',
-  plugins: ['@ianvs/prettier-plugin-sort-imports', 'prettier-plugin-tailwindcss'],
-  printWidth: 140,
-  proseWrap: 'never',
-  semi: true,
-  singleQuote: true,
-  tabWidth: 2,
-  trailingComma: 'all',
-  useTabs: false,
-};
+import quoselConfig from '@quosel/templates/prettier';
+
+export default quoselConfig({ tailwind: true });

@@ -16,7 +16,7 @@ export function useCreateWebsite() {
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['websites'] });
+      void queryClient.invalidateQueries({ queryKey: ['websites'] });
       toast.success('Website created successfully');
     },
     onError: (error) => {
