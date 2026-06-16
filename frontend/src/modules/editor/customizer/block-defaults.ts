@@ -1,4 +1,4 @@
-import type { Blocks } from '@quosel/templates';
+import type { Blocks } from '@quosel/core/templates';
 
 type Block = Blocks['blocks'][number];
 

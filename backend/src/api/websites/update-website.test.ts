@@ -2,7 +2,7 @@ import { app } from '@/app';
 import { R2 } from '@/infra/cloudflare/r2';
 import { Websites } from '@/infra/postgres/websites';
 import { calls, deepMocked, expectError, putRequest } from '@/tests/utils.helper.test';
-import { claudeStyles, emptyBlocks } from '@quosel/templates';
+import { claudeStyles, emptyBlocks } from '@quosel/core/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
 vi.mock(import('@/infra/cloudflare/r2'));

@@ -1,4 +1,4 @@
-import type { Blocks, Styles } from '@quosel/templates';
+import type { Blocks, Styles } from '@quosel/core/templates';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { client } from '../client';

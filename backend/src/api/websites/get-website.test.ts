@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { deepMocked, expectError } from '@/tests/utils.helper.test';
-import { claudeStyles, emptyBlocks } from '@quosel/templates';
+import { claudeStyles, emptyBlocks } from '@quosel/core/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
 

@@ -1,5 +1,5 @@
 import { useThemeStore } from '@/core/theme/use-theme-store';
-import type { TemplateData } from '@quosel/templates';
+import type { TemplateData } from '@quosel/core/templates';
 import { ContentFrame } from './utils';
 
 interface Props {

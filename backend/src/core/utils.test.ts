@@ -1,4 +1,4 @@
-import { slugify } from '@quosel/templates';
+import { slugify } from '@quosel/core/templates';
 
 describe('utils', () => {
   describe('slugify', () => {

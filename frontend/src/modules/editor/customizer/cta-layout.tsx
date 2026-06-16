@@ -1,7 +1,7 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { CtaBlock } from '@quosel/templates';
+import type { CtaBlock } from '@quosel/core/templates';
 import { MousePointerClick } from 'lucide-react';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';

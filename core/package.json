@@ -1,13 +1,13 @@
 {
-  "name": "@quosel/templates",
+  "name": "@quosel/core",
   "version": "1.0.0",
   "type": "module",
   "private": true,
   "license": "UNLICENSED",
   "exports": {
-    ".": "./src/index.ts",
     "./eslint": "./eslint.shared.js",
-    "./prettier": "./prettier.shared.js"
+    "./prettier": "./prettier.shared.js",
+    "./templates": "./src/templates/index.ts"
   },
   "scripts": {
     "========== Checks ==========": "",

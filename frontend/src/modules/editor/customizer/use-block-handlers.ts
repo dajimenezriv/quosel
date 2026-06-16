@@ -1,6 +1,6 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { useEditorStore } from '@/core/editor/use-editor-store';
-import type { Blocks } from '@quosel/templates';
+import type { Blocks } from '@quosel/core/templates';
 import { produce } from 'immer';
 
 type Block = Blocks['blocks'][number];

@@ -1,6 +1,6 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
-import { circoloPopolareHero, type HeroBlock } from '@quosel/templates';
+import { circoloPopolareHero, type HeroBlock } from '@quosel/core/templates';
 import { Type } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
 import { ImageField } from './image-field';

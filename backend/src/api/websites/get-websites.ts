@@ -2,7 +2,7 @@ import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { stylesSchema, type Styles } from '@quosel/templates';
+import { stylesSchema, type Styles } from '@quosel/core/templates';
 
 const WebsiteSchema = z.object({
   id: z.string(),
