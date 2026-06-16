@@ -17,7 +17,7 @@ export function Info({ block }: { block: InfoBlock }) {
             <blockquote className="border-primary text-foreground/70 border-l-2 pl-6 text-lg">
               <RichText text={block.text1} />
             </blockquote>
-            <p className="text-foreground/60 whitespace-pre-line">
+            <p className="text-foreground/60">
               <RichText text={block.text2} />
             </p>
           </div>

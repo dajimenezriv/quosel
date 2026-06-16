@@ -13,7 +13,9 @@ export function Gallery({ block }: { block: GalleryBlock }) {
             <h2 className="text-secondary-foreground text-5xl">
               <RichText text={block.title} />
             </h2>
-            <p className="text-secondary-foreground/50 text-sm leading-relaxed italic md:w-150 md:text-end">{block.text}</p>
+            <p className="text-secondary-foreground/50 text-sm leading-relaxed md:w-150 md:text-end">
+              <RichText text={block.text} />
+            </p>
           </div>
         </div>
 
