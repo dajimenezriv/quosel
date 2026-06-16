@@ -22,8 +22,8 @@ export function useUploadImage() {
       return data;
     },
     onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ['images'] });
       toast.success('Image uploaded successfully');
-      queryClient.invalidateQueries({ queryKey: ['images'] });
     },
     onError: (error) => {
       toast.error(`Cannot upload image: ${error.message}`);

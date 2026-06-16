@@ -38,7 +38,7 @@ export function useAuth() {
   }
 
   useEffect(() => {
-    refresh().finally(() => setLoading(false));
+    void refresh().finally(() => setLoading(false));
   }, []);
 
   return {

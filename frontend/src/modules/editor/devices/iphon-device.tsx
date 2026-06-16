@@ -120,7 +120,7 @@ export function IPhoneDevice({ data }: Props) {
                   border: `1px solid ${d ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.12)'}`,
                   borderRadius: 10,
                 }}>
-                <svg width="12" height="14" viewBox="0 0 12 14" fill="none" className="shrink-0" style={{ color: d ? '#888' : '#888' }}>
+                <svg width="12" height="14" viewBox="0 0 12 14" fill="none" className="shrink-0" style={{ color: '#888' }}>
                   <rect x="0.75" y="5.75" width="10.5" height="7.5" rx="1.75" stroke="currentColor" strokeWidth="1.3" />
                   <path d="M3.5 5.5V4a2.5 2.5 0 015 0v1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
                 </svg>

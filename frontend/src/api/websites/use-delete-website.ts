@@ -20,7 +20,7 @@ export function useDeleteWebsite() {
       if (error) throw error;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['websites'] });
+      void queryClient.invalidateQueries({ queryKey: ['websites'] });
       toast.success('Website deleted successfully');
     },
     onError: (error) => {

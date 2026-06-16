@@ -26,6 +26,7 @@ export function TemplateBody({ data }: { data: TemplateData }) {
         if (block.type === 'location') return <Location key={i} block={block} />;
         if (block.type === 'cta') return <CTA key={i} block={block} />;
         if (block.type === 'footer') return <Footer key={i} data={data} block={block} />;
+        return null;
       })}
     </div>
   );
