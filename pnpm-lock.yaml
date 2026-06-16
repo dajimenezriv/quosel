@@ -31,9 +31,6 @@ importers:
       '@quosel/templates':
         specifier: workspace:*
         version: link:../templates
-      '@sentry/hono':
-        specifier: ^10.57.0
-        version: 10.57.0(@cloudflare/workers-types@4.20260613.1)(@sentry/node@10.57.0(supports-color@10.2.2))(hono@4.12.23)
       '@sentry/node':
         specifier: ^10.57.0
         version: 10.57.0(supports-color@10.2.2)
@@ -3085,25 +3082,6 @@ packages:
   '@sentry/core@10.57.0':
     resolution: {integrity: sha512-kntItTA2kiT0YpL7encXaF6mkdZMB+y48lwj8w1wkfBpfJAC7sifdgrzLQZqmsqVNE3crg9VfufaAGA+78uFMg==}
     engines: {node: '>=18'}
-
-  '@sentry/hono@10.57.0':
-    resolution: {integrity: sha512-PKu5rklGDB1pfxM3UcSjFYQKeLZrslSR7+cO2lHhhyH+dzLftk/0eDDOAjOh2Wa39D1TSuwlS/XdCyNI0y+pZA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      '@cloudflare/workers-types': ^4.x
-      '@sentry/bun': 10.57.0
-      '@sentry/cloudflare': 10.57.0
-      '@sentry/node': 10.57.0
-      hono: ^4.x
-    peerDependenciesMeta:
-      '@cloudflare/workers-types':
-        optional: true
-      '@sentry/bun':
-        optional: true
-      '@sentry/cloudflare':
-        optional: true
-      '@sentry/node':
-        optional: true
 
   '@sentry/node-core@10.57.0':
     resolution: {integrity: sha512-2v2IF6MfTiu7pimWEq2rYhZsmlwyNbs3bHUsrYFPeP/Rpa6ObDuUWPdVEzJjfyK+AqqYZYxZdV0l3+B13kTEmQ==}
@@ -8579,15 +8557,6 @@ snapshots:
 
   '@sentry/core@10.57.0': {}
 
-  '@sentry/hono@10.57.0(@cloudflare/workers-types@4.20260613.1)(@sentry/node@10.57.0(supports-color@10.2.2))(hono@4.12.23)':
-    dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@sentry/core': 10.57.0
-      hono: 4.12.23
-    optionalDependencies:
-      '@cloudflare/workers-types': 4.20260613.1
-      '@sentry/node': 10.57.0(supports-color@10.2.2)
-
   '@sentry/node-core@10.57.0(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.7.1(@opentelemetry/api@1.9.1))(@opentelemetry/instrumentation@0.214.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2))(@opentelemetry/sdk-trace-base@2.8.0(@opentelemetry/api@1.9.1))(@opentelemetry/semantic-conventions@1.41.1)':
     dependencies:
       '@sentry/core': 10.57.0
@@ -8979,7 +8948,7 @@ snapshots:
     dependencies:
       '@typescript-eslint/scope-manager': 8.60.1
       '@typescript-eslint/types': 8.60.1
-      '@typescript-eslint/typescript-estree': 8.60.1(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.60.1(supports-color@10.2.2)(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 8.60.1
       debug: 4.4.3(supports-color@10.2.2)
       eslint: 10.4.1(jiti@2.7.0)(supports-color@10.2.2)
@@ -9008,15 +8977,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.60.1(typescript@6.0.3)':
-    dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.60.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.60.1
-      debug: 4.4.3(supports-color@10.2.2)
-      typescript: 6.0.3
-    transitivePeerDependencies:
-      - supports-color
-
   '@typescript-eslint/scope-manager@8.60.1':
     dependencies:
       '@typescript-eslint/types': 8.60.1
@@ -9029,7 +8989,7 @@ snapshots:
   '@typescript-eslint/type-utils@8.60.1(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(supports-color@10.2.2)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/types': 8.60.1
-      '@typescript-eslint/typescript-estree': 8.60.1(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.60.1(supports-color@10.2.2)(typescript@6.0.3)
       '@typescript-eslint/utils': 8.60.1(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))(typescript@6.0.3)
       debug: 4.4.3(supports-color@10.2.2)
       eslint: 10.4.1(jiti@2.7.0)(supports-color@10.2.2)
@@ -9069,7 +9029,7 @@ snapshots:
 
   '@typescript-eslint/typescript-estree@8.60.1(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.60.1(typescript@6.0.3)
+      '@typescript-eslint/project-service': 8.60.1(supports-color@10.2.2)(typescript@6.0.3)
       '@typescript-eslint/tsconfig-utils': 8.60.1(typescript@6.0.3)
       '@typescript-eslint/types': 8.60.1
       '@typescript-eslint/visitor-keys': 8.60.1
@@ -9087,7 +9047,7 @@ snapshots:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.4.1(jiti@2.7.0)(supports-color@10.2.2))
       '@typescript-eslint/scope-manager': 8.60.1
       '@typescript-eslint/types': 8.60.1
-      '@typescript-eslint/typescript-estree': 8.60.1(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.60.1(supports-color@10.2.2)(typescript@6.0.3)
       eslint: 10.4.1(jiti@2.7.0)(supports-color@10.2.2)
       typescript: 6.0.3
     transitivePeerDependencies:
