@@ -1,5 +1,4 @@
 import { env } from '@/core/env';
-import posthog from 'posthog-js';
 
 async function postJson<T>(path: string): Promise<T> {
   const res = await fetch(`${env.VITE_API_URL}${path}`, {
@@ -11,13 +10,11 @@ async function postJson<T>(path: string): Promise<T> {
 }
 
 export async function startCheckout() {
-  posthog.capture('subscribe_clicked');
   const { url } = await postJson<{ url: string }>('/billing/checkout');
   window.location.href = url;
 }
 
 export async function openPortal() {
-  posthog.capture('portal_opened');
   const { url } = await postJson<{ url: string }>('/billing/portal');
   window.location.href = url;
 }

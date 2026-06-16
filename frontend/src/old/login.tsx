@@ -1,4 +1,3 @@
-import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
 import { loginWithGoogle, useAuth } from './auth';
 import { isSubscribed, openPortal, startCheckout } from './billing';
@@ -16,7 +15,6 @@ function useBillingReturn(onReturn: () => void) {
     if (!billing) return;
 
     window.history.replaceState({}, '', window.location.pathname);
-    posthog.capture(billing === 'success' ? 'checkout_completed' : 'checkout_canceled');
     if (billing === 'success') onReturn();
   }, [onReturn]);
 

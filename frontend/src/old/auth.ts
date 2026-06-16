@@ -1,6 +1,5 @@
 import { client } from '@/api/client';
 import { env } from '@/core/env';
-import posthog from 'posthog-js';
 import { useEffect, useState } from 'react';
 import type { SubscriptionStatus } from './billing';
 
@@ -14,7 +13,6 @@ export type User = {
 };
 
 export function loginWithGoogle() {
-  posthog.capture('login');
   window.location.href = `${env.VITE_API_URL}/auth/google`;
 }
 
@@ -29,22 +27,13 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   async function logout() {
-    posthog.capture('logout');
     await client.POST('/auth/logout');
     setUser(null);
-    posthog.reset();
   }
 
   async function refresh() {
     return await fetchMe().then((u) => {
       setUser(u);
-      if (u) {
-        posthog.identify(u.id, {
-          email: u.email,
-          name: u.name,
-          subscription_status: u.subscriptionStatus,
-        });
-      }
     });
   }
 
