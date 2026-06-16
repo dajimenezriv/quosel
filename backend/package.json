@@ -55,6 +55,7 @@
     "@hono/swagger-ui": "^0.6.1",
     "@ianvs/prettier-plugin-sort-imports": "catalog:",
     "@railway/cli": "^5.12.1",
+    "@stripe/cli": "^1.42.13",
     "@types/node": "catalog:",
     "@vitest/coverage-v8": "^4.1.9",
     "eslint": "catalog:",

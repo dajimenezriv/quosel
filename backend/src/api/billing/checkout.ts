@@ -26,7 +26,6 @@ export const checkout: RouteHandler<typeof checkoutRoute, { Variables: AuthVaria
     line_items: [{ price: env.STRIPE_PRICE_ID, quantity: 1 }],
     success_url: `${env.FRONTEND_URL}/?billing=success`,
     cancel_url: `${env.FRONTEND_URL}/?billing=cancel`,
-    allow_promotion_codes: true,
   });
 
   if (!session.url) throw new ApiError(500, 'No session url');

@@ -40,7 +40,8 @@ app.onError((error, c) => {
     return scope;
   });
 
-  logger.error('Unhandled error', { error });
+  const { path, method } = c.req;
+  logger.error('Unhandled error', { method, path, error });
   return c.json({ message: 'Internal Server Error' }, 500);
 });
 
