@@ -1,4 +1,5 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { RichText } from '../core/rich-text';
 import { slugify } from '../core/utils';
 import type { LocationBlock } from '../types';
 
@@ -8,13 +9,17 @@ export function Location({ block }: { block: LocationBlock }) {
       <div className="flex w-full max-w-300 flex-col gap-12 md:flex-row md:items-center md:gap-20">
         <div className="flex flex-1 flex-col">
           <p className="text-primary mb-6 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
-          <h2 className="text-foreground mb-8 text-5xl leading-tight md:mb-14 md:text-7xl">{block.title}</h2>
+          <h2 className="text-foreground mb-8 text-5xl leading-tight md:mb-14 md:text-7xl">
+            <RichText text={block.title} />
+          </h2>
 
           <div>
             {block.details.map((detail, i) => (
               <div key={i} className="border-foreground/10 flex gap-12 border-t py-6">
                 <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">{detail.label}</span>
-                <p className="text-foreground text-sm">{detail.value}</p>
+                <p className="text-foreground text-sm">
+                  <RichText text={detail.value} />
+                </p>
               </div>
             ))}
 
@@ -25,7 +30,9 @@ export function Location({ block }: { block: LocationBlock }) {
                   {block.schedule.items.map((item, i) => (
                     <div key={i} className="contents md:flex md:gap-8">
                       <span className="text-foreground md:w-36">{item.label}</span>
-                      <span className="text-foreground/60">{item.value}</span>
+                      <span className="text-foreground/60">
+                        <RichText text={item.value} />
+                      </span>
                     </div>
                   ))}
                 </div>
