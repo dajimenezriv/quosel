@@ -16,7 +16,7 @@ export function CTA({ block }: { block: CtaBlock }) {
         <h2 className="text-4xl leading-tight md:text-6xl">
           <RichText text={block.title} />
         </h2>
-        <p className="text-foreground/60 mt-6 text-sm leading-relaxed">
+        <p className="mt-6 text-sm leading-relaxed">
           <RichText text={block.text} />
         </p>
         {block.ctaText && (

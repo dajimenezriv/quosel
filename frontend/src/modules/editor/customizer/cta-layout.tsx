@@ -1,8 +1,8 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import type { CtaBlock } from '@quosel/core/templates';
+import { circoloPopolareCta, type CtaBlock } from '@quosel/core/templates';
 import { MousePointerClick } from 'lucide-react';
+import { GenerateTextField } from './generate-text-field';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function CtaLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<CtaBlock>(data, index);
+  const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<CtaBlock>(data, index);
 
   return (
     <Section
@@ -23,24 +23,27 @@ export function CtaLayout({ data, block, index }: Props) {
       onMoveUp={moveUp}
       onMoveDown={moveDown}
       onRemove={removeBlock}>
-      <Field label="Title">
-        <Textarea
-          className="min-h-0"
-          value={block.title}
-          onChange={handleTextArea((block, value) => {
-            block.title = value;
-          })}
-        />
-      </Field>
-      <Field label="Text">
-        <Textarea
-          className="min-h-0"
-          value={block.text}
-          onChange={handleTextArea((block, value) => {
-            block.text = value;
-          })}
-        />
-      </Field>
+      <GenerateTextField
+        label="Title"
+        generateLabel="Cta title"
+        value={block.title}
+        example={circoloPopolareCta.title}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.title = value;
+        }}
+      />
+      <GenerateTextField
+        label="Text"
+        generateLabel="Cta text"
+        value={block.text}
+        example={circoloPopolareCta.text}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.text = value;
+        }}
+      />
+
       <Field label="Image">
         <ImageField
           value={block.imageUrl}

@@ -1,9 +1,7 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
-import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useEditorStore } from '@/core/editor/use-editor-store';
 import { cn } from '@/lib/utils';
-import { Layout, Palette, RotateCcw, Settings, SlidersHorizontal } from 'lucide-react';
+import { Layout, Palette, SlidersHorizontal } from 'lucide-react';
 import { useState } from 'react';
 import { GeneralTab } from './general-tab/general-tab';
 import { LayoutTab } from './layout-tab';
@@ -15,25 +13,11 @@ interface Props {
 }
 
 export function Customizer({ data, open }: Props) {
-  const reset = useEditorStore((s) => s.reset);
-
   const [activeTab, setActiveTab] = useState('layout');
 
   return (
     <div className={cn('shrink-0 overflow-hidden', open ? 'w-120' : 'w-0')}>
       <div className="flex h-full w-120 flex-col border-l">
-        <div className="flex items-center justify-between p-4">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary/10 rounded-lg p-2">
-              <Settings className="h-4 w-4" />
-            </div>
-            <span className="text-lg font-semibold">Customizer</span>
-          </div>
-          <Button variant="outline" size="icon" onClick={reset} className="h-8 w-8 cursor-pointer">
-            <RotateCcw className="h-4 w-4" />
-          </Button>
-        </div>
-
         <Tabs value={activeTab} onValueChange={setActiveTab} className="flex min-h-0 flex-1 flex-col">
           <TabsList className="flex h-12 rounded-none p-1.5">
             <TabsTrigger value="general" className="data-[state=active]:bg-background cursor-pointer">

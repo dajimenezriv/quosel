@@ -58,7 +58,7 @@ export function ServicesLayout({ data, block, index }: Props) {
             <Input
               value={group.title}
               onChange={handleInput((block, value) => {
-                block.serviceGroups[groupIndex].title = value;
+                block.serviceGroups[groupIndex]!.title = value;
               })}
             />
           </Field>
@@ -68,7 +68,7 @@ export function ServicesLayout({ data, block, index }: Props) {
               title={`Service ${serviceIndex + 1}`}
               onRemove={() =>
                 updateBlock((block) => {
-                  block.serviceGroups[groupIndex].services.splice(serviceIndex, 1);
+                  block.serviceGroups[groupIndex]!.services.splice(serviceIndex, 1);
                 })
               }>
               <div className="flex items-center gap-2">
@@ -76,7 +76,7 @@ export function ServicesLayout({ data, block, index }: Props) {
                   <Input
                     value={service.title}
                     onChange={handleInput((block, value) => {
-                      block.serviceGroups[groupIndex].services[serviceIndex].title = value;
+                      block.serviceGroups[groupIndex]!.services[serviceIndex]!.title = value;
                     })}
                   />
                 </Field>
@@ -84,7 +84,7 @@ export function ServicesLayout({ data, block, index }: Props) {
                   <Input
                     value={service.price}
                     onChange={handleInput((block, value) => {
-                      block.serviceGroups[groupIndex].services[serviceIndex].price = value;
+                      block.serviceGroups[groupIndex]!.services[serviceIndex]!.price = value;
                     })}
                   />
                 </Field>
@@ -94,7 +94,7 @@ export function ServicesLayout({ data, block, index }: Props) {
                   className="min-h-0"
                   value={service.text}
                   onChange={handleTextArea((block, value) => {
-                    block.serviceGroups[groupIndex].services[serviceIndex].text = value;
+                    block.serviceGroups[groupIndex]!.services[serviceIndex]!.text = value;
                   })}
                 />
               </Field>
@@ -105,7 +105,7 @@ export function ServicesLayout({ data, block, index }: Props) {
             size="sm"
             onClick={() =>
               updateBlock((block) => {
-                block.serviceGroups[groupIndex].services.push({ title: '', text: '', price: '' });
+                block.serviceGroups[groupIndex]!.services.push({ title: '', text: '', price: '' });
               })
             }>
             <Plus className="h-4 w-4" />

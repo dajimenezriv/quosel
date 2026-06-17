@@ -14,9 +14,7 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier . --check",
     "format:fix": "prettier . --write",
-    "knip": "knip",
-    "========== Testing ==========": "",
-    "test": "vitest"
+    "knip": "knip"
   },
   "dependencies": {
     "@quosel/core": "workspace:*",

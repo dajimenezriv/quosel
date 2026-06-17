@@ -29,7 +29,7 @@ export function Footer({ data, block }: { data: TemplateData; block: FooterBlock
       <div className="flex flex-col gap-10 md:flex-row md:gap-0">
         <div className="flex-1">
           <div className="mb-5 flex items-center gap-3">
-            <span className="text-foreground text-xs tracking-[0.25em] uppercase">{data.blocks.name}</span>
+            <span className="text-xs tracking-[0.25em] uppercase">{data.blocks.name}</span>
           </div>
           <p className="text-foreground/40 text-xs leading-relaxed">{block.description}</p>
         </div>

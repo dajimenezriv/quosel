@@ -50,14 +50,14 @@ export function LocationLayout({ data, block, index }: Props) {
               placeholder="Label"
               value={detail.label}
               onChange={handleInput((block, value) => {
-                block.details[i].label = value;
+                block.details[i]!.label = value;
               })}
             />
             <Input
               placeholder="Value"
               value={detail.value}
               onChange={handleInput((block, value) => {
-                block.details[i].value = value;
+                block.details[i]!.value = value;
               })}
             />
             <button
@@ -99,14 +99,14 @@ export function LocationLayout({ data, block, index }: Props) {
               placeholder="Label"
               value={item.label}
               onChange={handleInput((block, value) => {
-                block.schedule.items[i].label = value;
+                block.schedule.items[i]!.label = value;
               })}
             />
             <Input
               placeholder="Value"
               value={item.value}
               onChange={handleInput((block, value) => {
-                block.schedule.items[i].value = value;
+                block.schedule.items[i]!.value = value;
               })}
             />
             <button

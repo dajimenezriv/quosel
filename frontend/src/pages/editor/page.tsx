@@ -7,11 +7,15 @@ import { Customizer } from '@/modules/editor/customizer/customizer';
 import { IPhoneDevice } from '@/modules/editor/devices/iphon-device';
 import { SafariDevice } from '@/modules/editor/devices/safari-device';
 import { renderTemplate } from '@quosel/core/templates';
-import { Download, Globe, Laptop, Save, Settings, Smartphone } from 'lucide-react';
+import { Download, Globe, Laptop, RotateCcw, Save, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-export default function Page() {
+interface Props {
+  isUserLogged?: boolean;
+}
+
+export default function Page({ isUserLogged = false }: Props) {
   const { websiteId } = useParams<{ websiteId: string }>();
   const { data } = useGetWebsite(websiteId!);
   const [isCustomizerOpen, setIsCustomizerOpen] = useState(true);
@@ -20,6 +24,7 @@ export default function Page() {
   const draft = useEditorStore((s) => s.draft);
   const device = useEditorStore((s) => s.device);
   const setDevice = useEditorStore((s) => s.setDevice);
+  const reset = useEditorStore((s) => s.reset);
 
   useEffect(() => {
     if (data) hydrate(data);
@@ -56,6 +61,7 @@ export default function Page() {
   return (
     <BaseLayout
       title="Editor"
+      showSidebar={isUserLogged}
       extra={
         <>
           <div className="flex">
@@ -74,18 +80,28 @@ export default function Page() {
               </button>
             </div>
           </div>
-          <Button variant="outline" onClick={exportHtml} className="cursor-pointer">
-            <Download className="h-[1.2rem] w-[1.2rem]" />
-            Export
+          <Button variant="outline" onClick={reset} className="cursor-pointer">
+            <RotateCcw className="h-[1.2rem] w-[1.2rem]" />
+            Reset
           </Button>
           <Button variant="outline" onClick={save} disabled={isPending} className="cursor-pointer">
             <Save className="h-[1.2rem] w-[1.2rem]" />
             Save
           </Button>
-          <Button onClick={publish} disabled={isPending} className="cursor-pointer">
-            <Globe className="h-[1.2rem] w-[1.2rem]" />
-            Publish
-          </Button>
+
+          {isUserLogged && (
+            <>
+              <Button onClick={publish} disabled={isPending} className="cursor-pointer">
+                <Globe className="h-[1.2rem] w-[1.2rem]" />
+                Publish
+              </Button>
+              <Button variant="outline" onClick={exportHtml} className="cursor-pointer">
+                <Download className="h-[1.2rem] w-[1.2rem]" />
+                Export
+              </Button>
+            </>
+          )}
+
           <Button variant="outline" size="icon" onClick={toggleCustomizer} className="cursor-pointer">
             <Settings className="h-[1.2rem] w-[1.2rem]" />
           </Button>
@@ -94,7 +110,11 @@ export default function Page() {
       {draft && (
         <>
           <div className="flex flex-1 items-center justify-center p-6">
-            {device === 'laptop' ? <SafariDevice data={draft} /> : <IPhoneDevice data={draft} />}
+            {device === 'laptop' ? (
+              <SafariDevice domain={`https://sites.quosel.com/${draft.slug}`} data={draft} />
+            ) : (
+              <IPhoneDevice data={draft} />
+            )}
           </div>
 
           <Customizer data={draft} open={isCustomizerOpen} />

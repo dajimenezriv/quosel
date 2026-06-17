@@ -43,14 +43,14 @@ export function ReviewsLayout({ data, block, index }: Props) {
               placeholder="Value"
               value={stat.value}
               onChange={handleInput((block, value) => {
-                block.stats[statIndex].value = value;
+                block.stats[statIndex]!.value = value;
               })}
             />
             <Input
               placeholder="Label"
               value={stat.label}
               onChange={handleInput((block, value) => {
-                block.stats[statIndex].label = value;
+                block.stats[statIndex]!.label = value;
               })}
             />
             <button
@@ -91,7 +91,7 @@ export function ReviewsLayout({ data, block, index }: Props) {
               className="min-h-0"
               value={review.text}
               onChange={handleTextArea((block, value) => {
-                block.reviews[reviewIndex].text = value;
+                block.reviews[reviewIndex]!.text = value;
               })}
             />
           </Field>
@@ -99,7 +99,7 @@ export function ReviewsLayout({ data, block, index }: Props) {
             <Input
               value={review.author}
               onChange={handleInput((block, value) => {
-                block.reviews[reviewIndex].author = value;
+                block.reviews[reviewIndex]!.author = value;
               })}
             />
           </Field>
@@ -107,7 +107,7 @@ export function ReviewsLayout({ data, block, index }: Props) {
             <Input
               value={review.source}
               onChange={handleInput((block, value) => {
-                block.reviews[reviewIndex].source = value;
+                block.reviews[reviewIndex]!.source = value;
               })}
             />
           </Field>
@@ -115,7 +115,7 @@ export function ReviewsLayout({ data, block, index }: Props) {
             <Input
               value={review.url}
               onChange={handleInput((block, value) => {
-                block.reviews[reviewIndex].url = value;
+                block.reviews[reviewIndex]!.url = value;
               })}
             />
           </Field>

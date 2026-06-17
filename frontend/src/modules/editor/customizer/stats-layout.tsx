@@ -23,14 +23,14 @@ export function StatsLayout({ data, block, index }: Props) {
             placeholder="Value"
             value={stat.value}
             onChange={handleInput((block, value) => {
-              block.stats[statIndex].value = value;
+              block.stats[statIndex]!.value = value;
             })}
           />
           <Input
             placeholder="Label"
             value={stat.label}
             onChange={handleInput((block, value) => {
-              block.stats[statIndex].label = value;
+              block.stats[statIndex]!.label = value;
             })}
           />
           <button

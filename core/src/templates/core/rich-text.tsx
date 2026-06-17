@@ -1,5 +1,5 @@
 /** @jsxRuntime automatic @jsxImportSource react */
-import { Fragment, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 const MARKS: Record<string, (children: ReactNode, key: number) => ReactNode> = {
   '*': (children, key) => (
@@ -25,17 +25,30 @@ function parseInline(text: string): ReactNode[] {
   let key = 0;
   let i = 0;
 
-  while (i < text.length) {
-    const char = text[i]!;
-    const close = char in MARKS ? text.indexOf(char, i + 1) : -1;
+  const flush = () => {
+    if (buffer) {
+      nodes.push(buffer);
+      buffer = '';
+    }
+  };
 
-    if (close !== -1) {
-      if (buffer) {
-        nodes.push(buffer);
-        buffer = '';
-      }
+  while (i < text.length) {
+    const char = text.charAt(i);
+
+    if (char === '\n') {
+      flush();
+      nodes.push(<br key={key++} />);
+      i++;
+      continue;
+    }
+
+    const mark = MARKS[char];
+    const close = mark ? text.indexOf(char, i + 1) : -1;
+
+    if (mark && close !== -1) {
+      flush();
       const inner = text.slice(i + 1, close);
-      nodes.push(MARKS[char]!(parseInline(inner), key++));
+      nodes.push(mark(parseInline(inner), key++));
       i = close + 1;
     } else {
       buffer += char;
@@ -43,19 +56,10 @@ function parseInline(text: string): ReactNode[] {
     }
   }
 
-  if (buffer) nodes.push(buffer);
+  flush();
   return nodes;
 }
 
 export function RichText({ text }: { text: string }) {
-  return (
-    <>
-      {text.split('\n').map((line, i) => (
-        <Fragment key={i}>
-          {i > 0 && <br />}
-          {parseInline(line)}
-        </Fragment>
-      ))}
-    </>
-  );
+  return <>{parseInline(text)}</>;
 }

@@ -9,11 +9,11 @@ export function Hero({ block }: { block: HeroBlock }) {
       <div className="from-background via-background/70 to-background/50 absolute inset-0 bg-linear-to-t" />
 
       <div className="z-10 m-6 flex max-w-full flex-col md:m-30">
-        <span className="text-foreground text-5xl font-light wrap-break-word sm:text-6xl md:text-8xl">
+        <span className="text-5xl font-light wrap-break-word sm:text-6xl md:text-8xl">
           <RichText text={block.title} />
         </span>
 
-        <p className="text-foreground/70 mt-8 md:max-w-150">
+        <p className="mt-8 md:max-w-150">
           <RichText text={block.text} />
         </p>
 

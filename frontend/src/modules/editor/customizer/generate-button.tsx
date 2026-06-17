@@ -18,7 +18,7 @@ export function GenerateButton({ label, value, example, onGenerate }: Props) {
       `Write the "${label}" text for a small-business website.`,
       context ? `Business context: ${context}` : '',
       `Here is the same field for a different business, as a style and formatting reference: "${example}".`,
-      value ? `The current text is: "${value}". Improve or replace it.` : '',
+      value ? `The current text is: "${value}". Replace it.` : '',
       'Return only the text for this single field.',
     ]
       .filter(Boolean)
