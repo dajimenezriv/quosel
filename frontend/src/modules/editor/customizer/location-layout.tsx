@@ -86,6 +86,7 @@ export function LocationLayout({ data, block, index }: Props) {
           Add detail
         </Button>
       </Subgroup>
+
       <Subgroup title="Schedule">
         <Field label="Title">
           <Input
@@ -134,6 +135,7 @@ export function LocationLayout({ data, block, index }: Props) {
           Add row
         </Button>
       </Subgroup>
+
       <Subgroup title="Call to Action">
         <div className="flex items-center gap-2">
           <Field label="Button Text">
