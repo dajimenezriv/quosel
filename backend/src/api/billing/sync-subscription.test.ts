@@ -27,6 +27,7 @@ describe('syncSubscription', () => {
         subscriptionStatus: 'active',
         subscriptionPriceId: 'price_1',
         currentPeriodEnd: new Date('2025-01-01T00:00:00.000Z'),
+        subscriptionCancelAt: null,
       },
     ]);
   });
@@ -42,6 +43,7 @@ describe('syncSubscription', () => {
         subscriptionStatus: 'active',
         subscriptionPriceId: 'price_1',
         currentPeriodEnd: new Date('2025-01-01T00:00:00.000Z'),
+        subscriptionCancelAt: null,
       },
     ]);
   });
@@ -57,6 +59,7 @@ describe('syncSubscription', () => {
         subscriptionStatus: 'active',
         subscriptionPriceId: '',
         currentPeriodEnd: null,
+        subscriptionCancelAt: null,
       },
     ]);
   });
