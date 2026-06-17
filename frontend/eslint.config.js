@@ -6,6 +6,7 @@ export default [
     files: ['**/*.{ts,tsx}'],
     rules: {
       '@typescript-eslint/no-non-null-assertion': 'warn',
+      'sonarjs/no-nested-functions': 'warn',
     },
   },
 ];
