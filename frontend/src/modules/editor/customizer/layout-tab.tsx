@@ -16,9 +16,9 @@ import { InfoLayout } from './info-layout';
 import { LocationLayout } from './location-layout';
 import { ReviewsLayout } from './reviews-layout';
 import { RichTextHint } from './rich-text-hint';
+import { SectionControlsProvider } from './section-controls-context';
 import { ServicesLayout } from './services-layout';
 import { StatsLayout } from './stats-layout';
-import { SectionControlsProvider } from './section-controls-context';
 import { Field, Section, Subgroup } from './utils';
 
 const MAX_BLOCKS = 15;
