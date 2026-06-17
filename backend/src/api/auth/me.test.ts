@@ -5,8 +5,6 @@ import { deepMocked, expectJson } from '@/tests/utils.helper.test';
 vi.mock(import('@/infra/postgres/sessions'));
 
 describe('me', () => {
-  const getSessionByIdMock = deepMocked(Sessions.getById);
-
   it('should return null if no session cookie', async () => {
     // When
     const res = await app.request('/auth/me');
@@ -16,7 +14,7 @@ describe('me', () => {
 
   it('should return null if session not found in db', async () => {
     // Given
-    getSessionByIdMock.mockResolvedValue(null);
+    vi.mocked(Sessions.getById).mockResolvedValue(null);
     // When
     const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
@@ -26,22 +24,16 @@ describe('me', () => {
   it('should return user if session is valid', async () => {
     // Given
     const user = {
-      id: 'userId',
-      email: 'user@example.com',
-      name: 'Test User',
+      id: 'id',
+      email: 'email',
+      name: 'name',
       picture: 'https://example.com/pic.jpg',
       subscriptionStatus: 'active',
-      currentPeriodEnd: new Date('2026-06-01T00:00:00.000Z'),
     };
-    getSessionByIdMock.mockResolvedValue({ user });
+    deepMocked(Sessions.getById).mockResolvedValue({ user });
     // When
     const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
-    await expectJson(res, 200, {
-      user: {
-        ...user,
-        currentPeriodEnd: '2026-06-01T00:00:00.000Z',
-      },
-    });
+    await expectJson(res, 200, { user });
   });
 });

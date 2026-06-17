@@ -8,6 +8,7 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 const rules = {
+  '@typescript-eslint/no-explicit-any': 'error',
   '@typescript-eslint/no-floating-promises': 'error',
   '@typescript-eslint/no-non-null-assertion': 'error',
   'array-callback-return': 'error',

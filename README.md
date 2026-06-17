@@ -28,17 +28,10 @@ RAILWAY_DATABASE_URL=$(grep '^RAILWAY_DATABASE_URL=' .env | cut -d= -f2- | tr -d
 gunzip -c backups_quosel-*.sql.gz | psql "$RAILWAY_DATABASE_URL" -v ON_ERROR_STOP=1
 ```
 
-### Docker
-
-```bash
-docker login
-docker build -t dajimenezriv/quosel-backend:latest .
-docker push dajimenezriv/quosel-backend:latest
-```
-
 ### Stripe
 
 ```bash
-# download stripe cli
-stripe listen --forward-to localhost:3000/webhooks/stripe
+# Use STRIPE_SECRET_KEY
+pnpm stripe login --interactive
+pnpm stripe listen --forward-to localhost:3000/billing/webhooks/stripe
 ```

@@ -3,8 +3,7 @@ import { logger } from '../../logger';
 
 export const requestLogger = createMiddleware(async (c, next) => {
   const start = Date.now();
-  const { method } = c.req;
-  const path = c.req.path;
+  const { path, method } = c.req;
 
   await next();
 

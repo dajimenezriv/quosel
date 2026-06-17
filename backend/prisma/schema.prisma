@@ -19,7 +19,6 @@ model User {
   stripeSubscriptionId String?   @unique @map("stripe_subscription_id")
   subscriptionStatus   String    @default("") @map("subscription_status")
   subscriptionPriceId  String    @default("") @map("subscription_price_id")
-  currentPeriodEnd     DateTime? @map("current_period_end") @db.Timestamptz
   createdAt            DateTime  @default(now()) @map("created_at") @db.Timestamptz
 
   sessions      Session[]
