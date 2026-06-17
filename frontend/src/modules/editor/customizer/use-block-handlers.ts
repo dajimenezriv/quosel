@@ -40,7 +40,7 @@ export function useBlockHandlers<T extends Block>(data: WebsiteData, index: numb
     updateDraft(
       produce(data, (draft) => {
         const [block] = draft.blocks.blocks.splice(index, 1);
-        draft.blocks.blocks.splice(index + offset, 0, block);
+        if (block) draft.blocks.blocks.splice(index + offset, 0, block);
       }),
     );
   }

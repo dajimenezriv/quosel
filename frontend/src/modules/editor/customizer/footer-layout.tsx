@@ -78,14 +78,14 @@ export function FooterLayout({ data, block, index }: Props) {
               placeholder="Label"
               value={link.label}
               onChange={handleInput((block, value) => {
-                block.links[linkIndex].label = value;
+                block.links[linkIndex]!.label = value;
               })}
             />
             <Input
               placeholder="URL"
               value={link.url}
               onChange={handleInput((block, value) => {
-                block.links[linkIndex].url = value;
+                block.links[linkIndex]!.url = value;
               })}
             />
             <button
@@ -119,14 +119,14 @@ export function FooterLayout({ data, block, index }: Props) {
               placeholder="Label"
               value={link.label}
               onChange={handleInput((block, value) => {
-                block.legalLinks[linkIndex].label = value;
+                block.legalLinks[linkIndex]!.label = value;
               })}
             />
             <Input
               placeholder="URL"
               value={link.url}
               onChange={handleInput((block, value) => {
-                block.legalLinks[linkIndex].url = value;
+                block.legalLinks[linkIndex]!.url = value;
               })}
             />
             <button
