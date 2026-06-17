@@ -2,8 +2,9 @@ import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { ServicesBlock } from '@quosel/core/templates';
+import { circoloPopolareServices, type ServicesBlock } from '@quosel/core/templates';
 import { Briefcase, Plus } from 'lucide-react';
+import { GenerateTextField } from './generate-text-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
@@ -26,24 +27,27 @@ export function ServicesLayout({ data, block, index }: Props) {
           })}
         />
       </Field>
-      <Field label="Title">
-        <Textarea
-          className="min-h-0"
-          value={block.title}
-          onChange={handleTextArea((block, value) => {
-            block.title = value;
-          })}
-        />
-      </Field>
-      <Field label="Text">
-        <Textarea
-          className="min-h-0"
-          value={block.text}
-          onChange={handleTextArea((block, value) => {
-            block.text = value;
-          })}
-        />
-      </Field>
+
+      <GenerateTextField
+        label="Title"
+        generateLabel="Services title"
+        value={block.title}
+        example={circoloPopolareServices.title}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.title = value;
+        }}
+      />
+      <GenerateTextField
+        label="Text"
+        generateLabel="Services text"
+        value={block.text}
+        example={circoloPopolareServices.text}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.text = value;
+        }}
+      />
 
       {block.serviceGroups.map((group, groupIndex) => (
         <Subgroup

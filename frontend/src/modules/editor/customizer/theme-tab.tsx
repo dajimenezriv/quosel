@@ -83,7 +83,7 @@ export function ThemeTab({ data }: Props) {
           {renderHighlighted(text)}
         </div>
         <textarea
-          className="text relative field-sizing-content min-h-100 w-full resize-none bg-transparent px-3 py-2 font-mono outline-none"
+          className="text relative field-sizing-content w-full resize-none bg-transparent px-3 py-2 font-mono outline-none"
           style={{ color: 'transparent', caretColor: 'var(--foreground)' }}
           value={text}
           onChange={handleChange}

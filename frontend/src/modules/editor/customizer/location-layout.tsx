@@ -1,9 +1,9 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import type { LocationBlock } from '@quosel/core/templates';
+import { circoloPopolareLocation, type LocationBlock } from '@quosel/core/templates';
 import { MapPin, Plus, Trash2 } from 'lucide-react';
+import { GenerateTextField } from './generate-text-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function LocationLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<LocationBlock>(data, index);
+  const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<LocationBlock>(data, index);
 
   return (
     <Section title="Location" icon={<MapPin className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
@@ -26,15 +26,18 @@ export function LocationLayout({ data, block, index }: Props) {
           })}
         />
       </Field>
-      <Field label="Title">
-        <Textarea
-          className="min-h-0"
-          value={block.title}
-          onChange={handleTextArea((block, value) => {
-            block.title = value;
-          })}
-        />
-      </Field>
+
+      <GenerateTextField
+        label="Title"
+        generateLabel="Location title"
+        value={block.title}
+        example={circoloPopolareLocation.title}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.title = value;
+        }}
+      />
+
       <Field label="Map URL">
         <Input
           value={block.mapUrl}
@@ -83,7 +86,6 @@ export function LocationLayout({ data, block, index }: Props) {
           Add detail
         </Button>
       </Subgroup>
-
       <Subgroup title="Schedule">
         <Field label="Title">
           <Input
@@ -132,7 +134,6 @@ export function LocationLayout({ data, block, index }: Props) {
           Add row
         </Button>
       </Subgroup>
-
       <Subgroup title="Call to Action">
         <div className="flex items-center gap-2">
           <Field label="Button Text">

@@ -1,10 +1,15 @@
 export { emptyBlocks } from './examples/empty';
 export {
+  circoloPopolareBlocks,
   circoloPopolareContext,
+  circoloPopolareCta,
+  circoloPopolareFooter,
+  circoloPopolareGallery,
   circoloPopolareHero,
   circoloPopolareInfo,
-  circoloPopolareBlocks,
-  circoloPopolareCta,
+  circoloPopolareLocation,
+  circoloPopolareReviews,
+  circoloPopolareServices,
 } from './examples/circolo-popolare';
 export { claudeStyles, buildRootStyles } from './styles';
 export { slugify } from './core/utils';

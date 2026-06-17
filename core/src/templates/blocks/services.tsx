@@ -6,12 +6,17 @@ import type { ServicesBlock } from '../types';
 export function Services({ block }: { block: ServicesBlock }) {
   return (
     <section id={slugify(block.nav)} className="bg-secondary flex justify-center px-6 py-24 md:px-0">
-      <div className="flex w-full max-w-250 flex-col">
-        <div className="mb-10 flex flex-col">
-          <p className="text-primary mb-4 text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
-          <h2 className="text-secondary-foreground text-5xl leading-tight">
-            <RichText text={block.title} />
-          </h2>
+      <div className="flex w-full max-w-250 flex-col gap-10">
+        <div className="flex flex-col gap-4">
+          <p className="text-primary text-xs tracking-[0.25em] uppercase">— {block.nav}</p>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <h2 className="text-5xl">
+              <RichText text={block.title} />
+            </h2>
+            <p className="text-sm leading-relaxed md:w-100 md:text-end">
+              <RichText text={block.text} />
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col gap-10">
@@ -40,7 +45,7 @@ export function Services({ block }: { block: ServicesBlock }) {
         </div>
 
         {block.ctaText && (
-          <div className="border-secondary-foreground/10 mt-10 flex flex-col gap-4 border-t pt-8 md:mt-16 md:flex-row md:items-center md:justify-between">
+          <div className="border-secondary-foreground/10 flex flex-col gap-4 border-t pt-8 md:flex-row md:items-center md:justify-between">
             <a
               target="_blank"
               rel="noopener noreferrer"
