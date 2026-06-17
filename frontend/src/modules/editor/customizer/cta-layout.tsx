@@ -2,11 +2,11 @@ import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Input } from '@/components/ui/input';
 import type { CtaBlock } from '@quosel/core/templates';
 import { MousePointerClick } from 'lucide-react';
+import { circoloPopolareCta } from '../../../../../core/src/templates/examples/circolo-popolare';
+import { GenerateTextField } from './generate-text-field';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
-import { GenerateTextField } from './generate-text-field';
-import { circoloPopolareCta } from '../../../../../core/src/templates/examples/circolo-popolare';
 
 interface Props {
   data: WebsiteData;

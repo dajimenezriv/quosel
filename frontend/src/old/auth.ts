@@ -1,8 +1,8 @@
 import { client } from '@/api/client';
+import type { components } from '@/api/schema';
 import { env } from '@/core/env';
 import { useEffect, useState } from 'react';
 import type { SubscriptionStatus } from './billing';
-import type { components } from '@/api/schema';
 
 export type Me = components['schemas']['Me'] & {
   subscriptionStatus: SubscriptionStatus;

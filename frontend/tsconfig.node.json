@@ -5,7 +5,9 @@
     "lib": ["ES2023"],
     "module": "esnext",
     "types": ["node"],
+    "strict": true,
     "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
