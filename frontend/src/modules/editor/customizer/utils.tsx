@@ -2,7 +2,8 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
-import { useState, type ReactNode } from 'react';
+import { useContext, useState, type ReactNode } from 'react';
+import { SectionControlsContext } from './section-controls-context';
 
 export function Section({
   title,
@@ -19,6 +20,7 @@ export function Section({
   onRemove?: () => void;
   children: ReactNode;
 }) {
+  const showControls = useContext(SectionControlsContext);
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
 
@@ -29,39 +31,43 @@ export function Section({
           <span className="text-muted-foreground">{icon}</span>
           <span className="text-sm font-semibold">{title}</span>
         </button>
-        <button
-          onClick={onMoveUp}
-          disabled={!onMoveUp}
-          className="text-muted-foreground hover:text-foreground cursor-pointer disabled:invisible">
-          <ChevronUp className="h-4 w-4" />
-        </button>
-        <button
-          onClick={onMoveDown}
-          disabled={!onMoveDown}
-          className="text-muted-foreground hover:text-foreground cursor-pointer disabled:invisible">
-          <ChevronDown className="h-4 w-4" />
-        </button>
-        {onRemove && (
+        {showControls && (
           <>
-            <button onClick={() => setConfirmOpen(true)} className="text-muted-foreground hover:text-destructive cursor-pointer">
-              <Trash2 className="h-4 w-4" />
+            <button
+              onClick={onMoveUp}
+              disabled={!onMoveUp}
+              className="text-muted-foreground hover:text-foreground cursor-pointer disabled:invisible">
+              <ChevronUp className="h-4 w-4" />
             </button>
-            <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Remove section</DialogTitle>
-                  <DialogDescription>This will remove the "{title}" section from your website.</DialogDescription>
-                </DialogHeader>
-                <DialogFooter>
-                  <DialogClose asChild>
-                    <Button variant="outline">Cancel</Button>
-                  </DialogClose>
-                  <Button variant="destructive" onClick={onRemove}>
-                    Remove
-                  </Button>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+            <button
+              onClick={onMoveDown}
+              disabled={!onMoveDown}
+              className="text-muted-foreground hover:text-foreground cursor-pointer disabled:invisible">
+              <ChevronDown className="h-4 w-4" />
+            </button>
+            {onRemove && (
+              <>
+                <button onClick={() => setConfirmOpen(true)} className="text-muted-foreground hover:text-destructive cursor-pointer">
+                  <Trash2 className="h-4 w-4" />
+                </button>
+                <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Remove section</DialogTitle>
+                      <DialogDescription>This will remove the "{title}" section from your website.</DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                      <DialogClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                      </DialogClose>
+                      <Button variant="destructive" onClick={onRemove}>
+                        Remove
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
+              </>
+            )}
           </>
         )}
       </div>
