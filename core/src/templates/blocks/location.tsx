@@ -30,7 +30,7 @@ export function Location({ block }: { block: LocationBlock }) {
                   {block.schedule.items.map((item, i) => (
                     <div key={i} className="contents md:flex md:gap-8">
                       <span className="md:w-36">{item.label}</span>
-                      <span className="/60">
+                      <span>
                         <RichText text={item.value} />
                       </span>
                     </div>

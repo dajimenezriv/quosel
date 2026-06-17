@@ -27,7 +27,7 @@ export default function Page({ isUserLogged = false }: Props) {
   const reset = useEditorStore((s) => s.reset);
 
   useEffect(() => {
-    if (data) hydrate({ ...data, blocks: circoloPopolareBlocks });
+    if (data) hydrate(data);
   }, [data, hydrate]);
 
   const { mutate: updateWebsite, isPending } = useUpdateWebsite();
