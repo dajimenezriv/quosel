@@ -18,15 +18,16 @@ import { ReviewsLayout } from './reviews-layout';
 import { RichTextHint } from './rich-text-hint';
 import { ServicesLayout } from './services-layout';
 import { StatsLayout } from './stats-layout';
-import { Field, Section, Subgroup } from './utils';
+import { Field, Section, SectionControlsProvider, Subgroup } from './utils';
 
 const MAX_BLOCKS = 15;
 
 interface Props {
   data: WebsiteData;
+  isUserLogged: boolean;
 }
 
-export function LayoutTab({ data }: Props) {
+export function LayoutTab({ data, isUserLogged }: Props) {
   const updateDraft = useEditorStore((s) => s.updateDraft);
 
   function handleInput(updater: (draft: WebsiteData, value: string) => void) {
@@ -67,56 +68,62 @@ export function LayoutTab({ data }: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <RichTextHint />
+    <SectionControlsProvider value={isUserLogged}>
+      <div className="flex flex-col gap-4">
+        <RichTextHint />
 
-      <Section title="Navigation" icon={<Navigation className="h-4 w-4" />}>
-        <Subgroup title="Call to Action">
-          <div className="flex items-center gap-2">
-            <Field label="Button Text">
-              <Input
-                value={data.blocks.nav.ctaText}
-                onChange={handleInput((draft, value) => {
-                  draft.blocks.nav.ctaText = value;
-                })}
-              />
-            </Field>
-            <Field label="Button Link">
-              <Input
-                value={data.blocks.nav.ctaLink}
-                onChange={handleInput((draft, value) => {
-                  draft.blocks.nav.ctaLink = value;
-                })}
-              />
-            </Field>
-          </div>
-        </Subgroup>
-      </Section>
+        <Section title="Navigation" icon={<Navigation className="h-4 w-4" />}>
+          <Subgroup title="Call to Action">
+            <div className="flex items-center gap-2">
+              <Field label="Button Text">
+                <Input
+                  value={data.blocks.nav.ctaText}
+                  onChange={handleInput((draft, value) => {
+                    draft.blocks.nav.ctaText = value;
+                  })}
+                />
+              </Field>
+              <Field label="Button Link">
+                <Input
+                  value={data.blocks.nav.ctaLink}
+                  onChange={handleInput((draft, value) => {
+                    draft.blocks.nav.ctaLink = value;
+                  })}
+                />
+              </Field>
+            </div>
+          </Subgroup>
+        </Section>
 
-      {data.blocks.blocks.map((block, index) => (
-        <Fragment key={index}>
-          <Separator />
-          {renderBlock(block, index)}
-        </Fragment>
-      ))}
+        {data.blocks.blocks.map((block, index) => (
+          <Fragment key={index}>
+            <Separator />
+            {renderBlock(block, index)}
+          </Fragment>
+        ))}
 
-      <Separator />
+        {isUserLogged && (
+          <>
+            <Separator />
 
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" disabled={data.blocks.blocks.length >= MAX_BLOCKS}>
-            <Plus className="h-4 w-4" />
-            Add Section
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {addableBlockTypes.map(({ type, label }) => (
-            <DropdownMenuItem key={type} onClick={() => addBlock(type)}>
-              {label}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" disabled={data.blocks.blocks.length >= MAX_BLOCKS}>
+                  <Plus className="h-4 w-4" />
+                  Add Section
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {addableBlockTypes.map(({ type, label }) => (
+                  <DropdownMenuItem key={type} onClick={() => addBlock(type)}>
+                    {label}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
+        )}
+      </div>
+    </SectionControlsProvider>
   );
 }

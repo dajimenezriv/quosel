@@ -64,6 +64,16 @@ export default function Page({ isUserLogged = false }: Props) {
       showSidebar={isUserLogged}
       extra={
         <>
+          {isUserLogged && (
+            <Button
+              variant="link"
+              onClick={() => window.open(`${window.location.origin}/public-editor/${websiteId}`, '_blank')}
+              className="cursor-pointer">
+              <Globe className="h-[1.2rem] w-[1.2rem]" />
+              Public
+            </Button>
+          )}
+
           <div className="flex">
             <div className="bg-muted text-muted-foreground flex rounded-lg p-1">
               <button
@@ -117,7 +127,7 @@ export default function Page({ isUserLogged = false }: Props) {
             )}
           </div>
 
-          <Customizer data={draft} open={isCustomizerOpen} />
+          <Customizer data={draft} open={isCustomizerOpen} isUserLogged={isUserLogged} />
         </>
       )}
     </BaseLayout>
