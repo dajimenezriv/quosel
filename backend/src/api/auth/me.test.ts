@@ -16,7 +16,7 @@ describe('me', () => {
 
   it('should return null if session not found in db', async () => {
     // Given
-    getSessionByIdMock.mockResolvedValue(null);
+    vi.mocked(Sessions.getById).mockResolvedValue(null);
     // When
     const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
@@ -26,9 +26,9 @@ describe('me', () => {
   it('should return user if session is valid', async () => {
     // Given
     const user = {
-      id: 'userId',
-      email: 'user@example.com',
-      name: 'Test User',
+      id: 'id',
+      email: 'email',
+      name: 'name',
       picture: 'https://example.com/pic.jpg',
       subscriptionStatus: 'active',
     };

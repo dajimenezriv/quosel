@@ -24,24 +24,14 @@ describe('getOrCreateCustomer', () => {
     await expect(promise).rejects.toThrow('User not found');
   });
 
-  it('should return the existing customer when it is not deleted', async () => {
+  it('should return the existing customer when it exists', async () => {
     // Given
     deepMocked(Users.getById).mockResolvedValue({ stripeCustomerId: 'existingCustomerId' });
-    deepMocked(stripe.customers.retrieve).mockResolvedValue({ id: 'existingCustomerId' });
     // When
     const res = await getOrCreateCustomer(userId);
     // Then
     expect(res).toBe('existingCustomerId');
     calls(stripe.customers.create).toStrictEqual([]);
-  });
-
-  it('should not update the user when reusing an existing customer', async () => {
-    // Given
-    deepMocked(Users.getById).mockResolvedValue({ stripeCustomerId: 'existingCustomerId' });
-    deepMocked(stripe.customers.retrieve).mockResolvedValue({ id: 'existingCustomerId' });
-    // When
-    await getOrCreateCustomer(userId);
-    // Then
     calls(Users.update).toStrictEqual([]);
   });
 
@@ -60,35 +50,5 @@ describe('getOrCreateCustomer', () => {
         subscriptionPriceId: '',
       },
     ]);
-  });
-
-  it('should create a new customer when the existing one is deleted', async () => {
-    // Given
-    deepMocked(Users.getById).mockResolvedValue({ stripeCustomerId: 'deletedCustomerId' });
-    deepMocked(stripe.customers.retrieve).mockResolvedValue({ deleted: true });
-    // When
-    const res = await getOrCreateCustomer(userId);
-    // Then
-    expect(res).toBe('newCustomerId');
-  });
-
-  it('should create a new customer when the existing one is missing in Stripe', async () => {
-    // Given
-    deepMocked(Users.getById).mockResolvedValue({ stripeCustomerId: 'missingCustomerId' });
-    vi.mocked(stripe.customers.retrieve).mockRejectedValue({ code: 'resource_missing' });
-    // When
-    const res = await getOrCreateCustomer(userId);
-    // Then
-    expect(res).toBe('newCustomerId');
-  });
-
-  it('should rethrow unexpected errors from Stripe', async () => {
-    // Given
-    deepMocked(Users.getById).mockResolvedValue({ stripeCustomerId: 'existingCustomerId' });
-    vi.mocked(stripe.customers.retrieve).mockRejectedValue({ code: 'api_error' });
-    // When
-    const promise = getOrCreateCustomer(userId);
-    // Then
-    await expect(promise).rejects.toEqual({ code: 'api_error' });
   });
 });

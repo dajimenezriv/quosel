@@ -7,13 +7,7 @@ export async function getOrCreateCustomer(userId: UserId) {
   if (!user) throw new Error('User not found');
 
   if (user.stripeCustomerId) {
-    try {
-      const existing = await stripe.customers.retrieve(user.stripeCustomerId);
-      if (!existing.deleted) return user.stripeCustomerId;
-    } catch (error) {
-      const code = (error as { code?: string })?.code;
-      if (code !== 'resource_missing') throw error;
-    }
+    return user.stripeCustomerId;
   }
 
   const customer = await stripe.customers.create({

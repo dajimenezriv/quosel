@@ -72,13 +72,7 @@ export interface paths {
                     };
                     content: {
                         "application/json": {
-                            user: {
-                                id: string;
-                                email: string;
-                                name: string;
-                                picture: string;
-                                subscriptionStatus: string;
-                            } | null;
+                            user: components["schemas"]["Me"];
                         };
                     };
                 };
@@ -1000,6 +994,13 @@ export interface components {
         Error: {
             message: string;
         };
+        Me: {
+            id: string;
+            email: string;
+            name: string;
+            picture: string;
+            subscriptionStatus: string;
+        } | null;
     };
     responses: never;
     parameters: never;

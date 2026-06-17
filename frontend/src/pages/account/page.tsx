@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/old/auth';
+import { useAuth, type Me } from '@/old/auth';
 import { isSubscribed } from '@/old/billing';
 import { Check, User } from 'lucide-react';
 import { useState } from 'react';
@@ -28,7 +28,7 @@ const plansData = [
     features: ['Everything in Free', 'Up to 10 websites', 'Custom domain', 'Export to HTML'],
     popular: true,
   },
-];
+] as const;
 
 type Plan = (typeof plansData)[number];
 

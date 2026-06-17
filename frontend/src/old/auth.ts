@@ -2,12 +2,9 @@ import { client } from '@/api/client';
 import { env } from '@/core/env';
 import { useEffect, useState } from 'react';
 import type { SubscriptionStatus } from './billing';
+import type { components } from '@/api/schema';
 
-export type User = {
-  id: string;
-  email: string;
-  name: string | null;
-  picture: string | null;
+export type Me = components['schemas']['Me'] & {
   subscriptionStatus: SubscriptionStatus;
 };
 
@@ -15,14 +12,14 @@ export function loginWithGoogle() {
   window.location.href = `${env.VITE_API_URL}/auth/google`;
 }
 
-async function fetchMe(): Promise<User | null> {
+async function fetchMe(): Promise<Me | null> {
   const { data, error } = await client.GET('/auth/me');
   if (error) return null;
-  return data.user as User | null;
+  return data.user as Me | null;
 }
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<Me | null>(null);
   const [loading, setLoading] = useState(true);
 
   async function logout() {

@@ -3,13 +3,15 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { getCookie } from 'hono/cookie';
 import { jsonResponse, setupResponses } from '../../core/api/utils';
 
-const UserSchema = z.object({
-  id: z.string(),
-  email: z.string(),
-  name: z.string(),
-  picture: z.string(),
-  subscriptionStatus: z.string(),
-});
+const UserSchema = z
+  .object({
+    id: z.string(),
+    email: z.string(),
+    name: z.string(),
+    picture: z.string(),
+    subscriptionStatus: z.string(),
+  })
+  .openapi('Me');
 
 const ResponseSchema = z.object({ user: UserSchema.nullable() });
 
@@ -27,18 +29,5 @@ export const me: RouteHandler<typeof meRoute> = async (c) => {
   if (!row) return jsonResponse(c, ResponseSchema, { user: null }, 200);
 
   const { user } = row;
-  return jsonResponse(
-    c,
-    ResponseSchema,
-    {
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        picture: user.picture,
-        subscriptionStatus: user.subscriptionStatus,
-      },
-    },
-    200,
-  );
+  return jsonResponse(c, ResponseSchema, { user }, 200);
 };

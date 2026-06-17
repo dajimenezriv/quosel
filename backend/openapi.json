@@ -16,6 +16,36 @@
         "required": [
           "message"
         ]
+      },
+      "Me": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "picture": {
+            "type": "string"
+          },
+          "subscriptionStatus": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "name",
+          "picture",
+          "subscriptionStatus"
+        ]
       }
     },
     "parameters": {}
@@ -69,34 +99,7 @@
                   "type": "object",
                   "properties": {
                     "user": {
-                      "type": [
-                        "object",
-                        "null"
-                      ],
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "picture": {
-                          "type": "string"
-                        },
-                        "subscriptionStatus": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "email",
-                        "name",
-                        "picture",
-                        "subscriptionStatus"
-                      ]
+                      "$ref": "#/components/schemas/Me"
                     }
                   },
                   "required": [
