@@ -2,8 +2,9 @@ import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { ReviewsBlock } from '@quosel/core/templates';
+import { circoloPopolareReviews, type ReviewsBlock } from '@quosel/core/templates';
 import { Plus, Star, Trash2 } from 'lucide-react';
+import { GenerateTextField } from './generate-text-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
@@ -26,15 +27,17 @@ export function ReviewsLayout({ data, block, index }: Props) {
           })}
         />
       </Field>
-      <Field label="Title">
-        <Textarea
-          className="min-h-0"
-          value={block.title}
-          onChange={handleTextArea((block, value) => {
-            block.title = value;
-          })}
-        />
-      </Field>
+
+      <GenerateTextField
+        label="Title"
+        generateLabel="Reviews title"
+        value={block.title}
+        example={circoloPopolareReviews.title}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.title = value;
+        }}
+      />
 
       <Subgroup title="Stats">
         {block.stats.map((stat, statIndex) => (

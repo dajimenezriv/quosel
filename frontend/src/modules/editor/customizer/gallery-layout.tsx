@@ -1,9 +1,9 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import type { GalleryBlock } from '@quosel/core/templates';
+import { circoloPopolareGallery, type GalleryBlock } from '@quosel/core/templates';
 import { Images, Plus, Trash2 } from 'lucide-react';
+import { GenerateTextField } from './generate-text-field';
 import { ImageField } from './image-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export function GalleryLayout({ data, block, index }: Props) {
-  const { updateBlock, handleInput, handleTextArea, removeBlock, moveUp, moveDown } = useBlockHandlers<GalleryBlock>(data, index);
+  const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<GalleryBlock>(data, index);
 
   return (
     <Section title="Gallery" icon={<Images className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
@@ -27,24 +27,27 @@ export function GalleryLayout({ data, block, index }: Props) {
           })}
         />
       </Field>
-      <Field label="Title">
-        <Textarea
-          className="min-h-0"
-          value={block.title}
-          onChange={handleTextArea((block, value) => {
-            block.title = value;
-          })}
-        />
-      </Field>
-      <Field label="Text">
-        <Textarea
-          className="min-h-0"
-          value={block.text}
-          onChange={handleTextArea((block, value) => {
-            block.text = value;
-          })}
-        />
-      </Field>
+
+      <GenerateTextField
+        label="Title"
+        generateLabel="Gallery title"
+        value={block.title}
+        example={circoloPopolareGallery.title}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.title = value;
+        }}
+      />
+      <GenerateTextField
+        label="Text"
+        generateLabel="Gallery text"
+        value={block.text}
+        example={circoloPopolareGallery.text}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.text = value;
+        }}
+      />
 
       <Subgroup title="Images">
         {block.images.map((image, imageIndex) => (

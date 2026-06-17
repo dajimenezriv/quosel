@@ -1,4 +1,5 @@
 /** @jsxRuntime automatic @jsxImportSource react */
+import { RichText } from '../core/rich-text';
 import { getNavLinks } from '../core/utils';
 import type { FooterBlock, TemplateData } from '../types';
 
@@ -31,7 +32,9 @@ export function Footer({ data, block }: { data: TemplateData; block: FooterBlock
           <div className="mb-5 flex items-center gap-3">
             <span className="text-xs tracking-[0.25em] uppercase">{data.blocks.name}</span>
           </div>
-          <p className="text-foreground/40 text-xs leading-relaxed">{block.description}</p>
+          <p className="text-foreground/40 text-xs leading-relaxed">
+            <RichText text={block.description} />
+          </p>
         </div>
 
         <Column title={block.navigateTitle} links={navLinks} />

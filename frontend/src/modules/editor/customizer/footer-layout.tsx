@@ -1,9 +1,9 @@
 import type { WebsiteData } from '@/api/websites/use-update-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import type { FooterBlock } from '@quosel/core/templates';
+import { circoloPopolareFooter, type FooterBlock } from '@quosel/core/templates';
 import { PanelBottom, Plus, Trash2 } from 'lucide-react';
+import { GenerateTextField } from './generate-text-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
@@ -14,19 +14,21 @@ interface Props {
 }
 
 export function FooterLayout({ data, block, index }: Props) {
-  const { handleInput, handleTextArea, updateBlock, removeBlock, moveUp, moveDown } = useBlockHandlers<FooterBlock>(data, index);
+  const { handleInput, updateBlock, removeBlock, moveUp, moveDown } = useBlockHandlers<FooterBlock>(data, index);
 
   return (
     <Section title="Footer" icon={<PanelBottom className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
-      <Field label="Description">
-        <Textarea
-          className="min-h-0"
-          value={block.description}
-          onChange={handleTextArea((block, value) => {
-            block.description = value;
-          })}
-        />
-      </Field>
+      <GenerateTextField
+        label="Description"
+        generateLabel="Footer description"
+        value={block.description}
+        example={circoloPopolareFooter.description}
+        updateBlock={updateBlock}
+        set={(block, value) => {
+          block.description = value;
+        }}
+      />
+
       <Field label="Navigate title">
         <Input
           value={block.navigateTitle}
