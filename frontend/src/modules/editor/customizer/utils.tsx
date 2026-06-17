@@ -2,11 +2,8 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
-import { createContext, useContext, useState, type ReactNode } from 'react';
-
-// Controls whether sections can be moved or removed. Disabled for non-logged-in users.
-const SectionControlsContext = createContext(true);
-export const SectionControlsProvider = SectionControlsContext.Provider;
+import { useContext, useState, type ReactNode } from 'react';
+import { SectionControlsContext } from './section-controls-context';
 
 export function Section({
   title,

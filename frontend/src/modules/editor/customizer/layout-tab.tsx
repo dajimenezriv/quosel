@@ -18,7 +18,8 @@ import { ReviewsLayout } from './reviews-layout';
 import { RichTextHint } from './rich-text-hint';
 import { ServicesLayout } from './services-layout';
 import { StatsLayout } from './stats-layout';
-import { Field, Section, SectionControlsProvider, Subgroup } from './utils';
+import { SectionControlsProvider } from './section-controls-context';
+import { Field, Section, Subgroup } from './utils';
 
 const MAX_BLOCKS = 15;
 
