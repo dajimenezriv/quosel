@@ -31,17 +31,11 @@ describe('me', () => {
       name: 'Test User',
       picture: 'https://example.com/pic.jpg',
       subscriptionStatus: 'active',
-      currentPeriodEnd: new Date('2026-06-01T00:00:00.000Z'),
     };
     getSessionByIdMock.mockResolvedValue({ user });
     // When
     const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
-    await expectJson(res, 200, {
-      user: {
-        ...user,
-        currentPeriodEnd: '2026-06-01T00:00:00.000Z',
-      },
-    });
+    await expectJson(res, 200, { user });
   });
 });

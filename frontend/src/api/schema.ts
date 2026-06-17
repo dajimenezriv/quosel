@@ -78,8 +78,6 @@ export interface paths {
                                 name: string;
                                 picture: string;
                                 subscriptionStatus: string;
-                                /** Format: date-time */
-                                currentPeriodEnd: string | null;
                             } | null;
                         };
                     };

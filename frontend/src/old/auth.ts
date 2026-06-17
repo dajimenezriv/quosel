@@ -9,7 +9,6 @@ export type User = {
   name: string | null;
   picture: string | null;
   subscriptionStatus: SubscriptionStatus;
-  currentPeriodEnd: string | null;
 };
 
 export function loginWithGoogle() {

@@ -27,7 +27,6 @@ export async function getOrCreateCustomer(userId: UserId) {
     stripeSubscriptionId: null,
     subscriptionStatus: '',
     subscriptionPriceId: '',
-    currentPeriodEnd: null,
   });
 
   return customer.id;

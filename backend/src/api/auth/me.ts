@@ -9,7 +9,6 @@ const UserSchema = z.object({
   name: z.string(),
   picture: z.string(),
   subscriptionStatus: z.string(),
-  currentPeriodEnd: z.iso.datetime().nullable(),
 });
 
 const ResponseSchema = z.object({ user: UserSchema.nullable() });
@@ -38,7 +37,6 @@ export const me: RouteHandler<typeof meRoute> = async (c) => {
         name: user.name,
         picture: user.picture,
         subscriptionStatus: user.subscriptionStatus,
-        currentPeriodEnd: user.currentPeriodEnd?.toISOString() ?? null,
       },
     },
     200,

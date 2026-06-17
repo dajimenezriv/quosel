@@ -58,7 +58,6 @@ describe('getOrCreateCustomer', () => {
         stripeSubscriptionId: null,
         subscriptionStatus: '',
         subscriptionPriceId: '',
-        currentPeriodEnd: null,
       },
     ]);
   });

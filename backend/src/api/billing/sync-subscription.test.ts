@@ -10,7 +10,7 @@ function makeSub(overrides: Partial<Stripe.Subscription> = {}): Stripe.Subscript
     id: 'sub_1',
     customer: 'cus_1',
     status: 'active',
-    items: { data: [{ price: { id: 'price_1' }, current_period_end: 1735689600 }] },
+    items: { data: [{ price: { id: 'price_1' } }] },
     ...overrides,
   } as unknown as Stripe.Subscription;
 }
@@ -26,8 +26,6 @@ describe('syncSubscription', () => {
         stripeSubscriptionId: 'sub_1',
         subscriptionStatus: 'active',
         subscriptionPriceId: 'price_1',
-        currentPeriodEnd: new Date('2025-01-01T00:00:00.000Z'),
-        subscriptionCancelAt: null,
       },
     ]);
   });
@@ -42,13 +40,11 @@ describe('syncSubscription', () => {
         stripeSubscriptionId: 'sub_1',
         subscriptionStatus: 'active',
         subscriptionPriceId: 'price_1',
-        currentPeriodEnd: new Date('2025-01-01T00:00:00.000Z'),
-        subscriptionCancelAt: null,
       },
     ]);
   });
 
-  it('should default priceId to "" and currentPeriodEnd to null when there are no items', async () => {
+  it('should default priceId to "" when there are no items', async () => {
     // When
     await syncSubscription(makeSub({ items: { data: [] } as unknown as Stripe.ApiList<Stripe.SubscriptionItem> }));
     // Then
@@ -58,8 +54,6 @@ describe('syncSubscription', () => {
         stripeSubscriptionId: 'sub_1',
         subscriptionStatus: 'active',
         subscriptionPriceId: '',
-        currentPeriodEnd: null,
-        subscriptionCancelAt: null,
       },
     ]);
   });

@@ -1,6 +1,7 @@
 pg_version = "18"
 excluded_rules = [
   "adding-not-nullable-field",
+  "ban-drop-column",
   "prefer-bigint-over-int",
   "require-concurrent-index-creation",
   "require-timeout-settings",

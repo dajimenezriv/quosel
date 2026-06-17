@@ -25,7 +25,7 @@ const plansData = [
     description: 'For freelancers managing multiple client sites',
     price: '€19.99',
     frequency: '/month',
-    features: ['Everything in Free', 'Up to 10 websites', 'Custom domain'],
+    features: ['Everything in Free', 'Up to 10 websites', 'Custom domain', 'Export to HTML'],
     popular: true,
   },
 ];
@@ -89,6 +89,34 @@ interface PlanCardProps {
 }
 
 function PlanCard({ plan, current, onUpgrade, onManage, busy }: PlanCardProps) {
+  function getButton() {
+    if (plan.id === 'freelancer') {
+      if (current) {
+        return (
+          <Button variant="outline" className="w-full cursor-pointer" onClick={onManage} disabled={busy}>
+            Manage billing
+          </Button>
+        );
+      } else {
+        return (
+          <Button className="w-full cursor-pointer" onClick={onUpgrade} disabled={busy}>
+            Upgrade
+          </Button>
+        );
+      }
+    } else {
+      if (current) return null;
+
+      return (
+        <Button variant="outline" className="w-full cursor-pointer" onClick={onManage} disabled={busy}>
+          Downgrade
+        </Button>
+      );
+    }
+  }
+
+  const button = getButton();
+
   return (
     <Card className={cn('flex w-72 flex-col', { 'border-primary': current })}>
       <CardHeader className="flex flex-col items-center gap-2 text-center">
@@ -108,21 +136,7 @@ function PlanCard({ plan, current, onUpgrade, onManage, busy }: PlanCardProps) {
           </div>
         ))}
       </CardContent>
-      <CardFooter>
-        {current ? (
-          <Button variant="outline" className="w-full cursor-pointer" onClick={onManage} disabled={busy}>
-            Manage billing
-          </Button>
-        ) : plan.id === 'freelancer' ? (
-          <Button className="w-full cursor-pointer" onClick={onUpgrade} disabled={busy}>
-            Upgrade
-          </Button>
-        ) : (
-          <Button variant="outline" className="w-full cursor-pointer" onClick={onManage} disabled={busy}>
-            Downgrade
-          </Button>
-        )}
-      </CardFooter>
+      {button && <CardFooter>{button}</CardFooter>}
     </Card>
   );
 }
