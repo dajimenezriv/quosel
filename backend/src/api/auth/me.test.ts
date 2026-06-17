@@ -5,8 +5,6 @@ import { deepMocked, expectJson } from '@/tests/utils.helper.test';
 vi.mock(import('@/infra/postgres/sessions'));
 
 describe('me', () => {
-  const getSessionByIdMock = deepMocked(Sessions.getById);
-
   it('should return null if no session cookie', async () => {
     // When
     const res = await app.request('/auth/me');
@@ -32,7 +30,7 @@ describe('me', () => {
       picture: 'https://example.com/pic.jpg',
       subscriptionStatus: 'active',
     };
-    getSessionByIdMock.mockResolvedValue({ user });
+    deepMocked(Sessions.getById).mockResolvedValue({ user });
     // When
     const res = await app.request('/auth/me', { headers: { Cookie: 'session=sessionId' } });
     // Then
