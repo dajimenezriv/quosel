@@ -297,6 +297,7 @@ export interface paths {
                                 id: string;
                                 userId: string;
                                 name: string;
+                                slug: string;
                                 styles: {
                                     background: string;
                                     foreground: string;

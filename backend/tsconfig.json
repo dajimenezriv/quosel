@@ -4,14 +4,14 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "types": ["node", "vitest/globals"],
+    "jsx": "react-jsx",
     "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
     "esModuleInterop": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"],
       "@/tests/*": ["./tests/*"]

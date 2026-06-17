@@ -3,10 +3,11 @@ import type { TemplateData } from '@quosel/core/templates';
 import { ContentFrame } from './utils';
 
 interface Props {
+  domain: string;
   data: TemplateData;
 }
 
-export function SafariDevice({ data }: Props) {
+export function SafariDevice({ domain, data }: Props) {
   const d = useThemeStore((s) => s.isDarkMode);
 
   return (
@@ -41,7 +42,9 @@ export function SafariDevice({ data }: Props) {
         </div>
 
         {/* Address bar — pill, spans available space */}
-        <div className="flex min-w-0 flex-1 items-center justify-center px-2">
+        <div
+          className="flex min-w-0 flex-1 cursor-pointer items-center justify-center px-2"
+          onClick={() => window.open(domain, '_blank', 'noopener,noreferrer')}>
           <div
             className="flex w-full items-center gap-2 px-3 py-1.25"
             style={{
@@ -50,13 +53,8 @@ export function SafariDevice({ data }: Props) {
               borderRadius: 8,
               boxShadow: d ? 'none' : '0 1px 2px rgba(0,0,0,0.06)',
             }}>
-            {/* Lock icon */}
-            <svg width="11" height="13" viewBox="0 0 11 13" fill="none" className="shrink-0" style={{ color: d ? '#666' : '#999' }}>
-              <rect x="0.75" y="5.75" width="9.5" height="6.5" rx="1.5" stroke="currentColor" strokeWidth="1.3" />
-              <path d="M3 5.5V4a2.5 2.5 0 015 0v1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-            </svg>
             <span className="flex-1 text-center text-[12px] select-none" style={{ color: d ? '#aaa' : '#444', letterSpacing: 0.1 }}>
-              preview
+              {domain}
             </span>
           </div>
         </div>
