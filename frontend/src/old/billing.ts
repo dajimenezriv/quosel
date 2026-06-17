@@ -1,24 +1,3 @@
-import { env } from '@/core/env';
-
-async function postJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${env.VITE_API_URL}${path}`, {
-    method: 'POST',
-    credentials: 'include',
-  });
-  if (!res.ok) throw new Error(`${path} failed: ${res.status}`);
-  return (await res.json()) as T;
-}
-
-export async function startCheckout() {
-  const { url } = await postJson<{ url: string }>('/billing/checkout');
-  window.location.href = url;
-}
-
-export async function openPortal() {
-  const { url } = await postJson<{ url: string }>('/billing/portal');
-  window.location.href = url;
-}
-
 export type SubscriptionStatus =
   | 'trialing'
   | 'active'
