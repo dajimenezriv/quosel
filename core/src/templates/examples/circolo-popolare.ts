@@ -191,8 +191,8 @@ export const circoloPopolareLocation: LocationBlock = {
 
 export const circoloPopolareCta: CtaBlock = {
   type: 'cta',
-  title: '_~Your next visit starts here.~_',
-  text: '_Book a table or follow us on Instagram. Two ways into the restaurant before you even step inside._',
+  title: '_~Your next visit\nstarts here.~_',
+  text: '_Book a table or follow us on Instagram.\nTwo ways into the restaurant before you even step inside._',
   ctaText: 'Book a Table',
   ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/circolo-popolare-barcelona-jerome-galland-bar-1-693e68003cbcf.jpg',
@@ -240,7 +240,7 @@ export const circoloPopolareBlocks: Blocks = {
     {
       type: 'cta',
       title: '_The detail is\n~everything~_',
-      text: '',
+      text: '_Book a table or just show up — either way, enjoy your meal!_',
       ctaText: '',
       ctaLink: '',
       imageUrl:

@@ -14,10 +14,10 @@ export function Info({ block }: { block: InfoBlock }) {
 
         <div className="mt-10 flex flex-col gap-10 md:mt-20 md:flex-row md:gap-20">
           <div className="flex flex-1 flex-col gap-10">
-            <blockquote className="border-primary text-foreground/70 border-l-2 pl-6 text-lg">
+            <blockquote className="border-primary border-l-2 pl-6 text-lg">
               <RichText text={block.text1} />
             </blockquote>
-            <p className="text-foreground/60">
+            <p>
               <RichText text={block.text2} />
             </p>
           </div>
