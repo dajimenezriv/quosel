@@ -30,4 +30,12 @@ describe('public-get-website', () => {
     // Then
     expect(res.status).toBe(200);
   });
+
+  it('should return 429 when exceeding the rate limit', async () => {
+    // When
+    for (let i = 0; i < 30; i++) await app.request('/websites/public/token');
+    const res = await app.request('/websites/public/token');
+    // Then
+    await expectError(res, 429, 'Too many requests');
+  });
 });

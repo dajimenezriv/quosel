@@ -44,7 +44,7 @@ export const publicUpdateWebsite: RouteHandler<typeof publicUpdateWebsiteRoute, 
 
   // Website available for all users in production, we don't want to allow update it
   if (website.id === '9acafda9-c93c-4a78-9351-44b0367cc4c9') {
-    return c.body(null, 204);
+    throw new ApiError(401, 'Cannot update DEMO site');
   }
 
   await Websites.update(website.id, { name, context, blocks, styles });
