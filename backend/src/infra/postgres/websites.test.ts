@@ -26,6 +26,30 @@ describe('websites', () => {
     });
   });
 
+  describe('countByUserId', () => {
+    it('should return only websites for the given user', async () => {
+      // Given
+      const { id: userId1 } = await createMockUser();
+      const { id: userId2 } = await createMockUser();
+      await Websites.create(userId1, 'Website 1');
+      await Websites.create(userId1, 'Website 2');
+      await Websites.create(userId2, 'Other Website');
+      // When
+      const count = await Websites.countByUserId(userId1);
+      // Then
+      expect(count).toBe(2);
+    });
+
+    it('should return 0 if user has no websites', async () => {
+      // Given
+      const { id: userId } = await createMockUser();
+      // When
+      const count = await Websites.countByUserId(userId);
+      // Then
+      expect(count).toBe(0);
+    });
+  });
+
   describe('getById', () => {
     it('should return website if it exists', async () => {
       // Given
