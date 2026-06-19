@@ -1,5 +1,5 @@
 ---
-import SectionLabel from '../components/section-label.astro';
+import SectionLabel from './section-label.astro';
 ---
 
 <section id="faq" class="w-full">
@@ -31,7 +31,7 @@ import SectionLabel from '../components/section-label.astro';
               },
               {
                 q: 'How do I publish the finished site?',
-                a: "One click. Quosel publishes the site to the client's own custom domain — no manual hosting or file wrangling. Custom domains are available on the Pro plan.",
+                a: "One click. Quosel publishes the site to the client's own custom domain — no manual hosting or file wrangling. Custom domains are available on the Freelancer plan.",
               },
             ].map(({ q, a }, i) => (
               <div class="faq-item">
@@ -62,11 +62,11 @@ import SectionLabel from '../components/section-label.astro';
               },
               {
                 q: 'Do you offer a free trial?',
-                a: 'Your first 3 sites are completely free, no credit card required. Try the full build-and-publish flow before committing.',
+                a: 'Your first site is completely free, no credit card required. Try the full build-and-publish flow before committing.',
               },
               {
                 q: 'What happens if I reach my site limit?',
-                a: "On the Starter plan, once you've used your 3 free sites you'll need to upgrade to Pro for unlimited sites. We notify you before you hit the limit.",
+                a: "On the Free plan, once you've used your free site you'll need to upgrade to Freelancer for up to 10 sites. We notify you before you hit the limit.",
               },
               {
                 q: 'How is my data kept secure?',
