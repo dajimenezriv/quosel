@@ -23,7 +23,7 @@ export const shareLink: RouteHandler<typeof shareLinkRoute, { Variables: AuthVar
   const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  const token = await Websites.regenerateEditToken(websiteId, userId);
+  const token = await Websites.regenerateEditToken(userId, websiteId);
 
   return jsonResponse(c, ResponseSchema, { token }, 200);
 };

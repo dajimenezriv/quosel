@@ -34,6 +34,6 @@ describe('share-link', () => {
     const res = await app.request('/websites/websiteId/share-link', postRequest());
     // Then
     await expectJson(res, 200, { token: 'newToken' });
-    calls(Websites.regenerateEditToken).toStrictEqual(['websiteId', 'userId']);
+    calls(Websites.regenerateEditToken).toStrictEqual(['userId', 'websiteId']);
   });
 });

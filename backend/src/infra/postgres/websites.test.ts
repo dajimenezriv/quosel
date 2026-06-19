@@ -53,7 +53,7 @@ describe('websites', () => {
   describe('getById', async () => {
     const { id: userId1 } = await createMockUser();
     const { id: userId2 } = await createMockUser();
-    const { id: websiteId } = await Websites.create(userId1, 'My Website');
+    const { id: websiteId } = await Websites.create(userId1, 'Website');
 
     it('should return website if it exists', async () => {
       // When
@@ -77,17 +77,36 @@ describe('websites', () => {
     });
   });
 
+  describe('getByEditToken', async () => {
+    const { id: userId } = await createMockUser();
+    const { id: websiteId, editToken } = await Websites.create(userId, 'Website');
+
+    it('should return website if it exists', async () => {
+      // When
+      const website = await Websites.getByEditToken(editToken);
+      // Then
+      expect(website!.id).toBe(websiteId);
+    });
+
+    it('should return null if website does not exist', async () => {
+      // When
+      const website = await Websites.getByEditToken('nonExistingToken');
+      // Then
+      expect(website).toBeNull();
+    });
+  });
+
   describe('create', async () => {
     const { id: userId } = await createMockUser();
 
     it('should create a website', async () => {
       // When
-      const website = await Websites.create(userId, 'My Website');
+      const website = await Websites.create(userId, 'Website');
       // Then
       expect(website.id).toBeDefined();
       expect(website.userId).toBe(userId);
-      expect(website.name).toBe('My Website');
-      expect(website.slug).toMatch(/^my-website-[0-9a-f]{8}$/);
+      expect(website.name).toBe('Website');
+      expect(website.slug).toMatch(/^website-[0-9a-f]{8}$/);
     });
 
     it('should throw if name is invalid', async () => {
@@ -102,7 +121,7 @@ describe('websites', () => {
     it('should update website fields', async () => {
       // Given
       const { id: userId } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId, 'My Website');
+      const { id: websiteId } = await Websites.create(userId, 'Website');
       // When
       const updated = await Websites.update(websiteId, { name: 'Updated Name' });
       // Then
@@ -117,11 +136,31 @@ describe('websites', () => {
     });
   });
 
+  describe('regenerateEditToken', async () => {
+    const { id: userId } = await createMockUser();
+
+    it('should update website fields', async () => {
+      // Given
+      const { id: websiteId, editToken } = await Websites.create(userId, 'Website');
+      // When
+      const token = await Websites.regenerateEditToken(userId, websiteId);
+      // Then
+      expect(token).not.toBe(editToken);
+    });
+
+    it('should throw error if website does not exist', async () => {
+      // When
+      const promise = Websites.regenerateEditToken(userId, 'nonExistingId');
+      // Then
+      await expect(promise).rejects.toThrow('No record was found for an update.');
+    });
+  });
+
   describe('delete', () => {
     it('should delete the website if it belongs to the user', async () => {
       // Given
       const { id: userId } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId, 'My Website');
+      const { id: websiteId } = await Websites.create(userId, 'Website');
       // When
       const deleted = await Websites.delete(userId, websiteId);
       // Then
@@ -142,7 +181,7 @@ describe('websites', () => {
       // Given
       const { id: userId1 } = await createMockUser();
       const { id: userId2 } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId1, 'My Website');
+      const { id: websiteId } = await Websites.create(userId1, 'Website');
       // When
       const promise = Websites.delete(userId2, websiteId);
       // Then
