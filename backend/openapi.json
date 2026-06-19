@@ -521,6 +521,10 @@
                         "name": {
                           "type": "string"
                         },
+                        "logoUrl": {
+                          "type": "string",
+                          "default": ""
+                        },
                         "nav": {
                           "type": "object",
                           "properties": {
@@ -1173,6 +1177,10 @@
                       },
                       "name": {
                         "type": "string"
+                      },
+                      "logoUrl": {
+                        "type": "string",
+                        "default": ""
                       },
                       "nav": {
                         "type": "object",

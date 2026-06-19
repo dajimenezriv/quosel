@@ -10,6 +10,8 @@ import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const PAGE_SIZE = 12;
+const ACCEPTED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.ico'];
+const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif,image/x-icon,image/vnd.microsoft.icon';
 
 interface Props {
   value: string;
@@ -68,7 +70,7 @@ export function ImageField({ value, onChange }: Props) {
               <div>
                 <DialogTitle className="text-base font-semibold">Image library</DialogTitle>
                 <p className="text-muted-foreground text-xs">
-                  {images.length} image{images.length !== 1 ? 's' : ''}
+                  {images.length} image{images.length !== 1 ? 's' : ''} · {ACCEPTED_EXTENSIONS.join(', ')}
                 </p>
               </div>
             </div>
@@ -89,7 +91,7 @@ export function ImageField({ value, onChange }: Props) {
               </DialogClose>
             </div>
           </div>
-          <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
+          <input ref={fileInputRef} type="file" accept={ACCEPT} className="hidden" onChange={handleFileChange} />
 
           {/* Body */}
           <div className="px-6 pb-6">

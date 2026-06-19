@@ -153,6 +153,7 @@ export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
   schemaVersion: z.literal(1),
   name: z.string(),
+  logoUrl: z.string().default(''),
   nav: z.object({
     ctaText: z.string(),
     ctaLink: z.string(),

@@ -39,6 +39,7 @@ export function Template({ data }: { data: TemplateData }) {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{data.blocks.name}</title>
+        {data.blocks.logoUrl && <link rel="icon" href={data.blocks.logoUrl} />}
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <style type="text/tailwindcss" dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
       </head>
