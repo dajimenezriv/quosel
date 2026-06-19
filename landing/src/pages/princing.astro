@@ -2,6 +2,26 @@
 import SectionLabel from '../components/section-label.astro';
 
 const appUrl = 'https://app.quosel.com';
+
+const plansData = [
+  {
+    id: 'free',
+    name: 'Free',
+    description: 'Everything you need to build and publish one site',
+    price: '€0',
+    frequency: '/month',
+    features: ['1 website', 'Visual editor', 'Client preview links', 'One-click publishing', 'Image uploads', 'AI text generation'],
+  },
+  {
+    id: 'freelancer',
+    name: 'Freelancer',
+    description: 'For freelancers managing multiple client sites',
+    price: '€19.99',
+    frequency: '/month',
+    features: ['Everything in Free', 'Up to 10 websites', 'Custom domain', 'Export to HTML'],
+    popular: true,
+  },
+] as const;
 ---
 
 <!-- Pricing -->
@@ -14,79 +34,51 @@ const appUrl = 'https://app.quosel.com';
     <div class="px-10 py-12 text-center">
       <h2 class="text-card-foreground text-3xl font-bold tracking-tight sm:text-4xl">Plans that Scale with Your Sites</h2>
       <p class="text-muted-foreground mx-auto mt-3 max-w-xl text-sm">
-        Start free with your first 3 sites. Go Pro for unlimited sites and a custom domain — cancel anytime.
+        Start free with your first site. Upgrade to Freelancer for up to 10 sites and a custom domain — cancel anytime.
       </p>
     </div>
 
     <!-- Two plan columns -->
     <div class="divide-border border-border grid grid-cols-1 divide-y border-t sm:grid-cols-2 sm:divide-x sm:divide-y-0">
-      <!-- Starter -->
-      <div class="flex flex-col">
-        <div class="border-border border-b p-8">
-          <h3 class="text-card-foreground text-xl font-bold">Starter</h3>
-          <p class="text-muted-foreground mt-1 text-sm">For freelancers trying out Quosel</p>
-          <div class="mt-5 flex items-start gap-0.5">
-            <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
-            <span class="text-card-foreground text-5xl font-bold tracking-tight">0</span>
-            <span class="text-muted-foreground mt-3 text-sm">/month</span>
-          </div>
-          <a
-            href={appUrl}
-            class="bg-secondary text-secondary-foreground hover:bg-muted mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-sm font-medium transition-colors">
-            Get started free
-          </a>
-        </div>
-        <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
-          {
-            ['3 sites', 'AI-written copy', 'Real-time client editing', 'Community support', 'Quosel-hosted domain'].map((f) => (
-              <li class="flex items-start gap-3">
-                <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
-                {f}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <!-- Pro -->
-      <div class="flex flex-col">
-        <div class="border-border border-b p-8">
-          <h3 class="text-card-foreground text-xl font-bold">Pro</h3>
-          <p class="text-muted-foreground mt-1 text-sm">For freelancers delivering client sites</p>
-          <div class="mt-5 flex items-start gap-0.5">
-            <span class="text-secondary-foreground mt-2 text-sm font-medium">€</span>
-            <span class="text-card-foreground text-5xl font-bold tracking-tight">20</span>
-            <span class="text-muted-foreground mt-3 text-sm">/month</span>
-          </div>
-          <a
-            href={appUrl}
-            class="bg-primary text-primary-foreground hover:bg-primary/90 mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-sm font-semibold transition-colors">
-            Upgrade to Pro
-          </a>
-        </div>
-        <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
-          {
-            [
-              'Unlimited sites',
-              'AI-written copy',
-              'Real-time client editing',
-              'Priority email support',
-              'Custom domain',
-              'Export HTML',
-            ].map((f) => (
-              <li class="flex items-start gap-3">
-                <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
-                {f}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+      {
+        plansData.map((plan) => {
+          const isPopular = 'popular' in plan && plan.popular;
+          return (
+            <div class="flex flex-col">
+              <div class="border-border border-b p-8">
+                <h3 class="text-card-foreground text-xl font-bold">{plan.name}</h3>
+                <p class="text-muted-foreground mt-1 text-sm">{plan.description}</p>
+                <div class="mt-5 flex items-start gap-0.5">
+                  <span class="text-card-foreground text-5xl font-bold tracking-tight">{plan.price}</span>
+                  <span class="text-muted-foreground mt-3 text-sm">{plan.frequency}</span>
+                </div>
+                <a
+                  href={appUrl}
+                  class={
+                    isPopular
+                      ? 'bg-primary text-primary-foreground hover:bg-primary/90 mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-sm font-semibold transition-colors'
+                      : 'bg-secondary text-secondary-foreground hover:bg-muted mt-6 block w-full rounded-lg px-4 py-2.5 text-center text-sm font-medium transition-colors'
+                  }>
+                  {isPopular ? `Upgrade to ${plan.name}` : 'Get started free'}
+                </a>
+              </div>
+              <ul class="text-secondary-foreground flex-1 space-y-4 p-8 text-sm">
+                {plan.features.map((f) => (
+                  <li class="flex items-start gap-3">
+                    <span class="bg-primary mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      }
     </div>
 
     <!-- Reassurance -->
     <div class="border-border text-muted-foreground border-t px-6 py-5 text-center text-xs">
-      No credit card required · First 3 sites free · Cancel anytime
+      No credit card required · First site free · Cancel anytime
     </div>
   </div>
 </section>

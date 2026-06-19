@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import favicon from '../assets/favicon.png';
 import Moon from '../assets/moon.svg';
 import Sun from '../assets/sun.svg';
 
@@ -6,6 +8,8 @@ const appUrl = 'https://app.quosel.com';
 
 const navLinks = [
   { label: 'Features', href: '#features' },
+  { label: 'Live Example', href: '#showcase' },
+  { label: 'Editor demo', href: '#editor-demo' },
   { label: 'FAQ', href: '#faq' },
   { label: 'Pricing', href: '#pricing' },
 ];
@@ -15,7 +19,7 @@ const navLinks = [
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2">
-      <div class="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold">Q</div>
+      <Image src={favicon} alt="Quosel logo" width={32} height={32} class="h-8 w-8 rounded-lg" />
       <span class="text-card-foreground text-base font-semibold tracking-tight">Quosel</span>
     </a>
 
