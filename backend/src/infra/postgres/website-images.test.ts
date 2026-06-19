@@ -54,7 +54,7 @@ describe('website-images', async () => {
       // When
       const images = await WebsiteImages.getAllByUserId(userId);
       // Then
-      expect(images).toHaveLength(0);
+      expect(images).toStrictEqual([]);
     });
   });
 

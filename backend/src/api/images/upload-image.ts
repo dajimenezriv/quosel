@@ -43,8 +43,8 @@ export const uploadImage: RouteHandler<typeof uploadImageRoute, { Variables: Aut
   if (!ALLOWED_TYPES.includes(file.type)) throw new ApiError(400, 'Invalid file type');
   if (file.size > MAX_SIZE) throw new ApiError(400, 'File too large (max 5 MB)');
 
-  const website = await Websites.getById(websiteId);
-  if (!website || website.userId !== userId) throw new ApiError(404, 'Website not found');
+  const website = await Websites.getById(userId, websiteId);
+  if (!website) throw new ApiError(404, 'Website not found');
 
   const id = crypto.randomUUID();
   await R2.upload(`images/${id}`, file);

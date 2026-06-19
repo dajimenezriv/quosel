@@ -19,8 +19,8 @@ export const deleteWebsite: RouteHandler<typeof deleteWebsiteRoute, { Variables:
   const userId = c.get('userId');
   const { websiteId } = c.req.valid('param');
 
-  const website = await Websites.getById(websiteId);
-  if (!website || website.userId !== userId) throw new ApiError(404, 'Website not found');
+  const website = await Websites.getById(userId, websiteId);
+  if (!website) throw new ApiError(404, 'Website not found');
 
   await Websites.delete(userId, websiteId);
 

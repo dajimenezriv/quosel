@@ -1,14 +1,21 @@
-import { randomBytes } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import type { UserId } from '@/core/types';
 import { claudeStyles, emptyBlocks, slugify } from '@quosel/core/templates';
 import { prisma } from './client';
 import type { Prisma } from './prisma/client';
 
-type WebsiteUpdate = Pick<Prisma.WebsiteUpdateInput, 'name' | 'slug' | 'publishedAt' | 'blocks' | 'styles'>;
-
 export class Websites {
   static randomSlug(name: string) {
     return `${slugify(name)}-${randomBytes(4).toString('hex')}`;
+  }
+
+  static hashEditToken(token: string) {
+    return createHash('sha256').update(token).digest('hex');
+  }
+
+  static generateEditToken() {
+    const token = randomBytes(32).toString('base64url');
+    return { token, hash: this.hashEditToken(token) };
   }
 
   static async getAllByUserId(userId: UserId) {
@@ -19,8 +26,13 @@ export class Websites {
     return await prisma.website.count({ where: { userId } });
   }
 
-  static async getById(websiteId: string) {
-    return await prisma.website.findFirst({ where: { id: websiteId } });
+  static async getById(userId: UserId, websiteId: string) {
+    return await prisma.website.findFirst({ where: { id: websiteId, userId } });
+  }
+
+  static async getByEditToken(token: string) {
+    const hash = this.hashEditToken(token);
+    return await prisma.website.findFirst({ where: { editToken: hash } });
   }
 
   static async create(userId: UserId, name: string) {
@@ -29,14 +41,21 @@ export class Websites {
         userId,
         name,
         slug: this.randomSlug(name),
+        editToken: this.generateEditToken().hash,
         blocks: emptyBlocks,
         styles: claudeStyles,
       },
     });
   }
 
-  static async update(websiteId: string, data: WebsiteUpdate) {
+  static async update(websiteId: string, data: Prisma.WebsiteUpdateInput) {
     return await prisma.website.update({ where: { id: websiteId }, data });
+  }
+
+  static async regenerateEditToken(websiteId: string, userId: UserId) {
+    const { token, hash } = this.generateEditToken();
+    await prisma.website.update({ where: { id: websiteId, userId }, data: { editToken: hash } });
+    return token;
   }
 
   static async delete(userId: UserId, websiteId: string) {

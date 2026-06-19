@@ -22,12 +22,12 @@ describe('websites', () => {
       // When
       const websites = await Websites.getAllByUserId(userId);
       // Then
-      expect(websites).toHaveLength(0);
+      expect(websites).toStrictEqual([]);
     });
   });
 
   describe('countByUserId', () => {
-    it('should return only websites for the given user', async () => {
+    it('should return only websites count for the given user', async () => {
       // Given
       const { id: userId1 } = await createMockUser();
       const { id: userId2 } = await createMockUser();
@@ -50,29 +50,37 @@ describe('websites', () => {
     });
   });
 
-  describe('getById', () => {
+  describe('getById', async () => {
+    const { id: userId1 } = await createMockUser();
+    const { id: userId2 } = await createMockUser();
+    const { id: websiteId } = await Websites.create(userId1, 'My Website');
+
     it('should return website if it exists', async () => {
-      // Given
-      const { id: userId } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId, 'My Website');
       // When
-      const website = await Websites.getById(websiteId);
+      const website = await Websites.getById(userId1, websiteId);
       // Then
       expect(website!.id).toBe(websiteId);
     });
 
     it('should return null if website does not exist', async () => {
       // When
-      const website = await Websites.getById('nonExistingId');
+      const website = await Websites.getById(userId1, 'nonExistingId');
+      // Then
+      expect(website).toBeNull();
+    });
+
+    it('should return null if website belongs to another user', async () => {
+      // When
+      const website = await Websites.getById(userId2, websiteId);
       // Then
       expect(website).toBeNull();
     });
   });
 
-  describe('create', () => {
+  describe('create', async () => {
+    const { id: userId } = await createMockUser();
+
     it('should create a website', async () => {
-      // Given
-      const { id: userId } = await createMockUser();
       // When
       const website = await Websites.create(userId, 'My Website');
       // Then
@@ -83,8 +91,6 @@ describe('websites', () => {
     });
 
     it('should throw if name is invalid', async () => {
-      // Given
-      const { id: userId } = await createMockUser();
       // When
       const promise = Websites.create(userId, {} as any);
       // Then
@@ -120,7 +126,7 @@ describe('websites', () => {
       const deleted = await Websites.delete(userId, websiteId);
       // Then
       expect(deleted.id).toBe(websiteId);
-      expect(await Websites.getById(websiteId)).toBeNull();
+      expect(await Websites.getById(userId, websiteId)).toBeNull();
     });
 
     it('should throw if website does not exist', async () => {
