@@ -1,13 +1,12 @@
 ---
 import Footer from '../components/footer.astro';
+import Header from '../components/header.astro';
 import Layout from '../layouts/Layout.astro';
-import Header from './header.astro';
 
-// DRAFT — have a lawyer review before launch. Fill in the placeholders below.
-const operator = 'Daniel Jiménez Rivera';
+const operator = 'Quosel';
 const location = 'Spain';
 const contactEmail = 'hello@quosel.com';
-const effectiveDate = '15 June 2026';
+const effectiveDate = '19 June 2026';
 ---
 
 <Layout>
@@ -43,8 +42,8 @@ const effectiveDate = '15 June 2026';
 
         <h2>1. Who we are</h2>
         <p>
-          The Service is operated by {operator}, based in {location} ("Quosel", "we", "us"). For any questions about these Terms you can reach
-          us at <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
+          The Service is operated by {operator}, based in {location} ("we", "us"). For any questions about these Terms you can reach us at
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
         </p>
 
         <h2>2. The Service</h2>
@@ -63,7 +62,7 @@ const effectiveDate = '15 June 2026';
 
         <h2>4. Plans, billing and cancellation</h2>
         <ul>
-          <li>The Service offers a free tier (your first 3 sites) and a paid plan (Pro) billed monthly.</li>
+          <li>The Service offers a free tier (your first site) and a paid plan (Freelancer) billed monthly.</li>
           <li>Payments are processed by our payment provider, Stripe. We do not store your full card details.</li>
           <li>
             Paid plans renew automatically each billing period until cancelled. Prices are shown exclusive or inclusive of taxes as
