@@ -130,7 +130,7 @@ export default function Page({ isUserLogged = false }: Props) {
             {device === 'laptop' ? (
               <SafariDevice domain={`https://sites.quosel.com/${draft.slug}`} data={draft} />
             ) : (
-              <IPhoneDevice data={draft} />
+              <IPhoneDevice domain={`https://sites.quosel.com/${draft.slug}`} data={draft} />
             )}
           </div>
 

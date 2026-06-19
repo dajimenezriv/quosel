@@ -3,10 +3,11 @@ import type { TemplateData } from '@quosel/core/templates';
 import { ContentFrame } from './utils';
 
 interface Props {
+  domain: string;
   data: TemplateData;
 }
 
-export function IPhoneDevice({ data }: Props) {
+export function IPhoneDevice({ domain, data }: Props) {
   const isDarkMode = useThemeStore((s) => s.isDarkMode);
   const d = isDarkMode;
 
@@ -112,7 +113,9 @@ export function IPhoneDevice({ data }: Props) {
             className="shrink-0"
             style={{ background: d ? '#1c1c1e' : '#f2f2f7', borderTop: `1px solid ${d ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}` }}>
             {/* Address bar */}
-            <div className="flex items-center px-4 py-2">
+            <div
+              className="flex cursor-pointer items-center px-4 py-2"
+              onClick={() => window.open(domain, '_blank', 'noopener,noreferrer')}>
               <div
                 className="flex flex-1 items-center justify-center gap-2 px-3 py-2"
                 style={{
@@ -120,16 +123,9 @@ export function IPhoneDevice({ data }: Props) {
                   border: `1px solid ${d ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.12)'}`,
                   borderRadius: 10,
                 }}>
-                <svg width="12" height="14" viewBox="0 0 12 14" fill="none" className="shrink-0" style={{ color: '#888' }}>
-                  <rect x="0.75" y="5.75" width="10.5" height="7.5" rx="1.75" stroke="currentColor" strokeWidth="1.3" />
-                  <path d="M3.5 5.5V4a2.5 2.5 0 015 0v1.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-                </svg>
                 <span className="flex-1 text-center text-[13px]" style={{ color: d ? '#aaa' : '#333' }}>
-                  localhost
+                  {domain}
                 </span>
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0" style={{ color: d ? '#666' : '#aaa' }}>
-                  <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
               </div>
             </div>
             {/* Nav row */}

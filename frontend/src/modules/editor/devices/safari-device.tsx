@@ -7,6 +7,13 @@ interface Props {
   data: TemplateData;
 }
 
+function Favicon({ logoUrl, dark }: { logoUrl: string; dark: boolean }) {
+  if (logoUrl) {
+    return <img src={logoUrl} alt="" className="h-4 w-4 shrink-0 rounded-[3px] object-cover" />;
+  }
+  return <div className="h-4 w-4 shrink-0 rounded-[3px]" style={{ background: dark ? '#4a4a4a' : '#d0d0d0' }} />;
+}
+
 export function SafariDevice({ domain, data }: Props) {
   const d = useThemeStore((s) => s.isDarkMode);
 
@@ -75,8 +82,8 @@ export function SafariDevice({ domain, data }: Props) {
             background: d ? '#323232' : '#f5f5f5',
             borderRight: `1px solid ${d ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.1)'}`,
           }}>
-          {/* favicon placeholder */}
-          <div className="h-3.5 w-3.5 shrink-0 rounded-[3px]" style={{ background: d ? '#4a4a4a' : '#d0d0d0' }} />
+          {/* favicon */}
+          <Favicon logoUrl={data.blocks.logoUrl} dark={d} />
           <span className="text-[12px] select-none" style={{ color: d ? '#ccc' : '#333' }}>
             Preview
           </span>

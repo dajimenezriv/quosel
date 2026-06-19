@@ -4,6 +4,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { slugify } from '@quosel/core/templates';
 import { produce } from 'immer';
+import { ImageField } from '../image-field';
 import { Field } from '../utils';
 
 interface Props {
@@ -22,6 +23,18 @@ export function GeneralTab({ data }: Props) {
             updateDraft(
               produce(data, (draft) => {
                 draft.blocks.name = e.target.value;
+              }),
+            );
+          }}
+        />
+      </Field>
+      <Field label="Logo">
+        <ImageField
+          value={data.blocks.logoUrl}
+          onChange={(url) => {
+            updateDraft(
+              produce(data, (draft) => {
+                draft.blocks.logoUrl = url;
               }),
             );
           }}

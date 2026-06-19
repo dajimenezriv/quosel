@@ -460,6 +460,8 @@ export interface paths {
                                 /** @enum {number} */
                                 schemaVersion: 1;
                                 name: string;
+                                /** @default  */
+                                logoUrl: string;
                                 nav: {
                                     ctaText: string;
                                     ctaLink: string;
@@ -640,6 +642,8 @@ export interface paths {
                             /** @enum {number} */
                             schemaVersion: 1;
                             name: string;
+                            /** @default  */
+                            logoUrl?: string;
                             nav: {
                                 ctaText: string;
                                 ctaLink: string;

@@ -8,7 +8,7 @@ import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const MAX_SIZE = 5 * 1024 * 1024;
-const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/x-icon', 'image/vnd.microsoft.icon'];
 
 const ResponseSchema = z.object({
   id: z.string(),
