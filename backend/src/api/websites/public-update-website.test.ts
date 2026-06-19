@@ -1,6 +1,6 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
-import { calls, deepMocked, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
+import { calls, deepMocked, expectError, putRequest } from '@/tests/utils.helper.test';
 import { claudeStyles, emptyBlocks } from '@quosel/core/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
@@ -13,8 +13,6 @@ const VALID_BODY = {
 };
 
 describe('update-website', () => {
-  mockAuthMiddleware();
-
   beforeEach(() => {
     deepMocked(Websites.getByEditToken).mockResolvedValue({ id: 'websiteId' });
   });
