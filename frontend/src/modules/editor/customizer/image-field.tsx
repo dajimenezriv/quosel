@@ -10,7 +10,7 @@ import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const PAGE_SIZE = 12;
-const ACCEPTED_EXTENSIONS = ['.jpg', '.png', '.webp', '.gif', '.ico'];
+const ACCEPTED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.ico'];
 const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif,image/x-icon,image/vnd.microsoft.icon';
 
 interface Props {
