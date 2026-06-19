@@ -15,6 +15,10 @@ export class Websites {
     return await prisma.website.findMany({ where: { userId } });
   }
 
+  static async countByUserId(userId: UserId) {
+    return await prisma.website.count({ where: { userId } });
+  }
+
   static async getById(websiteId: string) {
     return await prisma.website.findFirst({ where: { id: websiteId } });
   }

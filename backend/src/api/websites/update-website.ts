@@ -34,6 +34,12 @@ export const updateWebsiteRoute = createRoute({
 
 export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
   const websiteId = c.req.param('websiteId');
+
+  // Website available for all users in production, we don't want to allow update it
+  if (websiteId === '9acafda9-c93c-4a78-9351-44b0367cc4c9') {
+    return c.body(null, 204);
+  }
+
   const { publish } = c.req.valid('query');
   const { name, slug, context, blocks, styles } = c.req.valid('json');
   // TODO: we are not checking if the website belongs to the user

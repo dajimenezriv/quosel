@@ -7,6 +7,7 @@ import { ApiError } from '../errors';
 export type AuthVariables = {
   userId: UserId;
   userEmail: string;
+  userSubscriptionStatus: string;
 };
 
 export const requireAuth = createMiddleware<{ Variables: AuthVariables }>(async (c, next) => {
@@ -18,5 +19,6 @@ export const requireAuth = createMiddleware<{ Variables: AuthVariables }>(async 
 
   c.set('userId', row.user.id as UserId);
   c.set('userEmail', row.user.email);
+  c.set('userSubscriptionStatus', row.user.subscriptionStatus);
   await next();
 });
