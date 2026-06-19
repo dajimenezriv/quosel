@@ -10,6 +10,9 @@ import { renderTemplate } from '@quosel/core/templates';
 import { Download, Globe, Laptop, RotateCcw, Save, Settings, Smartphone } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
+
+const DEMO_WEBSITE_ID = '9acafda9-c93c-4a78-9351-44b0367cc4c9';
 
 interface Props {
   isUserLogged?: boolean;
@@ -38,6 +41,10 @@ export default function Page({ isUserLogged = false }: Props) {
 
   function save() {
     if (!draft || !websiteId) return;
+    if (!isUserLogged && websiteId === DEMO_WEBSITE_ID) {
+      toast.warning('This site is a demo and cannot be edited');
+      return;
+    }
     updateWebsite({ websiteId, data: draft });
   }
 
