@@ -24,11 +24,10 @@ export function DataTable({ onRowClick, onDelete }: { onRowClick?: (id: string) 
           <TableRow>
             <TableHead>Place</TableHead>
             <TableHead>Domain</TableHead>
-            <TableHead>Client Link</TableHead>
+            <TableHead>Public Editor</TableHead>
             <TableHead>Created</TableHead>
             <TableHead>Updated</TableHead>
             <TableHead>Published</TableHead>
-            <TableHead />
             <TableHead />
           </TableRow>
         </TableHeader>
@@ -36,6 +35,7 @@ export function DataTable({ onRowClick, onDelete }: { onRowClick?: (id: string) 
           {data ? (
             data.websites.map((website) => {
               const domain = `https://sites.quosel.com/${website.slug}`;
+              const publicEditor = `${window.location.origin}/public-editor/${website.editToken}`;
 
               return (
                 <TableRow key={website.id} onClick={() => onRowClick?.(website.id)} className={onRowClick ? 'cursor-pointer' : ''}>
@@ -52,8 +52,8 @@ export function DataTable({ onRowClick, onDelete }: { onRowClick?: (id: string) 
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-1 text-blue-600 hover:underline dark:text-blue-400">
-                      <a href={domain} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-                        {domain}
+                      <a href={publicEditor} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
+                        {publicEditor}
                       </a>
                       <ExternalLink className="size-3 shrink-0" />
                     </div>
@@ -98,7 +98,7 @@ export function DataTable({ onRowClick, onDelete }: { onRowClick?: (id: string) 
             })
           ) : (
             <TableRow>
-              <TableCell colSpan={10} className="h-24 text-center">
+              <TableCell colSpan={7} className="h-24 text-center">
                 No results.
               </TableCell>
             </TableRow>
