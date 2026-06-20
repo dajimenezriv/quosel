@@ -2,7 +2,7 @@ import type { Website } from '@/api/websites/use-get-website';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
-import { slugify } from '@quosel/core/templates';
+import { slugifyInput } from '@quosel/core/templates';
 import { produce } from 'immer';
 import { ImageField } from '../image-field';
 import { Field } from '../utils';
@@ -46,7 +46,7 @@ export function GeneralTab({ data }: Props) {
           onChange={(e) => {
             updateDraft(
               produce(data, (draft) => {
-                draft.slug = slugify(e.target.value);
+                draft.slug = slugifyInput(e.target.value);
               }),
             );
           }}

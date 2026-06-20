@@ -12,7 +12,7 @@ export {
   circoloPopolareServices,
 } from './examples/circolo-popolare';
 export { claudeStyles, buildRootStyles } from './styles';
-export { slugify } from './core/utils';
+export { slugify, slugifyInput } from './core/utils';
 export { renderTemplate } from './render';
 export { TemplateBody } from './template';
 export {
