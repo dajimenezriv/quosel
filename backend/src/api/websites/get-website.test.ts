@@ -31,6 +31,7 @@ describe('get-website', () => {
       userId: 'userId',
       name: 'name',
       slug: 'slug',
+      editToken: 'editToken',
       context: 'context',
       blocks: emptyBlocks,
       styles: claudeStyles,
