@@ -1,19 +1,12 @@
-import type { Blocks, Styles } from '@quosel/core/templates';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { client } from '../client';
-
-export interface WebsiteData {
-  slug: string;
-  context: string;
-  blocks: Blocks;
-  styles: Styles;
-}
+import type { components } from '../schema';
 
 interface Props {
   websiteId: string;
   publish?: boolean;
-  data: WebsiteData;
+  data: components['schemas']['UpdateWebsite'];
 }
 
 export function useUpdateWebsite() {

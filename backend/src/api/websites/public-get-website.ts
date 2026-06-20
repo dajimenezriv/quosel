@@ -3,34 +3,26 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { blocksSchema, stylesSchema, type Blocks, type Styles } from '@quosel/core/templates';
-
-const ResponseSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  context: z.string(),
-  blocks: blocksSchema,
-  styles: stylesSchema,
-});
+import { type Blocks, type Styles } from '@quosel/core/templates';
+import { WebsiteSchema } from './get-website';
 
 export const publicGetWebsiteRoute = createRoute({
   method: 'get',
-  path: '/public/{token}',
+  path: '/public/{editToken}',
   request: {
-    params: z.object({ token: z.string() }),
+    params: z.object({ editToken: z.string() }),
   },
-  responses: setupResponses(200, ResponseSchema),
+  responses: setupResponses(200, WebsiteSchema),
 });
 
 export const publicGetWebsite: RouteHandler<typeof publicGetWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
-  const { token } = c.req.valid('param');
+  const { editToken } = c.req.valid('param');
 
-  const website = await Websites.getByEditToken(token);
+  const website = await Websites.getByEditToken(editToken);
   if (!website) throw new ApiError(404, 'Website not found');
 
   const blocks = website.blocks as Blocks;
   const styles = website.styles as Styles;
 
-  return jsonResponse(c, ResponseSchema, { ...website, blocks, styles }, 200);
+  return jsonResponse(c, WebsiteSchema, { ...website, blocks, styles }, 200);
 };

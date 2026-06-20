@@ -1,4 +1,4 @@
-import type { WebsiteData } from '@/api/websites/use-update-website';
+import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { circoloPopolareGallery, type GalleryBlock } from '@quosel/core/templates';
@@ -9,7 +9,7 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
-  data: WebsiteData;
+  data: Website;
   block: GalleryBlock;
   index: number;
 }

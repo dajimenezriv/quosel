@@ -1,4 +1,4 @@
-import type { WebsiteData } from '@/api/websites/use-update-website';
+import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import type { StatsBlock } from '@quosel/core/templates';
@@ -7,7 +7,7 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Section } from './utils';
 
 interface Props {
-  data: WebsiteData;
+  data: Website;
   block: StatsBlock;
   index: number;
 }

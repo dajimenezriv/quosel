@@ -31,11 +31,13 @@ describe('get-website', () => {
       userId: 'userId',
       name: 'name',
       slug: 'slug',
+      editToken: 'editToken',
       context: 'context',
       blocks: emptyBlocks,
       styles: claudeStyles,
       createdAt: new Date('2024-01-01T00:00:00.000Z'),
       updatedAt: new Date('2024-01-01T00:00:00.000Z'),
+      publishedAt: null,
     });
     // When
     const res = await app.request('/websites/websiteId', GET_AUTH_REQUEST);

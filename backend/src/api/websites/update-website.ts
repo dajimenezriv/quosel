@@ -7,13 +7,15 @@ import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/core/templates';
 
-const BodySchema = z.object({
-  name: z.string().optional(),
-  slug: z.string(),
-  context: z.string(),
-  blocks: blocksSchema,
-  styles: stylesSchema,
-});
+const BodySchema = z
+  .object({
+    name: z.string().optional(),
+    slug: z.string(),
+    context: z.string(),
+    blocks: blocksSchema,
+    styles: stylesSchema,
+  })
+  .openapi('UpdateWebsite');
 
 export const updateWebsiteRoute = createRoute({
   method: 'put',
