@@ -25,7 +25,7 @@ const plansData = [
     description: 'For freelancers managing multiple client sites',
     price: '€19.99',
     frequency: '/month',
-    features: ['Everything in Free', 'Up to 10 websites', 'Custom domain', 'Export to HTML'],
+    features: ['Everything in Free', 'Up to 10 websites', 'Custom domain (In progress)', 'Export to HTML'],
     popular: true,
   },
 ] as const;
