@@ -8,12 +8,12 @@ export function slugifyInput(value: string) {
     .normalize('NFD')
     .replace(/\p{Mn}/gu, '')
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+/, '');
+    .replace(/^-/, '');
 }
 
 // Canonical slug: same as the input variant but with the trailing hyphen removed.
 export function slugify(value: string) {
-  return slugifyInput(value).replace(/-+$/, '');
+  return slugifyInput(value).replace(/-$/, '');
 }
 
 export function getNavLinks(data: TemplateData) {
