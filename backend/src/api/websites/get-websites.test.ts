@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { Websites } from '@/infra/postgres/websites';
 import { deepMocked, expectError, expectJson, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
-import { claudeStyles } from '@quosel/core/templates';
+import { claudeStyles, emptyBlocks } from '@quosel/core/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
 
@@ -35,6 +35,7 @@ describe('get-websites', () => {
         name: 'name',
         slug: 'slug',
         editToken: 'editToken',
+        blocks: emptyBlocks,
         styles: claudeStyles,
         createdAt: new Date('2024-01-01T00:00:00.000Z'),
         updatedAt: new Date('2024-01-01T00:00:00.000Z'),

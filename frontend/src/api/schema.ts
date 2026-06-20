@@ -375,6 +375,8 @@ export interface paths {
                                 name: string;
                                 slug: string;
                                 editToken: string;
+                                logoUrl: string;
+                                heroImageUrl: string;
                                 styles: {
                                     background: string;
                                     foreground: string;
