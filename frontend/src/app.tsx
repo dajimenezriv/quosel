@@ -30,7 +30,7 @@ function useIsScreenBigEnough() {
 
 function ScreenTooSmall() {
   return (
-    <div className="bg-background text-foreground flex h-screen w-screen">
+    <div className="bg-background text-foreground flex h-full w-full">
       <header className="absolute top-4 left-4">
         <Logo size={32} />
       </header>
