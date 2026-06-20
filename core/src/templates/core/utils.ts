@@ -1,12 +1,19 @@
 import type { TemplateData } from '../types';
 
-export function slugify(value: string) {
+// Live-typing variant: lowercases, strips accents and invalid chars, but keeps a
+// trailing hyphen so the user can type "circolo-" on the way to "circolo-bar".
+export function slugifyInput(value: string) {
   return value
     .toLowerCase()
     .normalize('NFD')
     .replace(/\p{Mn}/gu, '')
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+    .replace(/^-+/, '');
+}
+
+// Canonical slug: same as the input variant but with the trailing hyphen removed.
+export function slugify(value: string) {
+  return slugifyInput(value).replace(/-+$/, '');
 }
 
 export function getNavLinks(data: TemplateData) {

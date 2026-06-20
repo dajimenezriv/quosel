@@ -10,7 +10,7 @@ import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/core/templat
 const BodySchema = z
   .object({
     name: z.string().optional(),
-    slug: z.string(),
+    slug: z.string().regex(/^[a-z0-9-]+$/),
     context: z.string(),
     blocks: blocksSchema,
     styles: stylesSchema,
