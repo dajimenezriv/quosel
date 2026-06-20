@@ -1,6 +1,5 @@
 import { ApiError } from '@/core/api/errors';
 import type { AuthVariables } from '@/core/api/middleware/auth';
-import { clientIp, rateLimit } from '@/core/api/middleware/rate-limit';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -18,7 +17,6 @@ const ResponseSchema = z.object({
 export const publicGetWebsiteRoute = createRoute({
   method: 'get',
   path: '/public/{token}',
-  middleware: [rateLimit({ limit: 30, windowMs: 60_000, key: clientIp })],
   request: {
     params: z.object({ token: z.string() }),
   },

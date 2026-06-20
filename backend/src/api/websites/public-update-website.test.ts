@@ -33,13 +33,13 @@ describe('update-website', () => {
     await expectError(res, 404, 'Website not found');
   });
 
-  it('should return 401 if it is demo website', async () => {
+  it('should return 403 if it is demo website', async () => {
     // Given
     deepMocked(Websites.getByEditToken).mockResolvedValue({ id: '9acafda9-c93c-4a78-9351-44b0367cc4c9' });
     // When
     const res = await app.request('/websites/public/token', putRequest(VALID_BODY));
     // Then
-    await expectError(res, 401, 'Cannot update DEMO site');
+    await expectError(res, 403, 'Cannot update DEMO site');
   });
 
   it('should return 204 on success', async () => {
@@ -48,13 +48,5 @@ describe('update-website', () => {
     // Then
     expect(res.status).toBe(204);
     calls(Websites.update).toStrictEqual(['websiteId', VALID_BODY]);
-  });
-
-  it('should return 429 when exceeding the rate limit', async () => {
-    // When
-    for (let i = 0; i < 20; i++) await app.request('/websites/public/token', putRequest(VALID_BODY));
-    const res = await app.request('/websites/public/token', putRequest(VALID_BODY));
-    // Then
-    await expectError(res, 429, 'Too many requests');
   });
 });

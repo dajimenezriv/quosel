@@ -1,4 +1,3 @@
-import type { Context } from 'hono';
 import { createMiddleware } from 'hono/factory';
 import { ApiError } from '../errors';
 import type { AuthVariables } from './auth';
@@ -6,14 +5,13 @@ import type { AuthVariables } from './auth';
 interface Options {
   limit: number;
   windowMs: number;
-  key?: (c: Context) => string;
 }
 
-export function rateLimit({ limit, windowMs, key }: Options) {
+export function rateLimit({ limit, windowMs }: Options) {
   const windows = new Map<string, { count: number; resetAt: number }>();
 
   return createMiddleware<{ Variables: AuthVariables }>(async (c, next) => {
-    const id = key ? key(c) : c.get('userId');
+    const id = c.get('userId');
     const now = Date.now();
 
     const window = windows.get(id);
@@ -27,8 +25,4 @@ export function rateLimit({ limit, windowMs, key }: Options) {
 
     await next();
   });
-}
-
-export function clientIp(c: Context) {
-  return c.req.header('cf-connecting-ip') ?? c.req.header('x-forwarded-for') ?? 'unknown';
 }

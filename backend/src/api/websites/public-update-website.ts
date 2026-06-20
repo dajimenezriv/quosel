@@ -1,6 +1,5 @@
 import { ApiError } from '@/core/api/errors';
 import type { AuthVariables } from '@/core/api/middleware/auth';
-import { clientIp, rateLimit } from '@/core/api/middleware/rate-limit';
 import { setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -16,12 +15,11 @@ const BodySchema = z
     blocks: blocksSchema,
     styles: stylesSchema,
   })
-  .refine((v) => JSON.stringify(v).length <= MAX_BODY_BYTES, { message: 'Payload too large' });
+  .refine((v) => Buffer.byteLength(JSON.stringify(v), 'utf8') <= MAX_BODY_BYTES, { message: 'Payload too large' });
 
 export const publicUpdateWebsiteRoute = createRoute({
   method: 'put',
   path: '/public/{token}',
-  middleware: [rateLimit({ limit: 20, windowMs: 60_000, key: clientIp })],
   request: {
     params: z.object({ token: z.string() }),
     body: {
