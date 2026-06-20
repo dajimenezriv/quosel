@@ -55,7 +55,6 @@ const navLinks = [
   const moon = document.getElementById('icon-moon')!;
   const sun = document.getElementById('icon-sun')!;
 
-  // Sync icon with current state
   function syncIcon() {
     const isDark = document.documentElement.classList.contains('dark');
     moon.classList.toggle('hidden', isDark);

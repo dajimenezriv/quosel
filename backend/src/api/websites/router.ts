@@ -7,7 +7,7 @@ import { getWebsite, getWebsiteRoute } from './get-website';
 import { getWebsites, getWebsitesRoute } from './get-websites';
 import { publicGetWebsite, publicGetWebsiteRoute } from './public-get-website';
 import { publicUpdateWebsite, publicUpdateWebsiteRoute } from './public-update-website';
-import { shareLink, shareLinkRoute } from './share-link';
+import { regenerateEditToken, regenerateEditTokenRoute } from './regenerate-edit-token';
 import { updateWebsite, updateWebsiteRoute } from './update-website';
 
 export const websitesRouter = createRouter<{ Variables: AuthVariables }>();
@@ -20,5 +20,5 @@ websitesRouter.openapi(generateFieldTextRoute, generateFieldText);
 websitesRouter.openapi(getWebsitesRoute, getWebsites);
 websitesRouter.openapi(getWebsiteRoute, getWebsite);
 websitesRouter.openapi(updateWebsiteRoute, updateWebsite);
-websitesRouter.openapi(shareLinkRoute, shareLink);
+websitesRouter.openapi(regenerateEditTokenRoute, regenerateEditToken);
 websitesRouter.openapi(deleteWebsiteRoute, deleteWebsite);

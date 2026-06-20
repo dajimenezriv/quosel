@@ -5,6 +5,6 @@ export default defineConfig({
   format: ['esm'],
   outDir: 'dist',
   clean: true,
-  // workspace package exports raw .ts, so it must be bundled
+  // Workspace package exports raw .ts, so it must be bundled.
   noExternal: ['@quosel/core'],
 });

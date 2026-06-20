@@ -40,7 +40,7 @@ export const publicUpdateWebsite: RouteHandler<typeof publicUpdateWebsiteRoute, 
   const website = await Websites.getByEditToken(token);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  // Website available for all users in production, we don't want to allow update it
+  // Website available for all users in production, we don't want to allow update it.
   if (website.id === '9acafda9-c93c-4a78-9351-44b0367cc4c9') {
     throw new ApiError(403, 'Cannot update DEMO site');
   }

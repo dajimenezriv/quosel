@@ -4,7 +4,7 @@ import { calls, deepMocked, expectError, expectJson, mockAuthMiddleware, postReq
 
 vi.mock(import('@/infra/postgres/websites'));
 
-describe('share-link', () => {
+describe('regenerate-edit-token', () => {
   mockAuthMiddleware();
 
   beforeEach(() => {
@@ -13,7 +13,7 @@ describe('share-link', () => {
 
   it('should return 401 if session is not provided', async () => {
     // When
-    const res = await app.request('/websites/websiteId/share-link', { method: 'POST' });
+    const res = await app.request('/websites/websiteId/regenerate-edit-token', { method: 'POST' });
     // Then
     await expectError(res, 401, 'Unauthorized');
   });
@@ -22,7 +22,7 @@ describe('share-link', () => {
     // Given
     deepMocked(Websites.getById).mockResolvedValue(null);
     // When
-    const res = await app.request('/websites/websiteId/share-link', postRequest());
+    const res = await app.request('/websites/websiteId/regenerate-edit-token', postRequest());
     // Then
     await expectError(res, 404, 'Website not found');
   });
@@ -31,7 +31,7 @@ describe('share-link', () => {
     // Given
     deepMocked(Websites.getById).mockResolvedValue({ id: 'websiteId' });
     // When
-    const res = await app.request('/websites/websiteId/share-link', postRequest());
+    const res = await app.request('/websites/websiteId/regenerate-edit-token', postRequest());
     // Then
     await expectJson(res, 200, { token: 'newToken' });
     calls(Websites.regenerateEditToken).toStrictEqual(['userId', 'websiteId']);

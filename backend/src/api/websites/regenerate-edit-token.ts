@@ -6,9 +6,9 @@ import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
 const ResponseSchema = z.object({ token: z.string() });
 
-export const shareLinkRoute = createRoute({
+export const regenerateEditTokenRoute = createRoute({
   method: 'post',
-  path: '/{websiteId}/share-link',
+  path: '/{websiteId}/regenerate-edit-token',
   middleware: [requireAuth],
   request: {
     params: z.object({ websiteId: z.string() }),
@@ -16,7 +16,7 @@ export const shareLinkRoute = createRoute({
   responses: setupResponses(200, ResponseSchema),
 });
 
-export const shareLink: RouteHandler<typeof shareLinkRoute, { Variables: AuthVariables }> = async (c) => {
+export const regenerateEditToken: RouteHandler<typeof regenerateEditTokenRoute, { Variables: AuthVariables }> = async (c) => {
   const userId = c.get('userId');
   const { websiteId } = c.req.valid('param');
 
