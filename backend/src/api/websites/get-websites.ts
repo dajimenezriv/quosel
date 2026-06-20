@@ -9,6 +9,7 @@ const WebsiteSchema = z.object({
   userId: z.string(),
   name: z.string(),
   slug: z.string(),
+  editToken: z.string(),
   styles: stylesSchema,
   createdAt: z.date(),
   updatedAt: z.date(),

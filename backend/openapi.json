@@ -46,6 +46,1845 @@
           "picture",
           "subscriptionStatus"
         ]
+      },
+      "Website": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "editToken": {
+            "type": "string"
+          },
+          "context": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "object",
+            "properties": {
+              "schemaVersion": {
+                "type": "number",
+                "enum": [
+                  1
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "logoUrl": {
+                "type": "string",
+                "default": ""
+              },
+              "nav": {
+                "type": "object",
+                "properties": {
+                  "ctaText": {
+                    "type": "string"
+                  },
+                  "ctaLink": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "ctaText",
+                  "ctaLink"
+                ]
+              },
+              "blocks": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "hero"
+                          ]
+                        },
+                        "title": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "text",
+                        "ctaText",
+                        "ctaLink",
+                        "phone",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "stats"
+                          ]
+                        },
+                        "stats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "stats"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "info"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text1": {
+                          "type": "string"
+                        },
+                        "text2": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text1",
+                        "text2",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "cta"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "title",
+                        "text",
+                        "ctaText",
+                        "ctaLink",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "gallery"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "images": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text",
+                        "images",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "reviews"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "stats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        },
+                        "reviews": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              },
+                              "author": {
+                                "type": "string"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "text",
+                              "author",
+                              "source",
+                              "url"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "stats",
+                        "reviews"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "services"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "serviceGroups": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "title": {
+                                "type": "string"
+                              },
+                              "services": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "title": {
+                                      "type": "string"
+                                    },
+                                    "text": {
+                                      "type": "string"
+                                    },
+                                    "price": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "title",
+                                    "text",
+                                    "price"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "title",
+                              "services"
+                            ]
+                          }
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text",
+                        "serviceGroups",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "location"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "value"
+                            ]
+                          },
+                          "default": []
+                        },
+                        "schedule": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "label": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "label",
+                                  "value"
+                                ]
+                              }
+                            }
+                          },
+                          "default": {
+                            "title": "",
+                            "items": []
+                          },
+                          "required": [
+                            "title",
+                            "items"
+                          ]
+                        },
+                        "mapUrl": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "footer"
+                          ]
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "navigateTitle": {
+                          "type": "string",
+                          "default": "Navigate"
+                        },
+                        "contactTitle": {
+                          "type": "string",
+                          "default": "Contact"
+                        },
+                        "linksTitle": {
+                          "type": "string",
+                          "default": "Booking & Social"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "url"
+                            ]
+                          }
+                        },
+                        "legalLinks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "url"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "description",
+                        "phone",
+                        "links",
+                        "legalLinks"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "name",
+              "nav",
+              "blocks"
+            ]
+          },
+          "styles": {
+            "type": "object",
+            "properties": {
+              "background": {
+                "type": "string"
+              },
+              "foreground": {
+                "type": "string"
+              },
+              "primary": {
+                "type": "string"
+              },
+              "primary-foreground": {
+                "type": "string"
+              },
+              "secondary": {
+                "type": "string"
+              },
+              "secondary-foreground": {
+                "type": "string"
+              },
+              "muted": {
+                "type": "string"
+              },
+              "muted-foreground": {
+                "type": "string"
+              },
+              "accent": {
+                "type": "string"
+              },
+              "accent-foreground": {
+                "type": "string"
+              },
+              "border": {
+                "type": "string"
+              },
+              "ring": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "background",
+              "foreground",
+              "primary",
+              "primary-foreground",
+              "secondary",
+              "secondary-foreground",
+              "muted",
+              "muted-foreground",
+              "accent",
+              "accent-foreground",
+              "border",
+              "ring"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "publishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "name",
+          "slug",
+          "editToken",
+          "context",
+          "blocks",
+          "styles",
+          "createdAt",
+          "updatedAt",
+          "publishedAt"
+        ]
+      },
+      "PublicUpdateWebsite": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "context": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "object",
+            "properties": {
+              "schemaVersion": {
+                "type": "number",
+                "enum": [
+                  1
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "logoUrl": {
+                "type": "string",
+                "default": ""
+              },
+              "nav": {
+                "type": "object",
+                "properties": {
+                  "ctaText": {
+                    "type": "string"
+                  },
+                  "ctaLink": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "ctaText",
+                  "ctaLink"
+                ]
+              },
+              "blocks": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "hero"
+                          ]
+                        },
+                        "title": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "text",
+                        "ctaText",
+                        "ctaLink",
+                        "phone",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "stats"
+                          ]
+                        },
+                        "stats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "stats"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "info"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text1": {
+                          "type": "string"
+                        },
+                        "text2": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text1",
+                        "text2",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "cta"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "title",
+                        "text",
+                        "ctaText",
+                        "ctaLink",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "gallery"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "images": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text",
+                        "images",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "reviews"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "stats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        },
+                        "reviews": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              },
+                              "author": {
+                                "type": "string"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "text",
+                              "author",
+                              "source",
+                              "url"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "stats",
+                        "reviews"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "services"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "serviceGroups": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "title": {
+                                "type": "string"
+                              },
+                              "services": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "title": {
+                                      "type": "string"
+                                    },
+                                    "text": {
+                                      "type": "string"
+                                    },
+                                    "price": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "title",
+                                    "text",
+                                    "price"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "title",
+                              "services"
+                            ]
+                          }
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text",
+                        "serviceGroups",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "location"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "value"
+                            ]
+                          },
+                          "default": []
+                        },
+                        "schedule": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "label": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "label",
+                                  "value"
+                                ]
+                              }
+                            }
+                          },
+                          "default": {
+                            "title": "",
+                            "items": []
+                          },
+                          "required": [
+                            "title",
+                            "items"
+                          ]
+                        },
+                        "mapUrl": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "footer"
+                          ]
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "navigateTitle": {
+                          "type": "string",
+                          "default": "Navigate"
+                        },
+                        "contactTitle": {
+                          "type": "string",
+                          "default": "Contact"
+                        },
+                        "linksTitle": {
+                          "type": "string",
+                          "default": "Booking & Social"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "url"
+                            ]
+                          }
+                        },
+                        "legalLinks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "url"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "description",
+                        "phone",
+                        "links",
+                        "legalLinks"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "name",
+              "nav",
+              "blocks"
+            ]
+          },
+          "styles": {
+            "type": "object",
+            "properties": {
+              "background": {
+                "type": "string"
+              },
+              "foreground": {
+                "type": "string"
+              },
+              "primary": {
+                "type": "string"
+              },
+              "primary-foreground": {
+                "type": "string"
+              },
+              "secondary": {
+                "type": "string"
+              },
+              "secondary-foreground": {
+                "type": "string"
+              },
+              "muted": {
+                "type": "string"
+              },
+              "muted-foreground": {
+                "type": "string"
+              },
+              "accent": {
+                "type": "string"
+              },
+              "accent-foreground": {
+                "type": "string"
+              },
+              "border": {
+                "type": "string"
+              },
+              "ring": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "background",
+              "foreground",
+              "primary",
+              "primary-foreground",
+              "secondary",
+              "secondary-foreground",
+              "muted",
+              "muted-foreground",
+              "accent",
+              "accent-foreground",
+              "border",
+              "ring"
+            ]
+          }
+        },
+        "required": [
+          "context",
+          "blocks",
+          "styles"
+        ]
+      },
+      "UpdateWebsite": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "context": {
+            "type": "string"
+          },
+          "blocks": {
+            "type": "object",
+            "properties": {
+              "schemaVersion": {
+                "type": "number",
+                "enum": [
+                  1
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "logoUrl": {
+                "type": "string",
+                "default": ""
+              },
+              "nav": {
+                "type": "object",
+                "properties": {
+                  "ctaText": {
+                    "type": "string"
+                  },
+                  "ctaLink": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "ctaText",
+                  "ctaLink"
+                ]
+              },
+              "blocks": {
+                "type": "array",
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "hero"
+                          ]
+                        },
+                        "title": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "text",
+                        "ctaText",
+                        "ctaLink",
+                        "phone",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "stats"
+                          ]
+                        },
+                        "stats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "stats"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "info"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text1": {
+                          "type": "string"
+                        },
+                        "text2": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text1",
+                        "text2",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "cta"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        },
+                        "imageUrl": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "title",
+                        "text",
+                        "ctaText",
+                        "ctaLink",
+                        "imageUrl"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "gallery"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "images": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text",
+                        "images",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "reviews"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "stats": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "string"
+                              },
+                              "label": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "label"
+                            ]
+                          }
+                        },
+                        "reviews": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              },
+                              "author": {
+                                "type": "string"
+                              },
+                              "source": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "text",
+                              "author",
+                              "source",
+                              "url"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "stats",
+                        "reviews"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "services"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "serviceGroups": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "title": {
+                                "type": "string"
+                              },
+                              "services": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "title": {
+                                      "type": "string"
+                                    },
+                                    "text": {
+                                      "type": "string"
+                                    },
+                                    "price": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": [
+                                    "title",
+                                    "text",
+                                    "price"
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "title",
+                              "services"
+                            ]
+                          }
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "text",
+                        "serviceGroups",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "location"
+                          ]
+                        },
+                        "nav": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "value"
+                            ]
+                          },
+                          "default": []
+                        },
+                        "schedule": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "items": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "label": {
+                                    "type": "string"
+                                  },
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "label",
+                                  "value"
+                                ]
+                              }
+                            }
+                          },
+                          "default": {
+                            "title": "",
+                            "items": []
+                          },
+                          "required": [
+                            "title",
+                            "items"
+                          ]
+                        },
+                        "mapUrl": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "ctaText": {
+                          "type": "string"
+                        },
+                        "ctaLink": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "nav",
+                        "title",
+                        "ctaText",
+                        "ctaLink"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "footer"
+                          ]
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "navigateTitle": {
+                          "type": "string",
+                          "default": "Navigate"
+                        },
+                        "contactTitle": {
+                          "type": "string",
+                          "default": "Contact"
+                        },
+                        "linksTitle": {
+                          "type": "string",
+                          "default": "Booking & Social"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": "string",
+                          "default": ""
+                        },
+                        "links": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "url"
+                            ]
+                          }
+                        },
+                        "legalLinks": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "url": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "label",
+                              "url"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "description",
+                        "phone",
+                        "links",
+                        "legalLinks"
+                      ]
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "name",
+              "nav",
+              "blocks"
+            ]
+          },
+          "styles": {
+            "type": "object",
+            "properties": {
+              "background": {
+                "type": "string"
+              },
+              "foreground": {
+                "type": "string"
+              },
+              "primary": {
+                "type": "string"
+              },
+              "primary-foreground": {
+                "type": "string"
+              },
+              "secondary": {
+                "type": "string"
+              },
+              "secondary-foreground": {
+                "type": "string"
+              },
+              "muted": {
+                "type": "string"
+              },
+              "muted-foreground": {
+                "type": "string"
+              },
+              "accent": {
+                "type": "string"
+              },
+              "accent-foreground": {
+                "type": "string"
+              },
+              "border": {
+                "type": "string"
+              },
+              "ring": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "background",
+              "foreground",
+              "primary",
+              "primary-foreground",
+              "secondary",
+              "secondary-foreground",
+              "muted",
+              "muted-foreground",
+              "accent",
+              "accent-foreground",
+              "border",
+              "ring"
+            ]
+          }
+        },
+        "required": [
+          "slug",
+          "context",
+          "blocks",
+          "styles"
+        ]
       }
     },
     "parameters": {}
@@ -243,6 +2082,78 @@
         }
       }
     },
+    "/websites/public/{editToken}": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "editToken",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Website"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "editToken",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublicUpdateWebsite"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/websites": {
       "post": {
         "requestBody": {
@@ -317,6 +2228,9 @@
                             "type": "string"
                           },
                           "slug": {
+                            "type": "string"
+                          },
+                          "editToken": {
                             "type": "string"
                           },
                           "styles": {
@@ -395,6 +2309,7 @@
                           "userId",
                           "name",
                           "slug",
+                          "editToken",
                           "styles",
                           "createdAt",
                           "updatedAt",
@@ -492,627 +2407,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "userId": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "slug": {
-                      "type": "string"
-                    },
-                    "context": {
-                      "type": "string"
-                    },
-                    "blocks": {
-                      "type": "object",
-                      "properties": {
-                        "schemaVersion": {
-                          "type": "number",
-                          "enum": [
-                            1
-                          ]
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "logoUrl": {
-                          "type": "string",
-                          "default": ""
-                        },
-                        "nav": {
-                          "type": "object",
-                          "properties": {
-                            "ctaText": {
-                              "type": "string"
-                            },
-                            "ctaLink": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "ctaText",
-                            "ctaLink"
-                          ]
-                        },
-                        "blocks": {
-                          "type": "array",
-                          "items": {
-                            "anyOf": [
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "hero"
-                                    ]
-                                  },
-                                  "title": {
-                                    "type": "string",
-                                    "default": ""
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  },
-                                  "ctaText": {
-                                    "type": "string"
-                                  },
-                                  "ctaLink": {
-                                    "type": "string"
-                                  },
-                                  "phone": {
-                                    "type": "string"
-                                  },
-                                  "imageUrl": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "text",
-                                  "ctaText",
-                                  "ctaLink",
-                                  "phone",
-                                  "imageUrl"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "stats"
-                                    ]
-                                  },
-                                  "stats": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "value": {
-                                          "type": "string"
-                                        },
-                                        "label": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "value",
-                                        "label"
-                                      ]
-                                    }
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "stats"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "info"
-                                    ]
-                                  },
-                                  "nav": {
-                                    "type": "string"
-                                  },
-                                  "title": {
-                                    "type": "string"
-                                  },
-                                  "text1": {
-                                    "type": "string"
-                                  },
-                                  "text2": {
-                                    "type": "string"
-                                  },
-                                  "imageUrl": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "nav",
-                                  "title",
-                                  "text1",
-                                  "text2",
-                                  "imageUrl"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "cta"
-                                    ]
-                                  },
-                                  "title": {
-                                    "type": "string"
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  },
-                                  "ctaText": {
-                                    "type": "string"
-                                  },
-                                  "ctaLink": {
-                                    "type": "string"
-                                  },
-                                  "imageUrl": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "title",
-                                  "text",
-                                  "ctaText",
-                                  "ctaLink",
-                                  "imageUrl"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "gallery"
-                                    ]
-                                  },
-                                  "nav": {
-                                    "type": "string"
-                                  },
-                                  "title": {
-                                    "type": "string"
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  },
-                                  "images": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "ctaText": {
-                                    "type": "string"
-                                  },
-                                  "ctaLink": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "nav",
-                                  "title",
-                                  "text",
-                                  "images",
-                                  "ctaText",
-                                  "ctaLink"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "reviews"
-                                    ]
-                                  },
-                                  "nav": {
-                                    "type": "string"
-                                  },
-                                  "title": {
-                                    "type": "string"
-                                  },
-                                  "stats": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "value": {
-                                          "type": "string"
-                                        },
-                                        "label": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "value",
-                                        "label"
-                                      ]
-                                    }
-                                  },
-                                  "reviews": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "text": {
-                                          "type": "string"
-                                        },
-                                        "author": {
-                                          "type": "string"
-                                        },
-                                        "source": {
-                                          "type": "string"
-                                        },
-                                        "url": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "text",
-                                        "author",
-                                        "source",
-                                        "url"
-                                      ]
-                                    }
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "nav",
-                                  "title",
-                                  "stats",
-                                  "reviews"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "services"
-                                    ]
-                                  },
-                                  "nav": {
-                                    "type": "string"
-                                  },
-                                  "title": {
-                                    "type": "string"
-                                  },
-                                  "text": {
-                                    "type": "string"
-                                  },
-                                  "serviceGroups": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "title": {
-                                          "type": "string"
-                                        },
-                                        "services": {
-                                          "type": "array",
-                                          "items": {
-                                            "type": "object",
-                                            "properties": {
-                                              "title": {
-                                                "type": "string"
-                                              },
-                                              "text": {
-                                                "type": "string"
-                                              },
-                                              "price": {
-                                                "type": "string"
-                                              }
-                                            },
-                                            "required": [
-                                              "title",
-                                              "text",
-                                              "price"
-                                            ]
-                                          }
-                                        }
-                                      },
-                                      "required": [
-                                        "title",
-                                        "services"
-                                      ]
-                                    }
-                                  },
-                                  "ctaText": {
-                                    "type": "string"
-                                  },
-                                  "ctaLink": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "nav",
-                                  "title",
-                                  "text",
-                                  "serviceGroups",
-                                  "ctaText",
-                                  "ctaLink"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "location"
-                                    ]
-                                  },
-                                  "nav": {
-                                    "type": "string"
-                                  },
-                                  "title": {
-                                    "type": "string"
-                                  },
-                                  "details": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "label": {
-                                          "type": "string"
-                                        },
-                                        "value": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "label",
-                                        "value"
-                                      ]
-                                    },
-                                    "default": []
-                                  },
-                                  "schedule": {
-                                    "type": "object",
-                                    "properties": {
-                                      "title": {
-                                        "type": "string"
-                                      },
-                                      "items": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "properties": {
-                                            "label": {
-                                              "type": "string"
-                                            },
-                                            "value": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "required": [
-                                            "label",
-                                            "value"
-                                          ]
-                                        }
-                                      }
-                                    },
-                                    "default": {
-                                      "title": "",
-                                      "items": []
-                                    },
-                                    "required": [
-                                      "title",
-                                      "items"
-                                    ]
-                                  },
-                                  "mapUrl": {
-                                    "type": "string",
-                                    "default": ""
-                                  },
-                                  "ctaText": {
-                                    "type": "string"
-                                  },
-                                  "ctaLink": {
-                                    "type": "string"
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "nav",
-                                  "title",
-                                  "ctaText",
-                                  "ctaLink"
-                                ]
-                              },
-                              {
-                                "type": "object",
-                                "properties": {
-                                  "type": {
-                                    "type": "string",
-                                    "enum": [
-                                      "footer"
-                                    ]
-                                  },
-                                  "description": {
-                                    "type": "string"
-                                  },
-                                  "navigateTitle": {
-                                    "type": "string",
-                                    "default": "Navigate"
-                                  },
-                                  "contactTitle": {
-                                    "type": "string",
-                                    "default": "Contact"
-                                  },
-                                  "linksTitle": {
-                                    "type": "string",
-                                    "default": "Booking & Social"
-                                  },
-                                  "phone": {
-                                    "type": "string"
-                                  },
-                                  "address": {
-                                    "type": "string",
-                                    "default": ""
-                                  },
-                                  "links": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "label": {
-                                          "type": "string"
-                                        },
-                                        "url": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "label",
-                                        "url"
-                                      ]
-                                    }
-                                  },
-                                  "legalLinks": {
-                                    "type": "array",
-                                    "items": {
-                                      "type": "object",
-                                      "properties": {
-                                        "label": {
-                                          "type": "string"
-                                        },
-                                        "url": {
-                                          "type": "string"
-                                        }
-                                      },
-                                      "required": [
-                                        "label",
-                                        "url"
-                                      ]
-                                    }
-                                  }
-                                },
-                                "required": [
-                                  "type",
-                                  "description",
-                                  "phone",
-                                  "links",
-                                  "legalLinks"
-                                ]
-                              }
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "schemaVersion",
-                        "name",
-                        "nav",
-                        "blocks"
-                      ]
-                    },
-                    "styles": {
-                      "type": "object",
-                      "properties": {
-                        "background": {
-                          "type": "string"
-                        },
-                        "foreground": {
-                          "type": "string"
-                        },
-                        "primary": {
-                          "type": "string"
-                        },
-                        "primary-foreground": {
-                          "type": "string"
-                        },
-                        "secondary": {
-                          "type": "string"
-                        },
-                        "secondary-foreground": {
-                          "type": "string"
-                        },
-                        "muted": {
-                          "type": "string"
-                        },
-                        "muted-foreground": {
-                          "type": "string"
-                        },
-                        "accent": {
-                          "type": "string"
-                        },
-                        "accent-foreground": {
-                          "type": "string"
-                        },
-                        "border": {
-                          "type": "string"
-                        },
-                        "ring": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "background",
-                        "foreground",
-                        "primary",
-                        "primary-foreground",
-                        "secondary",
-                        "secondary-foreground",
-                        "muted",
-                        "muted-foreground",
-                        "accent",
-                        "accent-foreground",
-                        "border",
-                        "ring"
-                      ]
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    },
-                    "updatedAt": {
-                      "type": "string",
-                      "format": "date-time"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "userId",
-                    "name",
-                    "slug",
-                    "context",
-                    "blocks",
-                    "styles",
-                    "createdAt",
-                    "updatedAt"
-                  ]
+                  "$ref": "#/components/schemas/Website"
                 }
               }
             }
@@ -1155,608 +2450,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "slug": {
-                    "type": "string"
-                  },
-                  "context": {
-                    "type": "string"
-                  },
-                  "blocks": {
-                    "type": "object",
-                    "properties": {
-                      "schemaVersion": {
-                        "type": "number",
-                        "enum": [
-                          1
-                        ]
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "logoUrl": {
-                        "type": "string",
-                        "default": ""
-                      },
-                      "nav": {
-                        "type": "object",
-                        "properties": {
-                          "ctaText": {
-                            "type": "string"
-                          },
-                          "ctaLink": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "ctaText",
-                          "ctaLink"
-                        ]
-                      },
-                      "blocks": {
-                        "type": "array",
-                        "items": {
-                          "anyOf": [
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "hero"
-                                  ]
-                                },
-                                "title": {
-                                  "type": "string",
-                                  "default": ""
-                                },
-                                "text": {
-                                  "type": "string"
-                                },
-                                "ctaText": {
-                                  "type": "string"
-                                },
-                                "ctaLink": {
-                                  "type": "string"
-                                },
-                                "phone": {
-                                  "type": "string"
-                                },
-                                "imageUrl": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "text",
-                                "ctaText",
-                                "ctaLink",
-                                "phone",
-                                "imageUrl"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "stats"
-                                  ]
-                                },
-                                "stats": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "value": {
-                                        "type": "string"
-                                      },
-                                      "label": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "value",
-                                      "label"
-                                    ]
-                                  }
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "stats"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "info"
-                                  ]
-                                },
-                                "nav": {
-                                  "type": "string"
-                                },
-                                "title": {
-                                  "type": "string"
-                                },
-                                "text1": {
-                                  "type": "string"
-                                },
-                                "text2": {
-                                  "type": "string"
-                                },
-                                "imageUrl": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "nav",
-                                "title",
-                                "text1",
-                                "text2",
-                                "imageUrl"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "cta"
-                                  ]
-                                },
-                                "title": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                },
-                                "ctaText": {
-                                  "type": "string"
-                                },
-                                "ctaLink": {
-                                  "type": "string"
-                                },
-                                "imageUrl": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "title",
-                                "text",
-                                "ctaText",
-                                "ctaLink",
-                                "imageUrl"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "gallery"
-                                  ]
-                                },
-                                "nav": {
-                                  "type": "string"
-                                },
-                                "title": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                },
-                                "images": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "string"
-                                  }
-                                },
-                                "ctaText": {
-                                  "type": "string"
-                                },
-                                "ctaLink": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "nav",
-                                "title",
-                                "text",
-                                "images",
-                                "ctaText",
-                                "ctaLink"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "reviews"
-                                  ]
-                                },
-                                "nav": {
-                                  "type": "string"
-                                },
-                                "title": {
-                                  "type": "string"
-                                },
-                                "stats": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "value": {
-                                        "type": "string"
-                                      },
-                                      "label": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "value",
-                                      "label"
-                                    ]
-                                  }
-                                },
-                                "reviews": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "text": {
-                                        "type": "string"
-                                      },
-                                      "author": {
-                                        "type": "string"
-                                      },
-                                      "source": {
-                                        "type": "string"
-                                      },
-                                      "url": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "text",
-                                      "author",
-                                      "source",
-                                      "url"
-                                    ]
-                                  }
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "nav",
-                                "title",
-                                "stats",
-                                "reviews"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "services"
-                                  ]
-                                },
-                                "nav": {
-                                  "type": "string"
-                                },
-                                "title": {
-                                  "type": "string"
-                                },
-                                "text": {
-                                  "type": "string"
-                                },
-                                "serviceGroups": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "title": {
-                                        "type": "string"
-                                      },
-                                      "services": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "properties": {
-                                            "title": {
-                                              "type": "string"
-                                            },
-                                            "text": {
-                                              "type": "string"
-                                            },
-                                            "price": {
-                                              "type": "string"
-                                            }
-                                          },
-                                          "required": [
-                                            "title",
-                                            "text",
-                                            "price"
-                                          ]
-                                        }
-                                      }
-                                    },
-                                    "required": [
-                                      "title",
-                                      "services"
-                                    ]
-                                  }
-                                },
-                                "ctaText": {
-                                  "type": "string"
-                                },
-                                "ctaLink": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "nav",
-                                "title",
-                                "text",
-                                "serviceGroups",
-                                "ctaText",
-                                "ctaLink"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "location"
-                                  ]
-                                },
-                                "nav": {
-                                  "type": "string"
-                                },
-                                "title": {
-                                  "type": "string"
-                                },
-                                "details": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "label": {
-                                        "type": "string"
-                                      },
-                                      "value": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "label",
-                                      "value"
-                                    ]
-                                  },
-                                  "default": []
-                                },
-                                "schedule": {
-                                  "type": "object",
-                                  "properties": {
-                                    "title": {
-                                      "type": "string"
-                                    },
-                                    "items": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "object",
-                                        "properties": {
-                                          "label": {
-                                            "type": "string"
-                                          },
-                                          "value": {
-                                            "type": "string"
-                                          }
-                                        },
-                                        "required": [
-                                          "label",
-                                          "value"
-                                        ]
-                                      }
-                                    }
-                                  },
-                                  "default": {
-                                    "title": "",
-                                    "items": []
-                                  },
-                                  "required": [
-                                    "title",
-                                    "items"
-                                  ]
-                                },
-                                "mapUrl": {
-                                  "type": "string",
-                                  "default": ""
-                                },
-                                "ctaText": {
-                                  "type": "string"
-                                },
-                                "ctaLink": {
-                                  "type": "string"
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "nav",
-                                "title",
-                                "ctaText",
-                                "ctaLink"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "properties": {
-                                "type": {
-                                  "type": "string",
-                                  "enum": [
-                                    "footer"
-                                  ]
-                                },
-                                "description": {
-                                  "type": "string"
-                                },
-                                "navigateTitle": {
-                                  "type": "string",
-                                  "default": "Navigate"
-                                },
-                                "contactTitle": {
-                                  "type": "string",
-                                  "default": "Contact"
-                                },
-                                "linksTitle": {
-                                  "type": "string",
-                                  "default": "Booking & Social"
-                                },
-                                "phone": {
-                                  "type": "string"
-                                },
-                                "address": {
-                                  "type": "string",
-                                  "default": ""
-                                },
-                                "links": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "label": {
-                                        "type": "string"
-                                      },
-                                      "url": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "label",
-                                      "url"
-                                    ]
-                                  }
-                                },
-                                "legalLinks": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "label": {
-                                        "type": "string"
-                                      },
-                                      "url": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "label",
-                                      "url"
-                                    ]
-                                  }
-                                }
-                              },
-                              "required": [
-                                "type",
-                                "description",
-                                "phone",
-                                "links",
-                                "legalLinks"
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    },
-                    "required": [
-                      "schemaVersion",
-                      "name",
-                      "nav",
-                      "blocks"
-                    ]
-                  },
-                  "styles": {
-                    "type": "object",
-                    "properties": {
-                      "background": {
-                        "type": "string"
-                      },
-                      "foreground": {
-                        "type": "string"
-                      },
-                      "primary": {
-                        "type": "string"
-                      },
-                      "primary-foreground": {
-                        "type": "string"
-                      },
-                      "secondary": {
-                        "type": "string"
-                      },
-                      "secondary-foreground": {
-                        "type": "string"
-                      },
-                      "muted": {
-                        "type": "string"
-                      },
-                      "muted-foreground": {
-                        "type": "string"
-                      },
-                      "accent": {
-                        "type": "string"
-                      },
-                      "accent-foreground": {
-                        "type": "string"
-                      },
-                      "border": {
-                        "type": "string"
-                      },
-                      "ring": {
-                        "type": "string"
-                      }
-                    },
-                    "required": [
-                      "background",
-                      "foreground",
-                      "primary",
-                      "primary-foreground",
-                      "secondary",
-                      "secondary-foreground",
-                      "muted",
-                      "muted-foreground",
-                      "accent",
-                      "accent-foreground",
-                      "border",
-                      "ring"
-                    ]
-                  }
-                },
-                "required": [
-                  "slug",
-                  "context",
-                  "blocks",
-                  "styles"
-                ]
+                "$ref": "#/components/schemas/UpdateWebsite"
               }
             }
           }
@@ -1791,6 +2485,50 @@
         "responses": {
           "204": {
             "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/websites/{websiteId}/regenerate-edit-token": {
+      "post": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "token"
+                  ]
+                }
+              }
+            }
           },
           "500": {
             "description": "Error",

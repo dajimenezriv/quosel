@@ -19,7 +19,7 @@ describe('update-website', () => {
 
   it('should return 400 if body is invalid', async () => {
     // When
-    const res = await app.request('/websites/public/token', putRequest({}));
+    const res = await app.request('/websites/public/editToken', putRequest({}));
     // Then
     expect(res.status).toBe(400);
   });
@@ -28,7 +28,7 @@ describe('update-website', () => {
     // Given
     vi.mocked(Websites.getByEditToken).mockResolvedValue(null);
     // When
-    const res = await app.request('/websites/public/token', putRequest(VALID_BODY));
+    const res = await app.request('/websites/public/editToken', putRequest(VALID_BODY));
     // Then
     await expectError(res, 404, 'Website not found');
   });
@@ -37,14 +37,14 @@ describe('update-website', () => {
     // Given
     deepMocked(Websites.getByEditToken).mockResolvedValue({ id: '9acafda9-c93c-4a78-9351-44b0367cc4c9' });
     // When
-    const res = await app.request('/websites/public/token', putRequest(VALID_BODY));
+    const res = await app.request('/websites/public/editToken', putRequest(VALID_BODY));
     // Then
     await expectError(res, 403, 'Cannot update DEMO site');
   });
 
   it('should return 204 on success', async () => {
     // When
-    const res = await app.request('/websites/public/token', putRequest(VALID_BODY));
+    const res = await app.request('/websites/public/editToken', putRequest(VALID_BODY));
     // Then
     expect(res.status).toBe(204);
     calls(Websites.update).toStrictEqual(['websiteId', VALID_BODY]);

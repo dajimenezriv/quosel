@@ -1,4 +1,4 @@
-import type { WebsiteData } from '@/api/websites/use-update-website';
+import type { Website } from '@/api/websites/use-get-website';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import { stylesSchema } from '@quosel/core/templates';
 import { produce } from 'immer';
@@ -35,7 +35,7 @@ function renderHighlighted(text: string) {
 }
 
 interface Props {
-  data: WebsiteData;
+  data: Website;
 }
 
 export function ThemeTab({ data }: Props) {

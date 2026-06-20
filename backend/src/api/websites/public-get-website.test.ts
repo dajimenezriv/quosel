@@ -10,7 +10,7 @@ describe('public-get-website', () => {
     // Given
     vi.mocked(Websites.getByEditToken).mockResolvedValue(null);
     // When
-    const res = await app.request('/websites/public/token');
+    const res = await app.request('/websites/public/editToken');
     // Then
     await expectError(res, 404, 'Website not found');
   });
@@ -19,14 +19,18 @@ describe('public-get-website', () => {
     // Given
     deepMocked(Websites.getByEditToken).mockResolvedValue({
       id: 'websiteId',
+      userId: 'userId',
       name: 'name',
       slug: 'slug',
       context: 'context',
       blocks: emptyBlocks,
       styles: claudeStyles,
+      createdAt: new Date('2024-01-01T00:00:00.000Z'),
+      updatedAt: new Date('2024-01-01T00:00:00.000Z'),
+      publishedAt: null,
     });
     // When
-    const res = await app.request('/websites/public/token');
+    const res = await app.request('/websites/public/editToken');
     // Then
     expect(res.status).toBe(200);
   });

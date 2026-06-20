@@ -1,4 +1,4 @@
-import type { WebsiteData } from '@/api/websites/use-update-website';
+import type { Website } from '@/api/websites/use-get-website';
 import { Input } from '@/components/ui/input';
 import { circoloPopolareHero, type HeroBlock } from '@quosel/core/templates';
 import { Type } from 'lucide-react';
@@ -8,7 +8,7 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
-  data: WebsiteData;
+  data: Website;
   block: HeroBlock;
   index: number;
 }

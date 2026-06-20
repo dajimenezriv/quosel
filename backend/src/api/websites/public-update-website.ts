@@ -15,13 +15,14 @@ const BodySchema = z
     blocks: blocksSchema,
     styles: stylesSchema,
   })
-  .refine((v) => Buffer.byteLength(JSON.stringify(v), 'utf8') <= MAX_BODY_BYTES, { message: 'Payload too large' });
+  .refine((v) => Buffer.byteLength(JSON.stringify(v), 'utf8') <= MAX_BODY_BYTES, { message: 'Payload too large' })
+  .openapi('PublicUpdateWebsite');
 
 export const publicUpdateWebsiteRoute = createRoute({
   method: 'put',
-  path: '/public/{token}',
+  path: '/public/{editToken}',
   request: {
-    params: z.object({ token: z.string() }),
+    params: z.object({ editToken: z.string() }),
     body: {
       content: {
         'application/json': {
@@ -34,10 +35,10 @@ export const publicUpdateWebsiteRoute = createRoute({
 });
 
 export const publicUpdateWebsite: RouteHandler<typeof publicUpdateWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
-  const { token } = c.req.valid('param');
+  const { editToken } = c.req.valid('param');
   const { name, context, blocks, styles } = c.req.valid('json');
 
-  const website = await Websites.getByEditToken(token);
+  const website = await Websites.getByEditToken(editToken);
   if (!website) throw new ApiError(404, 'Website not found');
 
   // Website available for all users in production, we don't want to allow update it.

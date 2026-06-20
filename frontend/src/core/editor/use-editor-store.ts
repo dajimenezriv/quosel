@@ -1,16 +1,16 @@
-import type { WebsiteData } from '@/api/websites/use-update-website';
+import type { Website } from '@/api/websites/use-get-website';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-type Device = 'laptop' | 'phone';
+export type Device = 'laptop' | 'phone';
 
 interface EditorStore {
-  initial: WebsiteData | null;
-  draft: WebsiteData | null;
+  initial: Website | null;
+  draft: Website | null;
   device: Device;
   setDevice: (device: Device) => void;
-  hydrate: (data: WebsiteData) => void;
-  updateDraft: (data: WebsiteData) => void;
+  hydrate: (data: Website) => void;
+  updateDraft: (data: Website) => void;
   reset: () => void;
 }
 

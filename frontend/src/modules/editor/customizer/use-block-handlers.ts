@@ -1,11 +1,11 @@
-import type { WebsiteData } from '@/api/websites/use-update-website';
+import type { Website } from '@/api/websites/use-get-website';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import type { Blocks } from '@quosel/core/templates';
 import { produce } from 'immer';
 
 type Block = Blocks['blocks'][number];
 
-export function useBlockHandlers<T extends Block>(data: WebsiteData, index: number) {
+export function useBlockHandlers<T extends Block>(data: Website, index: number) {
   const updateDraft = useEditorStore((s) => s.updateDraft);
 
   function updateBlock(updater: (block: T) => void) {

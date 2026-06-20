@@ -5,17 +5,21 @@ import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 import { blocksSchema, stylesSchema, type Blocks, type Styles } from '@quosel/core/templates';
 
-const ResponseSchema = z.object({
-  id: z.string(),
-  userId: z.string(),
-  name: z.string(),
-  slug: z.string(),
-  context: z.string(),
-  blocks: blocksSchema,
-  styles: stylesSchema,
-  createdAt: z.date(),
-  updatedAt: z.date(),
-});
+export const WebsiteSchema = z
+  .object({
+    id: z.string(),
+    userId: z.string(),
+    name: z.string(),
+    slug: z.string(),
+    editToken: z.string(),
+    context: z.string(),
+    blocks: blocksSchema,
+    styles: stylesSchema,
+    createdAt: z.date(),
+    updatedAt: z.date(),
+    publishedAt: z.date().nullable(),
+  })
+  .openapi('Website');
 
 export const getWebsiteRoute = createRoute({
   method: 'get',
@@ -24,7 +28,7 @@ export const getWebsiteRoute = createRoute({
   request: {
     params: z.object({ websiteId: z.string() }),
   },
-  responses: setupResponses(200, ResponseSchema),
+  responses: setupResponses(200, WebsiteSchema),
 });
 
 export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
@@ -37,5 +41,5 @@ export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthV
   const blocks = website.blocks as Blocks;
   const styles = website.styles as Styles;
 
-  return jsonResponse(c, ResponseSchema, { ...website, blocks, styles }, 200);
+  return jsonResponse(c, WebsiteSchema, { ...website, blocks, styles }, 200);
 };

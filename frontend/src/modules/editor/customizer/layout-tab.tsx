@@ -1,9 +1,10 @@
-import type { WebsiteData } from '@/api/websites/use-update-website';
+import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { useEditorStore } from '@/core/editor/use-editor-store';
+import type { Me } from '@/old/auth';
 import { produce } from 'immer';
 import { Navigation, Plus } from 'lucide-react';
 import { Fragment } from 'react';
@@ -21,17 +22,17 @@ import { ServicesLayout } from './services-layout';
 import { StatsLayout } from './stats-layout';
 import { Field, Section, Subgroup } from './utils';
 
-const MAX_BLOCKS = 15;
+const MAX_BLOCKS = 20;
 
 interface Props {
-  data: WebsiteData;
-  isUserLogged: boolean;
+  data: Website;
+  user: Me | null;
 }
 
-export function LayoutTab({ data, isUserLogged }: Props) {
+export function LayoutTab({ data, user }: Props) {
   const updateDraft = useEditorStore((s) => s.updateDraft);
 
-  function handleInput(updater: (draft: WebsiteData, value: string) => void) {
+  function handleInput(updater: (draft: Website, value: string) => void) {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       updateDraft(produce(data, (draft) => updater(draft, e.target.value)));
     };
@@ -45,7 +46,7 @@ export function LayoutTab({ data, isUserLogged }: Props) {
     );
   }
 
-  function renderBlock(block: WebsiteData['blocks']['blocks'][number], index: number) {
+  function renderBlock(block: Website['blocks']['blocks'][number], index: number) {
     switch (block.type) {
       case 'hero':
         return <HeroLayout data={data} block={block} index={index} />;
@@ -69,7 +70,7 @@ export function LayoutTab({ data, isUserLogged }: Props) {
   }
 
   return (
-    <SectionControlsProvider value={isUserLogged}>
+    <SectionControlsProvider value={user}>
       <div className="flex flex-col gap-4">
         <RichTextHint />
 
@@ -103,7 +104,7 @@ export function LayoutTab({ data, isUserLogged }: Props) {
           </Fragment>
         ))}
 
-        {isUserLogged && (
+        {user && (
           <>
             <Separator />
 
