@@ -1289,7 +1289,8 @@
             "type": "string"
           },
           "slug": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
           },
           "context": {
             "type": "string"
@@ -2233,6 +2234,12 @@
                           "editToken": {
                             "type": "string"
                           },
+                          "logoUrl": {
+                            "type": "string"
+                          },
+                          "heroImageUrl": {
+                            "type": "string"
+                          },
                           "styles": {
                             "type": "object",
                             "properties": {
@@ -2310,6 +2317,8 @@
                           "name",
                           "slug",
                           "editToken",
+                          "logoUrl",
+                          "heroImageUrl",
                           "styles",
                           "createdAt",
                           "updatedAt",
