@@ -11,7 +11,7 @@ describe('checkout', () => {
 
   beforeEach(() => {
     vi.mocked(getOrCreateCustomer).mockResolvedValue('customerId');
-    deepMocked(stripe.checkout.sessions.create).mockResolvedValue({ url: 'https://checkout.stripe.com/session' });
+    deepMocked(stripe.checkout.sessions.create).mockResolvedValue({ url: 'https://checkout.stripe.com' });
   });
 
   it('should return 401 if session is not provided', async () => {
@@ -25,7 +25,7 @@ describe('checkout', () => {
     // When
     const res = await app.request('/billing/checkout', postRequest());
     // Then
-    await expectJson(res, 200, { url: 'https://checkout.stripe.com/session' });
+    await expectJson(res, 200, { url: 'https://checkout.stripe.com' });
     calls(getOrCreateCustomer).toStrictEqual('userId');
   });
 

@@ -37,6 +37,7 @@ export class Users {
           name,
           context: circoloPopolareContext,
           slug: Websites.randomSlug(name),
+          editToken: Websites.generateEditToken(),
           blocks: circoloPopolareBlocks,
           styles: claudeStyles,
         },

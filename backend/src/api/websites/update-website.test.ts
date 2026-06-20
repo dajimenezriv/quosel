@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { R2 } from '@/infra/cloudflare/r2';
 import { Websites } from '@/infra/postgres/websites';
-import { calls, deepMocked, expectError, putRequest } from '@/tests/utils.helper.test';
+import { calls, deepMocked, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
 import { claudeStyles, emptyBlocks } from '@quosel/core/templates';
 
 vi.mock(import('@/infra/postgres/websites'));
@@ -16,10 +16,19 @@ const VALID_BODY = {
 };
 
 describe('update-website', () => {
+  mockAuthMiddleware();
+
   const getByIdMock = deepMocked(Websites.getById);
 
   beforeEach(() => {
     getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug' });
+  });
+
+  it('should return 401 if session is not provided', async () => {
+    // When
+    const res = await app.request('/websites/websiteId', { method: 'PUT' });
+    // Then
+    await expectError(res, 401, 'Unauthorized');
   });
 
   it('should return 400 if body is invalid', async () => {

@@ -44,6 +44,7 @@ model Website {
   userId      String    @map("user_id")
   name        String
   slug        String    @unique
+  editToken   String    @unique @map("edit_token")
   context     String    @default("")
   blocks      Json
   styles      Json

@@ -51,15 +51,6 @@ describe('upload-image', () => {
     await expectError(res, 404, 'Website not found');
   });
 
-  it('should return 404 when the website belongs to another user', async () => {
-    // Given
-    deepMocked(Websites.getById).mockResolvedValue({ id: 'websiteId', userId: 'otherUserId' });
-    // When
-    const res = await app.request('/images/upload', makeRequest(file));
-    // Then
-    await expectError(res, 404, 'Website not found');
-  });
-
   it('should return 400 when file type is not allowed', async () => {
     // When
     const res = await app.request('/images/upload', makeRequest(makeFile('image/bmp', 100)));

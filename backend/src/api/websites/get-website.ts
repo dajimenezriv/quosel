@@ -1,5 +1,5 @@
 import { ApiError } from '@/core/api/errors';
-import type { AuthVariables } from '@/core/api/middleware/auth';
+import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -20,6 +20,7 @@ const ResponseSchema = z.object({
 export const getWebsiteRoute = createRoute({
   method: 'get',
   path: '/{websiteId}',
+  middleware: [requireAuth],
   request: {
     params: z.object({ websiteId: z.string() }),
   },
@@ -27,10 +28,10 @@ export const getWebsiteRoute = createRoute({
 });
 
 export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
+  const userId = c.get('userId');
   const { websiteId } = c.req.valid('param');
-  // TODO: we are not checking if the website belongs to the user
 
-  const website = await Websites.getById(websiteId);
+  const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
   const blocks = website.blocks as Blocks;

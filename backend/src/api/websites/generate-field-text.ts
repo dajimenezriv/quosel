@@ -1,4 +1,5 @@
 import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
+import { rateLimit } from '@/core/api/middleware/rate-limit';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Ai } from '@/infra/ai/ai';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -10,7 +11,7 @@ const ResponseSchema = z.object({ text: z.string() });
 export const generateFieldTextRoute = createRoute({
   method: 'post',
   path: '/generate-field-text',
-  middleware: [requireAuth],
+  middleware: [requireAuth, rateLimit({ limit: 30, windowMs: 60_000 })],
   request: {
     body: {
       content: {

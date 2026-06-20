@@ -1,5 +1,5 @@
 import { ApiError } from '@/core/api/errors';
-import type { AuthVariables } from '@/core/api/middleware/auth';
+import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { R2 } from '@/infra/cloudflare/r2';
 import type { Prisma } from '@/infra/postgres/prisma/client';
@@ -18,6 +18,7 @@ const BodySchema = z.object({
 export const updateWebsiteRoute = createRoute({
   method: 'put',
   path: '/{websiteId}',
+  middleware: [requireAuth],
   request: {
     params: z.object({ websiteId: z.string() }),
     query: z.object({ publish: z.coerce.boolean().optional() }),
@@ -33,18 +34,12 @@ export const updateWebsiteRoute = createRoute({
 });
 
 export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables: AuthVariables }> = async (c) => {
+  const userId = c.get('userId');
   const websiteId = c.req.param('websiteId');
-
-  // Website available for all users in production, we don't want to allow update it
-  if (websiteId === '9acafda9-c93c-4a78-9351-44b0367cc4c9') {
-    return c.body(null, 204);
-  }
-
   const { publish } = c.req.valid('query');
   const { name, slug, context, blocks, styles } = c.req.valid('json');
-  // TODO: we are not checking if the website belongs to the user
 
-  const website = await Websites.getById(websiteId);
+  const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
   const data: Prisma.WebsiteUpdateInput = { name, slug, context, blocks, styles };

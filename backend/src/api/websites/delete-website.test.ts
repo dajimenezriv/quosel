@@ -30,16 +30,6 @@ describe('delete-website', () => {
     calls(Websites.delete).toStrictEqual([]);
   });
 
-  it('should return 404 if website belongs to another user', async () => {
-    // Given
-    deepMocked(Websites.getById).mockResolvedValue({ userId: 'otherUserId', publishedAt: null });
-    // When
-    const res = await app.request('/websites/websiteId', DELETE_AUTH_REQUEST);
-    // Then
-    await expectError(res, 404, 'Website not found');
-    calls(Websites.delete).toStrictEqual([]);
-  });
-
   it('should return 204 when website is deleted', async () => {
     // When
     const res = await app.request('/websites/websiteId', DELETE_AUTH_REQUEST);

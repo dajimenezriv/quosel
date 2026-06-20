@@ -221,7 +221,7 @@ export const circoloPopolareFooter: FooterBlock = {
 export const circoloPopolareBlocks: Blocks = {
   schemaVersion: 1,
   name: 'Circolo Popolare',
-  logoUrl: '',
+  logoUrl: 'https://www.circolopopolare.com/favicon.ico',
   nav: {
     ctaText: 'Book a Table',
     ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
