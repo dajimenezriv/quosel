@@ -2,16 +2,18 @@ import type { Website } from '@/api/websites/use-get-website';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
+import type { Me } from '@/old/auth';
 import { slugifyInput } from '@quosel/core/templates';
 import { produce } from 'immer';
 import { ImageField } from '../image-field';
 import { Field } from '../utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
 }
 
-export function GeneralTab({ data }: Props) {
+export function GeneralTab({ user, data }: Props) {
   const updateDraft = useEditorStore((s) => s.updateDraft);
 
   return (
@@ -30,6 +32,7 @@ export function GeneralTab({ data }: Props) {
       </Field>
       <Field label="Logo">
         <ImageField
+          user={user}
           value={data.blocks.logoUrl}
           onChange={(url) => {
             updateDraft(

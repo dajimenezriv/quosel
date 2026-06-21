@@ -1,6 +1,7 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import type { Me } from '@/old/auth';
 import { circoloPopolareGallery, type GalleryBlock } from '@quosel/core/templates';
 import { Images, Plus, Trash2 } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -9,12 +10,13 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: GalleryBlock;
   index: number;
 }
 
-export function GalleryLayout({ data, block, index }: Props) {
+export function GalleryLayout({ user, data, block, index }: Props) {
   const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<GalleryBlock>(data, index);
 
   return (
@@ -29,6 +31,7 @@ export function GalleryLayout({ data, block, index }: Props) {
       </Field>
 
       <GenerateTextField
+        user={user}
         label="Title"
         generateLabel="Gallery title"
         value={block.title}
@@ -39,6 +42,7 @@ export function GalleryLayout({ data, block, index }: Props) {
         }}
       />
       <GenerateTextField
+        user={user}
         label="Text"
         generateLabel="Gallery text"
         value={block.text}
@@ -54,6 +58,7 @@ export function GalleryLayout({ data, block, index }: Props) {
           <div key={imageIndex} className="flex items-center gap-2">
             <div className="flex-1">
               <ImageField
+                user={user}
                 value={image}
                 onChange={(url) =>
                   updateBlock((block) => {
@@ -62,6 +67,7 @@ export function GalleryLayout({ data, block, index }: Props) {
                 }
               />
             </div>
+
             <button
               onClick={() =>
                 updateBlock((block) => {
@@ -73,6 +79,7 @@ export function GalleryLayout({ data, block, index }: Props) {
             </button>
           </div>
         ))}
+
         <Button
           variant="outline"
           size="sm"

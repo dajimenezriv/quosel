@@ -1,5 +1,6 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Input } from '@/components/ui/input';
+import type { Me } from '@/old/auth';
 import { circoloPopolareHero, type HeroBlock } from '@quosel/core/templates';
 import { Type } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -8,17 +9,19 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: HeroBlock;
   index: number;
 }
 
-export function HeroLayout({ data, block, index }: Props) {
+export function HeroLayout({ user, data, block, index }: Props) {
   const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<HeroBlock>(data, index);
 
   return (
     <Section title="Hero" icon={<Type className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       <GenerateTextField
+        user={user}
         label="Title"
         generateLabel="Hero title"
         value={block.title}
@@ -29,6 +32,7 @@ export function HeroLayout({ data, block, index }: Props) {
         }}
       />
       <GenerateTextField
+        user={user}
         label="Description"
         generateLabel="Hero description"
         value={block.text}
@@ -40,6 +44,7 @@ export function HeroLayout({ data, block, index }: Props) {
       />
       <Field label="Image">
         <ImageField
+          user={user}
           value={block.imageUrl}
           onChange={(url) =>
             updateBlock((block) => {

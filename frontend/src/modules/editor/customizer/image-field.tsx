@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import type { Me } from '@/old/auth';
 import { ChevronLeft, ChevronRight, FolderOpen, Images, Trash2, Upload, X } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -14,11 +15,12 @@ const ACCEPTED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.ico'];
 const ACCEPT = 'image/jpeg,image/png,image/webp,image/gif,image/x-icon,image/vnd.microsoft.icon';
 
 interface Props {
+  user: Me | null;
   value: string;
   onChange: (url: string) => void;
 }
 
-export function ImageField({ value, onChange }: Props) {
+export function ImageField({ user, value, onChange }: Props) {
   const { websiteId } = useParams<{ websiteId: string }>();
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(0);
@@ -54,9 +56,11 @@ export function ImageField({ value, onChange }: Props) {
     <>
       <div className="flex gap-2">
         <Input value={value} onChange={(e) => onChange(e.target.value)} placeholder="https://..." />
-        <Button variant="outline" size="icon" onClick={() => setOpen(true)} className="shrink-0 cursor-pointer">
-          <FolderOpen className="h-4 w-4" />
-        </Button>
+        {user && (
+          <Button variant="outline" size="icon" onClick={() => setOpen(true)} className="shrink-0 cursor-pointer">
+            <FolderOpen className="h-4 w-4" />
+          </Button>
+        )}
       </div>
 
       <Dialog open={open} onOpenChange={setOpen}>
