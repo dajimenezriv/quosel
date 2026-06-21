@@ -1,5 +1,6 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Input } from '@/components/ui/input';
+import type { Me } from '@/old/auth';
 import { circoloPopolareCta, type CtaBlock } from '@quosel/core/templates';
 import { MousePointerClick } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -8,12 +9,13 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: CtaBlock;
   index: number;
 }
 
-export function CtaLayout({ data, block, index }: Props) {
+export function CtaLayout({ user, data, block, index }: Props) {
   const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<CtaBlock>(data, index);
 
   return (
@@ -24,6 +26,7 @@ export function CtaLayout({ data, block, index }: Props) {
       onMoveDown={moveDown}
       onRemove={removeBlock}>
       <GenerateTextField
+        user={user}
         label="Title"
         generateLabel="Cta title"
         value={block.title}
@@ -34,6 +37,7 @@ export function CtaLayout({ data, block, index }: Props) {
         }}
       />
       <GenerateTextField
+        user={user}
         label="Text"
         generateLabel="Cta text"
         value={block.text}
@@ -46,6 +50,7 @@ export function CtaLayout({ data, block, index }: Props) {
 
       <Field label="Image">
         <ImageField
+          user={user}
           value={block.imageUrl}
           onChange={(url) =>
             updateBlock((block) => {

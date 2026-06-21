@@ -2,6 +2,7 @@ import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import type { Me } from '@/old/auth';
 import { circoloPopolareServices, type ServicesBlock } from '@quosel/core/templates';
 import { Briefcase, Plus } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -9,12 +10,13 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: ServicesBlock;
   index: number;
 }
 
-export function ServicesLayout({ data, block, index }: Props) {
+export function ServicesLayout({ user, data, block, index }: Props) {
   const { handleInput, handleTextArea, updateBlock, removeBlock, moveUp, moveDown } = useBlockHandlers<ServicesBlock>(data, index);
 
   return (
@@ -29,6 +31,7 @@ export function ServicesLayout({ data, block, index }: Props) {
       </Field>
 
       <GenerateTextField
+        user={user}
         label="Title"
         generateLabel="Services title"
         value={block.title}
@@ -39,6 +42,7 @@ export function ServicesLayout({ data, block, index }: Props) {
         }}
       />
       <GenerateTextField
+        user={user}
         label="Text"
         generateLabel="Services text"
         value={block.text}

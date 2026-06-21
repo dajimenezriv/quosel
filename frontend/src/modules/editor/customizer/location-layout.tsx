@@ -1,6 +1,7 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import type { Me } from '@/old/auth';
 import { circoloPopolareLocation, type LocationBlock } from '@quosel/core/templates';
 import { MapPin, Plus, Trash2 } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -8,12 +9,13 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: LocationBlock;
   index: number;
 }
 
-export function LocationLayout({ data, block, index }: Props) {
+export function LocationLayout({ user, data, block, index }: Props) {
   const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<LocationBlock>(data, index);
 
   return (
@@ -28,6 +30,7 @@ export function LocationLayout({ data, block, index }: Props) {
       </Field>
 
       <GenerateTextField
+        user={user}
         label="Title"
         generateLabel="Location title"
         value={block.title}

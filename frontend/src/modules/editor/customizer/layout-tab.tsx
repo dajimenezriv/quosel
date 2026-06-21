@@ -29,7 +29,7 @@ interface Props {
   user: Me | null;
 }
 
-export function LayoutTab({ data, user }: Props) {
+export function LayoutTab({ user, data }: Props) {
   const updateDraft = useEditorStore((s) => s.updateDraft);
 
   function handleInput(updater: (draft: Website, value: string) => void) {
@@ -49,23 +49,23 @@ export function LayoutTab({ data, user }: Props) {
   function renderBlock(block: Website['blocks']['blocks'][number], index: number) {
     switch (block.type) {
       case 'hero':
-        return <HeroLayout data={data} block={block} index={index} />;
+        return <HeroLayout user={user} data={data} block={block} index={index} />;
       case 'stats':
         return <StatsLayout data={data} block={block} index={index} />;
       case 'info':
-        return <InfoLayout data={data} block={block} index={index} />;
+        return <InfoLayout user={user} data={data} block={block} index={index} />;
       case 'cta':
-        return <CtaLayout data={data} block={block} index={index} />;
+        return <CtaLayout user={user} data={data} block={block} index={index} />;
       case 'gallery':
-        return <GalleryLayout data={data} block={block} index={index} />;
+        return <GalleryLayout user={user} data={data} block={block} index={index} />;
       case 'reviews':
-        return <ReviewsLayout data={data} block={block} index={index} />;
+        return <ReviewsLayout user={user} data={data} block={block} index={index} />;
       case 'services':
-        return <ServicesLayout data={data} block={block} index={index} />;
+        return <ServicesLayout user={user} data={data} block={block} index={index} />;
       case 'location':
-        return <LocationLayout data={data} block={block} index={index} />;
+        return <LocationLayout user={user} data={data} block={block} index={index} />;
       case 'footer':
-        return <FooterLayout data={data} block={block} index={index} />;
+        return <FooterLayout user={user} data={data} block={block} index={index} />;
     }
   }
 

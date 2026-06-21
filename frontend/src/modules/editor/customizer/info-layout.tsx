@@ -1,5 +1,6 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Input } from '@/components/ui/input';
+import type { Me } from '@/old/auth';
 import { circoloPopolareInfo, type InfoBlock } from '@quosel/core/templates';
 import { Info } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -8,12 +9,13 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: InfoBlock;
   index: number;
 }
 
-export function InfoLayout({ data, block, index }: Props) {
+export function InfoLayout({ user, data, block, index }: Props) {
   const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<InfoBlock>(data, index);
 
   return (
@@ -27,6 +29,7 @@ export function InfoLayout({ data, block, index }: Props) {
         />
       </Field>
       <GenerateTextField
+        user={user}
         label="Title"
         generateLabel="Info title"
         value={block.title}
@@ -37,6 +40,7 @@ export function InfoLayout({ data, block, index }: Props) {
         }}
       />
       <GenerateTextField
+        user={user}
         label="First paragraph"
         generateLabel="Info first paragraph"
         value={block.text1}
@@ -47,6 +51,7 @@ export function InfoLayout({ data, block, index }: Props) {
         }}
       />
       <GenerateTextField
+        user={user}
         label="Second paragraph"
         generateLabel="Info second paragraph"
         value={block.text2}
@@ -58,6 +63,7 @@ export function InfoLayout({ data, block, index }: Props) {
       />
       <Field label="Image">
         <ImageField
+          user={user}
           value={block.imageUrl}
           onChange={(url) =>
             updateBlock((block) => {

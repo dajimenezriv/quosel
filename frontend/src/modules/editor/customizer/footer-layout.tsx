@@ -1,6 +1,7 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import type { Me } from '@/old/auth';
 import { circoloPopolareFooter, type FooterBlock } from '@quosel/core/templates';
 import { PanelBottom, Plus, Trash2 } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -8,17 +9,19 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: FooterBlock;
   index: number;
 }
 
-export function FooterLayout({ data, block, index }: Props) {
+export function FooterLayout({ user, data, block, index }: Props) {
   const { handleInput, updateBlock, removeBlock, moveUp, moveDown } = useBlockHandlers<FooterBlock>(data, index);
 
   return (
     <Section title="Footer" icon={<PanelBottom className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
       <GenerateTextField
+        user={user}
         label="Description"
         generateLabel="Footer description"
         value={block.description}

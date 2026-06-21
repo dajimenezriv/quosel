@@ -120,11 +120,11 @@ export default function Page() {
               </TabsList>
 
               <TabsContent value="general" className="flex min-h-0 flex-1 flex-col overflow-auto p-4">
-                <GeneralTab data={draft} />
+                <GeneralTab user={user} data={draft} />
               </TabsContent>
 
               <TabsContent value="layout" className="flex min-h-0 flex-1 flex-col overflow-auto p-4">
-                <LayoutTab data={draft} user={user} />
+                <LayoutTab user={user} data={draft} />
               </TabsContent>
 
               <TabsContent value="theme" className="flex min-h-0 flex-1 flex-col overflow-auto p-4">

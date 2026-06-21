@@ -2,6 +2,7 @@ import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import type { Me } from '@/old/auth';
 import { circoloPopolareReviews, type ReviewsBlock } from '@quosel/core/templates';
 import { Plus, Star, Trash2 } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
@@ -9,12 +10,13 @@ import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
+  user: Me | null;
   data: Website;
   block: ReviewsBlock;
   index: number;
 }
 
-export function ReviewsLayout({ data, block, index }: Props) {
+export function ReviewsLayout({ user, data, block, index }: Props) {
   const { handleInput, handleTextArea, updateBlock, removeBlock, moveUp, moveDown } = useBlockHandlers<ReviewsBlock>(data, index);
 
   return (
@@ -29,6 +31,7 @@ export function ReviewsLayout({ data, block, index }: Props) {
       </Field>
 
       <GenerateTextField
+        user={user}
         label="Title"
         generateLabel="Reviews title"
         value={block.title}

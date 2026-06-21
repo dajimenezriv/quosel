@@ -33,6 +33,7 @@ export function StatsLayout({ data, block, index }: Props) {
               block.stats[statIndex]!.label = value;
             })}
           />
+
           <button
             onClick={() =>
               updateBlock((block) => {
@@ -44,6 +45,7 @@ export function StatsLayout({ data, block, index }: Props) {
           </button>
         </div>
       ))}
+
       <Button
         variant="outline"
         size="sm"
