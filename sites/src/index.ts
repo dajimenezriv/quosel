@@ -1,12 +1,18 @@
 interface Env {
   SITES: R2Bucket;
+  DOMAINS: KVNamespace;
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
-    const { pathname } = new URL(request.url);
+  async fetch(request: Request, env: Env) {
+    const url = new URL(request.url);
+    const host = request.headers.get("host") ?? "";
 
-    const slug = pathname.split("/")[1]; // "/acme" -> "acme"
+    const slug = host.endsWith("quosel.com")
+      ? // Platform hosts route by path ("/acme" -> "acme").
+        url.pathname.split("/")[1]
+      : // Custom domains (gestelsl.es) route by hostname via KV lookup.
+        await env.DOMAINS.get(host);
     if (!slug) return new Response("Not found", { status: 404 });
 
     const object = await env.SITES.get(`websites/${slug}.html`);

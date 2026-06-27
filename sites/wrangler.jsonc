@@ -11,4 +11,10 @@
       "bucket_name": "quosel",
     },
   ],
+  "kv_namespaces": [
+    {
+      "binding": "DOMAINS",
+      "id": "788820ad7a3d4664a1441e237c2dd784",
+    },
+  ],
 }
