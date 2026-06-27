@@ -836,6 +836,10 @@ export interface components {
                 schemaVersion: 1;
                 name: string;
                 /** @default  */
+                metaTitle: string;
+                /** @default  */
+                metaDescription: string;
+                /** @default  */
                 logoUrl: string;
                 nav: {
                     ctaText: string;
@@ -993,6 +997,10 @@ export interface components {
                 schemaVersion: 1;
                 name: string;
                 /** @default  */
+                metaTitle: string;
+                /** @default  */
+                metaDescription: string;
+                /** @default  */
                 logoUrl: string;
                 nav: {
                     ctaText: string;
@@ -1144,6 +1152,10 @@ export interface components {
                 /** @enum {number} */
                 schemaVersion: 1;
                 name: string;
+                /** @default  */
+                metaTitle: string;
+                /** @default  */
+                metaDescription: string;
                 /** @default  */
                 logoUrl: string;
                 nav: {

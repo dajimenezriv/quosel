@@ -80,6 +80,14 @@
               "name": {
                 "type": "string"
               },
+              "metaTitle": {
+                "type": "string",
+                "default": ""
+              },
+              "metaDescription": {
+                "type": "string",
+                "default": ""
+              },
               "logoUrl": {
                 "type": "string",
                 "default": ""
@@ -703,6 +711,14 @@
               "name": {
                 "type": "string"
               },
+              "metaTitle": {
+                "type": "string",
+                "default": ""
+              },
+              "metaDescription": {
+                "type": "string",
+                "default": ""
+              },
               "logoUrl": {
                 "type": "string",
                 "default": ""
@@ -1306,6 +1322,14 @@
               },
               "name": {
                 "type": "string"
+              },
+              "metaTitle": {
+                "type": "string",
+                "default": ""
+              },
+              "metaDescription": {
+                "type": "string",
+                "default": ""
               },
               "logoUrl": {
                 "type": "string",

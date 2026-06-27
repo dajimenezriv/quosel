@@ -221,6 +221,9 @@ export const circoloPopolareFooter: FooterBlock = {
 export const circoloPopolareBlocks: Blocks = {
   schemaVersion: 1,
   name: 'Circolo Popolare',
+  metaTitle: 'Circolo Popolare · Italian restaurant & pizzeria in London',
+  metaDescription:
+    'Circolo Popolare is a restaurant serves authentic Italian food: Neapolitan pizzas, fresh pasta and big tables made for sharing.',
   logoUrl: 'https://www.circolopopolare.com/favicon.ico',
   nav: {
     ctaText: 'Book a Table',
