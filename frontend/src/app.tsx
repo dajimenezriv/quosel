@@ -4,7 +4,6 @@ import { useSyncExternalStore } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { Logo } from './components/logo';
-import { useTheme } from './core/theme/use-theme';
 import { router } from './pages/router';
 
 const queryClient = new QueryClient({
@@ -48,7 +47,6 @@ function ScreenTooSmall() {
 }
 
 export function App() {
-  useTheme();
   const isScreenBigEnough = useIsScreenBigEnough();
 
   if (!isScreenBigEnough) {

@@ -1,8 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --font-sans: 'Inter', system-ui, sans-serif;
   --color-background: var(--background);
@@ -46,28 +44,6 @@
   --input: #b4b2a7;
   --ring: #c96442;
   --sidebar: #f5f4ee;
-}
-
-.dark {
-  --background: #262624;
-  --foreground: #c3c0b6;
-  --card: #262624;
-  --card-foreground: #faf9f5;
-  --popover: #30302e;
-  --popover-foreground: #e5e5e2;
-  --primary: #d97757;
-  --primary-foreground: #ffffff;
-  --secondary: #faf9f5;
-  --secondary-foreground: #30302e;
-  --muted: #1b1b19;
-  --muted-foreground: #b7b5a9;
-  --accent: #1a1915;
-  --accent-foreground: #f5f4ee;
-  --destructive: #ef4444;
-  --border: #3e3e38;
-  --input: #52514a;
-  --ring: #d97757;
-  --sidebar: #1f1e1d;
 }
 
 @layer base {

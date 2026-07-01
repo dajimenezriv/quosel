@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { ThemeToggle } from './theme-toggle';
 
 interface Props {
   title: string;
@@ -14,7 +13,6 @@ export function SiteHeader({ title, extra }: Props) {
       </div>
       <div className="flex items-center gap-2">
         {extra}
-        <ThemeToggle />
       </div>
     </header>
   );
