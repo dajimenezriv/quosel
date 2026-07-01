@@ -35,14 +35,6 @@ const ogImage = new URL('/og.png', siteUrl).href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <script is:inline>
-      // Prevent flash of wrong theme — must run before body renders
-      const stored = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (stored === 'dark' || (!stored && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      }
-    </script>
   </head>
   <body class="bg-background text-foreground flex flex-col items-center overflow-x-hidden antialiased">
     <slot />
