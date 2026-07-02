@@ -18,7 +18,6 @@ export const circoloPopolareHero: HeroBlock = {
   text: '_This is Circolo Popolare, our stunning trattoria in the heart of Fitzrovia, where the atmosphere is as warm as the Sicilian sun and food is the love language._',
   ctaText: 'Book a Table',
   ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
-  phone: '+44 204 578 4370',
   imageUrl:
     'https://cdn.sanity.io/images/aa3sekul/production/d229986a2fe1430dd3ef952a4c294ed56441794d-7243x4831.jpg?w=3072&fit=crop&auto=format',
 };
@@ -170,11 +169,7 @@ export const circoloPopolareLocation: LocationBlock = {
   type: 'location',
   nav: 'Location',
   title: '_Visit us._',
-  details: [
-    { label: 'Address', value: '40-41 Rathbone Pl, London W1T 1HX, UK' },
-    { label: 'Phone', value: '+44 20 3893 6800' },
-    { label: 'Social Media', value: 'Instagram · *@circolopopolare*' },
-  ],
+  details: [{ label: 'Social Media', value: 'Instagram · *@circolopopolare*' }],
   schedule: {
     title: 'Schedule',
     items: [
@@ -205,8 +200,6 @@ export const circoloPopolareFooter: FooterBlock = {
   navigateTitle: 'Navigate',
   contactTitle: 'Contact',
   linksTitle: 'Booking & Social',
-  phone: '+44 20 3893 6800',
-  address: '40-41 Rathbone Pl, London W1T 1HX, UK',
   links: [
     { label: 'Book a Table', url: 'https://www.circolopopolare.com/restaurants/circolopopolare-london' },
     { label: 'Instagram', url: 'https://www.instagram.com/circolopopolare' },
@@ -221,6 +214,8 @@ export const circoloPopolareFooter: FooterBlock = {
 export const circoloPopolareBlocks: Blocks = {
   schemaVersion: 1,
   name: 'Circolo Popolare',
+  address: '40-41 Rathbone Pl, London W1T 1HX, UK',
+  phone: '+44 20 3893 6800',
   metaTitle: 'Circolo Popolare · Italian restaurant & pizzeria in London',
   metaDescription:
     'Circolo Popolare is a restaurant serves authentic Italian food: Neapolitan pizzas, fresh pasta and big tables made for sharing.',

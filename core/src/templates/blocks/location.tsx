@@ -1,9 +1,15 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
 import { slugify } from '../core/utils';
-import type { LocationBlock } from '../types';
+import type { LocationBlock, TemplateData } from '../types';
 
-export function Location({ block }: { block: LocationBlock }) {
+export function Location({ data, block }: { data: TemplateData; block: LocationBlock }) {
+  const details = [
+    ...(data.blocks.address ? [{ label: 'Address', value: data.blocks.address }] : []),
+    ...(data.blocks.phone ? [{ label: 'Phone', value: data.blocks.phone }] : []),
+    ...block.details,
+  ];
+
   return (
     <section id={slugify(block.nav)} className="bg-secondary text-foreground flex justify-center px-6 py-24 md:px-0">
       <div className="flex w-full max-w-300 flex-col gap-12 md:flex-row md:items-center md:gap-20">
@@ -14,7 +20,7 @@ export function Location({ block }: { block: LocationBlock }) {
           </h2>
 
           <div>
-            {block.details.map((detail, i) => (
+            {details.map((detail, i) => (
               <div key={i} className="border-foreground/10 flex gap-12 border-t py-6">
                 <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">{detail.label}</span>
                 <p className="text-sm">
