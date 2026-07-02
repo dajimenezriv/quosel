@@ -1,25 +1,35 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useEditorStore } from '@/core/editor/use-editor-store';
 import type { Me } from '@/old/auth';
 import { circoloPopolareFooter, type FooterBlock } from '@quosel/core/templates';
+import { produce } from 'immer';
 import { PanelBottom, Plus, Trash2 } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
-import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
   user: Me | null;
   data: Website;
-  block: FooterBlock;
-  index: number;
 }
 
-export function FooterLayout({ user, data, block, index }: Props) {
-  const { handleInput, updateBlock, removeBlock, moveUp, moveDown } = useBlockHandlers<FooterBlock>(data, index);
+export function FooterLayout({ user, data }: Props) {
+  const updateDraft = useEditorStore((s) => s.updateDraft);
+  const block = data.blocks.footer;
+
+  function updateBlock(updater: (block: FooterBlock) => void) {
+    updateDraft(produce(data, (draft) => updater(draft.blocks.footer)));
+  }
+
+  function handleInput(updater: (block: FooterBlock, value: string) => void) {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      updateBlock((block) => updater(block, e.target.value));
+    };
+  }
 
   return (
-    <Section title="Footer" icon={<PanelBottom className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
+    <Section title="Footer" icon={<PanelBottom className="h-4 w-4" />}>
       <GenerateTextField
         user={user}
         label="Description"

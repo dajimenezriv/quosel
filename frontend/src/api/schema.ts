@@ -833,7 +833,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 1;
+                schemaVersion: 3;
                 name: string;
                 /** @default  */
                 address: string;
@@ -849,106 +849,7 @@ export interface components {
                     ctaText: string;
                     ctaLink: string;
                 };
-                blocks: ({
-                    /** @enum {string} */
-                    type: "hero";
-                    /** @default  */
-                    title: string;
-                    text: string;
-                    ctaText: string;
-                    ctaLink: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "stats";
-                    stats: {
-                        value: string;
-                        label: string;
-                    }[];
-                } | {
-                    /** @enum {string} */
-                    type: "info";
-                    nav: string;
-                    title: string;
-                    text1: string;
-                    text2: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "cta";
-                    title: string;
-                    text: string;
-                    ctaText: string;
-                    ctaLink: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "gallery";
-                    nav: string;
-                    title: string;
-                    text: string;
-                    images: string[];
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
-                    /** @enum {string} */
-                    type: "reviews";
-                    nav: string;
-                    title: string;
-                    stats: {
-                        value: string;
-                        label: string;
-                    }[];
-                    reviews: {
-                        text: string;
-                        author: string;
-                        source: string;
-                        url: string;
-                    }[];
-                } | {
-                    /** @enum {string} */
-                    type: "services";
-                    nav: string;
-                    title: string;
-                    text: string;
-                    serviceGroups: {
-                        title: string;
-                        services: {
-                            title: string;
-                            text: string;
-                            price: string;
-                        }[];
-                    }[];
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
-                    /** @enum {string} */
-                    type: "location";
-                    nav: string;
-                    title: string;
-                    /** @default [] */
-                    details: {
-                        label: string;
-                        value: string;
-                    }[];
-                    /**
-                     * @default {
-                     *       "title": "",
-                     *       "items": []
-                     *     }
-                     */
-                    schedule: {
-                        title: string;
-                        items: {
-                            label: string;
-                            value: string;
-                        }[];
-                    };
-                    /** @default  */
-                    mapUrl: string;
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
+                footer: {
                     /** @enum {string} */
                     type: "footer";
                     description: string;
@@ -966,7 +867,110 @@ export interface components {
                         label: string;
                         url: string;
                     }[];
-                })[];
+                };
+                homepage: {
+                    hero: {
+                        /** @enum {string} */
+                        type: "hero";
+                        /** @default  */
+                        title: string;
+                        text: string;
+                        ctaText: string;
+                        ctaLink: string;
+                        imageUrl: string;
+                    };
+                    blocks: ({
+                        /** @enum {string} */
+                        type: "stats";
+                        stats: {
+                            value: string;
+                            label: string;
+                        }[];
+                    } | {
+                        /** @enum {string} */
+                        type: "info";
+                        nav: string;
+                        title: string;
+                        text1: string;
+                        text2: string;
+                        imageUrl: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "cta";
+                        title: string;
+                        text: string;
+                        ctaText: string;
+                        ctaLink: string;
+                        imageUrl: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "gallery";
+                        nav: string;
+                        title: string;
+                        text: string;
+                        images: string[];
+                        ctaText: string;
+                        ctaLink: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "reviews";
+                        nav: string;
+                        title: string;
+                        stats: {
+                            value: string;
+                            label: string;
+                        }[];
+                        reviews: {
+                            text: string;
+                            author: string;
+                            source: string;
+                            url: string;
+                        }[];
+                    } | {
+                        /** @enum {string} */
+                        type: "services";
+                        nav: string;
+                        title: string;
+                        text: string;
+                        serviceGroups: {
+                            title: string;
+                            services: {
+                                title: string;
+                                text: string;
+                                price: string;
+                            }[];
+                        }[];
+                        ctaText: string;
+                        ctaLink: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "location";
+                        nav: string;
+                        title: string;
+                        /** @default [] */
+                        details: {
+                            label: string;
+                            value: string;
+                        }[];
+                        /**
+                         * @default {
+                         *       "title": "",
+                         *       "items": []
+                         *     }
+                         */
+                        schedule: {
+                            title: string;
+                            items: {
+                                label: string;
+                                value: string;
+                            }[];
+                        };
+                        /** @default  */
+                        mapUrl: string;
+                        ctaText: string;
+                        ctaLink: string;
+                    })[];
+                };
             };
             styles: {
                 background: string;
@@ -995,7 +999,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 1;
+                schemaVersion: 3;
                 name: string;
                 /** @default  */
                 address: string;
@@ -1011,106 +1015,7 @@ export interface components {
                     ctaText: string;
                     ctaLink: string;
                 };
-                blocks: ({
-                    /** @enum {string} */
-                    type: "hero";
-                    /** @default  */
-                    title: string;
-                    text: string;
-                    ctaText: string;
-                    ctaLink: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "stats";
-                    stats: {
-                        value: string;
-                        label: string;
-                    }[];
-                } | {
-                    /** @enum {string} */
-                    type: "info";
-                    nav: string;
-                    title: string;
-                    text1: string;
-                    text2: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "cta";
-                    title: string;
-                    text: string;
-                    ctaText: string;
-                    ctaLink: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "gallery";
-                    nav: string;
-                    title: string;
-                    text: string;
-                    images: string[];
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
-                    /** @enum {string} */
-                    type: "reviews";
-                    nav: string;
-                    title: string;
-                    stats: {
-                        value: string;
-                        label: string;
-                    }[];
-                    reviews: {
-                        text: string;
-                        author: string;
-                        source: string;
-                        url: string;
-                    }[];
-                } | {
-                    /** @enum {string} */
-                    type: "services";
-                    nav: string;
-                    title: string;
-                    text: string;
-                    serviceGroups: {
-                        title: string;
-                        services: {
-                            title: string;
-                            text: string;
-                            price: string;
-                        }[];
-                    }[];
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
-                    /** @enum {string} */
-                    type: "location";
-                    nav: string;
-                    title: string;
-                    /** @default [] */
-                    details: {
-                        label: string;
-                        value: string;
-                    }[];
-                    /**
-                     * @default {
-                     *       "title": "",
-                     *       "items": []
-                     *     }
-                     */
-                    schedule: {
-                        title: string;
-                        items: {
-                            label: string;
-                            value: string;
-                        }[];
-                    };
-                    /** @default  */
-                    mapUrl: string;
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
+                footer: {
                     /** @enum {string} */
                     type: "footer";
                     description: string;
@@ -1128,7 +1033,110 @@ export interface components {
                         label: string;
                         url: string;
                     }[];
-                })[];
+                };
+                homepage: {
+                    hero: {
+                        /** @enum {string} */
+                        type: "hero";
+                        /** @default  */
+                        title: string;
+                        text: string;
+                        ctaText: string;
+                        ctaLink: string;
+                        imageUrl: string;
+                    };
+                    blocks: ({
+                        /** @enum {string} */
+                        type: "stats";
+                        stats: {
+                            value: string;
+                            label: string;
+                        }[];
+                    } | {
+                        /** @enum {string} */
+                        type: "info";
+                        nav: string;
+                        title: string;
+                        text1: string;
+                        text2: string;
+                        imageUrl: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "cta";
+                        title: string;
+                        text: string;
+                        ctaText: string;
+                        ctaLink: string;
+                        imageUrl: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "gallery";
+                        nav: string;
+                        title: string;
+                        text: string;
+                        images: string[];
+                        ctaText: string;
+                        ctaLink: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "reviews";
+                        nav: string;
+                        title: string;
+                        stats: {
+                            value: string;
+                            label: string;
+                        }[];
+                        reviews: {
+                            text: string;
+                            author: string;
+                            source: string;
+                            url: string;
+                        }[];
+                    } | {
+                        /** @enum {string} */
+                        type: "services";
+                        nav: string;
+                        title: string;
+                        text: string;
+                        serviceGroups: {
+                            title: string;
+                            services: {
+                                title: string;
+                                text: string;
+                                price: string;
+                            }[];
+                        }[];
+                        ctaText: string;
+                        ctaLink: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "location";
+                        nav: string;
+                        title: string;
+                        /** @default [] */
+                        details: {
+                            label: string;
+                            value: string;
+                        }[];
+                        /**
+                         * @default {
+                         *       "title": "",
+                         *       "items": []
+                         *     }
+                         */
+                        schedule: {
+                            title: string;
+                            items: {
+                                label: string;
+                                value: string;
+                            }[];
+                        };
+                        /** @default  */
+                        mapUrl: string;
+                        ctaText: string;
+                        ctaLink: string;
+                    })[];
+                };
             };
             styles: {
                 background: string;
@@ -1151,7 +1159,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 1;
+                schemaVersion: 3;
                 name: string;
                 /** @default  */
                 address: string;
@@ -1167,106 +1175,7 @@ export interface components {
                     ctaText: string;
                     ctaLink: string;
                 };
-                blocks: ({
-                    /** @enum {string} */
-                    type: "hero";
-                    /** @default  */
-                    title: string;
-                    text: string;
-                    ctaText: string;
-                    ctaLink: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "stats";
-                    stats: {
-                        value: string;
-                        label: string;
-                    }[];
-                } | {
-                    /** @enum {string} */
-                    type: "info";
-                    nav: string;
-                    title: string;
-                    text1: string;
-                    text2: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "cta";
-                    title: string;
-                    text: string;
-                    ctaText: string;
-                    ctaLink: string;
-                    imageUrl: string;
-                } | {
-                    /** @enum {string} */
-                    type: "gallery";
-                    nav: string;
-                    title: string;
-                    text: string;
-                    images: string[];
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
-                    /** @enum {string} */
-                    type: "reviews";
-                    nav: string;
-                    title: string;
-                    stats: {
-                        value: string;
-                        label: string;
-                    }[];
-                    reviews: {
-                        text: string;
-                        author: string;
-                        source: string;
-                        url: string;
-                    }[];
-                } | {
-                    /** @enum {string} */
-                    type: "services";
-                    nav: string;
-                    title: string;
-                    text: string;
-                    serviceGroups: {
-                        title: string;
-                        services: {
-                            title: string;
-                            text: string;
-                            price: string;
-                        }[];
-                    }[];
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
-                    /** @enum {string} */
-                    type: "location";
-                    nav: string;
-                    title: string;
-                    /** @default [] */
-                    details: {
-                        label: string;
-                        value: string;
-                    }[];
-                    /**
-                     * @default {
-                     *       "title": "",
-                     *       "items": []
-                     *     }
-                     */
-                    schedule: {
-                        title: string;
-                        items: {
-                            label: string;
-                            value: string;
-                        }[];
-                    };
-                    /** @default  */
-                    mapUrl: string;
-                    ctaText: string;
-                    ctaLink: string;
-                } | {
+                footer: {
                     /** @enum {string} */
                     type: "footer";
                     description: string;
@@ -1284,7 +1193,110 @@ export interface components {
                         label: string;
                         url: string;
                     }[];
-                })[];
+                };
+                homepage: {
+                    hero: {
+                        /** @enum {string} */
+                        type: "hero";
+                        /** @default  */
+                        title: string;
+                        text: string;
+                        ctaText: string;
+                        ctaLink: string;
+                        imageUrl: string;
+                    };
+                    blocks: ({
+                        /** @enum {string} */
+                        type: "stats";
+                        stats: {
+                            value: string;
+                            label: string;
+                        }[];
+                    } | {
+                        /** @enum {string} */
+                        type: "info";
+                        nav: string;
+                        title: string;
+                        text1: string;
+                        text2: string;
+                        imageUrl: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "cta";
+                        title: string;
+                        text: string;
+                        ctaText: string;
+                        ctaLink: string;
+                        imageUrl: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "gallery";
+                        nav: string;
+                        title: string;
+                        text: string;
+                        images: string[];
+                        ctaText: string;
+                        ctaLink: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "reviews";
+                        nav: string;
+                        title: string;
+                        stats: {
+                            value: string;
+                            label: string;
+                        }[];
+                        reviews: {
+                            text: string;
+                            author: string;
+                            source: string;
+                            url: string;
+                        }[];
+                    } | {
+                        /** @enum {string} */
+                        type: "services";
+                        nav: string;
+                        title: string;
+                        text: string;
+                        serviceGroups: {
+                            title: string;
+                            services: {
+                                title: string;
+                                text: string;
+                                price: string;
+                            }[];
+                        }[];
+                        ctaText: string;
+                        ctaLink: string;
+                    } | {
+                        /** @enum {string} */
+                        type: "location";
+                        nav: string;
+                        title: string;
+                        /** @default [] */
+                        details: {
+                            label: string;
+                            value: string;
+                        }[];
+                        /**
+                         * @default {
+                         *       "title": "",
+                         *       "items": []
+                         *     }
+                         */
+                        schedule: {
+                            title: string;
+                            items: {
+                                label: string;
+                                value: string;
+                            }[];
+                        };
+                        /** @default  */
+                        mapUrl: string;
+                        ctaText: string;
+                        ctaLink: string;
+                    })[];
+                };
             };
             styles: {
                 background: string;

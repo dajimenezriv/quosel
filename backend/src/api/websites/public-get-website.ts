@@ -3,7 +3,7 @@ import type { AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { type Blocks, type Styles } from '@quosel/core/templates';
+import { migrateBlocks, type Styles } from '@quosel/core/templates';
 import { WebsiteSchema } from './get-website';
 
 export const publicGetWebsiteRoute = createRoute({
@@ -21,7 +21,7 @@ export const publicGetWebsite: RouteHandler<typeof publicGetWebsiteRoute, { Vari
   const website = await Websites.getByEditToken(editToken);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  const blocks = website.blocks as Blocks;
+  const blocks = migrateBlocks(website.blocks);
   const styles = website.styles as Styles;
 
   return jsonResponse(

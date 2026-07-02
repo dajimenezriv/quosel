@@ -1,25 +1,35 @@
 import type { Website } from '@/api/websites/use-get-website';
 import { Input } from '@/components/ui/input';
+import { useEditorStore } from '@/core/editor/use-editor-store';
 import type { Me } from '@/old/auth';
 import { circoloPopolareHero, type HeroBlock } from '@quosel/core/templates';
+import { produce } from 'immer';
 import { Type } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
 import { ImageField } from './image-field';
-import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
 interface Props {
   user: Me | null;
   data: Website;
-  block: HeroBlock;
-  index: number;
 }
 
-export function HeroLayout({ user, data, block, index }: Props) {
-  const { updateBlock, handleInput, removeBlock, moveUp, moveDown } = useBlockHandlers<HeroBlock>(data, index);
+export function HeroLayout({ user, data }: Props) {
+  const updateDraft = useEditorStore((s) => s.updateDraft);
+  const block = data.blocks.homepage.hero;
+
+  function updateBlock(updater: (block: HeroBlock) => void) {
+    updateDraft(produce(data, (draft) => updater(draft.blocks.homepage.hero)));
+  }
+
+  function handleInput(updater: (block: HeroBlock, value: string) => void) {
+    return (e: React.ChangeEvent<HTMLInputElement>) => {
+      updateBlock((block) => updater(block, e.target.value));
+    };
+  }
 
   return (
-    <Section title="Hero" icon={<Type className="h-4 w-4" />} onMoveUp={moveUp} onMoveDown={moveDown} onRemove={removeBlock}>
+    <Section title="Hero" icon={<Type className="h-4 w-4" />}>
       <GenerateTextField
         user={user}
         label="Title"
