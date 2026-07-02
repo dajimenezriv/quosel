@@ -17,8 +17,7 @@ export function IPhoneDevice({ domain, data }: Props) {
           height: 760,
           borderRadius: 50,
           background: '#f5f0eb',
-          boxShadow:
-            '0 0 0 1.5px #c8b89a, 0 0 0 3px #e8d8c0, 0 30px 80px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.5)',
+          boxShadow: '0 0 0 1.5px #c8b89a, 0 0 0 3px #e8d8c0, 0 30px 80px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.5)',
         }}>
         {/* Side buttons — volume up */}
         <div
@@ -104,13 +103,11 @@ export function IPhoneDevice({ domain, data }: Props) {
           <ContentFrame data={data} />
 
           {/* Safari bottom bar */}
-          <div
-            className="shrink-0"
-            style={{ background: '#f2f2f7', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
+          <div className="shrink-0" style={{ background: '#f2f2f7', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
             {/* Address bar */}
             <div
               className="flex cursor-pointer items-center px-4 py-2"
-              onClick={() => window.open(domain, '_blank', 'noopener,noreferrer')}>
+              onClick={() => window.open(data.canonicalUrl, '_blank', 'noopener,noreferrer')}>
               <div
                 className="flex flex-1 items-center justify-center gap-2 px-3 py-2"
                 style={{

@@ -15,9 +15,7 @@ function Favicon({ logoUrl }: { logoUrl: string }) {
 
 export function SafariDevice({ domain, data }: Props) {
   return (
-    <div
-      className="flex h-full w-full flex-col overflow-hidden rounded-xl shadow-2xl"
-      style={{ border: '1px solid rgba(0,0,0,0.12)' }}>
+    <div className="flex h-full w-full flex-col overflow-hidden rounded-xl shadow-2xl" style={{ border: '1px solid rgba(0,0,0,0.12)' }}>
       {/* Toolbar */}
       <div className="flex shrink-0 items-center gap-2 px-4" style={{ background: '#f5f5f5', height: 52 }}>
         {/* Traffic lights */}
@@ -48,7 +46,7 @@ export function SafariDevice({ domain, data }: Props) {
         {/* Address bar — pill, spans available space */}
         <div
           className="flex min-w-0 flex-1 cursor-pointer items-center justify-center px-2"
-          onClick={() => window.open(domain, '_blank', 'noopener,noreferrer')}>
+          onClick={() => window.open(data.canonicalUrl, '_blank', 'noopener,noreferrer')}>
           <div
             className="flex w-full items-center gap-2 px-3 py-1.25"
             style={{
@@ -84,9 +82,7 @@ export function SafariDevice({ domain, data }: Props) {
           <span className="text-[12px] select-none" style={{ color: '#333' }}>
             Preview
           </span>
-          <button
-            className="ml-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px]"
-            style={{ color: '#aaa' }}>
+          <button className="ml-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px]" style={{ color: '#aaa' }}>
             ✕
           </button>
         </div>

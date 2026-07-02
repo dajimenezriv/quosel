@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function Device({ website, device }: Props) {
-  let domain = `https://sites.quosel.com/${website.slug}`;
+  let domain = website.canonicalUrl;
   if (!website.publishedAt) domain += ' (Not published yet)';
 
   return (

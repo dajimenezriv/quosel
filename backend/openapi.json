@@ -660,6 +660,9 @@
               "ring"
             ]
           },
+          "canonicalUrl": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -685,6 +688,7 @@
           "context",
           "blocks",
           "styles",
+          "canonicalUrl",
           "createdAt",
           "updatedAt",
           "publishedAt"

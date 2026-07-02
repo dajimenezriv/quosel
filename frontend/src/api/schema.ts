@@ -982,6 +982,7 @@ export interface components {
                 border: string;
                 ring: string;
             };
+            canonicalUrl: string;
             /** Format: date-time */
             createdAt: string;
             /** Format: date-time */
