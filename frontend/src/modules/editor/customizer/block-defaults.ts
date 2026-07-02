@@ -1,11 +1,10 @@
 import type { Blocks } from '@quosel/core/templates';
 
-type Block = Blocks['blocks'][number];
+type Block = Blocks['homepage']['blocks'][number];
 
 export type AddableBlockType = Block['type'];
 
 export const addableBlockTypes: { type: AddableBlockType; label: string }[] = [
-  { type: 'hero', label: 'Hero' },
   { type: 'stats', label: 'Stats' },
   { type: 'info', label: 'Info' },
   { type: 'cta', label: 'Call to Action' },
@@ -13,13 +12,10 @@ export const addableBlockTypes: { type: AddableBlockType; label: string }[] = [
   { type: 'reviews', label: 'Reviews' },
   { type: 'services', label: 'Services' },
   { type: 'location', label: 'Location' },
-  { type: 'footer', label: 'Footer' },
 ];
 
 export function createBlock(type: AddableBlockType): Block {
   switch (type) {
-    case 'hero':
-      return { type: 'hero', title: '', text: '', ctaText: '', ctaLink: '', imageUrl: '' };
     case 'stats':
       return { type: 'stats', stats: [{ value: '', label: '' }] };
     case 'info':
@@ -56,16 +52,6 @@ export function createBlock(type: AddableBlockType): Block {
         mapUrl: '',
         ctaText: '',
         ctaLink: '',
-      };
-    case 'footer':
-      return {
-        type: 'footer',
-        description: '',
-        navigateTitle: 'Navigate',
-        contactTitle: 'Contact',
-        linksTitle: 'Booking & Social',
-        links: [],
-        legalLinks: [],
       };
   }
 }

@@ -18,7 +18,7 @@ export function slugify(value: string) {
 
 export function getNavLinks(data: TemplateData) {
   const navLinks: Array<{ label: string; url: string }> = [];
-  for (const b of data.blocks.blocks) {
+  for (const b of data.blocks.homepage.blocks) {
     if ('nav' in b) {
       navLinks.push({ label: b.nav, url: `#${slugify(b.nav)}` });
     }

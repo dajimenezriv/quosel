@@ -1,7 +1,7 @@
 import type { Blocks } from '../types';
 
 export const emptyBlocks: Blocks = {
-  schemaVersion: 1,
+  schemaVersion: 3,
   name: 'Empty',
   address: '',
   phone: '',
@@ -12,5 +12,17 @@ export const emptyBlocks: Blocks = {
     ctaText: '',
     ctaLink: '',
   },
-  blocks: [],
+  footer: {
+    type: 'footer',
+    description: '',
+    navigateTitle: 'Navigate',
+    contactTitle: 'Contact',
+    linksTitle: 'Booking & Social',
+    links: [],
+    legalLinks: [],
+  },
+  homepage: {
+    hero: { type: 'hero', title: '', text: '', ctaText: '', ctaLink: '', imageUrl: '' },
+    blocks: [],
+  },
 };

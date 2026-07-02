@@ -146,9 +146,25 @@ const footerBlockSchema = z.object({
   ),
 });
 
+export type Homepage = z.infer<typeof homepageSchema>;
+const homepageSchema = z.object({
+  hero: heroBlockSchema,
+  blocks: z.array(
+    z.union([
+      statsBlockSchema,
+      infoBlockSchema,
+      ctaBlockSchema,
+      galleryBlockSchema,
+      reviewsBlockSchema,
+      servicesBlockSchema,
+      locationBlockSchema,
+    ]),
+  ),
+});
+
 export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(3),
   name: z.string(),
   address: z.string().default(''),
   phone: z.string().default(''),
@@ -159,19 +175,8 @@ export const blocksSchema = z.object({
     ctaText: z.string(),
     ctaLink: z.string(),
   }),
-  blocks: z.array(
-    z.union([
-      heroBlockSchema,
-      statsBlockSchema,
-      infoBlockSchema,
-      ctaBlockSchema,
-      galleryBlockSchema,
-      reviewsBlockSchema,
-      servicesBlockSchema,
-      locationBlockSchema,
-      footerBlockSchema,
-    ]),
-  ),
+  footer: footerBlockSchema,
+  homepage: homepageSchema,
 });
 
 export type Styles = z.infer<typeof stylesSchema>;

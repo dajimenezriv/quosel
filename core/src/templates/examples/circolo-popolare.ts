@@ -212,7 +212,7 @@ export const circoloPopolareFooter: FooterBlock = {
 };
 
 export const circoloPopolareBlocks: Blocks = {
-  schemaVersion: 1,
+  schemaVersion: 3,
   name: 'Circolo Popolare',
   address: '40-41 Rathbone Pl, London W1T 1HX, UK',
   phone: '+44 20 3893 6800',
@@ -224,32 +224,34 @@ export const circoloPopolareBlocks: Blocks = {
     ctaText: 'Book a Table',
     ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   },
-  blocks: [
-    circoloPopolareHero,
-    {
-      type: 'stats',
-      stats: [
-        { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
-        { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
-        { value: '+87K', label: 'FOLLOWERS ON INSTAGRAM' },
-        { value: 'M-S', label: 'MORNING AND AFTERNOON' },
-      ],
-    },
-    circoloPopolareInfo,
-    {
-      type: 'cta',
-      title: '_The detail is\n~everything~_',
-      text: '_Book a table or just show up — either way, enjoy your meal!_',
-      ctaText: '',
-      ctaLink: '',
-      imageUrl:
-        'https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format',
-    },
-    circoloPopolareGallery,
-    circoloPopolareServices,
-    circoloPopolareReviews,
-    circoloPopolareLocation,
-    circoloPopolareCta,
-    circoloPopolareFooter,
-  ],
+  footer: circoloPopolareFooter,
+  homepage: {
+    hero: circoloPopolareHero,
+    blocks: [
+      {
+        type: 'stats',
+        stats: [
+          { value: '4,8★', label: 'GOOGLE · 39.177 REVIEWS' },
+          { value: '4,2★', label: 'TRIPADVISOR · 2.715 REVIEWS' },
+          { value: '+87K', label: 'FOLLOWERS ON INSTAGRAM' },
+          { value: 'M-S', label: 'MORNING AND AFTERNOON' },
+        ],
+      },
+      circoloPopolareInfo,
+      {
+        type: 'cta',
+        title: '_The detail is\n~everything~_',
+        text: '_Book a table or just show up — either way, enjoy your meal!_',
+        ctaText: '',
+        ctaLink: '',
+        imageUrl:
+          'https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format',
+      },
+      circoloPopolareGallery,
+      circoloPopolareServices,
+      circoloPopolareReviews,
+      circoloPopolareLocation,
+      circoloPopolareCta,
+    ],
+  },
 };

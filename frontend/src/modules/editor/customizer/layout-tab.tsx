@@ -41,15 +41,13 @@ export function LayoutTab({ user, data }: Props) {
   function addBlock(type: AddableBlockType) {
     updateDraft(
       produce(data, (draft) => {
-        draft.blocks.blocks.push(createBlock(type));
+        draft.blocks.homepage.blocks.push(createBlock(type));
       }),
     );
   }
 
-  function renderBlock(block: Website['blocks']['blocks'][number], index: number) {
+  function renderBlock(block: Website['blocks']['homepage']['blocks'][number], index: number) {
     switch (block.type) {
-      case 'hero':
-        return <HeroLayout user={user} data={data} block={block} index={index} />;
       case 'stats':
         return <StatsLayout data={data} block={block} index={index} />;
       case 'info':
@@ -64,8 +62,6 @@ export function LayoutTab({ user, data }: Props) {
         return <ServicesLayout user={user} data={data} block={block} index={index} />;
       case 'location':
         return <LocationLayout user={user} data={data} block={block} index={index} />;
-      case 'footer':
-        return <FooterLayout user={user} data={data} block={block} index={index} />;
     }
   }
 
@@ -97,7 +93,10 @@ export function LayoutTab({ user, data }: Props) {
           </Subgroup>
         </Section>
 
-        {data.blocks.blocks.map((block, index) => (
+        <Separator />
+        <HeroLayout user={user} data={data} />
+
+        {data.blocks.homepage.blocks.map((block, index) => (
           <Fragment key={index}>
             <Separator />
             {renderBlock(block, index)}
@@ -110,7 +109,7 @@ export function LayoutTab({ user, data }: Props) {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" disabled={data.blocks.blocks.length >= MAX_BLOCKS}>
+                <Button variant="outline" disabled={data.blocks.homepage.blocks.length >= MAX_BLOCKS}>
                   <Plus className="h-4 w-4" />
                   Add Section
                 </Button>
@@ -125,6 +124,9 @@ export function LayoutTab({ user, data }: Props) {
             </DropdownMenu>
           </>
         )}
+
+        <Separator />
+        <FooterLayout user={user} data={data} />
       </div>
     </SectionControlsProvider>
   );

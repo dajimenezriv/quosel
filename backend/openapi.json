@@ -74,7 +74,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  1
+                  3
                 ]
               },
               "name": {
@@ -115,367 +115,413 @@
                   "ctaLink"
                 ]
               },
-              "blocks": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
+              "footer": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "footer"
+                    ]
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "navigateTitle": {
+                    "type": "string",
+                    "default": "Navigate"
+                  },
+                  "contactTitle": {
+                    "type": "string",
+                    "default": "Contact"
+                  },
+                  "linksTitle": {
+                    "type": "string",
+                    "default": "Booking & Social"
+                  },
+                  "links": {
+                    "type": "array",
+                    "items": {
                       "type": "object",
                       "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "hero"
-                          ]
-                        },
-                        "title": {
-                          "type": "string",
-                          "default": ""
-                        },
-                        "text": {
+                        "label": {
                           "type": "string"
                         },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
+                        "url": {
                           "type": "string"
                         }
                       },
                       "required": [
-                        "type",
-                        "text",
-                        "ctaText",
-                        "ctaLink",
-                        "imageUrl"
+                        "label",
+                        "url"
                       ]
-                    },
-                    {
+                    }
+                  },
+                  "legalLinks": {
+                    "type": "array",
+                    "items": {
                       "type": "object",
                       "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
+                        "label": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "url"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "description",
+                  "links",
+                  "legalLinks"
+                ]
+              },
+              "homepage": {
+                "type": "object",
+                "properties": {
+                  "hero": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "hero"
+                        ]
+                      },
+                      "title": {
+                        "type": "string",
+                        "default": ""
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "ctaText": {
+                        "type": "string"
+                      },
+                      "ctaLink": {
+                        "type": "string"
+                      },
+                      "imageUrl": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "text",
+                      "ctaText",
+                      "ctaLink",
+                      "imageUrl"
+                    ]
+                  },
+                  "blocks": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "stats"
+                              ]
+                            },
+                            "stats": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "label"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "type",
                             "stats"
                           ]
                         },
-                        "stats": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "string"
-                              },
-                              "label": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "value",
-                              "label"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "stats"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "info"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text1": {
-                          "type": "string"
-                        },
-                        "text2": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text1",
-                        "text2",
-                        "imageUrl"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "cta"
-                          ]
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "title",
-                        "text",
-                        "ctaText",
-                        "ctaLink",
-                        "imageUrl"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "gallery"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "images": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text",
-                        "images",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "reviews"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "stats": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "string"
-                              },
-                              "label": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "value",
-                              "label"
-                            ]
-                          }
-                        },
-                        "reviews": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "text": {
-                                "type": "string"
-                              },
-                              "author": {
-                                "type": "string"
-                              },
-                              "source": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "text",
-                              "author",
-                              "source",
-                              "url"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "stats",
-                        "reviews"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "services"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "serviceGroups": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "title": {
-                                "type": "string"
-                              },
-                              "services": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "title": {
-                                      "type": "string"
-                                    },
-                                    "text": {
-                                      "type": "string"
-                                    },
-                                    "price": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "title",
-                                    "text",
-                                    "price"
-                                  ]
-                                }
-                              }
-                            },
-                            "required": [
-                              "title",
-                              "services"
-                            ]
-                          }
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text",
-                        "serviceGroups",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "location"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "details": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "value": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "value"
-                            ]
-                          },
-                          "default": []
-                        },
-                        "schedule": {
+                        {
                           "type": "object",
                           "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "info"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
                             "title": {
                               "type": "string"
                             },
-                            "items": {
+                            "text1": {
+                              "type": "string"
+                            },
+                            "text2": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text1",
+                            "text2",
+                            "imageUrl"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "cta"
+                              ]
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "title",
+                            "text",
+                            "ctaText",
+                            "ctaLink",
+                            "imageUrl"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "gallery"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "images": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text",
+                            "images",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "reviews"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "stats": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "label"
+                                ]
+                              }
+                            },
+                            "reviews": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "text": {
+                                    "type": "string"
+                                  },
+                                  "author": {
+                                    "type": "string"
+                                  },
+                                  "source": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "text",
+                                  "author",
+                                  "source",
+                                  "url"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "stats",
+                            "reviews"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "services"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "serviceGroups": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "services": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "title": {
+                                          "type": "string"
+                                        },
+                                        "text": {
+                                          "type": "string"
+                                        },
+                                        "price": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "text",
+                                        "price"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "title",
+                                  "services"
+                                ]
+                              }
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text",
+                            "serviceGroups",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "location"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "details": {
                               "type": "array",
                               "items": {
                                 "type": "object",
@@ -491,114 +537,78 @@
                                   "label",
                                   "value"
                                 ]
-                              }
+                              },
+                              "default": []
+                            },
+                            "schedule": {
+                              "type": "object",
+                              "properties": {
+                                "title": {
+                                  "type": "string"
+                                },
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "label": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "label",
+                                      "value"
+                                    ]
+                                  }
+                                }
+                              },
+                              "default": {
+                                "title": "",
+                                "items": []
+                              },
+                              "required": [
+                                "title",
+                                "items"
+                              ]
+                            },
+                            "mapUrl": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
                             }
                           },
-                          "default": {
-                            "title": "",
-                            "items": []
-                          },
                           "required": [
+                            "type",
+                            "nav",
                             "title",
-                            "items"
+                            "ctaText",
+                            "ctaLink"
                           ]
-                        },
-                        "mapUrl": {
-                          "type": "string",
-                          "default": ""
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
                         }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "footer"
-                          ]
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "navigateTitle": {
-                          "type": "string",
-                          "default": "Navigate"
-                        },
-                        "contactTitle": {
-                          "type": "string",
-                          "default": "Contact"
-                        },
-                        "linksTitle": {
-                          "type": "string",
-                          "default": "Booking & Social"
-                        },
-                        "links": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "url"
-                            ]
-                          }
-                        },
-                        "legalLinks": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "url"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "description",
-                        "links",
-                        "legalLinks"
                       ]
                     }
-                  ]
-                }
+                  }
+                },
+                "required": [
+                  "hero",
+                  "blocks"
+                ]
               }
             },
             "required": [
               "schemaVersion",
               "name",
               "nav",
-              "blocks"
+              "footer",
+              "homepage"
             ]
           },
           "styles": {
@@ -705,7 +715,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  1
+                  3
                 ]
               },
               "name": {
@@ -746,367 +756,413 @@
                   "ctaLink"
                 ]
               },
-              "blocks": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
+              "footer": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "footer"
+                    ]
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "navigateTitle": {
+                    "type": "string",
+                    "default": "Navigate"
+                  },
+                  "contactTitle": {
+                    "type": "string",
+                    "default": "Contact"
+                  },
+                  "linksTitle": {
+                    "type": "string",
+                    "default": "Booking & Social"
+                  },
+                  "links": {
+                    "type": "array",
+                    "items": {
                       "type": "object",
                       "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "hero"
-                          ]
-                        },
-                        "title": {
-                          "type": "string",
-                          "default": ""
-                        },
-                        "text": {
+                        "label": {
                           "type": "string"
                         },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
+                        "url": {
                           "type": "string"
                         }
                       },
                       "required": [
-                        "type",
-                        "text",
-                        "ctaText",
-                        "ctaLink",
-                        "imageUrl"
+                        "label",
+                        "url"
                       ]
-                    },
-                    {
+                    }
+                  },
+                  "legalLinks": {
+                    "type": "array",
+                    "items": {
                       "type": "object",
                       "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
+                        "label": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "url"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "description",
+                  "links",
+                  "legalLinks"
+                ]
+              },
+              "homepage": {
+                "type": "object",
+                "properties": {
+                  "hero": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "hero"
+                        ]
+                      },
+                      "title": {
+                        "type": "string",
+                        "default": ""
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "ctaText": {
+                        "type": "string"
+                      },
+                      "ctaLink": {
+                        "type": "string"
+                      },
+                      "imageUrl": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "text",
+                      "ctaText",
+                      "ctaLink",
+                      "imageUrl"
+                    ]
+                  },
+                  "blocks": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "stats"
+                              ]
+                            },
+                            "stats": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "label"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "type",
                             "stats"
                           ]
                         },
-                        "stats": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "string"
-                              },
-                              "label": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "value",
-                              "label"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "stats"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "info"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text1": {
-                          "type": "string"
-                        },
-                        "text2": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text1",
-                        "text2",
-                        "imageUrl"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "cta"
-                          ]
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "title",
-                        "text",
-                        "ctaText",
-                        "ctaLink",
-                        "imageUrl"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "gallery"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "images": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text",
-                        "images",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "reviews"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "stats": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "string"
-                              },
-                              "label": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "value",
-                              "label"
-                            ]
-                          }
-                        },
-                        "reviews": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "text": {
-                                "type": "string"
-                              },
-                              "author": {
-                                "type": "string"
-                              },
-                              "source": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "text",
-                              "author",
-                              "source",
-                              "url"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "stats",
-                        "reviews"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "services"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "serviceGroups": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "title": {
-                                "type": "string"
-                              },
-                              "services": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "title": {
-                                      "type": "string"
-                                    },
-                                    "text": {
-                                      "type": "string"
-                                    },
-                                    "price": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "title",
-                                    "text",
-                                    "price"
-                                  ]
-                                }
-                              }
-                            },
-                            "required": [
-                              "title",
-                              "services"
-                            ]
-                          }
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text",
-                        "serviceGroups",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "location"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "details": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "value": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "value"
-                            ]
-                          },
-                          "default": []
-                        },
-                        "schedule": {
+                        {
                           "type": "object",
                           "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "info"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
                             "title": {
                               "type": "string"
                             },
-                            "items": {
+                            "text1": {
+                              "type": "string"
+                            },
+                            "text2": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text1",
+                            "text2",
+                            "imageUrl"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "cta"
+                              ]
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "title",
+                            "text",
+                            "ctaText",
+                            "ctaLink",
+                            "imageUrl"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "gallery"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "images": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text",
+                            "images",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "reviews"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "stats": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "label"
+                                ]
+                              }
+                            },
+                            "reviews": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "text": {
+                                    "type": "string"
+                                  },
+                                  "author": {
+                                    "type": "string"
+                                  },
+                                  "source": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "text",
+                                  "author",
+                                  "source",
+                                  "url"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "stats",
+                            "reviews"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "services"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "serviceGroups": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "services": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "title": {
+                                          "type": "string"
+                                        },
+                                        "text": {
+                                          "type": "string"
+                                        },
+                                        "price": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "text",
+                                        "price"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "title",
+                                  "services"
+                                ]
+                              }
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text",
+                            "serviceGroups",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "location"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "details": {
                               "type": "array",
                               "items": {
                                 "type": "object",
@@ -1122,114 +1178,78 @@
                                   "label",
                                   "value"
                                 ]
-                              }
+                              },
+                              "default": []
+                            },
+                            "schedule": {
+                              "type": "object",
+                              "properties": {
+                                "title": {
+                                  "type": "string"
+                                },
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "label": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "label",
+                                      "value"
+                                    ]
+                                  }
+                                }
+                              },
+                              "default": {
+                                "title": "",
+                                "items": []
+                              },
+                              "required": [
+                                "title",
+                                "items"
+                              ]
+                            },
+                            "mapUrl": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
                             }
                           },
-                          "default": {
-                            "title": "",
-                            "items": []
-                          },
                           "required": [
+                            "type",
+                            "nav",
                             "title",
-                            "items"
+                            "ctaText",
+                            "ctaLink"
                           ]
-                        },
-                        "mapUrl": {
-                          "type": "string",
-                          "default": ""
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
                         }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "footer"
-                          ]
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "navigateTitle": {
-                          "type": "string",
-                          "default": "Navigate"
-                        },
-                        "contactTitle": {
-                          "type": "string",
-                          "default": "Contact"
-                        },
-                        "linksTitle": {
-                          "type": "string",
-                          "default": "Booking & Social"
-                        },
-                        "links": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "url"
-                            ]
-                          }
-                        },
-                        "legalLinks": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "url"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "description",
-                        "links",
-                        "legalLinks"
                       ]
                     }
-                  ]
-                }
+                  }
+                },
+                "required": [
+                  "hero",
+                  "blocks"
+                ]
               }
             },
             "required": [
               "schemaVersion",
               "name",
               "nav",
-              "blocks"
+              "footer",
+              "homepage"
             ]
           },
           "styles": {
@@ -1313,7 +1333,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  1
+                  3
                 ]
               },
               "name": {
@@ -1354,367 +1374,413 @@
                   "ctaLink"
                 ]
               },
-              "blocks": {
-                "type": "array",
-                "items": {
-                  "anyOf": [
-                    {
+              "footer": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "footer"
+                    ]
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "navigateTitle": {
+                    "type": "string",
+                    "default": "Navigate"
+                  },
+                  "contactTitle": {
+                    "type": "string",
+                    "default": "Contact"
+                  },
+                  "linksTitle": {
+                    "type": "string",
+                    "default": "Booking & Social"
+                  },
+                  "links": {
+                    "type": "array",
+                    "items": {
                       "type": "object",
                       "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "hero"
-                          ]
-                        },
-                        "title": {
-                          "type": "string",
-                          "default": ""
-                        },
-                        "text": {
+                        "label": {
                           "type": "string"
                         },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
+                        "url": {
                           "type": "string"
                         }
                       },
                       "required": [
-                        "type",
-                        "text",
-                        "ctaText",
-                        "ctaLink",
-                        "imageUrl"
+                        "label",
+                        "url"
                       ]
-                    },
-                    {
+                    }
+                  },
+                  "legalLinks": {
+                    "type": "array",
+                    "items": {
                       "type": "object",
                       "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
+                        "label": {
+                          "type": "string"
+                        },
+                        "url": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "url"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "description",
+                  "links",
+                  "legalLinks"
+                ]
+              },
+              "homepage": {
+                "type": "object",
+                "properties": {
+                  "hero": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "enum": [
+                          "hero"
+                        ]
+                      },
+                      "title": {
+                        "type": "string",
+                        "default": ""
+                      },
+                      "text": {
+                        "type": "string"
+                      },
+                      "ctaText": {
+                        "type": "string"
+                      },
+                      "ctaLink": {
+                        "type": "string"
+                      },
+                      "imageUrl": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "type",
+                      "text",
+                      "ctaText",
+                      "ctaLink",
+                      "imageUrl"
+                    ]
+                  },
+                  "blocks": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "stats"
+                              ]
+                            },
+                            "stats": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "label"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "type",
                             "stats"
                           ]
                         },
-                        "stats": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "string"
-                              },
-                              "label": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "value",
-                              "label"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "stats"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "info"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text1": {
-                          "type": "string"
-                        },
-                        "text2": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text1",
-                        "text2",
-                        "imageUrl"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "cta"
-                          ]
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        },
-                        "imageUrl": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "title",
-                        "text",
-                        "ctaText",
-                        "ctaLink",
-                        "imageUrl"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "gallery"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "images": {
-                          "type": "array",
-                          "items": {
-                            "type": "string"
-                          }
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text",
-                        "images",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "reviews"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "stats": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "value": {
-                                "type": "string"
-                              },
-                              "label": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "value",
-                              "label"
-                            ]
-                          }
-                        },
-                        "reviews": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "text": {
-                                "type": "string"
-                              },
-                              "author": {
-                                "type": "string"
-                              },
-                              "source": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "text",
-                              "author",
-                              "source",
-                              "url"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "stats",
-                        "reviews"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "services"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "text": {
-                          "type": "string"
-                        },
-                        "serviceGroups": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "title": {
-                                "type": "string"
-                              },
-                              "services": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "title": {
-                                      "type": "string"
-                                    },
-                                    "text": {
-                                      "type": "string"
-                                    },
-                                    "price": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "title",
-                                    "text",
-                                    "price"
-                                  ]
-                                }
-                              }
-                            },
-                            "required": [
-                              "title",
-                              "services"
-                            ]
-                          }
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "text",
-                        "serviceGroups",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "location"
-                          ]
-                        },
-                        "nav": {
-                          "type": "string"
-                        },
-                        "title": {
-                          "type": "string"
-                        },
-                        "details": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "value": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "value"
-                            ]
-                          },
-                          "default": []
-                        },
-                        "schedule": {
+                        {
                           "type": "object",
                           "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "info"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
                             "title": {
                               "type": "string"
                             },
-                            "items": {
+                            "text1": {
+                              "type": "string"
+                            },
+                            "text2": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text1",
+                            "text2",
+                            "imageUrl"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "cta"
+                              ]
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            },
+                            "imageUrl": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "title",
+                            "text",
+                            "ctaText",
+                            "ctaLink",
+                            "imageUrl"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "gallery"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "images": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text",
+                            "images",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "reviews"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "stats": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  },
+                                  "label": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "label"
+                                ]
+                              }
+                            },
+                            "reviews": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "text": {
+                                    "type": "string"
+                                  },
+                                  "author": {
+                                    "type": "string"
+                                  },
+                                  "source": {
+                                    "type": "string"
+                                  },
+                                  "url": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "text",
+                                  "author",
+                                  "source",
+                                  "url"
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "stats",
+                            "reviews"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "services"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "serviceGroups": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "type": "string"
+                                  },
+                                  "services": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "title": {
+                                          "type": "string"
+                                        },
+                                        "text": {
+                                          "type": "string"
+                                        },
+                                        "price": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "title",
+                                        "text",
+                                        "price"
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "title",
+                                  "services"
+                                ]
+                              }
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "nav",
+                            "title",
+                            "text",
+                            "serviceGroups",
+                            "ctaText",
+                            "ctaLink"
+                          ]
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "location"
+                              ]
+                            },
+                            "nav": {
+                              "type": "string"
+                            },
+                            "title": {
+                              "type": "string"
+                            },
+                            "details": {
                               "type": "array",
                               "items": {
                                 "type": "object",
@@ -1730,114 +1796,78 @@
                                   "label",
                                   "value"
                                 ]
-                              }
+                              },
+                              "default": []
+                            },
+                            "schedule": {
+                              "type": "object",
+                              "properties": {
+                                "title": {
+                                  "type": "string"
+                                },
+                                "items": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "label": {
+                                        "type": "string"
+                                      },
+                                      "value": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "label",
+                                      "value"
+                                    ]
+                                  }
+                                }
+                              },
+                              "default": {
+                                "title": "",
+                                "items": []
+                              },
+                              "required": [
+                                "title",
+                                "items"
+                              ]
+                            },
+                            "mapUrl": {
+                              "type": "string",
+                              "default": ""
+                            },
+                            "ctaText": {
+                              "type": "string"
+                            },
+                            "ctaLink": {
+                              "type": "string"
                             }
                           },
-                          "default": {
-                            "title": "",
-                            "items": []
-                          },
                           "required": [
+                            "type",
+                            "nav",
                             "title",
-                            "items"
+                            "ctaText",
+                            "ctaLink"
                           ]
-                        },
-                        "mapUrl": {
-                          "type": "string",
-                          "default": ""
-                        },
-                        "ctaText": {
-                          "type": "string"
-                        },
-                        "ctaLink": {
-                          "type": "string"
                         }
-                      },
-                      "required": [
-                        "type",
-                        "nav",
-                        "title",
-                        "ctaText",
-                        "ctaLink"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "enum": [
-                            "footer"
-                          ]
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "navigateTitle": {
-                          "type": "string",
-                          "default": "Navigate"
-                        },
-                        "contactTitle": {
-                          "type": "string",
-                          "default": "Contact"
-                        },
-                        "linksTitle": {
-                          "type": "string",
-                          "default": "Booking & Social"
-                        },
-                        "links": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "url"
-                            ]
-                          }
-                        },
-                        "legalLinks": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "label": {
-                                "type": "string"
-                              },
-                              "url": {
-                                "type": "string"
-                              }
-                            },
-                            "required": [
-                              "label",
-                              "url"
-                            ]
-                          }
-                        }
-                      },
-                      "required": [
-                        "type",
-                        "description",
-                        "links",
-                        "legalLinks"
                       ]
                     }
-                  ]
-                }
+                  }
+                },
+                "required": [
+                  "hero",
+                  "blocks"
+                ]
               }
             },
             "required": [
               "schemaVersion",
               "name",
               "nav",
-              "blocks"
+              "footer",
+              "homepage"
             ]
           },
           "styles": {

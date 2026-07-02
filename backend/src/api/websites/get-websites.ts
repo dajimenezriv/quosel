@@ -2,7 +2,7 @@ import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { stylesSchema, type Blocks, type Styles } from '@quosel/core/templates';
+import { migrateBlocks, stylesSchema, type Styles } from '@quosel/core/templates';
 
 const WebsiteSchema = z.object({
   id: z.string(),
@@ -32,13 +32,12 @@ export const getWebsites: RouteHandler<typeof getWebsitesRoute, { Variables: Aut
   const rawWebsites = await Websites.getAllByUserId(userId);
 
   const websites = rawWebsites.map((rawWebsite) => {
-    const blocks = rawWebsite.blocks as Blocks;
-    const heroBlock = blocks.blocks.find((block) => block.type === 'hero');
+    const blocks = migrateBlocks(rawWebsite.blocks);
 
     return {
       ...rawWebsite,
       logoUrl: blocks.logoUrl,
-      heroImageUrl: heroBlock?.imageUrl ?? '',
+      heroImageUrl: blocks.homepage.hero.imageUrl,
       styles: rawWebsite.styles as Styles,
     };
   });
