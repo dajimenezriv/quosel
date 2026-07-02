@@ -54,15 +54,6 @@ export function HeroLayout({ user, data, block, index }: Props) {
         />
       </Field>
 
-      <Field label="Phone">
-        <Input
-          value={block.phone}
-          onChange={handleInput((block, value) => {
-            block.phone = value;
-          })}
-        />
-      </Field>
-
       <Subgroup title="Call to Action">
         <div className="flex items-center gap-2">
           <Field label="Button Text">

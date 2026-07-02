@@ -14,14 +14,14 @@ export function Footer({ data, block }: { data: TemplateData; block: FooterBlock
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: data.blocks.name,
-    address: block.address,
-    telephone: block.phone,
+    address: data.blocks.address,
+    telephone: data.blocks.phone,
   });
 
   const links: Links = [];
 
-  if (block.phone) links.push({ label: block.phone, url: `tel:${block.phone.replace(/\s/g, '')}` });
-  if (block.address) links.push({ label: block.address, url: '' });
+  if (data.blocks.phone) links.push({ label: data.blocks.phone, url: `tel:${data.blocks.phone.replace(/\s/g, '')}` });
+  if (data.blocks.address) links.push({ label: data.blocks.address, url: '' });
 
   return (
     <footer className="px-6 py-12 md:px-24 md:py-16">

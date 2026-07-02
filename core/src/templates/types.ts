@@ -7,7 +7,6 @@ const heroBlockSchema = z.object({
   text: z.string(),
   ctaText: z.string(),
   ctaLink: z.string(),
-  phone: z.string(),
   imageUrl: z.string(),
 });
 
@@ -133,8 +132,6 @@ const footerBlockSchema = z.object({
   navigateTitle: z.string().default('Navigate'),
   contactTitle: z.string().default('Contact'),
   linksTitle: z.string().default('Booking & Social'),
-  phone: z.string(),
-  address: z.string().default(''),
   links: z.array(
     z.object({
       label: z.string(),
@@ -153,6 +150,8 @@ export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
   schemaVersion: z.literal(1),
   name: z.string(),
+  address: z.string().default(''),
+  phone: z.string().default(''),
   metaTitle: z.string().default(''),
   metaDescription: z.string().default(''),
   logoUrl: z.string().default(''),

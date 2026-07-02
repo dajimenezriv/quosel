@@ -6,7 +6,7 @@ import type { Me } from '@/old/auth';
 import { slugifyInput } from '@quosel/core/templates';
 import { produce } from 'immer';
 import { ImageField } from '../image-field';
-import { Field } from '../utils';
+import { Field, Subgroup } from '../utils';
 
 interface Props {
   user: Me | null;
@@ -18,18 +18,44 @@ export function GeneralTab({ user, data }: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <Field label="Website Name">
-        <Input
-          value={data.blocks.name}
-          onChange={(e) => {
-            updateDraft(
-              produce(data, (draft) => {
-                draft.blocks.name = e.target.value;
-              }),
-            );
-          }}
-        />
-      </Field>
+      <Subgroup title="NAP consistency">
+        <Field label="Business Name">
+          <Input
+            value={data.blocks.name}
+            onChange={(e) => {
+              updateDraft(
+                produce(data, (draft) => {
+                  draft.blocks.name = e.target.value;
+                }),
+              );
+            }}
+          />
+        </Field>
+        <Field label="Address">
+          <Input
+            value={data.blocks.address}
+            onChange={(e) => {
+              updateDraft(
+                produce(data, (draft) => {
+                  draft.blocks.address = e.target.value;
+                }),
+              );
+            }}
+          />
+        </Field>
+        <Field label="Phone">
+          <Input
+            value={data.blocks.phone}
+            onChange={(e) => {
+              updateDraft(
+                produce(data, (draft) => {
+                  draft.blocks.phone = e.target.value;
+                }),
+              );
+            }}
+          />
+        </Field>
+      </Subgroup>
       <Field label="Meta Title">
         <Input
           value={data.blocks.metaTitle}

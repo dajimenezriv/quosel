@@ -19,7 +19,7 @@ export const addableBlockTypes: { type: AddableBlockType; label: string }[] = [
 export function createBlock(type: AddableBlockType): Block {
   switch (type) {
     case 'hero':
-      return { type: 'hero', title: '', text: '', ctaText: '', ctaLink: '', phone: '', imageUrl: '' };
+      return { type: 'hero', title: '', text: '', ctaText: '', ctaLink: '', imageUrl: '' };
     case 'stats':
       return { type: 'stats', stats: [{ value: '', label: '' }] };
     case 'info':
@@ -64,8 +64,6 @@ export function createBlock(type: AddableBlockType): Block {
         navigateTitle: 'Navigate',
         contactTitle: 'Contact',
         linksTitle: 'Booking & Social',
-        phone: '',
-        address: '',
         links: [],
         legalLinks: [],
       };

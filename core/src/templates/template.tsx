@@ -18,12 +18,12 @@ export function TemplateBody({ data }: { data: TemplateData }) {
       <Nav data={data} />
       {data.blocks.blocks.map((block, i) => {
         if (block.type === 'stats') return <Stats key={i} block={block} />;
-        if (block.type === 'hero') return <Hero key={i} block={block} />;
+        if (block.type === 'hero') return <Hero key={i} data={data} block={block} />;
         if (block.type === 'info') return <Info key={i} block={block} />;
         if (block.type === 'gallery') return <Gallery key={i} block={block} />;
         if (block.type === 'reviews') return <Reviews key={i} block={block} />;
         if (block.type === 'services') return <Services key={i} block={block} />;
-        if (block.type === 'location') return <Location key={i} block={block} />;
+        if (block.type === 'location') return <Location key={i} data={data} block={block} />;
         if (block.type === 'cta') return <CTA key={i} block={block} />;
         if (block.type === 'footer') return <Footer key={i} data={data} block={block} />;
         return null;

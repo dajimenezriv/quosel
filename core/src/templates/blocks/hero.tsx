@@ -1,8 +1,8 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
-import type { HeroBlock } from '../types';
+import type { HeroBlock, TemplateData } from '../types';
 
-export function Hero({ block }: { block: HeroBlock }) {
+export function Hero({ data, block }: { data: TemplateData; block: HeroBlock }) {
   return (
     <section id="home" className="relative flex min-h-screen items-end">
       <img src={block.imageUrl} className="absolute h-full w-full object-cover" />
@@ -26,9 +26,9 @@ export function Hero({ block }: { block: HeroBlock }) {
             {block.ctaText}
           </a>
           <a
-            href={`tel:${block.phone}`}
+            href={`tel:${data.blocks.phone}`}
             className="hover:border-foreground border-foreground/40 border px-8 py-3 text-center text-xs tracking-[0.2em] uppercase">
-            {block.phone}
+            {data.blocks.phone}
           </a>
         </div>
       </div>

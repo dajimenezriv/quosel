@@ -836,6 +836,10 @@ export interface components {
                 schemaVersion: 1;
                 name: string;
                 /** @default  */
+                address: string;
+                /** @default  */
+                phone: string;
+                /** @default  */
                 metaTitle: string;
                 /** @default  */
                 metaDescription: string;
@@ -853,7 +857,6 @@ export interface components {
                     text: string;
                     ctaText: string;
                     ctaLink: string;
-                    phone: string;
                     imageUrl: string;
                 } | {
                     /** @enum {string} */
@@ -955,9 +958,6 @@ export interface components {
                     contactTitle: string;
                     /** @default Booking & Social */
                     linksTitle: string;
-                    phone: string;
-                    /** @default  */
-                    address: string;
                     links: {
                         label: string;
                         url: string;
@@ -998,6 +998,10 @@ export interface components {
                 schemaVersion: 1;
                 name: string;
                 /** @default  */
+                address: string;
+                /** @default  */
+                phone: string;
+                /** @default  */
                 metaTitle: string;
                 /** @default  */
                 metaDescription: string;
@@ -1015,7 +1019,6 @@ export interface components {
                     text: string;
                     ctaText: string;
                     ctaLink: string;
-                    phone: string;
                     imageUrl: string;
                 } | {
                     /** @enum {string} */
@@ -1117,9 +1120,6 @@ export interface components {
                     contactTitle: string;
                     /** @default Booking & Social */
                     linksTitle: string;
-                    phone: string;
-                    /** @default  */
-                    address: string;
                     links: {
                         label: string;
                         url: string;
@@ -1154,6 +1154,10 @@ export interface components {
                 schemaVersion: 1;
                 name: string;
                 /** @default  */
+                address: string;
+                /** @default  */
+                phone: string;
+                /** @default  */
                 metaTitle: string;
                 /** @default  */
                 metaDescription: string;
@@ -1171,7 +1175,6 @@ export interface components {
                     text: string;
                     ctaText: string;
                     ctaLink: string;
-                    phone: string;
                     imageUrl: string;
                 } | {
                     /** @enum {string} */
@@ -1273,9 +1276,6 @@ export interface components {
                     contactTitle: string;
                     /** @default Booking & Social */
                     linksTitle: string;
-                    phone: string;
-                    /** @default  */
-                    address: string;
                     links: {
                         label: string;
                         url: string;
