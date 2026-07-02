@@ -80,6 +80,14 @@
               "name": {
                 "type": "string"
               },
+              "metaTitle": {
+                "type": "string",
+                "default": ""
+              },
+              "metaDescription": {
+                "type": "string",
+                "default": ""
+              },
               "logoUrl": {
                 "type": "string",
                 "default": ""
@@ -652,6 +660,9 @@
               "ring"
             ]
           },
+          "canonicalUrl": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -677,6 +688,7 @@
           "context",
           "blocks",
           "styles",
+          "canonicalUrl",
           "createdAt",
           "updatedAt",
           "publishedAt"
@@ -702,6 +714,14 @@
               },
               "name": {
                 "type": "string"
+              },
+              "metaTitle": {
+                "type": "string",
+                "default": ""
+              },
+              "metaDescription": {
+                "type": "string",
+                "default": ""
               },
               "logoUrl": {
                 "type": "string",
@@ -1306,6 +1326,14 @@
               },
               "name": {
                 "type": "string"
+              },
+              "metaTitle": {
+                "type": "string",
+                "default": ""
+              },
+              "metaDescription": {
+                "type": "string",
+                "default": ""
               },
               "logoUrl": {
                 "type": "string",

@@ -153,6 +153,8 @@ export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
   schemaVersion: z.literal(1),
   name: z.string(),
+  metaTitle: z.string().default(''),
+  metaDescription: z.string().default(''),
   logoUrl: z.string().default(''),
   nav: z.object({
     ctaText: z.string(),
@@ -192,4 +194,5 @@ export const stylesSchema = z.object({
 export interface TemplateData {
   blocks: Blocks;
   styles: Styles;
+  canonicalUrl: string;
 }

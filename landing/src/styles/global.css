@@ -1,7 +1,5 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @theme inline {
   --font-sans: var(--font-inter);
   --color-background: var(--background);
@@ -74,41 +72,4 @@
   /* Diagram decorations */
   --diagram-dot: #c8bfb4;
   --diagram-arrow: #c0b8ae;
-}
-
-.dark {
-  --background: #262624;
-  --foreground: #c3c0b6;
-  --card: #2e2d2b;
-  --card-foreground: #faf9f5;
-  --popover: #30302e;
-  --popover-foreground: #e5e5e2;
-  --primary: #d97757;
-  --primary-foreground: #ffffff;
-  --secondary: #38372f;
-  --secondary-foreground: #c3c0b6;
-  --muted: #1b1b19;
-  --muted-foreground: #b7b5a9;
-  --accent: #1a1915;
-  --accent-foreground: #f5f4ee;
-  --destructive: #ef4444;
-  --border: #3e3e38;
-  --input: #52514a;
-  --ring: #d97757;
-  --chart-1: #b05730;
-  --chart-2: #9c87f5;
-  --chart-3: #1a1915;
-  --chart-4: #2f2b48;
-  --chart-5: #b4552d;
-  --sidebar: #1f1e1d;
-  --sidebar-foreground: #c3c0b6;
-  --sidebar-primary: #343434;
-  --sidebar-primary-foreground: #fbfbfb;
-  --sidebar-accent: #0f0f0e;
-  --sidebar-accent-foreground: #c3c0b6;
-  --sidebar-border: #ebebeb;
-  --sidebar-ring: #b5b5b5;
-  /* Diagram decorations */
-  --diagram-dot: #3e3e38;
-  --diagram-arrow: #4a4944;
 }

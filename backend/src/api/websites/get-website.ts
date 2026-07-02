@@ -15,6 +15,7 @@ export const WebsiteSchema = z
     context: z.string(),
     blocks: blocksSchema,
     styles: stylesSchema,
+    canonicalUrl: z.string(),
     createdAt: z.date(),
     updatedAt: z.date(),
     publishedAt: z.date().nullable(),
@@ -41,5 +42,15 @@ export const getWebsite: RouteHandler<typeof getWebsiteRoute, { Variables: AuthV
   const blocks = website.blocks as Blocks;
   const styles = website.styles as Styles;
 
-  return jsonResponse(c, WebsiteSchema, { ...website, blocks, styles }, 200);
+  return jsonResponse(
+    c,
+    WebsiteSchema,
+    {
+      ...website,
+      blocks,
+      styles,
+      canonicalUrl: `https://sites.quosel.com/${website.slug}`,
+    },
+    200,
+  );
 };

@@ -1,4 +1,3 @@
-import { useThemeStore } from '@/core/theme/use-theme-store';
 import type { TemplateData } from '@quosel/core/templates';
 import { ContentFrame } from './utils';
 
@@ -8,9 +7,6 @@ interface Props {
 }
 
 export function IPhoneDevice({ domain, data }: Props) {
-  const isDarkMode = useThemeStore((s) => s.isDarkMode);
-  const d = isDarkMode;
-
   return (
     <div className="flex h-full items-center justify-center">
       {/* Outer phone body */}
@@ -20,10 +16,8 @@ export function IPhoneDevice({ domain, data }: Props) {
           width: 390,
           height: 760,
           borderRadius: 50,
-          background: d ? '#1a1a1c' : '#f5f0eb',
-          boxShadow: d
-            ? '0 0 0 1.5px #3a3a3c, 0 0 0 3px #2a2a2c, 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.06)'
-            : '0 0 0 1.5px #c8b89a, 0 0 0 3px #e8d8c0, 0 30px 80px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.5)',
+          background: '#f5f0eb',
+          boxShadow: '0 0 0 1.5px #c8b89a, 0 0 0 3px #e8d8c0, 0 30px 80px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.5)',
         }}>
         {/* Side buttons — volume up */}
         <div
@@ -34,7 +28,7 @@ export function IPhoneDevice({ domain, data }: Props) {
             width: 4,
             height: 32,
             borderRadius: '3px 0 0 3px',
-            background: d ? '#3a3a3c' : '#c8b89a',
+            background: '#c8b89a',
           }}
         />
         <div
@@ -45,7 +39,7 @@ export function IPhoneDevice({ domain, data }: Props) {
             width: 4,
             height: 32,
             borderRadius: '3px 0 0 3px',
-            background: d ? '#3a3a3c' : '#c8b89a',
+            background: '#c8b89a',
           }}
         />
         {/* Power button */}
@@ -57,7 +51,7 @@ export function IPhoneDevice({ domain, data }: Props) {
             width: 4,
             height: 60,
             borderRadius: '0 3px 3px 0',
-            background: d ? '#3a3a3c' : '#c8b89a',
+            background: '#c8b89a',
           }}
         />
 
@@ -109,27 +103,25 @@ export function IPhoneDevice({ domain, data }: Props) {
           <ContentFrame data={data} />
 
           {/* Safari bottom bar */}
-          <div
-            className="shrink-0"
-            style={{ background: d ? '#1c1c1e' : '#f2f2f7', borderTop: `1px solid ${d ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}` }}>
+          <div className="shrink-0" style={{ background: '#f2f2f7', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
             {/* Address bar */}
             <div
               className="flex cursor-pointer items-center px-4 py-2"
-              onClick={() => window.open(domain, '_blank', 'noopener,noreferrer')}>
+              onClick={() => window.open(data.canonicalUrl, '_blank', 'noopener,noreferrer')}>
               <div
                 className="flex flex-1 items-center justify-center gap-2 px-3 py-2"
                 style={{
-                  background: d ? '#2c2c2e' : '#fff',
-                  border: `1px solid ${d ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.12)'}`,
+                  background: '#fff',
+                  border: '1px solid rgba(0,0,0,0.12)',
                   borderRadius: 10,
                 }}>
-                <span className="flex-1 text-center text-[13px]" style={{ color: d ? '#aaa' : '#333' }}>
+                <span className="flex-1 text-center text-[13px]" style={{ color: '#333' }}>
                   {domain}
                 </span>
               </div>
             </div>
             {/* Nav row */}
-            <div className="flex items-center justify-around px-2 pb-1" style={{ color: d ? '#888' : '#555' }}>
+            <div className="flex items-center justify-around px-2 pb-1" style={{ color: '#555' }}>
               <button className="flex h-10 w-10 items-center justify-center">
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                   <path d="M11 4L6 9l5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -167,7 +159,7 @@ export function IPhoneDevice({ domain, data }: Props) {
             </div>
             {/* Home indicator */}
             <div className="flex justify-center pt-1 pb-2">
-              <div className="h-1 w-32 rounded-full" style={{ background: d ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.2)' }} />
+              <div className="h-1 w-32 rounded-full" style={{ background: 'rgba(0,0,0,0.2)' }} />
             </div>
           </div>
         </div>

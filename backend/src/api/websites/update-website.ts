@@ -51,7 +51,12 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
   await Websites.update(websiteId, data);
 
   if (publish) {
-    const html = renderTemplate({ blocks, styles });
+    const html = renderTemplate({
+      blocks,
+      styles,
+      canonicalUrl: `https://sites.quosel.com/${slug}`,
+    });
+
     const file = new File([html], 'index.html', { type: 'text/html' });
     await R2.upload(`websites/${slug}.html`, file);
   }

@@ -30,6 +30,33 @@ export function GeneralTab({ user, data }: Props) {
           }}
         />
       </Field>
+      <Field label="Meta Title">
+        <Input
+          value={data.blocks.metaTitle}
+          placeholder="Title shown in browser tabs and search results. Defaults to the website name."
+          onChange={(e) => {
+            updateDraft(
+              produce(data, (draft) => {
+                draft.blocks.metaTitle = e.target.value;
+              }),
+            );
+          }}
+        />
+      </Field>
+      <Field label="Meta Description">
+        <Textarea
+          value={data.blocks.metaDescription}
+          placeholder="Short summary shown in search results."
+          rows={3}
+          onChange={(e) => {
+            updateDraft(
+              produce(data, (draft) => {
+                draft.blocks.metaDescription = e.target.value;
+              }),
+            );
+          }}
+        />
+      </Field>
       <Field label="Logo">
         <ImageField
           user={user}
