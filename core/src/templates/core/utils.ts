@@ -16,6 +16,12 @@ export function slugify(value: string) {
   return slugifyInput(value).replace(/-$/, '');
 }
 
+// Builds a `tel:` href from a display phone number, stripping whitespace so
+// spaces don't become %20 (which breaks the dialer).
+export function telHref(phone: string) {
+  return `tel:${phone.replace(/\s/g, '')}`;
+}
+
 export function getNavLinks(data: TemplateData) {
   const navLinks: Array<{ label: string; url: string }> = [];
   for (const b of data.blocks.homepage.blocks) {

@@ -1,5 +1,6 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
+import { telHref } from '../core/utils';
 import type { HeroBlock, TemplateData } from '../types';
 
 export function Hero({ data, block }: { data: TemplateData; block: HeroBlock }) {
@@ -27,7 +28,7 @@ export function Hero({ data, block }: { data: TemplateData; block: HeroBlock }) 
           </a>
           {data.blocks.phone && (
             <a
-              href={`tel:${data.blocks.phone}`}
+              href={telHref(data.blocks.phone)}
               className="hover:border-foreground border-foreground/40 border px-8 py-3 text-center text-xs tracking-[0.2em] uppercase">
               {data.blocks.phone}
             </a>

@@ -1,6 +1,6 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
-import { getNavLinks } from '../core/utils';
+import { getNavLinks, telHref } from '../core/utils';
 import type { FooterBlock, TemplateData } from '../types';
 
 type Links = Array<{ label: string; url: string }>;
@@ -10,7 +10,7 @@ export function Footer({ data, block }: { data: TemplateData; block: FooterBlock
 
   const links: Links = [];
 
-  if (data.blocks.phone) links.push({ label: data.blocks.phone, url: `tel:${data.blocks.phone.replace(/\s/g, '')}` });
+  if (data.blocks.phone) links.push({ label: data.blocks.phone, url: telHref(data.blocks.phone) });
   if (data.blocks.address) links.push({ label: data.blocks.address, url: '' });
 
   return (
