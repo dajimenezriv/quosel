@@ -33,15 +33,42 @@ export function TemplateBody({ data }: { data: TemplateData }) {
 }
 
 export function Template({ data }: { data: TemplateData }) {
+  const title = data.blocks.metaTitle || data.blocks.name;
+  const description = data.blocks.metaDescription;
+  const imageUrl = data.blocks.homepage.hero.imageUrl;
+
+  // This is to generate rich results for machines
+  // https://search.google.com/test/rich-results
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: data.blocks.name,
+    address: data.blocks.address,
+    telephone: data.blocks.phone,
+  });
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{data.blocks.metaTitle || data.blocks.name}</title>
-        {data.blocks.metaDescription && <meta name="description" content={data.blocks.metaDescription} />}
+        <title>{title}</title>
+        {description && <meta name="description" content={description} />}
         {data.canonicalUrl && <link rel="canonical" href={data.canonicalUrl} />}
         {data.blocks.logoUrl && <link rel="icon" href={data.blocks.logoUrl} />}
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={title} />
+        {description && <meta property="og:description" content={description} />}
+        {data.canonicalUrl && <meta property="og:url" content={data.canonicalUrl} />}
+        {imageUrl && <meta property="og:image" content={imageUrl} />}
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        {description && <meta name="twitter:description" content={description} />}
+        {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <style type="text/tailwindcss" dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />
       </head>
