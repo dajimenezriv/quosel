@@ -4,7 +4,7 @@ import type { Me } from '@/old/auth';
 import { circoloPopolareInfo, type InfoBlock } from '@quosel/core/templates';
 import { Info } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
-import { ImageField } from './image-field';
+import { ImageWithAltField } from './image-with-alt-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section } from './utils';
 
@@ -61,17 +61,21 @@ export function InfoLayout({ user, data, block, index }: Props) {
           block.text2 = value;
         }}
       />
-      <Field label="Image">
-        <ImageField
-          user={user}
-          value={block.imageUrl}
-          onChange={(url) =>
-            updateBlock((block) => {
-              block.imageUrl = url;
-            })
-          }
-        />
-      </Field>
+      <ImageWithAltField
+        user={user}
+        url={block.imageUrl}
+        alt={block.imageAlt}
+        onUrlChange={(url) =>
+          updateBlock((block) => {
+            block.imageUrl = url;
+          })
+        }
+        onAltChange={(alt) =>
+          updateBlock((block) => {
+            block.imageAlt = alt;
+          })
+        }
+      />
     </Section>
   );
 }

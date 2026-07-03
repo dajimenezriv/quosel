@@ -19,11 +19,11 @@ export function createBlock(type: AddableBlockType): Block {
     case 'stats':
       return { type: 'stats', stats: [{ value: '', label: '' }] };
     case 'info':
-      return { type: 'info', nav: 'Info', title: '', text1: '', text2: '', imageUrl: '' };
+      return { type: 'info', nav: 'Info', title: '', text1: '', text2: '', imageUrl: '', imageAlt: '' };
     case 'cta':
-      return { type: 'cta', title: '', text: '', ctaText: '', ctaLink: '', imageUrl: '' };
+      return { type: 'cta', title: '', text: '', ctaText: '', ctaLink: '', imageUrl: '', imageAlt: '' };
     case 'gallery':
-      return { type: 'gallery', nav: 'Gallery', title: '', text: '', images: [''], ctaText: '', ctaLink: '' };
+      return { type: 'gallery', nav: 'Gallery', title: '', text: '', images: [{ url: '', alt: '' }], ctaText: '', ctaLink: '' };
     case 'reviews':
       return {
         type: 'reviews',

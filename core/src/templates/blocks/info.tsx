@@ -22,7 +22,11 @@ export function Info({ block }: { block: InfoBlock }) {
             </p>
           </div>
 
-          <img src={block.imageUrl} className="aspect-square w-full object-cover opacity-80 md:aspect-auto md:h-130 md:w-130" />
+          <img
+            src={block.imageUrl}
+            alt={block.imageAlt}
+            className="aspect-square w-full object-cover opacity-80 md:aspect-auto md:h-130 md:w-130"
+          />
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-name: Templates checks
+name: Core checks
 
 on:
   workflow_dispatch:

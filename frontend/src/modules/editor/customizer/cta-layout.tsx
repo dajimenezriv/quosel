@@ -4,7 +4,7 @@ import type { Me } from '@/old/auth';
 import { circoloPopolareCta, type CtaBlock } from '@quosel/core/templates';
 import { MousePointerClick } from 'lucide-react';
 import { GenerateTextField } from './generate-text-field';
-import { ImageField } from './image-field';
+import { ImageWithAltField } from './image-with-alt-field';
 import { useBlockHandlers } from './use-block-handlers';
 import { Field, Section, Subgroup } from './utils';
 
@@ -48,17 +48,21 @@ export function CtaLayout({ user, data, block, index }: Props) {
         }}
       />
 
-      <Field label="Image">
-        <ImageField
-          user={user}
-          value={block.imageUrl}
-          onChange={(url) =>
-            updateBlock((block) => {
-              block.imageUrl = url;
-            })
-          }
-        />
-      </Field>
+      <ImageWithAltField
+        user={user}
+        url={block.imageUrl}
+        alt={block.imageAlt}
+        onUrlChange={(url) =>
+          updateBlock((block) => {
+            block.imageUrl = url;
+          })
+        }
+        onAltChange={(alt) =>
+          updateBlock((block) => {
+            block.imageAlt = alt;
+          })
+        }
+      />
 
       <Subgroup title="Call to Action">
         <div className="flex items-center gap-2">

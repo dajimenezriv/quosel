@@ -1,11 +1,12 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
+import { telHref } from '../core/utils';
 import type { HeroBlock, TemplateData } from '../types';
 
 export function Hero({ data, block }: { data: TemplateData; block: HeroBlock }) {
   return (
     <section id="home" className="relative flex min-h-screen items-end">
-      <img src={block.imageUrl} className="absolute h-full w-full object-cover" />
+      <img src={block.imageUrl} alt={block.imageAlt} className="absolute h-full w-full object-cover" />
       <div className="from-background via-background/70 to-background/50 absolute inset-0 bg-linear-to-t" />
 
       <div className="z-10 m-6 flex max-w-full flex-col md:m-30">
@@ -27,7 +28,7 @@ export function Hero({ data, block }: { data: TemplateData; block: HeroBlock }) 
           </a>
           {data.blocks.phone && (
             <a
-              href={`tel:${data.blocks.phone}`}
+              href={telHref(data.blocks.phone)}
               className="hover:border-foreground border-foreground/40 border px-8 py-3 text-center text-xs tracking-[0.2em] uppercase">
               {data.blocks.phone}
             </a>

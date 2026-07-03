@@ -74,7 +74,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  3
+                  4
                 ]
               },
               "name": {
@@ -210,6 +210,10 @@
                       },
                       "imageUrl": {
                         "type": "string"
+                      },
+                      "imageAlt": {
+                        "type": "string",
+                        "default": ""
                       }
                     },
                     "required": [
@@ -280,6 +284,10 @@
                             },
                             "imageUrl": {
                               "type": "string"
+                            },
+                            "imageAlt": {
+                              "type": "string",
+                              "default": ""
                             }
                           },
                           "required": [
@@ -314,6 +322,10 @@
                             },
                             "imageUrl": {
                               "type": "string"
+                            },
+                            "imageAlt": {
+                              "type": "string",
+                              "default": ""
                             }
                           },
                           "required": [
@@ -346,7 +358,19 @@
                             "images": {
                               "type": "array",
                               "items": {
-                                "type": "string"
+                                "type": "object",
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "alt": {
+                                    "type": "string",
+                                    "default": ""
+                                  }
+                                },
+                                "required": [
+                                  "url"
+                                ]
                               }
                             },
                             "ctaText": {
@@ -715,7 +739,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  3
+                  4
                 ]
               },
               "name": {
@@ -851,6 +875,10 @@
                       },
                       "imageUrl": {
                         "type": "string"
+                      },
+                      "imageAlt": {
+                        "type": "string",
+                        "default": ""
                       }
                     },
                     "required": [
@@ -921,6 +949,10 @@
                             },
                             "imageUrl": {
                               "type": "string"
+                            },
+                            "imageAlt": {
+                              "type": "string",
+                              "default": ""
                             }
                           },
                           "required": [
@@ -955,6 +987,10 @@
                             },
                             "imageUrl": {
                               "type": "string"
+                            },
+                            "imageAlt": {
+                              "type": "string",
+                              "default": ""
                             }
                           },
                           "required": [
@@ -987,7 +1023,19 @@
                             "images": {
                               "type": "array",
                               "items": {
-                                "type": "string"
+                                "type": "object",
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "alt": {
+                                    "type": "string",
+                                    "default": ""
+                                  }
+                                },
+                                "required": [
+                                  "url"
+                                ]
                               }
                             },
                             "ctaText": {
@@ -1333,7 +1381,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  3
+                  4
                 ]
               },
               "name": {
@@ -1469,6 +1517,10 @@
                       },
                       "imageUrl": {
                         "type": "string"
+                      },
+                      "imageAlt": {
+                        "type": "string",
+                        "default": ""
                       }
                     },
                     "required": [
@@ -1539,6 +1591,10 @@
                             },
                             "imageUrl": {
                               "type": "string"
+                            },
+                            "imageAlt": {
+                              "type": "string",
+                              "default": ""
                             }
                           },
                           "required": [
@@ -1573,6 +1629,10 @@
                             },
                             "imageUrl": {
                               "type": "string"
+                            },
+                            "imageAlt": {
+                              "type": "string",
+                              "default": ""
                             }
                           },
                           "required": [
@@ -1605,7 +1665,19 @@
                             "images": {
                               "type": "array",
                               "items": {
-                                "type": "string"
+                                "type": "object",
+                                "properties": {
+                                  "url": {
+                                    "type": "string"
+                                  },
+                                  "alt": {
+                                    "type": "string",
+                                    "default": ""
+                                  }
+                                },
+                                "required": [
+                                  "url"
+                                ]
                               }
                             },
                             "ctaText": {
