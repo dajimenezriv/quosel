@@ -1,0 +1,13 @@
+# Quosel
+
+> Quosel is the fastest way to build local-business websites: start from a modern template, let AI write the copy, and share a live link clients can edit in real time — then publish to their own custom domain. Built for freelancers and agencies.
+
+## Pages
+
+- [Home](https://quosel.com/): Product overview, features, editor demo, pricing, and FAQ.
+- [Privacy Policy](https://quosel.com/privacy/): How Quosel collects, uses, and protects personal data.
+- [Terms of Service](https://quosel.com/terms/): The terms governing use of Quosel.
+
+## Resources
+
+- [Sitemap](https://quosel.com/sitemap-index.xml): Full list of crawlable pages.
