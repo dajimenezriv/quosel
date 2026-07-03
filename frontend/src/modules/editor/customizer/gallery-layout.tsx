@@ -56,17 +56,19 @@ export function GalleryLayout({ user, data, block, index }: Props) {
       <Subgroup title="Images">
         {block.images.map((image, imageIndex) => (
           <div key={imageIndex} className="flex flex-col gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-end gap-2">
               <div className="flex-1">
-                <ImageField
-                  user={user}
-                  value={image.url}
-                  onChange={(url) =>
-                    updateBlock((block) => {
-                      block.images[imageIndex]!.url = url;
-                    })
-                  }
-                />
+                <Field label="Image">
+                  <ImageField
+                    user={user}
+                    value={image.url}
+                    onChange={(url) =>
+                      updateBlock((block) => {
+                        block.images[imageIndex]!.url = url;
+                      })
+                    }
+                  />
+                </Field>
               </div>
 
               <button
@@ -75,7 +77,7 @@ export function GalleryLayout({ user, data, block, index }: Props) {
                     block.images.splice(imageIndex, 1);
                   })
                 }
-                className="text-muted-foreground hover:text-destructive cursor-pointer">
+                className="text-muted-foreground hover:text-destructive mb-2 cursor-pointer">
                 <Trash2 className="h-4 w-4" />
               </button>
             </div>

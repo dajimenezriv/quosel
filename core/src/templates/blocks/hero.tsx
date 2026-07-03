@@ -19,13 +19,15 @@ export function Hero({ data, block }: { data: TemplateData; block: HeroBlock }) 
         </p>
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href={block.ctaLink}
-            className="bg-primary text-primary-foreground px-8 py-3 text-center text-xs tracking-[0.25em] uppercase hover:opacity-90">
-            {block.ctaText}
-          </a>
+          {block.ctaText && (
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={block.ctaLink}
+              className="bg-primary text-primary-foreground px-8 py-3 text-center text-xs tracking-[0.25em] uppercase hover:opacity-90">
+              {block.ctaText}
+            </a>
+          )}
           {data.blocks.phone && (
             <a
               href={telHref(data.blocks.phone)}
