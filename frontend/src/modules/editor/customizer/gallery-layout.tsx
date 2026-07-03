@@ -55,28 +55,42 @@ export function GalleryLayout({ user, data, block, index }: Props) {
 
       <Subgroup title="Images">
         {block.images.map((image, imageIndex) => (
-          <div key={imageIndex} className="flex items-center gap-2">
-            <div className="flex-1">
-              <ImageField
-                user={user}
-                value={image}
-                onChange={(url) =>
+          <div key={imageIndex} className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              <div className="flex-1">
+                <ImageField
+                  user={user}
+                  value={image.url}
+                  onChange={(url) =>
+                    updateBlock((block) => {
+                      block.images[imageIndex]!.url = url;
+                    })
+                  }
+                />
+              </div>
+
+              <button
+                onClick={() =>
                   updateBlock((block) => {
-                    block.images[imageIndex] = url;
+                    block.images.splice(imageIndex, 1);
+                  })
+                }
+                className="text-muted-foreground hover:text-destructive cursor-pointer">
+                <Trash2 className="h-4 w-4" />
+              </button>
+            </div>
+
+            <Field label="Image description (alt)">
+              <Input
+                value={image.alt}
+                placeholder="Describe the image for SEO"
+                onChange={(e) =>
+                  updateBlock((block) => {
+                    block.images[imageIndex]!.alt = e.target.value;
                   })
                 }
               />
-            </div>
-
-            <button
-              onClick={() =>
-                updateBlock((block) => {
-                  block.images.splice(imageIndex, 1);
-                })
-              }
-              className="text-muted-foreground hover:text-destructive cursor-pointer">
-              <Trash2 className="h-4 w-4" />
-            </button>
+            </Field>
           </div>
         ))}
 
@@ -85,7 +99,7 @@ export function GalleryLayout({ user, data, block, index }: Props) {
           size="sm"
           onClick={() =>
             updateBlock((block) => {
-              block.images.push('');
+              block.images.push({ url: '', alt: '' });
             })
           }>
           <Plus className="h-4 w-4" />

@@ -5,7 +5,7 @@ import type { HeroBlock, TemplateData } from '../types';
 export function Hero({ data, block }: { data: TemplateData; block: HeroBlock }) {
   return (
     <section id="home" className="relative flex min-h-screen items-end">
-      <img src={block.imageUrl} className="absolute h-full w-full object-cover" />
+      <img src={block.imageUrl} alt={block.imageAlt} className="absolute h-full w-full object-cover" />
       <div className="from-background via-background/70 to-background/50 absolute inset-0 bg-linear-to-t" />
 
       <div className="z-10 m-6 flex max-w-full flex-col md:m-30">

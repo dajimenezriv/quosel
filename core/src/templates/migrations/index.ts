@@ -1,14 +1,16 @@
 import { blocksSchema, type Blocks } from '../types';
 import { v1ToV2 } from './v1-to-v2';
 import { v2ToV3 } from './v2-to-v3';
+import { v3ToV4 } from './v3-to-v4';
 
-export const CURRENT_SCHEMA_VERSION = 3;
+export const CURRENT_SCHEMA_VERSION = 4;
 
 type Loose = Record<string, unknown>;
 
 const upgraders: Record<number, (raw: Loose) => Loose> = {
   1: v1ToV2,
   2: v2ToV3,
+  3: v3ToV4,
 };
 
 export function migrateBlocks(raw: unknown): Blocks {

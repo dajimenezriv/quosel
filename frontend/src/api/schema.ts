@@ -833,7 +833,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 3;
+                schemaVersion: 4;
                 name: string;
                 /** @default  */
                 address: string;
@@ -878,6 +878,8 @@ export interface components {
                         ctaText: string;
                         ctaLink: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     };
                     blocks: ({
                         /** @enum {string} */
@@ -894,6 +896,8 @@ export interface components {
                         text1: string;
                         text2: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     } | {
                         /** @enum {string} */
                         type: "cta";
@@ -902,13 +906,19 @@ export interface components {
                         ctaText: string;
                         ctaLink: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     } | {
                         /** @enum {string} */
                         type: "gallery";
                         nav: string;
                         title: string;
                         text: string;
-                        images: string[];
+                        images: {
+                            url: string;
+                            /** @default  */
+                            alt: string;
+                        }[];
                         ctaText: string;
                         ctaLink: string;
                     } | {
@@ -999,7 +1009,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 3;
+                schemaVersion: 4;
                 name: string;
                 /** @default  */
                 address: string;
@@ -1044,6 +1054,8 @@ export interface components {
                         ctaText: string;
                         ctaLink: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     };
                     blocks: ({
                         /** @enum {string} */
@@ -1060,6 +1072,8 @@ export interface components {
                         text1: string;
                         text2: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     } | {
                         /** @enum {string} */
                         type: "cta";
@@ -1068,13 +1082,19 @@ export interface components {
                         ctaText: string;
                         ctaLink: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     } | {
                         /** @enum {string} */
                         type: "gallery";
                         nav: string;
                         title: string;
                         text: string;
-                        images: string[];
+                        images: {
+                            url: string;
+                            /** @default  */
+                            alt: string;
+                        }[];
                         ctaText: string;
                         ctaLink: string;
                     } | {
@@ -1159,7 +1179,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 3;
+                schemaVersion: 4;
                 name: string;
                 /** @default  */
                 address: string;
@@ -1204,6 +1224,8 @@ export interface components {
                         ctaText: string;
                         ctaLink: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     };
                     blocks: ({
                         /** @enum {string} */
@@ -1220,6 +1242,8 @@ export interface components {
                         text1: string;
                         text2: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     } | {
                         /** @enum {string} */
                         type: "cta";
@@ -1228,13 +1252,19 @@ export interface components {
                         ctaText: string;
                         ctaLink: string;
                         imageUrl: string;
+                        /** @default  */
+                        imageAlt: string;
                     } | {
                         /** @enum {string} */
                         type: "gallery";
                         nav: string;
                         title: string;
                         text: string;
-                        images: string[];
+                        images: {
+                            url: string;
+                            /** @default  */
+                            alt: string;
+                        }[];
                         ctaText: string;
                         ctaLink: string;
                     } | {

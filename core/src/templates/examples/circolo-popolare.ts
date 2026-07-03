@@ -20,6 +20,7 @@ export const circoloPopolareHero: HeroBlock = {
   ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   imageUrl:
     'https://cdn.sanity.io/images/aa3sekul/production/d229986a2fe1430dd3ef952a4c294ed56441794d-7243x4831.jpg?w=3072&fit=crop&auto=format',
+  imageAlt: 'Interior of Circolo Popolare with hanging plants, festoon lights and walls of vintage liquor bottles',
 };
 
 export const circoloPopolareInfo: InfoBlock = {
@@ -32,6 +33,7 @@ export const circoloPopolareInfo: InfoBlock = {
     'The squadra in the kitchen is cooking up a generous Italo-feast: think crispy Neapolitan Pizzas, creamy burratas and Carbonara served from a Pecorino wheel, ~all handmade with fresh ingredients from the Bel Paese~.\n\nTake a seat at the long Mediterranean table and admire the 20,000 bottles of vintage spirits and wines, lining up the walls whilst sipping on your glass of Espresso Martini.\n\nThis is your ~Sicilian getaway in London~.',
   imageUrl:
     'https://cdn.sanity.io/images/aa3sekul/production/b02785058d8cc5dd327d343ae6bf54ab71e69cf5-9358x6239.jpg?w=3072&fit=crop&auto=format',
+  imageAlt: 'Long Mediterranean communal table lined with vintage wine and spirit bottles',
 };
 
 export const circoloPopolareGallery: GalleryBlock = {
@@ -40,14 +42,38 @@ export const circoloPopolareGallery: GalleryBlock = {
   title: 'Our _~meals~_.',
   text: `_Try our speedy lunch set menu with your colleagues, for when you're short on time but big on lunch! Available from Monday to Friday, from 12:00 15:45, from £23._`,
   images: [
-    'https://cdn.sanity.io/images/aa3sekul/production/3f2fbe9463e75cfc24bbf7fe3f3e7935aabbe08b-3666x5499.jpg?w=1024&q=60&fit=crop&auto=format',
-    'https://cdn.sanity.io/images/aa3sekul/production/86eabde60877aa041890869c5fa6c3ddcf7cf4ab-8691x5794.jpg?w=1024&q=60&fit=crop&auto=format',
-    'https://media.timeout.com/images/105541105/image.jpg',
-    'https://cdn.sanity.io/images/aa3sekul/production/d6dab7745c43fb455699b1e3f7e0b269a6c1df15-6104x8139.jpg?w=1024&q=60&fit=crop&auto=format',
-    'https://cdn.sanity.io/images/aa3sekul/production/62210fbbc3bab7b6c554263f48c5090c843d8a83-5915x8873.jpg?w=1024&q=60&fit=crop&auto=format',
-    'https://cdn.sanity.io/images/aa3sekul/production/6bfc32b2fc9202942d5ac593de4be4d6cfe21b2d-5715x8573.jpg?w=1024&q=60&fit=crop&auto=format',
-    'https://cdn.prod.rexby.com/image/d965fc1d80984631af4b7a2a80f833c4?format=webp&width=540&height=675&quality=50',
-    'https://cdn.sanity.io/images/aa3sekul/production/911e0e36c573f25347ba7e59cea3622f1c8a0369-6041x9062.jpg?w=1024&q=60&fit=crop&auto=format',
+    {
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/3f2fbe9463e75cfc24bbf7fe3f3e7935aabbe08b-3666x5499.jpg?w=1024&q=60&fit=crop&auto=format',
+      alt: 'Neapolitan pizza fresh from the oven',
+    },
+    {
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/86eabde60877aa041890869c5fa6c3ddcf7cf4ab-8691x5794.jpg?w=1024&q=60&fit=crop&auto=format',
+      alt: 'Plate of handmade Italian pasta',
+    },
+    {
+      url: 'https://media.timeout.com/images/105541105/image.jpg',
+      alt: 'Dining room full of guests under festoon lights',
+    },
+    {
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/d6dab7745c43fb455699b1e3f7e0b269a6c1df15-6104x8139.jpg?w=1024&q=60&fit=crop&auto=format',
+      alt: 'Creamy burrata antipasto served on a plate',
+    },
+    {
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/62210fbbc3bab7b6c554263f48c5090c843d8a83-5915x8873.jpg?w=1024&q=60&fit=crop&auto=format',
+      alt: 'La Gran Carbonara being finished in a wheel of Pecorino',
+    },
+    {
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/6bfc32b2fc9202942d5ac593de4be4d6cfe21b2d-5715x8573.jpg?w=1024&q=60&fit=crop&auto=format',
+      alt: 'Over-the-top Italian dessert plated for sharing',
+    },
+    {
+      url: 'https://cdn.prod.rexby.com/image/d965fc1d80984631af4b7a2a80f833c4?format=webp&width=540&height=675&quality=50',
+      alt: 'Espresso Martini cocktail on the bar',
+    },
+    {
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/911e0e36c573f25347ba7e59cea3622f1c8a0369-6041x9062.jpg?w=1024&q=60&fit=crop&auto=format',
+      alt: 'Vintage liquor bottles lining the restaurant walls',
+    },
   ],
   ctaText: 'See more on Instagram',
   ctaLink: 'https://www.instagram.com/circolopopolare',
@@ -191,6 +217,7 @@ export const circoloPopolareCta: CtaBlock = {
   ctaText: 'Book a Table',
   ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/circolo-popolare-barcelona-jerome-galland-bar-1-693e68003cbcf.jpg',
+  imageAlt: 'Circolo Popolare bar with backlit shelves of bottles',
 };
 
 export const circoloPopolareFooter: FooterBlock = {
@@ -212,7 +239,7 @@ export const circoloPopolareFooter: FooterBlock = {
 };
 
 export const circoloPopolareBlocks: Blocks = {
-  schemaVersion: 3,
+  schemaVersion: 4,
   name: 'Circolo Popolare',
   address: '40-41 Rathbone Pl, London W1T 1HX, UK',
   phone: '+44 20 3893 6800',
@@ -246,6 +273,7 @@ export const circoloPopolareBlocks: Blocks = {
         ctaLink: '',
         imageUrl:
           'https://cdn.sanity.io/images/aa3sekul/production/070dc569421cc19978858573b22ed27813435efb-7243x4831.jpg?w=3072&fit=crop&auto=format',
+        imageAlt: 'Close-up of a plated Italian dish at Circolo Popolare',
       },
       circoloPopolareGallery,
       circoloPopolareServices,

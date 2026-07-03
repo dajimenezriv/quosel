@@ -6,6 +6,8 @@ export function CTA({ block }: { block: CtaBlock }) {
   return (
     <section className="relative flex min-h-96 items-center justify-center py-32 text-center">
       <div
+        role="img"
+        aria-label={block.imageAlt}
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url('${block.imageUrl}')`,

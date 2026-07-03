@@ -8,6 +8,7 @@ const heroBlockSchema = z.object({
   ctaText: z.string(),
   ctaLink: z.string(),
   imageUrl: z.string(),
+  imageAlt: z.string().default(''),
 });
 
 export type StatsBlock = z.infer<typeof statsBlockSchema>;
@@ -30,6 +31,7 @@ const infoBlockSchema = z.object({
   text1: z.string(),
   text2: z.string(),
   imageUrl: z.string(),
+  imageAlt: z.string().default(''),
 });
 
 export type CtaBlock = z.infer<typeof ctaBlockSchema>;
@@ -40,6 +42,7 @@ const ctaBlockSchema = z.object({
   ctaText: z.string(),
   ctaLink: z.string(),
   imageUrl: z.string(),
+  imageAlt: z.string().default(''),
 });
 
 export type GalleryBlock = z.infer<typeof galleryBlockSchema>;
@@ -48,7 +51,12 @@ const galleryBlockSchema = z.object({
   nav: z.string(),
   title: z.string(),
   text: z.string(),
-  images: z.array(z.string()),
+  images: z.array(
+    z.object({
+      url: z.string(),
+      alt: z.string().default(''),
+    }),
+  ),
   ctaText: z.string(),
   ctaLink: z.string(),
 });
@@ -164,7 +172,7 @@ const homepageSchema = z.object({
 
 export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
-  schemaVersion: z.literal(3),
+  schemaVersion: z.literal(4),
   name: z.string(),
   address: z.string().default(''),
   phone: z.string().default(''),

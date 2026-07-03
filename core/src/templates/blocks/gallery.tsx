@@ -21,7 +21,7 @@ export function Gallery({ block }: { block: GalleryBlock }) {
 
         <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
           {block.images.map((image, i) => (
-            <img key={i} className="aspect-square object-cover opacity-80" src={image} />
+            <img key={i} className="aspect-square object-cover opacity-80" src={image.url} alt={image.alt} />
           ))}
         </div>
 
