@@ -57,7 +57,11 @@ export function Location({ data, block }: { data: TemplateData; block: LocationB
           </div>
         </div>
 
-        <iframe src={block.mapUrl} className="flex aspect-square w-full flex-1 border-0 opacity-80 md:w-120" loading="lazy"></iframe>
+        <iframe
+          src={block.mapUrl}
+          title={`${block.nav} map`}
+          className="flex aspect-square w-full flex-1 border-0 opacity-80 md:w-120"
+          loading="lazy"></iframe>
       </div>
     </section>
   );

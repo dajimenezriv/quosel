@@ -44,19 +44,19 @@ export const circoloPopolareGallery: GalleryBlock = {
   images: [
     {
       url: 'https://cdn.sanity.io/images/aa3sekul/production/3f2fbe9463e75cfc24bbf7fe3f3e7935aabbe08b-3666x5499.jpg?w=1024&q=60&fit=crop&auto=format',
-      alt: 'Neapolitan pizza fresh from the oven',
-    },
-    {
-      url: 'https://cdn.sanity.io/images/aa3sekul/production/86eabde60877aa041890869c5fa6c3ddcf7cf4ab-8691x5794.jpg?w=1024&q=60&fit=crop&auto=format',
       alt: 'Plate of handmade Italian pasta',
     },
     {
-      url: 'https://media.timeout.com/images/105541105/image.jpg',
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/86eabde60877aa041890869c5fa6c3ddcf7cf4ab-8691x5794.jpg?w=1024&q=60&fit=crop&auto=format',
       alt: 'Dining room full of guests under festoon lights',
     },
     {
-      url: 'https://cdn.sanity.io/images/aa3sekul/production/d6dab7745c43fb455699b1e3f7e0b269a6c1df15-6104x8139.jpg?w=1024&q=60&fit=crop&auto=format',
+      url: 'https://media.timeout.com/images/105541105/image.jpg',
       alt: 'Creamy burrata antipasto served on a plate',
+    },
+    {
+      url: 'https://cdn.sanity.io/images/aa3sekul/production/d6dab7745c43fb455699b1e3f7e0b269a6c1df15-6104x8139.jpg?w=1024&q=60&fit=crop&auto=format',
+      alt: 'Neapolitan pizza fresh from the oven',
     },
     {
       url: 'https://cdn.sanity.io/images/aa3sekul/production/62210fbbc3bab7b6c554263f48c5090c843d8a83-5915x8873.jpg?w=1024&q=60&fit=crop&auto=format',
