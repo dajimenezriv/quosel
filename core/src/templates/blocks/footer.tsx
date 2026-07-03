@@ -8,16 +8,6 @@ type Links = Array<{ label: string; url: string }>;
 export function Footer({ data, block }: { data: TemplateData; block: FooterBlock }) {
   const navLinks = getNavLinks(data);
 
-  // This is to generate rich results for machines
-  // https://search.google.com/test/rich-results
-  const jsonLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: data.blocks.name,
-    address: data.blocks.address,
-    telephone: data.blocks.phone,
-  });
-
   const links: Links = [];
 
   if (data.blocks.phone) links.push({ label: data.blocks.phone, url: `tel:${data.blocks.phone.replace(/\s/g, '')}` });
@@ -25,8 +15,6 @@ export function Footer({ data, block }: { data: TemplateData; block: FooterBlock
 
   return (
     <footer className="px-6 py-12 md:px-24 md:py-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
-
       <div className="flex flex-col gap-10 md:flex-row md:gap-0">
         <div className="flex-1">
           <div className="mb-5 flex items-center gap-3">
