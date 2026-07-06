@@ -833,7 +833,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 4;
+                schemaVersion: 5;
                 name: string;
                 /** @default  */
                 address: string;
@@ -981,6 +981,29 @@ export interface components {
                         ctaLink: string;
                     })[];
                 };
+                /** @default [] */
+                pages: {
+                    /** @enum {string} */
+                    type: "service";
+                    slug: string;
+                    h1: string;
+                    /** @default  */
+                    metaTitle: string;
+                    /** @default  */
+                    metaDescription: string;
+                    /** @default  */
+                    heroImageUrl: string;
+                    /** @default  */
+                    heroImageAlt: string;
+                    /** @default  */
+                    intro: string;
+                    /** @default  */
+                    body: string;
+                    /** @default  */
+                    ctaText: string;
+                    /** @default  */
+                    ctaLink: string;
+                }[];
             };
             styles: {
                 background: string;
@@ -1009,7 +1032,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 4;
+                schemaVersion: 5;
                 name: string;
                 /** @default  */
                 address: string;
@@ -1157,6 +1180,29 @@ export interface components {
                         ctaLink: string;
                     })[];
                 };
+                /** @default [] */
+                pages: {
+                    /** @enum {string} */
+                    type: "service";
+                    slug: string;
+                    h1: string;
+                    /** @default  */
+                    metaTitle: string;
+                    /** @default  */
+                    metaDescription: string;
+                    /** @default  */
+                    heroImageUrl: string;
+                    /** @default  */
+                    heroImageAlt: string;
+                    /** @default  */
+                    intro: string;
+                    /** @default  */
+                    body: string;
+                    /** @default  */
+                    ctaText: string;
+                    /** @default  */
+                    ctaLink: string;
+                }[];
             };
             styles: {
                 background: string;
@@ -1179,7 +1225,7 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 4;
+                schemaVersion: 5;
                 name: string;
                 /** @default  */
                 address: string;
@@ -1327,6 +1373,29 @@ export interface components {
                         ctaLink: string;
                     })[];
                 };
+                /** @default [] */
+                pages: {
+                    /** @enum {string} */
+                    type: "service";
+                    slug: string;
+                    h1: string;
+                    /** @default  */
+                    metaTitle: string;
+                    /** @default  */
+                    metaDescription: string;
+                    /** @default  */
+                    heroImageUrl: string;
+                    /** @default  */
+                    heroImageAlt: string;
+                    /** @default  */
+                    intro: string;
+                    /** @default  */
+                    body: string;
+                    /** @default  */
+                    ctaText: string;
+                    /** @default  */
+                    ctaLink: string;
+                }[];
             };
             styles: {
                 background: string;

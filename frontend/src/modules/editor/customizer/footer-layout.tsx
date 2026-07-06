@@ -51,16 +51,14 @@ export function FooterLayout({ user, data }: Props) {
         />
       </Field>
 
-      <Subgroup title="Contact">
-        <Field label="Title">
-          <Input
-            value={block.contactTitle}
-            onChange={handleInput((block, value) => {
-              block.contactTitle = value;
-            })}
-          />
-        </Field>
-      </Subgroup>
+      <Field label="Contact title">
+        <Input
+          value={block.contactTitle}
+          onChange={handleInput((block, value) => {
+            block.contactTitle = value;
+          })}
+        />
+      </Field>
 
       <Subgroup title="Links">
         <Field label="Title">

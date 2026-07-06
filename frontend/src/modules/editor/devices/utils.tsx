@@ -1,4 +1,4 @@
-import { buildRootStyles, TemplateBody, type TemplateData } from '@quosel/core/templates';
+import { buildRootStyles, HomepageBody, type TemplateData } from '@quosel/core/templates';
 import Frame from 'react-frame-component';
 
 const FRAME_INITIAL_CONTENT = `<!DOCTYPE html><html lang="es"><head>
@@ -15,7 +15,7 @@ export function ContentFrame({ data }: { data: TemplateData }) {
         initialContent={FRAME_INITIAL_CONTENT}
         head={<style type="text/tailwindcss" dangerouslySetInnerHTML={{ __html: buildRootStyles(data) }} />}
         className="h-full w-full border-0">
-        <TemplateBody data={data} />
+        <HomepageBody data={data} />
       </Frame>
     </div>
   );
