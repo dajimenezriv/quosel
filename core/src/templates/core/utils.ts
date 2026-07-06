@@ -29,6 +29,6 @@ export function pageHref(data: ExtendedTemplateData, slug: string) {
 export function parseRawData(rawData: TemplateData): ExtendedTemplateData {
   return {
     ...rawData,
-    homeUrl: `${rawData.canonicalUrl}#home`,
+    homeUrl: rawData.canonicalUrl,
   };
 }

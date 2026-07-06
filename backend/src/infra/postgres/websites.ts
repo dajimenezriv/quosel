@@ -6,7 +6,8 @@ import type { Prisma } from './prisma/client';
 
 export class Websites {
   static randomSlug(name: string) {
-    return `${slugify(name)}-${randomBytes(4).toString('hex')}`;
+    const slug = `${slugify(name)}-${randomBytes(4).toString('hex')}`;
+    return { slug, domain: `https://sites.quosel.com/${slug}` };
   }
 
   static generateEditToken() {
@@ -30,11 +31,13 @@ export class Websites {
   }
 
   static async create(userId: UserId, name: string) {
+    const { slug, domain } = this.randomSlug(name);
     return await prisma.website.create({
       data: {
         userId,
         name,
-        slug: this.randomSlug(name),
+        slug,
+        domain,
         editToken: this.generateEditToken(),
         blocks: emptyBlocks,
         styles: claudeStyles,

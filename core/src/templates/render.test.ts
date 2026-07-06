@@ -56,7 +56,7 @@ describe('renderServicePage', () => {
 
   it('renders a breadcrumb back to the homepage', () => {
     expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html).toContain('href="https://sites.quosel.com/circolo#home"');
+    expect(html).toContain('href="https://sites.quosel.com/circolo"');
   });
 });
 
