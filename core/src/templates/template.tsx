@@ -49,8 +49,6 @@ function DocumentHead({
 export function Template({ data }: { data: TemplateData }) {
   const title = data.blocks.metaTitle || data.blocks.name;
   const description = data.blocks.metaDescription;
-  // The homepage canonical carries a trailing slash so internal relative links resolve against it.
-  const canonicalUrl = data.canonicalUrl ? `${data.canonicalUrl}/` : '';
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -66,7 +64,7 @@ export function Template({ data }: { data: TemplateData }) {
         data={data}
         title={title}
         description={description}
-        canonicalUrl={canonicalUrl}
+        canonicalUrl={data.canonicalUrl}
         imageUrl={data.blocks.homepage.hero.imageUrl}
         jsonLd={jsonLd}
       />
@@ -98,7 +96,7 @@ export function ServicePageTemplate({ data, page }: { data: TemplateData; page: 
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: data.blocks.name, item: `${data.canonicalUrl}/` },
+          { '@type': 'ListItem', position: 1, name: data.blocks.name, item: data.canonicalUrl },
           { '@type': 'ListItem', position: 2, name: page.h1, item: canonicalUrl },
         ],
       },

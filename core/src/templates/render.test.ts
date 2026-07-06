@@ -24,8 +24,8 @@ const servicePage: ServicePage = {
 };
 
 describe('renderTemplate (homepage)', () => {
-  it('uses a trailing-slash canonical so relative links resolve against it', () => {
-    expect(renderTemplate(data)).toContain('<link rel="canonical" href="https://sites.quosel.com/circolo/"/>');
+  it('uses the site canonical for the homepage', () => {
+    expect(renderTemplate(data)).toContain('<link rel="canonical" href="https://sites.quosel.com/circolo"/>');
   });
 });
 
@@ -49,14 +49,14 @@ describe('renderServicePage', () => {
     expect(html).toContain('<a href="https://example.com/menu" class="text-primary underline">menu</a>');
   });
 
-  it('emits Service, BreadcrumbList and FAQPage structured data', () => {
+  it('emits Service and BreadcrumbList structured data', () => {
     expect(html).toContain('"@type":"Service"');
     expect(html).toContain('"@type":"BreadcrumbList"');
   });
 
   it('renders a breadcrumb back to the homepage', () => {
     expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html).toContain('href="https://sites.quosel.com/circolo/#home"');
+    expect(html).toContain('href="https://sites.quosel.com/circolo#home"');
   });
 });
 
