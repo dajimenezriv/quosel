@@ -853,8 +853,6 @@ export interface components {
                     /** @enum {string} */
                     type: "footer";
                     description: string;
-                    /** @default Navigate */
-                    navigateTitle: string;
                     /** @default Contact */
                     contactTitle: string;
                     /** @default Booking & Social */
@@ -1052,8 +1050,6 @@ export interface components {
                     /** @enum {string} */
                     type: "footer";
                     description: string;
-                    /** @default Navigate */
-                    navigateTitle: string;
                     /** @default Contact */
                     contactTitle: string;
                     /** @default Booking & Social */
@@ -1245,8 +1241,6 @@ export interface components {
                     /** @enum {string} */
                     type: "footer";
                     description: string;
-                    /** @default Navigate */
-                    navigateTitle: string;
                     /** @default Contact */
                     contactTitle: string;
                     /** @default Booking & Social */

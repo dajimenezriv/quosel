@@ -2,7 +2,7 @@
 import { Footer } from './blocks/footer';
 import { Nav } from './blocks/nav';
 import { RichText, RichTextBody } from './core/rich-text';
-import { HOME_HREF, pageHref, telHref } from './core/utils';
+import { pageHref, parseRawData, telHref } from './core/utils';
 import type { ServicePage, TemplateData } from './types';
 
 interface Props {
@@ -10,7 +10,8 @@ interface Props {
   page: ServicePage;
 }
 
-export function ServicePageBody({ data, page }: Props) {
+export function ServicePageBody({ data: rawData, page }: Props) {
+  const data = parseRawData(rawData);
   const relatedPages = data.blocks.pages.filter((p) => p.slug !== page.slug);
 
   return (
@@ -26,7 +27,7 @@ export function ServicePageBody({ data, page }: Props) {
         )}
         <div className="z-10 m-6 flex max-w-full flex-col md:m-30">
           <nav aria-label="Breadcrumb" className="mb-4 text-xs tracking-[0.2em] uppercase">
-            <a href={HOME_HREF} className="text-foreground/70 hover:text-foreground transition-colors">
+            <a href={data.homeUrl} className="text-foreground/70 hover:text-foreground transition-colors">
               {data.blocks.name}
             </a>
             <span className="text-foreground/40"> / </span>
@@ -76,7 +77,7 @@ export function ServicePageBody({ data, page }: Props) {
             <ul className="flex flex-col">
               {relatedPages.map((related) => (
                 <li key={related.slug} className="border-foreground/10 border-t">
-                  <a href={pageHref(related.slug)} className="hover:text-primary flex py-4 text-lg transition-colors">
+                  <a href={pageHref(data, related.slug)} className="hover:text-primary flex py-4 text-lg transition-colors">
                     {related.h1}
                   </a>
                 </li>

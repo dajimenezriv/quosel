@@ -1,12 +1,12 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
-import { getNavLinks, telHref } from '../core/utils';
-import type { FooterBlock, TemplateData } from '../types';
+import { pageHref, telHref } from '../core/utils';
+import type { ExtendedTemplateData, FooterBlock } from '../types';
 
 type Links = Array<{ label: string; url: string }>;
 
-export function Footer({ data, block }: { data: TemplateData; block: FooterBlock }) {
-  const navLinks = getNavLinks(data);
+export function Footer({ data, block }: { data: ExtendedTemplateData; block: FooterBlock }) {
+  const serviceLinks: Links = data.blocks.pages.map((page) => ({ label: page.h1, url: pageHref(data, page.slug) }));
 
   const links: Links = [];
 
@@ -25,7 +25,7 @@ export function Footer({ data, block }: { data: TemplateData; block: FooterBlock
           </p>
         </div>
 
-        <Column title={block.navigateTitle} links={navLinks} />
+        <Column title="Services" links={serviceLinks} external={false} />
         <Column title={block.contactTitle} links={links} />
         <Column title={block.linksTitle} links={block.links} />
       </div>
@@ -50,8 +50,10 @@ export function Footer({ data, block }: { data: TemplateData; block: FooterBlock
   );
 }
 
-function Column({ title, links }: { title: string; links: Links }) {
+function Column({ title, links, external = true }: { title: string; links: Links; external?: boolean }) {
   if (links.length === 0) return null;
+
+  const externalProps = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 
   return (
     <div className="flex-1 flex-col gap-2 md:text-center">
@@ -59,11 +61,7 @@ function Column({ title, links }: { title: string; links: Links }) {
       <ul>
         {links.map((link) => (
           <li key={link.label}>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={link.url}
-              className="hover:text-foreground text-foreground/40 text-xs transition-colors">
+            <a {...externalProps} href={link.url} className="hover:text-foreground text-foreground/40 text-xs transition-colors">
               {link.label}
             </a>
           </li>

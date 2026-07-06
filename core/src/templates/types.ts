@@ -137,7 +137,6 @@ export type FooterBlock = z.infer<typeof footerBlockSchema>;
 const footerBlockSchema = z.object({
   type: z.literal('footer'),
   description: z.string(),
-  navigateTitle: z.string().default('Navigate'),
   contactTitle: z.string().default('Contact'),
   linksTitle: z.string().default('Booking & Social'),
   links: z.array(
@@ -223,4 +222,8 @@ export interface TemplateData {
   blocks: Blocks;
   styles: Styles;
   canonicalUrl: string;
+}
+
+export interface ExtendedTemplateData extends TemplateData {
+  homeUrl: string;
 }

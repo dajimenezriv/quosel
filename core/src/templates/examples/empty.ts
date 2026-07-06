@@ -15,7 +15,6 @@ export const emptyBlocks: Blocks = {
   footer: {
     type: 'footer',
     description: '',
-    navigateTitle: 'Navigate',
     contactTitle: 'Contact',
     linksTitle: 'Booking & Social',
     links: [],

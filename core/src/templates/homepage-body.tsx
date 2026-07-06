@@ -9,13 +9,16 @@ import { Nav } from './blocks/nav';
 import { Reviews } from './blocks/reviews';
 import { Services } from './blocks/services';
 import { Stats } from './blocks/stats';
+import { parseRawData } from './core/utils';
 import type { TemplateData } from './types';
 
 interface Props {
   data: TemplateData;
 }
 
-export function HomepageBody({ data }: Props) {
+export function HomepageBody({ data: rawData }: Props) {
+  const data = parseRawData(rawData);
+
   return (
     <div className="bg-background text-foreground min-h-screen">
       <Nav data={data} />

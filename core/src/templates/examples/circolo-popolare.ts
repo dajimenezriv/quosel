@@ -227,7 +227,6 @@ export const circoloPopolareFooter: FooterBlock = {
   type: 'footer',
   description:
     'Your Sicilian getaway in London. Crispy Neapolitan pizzas, creamy burratas and Carbonara served from a Pecorino wheel, in the heart of Fitzrovia.',
-  navigateTitle: 'Navigate',
   contactTitle: 'Contact',
   linksTitle: 'Booking & Social',
   links: [

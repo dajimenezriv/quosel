@@ -127,10 +127,6 @@
                   "description": {
                     "type": "string"
                   },
-                  "navigateTitle": {
-                    "type": "string",
-                    "default": "Navigate"
-                  },
                   "contactTitle": {
                     "type": "string",
                     "default": "Contact"
@@ -850,10 +846,6 @@
                   "description": {
                     "type": "string"
                   },
-                  "navigateTitle": {
-                    "type": "string",
-                    "default": "Navigate"
-                  },
                   "contactTitle": {
                     "type": "string",
                     "default": "Contact"
@@ -1549,10 +1541,6 @@
                   },
                   "description": {
                     "type": "string"
-                  },
-                  "navigateTitle": {
-                    "type": "string",
-                    "default": "Navigate"
                   },
                   "contactTitle": {
                     "type": "string",

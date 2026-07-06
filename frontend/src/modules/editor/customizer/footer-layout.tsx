@@ -42,15 +42,6 @@ export function FooterLayout({ user, data }: Props) {
         }}
       />
 
-      <Field label="Navigate title">
-        <Input
-          value={block.navigateTitle}
-          onChange={handleInput((block, value) => {
-            block.navigateTitle = value;
-          })}
-        />
-      </Field>
-
       <Field label="Contact title">
         <Input
           value={block.contactTitle}

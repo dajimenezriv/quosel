@@ -56,7 +56,7 @@ describe('renderServicePage', () => {
 
   it('renders a breadcrumb back to the homepage', () => {
     expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html).toContain('href="./"');
+    expect(html).toContain('href="https://sites.quosel.com/circolo/#home"');
   });
 });
 
@@ -69,13 +69,13 @@ describe('internal linking', () => {
 
   it('links the homepage footer to every service page with relative hrefs', () => {
     const html = renderTemplate(linkedData);
-    expect(html).toContain('href="wood-fired-pizza-london"');
-    expect(html).toContain('href="gluten-free-pizza"');
+    expect(html).toContain('href="https://sites.quosel.com/circolo/wood-fired-pizza-london"');
+    expect(html).toContain('href="https://sites.quosel.com/circolo/gluten-free-pizza"');
   });
 
   it('lists sibling pages under "Other services" on a service page', () => {
     const html = renderServicePage(linkedData, servicePage);
     expect(html).toContain('>Other services</h2>');
-    expect(html).toContain('href="gluten-free-pizza"');
+    expect(html).toContain('href="https://sites.quosel.com/circolo/gluten-free-pizza"');
   });
 });
