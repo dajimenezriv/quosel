@@ -22,6 +22,7 @@ describe('update-website', () => {
 
   beforeEach(() => {
     getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug' });
+    deepMocked(R2.list).mockResolvedValue([]);
   });
 
   it('should return 401 if session is not provided', async () => {
@@ -57,11 +58,19 @@ describe('update-website', () => {
   });
 
   it('should return 204 and upload to R2 when publish is true', async () => {
+    // Given
+    deepMocked(R2.list).mockResolvedValue(['websites/slug/index.html', 'websites/slug/service.html', 'websites/slug/old-service.html']);
     // When
     const res = await app.request('/websites/websiteId?publish=true', putRequest(VALID_BODY));
     // Then
     expect(res.status).toBe(204);
     calls(Websites.update).toStrictEqual(['websiteId', { ...VALID_BODY, publishedAt: expect.any(Date) }]);
-    calls(R2.upload).toStrictEqual(['websites/slug.html', expect.any(File)]);
+    calls(R2.uploadMany).toStrictEqual([
+      { key: 'websites/slug/index.html', file: expect.any(File) },
+      { key: 'websites/slug/service.html', file: expect.any(File) },
+      { key: 'websites/slug/sitemap.xml', file: expect.any(File) },
+      { key: 'websites/slug/robots.txt', file: expect.any(File) },
+    ]);
+    calls(R2.deleteMany).toStrictEqual(['websites/slug/old-service.html']);
   });
 });

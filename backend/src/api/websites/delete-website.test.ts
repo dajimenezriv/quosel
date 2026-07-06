@@ -11,6 +11,7 @@ describe('delete-website', () => {
 
   beforeEach(() => {
     deepMocked(Websites.getById).mockResolvedValue({ userId: 'userId', publishedAt: null });
+    deepMocked(R2.list).mockResolvedValue([]);
   });
 
   it('should return 401 if session is not provided', async () => {
@@ -36,16 +37,18 @@ describe('delete-website', () => {
     // Then
     expect(res.status).toBe(204);
     calls(Websites.delete).toStrictEqual(['userId', 'websiteId']);
-    calls(R2.delete).toStrictEqual([]);
+    calls(R2.deleteMany).toStrictEqual([]);
   });
 
-  it('should return 204 and delete the published file when website was published', async () => {
+  it('should return 204 and delete the whole site prefix when website was published', async () => {
     // Given
     deepMocked(Websites.getById).mockResolvedValue({ userId: 'userId', slug: 'websiteSlug', publishedAt: new Date() });
+    deepMocked(R2.list).mockResolvedValue(['websites/websiteSlug/index.html', 'websites/websiteSlug/service.html']);
     // When
     const res = await app.request('/websites/websiteId', DELETE_AUTH_REQUEST);
     // Then
     expect(res.status).toBe(204);
-    calls(R2.delete).toBe('websites/websiteSlug.html');
+    calls(R2.list).toBe('websites/websiteSlug/');
+    calls(R2.deleteMany).toStrictEqual(['websites/websiteSlug/index.html', 'websites/websiteSlug/service.html']);
   });
 });

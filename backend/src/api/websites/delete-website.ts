@@ -24,7 +24,10 @@ export const deleteWebsite: RouteHandler<typeof deleteWebsiteRoute, { Variables:
 
   await Websites.delete(userId, websiteId);
 
-  if (website.publishedAt) await R2.delete(`websites/${website.slug}.html`);
+  if (website.publishedAt) {
+    const keys = await R2.list(`websites/${website.slug}/`);
+    await R2.deleteMany(keys);
+  }
 
   return c.body(null, 204);
 };
