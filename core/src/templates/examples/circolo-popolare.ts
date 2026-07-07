@@ -7,8 +7,11 @@ import type {
   InfoBlock,
   LocationBlock,
   ReviewsBlock,
+  ServicePage,
   ServicesBlock,
 } from '../types';
+
+const BOOKING_URL = 'https://www.circolopopolare.com/restaurants/circolopopolare-london';
 
 export const circoloPopolareContext = `Circolo Popolare is an Italian restaurant and pizzeria from the Big Mamma group, with locations in London, Manchester, Paris, Barcelona, and Madrid.\n\nOffering: Authentic Southern Italian food made for sharing — Neapolitan pizzas, handmade pasta (signature Carbonara served from a pecorino wheel), antipasti, grilled meats, and over-the-top desserts. Big draw is the maximalist setting: hanging plants, festoon lights, walls of vintage liquor bottles, long communal tables, bold cocktails.\n\nTone: Warm, playful, theatrical, unmistakably Italian. Leans into abundance and indulgence, drops in Italian phrases (la squadra, buon appetito), cheeky rather than formal.\n\nAudience: Groups, families, and couples after a lively, atmospheric night out — people who value vibe and Instagram-worthy interiors over quiet fine dining.`;
 
@@ -224,7 +227,6 @@ export const circoloPopolareFooter: FooterBlock = {
   type: 'footer',
   description:
     'Your Sicilian getaway in London. Crispy Neapolitan pizzas, creamy burratas and Carbonara served from a Pecorino wheel, in the heart of Fitzrovia.',
-  navigateTitle: 'Navigate',
   contactTitle: 'Contact',
   linksTitle: 'Booking & Social',
   links: [
@@ -238,8 +240,101 @@ export const circoloPopolareFooter: FooterBlock = {
   ],
 };
 
+const privateDiningPage: ServicePage = {
+  type: 'service',
+  slug: 'private-dining-london',
+  h1: 'Private Dining in London',
+  metaTitle: 'Private Dining in London · Circolo Popolare',
+  metaDescription:
+    'Host your celebration at Circolo Popolare in Fitzrovia — private dining for groups with sharing Italian feasts, Neapolitan pizza and free-flowing cocktails.',
+  heroImageUrl:
+    'https://cdn.sanity.io/images/aa3sekul/production/d229986a2fe1430dd3ef952a4c294ed56441794d-7243x4831.jpg?w=3072&fit=crop&auto=format',
+  heroImageAlt: 'Long communal table set for a large group under festoon lights at Circolo Popolare',
+  intro: '_A room built for a table full of people — sharing platters, 20,000 bottles on the walls and the warmest welcome in Fitzrovia._',
+  body: `## A restaurant made for your big night out
+
+Circolo Popolare was *made* for a table full of people. Long Mediterranean tables, walls lined with vintage bottles and platters built for sharing — it is the kind of room that turns a dinner into an event.
+
+Whether it is a birthday, a work squadra celebration or a slow Sunday with friends, la squadra will help you put together a generous Italo-feast and keep the Espresso Martinis coming.
+
+## What a private group gets
+
+- Sharing menus of ~Neapolitan pizza~, handmade pasta and antipasti
+- Free-flowing cocktails and wine from the Bel Paese
+- Space for groups from 8 to 30 guests
+- A team that handles the details so you don't have to
+
+### Where to find us
+
+We are in the heart of Fitzrovia, a short walk from Tottenham Court Road. Check the [address and opening hours](./#location) before you visit.
+
+Ready to plan it? [Book a table](${BOOKING_URL}) and we will take care of the rest.`,
+  ctaText: 'Enquire about private dining',
+  ctaLink: BOOKING_URL,
+};
+
+const bottomlessBrunchPage: ServicePage = {
+  type: 'service',
+  slug: 'bottomless-brunch-london',
+  h1: 'Bottomless Brunch in London',
+  metaTitle: 'Bottomless Brunch in London · Circolo Popolare',
+  metaDescription:
+    'Bottomless brunch at Circolo Popolare in Fitzrovia — Neapolitan pizza, pasta and free-flowing cocktails in the most Instagrammable room in London.',
+  heroImageUrl:
+    'https://cdn.sanity.io/images/aa3sekul/production/86eabde60877aa041890869c5fa6c3ddcf7cf4ab-8691x5794.jpg?w=3072&fit=crop&auto=format',
+  heroImageAlt: 'Dining room full of guests enjoying brunch under festoon lights',
+  intro: '_Weekend brunch, Italian style — pizza, pasta and cocktails that keep on coming._',
+  body: `## The most Italian brunch in town
+
+Swap the same old eggs for a proper Italo-feast. Our bottomless brunch pairs crispy ~Neapolitan pizza~ and handmade pasta with free-flowing cocktails, all under the festoon lights of our Fitzrovia trattoria.
+
+Bring your friends, take a seat at the long table and settle in — this is brunch made for lingering.
+
+## What's included
+
+- A main from our brunch menu — pizza or pasta
+- 90 minutes of free-flowing Aperol Spritz, Prosecco or Espresso Martini
+- The liveliest room in London to enjoy it in
+
+### Good to know
+
+Brunch is popular and books up fast, so reserve ahead. Planning a bigger group? See our [private dining](private-dining-london) option instead.`,
+  ctaText: 'Book bottomless brunch',
+  ctaLink: BOOKING_URL,
+};
+
+const groupBookingsPage: ServicePage = {
+  type: 'service',
+  slug: 'group-bookings-london',
+  h1: 'Group Bookings in London',
+  metaTitle: 'Group Bookings in London · Circolo Popolare',
+  metaDescription:
+    'Book a large table at Circolo Popolare in Fitzrovia — sharing Italian menus for birthdays, work celebrations and get-togethers in central London.',
+  heroImageUrl:
+    'https://cdn.sanity.io/images/aa3sekul/production/b02785058d8cc5dd327d343ae6bf54ab71e69cf5-9358x6239.jpg?w=3072&fit=crop&auto=format',
+  heroImageAlt: 'Long Mediterranean communal table lined with bottles, ready for a large group',
+  intro: '_Birthdays, work dos and get-togethers — the big table is ready when you are._',
+  body: `## Gather your squadra
+
+Some meals are better with a crowd. Our long communal tables and sharing menus make Circolo Popolare a natural home for birthdays, work celebrations and any excuse to get everyone together.
+
+Tell us how many you are and what you are celebrating, and we will build a generous menu of pizza, pasta and antipasti around it.
+
+## Why groups love it
+
+- Sharing plates that keep the table talking
+- Central Fitzrovia location, easy for everyone to reach
+- Cocktails and Italian wine flowing all night
+
+### Planning something special?
+
+For a table of your own, ask about [private dining](private-dining-london), or make a weekend of it with [bottomless brunch](bottomless-brunch-london).`,
+  ctaText: 'Enquire about group bookings',
+  ctaLink: BOOKING_URL,
+};
+
 export const circoloPopolareBlocks: Blocks = {
-  schemaVersion: 4,
+  schemaVersion: 5,
   name: 'Circolo Popolare',
   address: '40-41 Rathbone Pl, London W1T 1HX, UK',
   phone: '+44 20 3893 6800',
@@ -282,4 +377,5 @@ export const circoloPopolareBlocks: Blocks = {
       circoloPopolareCta,
     ],
   },
+  pages: [privateDiningPage, bottomlessBrunchPage, groupBookingsPage],
 };

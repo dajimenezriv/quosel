@@ -13,15 +13,17 @@ export {
 } from './examples/circolo-popolare';
 export { claudeStyles, buildRootStyles } from './styles';
 export { slugify, slugifyInput } from './core/utils';
-export { renderTemplate } from './render';
+export { renderTemplate, renderServicePage } from './render';
+export { renderSitemap, renderRobots } from './seo';
 export { migrateBlocks, CURRENT_SCHEMA_VERSION } from './migrations';
-export { TemplateBody } from './template';
+export { HomepageBody } from './homepage-body';
 export {
   type TemplateData,
   blocksSchema,
   stylesSchema,
   type Blocks,
   type Homepage,
+  type ServicePage,
   type Styles,
   type HeroBlock,
   type StatsBlock,

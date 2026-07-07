@@ -74,7 +74,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  4
+                  5
                 ]
               },
               "name": {
@@ -126,10 +126,6 @@
                   },
                   "description": {
                     "type": "string"
-                  },
-                  "navigateTitle": {
-                    "type": "string",
-                    "default": "Navigate"
                   },
                   "contactTitle": {
                     "type": "string",
@@ -625,6 +621,64 @@
                   "hero",
                   "blocks"
                 ]
+              },
+              "pages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "service"
+                      ]
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "h1": {
+                      "type": "string"
+                    },
+                    "metaTitle": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "metaDescription": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "heroImageUrl": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "heroImageAlt": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "intro": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "body": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "ctaText": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "ctaLink": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "slug",
+                    "h1"
+                  ]
+                },
+                "default": []
               }
             },
             "required": [
@@ -739,7 +793,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  4
+                  5
                 ]
               },
               "name": {
@@ -791,10 +845,6 @@
                   },
                   "description": {
                     "type": "string"
-                  },
-                  "navigateTitle": {
-                    "type": "string",
-                    "default": "Navigate"
                   },
                   "contactTitle": {
                     "type": "string",
@@ -1290,6 +1340,64 @@
                   "hero",
                   "blocks"
                 ]
+              },
+              "pages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "service"
+                      ]
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "h1": {
+                      "type": "string"
+                    },
+                    "metaTitle": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "metaDescription": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "heroImageUrl": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "heroImageAlt": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "intro": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "body": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "ctaText": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "ctaLink": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "slug",
+                    "h1"
+                  ]
+                },
+                "default": []
               }
             },
             "required": [
@@ -1381,7 +1489,7 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  4
+                  5
                 ]
               },
               "name": {
@@ -1433,10 +1541,6 @@
                   },
                   "description": {
                     "type": "string"
-                  },
-                  "navigateTitle": {
-                    "type": "string",
-                    "default": "Navigate"
                   },
                   "contactTitle": {
                     "type": "string",
@@ -1932,6 +2036,64 @@
                   "hero",
                   "blocks"
                 ]
+              },
+              "pages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "service"
+                      ]
+                    },
+                    "slug": {
+                      "type": "string"
+                    },
+                    "h1": {
+                      "type": "string"
+                    },
+                    "metaTitle": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "metaDescription": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "heroImageUrl": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "heroImageAlt": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "intro": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "body": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "ctaText": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "ctaLink": {
+                      "type": "string",
+                      "default": ""
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "slug",
+                    "h1"
+                  ]
+                },
+                "default": []
               }
             },
             "required": [

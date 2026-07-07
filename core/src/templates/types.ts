@@ -137,7 +137,6 @@ export type FooterBlock = z.infer<typeof footerBlockSchema>;
 const footerBlockSchema = z.object({
   type: z.literal('footer'),
   description: z.string(),
-  navigateTitle: z.string().default('Navigate'),
   contactTitle: z.string().default('Contact'),
   linksTitle: z.string().default('Booking & Social'),
   links: z.array(
@@ -152,6 +151,21 @@ const footerBlockSchema = z.object({
       url: z.string(),
     }),
   ),
+});
+
+export type ServicePage = z.infer<typeof servicePageSchema>;
+const servicePageSchema = z.object({
+  type: z.literal('service'),
+  slug: z.string(),
+  h1: z.string(),
+  metaTitle: z.string().default(''),
+  metaDescription: z.string().default(''),
+  heroImageUrl: z.string().default(''),
+  heroImageAlt: z.string().default(''),
+  intro: z.string().default(''),
+  body: z.string().default(''),
+  ctaText: z.string().default(''),
+  ctaLink: z.string().default(''),
 });
 
 export type Homepage = z.infer<typeof homepageSchema>;
@@ -172,7 +186,7 @@ const homepageSchema = z.object({
 
 export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
-  schemaVersion: z.literal(4),
+  schemaVersion: z.literal(5),
   name: z.string(),
   address: z.string().default(''),
   phone: z.string().default(''),
@@ -185,6 +199,7 @@ export const blocksSchema = z.object({
   }),
   footer: footerBlockSchema,
   homepage: homepageSchema,
+  pages: z.array(servicePageSchema).default([]),
 });
 
 export type Styles = z.infer<typeof stylesSchema>;
@@ -207,4 +222,8 @@ export interface TemplateData {
   blocks: Blocks;
   styles: Styles;
   canonicalUrl: string;
+}
+
+export interface ExtendedTemplateData extends TemplateData {
+  homeUrl: string;
 }

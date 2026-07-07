@@ -42,25 +42,14 @@ export function FooterLayout({ user, data }: Props) {
         }}
       />
 
-      <Field label="Navigate title">
+      <Field label="Contact title">
         <Input
-          value={block.navigateTitle}
+          value={block.contactTitle}
           onChange={handleInput((block, value) => {
-            block.navigateTitle = value;
+            block.contactTitle = value;
           })}
         />
       </Field>
-
-      <Subgroup title="Contact">
-        <Field label="Title">
-          <Input
-            value={block.contactTitle}
-            onChange={handleInput((block, value) => {
-              block.contactTitle = value;
-            })}
-          />
-        </Field>
-      </Subgroup>
 
       <Subgroup title="Links">
         <Field label="Title">

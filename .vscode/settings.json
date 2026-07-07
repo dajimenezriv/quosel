@@ -2,6 +2,9 @@
   "[env]": {
     "editor.defaultFormatter": "IronGeek.vscode-env"
   },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
   "css.customData": [".vscode/tailwind.json"],
   "editor.formatOnSave": true,
   "editor.guides.indentation": false,

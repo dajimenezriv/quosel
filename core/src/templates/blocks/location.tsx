@@ -46,15 +46,15 @@ export function Location({ data, block }: { data: TemplateData; block: LocationB
             )}
           </div>
 
-          <div className="mt-10">
+          {block.ctaText && (
             <a
               target="_blank"
               rel="noopener noreferrer"
               href={block.ctaLink}
-              className="bg-primary text-primary-foreground px-8 py-4 text-xs tracking-[0.2em] uppercase transition-colors hover:opacity-90">
+              className="bg-primary text-primary-foreground mt-10 px-8 py-4 text-xs tracking-[0.2em] uppercase transition-colors hover:opacity-90">
               {block.ctaText}
             </a>
-          </div>
+          )}
         </div>
 
         <iframe

@@ -19,6 +19,7 @@ const rules = {
   'no-throw-literal': 'error',
   'object-shorthand': 'error',
   'require-await': 'error',
+  'sonarjs/cognitive-complexity': 'warn',
   'sonarjs/different-types-comparison': 'error',
   'sonarjs/no-hardcoded-secrets': 'off',
   'sonarjs/no-ignored-exceptions': 'error',

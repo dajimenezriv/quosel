@@ -31,12 +31,14 @@ export class Users {
       const userRow = await tx.user.create({ data: { ...data, googleId } });
 
       const name = 'Circolo Popolare';
+      const { slug, domain } = Websites.randomSlug(name);
       await tx.website.create({
         data: {
           userId: userRow.id,
           name,
           context: circoloPopolareContext,
-          slug: Websites.randomSlug(name),
+          slug,
+          domain,
           editToken: Websites.generateEditToken(),
           blocks: circoloPopolareBlocks,
           styles: claudeStyles,

@@ -5,7 +5,15 @@ import { R2 } from '@/infra/cloudflare/r2';
 import type { Prisma } from '@/infra/postgres/prisma/client';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import { blocksSchema, renderTemplate, stylesSchema } from '@quosel/core/templates';
+import {
+  blocksSchema,
+  renderRobots,
+  renderServicePage,
+  renderSitemap,
+  renderTemplate,
+  stylesSchema,
+  type TemplateData,
+} from '@quosel/core/templates';
 
 const BodySchema = z
   .object({
@@ -51,14 +59,25 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
   await Websites.update(websiteId, data);
 
   if (publish) {
-    const html = renderTemplate({
-      blocks,
-      styles,
-      canonicalUrl: `https://sites.quosel.com/${slug}`,
-    });
+    const canonicalUrl = `https://sites.quosel.com/${slug}`;
+    const toFile = (content: string, type = 'text/html') => new File([content], 'file', { type });
 
-    const file = new File([html], 'index.html', { type: 'text/html' });
-    await R2.upload(`websites/${slug}.html`, file);
+    const data: TemplateData = { blocks, styles, canonicalUrl };
+    const files = [
+      { key: `websites/${slug}/index.html`, file: toFile(renderTemplate(data)) },
+      ...blocks.pages.map((page) => ({
+        key: `websites/${slug}/${page.slug}.html`,
+        file: toFile(renderServicePage(data, page)),
+      })),
+      { key: `websites/${slug}/sitemap.xml`, file: toFile(renderSitemap(data), 'application/xml') },
+      { key: `websites/${slug}/robots.txt`, file: toFile(renderRobots(data), 'text/plain') },
+    ];
+
+    const liveKeys = new Set<string>(files.map(({ key }) => key));
+    const allKeys = await R2.list(`websites/${slug}/`);
+    const stale = allKeys.filter((key) => !liveKeys.has(key));
+
+    await Promise.all([R2.uploadMany(files), R2.deleteMany(stale)]);
   }
 
   return c.body(null, 204);
