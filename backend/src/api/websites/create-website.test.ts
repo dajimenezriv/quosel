@@ -1,5 +1,4 @@
 import { app } from '@/app';
-import { Prisma } from '@/infra/postgres/prisma/client';
 import { Sessions } from '@/infra/postgres/sessions';
 import { Websites } from '@/infra/postgres/websites';
 import { calls, deepMocked, expectError, expectJson, mockAuthMiddleware, postRequest } from '@/tests/utils.helper.test';

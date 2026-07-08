@@ -3,7 +3,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import type { Me } from '@/old/auth';
-import { slugifyInput } from '@quosel/core/templates';
 import { produce } from 'immer';
 import { ImageField } from '../image-field';
 import { Field, Subgroup } from '../utils';
@@ -97,16 +96,7 @@ export function GeneralTab({ user, data }: Props) {
         />
       </Field>
       <Field label="Slug">
-        <Input
-          value={data.slug}
-          onChange={(e) => {
-            updateDraft(
-              produce(data, (draft) => {
-                draft.slug = slugifyInput(e.target.value);
-              }),
-            );
-          }}
-        />
+        <Input value={data.slug} disabled readOnly />
       </Field>
       <Field label="AI Context">
         <Textarea
