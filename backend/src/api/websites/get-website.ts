@@ -11,6 +11,7 @@ export const WebsiteSchema = z
     userId: z.string(),
     name: z.string(),
     slug: z.string(),
+    domain: z.string(),
     editToken: z.string(),
     context: z.string(),
     blocks: blocksSchema,

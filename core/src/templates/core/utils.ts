@@ -23,12 +23,12 @@ export function telHref(phone: string) {
 }
 
 export function pageHref(data: ExtendedTemplateData, slug: string) {
-  return `${data.canonicalUrl}/${slug}`;
+  return `${data.domain}/${slug}`;
 }
 
 export function parseRawData(rawData: TemplateData): ExtendedTemplateData {
   return {
     ...rawData,
-    homeUrl: rawData.canonicalUrl,
+    homeUrl: rawData.domain,
   };
 }

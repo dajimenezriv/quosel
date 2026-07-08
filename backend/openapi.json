@@ -62,6 +62,9 @@
           "slug": {
             "type": "string"
           },
+          "domain": {
+            "type": "string"
+          },
           "editToken": {
             "type": "string"
           },
@@ -744,9 +747,6 @@
               "ring"
             ]
           },
-          "canonicalUrl": {
-            "type": "string"
-          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -768,11 +768,11 @@
           "userId",
           "name",
           "slug",
+          "domain",
           "editToken",
           "context",
           "blocks",
           "styles",
-          "canonicalUrl",
           "createdAt",
           "updatedAt",
           "publishedAt"

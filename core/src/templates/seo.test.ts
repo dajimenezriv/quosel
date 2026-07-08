@@ -22,7 +22,7 @@ function page(slug: string): ServicePage {
 const data: TemplateData = {
   blocks: { ...emptyBlocks, pages: [page('teeth-whitening'), page('dental-implants')] },
   styles: claudeStyles,
-  canonicalUrl: 'https://sites.quosel.com/acme',
+  domain: 'https://sites.quosel.com/acme',
 };
 
 describe('renderSitemap', () => {

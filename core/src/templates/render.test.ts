@@ -6,7 +6,7 @@ import type { ServicePage } from './types';
 const data = {
   blocks: circoloPopolareBlocks,
   styles: claudeStyles,
-  canonicalUrl: 'https://sites.quosel.com/circolo',
+  domain: 'https://sites.quosel.com/circolo',
 };
 
 const servicePage: ServicePage = {

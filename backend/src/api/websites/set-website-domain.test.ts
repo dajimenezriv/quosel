@@ -57,7 +57,7 @@ describe('set-website-domain', () => {
 
   it('should normalize a scheme/path in the input down to the bare host', async () => {
     // When
-    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'HTTPS://Henaco.com/foo' }));
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'HTTPS://Example.com/foo' }));
     // Then
     expect(res.status).toBe(204);
     calls(Websites.update).toStrictEqual(['websiteId', { domain: 'https://example.com' }]);

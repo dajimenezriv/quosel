@@ -877,6 +877,7 @@ export interface components {
             userId: string;
             name: string;
             slug: string;
+            domain: string;
             editToken: string;
             context: string;
             blocks: {
@@ -1065,7 +1066,6 @@ export interface components {
                 border: string;
                 ring: string;
             };
-            canonicalUrl: string;
             /** Format: date-time */
             createdAt: string;
             /** Format: date-time */

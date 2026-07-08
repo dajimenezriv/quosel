@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function Device({ website, device }: Props) {
-  let domain = website.canonicalUrl;
+  let domain = website.domain;
   if (!website.publishedAt) domain += ' (Not published yet)';
 
   return (
