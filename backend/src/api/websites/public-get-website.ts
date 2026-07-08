@@ -24,15 +24,5 @@ export const publicGetWebsite: RouteHandler<typeof publicGetWebsiteRoute, { Vari
   const blocks = migrateBlocks(website.blocks);
   const styles = website.styles as Styles;
 
-  return jsonResponse(
-    c,
-    WebsiteSchema,
-    {
-      ...website,
-      blocks,
-      styles,
-      canonicalUrl: `https://sites.quosel.com/${website.slug}`,
-    },
-    200,
-  );
+  return jsonResponse(c, WebsiteSchema, { ...website, blocks, styles }, 200);
 };

@@ -221,7 +221,7 @@ export const stylesSchema = z.object({
 export interface TemplateData {
   blocks: Blocks;
   styles: Styles;
-  canonicalUrl: string;
+  domain: string;
 }
 
 export interface ExtendedTemplateData extends TemplateData {

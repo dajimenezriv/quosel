@@ -424,6 +424,7 @@ export interface paths {
                 content: {
                     "application/json": {
                         name: string;
+                        slug: string;
                     };
                 };
             };
@@ -606,6 +607,53 @@ export interface paths {
                 };
             };
         };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/websites/{websiteId}/domain": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    websiteId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["SetWebsiteDomain"];
+                };
+            };
+            responses: {
+                204: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
         options?: never;
         head?: never;
         patch?: never;
@@ -1217,7 +1265,6 @@ export interface components {
         };
         UpdateWebsite: {
             name?: string;
-            slug: string;
             context: string;
             blocks: {
                 /** @enum {number} */
@@ -1405,6 +1452,9 @@ export interface components {
                 border: string;
                 ring: string;
             };
+        };
+        SetWebsiteDomain: {
+            domain: string;
         };
     };
     responses: never;

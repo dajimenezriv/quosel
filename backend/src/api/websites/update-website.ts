@@ -18,7 +18,6 @@ import {
 const BodySchema = z
   .object({
     name: z.string().optional(),
-    slug: z.string().regex(/^[a-z0-9-]+$/),
     context: z.string(),
     blocks: blocksSchema,
     styles: stylesSchema,
@@ -47,22 +46,20 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
   const userId = c.get('userId');
   const websiteId = c.req.param('websiteId');
   const { publish } = c.req.valid('query');
-  const { name, slug, context, blocks, styles } = c.req.valid('json');
+  const { name, context, blocks, styles } = c.req.valid('json');
 
   const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  const data: Prisma.WebsiteUpdateInput = { name, slug, context, blocks, styles };
+  const data: Prisma.WebsiteUpdateInput = { name, context, blocks, styles };
 
   if (publish) data.publishedAt = new Date();
 
   await Websites.update(websiteId, data);
 
   if (publish) {
-    const canonicalUrl = `https://sites.quosel.com/${slug}`;
-    const toFile = (content: string, type = 'text/html') => new File([content], 'file', { type });
-
-    const data: TemplateData = { blocks, styles, canonicalUrl };
+    const { slug, domain } = website;
+    const data: TemplateData = { blocks, styles, domain };
     const files = [
       { key: `websites/${slug}/index.html`, file: toFile(renderTemplate(data)) },
       ...blocks.pages.map((page) => ({
@@ -82,3 +79,7 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
 
   return c.body(null, 204);
 };
+
+function toFile(content: string, type = 'text/html') {
+  return new File([content], 'file', { type });
+}

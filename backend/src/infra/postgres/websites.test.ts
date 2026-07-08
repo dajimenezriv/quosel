@@ -1,4 +1,4 @@
-import { createMockUser } from '@/tests/postgres.helper.test';
+import { createMockUser, createMockWebsite } from '@/tests/postgres.helper.test';
 import { Websites } from './websites';
 
 describe('websites', () => {
@@ -7,9 +7,9 @@ describe('websites', () => {
       // Given
       const { id: userId1 } = await createMockUser();
       const { id: userId2 } = await createMockUser();
-      await Websites.create(userId1, 'Website 1');
-      await Websites.create(userId1, 'Website 2');
-      await Websites.create(userId2, 'Other Website');
+      await createMockWebsite(userId1);
+      await createMockWebsite(userId1);
+      await createMockWebsite(userId2);
       // When
       const websites = await Websites.getAllByUserId(userId1);
       // Then
@@ -31,9 +31,9 @@ describe('websites', () => {
       // Given
       const { id: userId1 } = await createMockUser();
       const { id: userId2 } = await createMockUser();
-      await Websites.create(userId1, 'Website 1');
-      await Websites.create(userId1, 'Website 2');
-      await Websites.create(userId2, 'Other Website');
+      await createMockWebsite(userId1);
+      await createMockWebsite(userId1);
+      await createMockWebsite(userId2);
       // When
       const count = await Websites.countByUserId(userId1);
       // Then
@@ -53,7 +53,7 @@ describe('websites', () => {
   describe('getById', async () => {
     const { id: userId1 } = await createMockUser();
     const { id: userId2 } = await createMockUser();
-    const { id: websiteId } = await Websites.create(userId1, 'Website');
+    const { id: websiteId } = await createMockWebsite(userId1);
 
     it('should return website if it exists', async () => {
       // When
@@ -79,7 +79,7 @@ describe('websites', () => {
 
   describe('getByEditToken', async () => {
     const { id: userId } = await createMockUser();
-    const { id: websiteId, editToken } = await Websites.create(userId, 'Website');
+    const { id: websiteId, editToken } = await createMockWebsite(userId);
 
     it('should return website if it exists', async () => {
       // When
@@ -99,29 +99,38 @@ describe('websites', () => {
   describe('create', async () => {
     const { id: userId } = await createMockUser();
 
-    it('should create a website', async () => {
+    it('should create a website with the given slug and default domain', async () => {
       // When
-      const website = await Websites.create(userId, 'Website');
+      const website = await Websites.create(userId, 'Website', crypto.randomUUID());
       // Then
       expect(website.id).toBeDefined();
       expect(website.userId).toBe(userId);
       expect(website.name).toBe('Website');
-      expect(website.slug).toMatch(/^website-[0-9a-f]{8}$/);
+      expect(website.domain).toContain('https://sites.quosel.com/');
+    });
+
+    it('should throw if slug is duplicated', async () => {
+      // Given
+      const { slug } = await createMockWebsite(userId);
+      // When
+      const promise = Websites.create(userId, 'Website', slug);
+      // Then
+      await expect(promise).rejects.toThrow('That slug is already in use.');
     });
 
     it('should throw if name is invalid', async () => {
       // When
-      const promise = Websites.create(userId, {} as any);
+      const promise = Websites.create(userId, {} as any, 'invalid-name');
       // Then
-      await expect(promise).rejects.toThrow();
+      await expect(promise).rejects.toThrow('Argument `name`: Invalid value provided.');
     });
   });
 
-  describe('update', () => {
+  describe('update', async () => {
+    const { id: userId } = await createMockUser();
+    const { id: websiteId, domain } = await createMockWebsite(userId);
+
     it('should update website fields', async () => {
-      // Given
-      const { id: userId } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId, 'Website');
       // When
       const updated = await Websites.update(websiteId, { name: 'Updated Name' });
       // Then
@@ -134,6 +143,15 @@ describe('websites', () => {
       // Then
       await expect(promise).rejects.toThrow('No record was found for an update.');
     });
+
+    it('should throw error if domain is duplicated', async () => {
+      // Given
+      const { id: websiteId2 } = await createMockWebsite(userId);
+      // When
+      const promise = Websites.update(websiteId2, { domain });
+      // Then
+      await expect(promise).rejects.toThrow('That domain is already in use.');
+    });
   });
 
   describe('regenerateEditToken', async () => {
@@ -141,7 +159,7 @@ describe('websites', () => {
 
     it('should update website fields', async () => {
       // Given
-      const { id: websiteId, editToken } = await Websites.create(userId, 'Website');
+      const { id: websiteId, editToken } = await createMockWebsite(userId);
       // When
       const token = await Websites.regenerateEditToken(userId, websiteId);
       // Then
@@ -160,7 +178,7 @@ describe('websites', () => {
     it('should delete the website if it belongs to the user', async () => {
       // Given
       const { id: userId } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId, 'Website');
+      const { id: websiteId } = await createMockWebsite(userId);
       // When
       const deleted = await Websites.delete(userId, websiteId);
       // Then
@@ -181,7 +199,7 @@ describe('websites', () => {
       // Given
       const { id: userId1 } = await createMockUser();
       const { id: userId2 } = await createMockUser();
-      const { id: websiteId } = await Websites.create(userId1, 'Website');
+      const { id: websiteId } = await createMockWebsite(userId1);
       // When
       const promise = Websites.delete(userId2, websiteId);
       // Then

@@ -1476,10 +1476,6 @@
           "name": {
             "type": "string"
           },
-          "slug": {
-            "type": "string",
-            "pattern": "^[a-z0-9-]+$"
-          },
           "context": {
             "type": "string"
           },
@@ -2161,10 +2157,20 @@
           }
         },
         "required": [
-          "slug",
           "context",
           "blocks",
           "styles"
+        ]
+      },
+      "SetWebsiteDomain": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "domain"
         ]
       }
     },
@@ -2445,10 +2451,15 @@
                 "properties": {
                   "name": {
                     "type": "string"
+                  },
+                  "slug": {
+                    "type": "string",
+                    "pattern": "^[a-z0-9-]+$"
                   }
                 },
                 "required": [
-                  "name"
+                  "name",
+                  "slug"
                 ]
               }
             }
@@ -2771,6 +2782,44 @@
             "in": "path"
           }
         ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/websites/{websiteId}/domain": {
+      "put": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetWebsiteDomain"
+              }
+            }
+          }
+        },
         "responses": {
           "204": {
             "description": ""

@@ -23,18 +23,18 @@ jobs:
 
       - name: Dump and upload to R2
         env:
-          DATABASE_URL: ${{ secrets.RAILWAY_DATABASE_URL }}
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           AWS_REQUEST_CHECKSUM_CALCULATION: WHEN_REQUIRED
           AWS_RESPONSE_CHECKSUM_VALIDATION: WHEN_REQUIRED
-          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          DATABASE_URL: ${{ secrets.RAILWAY_DATABASE_URL }}
           R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
         run: |
           set -euo pipefail
 
           key="backups/quosel-$(date -u +%Y-%m-%dT%H-%M-%SZ).sql.gz"
-          endpoint="https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com"
+          endpoint="https://$CLOUDFLARE_ACCOUNT_ID.r2.cloudflarestorage.com"
 
           pg_dump "$DATABASE_URL" \
             --no-owner \

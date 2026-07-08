@@ -31,6 +31,7 @@ describe('get-website', () => {
       userId: 'userId',
       name: 'name',
       slug: 'slug',
+      domain: 'https://sites.quosel.com/slug',
       editToken: 'editToken',
       context: 'context',
       blocks: emptyBlocks,
