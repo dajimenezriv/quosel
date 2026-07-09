@@ -30,9 +30,9 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     | send.quosel.com                    | TXT   | "v=spf1 include:amazonses.com ~all"                                                           | DNS only     | 1 hr | —        |
 
 !!! note "Rules > Overview"
-    - Redirect from WWW to root
-    - URI Full wildcard r"https://www.*"
-    - 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}")
+    | Name                      | Match against                      | Action                                                                                     |
+    | ------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------ |
+    | Redirect from WWW to root | URI Full wildcard r"https://www.*" | 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}") |
 
 #### quosel.app
 
@@ -40,18 +40,21 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     | Name                           | Type | Content                                      | Proxy status | TTL  | Priority |
     | ------------------------------ | ---- | -------------------------------------------- | ------------ | ---- | -------- |
     | *.quosel.app                   | AAAA | 100::                                        | Proxied      | Auto | —        |
+    | quosel.app                     | AAAA | 100::                                        | Proxied      | Auto | —        |
     | quosel.app                     | MX   | route3.mx.cloudflare.net                     | DNS only     | Auto | 13       |
     | quosel.app                     | MX   | route2.mx.cloudflare.net                     | DNS only     | Auto | 39       |
     | quosel.app                     | MX   | route1.mx.cloudflare.net                     | DNS only     | Auto | 86       |
     | cf2024-1._domainkey.quosel.app | TXT  | "v=DKIM1; h=sha256; k=rsa; p=..."            | DNS only     | Auto | —        |
+    | _dmarc.quosel.app              | TXT  | "v=DMARC1; p=reject; adkim=s; aspf=s"        | DNS only     | Auto | —        |
     | quosel.app                     | TXT  | "v=spf1 include:_spf.mx.cloudflare.net ~all" | DNS only     | Auto | —        |
 
 !!! note "SSL/TLS > Custom hostnames"
 
 !!! note "Rules > Overview"
-    - Redirect from WWW to root
-    - URI Full wildcard r"https://www.*"
-    - 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}")
+    | Name                              | Match against                      | Action                                                                                     |
+    | --------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------ |
+    | Redirect from WWW to root         | URI Full wildcard r"https://www.*" | 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}") |
+    | Redirect from apex to root domain | Hostname equals quosel.app         | 301 redirect to https://quosel.com                                                         |
 
 ### Registrations
 
