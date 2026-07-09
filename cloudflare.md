@@ -46,6 +46,8 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     | cf2024-1._domainkey.quosel.app | TXT  | "v=DKIM1; h=sha256; k=rsa; p=..."            | DNS only     | Auto | —        |
     | quosel.app                     | TXT  | "v=spf1 include:_spf.mx.cloudflare.net ~all" | DNS only     | Auto | —        |
 
+!!! note "SSL/TLS > Custom hostnames"
+
 !!! note "Rules > Overview"
     - Redirect from WWW to root
     - URI Full wildcard r"https://www.*"
@@ -102,7 +104,7 @@ Uses `wrangler.jsonc`
 
 ### R2 Object Storage
 
-#### "Quosel" bucket
+#### "quosel" bucket
 
 - backups
 - images
