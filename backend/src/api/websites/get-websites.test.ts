@@ -34,6 +34,7 @@ describe('get-websites', () => {
         userId: 'userId',
         name: 'name',
         slug: 'slug',
+        domain: 'domain',
         editToken: 'editToken',
         blocks: emptyBlocks,
         styles: claudeStyles,

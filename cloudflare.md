@@ -10,50 +10,46 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
 
 #### quosel.com
 
-##### DNS > Records
+!!! note "DNS > Records"
+    | Name                               | Type  | Content                                                                                       | Proxy status | TTL  | Priority |
+    | ---------------------------------- | ----- | --------------------------------------------------------------------------------------------- | ------------ | ---- | -------- |
+    | app.quosel.com                     | CNAME | quosel-frontend.pages.dev                                                                     | Proxied      | Auto | —        |
+    | assets.quosel.com                  | R2    | quosel                                                                                        | Proxied      | Auto | —        |
+    | backend.quosel.com                 | CNAME | dazus9vw.up.railway.app                                                                       | Proxied      | Auto | —        |
+    | quosel.com                         | CNAME | quosel-landing.pages.dev                                                                      | Proxied      | Auto | —        |
+    | www.quosel.com                     | CNAME | quosel-landing.pages.dev                                                                      | Proxied      | Auto | —        |
+    | quosel.com                         | MX    | route3.mx.cloudflare.net                                                                      | DNS only     | Auto | 87       |
+    | quosel.com                         | MX    | route2.mx.cloudflare.net                                                                      | DNS only     | Auto | 33       |
+    | quosel.com                         | MX    | route1.mx.cloudflare.net                                                                      | DNS only     | Auto | 96       |
+    | send.quosel.com                    | MX    | feedback-smtp.eu-west-1.amazonses.com                                                         | DNS only     | 1 hr | 10       |
+    | cf2024-1._domainkey.quosel.com     | TXT   | "v=DKIM1; h=sha256; k=rsa; p=..."                                                             | DNS only     | Auto | —        |
+    | _dmarc.quosel.com                  | TXT   | "v=DMARC1; p=none; rua=mailto:918046d4a2764c64afb7471b3ca2a29f@dmarc-reports.cloudflare.net;" | DNS only     | Auto | —        |
+    | quosel.com                         | TXT   | "v=spf1 include:_spf.mx.cloudflare.net ~all"                                                  | DNS only     | Auto | —        |
+    | _railway-verify.backend.quosel.com | TXT   | "railway-verify=a91507a8153aa2819d0a80ce07de044349bc70a4a0b5134b356a39a9e474bf0a"             | DNS only     | 1 hr | —        |
+    | resend._domainkey.quosel.com       | TXT   | "p=..."                                                                                       | DNS only     | 1 hr | —        |
+    | send.quosel.com                    | TXT   | "v=spf1 include:amazonses.com ~all"                                                           | DNS only     | 1 hr | —        |
 
-| Name                               | Type  | Content                                                                                       | Proxy status | TTL  | Priority |
-| ---------------------------------- | ----- | --------------------------------------------------------------------------------------------- | ------------ | ---- | -------- |
-| app.quosel.com                     | CNAME | quosel-frontend.pages.dev                                                                     | Proxied      | Auto | —        |
-| assets.quosel.com                  | R2    | quosel                                                                                        | Proxied      | Auto | —        |
-| backend.quosel.com                 | CNAME | dazus9vw.up.railway.app                                                                       | Proxied      | Auto | —        |
-| quosel.com                         | CNAME | quosel-landing.pages.dev                                                                      | Proxied      | Auto | —        |
-| www.quosel.com                     | CNAME | quosel-landing.pages.dev                                                                      | Proxied      | Auto | —        |
-| quosel.com                         | MX    | route3.mx.cloudflare.net                                                                      | DNS only     | Auto | 87       |
-| quosel.com                         | MX    | route2.mx.cloudflare.net                                                                      | DNS only     | Auto | 33       |
-| quosel.com                         | MX    | route1.mx.cloudflare.net                                                                      | DNS only     | Auto | 96       |
-| send.quosel.com                    | MX    | feedback-smtp.eu-west-1.amazonses.com                                                         | DNS only     | 1 hr | 10       |
-| cf2024-1._domainkey.quosel.com     | TXT   | "v=DKIM1; h=sha256; k=rsa; p=..."                                                             | DNS only     | Auto | —        |
-| _dmarc.quosel.com                  | TXT   | "v=DMARC1; p=none; rua=mailto:918046d4a2764c64afb7471b3ca2a29f@dmarc-reports.cloudflare.net;" | DNS only     | Auto | —        |
-| quosel.com                         | TXT   | "v=spf1 include:_spf.mx.cloudflare.net ~all"                                                  | DNS only     | Auto | —        |
-| _railway-verify.backend.quosel.com | TXT   | "railway-verify=a91507a8153aa2819d0a80ce07de044349bc70a4a0b5134b356a39a9e474bf0a"             | DNS only     | 1 hr | —        |
-| resend._domainkey.quosel.com       | TXT   | "p=..."                                                                                       | DNS only     | 1 hr | —        |
-| send.quosel.com                    | TXT   | "v=spf1 include:amazonses.com ~all"                                                           | DNS only     | 1 hr | —        |
-
-##### Rules > Overview
-	
-- Redirect from WWW to root
-- URI Full wildcard r"https://www.*"
-- 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}")
+!!! note "Rules > Overview"
+    - Redirect from WWW to root
+    - URI Full wildcard r"https://www.*"
+    - 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}")
 
 #### quosel.app
 
-##### DNS > Records
+!!! note "DNS > Records"
+    | Name                           | Type | Content                                      | Proxy status | TTL  | Priority |
+    | ------------------------------ | ---- | -------------------------------------------- | ------------ | ---- | -------- |
+    | *.quosel.app                   | AAAA | 100::                                        | Proxied      | Auto | —        |
+    | quosel.app                     | MX   | route3.mx.cloudflare.net                     | DNS only     | Auto | 13       |
+    | quosel.app                     | MX   | route2.mx.cloudflare.net                     | DNS only     | Auto | 39       |
+    | quosel.app                     | MX   | route1.mx.cloudflare.net                     | DNS only     | Auto | 86       |
+    | cf2024-1._domainkey.quosel.app | TXT  | "v=DKIM1; h=sha256; k=rsa; p=..."            | DNS only     | Auto | —        |
+    | quosel.app                     | TXT  | "v=spf1 include:_spf.mx.cloudflare.net ~all" | DNS only     | Auto | —        |
 
-| Name                           | Type | Content                                      | Proxy status | TTL  | Priority |
-| ------------------------------ | ---- | -------------------------------------------- | ------------ | ---- | -------- |
-| *.quosel.app                   | AAAA | 100::                                        | Proxied      | Auto | —        |
-| quosel.app                     | MX   | route3.mx.cloudflare.net                     | DNS only     | Auto | 13       |
-| quosel.app                     | MX   | route2.mx.cloudflare.net                     | DNS only     | Auto | 39       |
-| quosel.app                     | MX   | route1.mx.cloudflare.net                     | DNS only     | Auto | 86       |
-| cf2024-1._domainkey.quosel.app | TXT  | "v=DKIM1; h=sha256; k=rsa; p=..."            | DNS only     | Auto | —        |
-| quosel.app                     | TXT  | "v=spf1 include:_spf.mx.cloudflare.net ~all" | DNS only     | Auto | —        |
-
-##### Rules > Overview
-
-- 	 Redirect from WWW to root
-- URI Full wildcard r"https://www.*"
-- 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}")
+!!! note "Rules > Overview"
+    - Redirect from WWW to root
+    - URI Full wildcard r"https://www.*"
+    - 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}")
 
 ### Registrations
 
@@ -70,18 +66,16 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
 
 Uses `wrangler.jsonc`
 
-##### Bindings
+!!! note "Bindings"
+    | Type         | Name    | Value   |
+    | ------------ | ------- | ------- |
+    | KV namespace | DOMAINS | DOMAINS |
+    | R2 bucket    | SITES   | quosel  |
 
-| Type         | Name    | Value   |
-| ------------ | ------- | ------- |
-| KV namespace | DOMAINS | DOMAINS |
-| R2 bucket    | SITES   | quosel  |
-
-##### Custom domains and routes
-
-| Name             | Environment | Zone       |
-| ---------------- | ----------- | ---------- |
-| \*.quosel.app/\* | Route       | quosel.app |
+!!! note "Custom domains and routes"
+    | Name             | Environment | Zone       |
+    | ---------------- | ----------- | ---------- |
+    | \*.quosel.app/\* | Route       | quosel.app |
 
 
 ### Pages
