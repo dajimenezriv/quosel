@@ -112,7 +112,7 @@ Uses `wrangler.jsonc`
 
 #### "DOMAINS" KV
 
-Namespace ID (📝 DOMAINS_KV_NAMESPACE_ID): `788820ad7a3d4664a1441e237c2dd784`
+Namespace ID (📝 CLOUDFLARE_DOMAINS_KV_NAMESPACE_ID): `788820ad7a3d4664a1441e237c2dd784`
 
 !!! note "KV Pairs"
     | Key         | Value  |
@@ -137,5 +137,6 @@ Namespace ID (📝 DOMAINS_KV_NAMESPACE_ID): `788820ad7a3d4664a1441e237c2dd784`
 
 ### Account API tokens
 
-- Backend - Workers KV Storage Write - 📝 CLOUDFLARE_API_TOKEN = "cfat_*"
-- Frontend - Pages Write
+- Token: `Token`
+- Permissions: `Pages Write`, `Workers KV Storage Write`
+- .env: 📝 `CLOUDFLARE_API_TOKEN = "cfat_*"`

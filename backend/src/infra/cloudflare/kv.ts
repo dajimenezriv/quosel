@@ -1,6 +1,6 @@
 import { env } from '@/core/env';
 
-const BASE_URL = `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${env.DOMAINS_KV_NAMESPACE_ID}/values`;
+const BASE_URL = `https://api.cloudflare.com/client/v4/accounts/${env.CLOUDFLARE_ACCOUNT_ID}/storage/kv/namespaces/${env.CLOUDFLARE_DOMAINS_KV_NAMESPACE_ID}/values`;
 
 const headers = { Authorization: `Bearer ${env.CLOUDFLARE_API_TOKEN}` };
 
