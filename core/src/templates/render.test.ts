@@ -6,7 +6,7 @@ import type { ServicePage } from './types';
 const data = {
   blocks: circoloPopolareBlocks,
   styles: claudeStyles,
-  domain: 'https://sites.quosel.com/circolo',
+  domain: 'https://circolo.quosel.app',
 };
 
 const servicePage: ServicePage = {
@@ -25,7 +25,7 @@ const servicePage: ServicePage = {
 
 describe('renderTemplate (homepage)', () => {
   it('uses the site canonical for the homepage', () => {
-    expect(renderTemplate(data)).toContain('<link rel="canonical" href="https://sites.quosel.com/circolo"/>');
+    expect(renderTemplate(data)).toContain('<link rel="canonical" href="https://circolo.quosel.app"/>');
   });
 });
 
@@ -34,7 +34,7 @@ describe('renderServicePage', () => {
 
   it('uses the page meta title and a per-page canonical url', () => {
     expect(html).toContain('<title>Wood-Fired Pizza in London · Circolo Popolare</title>');
-    expect(html).toContain('<link rel="canonical" href="https://sites.quosel.com/circolo/wood-fired-pizza-london"/>');
+    expect(html).toContain('<link rel="canonical" href="https://circolo.quosel.app/wood-fired-pizza-london"/>');
   });
 
   it('renders a single h1 with the keyword', () => {
@@ -56,7 +56,7 @@ describe('renderServicePage', () => {
 
   it('renders a breadcrumb back to the homepage', () => {
     expect(html).toContain('aria-label="Breadcrumb"');
-    expect(html).toContain('href="https://sites.quosel.com/circolo"');
+    expect(html).toContain('href="https://circolo.quosel.app"');
   });
 });
 
@@ -69,13 +69,13 @@ describe('internal linking', () => {
 
   it('links the homepage footer to every service page with relative hrefs', () => {
     const html = renderTemplate(linkedData);
-    expect(html).toContain('href="https://sites.quosel.com/circolo/wood-fired-pizza-london"');
-    expect(html).toContain('href="https://sites.quosel.com/circolo/gluten-free-pizza"');
+    expect(html).toContain('href="https://circolo.quosel.app/wood-fired-pizza-london"');
+    expect(html).toContain('href="https://circolo.quosel.app/gluten-free-pizza"');
   });
 
   it('lists sibling pages under "Other services" on a service page', () => {
     const html = renderServicePage(linkedData, servicePage);
     expect(html).toContain('>Other services</h2>');
-    expect(html).toContain('href="https://sites.quosel.com/circolo/gluten-free-pizza"');
+    expect(html).toContain('href="https://circolo.quosel.app/gluten-free-pizza"');
   });
 });

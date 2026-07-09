@@ -12,7 +12,7 @@ export class Websites {
   }
 
   static defaultDomain(slug: string) {
-    return `https://sites.quosel.com/${slug}`;
+    return `https://${slug}.quosel.app`;
   }
 
   static generateEditToken() {

@@ -106,7 +106,7 @@ describe('websites', () => {
       expect(website.id).toBeDefined();
       expect(website.userId).toBe(userId);
       expect(website.name).toBe('Website');
-      expect(website.domain).toContain('https://sites.quosel.com/');
+      expect(website.domain).toContain('.quosel.app');
     });
 
     it('should throw if slug is duplicated', async () => {

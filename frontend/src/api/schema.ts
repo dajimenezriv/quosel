@@ -374,6 +374,7 @@ export interface paths {
                                 userId: string;
                                 name: string;
                                 slug: string;
+                                domain: string;
                                 editToken: string;
                                 logoUrl: string;
                                 heroImageUrl: string;

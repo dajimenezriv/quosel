@@ -12,7 +12,7 @@ describe('set-website-domain', () => {
   const getByIdMock = deepMocked(Websites.getById);
 
   beforeEach(() => {
-    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://sites.quosel.com/slug' });
+    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://slug.quosel.app' });
   });
 
   it('should return 401 if session is not provided', async () => {
@@ -29,9 +29,9 @@ describe('set-website-domain', () => {
     expect(res.status).toBe(400);
   });
 
-  it('should return 400 if the domain is a reserved quosel.com host', async () => {
+  it('should return 400 if the domain is a reserved quosel.app host', async () => {
     // When
-    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'acme.quosel.com' }));
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'acme.quosel.app' }));
     // Then
     expect(res.status).toBe(400);
   });

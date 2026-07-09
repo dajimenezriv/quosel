@@ -2522,6 +2522,9 @@
                           "slug": {
                             "type": "string"
                           },
+                          "domain": {
+                            "type": "string"
+                          },
                           "editToken": {
                             "type": "string"
                           },
@@ -2607,6 +2610,7 @@
                           "userId",
                           "name",
                           "slug",
+                          "domain",
                           "editToken",
                           "logoUrl",
                           "heroImageUrl",

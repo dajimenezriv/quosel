@@ -53,7 +53,7 @@ export function CreateWebsite({ close }: Props) {
             onKeyDown={(e) => e.key === 'Enter' && create()}
             placeholder="website-url"
           />
-          <p className="text-muted-foreground text-xs">https://sites.quosel.com/{slug || 'website-url'} · this can't be changed later</p>
+          <p className="text-muted-foreground text-xs">https://{slug || 'website-url'}.quosel.app · this can't be changed later</p>
         </div>
         <DialogFooter>
           <Button onClick={create} disabled={isPending || !valid} className="cursor-pointer">

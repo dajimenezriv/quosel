@@ -22,7 +22,7 @@ function page(slug: string): ServicePage {
 const data: TemplateData = {
   blocks: { ...emptyBlocks, pages: [page('teeth-whitening'), page('dental-implants')] },
   styles: claudeStyles,
-  domain: 'https://sites.quosel.com/acme',
+  domain: 'https://acme.quosel.app',
 };
 
 describe('renderSitemap', () => {
@@ -30,9 +30,9 @@ describe('renderSitemap', () => {
     expect(renderSitemap(data)).toBe(
       `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://sites.quosel.com/acme</loc></url>
-  <url><loc>https://sites.quosel.com/acme/teeth-whitening</loc></url>
-  <url><loc>https://sites.quosel.com/acme/dental-implants</loc></url>
+  <url><loc>https://acme.quosel.app</loc></url>
+  <url><loc>https://acme.quosel.app/teeth-whitening</loc></url>
+  <url><loc>https://acme.quosel.app/dental-implants</loc></url>
 </urlset>
 `,
     );
@@ -45,7 +45,7 @@ describe('renderRobots', () => {
       `User-agent: *
 Allow: /
 
-Sitemap: https://sites.quosel.com/acme/sitemap.xml
+Sitemap: https://acme.quosel.app/sitemap.xml
 `,
     );
   });

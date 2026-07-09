@@ -26,9 +26,8 @@ export function DataTable({ onRowClick, onDelete }: { onRowClick?: (id: string) 
   return (
     <div className="flex flex-wrap gap-4">
       {data.websites.map((website) => {
-        const { styles, logoUrl, heroImageUrl } = website;
+        const { styles, logoUrl, heroImageUrl, domain } = website;
 
-        const domain = `sites.quosel.com/${website.slug}`;
         const publicEditor = `${window.location.origin}/public-editor/${website.editToken}`;
 
         return (

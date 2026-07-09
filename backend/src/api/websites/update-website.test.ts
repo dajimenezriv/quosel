@@ -20,7 +20,7 @@ describe('update-website', () => {
   const getByIdMock = deepMocked(Websites.getById);
 
   beforeEach(() => {
-    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://sites.quosel.com/slug' });
+    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://slug.quosel.app' });
     deepMocked(R2.list).mockResolvedValue([]);
   });
 

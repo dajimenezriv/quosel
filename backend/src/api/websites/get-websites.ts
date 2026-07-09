@@ -9,6 +9,7 @@ const WebsiteSchema = z.object({
   userId: z.string(),
   name: z.string(),
   slug: z.string(),
+  domain: z.string(),
   editToken: z.string(),
   logoUrl: z.string(),
   heroImageUrl: z.string(),

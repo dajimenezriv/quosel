@@ -28,7 +28,7 @@ const BodySchema = z
         return path === -1 ? withoutScheme : withoutScheme.slice(0, path);
       })
       .refine(isHost, { message: 'Enter a valid domain like example.com' })
-      .refine((host) => !host.endsWith('quosel.com'), { message: 'That domain is reserved' }),
+      .refine((host) => !host.endsWith('quosel.app') && !host.endsWith('quosel.com'), { message: 'That domain is reserved' }),
   })
   .openapi('SetWebsiteDomain');
 
@@ -69,7 +69,7 @@ export const setWebsiteDomain: RouteHandler<typeof setWebsiteDomainRoute, { Vari
 
   // Drop the previous custom mapping if the host changed.
   // Default domains have no KV entry.
-  const wasDefault = website.domain === `https://sites.quosel.com/${website.slug}`;
+  const wasDefault = website.domain === Websites.defaultDomain(website.slug);
   const previousHost = website.domain.replace(/^https?:\/\//, '');
   if (!wasDefault && previousHost !== host) await KV.delete(previousHost);
 

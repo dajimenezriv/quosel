@@ -5,8 +5,8 @@ export const r2 = new S3Client({
   region: 'auto',
   endpoint: `https://${env.CLOUDFLARE_ACCOUNT_ID}.r2.cloudflarestorage.com`,
   credentials: {
-    accessKeyId: env.R2_ACCESS_KEY_ID,
-    secretAccessKey: env.R2_SECRET_ACCESS_KEY,
+    accessKeyId: env.CLOUDFLARE_R2_ACCESS_KEY_ID,
+    secretAccessKey: env.CLOUDFLARE_R2_SECRET_ACCESS_KEY,
   },
 });
 
@@ -16,7 +16,7 @@ export class R2 {
 
     await r2.send(
       new PutObjectCommand({
-        Bucket: env.R2_BUCKET_NAME,
+        Bucket: env.CLOUDFLARE_R2_BUCKET_NAME,
         Key,
         Body: new Uint8Array(buffer),
         ContentType: file.type,
@@ -29,7 +29,7 @@ export class R2 {
   }
 
   static async delete(Key: string) {
-    await r2.send(new DeleteObjectCommand({ Bucket: env.R2_BUCKET_NAME, Key }));
+    await r2.send(new DeleteObjectCommand({ Bucket: env.CLOUDFLARE_R2_BUCKET_NAME, Key }));
   }
 
   static async deleteMany(keys: string[]) {
@@ -37,12 +37,12 @@ export class R2 {
 
     // Maax: 1000 keys
     const Objects = keys.map((Key) => ({ Key }));
-    await r2.send(new DeleteObjectsCommand({ Bucket: env.R2_BUCKET_NAME, Delete: { Objects } }));
+    await r2.send(new DeleteObjectsCommand({ Bucket: env.CLOUDFLARE_R2_BUCKET_NAME, Delete: { Objects } }));
   }
 
   static async list(Prefix: string) {
     // Maax: 1000 keys
-    const res = await r2.send(new ListObjectsV2Command({ Bucket: env.R2_BUCKET_NAME, Prefix }));
+    const res = await r2.send(new ListObjectsV2Command({ Bucket: env.CLOUDFLARE_R2_BUCKET_NAME, Prefix }));
 
     if (!res.Contents) return [];
 
