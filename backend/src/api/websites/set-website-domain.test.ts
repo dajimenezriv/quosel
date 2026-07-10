@@ -29,6 +29,13 @@ describe('set-website-domain', () => {
     expect(res.status).toBe(400);
   });
 
+  it('should return 400 if the domain is a bare apex without a subdomain', async () => {
+    // When
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'example.com' }));
+    // Then
+    expect(res.status).toBe(400);
+  });
+
   it('should return 400 if the domain is a reserved quosel.app host', async () => {
     // When
     const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'acme.quosel.app' }));
@@ -40,38 +47,38 @@ describe('set-website-domain', () => {
     // Given
     getByIdMock.mockResolvedValue(null);
     // When
-    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'example.com' }));
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'www.example.com' }));
     // Then
     await expectError(res, 404, 'Website not found');
   });
 
   it('should return 204, store the domain and map the host to the slug in KV', async () => {
     // When
-    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'example.com' }));
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'www.example.com' }));
     // Then
     expect(res.status).toBe(204);
-    calls(Websites.update).toStrictEqual(['websiteId', { domain: 'https://example.com' }]);
-    calls(KV.put).toStrictEqual(['example.com', 'slug']);
+    calls(Websites.update).toStrictEqual(['websiteId', { domain: 'https://www.example.com' }]);
+    calls(KV.put).toStrictEqual(['www.example.com', 'slug']);
     calls(KV.delete).toStrictEqual([]);
   });
 
   it('should normalize a scheme/path in the input down to the bare host', async () => {
     // When
-    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'HTTPS://Example.com/foo' }));
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'HTTPS://WWW.Example.com/foo' }));
     // Then
     expect(res.status).toBe(204);
-    calls(Websites.update).toStrictEqual(['websiteId', { domain: 'https://example.com' }]);
-    calls(KV.put).toStrictEqual(['example.com', 'slug']);
+    calls(Websites.update).toStrictEqual(['websiteId', { domain: 'https://www.example.com' }]);
+    calls(KV.put).toStrictEqual(['www.example.com', 'slug']);
   });
 
   it('should drop the previous custom host mapping when the domain changes', async () => {
     // Given
-    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://old.com' });
+    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://www.old.com' });
     // When
-    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'example.com' }));
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'www.example.com' }));
     // Then
     expect(res.status).toBe(204);
-    calls(KV.put).toStrictEqual(['example.com', 'slug']);
-    calls(KV.delete).toStrictEqual('old.com');
+    calls(KV.put).toStrictEqual(['www.example.com', 'slug']);
+    calls(KV.delete).toStrictEqual('www.old.com');
   });
 });

@@ -87,4 +87,12 @@ describe('create-website', () => {
     await expectError(res, 403, 'You cannot create more websites. Contact hello@quosel.com if you need more.');
     calls(Websites.create).toStrictEqual([]);
   });
+
+  it('should return 400 if the slug is reserved', async () => {
+    // When
+    const res = await app.request('/websites', postRequest({ name: 'Website', slug: 'www' }));
+    // Then
+    expect(res.status).toBe(400);
+    calls(Websites.create).toStrictEqual([]);
+  });
 });

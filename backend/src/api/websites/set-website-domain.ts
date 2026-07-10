@@ -6,12 +6,16 @@ import { KV } from '@/infra/cloudflare/kv';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
-// A bare hostname (no scheme, no path): at least two dot-separated labels, each a run of
-// letters/digits/hyphens that neither starts nor ends with a hyphen.
-function isHost(value: string): boolean {
+// The host the customer points at us with a CNAME. It must be a subdomain (e.g.
+// www.example.com), never a bare apex (example.com): an apex can't hold a CNAME,
+// so there'd be nothing to point at customers.quosel.app. We store and key KV on
+// this exact host so it matches the Host header the worker sees. At least three
+// dot-separated labels, each a run of letters/digits/hyphens that neither starts
+// nor ends with a hyphen.
+function isSubdomainHost(value: string): boolean {
   if (value.length > 253) return false;
   const labels = value.split('.');
-  if (labels.length < 2) return false;
+  if (labels.length < 3) return false;
   return labels.every((label) => /^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$/.test(label));
 }
 
@@ -27,7 +31,7 @@ const BodySchema = z
         const path = withoutScheme.indexOf('/');
         return path === -1 ? withoutScheme : withoutScheme.slice(0, path);
       })
-      .refine(isHost, { message: 'Enter a valid domain like example.com' })
+      .refine(isSubdomainHost, { message: "Enter a subdomain like www.example.com (a bare domain such as example.com can't point to us with a CNAME)" })
       .refine((host) => !host.endsWith('quosel.app') && !host.endsWith('quosel.com'), { message: 'That domain is reserved' }),
   })
   .openapi('SetWebsiteDomain');

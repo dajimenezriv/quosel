@@ -4,9 +4,16 @@ import { jsonResponse, setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
 
+// A website slug becomes `{slug}.quosel.app`, so it must not collide with a
+// subdomain the platform already uses (see cloudflare.md).
+const RESERVED_SLUGS = new Set(['www', 'customers', 'fallback']);
+
 const BodySchema = z.object({
   name: z.string(),
-  slug: z.string().regex(/^[a-z0-9-]+$/),
+  slug: z
+    .string()
+    .regex(/^[a-z0-9-]+$/)
+    .refine((slug) => !RESERVED_SLUGS.has(slug), { message: 'That slug is reserved' }),
 });
 
 const ResponseSchema = z.object({ id: z.string() });
