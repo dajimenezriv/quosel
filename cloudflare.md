@@ -24,6 +24,7 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     | send.quosel.com                    | MX    | feedback-smtp.eu-west-1.amazonses.com                                                         | DNS only     | 1 hr | 10       |
     | cf2024-1._domainkey.quosel.com     | TXT   | "v=DKIM1; h=sha256; k=rsa; p=..."                                                             | DNS only     | Auto | —        |
     | _dmarc.quosel.com                  | TXT   | "v=DMARC1; p=none; rua=mailto:918046d4a2764c64afb7471b3ca2a29f@dmarc-reports.cloudflare.net;" | DNS only     | Auto | —        |
+    | quosel.com                         | TXT   | "google-site-verification=2zkAsEj6HaI1W2Gl8q5lTuLwncElfuZdNkCd1eZ6LvQ"                        | DNS only     | 1 hr | -        |
     | quosel.com                         | TXT   | "v=spf1 include:_spf.mx.cloudflare.net ~all"                                                  | DNS only     | Auto | —        |
     | _railway-verify.backend.quosel.com | TXT   | "railway-verify=a91507a8153aa2819d0a80ce07de044349bc70a4a0b5134b356a39a9e474bf0a"             | DNS only     | 1 hr | —        |
     | resend._domainkey.quosel.com       | TXT   | "p=..."                                                                                       | DNS only     | 1 hr | —        |
