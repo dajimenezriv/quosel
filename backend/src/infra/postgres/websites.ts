@@ -3,7 +3,7 @@ import { ApiError } from '@/core/api/errors';
 import type { UserId } from '@/core/types';
 import { claudeStyles, emptyBlocks, slugify } from '@quosel/core/templates';
 import { prisma } from './client';
-import { Prisma } from './prisma/client';
+import type { Prisma } from './prisma/client';
 
 export class Websites {
   static randomSlug(name: string) {
