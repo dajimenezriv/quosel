@@ -31,7 +31,9 @@ const BodySchema = z
         const path = withoutScheme.indexOf('/');
         return path === -1 ? withoutScheme : withoutScheme.slice(0, path);
       })
-      .refine(isSubdomainHost, { message: "Enter a subdomain like www.example.com (a bare domain such as example.com can't point to us with a CNAME)" })
+      .refine(isSubdomainHost, {
+        message: "Enter a subdomain like www.example.com (a bare domain such as example.com can't point to us with a CNAME)",
+      })
       .refine((host) => !host.endsWith('quosel.app') && !host.endsWith('quosel.com'), { message: 'That domain is reserved' }),
   })
   .openapi('SetWebsiteDomain');
