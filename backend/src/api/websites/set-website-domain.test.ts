@@ -1,17 +1,17 @@
 import { app } from '@/app';
 import { KV } from '@/infra/cloudflare/kv';
 import { Websites } from '@/infra/postgres/websites';
-import { calls, deepMocked, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
+import { calls, deepSpyOn, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
 
-vi.mock(import('@/infra/postgres/websites'));
 vi.mock(import('@/infra/cloudflare/kv'));
 
 describe('set-website-domain', () => {
   mockAuthMiddleware();
 
-  const getByIdMock = deepMocked(Websites.getById);
+  const getByIdMock = deepSpyOn(Websites, 'getById');
 
   beforeEach(() => {
+    deepSpyOn(Websites, 'update').mockResolvedValue({});
     getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://slug.quosel.app' });
   });
 
