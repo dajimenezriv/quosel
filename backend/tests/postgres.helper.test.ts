@@ -1,5 +1,6 @@
 import type { UserId } from '@/core/types';
 import { prisma } from '@/infra/postgres/client';
+import { Websites } from '@/infra/postgres/websites';
 
 export async function createMockUser() {
   const user = await prisma.user.create({
@@ -17,6 +18,10 @@ export async function createMockUser() {
   });
 
   return { ...user, id: user.id as UserId };
+}
+
+export async function createMockWebsite(userId: UserId) {
+  return await Websites.create(userId, crypto.randomUUID(), crypto.randomUUID());
 }
 
 export async function createMockImage(userId: UserId) {

@@ -46,7 +46,7 @@ export function SafariDevice({ domain, data }: Props) {
         {/* Address bar — pill, spans available space */}
         <div
           className="flex min-w-0 flex-1 cursor-pointer items-center justify-center px-2"
-          onClick={() => window.open(data.canonicalUrl, '_blank', 'noopener,noreferrer')}>
+          onClick={() => window.open(data.domain, '_blank', 'noopener,noreferrer')}>
           <div
             className="flex w-full items-center gap-2 px-3 py-1.25"
             style={{

@@ -8,14 +8,14 @@ function DocumentHead({
   data,
   title,
   description,
-  canonicalUrl,
+  domain,
   imageUrl,
   jsonLd,
 }: {
   data: TemplateData;
   title: string;
   description: string;
-  canonicalUrl: string;
+  domain: string;
   imageUrl: string;
   jsonLd: string;
 }) {
@@ -25,13 +25,13 @@ function DocumentHead({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>{title}</title>
       {description && <meta name="description" content={description} />}
-      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      {domain && <link rel="canonical" href={domain} />}
       {data.blocks.logoUrl && <link rel="icon" href={data.blocks.logoUrl} />}
 
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       {description && <meta property="og:description" content={description} />}
-      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+      {domain && <meta property="og:url" content={domain} />}
       {imageUrl && <meta property="og:image" content={imageUrl} />}
 
       <meta name="twitter:card" content="summary_large_image" />
@@ -64,7 +64,7 @@ export function Template({ data }: { data: TemplateData }) {
         data={data}
         title={title}
         description={description}
-        canonicalUrl={data.canonicalUrl}
+        domain={data.domain}
         imageUrl={data.blocks.homepage.hero.imageUrl}
         jsonLd={jsonLd}
       />
@@ -78,7 +78,7 @@ export function Template({ data }: { data: TemplateData }) {
 export function ServicePageTemplate({ data, page }: { data: TemplateData; page: ServicePage }) {
   const title = page.metaTitle || page.h1;
   const description = page.metaDescription;
-  const canonicalUrl = data.canonicalUrl ? `${data.canonicalUrl}/${page.slug}` : '';
+  const domain = data.domain ? `${data.domain}/${page.slug}` : '';
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -96,8 +96,8 @@ export function ServicePageTemplate({ data, page }: { data: TemplateData; page: 
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: data.blocks.name, item: data.canonicalUrl },
-          { '@type': 'ListItem', position: 2, name: page.h1, item: canonicalUrl },
+          { '@type': 'ListItem', position: 1, name: data.blocks.name, item: data.domain },
+          { '@type': 'ListItem', position: 2, name: page.h1, item: domain },
         ],
       },
     ],
@@ -105,14 +105,7 @@ export function ServicePageTemplate({ data, page }: { data: TemplateData; page: 
 
   return (
     <html lang="en" className="scroll-smooth">
-      <DocumentHead
-        data={data}
-        title={title}
-        description={description}
-        canonicalUrl={canonicalUrl}
-        imageUrl={page.heroImageUrl}
-        jsonLd={jsonLd}
-      />
+      <DocumentHead data={data} title={title} description={description} domain={domain} imageUrl={page.heroImageUrl} jsonLd={jsonLd} />
       <body>
         <ServicePageBody data={data} page={page} />
       </body>

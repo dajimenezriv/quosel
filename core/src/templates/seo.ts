@@ -8,7 +8,7 @@ function escapeXml(value: string): string {
 // service pages hang off it with their flat slug. No <lastmod>: we don't track real per-page
 // change times, and a uniform "today" on every publish is an inaccurate freshness signal.
 export function renderSitemap(data: TemplateData): string {
-  const base = data.canonicalUrl;
+  const base = data.domain;
   const locs = [base, ...data.blocks.pages.map((page) => `${base}/${page.slug}`)];
   const urls = locs.map((loc) => `  <url><loc>${escapeXml(loc)}</loc></url>`).join('\n');
 
@@ -23,6 +23,6 @@ export function renderRobots(data: TemplateData): string {
   return `User-agent: *
 Allow: /
 
-Sitemap: ${data.canonicalUrl}/sitemap.xml
+Sitemap: ${data.domain}/sitemap.xml
 `;
 }

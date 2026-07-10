@@ -5,6 +5,12 @@
   "compatibility_date": "2026-06-13",
   "workers_dev": false,
   "preview_urls": false,
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+    },
+  },
   "r2_buckets": [
     {
       "binding": "SITES",

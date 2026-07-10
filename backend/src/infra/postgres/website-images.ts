@@ -5,7 +5,7 @@ import type { Prisma } from './prisma/client';
 
 export class WebsiteImages {
   static getUrl(imageId: string) {
-    return `${env.R2_PUBLIC_URL}/images/${imageId}`;
+    return `${env.CLOUDFLARE_R2_PUBLIC_URL}/images/${imageId}`;
   }
 
   static async getById(imageId: string) {

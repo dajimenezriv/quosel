@@ -14,7 +14,7 @@ describe('website-images', async () => {
       // When
       const url = WebsiteImages.getUrl('imageId');
       // Then
-      expect(url).toBe('https://r2_public_url/images/imageId');
+      expect(url).toBe('https://cloudflare_r2_public_url/images/imageId');
     });
   });
 

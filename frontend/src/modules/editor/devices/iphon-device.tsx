@@ -107,7 +107,7 @@ export function IPhoneDevice({ domain, data }: Props) {
             {/* Address bar */}
             <div
               className="flex cursor-pointer items-center px-4 py-2"
-              onClick={() => window.open(data.canonicalUrl, '_blank', 'noopener,noreferrer')}>
+              onClick={() => window.open(data.domain, '_blank', 'noopener,noreferrer')}>
               <div
                 className="flex flex-1 items-center justify-center gap-2 px-3 py-2"
                 style={{

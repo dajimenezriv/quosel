@@ -9,7 +9,6 @@ vi.mock(import('@/infra/cloudflare/r2'));
 
 const VALID_BODY = {
   name: 'name',
-  slug: 'slug',
   context: 'context',
   blocks: emptyBlocks,
   styles: claudeStyles,
@@ -21,7 +20,7 @@ describe('update-website', () => {
   const getByIdMock = deepMocked(Websites.getById);
 
   beforeEach(() => {
-    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug' });
+    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://slug.quosel.app' });
     deepMocked(R2.list).mockResolvedValue([]);
   });
 

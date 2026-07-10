@@ -31,6 +31,12 @@ export function deepMocked<T extends (...args: any[]) => unknown>(fn: T) {
   return vi.mocked(fn) as MockedFunction<(...args: Parameters<T>) => DeepPartial<ReturnType<T>>>;
 }
 
+export function deepSpyOn<T extends object, K extends keyof T>(object: T, method: K) {
+  return vi.spyOn(object, method as any) as unknown as T[K] extends (...args: any[]) => unknown
+    ? MockedFunction<(...args: Parameters<T[K]>) => DeepPartial<ReturnType<T[K]>>>
+    : never;
+}
+
 export function mockAuthMiddleware() {
   beforeEach(() => {
     vi.spyOn(Sessions, 'getById').mockResolvedValue({ user: { id: 'userId' } } as any);

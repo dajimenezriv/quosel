@@ -23,18 +23,18 @@ jobs:
 
       - name: Dump and upload to R2
         env:
-          DATABASE_URL: ${{ secrets.RAILWAY_DATABASE_URL }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
           AWS_REQUEST_CHECKSUM_CALCULATION: WHEN_REQUIRED
           AWS_RESPONSE_CHECKSUM_VALIDATION: WHEN_REQUIRED
-          R2_ACCOUNT_ID: ${{ vars.R2_ACCOUNT_ID }}
-          R2_BUCKET_NAME: ${{ vars.R2_BUCKET_NAME }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_R2_BUCKET_NAME: ${{ vars.CLOUDFLARE_R2_BUCKET_NAME }}
+          DATABASE_URL: ${{ secrets.RAILWAY_DATABASE_URL }}
         run: |
           set -euo pipefail
 
           key="backups/quosel-$(date -u +%Y-%m-%dT%H-%M-%SZ).sql.gz"
-          endpoint="https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com"
+          endpoint="https://$CLOUDFLARE_ACCOUNT_ID.r2.cloudflarestorage.com"
 
           pg_dump "$DATABASE_URL" \
             --no-owner \
@@ -42,7 +42,7 @@ jobs:
             --clean \
             --if-exists \
             | gzip \
-            | aws s3 cp - "s3://$R2_BUCKET_NAME/$key" \
+            | aws s3 cp - "s3://$CLOUDFLARE_R2_BUCKET_NAME/$key" \
                 --endpoint-url "$endpoint" \
                 --region auto \
                 --content-type application/gzip
