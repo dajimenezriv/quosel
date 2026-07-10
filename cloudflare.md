@@ -39,6 +39,8 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
 !!! note "DNS > Records"
     | Name                           | Type | Content                                      | Proxy status | TTL  | Priority |
     | ------------------------------ | ---- | -------------------------------------------- | ------------ | ---- | -------- |
+    | customers.quosel.app           | AAAA | 100::                                        | Proxied      | Auto | —        |
+    | fallback.quosel.app            | AAAA | 100::                                        | Proxied      | Auto | —        |
     | *.quosel.app                   | AAAA | 100::                                        | Proxied      | Auto | —        |
     | quosel.app                     | AAAA | 100::                                        | Proxied      | Auto | —        |
     | quosel.app                     | MX   | route3.mx.cloudflare.net                     | DNS only     | Auto | 13       |
@@ -49,11 +51,26 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     | quosel.app                     | TXT  | "v=spf1 include:_spf.mx.cloudflare.net ~all" | DNS only     | Auto | —        |
 
 !!! note "SSL/TLS > Custom hostnames"
+    - Fallback Origin: `fallback.quosel.app` (internal — where SaaS routes after SSL)
+    - CNAME target: `customers.quosel.app` (public — customers point their `www` here)
+    - Redirect domain from `apex` to `www`.
+
+    | Custom hostname | Slug (KV) |
+    | --------------- | --------- |
+    | www.gestelsl.es | gestel    |
+
+
+    | Name                    | Type  | Content                                       |
+    | ----------------------- | ----- | --------------------------------------------- |
+    | www                     | CNAME | customers.quosel.app                          |
+    | _acme-challenge.www     | TXT   | "cASDrHpriGaCpRbJXPqZp0ADC1EnXhOptcn8KVcltug" |
+    | _acme-challenge.www     | TXT   | "FAq_CLLKglAiqBqPcpqPvII6y5MFhXk1A8ynXm8mPdo" |
+    | _cf-custom-hostname.www | TXT   | "bd31bf0b-cf8d-47df-a0ff-2ba052a7e5a3"        |
 
 !!! note "Rules > Overview"
     | Name                              | Match against                      | Action                                                                                     |
     | --------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------ |
-    | Redirect from WWW to root         | URI Full wildcard r"https://www.*" | 301 redirect to wildcard_replace(http.request.full_uri, r"https://www.*", r"https://${1}") |
+    | Redirect from WWW to root         | Hostname equals www.quosel.app     | 301 redirect to https://quosel.com                                                         |
     | Redirect from apex to root domain | Hostname equals quosel.app         | 301 redirect to https://quosel.com                                                         |
 
 ### Registrations
@@ -78,10 +95,9 @@ Uses `wrangler.jsonc`
     | R2 bucket    | SITES   | quosel  |
 
 !!! note "Custom domains and routes"
-    | Name             | Environment | Zone       |
-    | ---------------- | ----------- | ---------- |
-    | \*.quosel.app/\* | Route       | quosel.app |
-
+    | Name  | Environment | Zone       |
+    | ----- | ----------- | ---------- |
+    | \*/\* | Route       | quosel.app |
 
 ### Pages
 
@@ -120,9 +136,9 @@ Uses `wrangler.jsonc`
 Namespace ID (📝 CLOUDFLARE_DOMAINS_KV_NAMESPACE_ID): `788820ad7a3d4664a1441e237c2dd784`
 
 !!! note "KV Pairs"
-    | Key         | Value  |
-    | ----------- | ------ |
-    | gestelsl.es | gestel |
+    | Key             | Value  |
+    | --------------- | ------ |
+    | www.gestelsl.es | gestel |
 
 ## 🛡️ Application security
 
