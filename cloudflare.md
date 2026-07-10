@@ -50,6 +50,9 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     | _dmarc.quosel.app              | TXT  | "v=DMARC1; p=reject; adkim=s; aspf=s"        | DNS only     | Auto | —        |
     | quosel.app                     | TXT  | "v=spf1 include:_spf.mx.cloudflare.net ~all" | DNS only     | Auto | —        |
 
+!!! note "SSL/TLS > Edge certificates"
+    - Always Use HTTPS: ✅
+
 !!! note "SSL/TLS > Custom hostnames"
     - Fallback Origin: `fallback.quosel.app` (internal — where SaaS routes after SSL)
     - CNAME target: `customers.quosel.app` (public — customers point their `www` here)
@@ -77,8 +80,8 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
 
 | Domain     | Status | Auto-renew | Expires      |
 | ---------- | ------ | ---------- | ------------ |
-| quosel.app | Active | True       | Jul 8, 2027  |
-| quosel.com | Active | True       | May 22, 2027 |
+| quosel.app | Active | ✅          | Jul 8, 2027  |
+| quosel.com | Active | ✅          | May 22, 2027 |
 
 ## 🧮 Compute
 
