@@ -1470,6 +1470,40 @@
           "styles"
         ]
       },
+      "WebsiteDomainStatus": {
+        "type": "object",
+        "properties": {
+          "host": {
+            "type": "string"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "none"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "pending"
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "active"
+                ]
+              }
+            ]
+          }
+        },
+        "required": [
+          "host",
+          "status"
+        ]
+      },
       "UpdateWebsite": {
         "type": "object",
         "properties": {
@@ -2804,6 +2838,40 @@
       }
     },
     "/websites/{websiteId}/domain": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebsiteDomainStatus"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
       "put": {
         "parameters": [
           {
