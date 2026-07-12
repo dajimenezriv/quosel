@@ -37,6 +37,8 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
 
 #### quosel.app
 
+Zone ID (📝 CLOUDFLARE_SITES_ZONE_ID): `314b3d224ad87a5b5cb73bebb59b9966`
+
 !!! note "DNS > Records"
     | Name                           | Type | Content                                      | Proxy status | TTL  | Priority |
     | ------------------------------ | ---- | -------------------------------------------- | ------------ | ---- | -------- |
@@ -55,9 +57,7 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     - Always Use HTTPS: ✅
 
 !!! note "SSL/TLS > Custom hostnames"
-    - Fallback Origin: `fallback.quosel.app` (internal — where SaaS routes after SSL)
-    - CNAME target: `customers.quosel.app` (public — customers point their `www` here)
-    - Redirect domain from `apex` to `www`.
+    - Fallback Origin: `fallback.quosel.app`
 
     | Custom hostname | Slug (KV) |
     | --------------- | --------- |
@@ -70,6 +70,11 @@ Account ID (📝 CLOUDFLARE_ACCOUNT_ID): `b3cb2c555e1271b2732cdf8c9ac34afe`
     | _acme-challenge.www     | TXT   | "cASDrHpriGaCpRbJXPqZp0ADC1EnXhOptcn8KVcltug" |
     | _acme-challenge.www     | TXT   | "FAq_CLLKglAiqBqPcpqPvII6y5MFhXk1A8ynXm8mPdo" |
     | _cf-custom-hostname.www | TXT   | "bd31bf0b-cf8d-47df-a0ff-2ba052a7e5a3"        |
+
+
+    In their configuration:
+    - Redirect domain from `apex` to `www`.
+    - Install ssl certificate in their `apex` domain.
 
 !!! note "Rules > Overview"
     | Name                              | Match against                      | Action                                                                                     |
@@ -127,6 +132,12 @@ Uses `wrangler.jsonc`
 
 ### R2 Object Storage
 
+#### Account API Tokens
+
+| Name             | Applied to | Permission          | Status |
+| ---------------- | ---------- | ------------------- | ------ |
+| R2 Account Token | quosel     | Object Read & Write | Active |
+
 #### "quosel" bucket
 
 - backups
@@ -162,6 +173,11 @@ Namespace ID (📝 CLOUDFLARE_DOMAINS_KV_NAMESPACE_ID): `788820ad7a3d4664a1441e2
 
 ### Account API tokens
 
-- Token: `Token`
-- Permissions: `Pages Write`, `Workers KV Storage Write`
-- .env: 📝 `CLOUDFLARE_API_TOKEN = "cfat_*"`
+!!! note "Token"
+    .env: 📝 `CLOUDFLARE_API_TOKEN = "cfat_*"`
+
+    | Scope      | Policy               | Permission  |
+    | ---------- | -------------------- | ----------- |
+    | quosel.app | SSL and Certificates | Write       |
+    | account    | Pages                | Write       |
+    | account    | Workers KV Storage   | Read, Write |
