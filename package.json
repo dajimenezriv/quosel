@@ -1,6 +1,7 @@
 {
   "name": "quosel",
   "private": true,
+  "packageManager": "pnpm@11.11.0",
   "scripts": {
     "docker": "docker build -f backend/Dockerfile -t quosel-backend-test .",
     "check-deps": "pnpm outdated -r",
