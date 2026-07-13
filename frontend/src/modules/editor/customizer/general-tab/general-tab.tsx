@@ -110,7 +110,9 @@ export function GeneralTab({ user, data }: Props) {
         }>
         <Input value={data.domain.replace(/^https?:\/\//, '')} disabled readOnly />
       </Field>
+
       {domainOpen && <SetDomain websiteId={data.id} currentDomain={data.domain} close={() => setDomainOpen(false)} />}
+
       <Field label="AI Context">
         <Textarea
           value={data.context}
