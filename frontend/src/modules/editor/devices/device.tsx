@@ -9,13 +9,10 @@ interface Props {
 }
 
 export function Device({ website, device }: Props) {
-  let domain = website.domain;
-  if (!website.publishedAt) domain += ' (Not published yet)';
-
   return (
     <>
       <div className="flex flex-1 items-center justify-center p-6">
-        {device === 'laptop' ? <SafariDevice domain={domain} data={website} /> : <IPhoneDevice domain={domain} data={website} />}
+        {device === 'laptop' ? <SafariDevice data={website} /> : <IPhoneDevice data={website} />}
       </div>
     </>
   );

@@ -2,11 +2,10 @@ import type { TemplateData } from '@quosel/core/templates';
 import { ContentFrame } from './utils';
 
 interface Props {
-  domain: string;
   data: TemplateData;
 }
 
-export function IPhoneDevice({ domain, data }: Props) {
+export function IPhoneDevice({ data }: Props) {
   return (
     <div className="flex h-full items-center justify-center">
       {/* Outer phone body */}
@@ -116,7 +115,7 @@ export function IPhoneDevice({ domain, data }: Props) {
                   borderRadius: 10,
                 }}>
                 <span className="flex-1 text-center text-[13px]" style={{ color: '#333' }}>
-                  {domain}
+                  {data.domain}
                 </span>
               </div>
             </div>

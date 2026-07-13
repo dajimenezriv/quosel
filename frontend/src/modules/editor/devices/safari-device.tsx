@@ -2,7 +2,6 @@ import type { TemplateData } from '@quosel/core/templates';
 import { ContentFrame } from './utils';
 
 interface Props {
-  domain: string;
   data: TemplateData;
 }
 
@@ -13,7 +12,7 @@ function Favicon({ logoUrl }: { logoUrl: string }) {
   return <div className="h-4 w-4 shrink-0 rounded-[3px]" style={{ background: '#d0d0d0' }} />;
 }
 
-export function SafariDevice({ domain, data }: Props) {
+export function SafariDevice({ data }: Props) {
   return (
     <div className="flex h-full w-full flex-col overflow-hidden rounded-xl shadow-2xl" style={{ border: '1px solid rgba(0,0,0,0.12)' }}>
       {/* Toolbar */}
@@ -56,7 +55,7 @@ export function SafariDevice({ domain, data }: Props) {
               boxShadow: '0 1px 2px rgba(0,0,0,0.06)',
             }}>
             <span className="flex-1 text-center text-[12px] select-none" style={{ color: '#444', letterSpacing: 0.1 }}>
-              {domain}
+              {data.domain}
             </span>
           </div>
         </div>
