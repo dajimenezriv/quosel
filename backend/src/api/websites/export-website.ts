@@ -3,15 +3,7 @@ import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import {
-  migrateBlocks,
-  renderRobots,
-  renderServicePage,
-  renderSitemap,
-  renderTemplate,
-  type Styles,
-  type TemplateData,
-} from '@quosel/core/templates';
+import { buildSiteFiles, migrateBlocks, type Styles, type TemplateData } from '@quosel/core/templates';
 import { strToU8, zipSync } from 'fflate';
 
 export const exportWebsiteRoute = createRoute({
@@ -44,14 +36,9 @@ export const exportWebsite: RouteHandler<typeof exportWebsiteRoute, { Variables:
   const styles = website.styles as Styles;
   const data: TemplateData = { blocks, styles, domain: website.domain };
 
-  const files: Record<string, Uint8Array> = {
-    'index.html': strToU8(renderTemplate(data)),
-    'sitemap.xml': strToU8(renderSitemap(data)),
-    'robots.txt': strToU8(renderRobots(data)),
-  };
-
-  for (const page of blocks.pages) {
-    files[`${page.slug}.html`] = strToU8(renderServicePage(data, page));
+  const files: Record<string, Uint8Array> = {};
+  for (const { path, content } of buildSiteFiles(data)) {
+    files[path] = strToU8(content);
   }
 
   const zip = zipSync(files);

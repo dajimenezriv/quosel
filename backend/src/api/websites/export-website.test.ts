@@ -46,7 +46,7 @@ describe('export-website', () => {
     expect(res.headers.get('Content-Disposition')).toBe('attachment; filename="slug.zip"');
 
     const zip = unzipSync(new Uint8Array(await res.arrayBuffer()));
-    expect(Object.keys(zip)).toStrictEqual(['index.html', 'sitemap.xml', 'robots.txt', 'service.html']);
+    expect(Object.keys(zip)).toStrictEqual(['index.html', 'service.html', 'sitemap.xml', 'robots.txt']);
     expect(new TextDecoder().decode(zip['index.html'])).toContain('<!DOCTYPE html>');
   });
 });
