@@ -16,7 +16,7 @@ export { slugify, slugifyInput } from './core/utils';
 export { renderTemplate, renderServicePage } from './render';
 export { renderSitemap, renderRobots } from './seo';
 export { buildSiteFiles, type SiteFile } from './files';
-export { migrateBlocks, CURRENT_SCHEMA_VERSION } from './migrations';
+export { migrateBlocks } from './migrations';
 export { HomepageBody } from './homepage-body';
 export {
   type TemplateData,
