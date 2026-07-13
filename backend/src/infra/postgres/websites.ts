@@ -35,6 +35,10 @@ export class Websites {
     return await prisma.website.findFirst({ where: { editToken } });
   }
 
+  static async getByDomain(domain: string) {
+    return await prisma.website.findUnique({ where: { domain } });
+  }
+
   static async create(userId: UserId, name: string, slug: string) {
     try {
       return await prisma.website.create({

@@ -2,6 +2,7 @@ import { ApiError } from '@/core/api/errors';
 import { requireAuth, type AuthVariables } from '@/core/api/middleware/auth';
 import { setupResponses } from '@/core/api/utils';
 import { logger } from '@/core/logger';
+import { CustomHostnames } from '@/infra/cloudflare/custom-hostnames';
 import { KV } from '@/infra/cloudflare/kv';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
@@ -63,7 +64,14 @@ export const setWebsiteDomain: RouteHandler<typeof setWebsiteDomainRoute, { Vari
   const website = await Websites.getById(userId, websiteId);
   if (!website) throw new ApiError(404, 'Website not found');
 
-  await Websites.update(websiteId, { domain: `https://${host}` });
+  const domain = `https://${host}`;
+
+  const owner = await Websites.getByDomain(domain);
+  if (owner && owner.id !== websiteId) throw new ApiError(409, 'That domain is already in use.');
+
+  logger.info('Add custom hostname', { host });
+
+  await CustomHostnames.create(host);
 
   logger.info('Add slug to workers KV', {
     host,
@@ -73,11 +81,16 @@ export const setWebsiteDomain: RouteHandler<typeof setWebsiteDomainRoute, { Vari
 
   await KV.put(host, website.slug);
 
+  await Websites.update(websiteId, { domain });
+
   // Drop the previous custom mapping if the host changed.
-  // Default domains have no KV entry.
+  // Default domains have no KV entry or custom hostname.
   const wasDefault = website.domain === Websites.defaultDomain(website.slug);
   const previousHost = website.domain.replace(/^https?:\/\//, '');
-  if (!wasDefault && previousHost !== host) await KV.delete(previousHost);
+  if (!wasDefault && previousHost !== host) {
+    await KV.delete(previousHost);
+    await CustomHostnames.delete(previousHost);
+  }
 
   return c.body(null, 204);
 };

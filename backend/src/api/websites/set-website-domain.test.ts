@@ -1,18 +1,22 @@
 import { app } from '@/app';
+import { CustomHostnames } from '@/infra/cloudflare/custom-hostnames';
 import { KV } from '@/infra/cloudflare/kv';
 import { Websites } from '@/infra/postgres/websites';
 import { calls, deepSpyOn, expectError, mockAuthMiddleware, putRequest } from '@/tests/utils.helper.test';
 
 vi.mock(import('@/infra/cloudflare/kv'));
+vi.mock(import('@/infra/cloudflare/custom-hostnames'));
 
 describe('set-website-domain', () => {
   mockAuthMiddleware();
 
   const getByIdMock = deepSpyOn(Websites, 'getById');
+  const getByDomainMock = deepSpyOn(Websites, 'getByDomain');
 
   beforeEach(() => {
     deepSpyOn(Websites, 'update').mockResolvedValue({});
     getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://slug.quosel.app' });
+    getByDomainMock.mockResolvedValue(null);
   });
 
   it('should return 401 if session is not provided', async () => {
@@ -52,14 +56,41 @@ describe('set-website-domain', () => {
     await expectError(res, 404, 'Website not found');
   });
 
+  it('should return 409 if the domain is already taken by another website', async () => {
+    // Given
+    getByDomainMock.mockResolvedValue({ id: 'otherWebsiteId' });
+    // When
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'www.example.com' }));
+    // Then
+    await expectError(res, 409, 'That domain is already in use.');
+    calls(CustomHostnames.create).toStrictEqual([]);
+    calls(Websites.update).toStrictEqual([]);
+    calls(KV.put).toStrictEqual([]);
+  });
+
+  it('should allow re-saving the domain this website already has', async () => {
+    // Given
+    getByIdMock.mockResolvedValue({ id: 'websiteId', slug: 'slug', domain: 'https://www.example.com' });
+    getByDomainMock.mockResolvedValue({ id: 'websiteId' });
+    // When
+    const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'www.example.com' }));
+    // Then
+    expect(res.status).toBe(204);
+    calls(KV.put).toStrictEqual(['www.example.com', 'slug']);
+    calls(KV.delete).toStrictEqual([]);
+    calls(CustomHostnames.delete).toStrictEqual([]);
+  });
+
   it('should return 204, store the domain and map the host to the slug in KV', async () => {
     // When
     const res = await app.request('/websites/websiteId/domain', putRequest({ domain: 'www.example.com' }));
     // Then
     expect(res.status).toBe(204);
+    calls(CustomHostnames.create).toStrictEqual('www.example.com');
     calls(Websites.update).toStrictEqual(['websiteId', { domain: 'https://www.example.com' }]);
     calls(KV.put).toStrictEqual(['www.example.com', 'slug']);
     calls(KV.delete).toStrictEqual([]);
+    calls(CustomHostnames.delete).toStrictEqual([]);
   });
 
   it('should normalize a scheme/path in the input down to the bare host', async () => {
@@ -80,5 +111,6 @@ describe('set-website-domain', () => {
     expect(res.status).toBe(204);
     calls(KV.put).toStrictEqual(['www.example.com', 'slug']);
     calls(KV.delete).toStrictEqual('www.old.com');
+    calls(CustomHostnames.delete).toStrictEqual('www.old.com');
   });
 });

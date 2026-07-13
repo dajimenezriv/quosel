@@ -4,8 +4,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import type { Me } from '@/old/auth';
 import { produce } from 'immer';
+import { useState } from 'react';
 import { ImageField } from '../image-field';
 import { Field, Subgroup } from '../utils';
+import { SetDomain } from './set-domain';
 
 interface Props {
   user: Me | null;
@@ -14,6 +16,7 @@ interface Props {
 
 export function GeneralTab({ user, data }: Props) {
   const updateDraft = useEditorStore((s) => s.updateDraft);
+  const [domainOpen, setDomainOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-4">
@@ -98,6 +101,18 @@ export function GeneralTab({ user, data }: Props) {
       <Field label="Slug">
         <Input value={data.slug} disabled readOnly />
       </Field>
+      <Field
+        label="Custom domain"
+        action={
+          <button onClick={() => setDomainOpen(true)} className="text-primary cursor-pointer text-xs font-medium">
+            Manage
+          </button>
+        }>
+        <Input value={data.domain.replace(/^https?:\/\//, '')} disabled readOnly />
+      </Field>
+
+      {domainOpen && <SetDomain websiteId={data.id} currentDomain={data.domain} close={() => setDomainOpen(false)} />}
+
       <Field label="AI Context">
         <Textarea
           value={data.context}

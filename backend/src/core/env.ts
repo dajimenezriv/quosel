@@ -6,6 +6,7 @@ const EnvSchema = z.object({
   CLOUDFLARE_ACCOUNT_ID: z.string().min(1),
   CLOUDFLARE_API_TOKEN: z.string().min(1),
   CLOUDFLARE_DOMAINS_KV_NAMESPACE_ID: z.string().min(1),
+  CLOUDFLARE_SITES_ZONE_ID: z.string().min(1),
   CLOUDFLARE_R2_ACCESS_KEY_ID: z.string().min(1),
   CLOUDFLARE_R2_BUCKET_NAME: z.string().min(1),
   CLOUDFLARE_R2_PUBLIC_URL: z.url(),
