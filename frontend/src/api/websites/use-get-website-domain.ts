@@ -1,8 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
 import { client } from '../client';
-import type { components } from '../schema';
-
-export type WebsiteDomainStatus = components['schemas']['WebsiteDomainStatus'];
 
 export function useGetWebsiteDomain(websiteId: string) {
   return useQuery({
