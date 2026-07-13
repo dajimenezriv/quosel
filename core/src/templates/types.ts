@@ -1,4 +1,44 @@
-import z from 'zod';
+import { z } from 'zod';
+
+export const BUSINESS_TYPES = [
+  'LocalBusiness',
+  'Restaurant',
+  'CafeOrCoffeeShop',
+  'BarOrPub',
+  'Bakery',
+  'Store',
+  'HairSalon',
+  'BeautySalon',
+  'HealthAndBeautyBusiness',
+  'MedicalClinic',
+  'Dentist',
+  'AutoRepair',
+  'ProfessionalService',
+] as const;
+
+export const WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'] as const;
+export type Weekday = (typeof WEEKDAYS)[number];
+
+export type Address = z.infer<typeof addressSchema>;
+const addressSchema = z.object({
+  street: z.string().default(''),
+  locality: z.string().default(''),
+  region: z.string().default(''),
+  postalCode: z.string().default(''),
+  country: z.string().default(''),
+});
+
+export type Geo = z.infer<typeof geoSchema>;
+const geoSchema = z.object({
+  latitude: z.string().default(''),
+  longitude: z.string().default(''),
+});
+
+export type OpeningHours = z.infer<typeof openingHoursSchema>;
+const openingHoursSchema = z.object({
+  days: z.array(z.enum(WEEKDAYS)),
+  intervals: z.array(z.object({ opens: z.string(), closes: z.string() })).default([]),
+});
 
 export type HeroBlock = z.infer<typeof heroBlockSchema>;
 const heroBlockSchema = z.object({
@@ -119,15 +159,10 @@ const locationBlockSchema = z.object({
     .default([]),
   schedule: z
     .object({
-      title: z.string(),
-      items: z.array(
-        z.object({
-          label: z.string(),
-          value: z.string(),
-        }),
-      ),
+      title: z.string().default('Schedule'),
+      closedLabel: z.string().default('Closed'),
     })
-    .default({ title: '', items: [] }),
+    .default({ title: 'Schedule', closedLabel: 'Closed' }),
   mapUrl: z.string().default(''),
   ctaText: z.string(),
   ctaLink: z.string(),
@@ -186,9 +221,15 @@ const homepageSchema = z.object({
 
 export type Blocks = z.infer<typeof blocksSchema>;
 export const blocksSchema = z.object({
-  schemaVersion: z.literal(5),
+  schemaVersion: z.literal(6),
   name: z.string(),
-  address: z.string().default(''),
+  businessType: z.enum(BUSINESS_TYPES).default('LocalBusiness'),
+  address: addressSchema.default({ street: '', locality: '', region: '', postalCode: '', country: '' }),
+  geo: geoSchema.default({ latitude: '', longitude: '' }),
+  hours: z.array(openingHoursSchema).default([]),
+  // Third-party profiles for the same business (Instagram, TripAdvisor, Facebook, Yelp)
+  sameAs: z.array(z.string()).default([]),
+  priceRange: z.string().default(''),
   phone: z.string().default(''),
   metaTitle: z.string().default(''),
   metaDescription: z.string().default(''),
@@ -226,5 +267,5 @@ export interface TemplateData {
 }
 
 export interface ExtendedTemplateData extends TemplateData {
-  homeUrl: string;
+  formattedAddress: string;
 }

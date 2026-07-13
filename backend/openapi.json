@@ -77,13 +77,134 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  5
+                  6
                 ]
               },
               "name": {
                 "type": "string"
               },
+              "businessType": {
+                "type": "string",
+                "enum": [
+                  "LocalBusiness",
+                  "Restaurant",
+                  "CafeOrCoffeeShop",
+                  "BarOrPub",
+                  "Bakery",
+                  "Store",
+                  "HairSalon",
+                  "BeautySalon",
+                  "HealthAndBeautyBusiness",
+                  "MedicalClinic",
+                  "Dentist",
+                  "AutoRepair",
+                  "ProfessionalService"
+                ],
+                "default": "LocalBusiness"
+              },
               "address": {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "locality": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "region": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "postalCode": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "country": {
+                    "type": "string",
+                    "default": ""
+                  }
+                },
+                "default": {
+                  "street": "",
+                  "locality": "",
+                  "region": "",
+                  "postalCode": "",
+                  "country": ""
+                }
+              },
+              "geo": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "default": ""
+                  }
+                },
+                "default": {
+                  "latitude": "",
+                  "longitude": ""
+                }
+              },
+              "hours": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "days": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "Monday",
+                          "Tuesday",
+                          "Wednesday",
+                          "Thursday",
+                          "Friday",
+                          "Saturday",
+                          "Sunday"
+                        ]
+                      }
+                    },
+                    "intervals": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "opens": {
+                            "type": "string"
+                          },
+                          "closes": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "opens",
+                          "closes"
+                        ]
+                      },
+                      "default": []
+                    }
+                  },
+                  "required": [
+                    "days"
+                  ]
+                },
+                "default": []
+              },
+              "sameAs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "priceRange": {
                 "type": "string",
                 "default": ""
               },
@@ -571,35 +692,18 @@
                               "type": "object",
                               "properties": {
                                 "title": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "default": "Schedule"
                                 },
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "label": {
-                                        "type": "string"
-                                      },
-                                      "value": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "label",
-                                      "value"
-                                    ]
-                                  }
+                                "closedLabel": {
+                                  "type": "string",
+                                  "default": "Closed"
                                 }
                               },
                               "default": {
-                                "title": "",
-                                "items": []
-                              },
-                              "required": [
-                                "title",
-                                "items"
-                              ]
+                                "title": "Schedule",
+                                "closedLabel": "Closed"
+                              }
                             },
                             "mapUrl": {
                               "type": "string",
@@ -797,13 +901,134 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  5
+                  6
                 ]
               },
               "name": {
                 "type": "string"
               },
+              "businessType": {
+                "type": "string",
+                "enum": [
+                  "LocalBusiness",
+                  "Restaurant",
+                  "CafeOrCoffeeShop",
+                  "BarOrPub",
+                  "Bakery",
+                  "Store",
+                  "HairSalon",
+                  "BeautySalon",
+                  "HealthAndBeautyBusiness",
+                  "MedicalClinic",
+                  "Dentist",
+                  "AutoRepair",
+                  "ProfessionalService"
+                ],
+                "default": "LocalBusiness"
+              },
               "address": {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "locality": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "region": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "postalCode": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "country": {
+                    "type": "string",
+                    "default": ""
+                  }
+                },
+                "default": {
+                  "street": "",
+                  "locality": "",
+                  "region": "",
+                  "postalCode": "",
+                  "country": ""
+                }
+              },
+              "geo": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "default": ""
+                  }
+                },
+                "default": {
+                  "latitude": "",
+                  "longitude": ""
+                }
+              },
+              "hours": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "days": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "Monday",
+                          "Tuesday",
+                          "Wednesday",
+                          "Thursday",
+                          "Friday",
+                          "Saturday",
+                          "Sunday"
+                        ]
+                      }
+                    },
+                    "intervals": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "opens": {
+                            "type": "string"
+                          },
+                          "closes": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "opens",
+                          "closes"
+                        ]
+                      },
+                      "default": []
+                    }
+                  },
+                  "required": [
+                    "days"
+                  ]
+                },
+                "default": []
+              },
+              "sameAs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "priceRange": {
                 "type": "string",
                 "default": ""
               },
@@ -1291,35 +1516,18 @@
                               "type": "object",
                               "properties": {
                                 "title": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "default": "Schedule"
                                 },
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "label": {
-                                        "type": "string"
-                                      },
-                                      "value": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "label",
-                                      "value"
-                                    ]
-                                  }
+                                "closedLabel": {
+                                  "type": "string",
+                                  "default": "Closed"
                                 }
                               },
                               "default": {
-                                "title": "",
-                                "items": []
-                              },
-                              "required": [
-                                "title",
-                                "items"
-                              ]
+                                "title": "Schedule",
+                                "closedLabel": "Closed"
+                              }
                             },
                             "mapUrl": {
                               "type": "string",
@@ -1527,13 +1735,134 @@
               "schemaVersion": {
                 "type": "number",
                 "enum": [
-                  5
+                  6
                 ]
               },
               "name": {
                 "type": "string"
               },
+              "businessType": {
+                "type": "string",
+                "enum": [
+                  "LocalBusiness",
+                  "Restaurant",
+                  "CafeOrCoffeeShop",
+                  "BarOrPub",
+                  "Bakery",
+                  "Store",
+                  "HairSalon",
+                  "BeautySalon",
+                  "HealthAndBeautyBusiness",
+                  "MedicalClinic",
+                  "Dentist",
+                  "AutoRepair",
+                  "ProfessionalService"
+                ],
+                "default": "LocalBusiness"
+              },
               "address": {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "locality": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "region": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "postalCode": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "country": {
+                    "type": "string",
+                    "default": ""
+                  }
+                },
+                "default": {
+                  "street": "",
+                  "locality": "",
+                  "region": "",
+                  "postalCode": "",
+                  "country": ""
+                }
+              },
+              "geo": {
+                "type": "object",
+                "properties": {
+                  "latitude": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "longitude": {
+                    "type": "string",
+                    "default": ""
+                  }
+                },
+                "default": {
+                  "latitude": "",
+                  "longitude": ""
+                }
+              },
+              "hours": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "days": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "Monday",
+                          "Tuesday",
+                          "Wednesday",
+                          "Thursday",
+                          "Friday",
+                          "Saturday",
+                          "Sunday"
+                        ]
+                      }
+                    },
+                    "intervals": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "opens": {
+                            "type": "string"
+                          },
+                          "closes": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "opens",
+                          "closes"
+                        ]
+                      },
+                      "default": []
+                    }
+                  },
+                  "required": [
+                    "days"
+                  ]
+                },
+                "default": []
+              },
+              "sameAs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "priceRange": {
                 "type": "string",
                 "default": ""
               },
@@ -2021,35 +2350,18 @@
                               "type": "object",
                               "properties": {
                                 "title": {
-                                  "type": "string"
+                                  "type": "string",
+                                  "default": "Schedule"
                                 },
-                                "items": {
-                                  "type": "array",
-                                  "items": {
-                                    "type": "object",
-                                    "properties": {
-                                      "label": {
-                                        "type": "string"
-                                      },
-                                      "value": {
-                                        "type": "string"
-                                      }
-                                    },
-                                    "required": [
-                                      "label",
-                                      "value"
-                                    ]
-                                  }
+                                "closedLabel": {
+                                  "type": "string",
+                                  "default": "Closed"
                                 }
                               },
                               "default": {
-                                "title": "",
-                                "items": []
-                              },
-                              "required": [
-                                "title",
-                                "items"
-                              ]
+                                "title": "Schedule",
+                                "closedLabel": "Closed"
+                              }
                             },
                             "mapUrl": {
                               "type": "string",

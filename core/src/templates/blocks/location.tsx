@@ -1,11 +1,11 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
-import { slugify } from '../core/utils';
-import type { LocationBlock, TemplateData } from '../types';
+import { formatDays, formatIntervals, slugify } from '../core/utils';
+import type { ExtendedTemplateData, LocationBlock } from '../types';
 
-export function Location({ data, block }: { data: TemplateData; block: LocationBlock }) {
+export function Location({ data, block }: { data: ExtendedTemplateData; block: LocationBlock }) {
   const details = [
-    ...(data.blocks.address ? [{ label: 'Address', value: data.blocks.address }] : []),
+    ...(data.formattedAddress ? [{ label: 'Address', value: data.formattedAddress }] : []),
     ...(data.blocks.phone ? [{ label: 'Phone', value: data.blocks.phone }] : []),
     ...block.details,
   ];
@@ -29,16 +29,14 @@ export function Location({ data, block }: { data: TemplateData; block: LocationB
               </div>
             ))}
 
-            {block.schedule.items.length > 0 && (
+            {data.blocks.hours.length > 0 && (
               <div className="border-foreground/10 flex flex-col gap-3 border-t py-6 md:flex-row md:gap-12">
                 <span className="text-primary/70 w-30 shrink-0 text-xs tracking-[0.2em] uppercase">{block.schedule.title}</span>
                 <div className="grid grid-cols-2 gap-x-8 gap-y-1.5 text-sm md:block md:space-y-1.5">
-                  {block.schedule.items.map((item, i) => (
+                  {data.blocks.hours.map((entry, i) => (
                     <div key={i} className="contents md:flex md:gap-8">
-                      <span className="md:w-36">{item.label}</span>
-                      <span>
-                        <RichText text={item.value} />
-                      </span>
+                      <span className="md:w-36">{formatDays(entry.days)}</span>
+                      <span>{formatIntervals(entry.intervals, block.schedule.closedLabel)}</span>
                     </div>
                   ))}
                 </div>

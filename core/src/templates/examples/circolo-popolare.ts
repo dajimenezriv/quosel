@@ -199,14 +199,7 @@ export const circoloPopolareLocation: LocationBlock = {
   nav: 'Location',
   title: '_Visit us._',
   details: [{ label: 'Social Media', value: 'Instagram · *@circolopopolare*' }],
-  schedule: {
-    title: 'Schedule',
-    items: [
-      { label: 'Monday — Friday', value: '10:00 — 14:00 · 16:00 — 20:00' },
-      { label: 'Saturday', value: '10:00 — 14:00' },
-      { label: 'Sunday', value: 'Closed' },
-    ],
-  },
+  schedule: { title: 'Schedule', closedLabel: 'Closed' },
   mapUrl:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d620.6958523025477!2d-0.13451297141411575!3d51.517189498231176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761ba809fd882b%3A0x817eee82a924ec96!2sCircolo%20Popolare!5e0!3m2!1sen!2ses!4v1781019604772!5m2!1sen!2ses',
   ctaText: 'Book a Table',
@@ -233,11 +226,7 @@ export const circoloPopolareFooter: FooterBlock = {
     { label: 'Book a Table', url: 'https://www.circolopopolare.com/restaurants/circolopopolare-london' },
     { label: 'Instagram', url: 'https://www.instagram.com/circolopopolare' },
   ],
-  legalLinks: [
-    { label: 'Legal Notice', url: '/legal-notice' },
-    { label: 'Privacy Policy', url: '/privacy-policy' },
-    { label: 'Cookie Policy', url: '/cookie-policy' },
-  ],
+  legalLinks: [],
 };
 
 const privateDiningPage: ServicePage = {
@@ -334,9 +323,24 @@ For a table of your own, ask about [private dining](private-dining-london), or m
 };
 
 export const circoloPopolareBlocks: Blocks = {
-  schemaVersion: 5,
+  schemaVersion: 6,
   name: 'Circolo Popolare',
-  address: '40-41 Rathbone Pl, London W1T 1HX, UK',
+  businessType: 'Restaurant',
+  address: { street: '40-41 Rathbone Pl', locality: 'London', region: '', postalCode: 'W1T 1HX', country: 'UK' },
+  geo: { latitude: '51.517189', longitude: '-0.134513' },
+  hours: [
+    {
+      days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      intervals: [
+        { opens: '10:00', closes: '14:00' },
+        { opens: '16:00', closes: '20:00' },
+      ],
+    },
+    { days: ['Saturday'], intervals: [{ opens: '10:00', closes: '14:00' }] },
+    { days: ['Sunday'], intervals: [] },
+  ],
+  sameAs: ['https://www.instagram.com/circolopopolare', 'https://www.circolopopolare.com'],
+  priceRange: '££',
   phone: '+44 20 3893 6800',
   metaTitle: 'Circolo Popolare · Italian restaurant & pizzeria in London',
   metaDescription:

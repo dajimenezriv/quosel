@@ -1,6 +1,6 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { RichText } from '../core/rich-text';
-import { pageHref, telHref } from '../core/utils';
+import { addressHref, pageHref, telHref } from '../core/utils';
 import type { ExtendedTemplateData, FooterBlock } from '../types';
 
 type Links = Array<{ label: string; url: string }>;
@@ -11,7 +11,7 @@ export function Footer({ data, block }: { data: ExtendedTemplateData; block: Foo
   const links: Links = [];
 
   if (data.blocks.phone) links.push({ label: data.blocks.phone, url: telHref(data.blocks.phone) });
-  if (data.blocks.address) links.push({ label: data.blocks.address, url: '' });
+  if (data.formattedAddress) links.push({ label: data.formattedAddress, url: addressHref(data.blocks.address) });
 
   return (
     <footer className="px-6 py-12 md:px-24 md:py-16">

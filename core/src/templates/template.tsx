@@ -1,6 +1,7 @@
 /** @jsxRuntime automatic @jsxImportSource react */
 import { HomepageBody } from './homepage-body';
 import { ServicePageBody } from './service-page-body';
+import { renderHomepageJsonLd, renderServicePageJsonLd } from './structured-data';
 import { buildRootStyles } from './styles';
 import type { ServicePage, TemplateData } from './types';
 
@@ -50,14 +51,6 @@ export function Template({ data }: { data: TemplateData }) {
   const title = data.blocks.metaTitle || data.blocks.name;
   const description = data.blocks.metaDescription;
 
-  const jsonLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: data.blocks.name,
-    address: data.blocks.address,
-    telephone: data.blocks.phone,
-  });
-
   return (
     <html lang="en" className="scroll-smooth">
       <DocumentHead
@@ -66,7 +59,7 @@ export function Template({ data }: { data: TemplateData }) {
         description={description}
         domain={data.domain}
         imageUrl={data.blocks.homepage.hero.imageUrl}
-        jsonLd={jsonLd}
+        jsonLd={renderHomepageJsonLd(data)}
       />
       <body>
         <HomepageBody data={data} />
@@ -80,32 +73,16 @@ export function ServicePageTemplate({ data, page }: { data: TemplateData; page: 
   const description = page.metaDescription;
   const domain = data.domain ? `${data.domain}/${page.slug}` : '';
 
-  const jsonLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Service',
-        name: page.h1,
-        provider: {
-          '@type': 'LocalBusiness',
-          name: data.blocks.name,
-          address: data.blocks.address,
-          telephone: data.blocks.phone,
-        },
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: data.blocks.name, item: data.domain },
-          { '@type': 'ListItem', position: 2, name: page.h1, item: domain },
-        ],
-      },
-    ],
-  });
-
   return (
     <html lang="en" className="scroll-smooth">
-      <DocumentHead data={data} title={title} description={description} domain={domain} imageUrl={page.heroImageUrl} jsonLd={jsonLd} />
+      <DocumentHead
+        data={data}
+        title={title}
+        description={description}
+        domain={domain}
+        imageUrl={page.heroImageUrl}
+        jsonLd={renderServicePageJsonLd(data, page)}
+      />
       <body>
         <ServicePageBody data={data} page={page} />
       </body>

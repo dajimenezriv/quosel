@@ -957,10 +957,59 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 5;
+                schemaVersion: 6;
                 name: string;
+                /**
+                 * @default LocalBusiness
+                 * @enum {string}
+                 */
+                businessType: "LocalBusiness" | "Restaurant" | "CafeOrCoffeeShop" | "BarOrPub" | "Bakery" | "Store" | "HairSalon" | "BeautySalon" | "HealthAndBeautyBusiness" | "MedicalClinic" | "Dentist" | "AutoRepair" | "ProfessionalService";
+                /**
+                 * @default {
+                 *       "street": "",
+                 *       "locality": "",
+                 *       "region": "",
+                 *       "postalCode": "",
+                 *       "country": ""
+                 *     }
+                 */
+                address: {
+                    /** @default  */
+                    street: string;
+                    /** @default  */
+                    locality: string;
+                    /** @default  */
+                    region: string;
+                    /** @default  */
+                    postalCode: string;
+                    /** @default  */
+                    country: string;
+                };
+                /**
+                 * @default {
+                 *       "latitude": "",
+                 *       "longitude": ""
+                 *     }
+                 */
+                geo: {
+                    /** @default  */
+                    latitude: string;
+                    /** @default  */
+                    longitude: string;
+                };
+                /** @default [] */
+                hours: {
+                    days: ("Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday")[];
+                    /** @default [] */
+                    intervals: {
+                        opens: string;
+                        closes: string;
+                    }[];
+                }[];
+                /** @default [] */
+                sameAs: string[];
                 /** @default  */
-                address: string;
+                priceRange: string;
                 /** @default  */
                 phone: string;
                 /** @default  */
@@ -1088,16 +1137,15 @@ export interface components {
                         }[];
                         /**
                          * @default {
-                         *       "title": "",
-                         *       "items": []
+                         *       "title": "Schedule",
+                         *       "closedLabel": "Closed"
                          *     }
                          */
                         schedule: {
+                            /** @default Schedule */
                             title: string;
-                            items: {
-                                label: string;
-                                value: string;
-                            }[];
+                            /** @default Closed */
+                            closedLabel: string;
                         };
                         /** @default  */
                         mapUrl: string;
@@ -1155,10 +1203,59 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 5;
+                schemaVersion: 6;
                 name: string;
+                /**
+                 * @default LocalBusiness
+                 * @enum {string}
+                 */
+                businessType: "LocalBusiness" | "Restaurant" | "CafeOrCoffeeShop" | "BarOrPub" | "Bakery" | "Store" | "HairSalon" | "BeautySalon" | "HealthAndBeautyBusiness" | "MedicalClinic" | "Dentist" | "AutoRepair" | "ProfessionalService";
+                /**
+                 * @default {
+                 *       "street": "",
+                 *       "locality": "",
+                 *       "region": "",
+                 *       "postalCode": "",
+                 *       "country": ""
+                 *     }
+                 */
+                address: {
+                    /** @default  */
+                    street: string;
+                    /** @default  */
+                    locality: string;
+                    /** @default  */
+                    region: string;
+                    /** @default  */
+                    postalCode: string;
+                    /** @default  */
+                    country: string;
+                };
+                /**
+                 * @default {
+                 *       "latitude": "",
+                 *       "longitude": ""
+                 *     }
+                 */
+                geo: {
+                    /** @default  */
+                    latitude: string;
+                    /** @default  */
+                    longitude: string;
+                };
+                /** @default [] */
+                hours: {
+                    days: ("Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday")[];
+                    /** @default [] */
+                    intervals: {
+                        opens: string;
+                        closes: string;
+                    }[];
+                }[];
+                /** @default [] */
+                sameAs: string[];
                 /** @default  */
-                address: string;
+                priceRange: string;
                 /** @default  */
                 phone: string;
                 /** @default  */
@@ -1286,16 +1383,15 @@ export interface components {
                         }[];
                         /**
                          * @default {
-                         *       "title": "",
-                         *       "items": []
+                         *       "title": "Schedule",
+                         *       "closedLabel": "Closed"
                          *     }
                          */
                         schedule: {
+                            /** @default Schedule */
                             title: string;
-                            items: {
-                                label: string;
-                                value: string;
-                            }[];
+                            /** @default Closed */
+                            closedLabel: string;
                         };
                         /** @default  */
                         mapUrl: string;
@@ -1351,10 +1447,59 @@ export interface components {
             context: string;
             blocks: {
                 /** @enum {number} */
-                schemaVersion: 5;
+                schemaVersion: 6;
                 name: string;
+                /**
+                 * @default LocalBusiness
+                 * @enum {string}
+                 */
+                businessType: "LocalBusiness" | "Restaurant" | "CafeOrCoffeeShop" | "BarOrPub" | "Bakery" | "Store" | "HairSalon" | "BeautySalon" | "HealthAndBeautyBusiness" | "MedicalClinic" | "Dentist" | "AutoRepair" | "ProfessionalService";
+                /**
+                 * @default {
+                 *       "street": "",
+                 *       "locality": "",
+                 *       "region": "",
+                 *       "postalCode": "",
+                 *       "country": ""
+                 *     }
+                 */
+                address: {
+                    /** @default  */
+                    street: string;
+                    /** @default  */
+                    locality: string;
+                    /** @default  */
+                    region: string;
+                    /** @default  */
+                    postalCode: string;
+                    /** @default  */
+                    country: string;
+                };
+                /**
+                 * @default {
+                 *       "latitude": "",
+                 *       "longitude": ""
+                 *     }
+                 */
+                geo: {
+                    /** @default  */
+                    latitude: string;
+                    /** @default  */
+                    longitude: string;
+                };
+                /** @default [] */
+                hours: {
+                    days: ("Monday" | "Tuesday" | "Wednesday" | "Thursday" | "Friday" | "Saturday" | "Sunday")[];
+                    /** @default [] */
+                    intervals: {
+                        opens: string;
+                        closes: string;
+                    }[];
+                }[];
+                /** @default [] */
+                sameAs: string[];
                 /** @default  */
-                address: string;
+                priceRange: string;
                 /** @default  */
                 phone: string;
                 /** @default  */
@@ -1482,16 +1627,15 @@ export interface components {
                         }[];
                         /**
                          * @default {
-                         *       "title": "",
-                         *       "items": []
+                         *       "title": "Schedule",
+                         *       "closedLabel": "Closed"
                          *     }
                          */
                         schedule: {
+                            /** @default Schedule */
                             title: string;
-                            items: {
-                                label: string;
-                                value: string;
-                            }[];
+                            /** @default Closed */
+                            closedLabel: string;
                         };
                         /** @default  */
                         mapUrl: string;

@@ -1,9 +1,14 @@
 import type { Blocks } from '../types';
 
 export const emptyBlocks: Blocks = {
-  schemaVersion: 5,
+  schemaVersion: 6,
   name: 'Empty',
-  address: '',
+  businessType: 'LocalBusiness',
+  address: { street: '', locality: '', region: '', postalCode: '', country: '' },
+  geo: { latitude: '', longitude: '' },
+  hours: [],
+  sameAs: [],
+  priceRange: '',
   phone: '',
   metaTitle: '',
   metaDescription: '',

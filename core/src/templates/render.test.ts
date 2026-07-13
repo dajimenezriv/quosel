@@ -60,6 +60,49 @@ describe('renderServicePage', () => {
   });
 });
 
+describe('footer', () => {
+  const html = renderTemplate(data);
+
+  it('links the address to Google Maps for directions', () => {
+    expect(html).toContain(
+      'href="https://www.google.com/maps/search/?api=1&amp;query=40-41%20Rathbone%20Pl%2C%20London%20W1T%201HX%2C%20UK"',
+    );
+  });
+
+  it('never emits an empty href', () => {
+    expect(html).not.toContain('href=""');
+  });
+});
+
+// The reason structured data is the source of truth: whatever a visitor reads on the page is the
+// same data we hand to Google, so the two cannot drift apart.
+describe('derived display', () => {
+  const html = renderTemplate(data);
+
+  it('renders the address line from the structured parts', () => {
+    expect(html).toContain('40-41 Rathbone Pl, London W1T 1HX, UK');
+  });
+
+  it('collapses each group of days into one line, with split shifts joined', () => {
+    const rows = [...html.matchAll(/md:w-36">([^<]*)<\/span><span>([^<]*)</g)].map((row) => [row[1], row[2]]);
+
+    expect(rows).toStrictEqual([
+      ['Monday — Friday', '10:00 — 14:00 · 16:00 — 20:00'],
+      ['Saturday', '10:00 — 14:00'],
+      ['Sunday', 'Closed'],
+    ]);
+  });
+
+  it('renders the same hours it marks up', () => {
+    const match = /<script type="application\/ld\+json">(.*?)<\/script>/s.exec(html);
+    const jsonLd = JSON.parse(match?.[1] ?? '{}');
+    const saturday = jsonLd.openingHoursSpecification.find((spec: { dayOfWeek: string[] }) => spec.dayOfWeek.includes('Saturday'));
+
+    expect(saturday.opens).toBe('10:00');
+    expect(html).toContain('10:00 — 14:00');
+  });
+});
+
 describe('internal linking', () => {
   const sibling: ServicePage = { ...servicePage, slug: 'gluten-free-pizza', h1: 'Gluten-Free Pizza' };
   const linkedData = {
