@@ -1,7 +1,7 @@
 import { app } from '@/app';
 import { CustomHostnames } from '@/infra/cloudflare/custom-hostnames';
 import { Websites } from '@/infra/postgres/websites';
-import { GET_AUTH_REQUEST, calls, deepSpyOn, expectError, expectJson, mockAuthMiddleware } from '@/tests/utils.helper.test';
+import { calls, deepSpyOn, expectError, expectJson, GET_AUTH_REQUEST, mockAuthMiddleware } from '@/tests/utils.helper.test';
 
 describe('get-website-domain', () => {
   mockAuthMiddleware();
