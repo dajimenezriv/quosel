@@ -48,7 +48,7 @@ export function createBlock(type: AddableBlockType): Block {
         nav: 'Location',
         title: '',
         details: [],
-        schedule: { title: '', items: [] },
+        schedule: { title: 'Schedule', closedLabel: 'Closed' },
         mapUrl: '',
         ctaText: '',
         ctaLink: '',

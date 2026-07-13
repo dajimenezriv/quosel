@@ -1,12 +1,17 @@
 import type { Website } from '@/api/websites/use-get-website';
+import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Select } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { useEditorStore } from '@/core/editor/use-editor-store';
 import type { Me } from '@/old/auth';
+import { BUSINESS_TYPES, type Blocks } from '@quosel/core/templates';
 import { produce } from 'immer';
+import { Plus, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { ImageField } from '../image-field';
 import { Field, Subgroup } from '../utils';
+import { OpeningHours } from './opening-hours';
 import { SetDomain } from './set-domain';
 
 interface Props {
@@ -18,6 +23,14 @@ export function GeneralTab({ user, data }: Props) {
   const updateDraft = useEditorStore((s) => s.updateDraft);
   const [domainOpen, setDomainOpen] = useState(false);
 
+  const update = (fn: (blocks: Blocks) => void) => {
+    updateDraft(
+      produce(data, (draft) => {
+        fn(draft.blocks);
+      }),
+    );
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <Subgroup title="NAP consistency">
@@ -25,37 +38,176 @@ export function GeneralTab({ user, data }: Props) {
           <Input
             value={data.blocks.name}
             onChange={(e) => {
-              updateDraft(
-                produce(data, (draft) => {
-                  draft.blocks.name = e.target.value;
-                }),
-              );
+              update((blocks) => {
+                blocks.name = e.target.value;
+              });
             }}
           />
         </Field>
-        <Field label="Address">
-          <Input
-            value={data.blocks.address}
+        <Field label="Business Type">
+          <Select
+            value={data.blocks.businessType}
             onChange={(e) => {
-              updateDraft(
-                produce(data, (draft) => {
-                  draft.blocks.address = e.target.value;
-                }),
-              );
+              update((blocks) => {
+                blocks.businessType = e.target.value as Blocks['businessType'];
+              });
+            }}>
+            {BUSINESS_TYPES.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </Select>
+        </Field>
+        <Field label="Street">
+          <Input
+            value={data.blocks.address.street}
+            placeholder="40-41 Rathbone Pl"
+            onChange={(e) => {
+              update((blocks) => {
+                blocks.address.street = e.target.value;
+              });
             }}
           />
         </Field>
+        <div className="flex gap-2">
+          <Field label="City">
+            <Input
+              value={data.blocks.address.locality}
+              placeholder="London"
+              onChange={(e) => {
+                update((blocks) => {
+                  blocks.address.locality = e.target.value;
+                });
+              }}
+            />
+          </Field>
+          <Field label="Postcode">
+            <Input
+              value={data.blocks.address.postalCode}
+              placeholder="W1T 1HX"
+              onChange={(e) => {
+                update((blocks) => {
+                  blocks.address.postalCode = e.target.value;
+                });
+              }}
+            />
+          </Field>
+        </div>
+        <div className="flex gap-2">
+          <Field label="Region">
+            <Input
+              value={data.blocks.address.region}
+              placeholder="Optional"
+              onChange={(e) => {
+                update((blocks) => {
+                  blocks.address.region = e.target.value;
+                });
+              }}
+            />
+          </Field>
+          <Field label="Country">
+            <Input
+              value={data.blocks.address.country}
+              placeholder="UK"
+              onChange={(e) => {
+                update((blocks) => {
+                  blocks.address.country = e.target.value;
+                });
+              }}
+            />
+          </Field>
+        </div>
         <Field label="Phone">
           <Input
             value={data.blocks.phone}
             onChange={(e) => {
-              updateDraft(
-                produce(data, (draft) => {
-                  draft.blocks.phone = e.target.value;
-                }),
-              );
+              update((blocks) => {
+                blocks.phone = e.target.value;
+              });
             }}
           />
+        </Field>
+      </Subgroup>
+
+      <OpeningHours data={data} />
+
+      <Subgroup title="Local SEO">
+        <p className="text-muted-foreground text-[11px] leading-relaxed">
+          Coordinates and profile links are not shown on the page. They tell search engines exactly where you are, and that your Instagram,
+          TripAdvisor and Facebook pages are all the same business as this site.
+        </p>
+        <div className="flex gap-2">
+          <Field label="Latitude">
+            <Input
+              value={data.blocks.geo.latitude}
+              placeholder="51.517189"
+              onChange={(e) => {
+                update((blocks) => {
+                  blocks.geo.latitude = e.target.value;
+                });
+              }}
+            />
+          </Field>
+          <Field label="Longitude">
+            <Input
+              value={data.blocks.geo.longitude}
+              placeholder="-0.134513"
+              onChange={(e) => {
+                update((blocks) => {
+                  blocks.geo.longitude = e.target.value;
+                });
+              }}
+            />
+          </Field>
+        </div>
+        <Field label="Price Range">
+          <Input
+            value={data.blocks.priceRange}
+            placeholder="££"
+            onChange={(e) => {
+              update((blocks) => {
+                blocks.priceRange = e.target.value;
+              });
+            }}
+          />
+        </Field>
+        <Field label="Profile Links">
+          <div className="flex flex-col gap-2">
+            {data.blocks.sameAs.map((url, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <Input
+                  value={url}
+                  placeholder="https://www.instagram.com/…"
+                  onChange={(e) => {
+                    update((blocks) => {
+                      blocks.sameAs[i] = e.target.value;
+                    });
+                  }}
+                />
+                <button
+                  onClick={() =>
+                    update((blocks) => {
+                      blocks.sameAs.splice(i, 1);
+                    })
+                  }
+                  className="text-muted-foreground hover:text-destructive cursor-pointer">
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </div>
+            ))}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() =>
+                update((blocks) => {
+                  blocks.sameAs.push('');
+                })
+              }>
+              <Plus className="h-4 w-4" />
+              Add profile
+            </Button>
+          </div>
         </Field>
       </Subgroup>
       <Field label="Meta Title">

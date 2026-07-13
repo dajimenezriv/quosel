@@ -91,6 +91,10 @@ export function LocationLayout({ user, data, block, index }: Props) {
       </Subgroup>
 
       <Subgroup title="Schedule">
+        <p className="text-muted-foreground text-[11px] leading-relaxed">
+          The hours themselves live in the General tab, so the page and search engines always show the same thing. These are just the labels
+          around them.
+        </p>
         <Field label="Title">
           <Input
             value={block.schedule.title}
@@ -99,44 +103,15 @@ export function LocationLayout({ user, data, block, index }: Props) {
             })}
           />
         </Field>
-        {block.schedule.items.map((item, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <Input
-              placeholder="Label"
-              value={item.label}
-              onChange={handleInput((block, value) => {
-                block.schedule.items[i]!.label = value;
-              })}
-            />
-            <Input
-              placeholder="Value"
-              value={item.value}
-              onChange={handleInput((block, value) => {
-                block.schedule.items[i]!.value = value;
-              })}
-            />
-            <button
-              onClick={() =>
-                updateBlock((block) => {
-                  block.schedule.items.splice(i, 1);
-                })
-              }
-              className="text-muted-foreground hover:text-destructive cursor-pointer">
-              <Trash2 className="h-4 w-4" />
-            </button>
-          </div>
-        ))}
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() =>
-            updateBlock((block) => {
-              block.schedule.items.push({ label: '', value: '' });
-            })
-          }>
-          <Plus className="h-4 w-4" />
-          Add row
-        </Button>
+        <Field label="Closed Label">
+          <Input
+            value={block.schedule.closedLabel}
+            placeholder="Closed"
+            onChange={handleInput((block, value) => {
+              block.schedule.closedLabel = value;
+            })}
+          />
+        </Field>
       </Subgroup>
 
       <Subgroup title="Call to Action">

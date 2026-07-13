@@ -27,7 +27,7 @@ export function ServicePageBody({ data: rawData, page }: Props) {
         )}
         <div className="z-10 m-6 flex max-w-full flex-col md:m-30">
           <nav aria-label="Breadcrumb" className="mb-4 text-xs tracking-[0.2em] uppercase">
-            <a href={data.homeUrl} className="text-foreground/70 hover:text-foreground transition-colors">
+            <a href={data.domain} className="text-foreground/70 hover:text-foreground transition-colors">
               {data.blocks.name}
             </a>
             <span className="text-foreground/40"> / </span>
