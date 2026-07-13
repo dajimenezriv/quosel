@@ -85,7 +85,7 @@ export function GeneralTab({ user, data }: Props) {
           }}
         />
       </Field>
-      <Field label="Logo">
+      <Field label="Favicon">
         <ImageField
           user={user}
           value={data.blocks.logoUrl}

@@ -194,6 +194,7 @@ export const blocksSchema = z.object({
   metaDescription: z.string().default(''),
   logoUrl: z.string().default(''),
   nav: z.object({
+    logoUrl: z.string().default(''),
     ctaText: z.string(),
     ctaLink: z.string(),
   }),

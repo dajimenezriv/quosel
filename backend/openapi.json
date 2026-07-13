@@ -106,6 +106,10 @@
               "nav": {
                 "type": "object",
                 "properties": {
+                  "logoUrl": {
+                    "type": "string",
+                    "default": ""
+                  },
                   "ctaText": {
                     "type": "string"
                   },
@@ -822,6 +826,10 @@
               "nav": {
                 "type": "object",
                 "properties": {
+                  "logoUrl": {
+                    "type": "string",
+                    "default": ""
+                  },
                   "ctaText": {
                     "type": "string"
                   },
@@ -1548,6 +1556,10 @@
               "nav": {
                 "type": "object",
                 "properties": {
+                  "logoUrl": {
+                    "type": "string",
+                    "default": ""
+                  },
                   "ctaText": {
                     "type": "string"
                   },
@@ -2895,6 +2907,43 @@
         "responses": {
           "204": {
             "description": ""
+          },
+          "500": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/websites/{websiteId}/export": {
+      "get": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "websiteId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
           },
           "500": {
             "description": "Error",

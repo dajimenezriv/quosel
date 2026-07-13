@@ -689,6 +689,51 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/websites/{websiteId}/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    websiteId: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/zip": string;
+                    };
+                };
+                /** @description Error */
+                500: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["Error"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/websites/{websiteId}/regenerate-edit-token": {
         parameters: {
             query?: never;
@@ -925,6 +970,8 @@ export interface components {
                 /** @default  */
                 logoUrl: string;
                 nav: {
+                    /** @default  */
+                    logoUrl: string;
                     ctaText: string;
                     ctaLink: string;
                 };
@@ -1121,6 +1168,8 @@ export interface components {
                 /** @default  */
                 logoUrl: string;
                 nav: {
+                    /** @default  */
+                    logoUrl: string;
                     ctaText: string;
                     ctaLink: string;
                 };
@@ -1315,6 +1364,8 @@ export interface components {
                 /** @default  */
                 logoUrl: string;
                 nav: {
+                    /** @default  */
+                    logoUrl: string;
                     ctaText: string;
                     ctaLink: string;
                 };

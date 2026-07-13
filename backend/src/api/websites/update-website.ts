@@ -5,15 +5,7 @@ import { R2 } from '@/infra/cloudflare/r2';
 import type { Prisma } from '@/infra/postgres/prisma/client';
 import { Websites } from '@/infra/postgres/websites';
 import { createRoute, z, type RouteHandler } from '@hono/zod-openapi';
-import {
-  blocksSchema,
-  renderRobots,
-  renderServicePage,
-  renderSitemap,
-  renderTemplate,
-  stylesSchema,
-  type TemplateData,
-} from '@quosel/core/templates';
+import { blocksSchema, buildSiteFiles, stylesSchema, type TemplateData } from '@quosel/core/templates';
 
 const BodySchema = z
   .object({
@@ -60,15 +52,10 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
   if (publish) {
     const { slug, domain } = website;
     const data: TemplateData = { blocks, styles, domain };
-    const files = [
-      { key: `websites/${slug}/index.html`, file: toFile(renderTemplate(data)) },
-      ...blocks.pages.map((page) => ({
-        key: `websites/${slug}/${page.slug}.html`,
-        file: toFile(renderServicePage(data, page)),
-      })),
-      { key: `websites/${slug}/sitemap.xml`, file: toFile(renderSitemap(data), 'application/xml') },
-      { key: `websites/${slug}/robots.txt`, file: toFile(renderRobots(data), 'text/plain') },
-    ];
+    const files = buildSiteFiles(data).map(({ path, content, contentType }) => ({
+      key: `websites/${slug}/${path}`,
+      file: new File([content], 'file', { type: contentType }),
+    }));
 
     const liveKeys = new Set<string>(files.map(({ key }) => key));
     const allKeys = await R2.list(`websites/${slug}/`);
@@ -79,7 +66,3 @@ export const updateWebsite: RouteHandler<typeof updateWebsiteRoute, { Variables:
 
   return c.body(null, 204);
 };
-
-function toFile(content: string, type = 'text/html') {
-  return new File([content], 'file', { type });
-}
