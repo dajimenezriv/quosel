@@ -343,6 +343,7 @@ export const circoloPopolareBlocks: Blocks = {
     'Circolo Popolare is a restaurant serves authentic Italian food: Neapolitan pizzas, fresh pasta and big tables made for sharing.',
   logoUrl: 'https://www.circolopopolare.com/favicon.ico',
   nav: {
+    logoUrl: '',
     ctaText: 'Book a Table',
     ctaLink: 'https://www.circolopopolare.com/restaurants/circolopopolare-london',
   },

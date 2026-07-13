@@ -37,9 +37,9 @@ export function deepSpyOn<T extends object, K extends keyof T>(object: T, method
     : never;
 }
 
-export function mockAuthMiddleware() {
+export function mockAuthMiddleware(user?: object) {
   beforeEach(() => {
-    vi.spyOn(Sessions, 'getById').mockResolvedValue({ user: { id: 'userId' } } as any);
+    vi.spyOn(Sessions, 'getById').mockResolvedValue({ user: { id: 'userId', ...user } } as any);
   });
 }
 

@@ -9,6 +9,7 @@ export const emptyBlocks: Blocks = {
   metaDescription: '',
   logoUrl: '',
   nav: {
+    logoUrl: '',
     ctaText: '',
     ctaLink: '',
   },

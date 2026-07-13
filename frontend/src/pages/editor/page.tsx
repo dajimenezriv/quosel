@@ -1,3 +1,4 @@
+import { useExportWebsite } from '@/api/websites/use-export-website';
 import { useGetWebsite } from '@/api/websites/use-get-website';
 import { useUpdateWebsite } from '@/api/websites/use-update-website';
 import { BaseLayout } from '@/components/layouts/base-layout';
@@ -11,7 +12,6 @@ import { ThemeTab } from '@/modules/editor/customizer/theme-tab';
 import { Device } from '@/modules/editor/devices/device';
 import { DeviceSwitcher } from '@/modules/editor/devices/switch-device';
 import { useAuth } from '@/old/auth';
-import { renderTemplate } from '@quosel/core/templates';
 import { Download, Globe, Layout, Palette, RotateCcw, Save, Settings, SlidersHorizontal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -32,7 +32,8 @@ export default function Page() {
     if (data) hydrate(data);
   }, [data, hydrate]);
 
-  const { mutate: updateWebsite, isPending } = useUpdateWebsite();
+  const { mutate: updateWebsite, isPending: isUpdating } = useUpdateWebsite();
+  const { mutate: exportZip, isPending: isExporting } = useExportWebsite();
 
   function toggleCustomizer() {
     setIsCustomizerOpen(!isCustomizerOpen);
@@ -48,16 +49,9 @@ export default function Page() {
     updateWebsite({ websiteId, publish: true, data: draft });
   }
 
-  function exportHtml() {
-    if (!draft) return;
-    const html = renderTemplate(draft);
-    const blob = new Blob([html], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'index.html';
-    a.click();
-    URL.revokeObjectURL(url);
+  function exportWebsite() {
+    if (!draft || !websiteId) return;
+    exportZip({ websiteId, slug: draft.slug });
   }
 
   return (
@@ -79,18 +73,18 @@ export default function Page() {
             <RotateCcw className="h-[1.2rem] w-[1.2rem]" />
             Reset
           </Button>
-          <Button variant="outline" onClick={save} disabled={isPending} className="cursor-pointer">
+          <Button variant="outline" onClick={save} disabled={isUpdating} className="cursor-pointer">
             <Save className="h-[1.2rem] w-[1.2rem]" />
             Save
           </Button>
 
-          <Button onClick={publish} disabled={isPending} className="cursor-pointer">
+          <Button onClick={publish} disabled={isUpdating} className="cursor-pointer">
             <Globe className="h-[1.2rem] w-[1.2rem]" />
             Publish
           </Button>
 
           {user?.subscriptionStatus === 'active' && (
-            <Button variant="outline" onClick={exportHtml} className="cursor-pointer">
+            <Button variant="outline" onClick={exportWebsite} disabled={isExporting} className="cursor-pointer">
               <Download className="h-[1.2rem] w-[1.2rem]" />
               Export
             </Button>
